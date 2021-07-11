@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import { getProfilePage } from '../lib/api';
+import { RichText } from 'prismic-reactjs';
 // import Image from 'next/image';
 import styles from '../styles/Profile.module.scss';
 
@@ -50,9 +51,12 @@ const Profile = ({data}) => {
 
         <p className="thanks">Thanks, talk soon.</p>
       </main>
+
       <aside className="contact_info">
         <h3>Contact</h3>
-        <p></p>
+
+        {page_content ? (<p><RichText render={page_content.instruction} /></p>) : null}
+        
 
         <div className="partner">
           <span>Andrew J.S.</span>
