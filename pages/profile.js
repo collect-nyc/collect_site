@@ -19,6 +19,7 @@ const Profile = ({data}) => {
 
   const page_content = data[0].node;
 
+
   return (
     <div className={styles.container}>
       <Head>
@@ -30,22 +31,42 @@ const Profile = ({data}) => {
       <main className="profile_main">
         <div className="summary">
         <h1>COLLECT NYC</h1>
-        <p></p>
+        <RichText render={page_content.summary} />
         </div>
         <div className="clients_collabs">
           <h2>Clients, Collaborators</h2>
           <ul>
-            <li>hello</li>
-            <li>hello</li>
-            <li>hello</li>
+            {page_content
+              ? page_content.clients_and_collaborators.map((client, key) => (
+                  <li key={key}><RichText render={client.item} /></li>
+                ))
+              : null}
           </ul>
         </div>
         <div className="offerings">
           <h2>Offerings</h2>
-          <ul>
-            <li>hello</li>
-            <li>hello</li>
-            <li>hello</li>
+          <ul className="visual offerings">
+            {page_content
+              ? page_content.visual_offerings.map((offering, key) => (
+                  <li key={key}><RichText render={offering.item} /></li>
+                ))
+              : null}
+          </ul>
+
+          <ul className="technical offerings">
+            {page_content
+              ? page_content.technical_offerings.map((offering, key) => (
+                  <li key={key}><RichText render={offering.item} /></li>
+                ))
+              : null}
+          </ul>
+
+          <ul className="leadership offerings">
+            {page_content
+              ? page_content.leadership_offerings.map((offering, key) => (
+                  <li key={key}><RichText render={offering.item} /></li>
+                ))
+              : null}
           </ul>
         </div>
 
@@ -55,8 +76,7 @@ const Profile = ({data}) => {
       <aside className="contact_info">
         <h3>Contact</h3>
 
-        {page_content ? (<p><RichText render={page_content.instruction} /></p>) : null}
-        
+        {page_content ? (<RichText render={page_content.instruction} />) : null}
 
         <div className="partner">
           <span>Andrew J.S.</span>
