@@ -87,6 +87,38 @@ const Profile = ({data}) => {
           <span>Joshua Tuscan</span>
           <span>{page_content ? page_content.joshua[0].text : null}</span>
         </div>
+
+        <div className="insta_group">
+          <ul className="insta">
+          {page_content
+            ? page_content.instagrams.map((handle, key) => (
+                <li key={key}><RichText render={handle.item} /></li>
+              ))
+            : null}
+          </ul>
+        </div>
+
+        <div className="socials_group">
+          <ul className="socials">
+          {page_content
+            ? page_content.socials.map((handle, key) => (
+                <li key={key}><RichText render={handle.item} /></li>
+              ))
+            : null}
+          </ul>
+        </div>
+
+        <div className="contact_details">
+            <div className="phone">
+              <h4>Office</h4>
+              <RichText render={page_content.phone} />
+            </div>
+            <div className="address">
+              <RichText render={page_content.address} />
+            </div>
+        </div>
+
+        <div className="copyright">&copy;{new Date().getFullYear()} Collect NYC</div>
       </aside>
     </div>
   )
