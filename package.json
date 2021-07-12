@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "luxon": "^2.0.1",
     "next": "11.0.1",
     "prismic-javascript": "^3.0.2",
     "prismic-reactjs": "^1.3.4",

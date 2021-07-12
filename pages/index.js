@@ -1,8 +1,27 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.scss'
+import Head from 'next/head';
+import { getIndexPage, getAllArchives } from '../lib/api';
+import { RichText } from 'prismic-reactjs';
+import { DateTime } from "luxon";
+// import Image from 'next/image'
+import styles from '../styles/Home.module.scss';
 
-export default function Home() {
+export async function getServerSideProps() {
+  const data = await getIndexPage();
+
+  const archives = await getAllArchives();
+
+  return {
+    props: { data, archives },
+  }
+}
+
+
+const Home = ({data, archives}) => {
+  const page_content = data[0].node;
+
+
+  console.log('DATA', page_content, 'ARCHIVES', archives);
+
   return (
     <div className={styles.container}>
       <Head>
@@ -13,57 +32,46 @@ export default function Home() {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
+          <span><RichText render={page_content.title} /></span>
+          <span><RichText render={page_content.date_range} /></span>
         </h1>
 
+        <section className="all_archives">
+          <ul>
+          {archives
+            ? archives.map((archive, key) => (
+                <li key={key}>
+                  {archive.node.title[0].text}
+
+                  {archive.node.tags.map((item, key) => (
+                    <span key={key}>
+                      {item.tag.tag_name[0].text}
+                    </span>
+                  ))}
+
+                  {DateTime.fromISO(archive.node.creation_date).toFormat("yyyy")}
+                </li>
+              ))
+            : null}
+          </ul>
+        </section>
+        
+        {/* 
         <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+          
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/master/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+          
         </div>
-      </main>
+        */}
 
-      <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
-      </footer>
+
+        <footer>
+        </footer>
+      </main>
     </div>
   )
 }
+
+export default Home;
