@@ -3,7 +3,7 @@ import { getIndexPage, getAllArchives } from '../lib/api';
 import { RichText } from 'prismic-reactjs';
 import { DateTime } from "luxon";
 // import Image from 'next/image'
-import styles from '../styles/Home.module.scss';
+import styles from '../styles/Index.module.scss';
 
 export async function getServerSideProps() {
   const data = await getIndexPage();
@@ -67,7 +67,8 @@ const Home = ({data, archives}) => {
         */}
 
 
-        <footer>
+        <footer className={styles.footer}>
+          <img src={page_content.footer_graphic.url} />
         </footer>
       </main>
     </div>
