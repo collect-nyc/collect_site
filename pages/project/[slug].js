@@ -50,6 +50,19 @@ const ArchiveItem = ({response}) => {
 
       <main className={styles.main}>
         <h1>{page_data.title[0].text}</h1>
+        {page_data.description ? (
+          <RichText render={page_data.description} />
+        ) : null}
+
+        <div className="tags">
+          {page_data.tags.map((item, key) => (
+            <span key={key}>
+              {item.tag.tag_name[0].text}
+            </span>
+          ))}
+        </div>
+
+        <span>{DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}</span>
       </main>
     </div>
     );
