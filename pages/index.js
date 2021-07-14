@@ -55,20 +55,9 @@ const Home = ({data, archives}) => {
             : null}
           </ul>
         </section>
-        
-        {/* 
-        <p className={styles.description}>
-          
-        </p>
-
-        <div className={styles.grid}>
-          
-        </div>
-        */}
-
 
         <footer className={styles.footer}>
-          <img src={page_content.footer_graphic.url} />
+          <img src={page_content.footer_graphic.url} alt="Collect" />
         </footer>
       </main>
     </div>
