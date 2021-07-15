@@ -2,7 +2,8 @@ import Head from 'next/head';
 import { getIndexPage, getAllArchives } from '../lib/api';
 // import { RichText } from 'prismic-reactjs';
 import { DateTime } from "luxon";
-// import Image from 'next/image'
+import Image from 'next/image'
+import Link from "next/link";
 import SiteNav from '../components/SiteNav';
 import styles from '../styles/Index.module.scss';
 
@@ -19,7 +20,6 @@ export async function getServerSideProps() {
 
 const Home = ({data, archives}) => {
   const page_content = data[0].node;
-
 
   console.log('DATA', page_content, 'ARCHIVES', archives);
 
@@ -60,7 +60,7 @@ const Home = ({data, archives}) => {
         </section>
       </main>
       <footer className={styles.footer}>
-          <img src={page_content.footer_graphic.url} alt="Collect" />
+          <Image layout="responsive" width={page_content.footer_graphic.dimensions.width} height={page_content.footer_graphic.dimensions.height} src={page_content.footer_graphic.url} alt="Collect Graphic" />
         </footer>
     </div>
   )
