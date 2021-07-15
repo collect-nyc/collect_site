@@ -37,7 +37,8 @@ const Profile = ({ data }) => {
             <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
             <RichText render={page_content.summary} />
           </div>
-          <div className="clients_collabs">
+
+          <div className={styles.clients_collabs}>
             <h3 className="untitled_caps">Clients, Collaborators</h3>
             <ul>
               {page_content
@@ -49,9 +50,11 @@ const Profile = ({ data }) => {
                 : null}
             </ul>
           </div>
-          <div className="offerings">
+
+          <div className={styles.offerings}>
             <h3 className="untitled_caps">Offerings</h3>
-            <ul className="visual offerings">
+
+            <ul className={styles.visual}>
               {page_content
                 ? page_content.visual_offerings.map((offering, key) => (
                     <li key={key}>
@@ -61,7 +64,7 @@ const Profile = ({ data }) => {
                 : null}
             </ul>
 
-            <ul className="technical offerings">
+            <ul className={styles.technical}>
               {page_content
                 ? page_content.technical_offerings.map((offering, key) => (
                     <li key={key}>
@@ -71,7 +74,7 @@ const Profile = ({ data }) => {
                 : null}
             </ul>
 
-            <ul className="leadership offerings">
+            <ul className={styles.leadership}>
               {page_content
                 ? page_content.leadership_offerings.map((offering, key) => (
                     <li key={key}>
@@ -82,7 +85,7 @@ const Profile = ({ data }) => {
             </ul>
           </div>
 
-          <p className="thanks">Thanks, talk soon.</p>
+          <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
           <h3 className="untitled_caps">Contact</h3>
@@ -123,7 +126,7 @@ const Profile = ({ data }) => {
             </ul>
           </div>
 
-          <div className="contact_details">
+          <div className={styles.contact_details}>
             <div className="phone">
               <h4>Office</h4>
               <RichText render={page_content.phone} />
