@@ -1,0 +1,17 @@
+@import './colors';
+@import './helpers';
+
+.navigation {
+  border-bottom: 1px solid $black;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.link_box {
+  display: flex;
+  justify-content: space-between;
+  padding: 19px $navGutter_desktop 17px;
+}
+

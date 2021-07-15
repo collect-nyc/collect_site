@@ -1,11 +1,40 @@
 @import './colors';
+@import './helpers';
+@import './typography';
 
-.container {
-  
-}
 
 .main {
-  
+  padding: 60px $gutter_desktop 20px;
+
+  .title {
+    @extend .heading_h2;
+    margin-bottom: 70px;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
+  }
+
+  .all_archives {
+    ul {
+      border-top: 1px solid $black;
+      border-bottom: 1px solid $black;
+      margin: 0;
+      padding: 0;
+
+      li {
+        border-bottom: 1px solid $black;
+        list-style: none;
+        padding: 19px 20px 17px;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
+  }
 }
 
 .footer {
