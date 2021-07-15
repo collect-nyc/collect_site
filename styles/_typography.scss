@@ -1,4 +1,45 @@
+@font-face {
+  font-family: "Futura No2 D";
+  src: url('/public/fonts/FuturaNo2D-ExtBol.woff2') format('woff2'),
+      url('/public/fonts/FuturaNo2D-ExtBol.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
+@font-face {
+  font-family: "Futura No2 D";
+  src: url('/fonts/FuturaNo2D-Bol.woff2') format('woff2'),
+      url('/fonts/FuturaNo2D-Bol.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSans-Regular.woff2') format('woff2'),
+      url('/fonts/UntitledSans-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Untitled Sans';
+  src: url('/fonts/UntitledSans-RegularItalic.woff2') format('woff2'),
+      url('/fonts/UntitledSans-RegularItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+$futura: "Futura No2 D";
+$untitled_sans: "Untitled Sans";
+
+.heading_h1, .heading_h2, .heading_h3, .heading_h4, .heading_h5, .heading_h6 {
+  font-family: $futura;
+}
 
 .heading_h1 {
   font-size: 48px;

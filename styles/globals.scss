@@ -1,5 +1,6 @@
 @import './reset';
 @import './colors';
+@import './typography';
 
 html,
 body {
@@ -11,6 +12,7 @@ body {
 }
 
 body {
+  font-family: $untitled_sans;
   padding-top: 55px;
 }
 
