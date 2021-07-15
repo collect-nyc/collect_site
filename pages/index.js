@@ -44,7 +44,7 @@ const Home = ({data, archives}) => {
             {archives
               ? archives.map((archive, key) => (
                   <li key={key}>
-                    <Link href={"/page"}>
+                    <Link href={"/project/" + archive.node._meta.uid}>
                       <a>
                         <span>
                           {archive.node.title[0].text}
