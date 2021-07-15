@@ -27,10 +27,16 @@
       li {
         border-bottom: 1px solid $black;
         list-style: none;
-        padding: 19px 20px 17px;
+        
 
         &:last-of-type {
           border-bottom: none;
+        }
+
+        a {
+          display: flex;
+          justify-content: space-between;
+          padding: 19px 20px 17px;
         }
       }
     }

@@ -44,15 +44,24 @@ const Home = ({data, archives}) => {
             {archives
               ? archives.map((archive, key) => (
                   <li key={key}>
-                    {archive.node.title[0].text}
+                    <Link href={"/page"}>
+                      <a>
+                        <span>
+                          {archive.node.title[0].text}
+                        </span>
 
-                    {archive.node.tags.map((item, key) => (
-                      <span key={key}>
-                        {item.tag.tag_name[0].text}
-                      </span>
-                    ))}
+                        <span>
+                          {archive.node.tags.map((item, key) => (
+                            <span key={key}>
+                              {archive.node.tags.length === key + 1 ? item.tag.tag_name[0].text : item.tag.tag_name[0].text + ", "}
+                            </span>
+                          ))}
+                        </span>
 
-                    {DateTime.fromISO(archive.node.creation_date).toFormat("yyyy")}
+                        <span>{DateTime.fromISO(archive.node.creation_date).toFormat("yyyy")}</span>
+                      </a>
+                    </Link>
+
                   </li>
                 ))
               : null}
