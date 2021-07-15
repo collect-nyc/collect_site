@@ -1,6 +1,31 @@
-@import './colors';
+@import "./colors";
+@import "./helpers";
 
-.container {
-  
+.main {
+  display: flex;
+  justify-content: space-between;
+  padding: {
+    top: 117px;
+    left: $gutter_desktop;
+    right: $gutter_desktop;
+    bottom: 100px;
+  }
+
+  .about {
+    width: 40%;
+
+    .summary {
+      h1 {
+        margin-bottom: 45px;
+      }
+
+      p {
+        margin-bottom: 30px;
+      }
+    }
+  }
+
+  .contact_info {
+    width: 30%;
+  }
 }
-

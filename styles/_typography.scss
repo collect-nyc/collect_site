@@ -11,7 +11,7 @@
   font-family: "Futura No2 D";
   src: url('/fonts/FuturaNo2D-Bol.woff2') format('woff2'),
       url('/fonts/FuturaNo2D-Bol.woff') format('woff');
-  font-weight: 500;
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
@@ -39,14 +39,32 @@ $untitled_sans: "Untitled Sans";
 
 .heading_h1, .heading_h2, .heading_h3, .heading_h4, .heading_h5, .heading_h6 {
   font-family: $futura;
+  font-size: 48px;
 }
 
 .heading_h1 {
   font-size: 48px;
+  font-weight: bold;
   line-height: 1;
+
+  &.xtra_bold {
+    font-weight: 700;
+  }
 }
 
 .heading_h2 {
   font-size: 24px;
   line-height: 1.33;
+}
+
+
+.body_text {
+  font-size: 16px;
+}
+
+.untitled_caps {
+  @extend .body_text;
+  font-family: $untitled_sans;
+  font-weight: normal;
+  text-transform: uppercase;
 }
