@@ -4,6 +4,7 @@ import Head from 'next/head';
 import { RichText } from 'prismic-reactjs';
 import { DateTime } from "luxon";
 import { getAllArchivesWithSlug, getArchiveItem } from '../../lib/api';
+import SiteNav from '../../components/SiteNav';
 import {SITE_NAME} from "../../lib/constants";
 import styles from '../../styles/Work.module.scss';
 
@@ -47,6 +48,8 @@ const ArchiveItem = ({response}) => {
         <meta name="description" content={page_data.description ? page_data.description[0].text : null} />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <SiteNav />
 
       <main className={styles.main}>
         <h1>{page_data.title[0].text}</h1>

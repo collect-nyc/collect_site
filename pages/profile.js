@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import { getProfilePage } from '../lib/api';
 import { RichText } from 'prismic-reactjs';
+import SiteNav from '../components/SiteNav';
 // import Image from 'next/image';
 import styles from '../styles/Profile.module.scss';
 
@@ -27,6 +28,8 @@ const Profile = ({data}) => {
         <meta name="description" content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development." />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <SiteNav />
 
       <main className="profile_main">
         <div className="summary">
