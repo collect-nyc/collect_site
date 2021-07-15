@@ -13,7 +13,10 @@ const SiteNav = () => {
       <Link href="/profile">
         <a className={styles.link_box}>
           <span>COLLECT Archive</span>
-          <span>(927)</span>
+          <div className={styles.info}>
+            <span className={styles.latest}>Latest</span>
+            <span>(927)</span>
+          </div>
         </a>
       </Link>
     </nav>
