@@ -88,21 +88,25 @@ const Profile = ({ data }) => {
           <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
-          <h3 className="untitled_caps">Contact</h3>
+          <div className={styles.contact_summary}>
+            <h3 className="untitled_caps">Contact</h3>
 
-          {page_content ? <RichText render={page_content.instruction} /> : null}
+            {page_content ? (
+              <RichText render={page_content.instruction} />
+            ) : null}
+          </div>
 
-          <div className="partner">
+          <div className={styles.partner}>
             <span>Andrew J.S.</span>
             <span>{page_content ? page_content.andrew[0].text : null}</span>
           </div>
 
-          <div className="partner">
+          <div className={styles.partner}>
             <span>Joshua Tuscan</span>
             <span>{page_content ? page_content.joshua[0].text : null}</span>
           </div>
 
-          <div className="insta_group">
+          <div className={styles.insta_group}>
             <ul className="insta">
               {page_content
                 ? page_content.instagrams.map((handle, key) => (
@@ -114,8 +118,8 @@ const Profile = ({ data }) => {
             </ul>
           </div>
 
-          <div className="socials_group">
-            <ul className="socials">
+          <div className={styles.socials_group}>
+            <ul className={styles.socials}>
               {page_content
                 ? page_content.socials.map((handle, key) => (
                     <li key={key}>
@@ -127,16 +131,16 @@ const Profile = ({ data }) => {
           </div>
 
           <div className={styles.contact_details}>
-            <div className="phone">
+            <div className={styles.phone}>
               <h4>Office</h4>
               <RichText render={page_content.phone} />
             </div>
-            <div className="address">
+            <div className={styles.address}>
               <RichText render={page_content.address} />
             </div>
           </div>
 
-          <div className="copyright">
+          <div className={styles.copyright}>
             &copy;{new Date().getFullYear()} Collect NYC
           </div>
         </aside>

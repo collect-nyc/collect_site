@@ -55,7 +55,26 @@
       margin-bottom: 5px;
     }
 
+    .contact_summary,
+    .partner {
+      margin-bottom: 30px;
+    }
+
     .contact_details {
+      display: flex;
+
+      .phone,
+      .address {
+        width: 50%;
+      }
+
+      .phone {
+        padding-right: 20px;
+      }
+      .address {
+        padding-left: 20px;
+      }
+
       h4 {
         @extend .body_text;
       }
