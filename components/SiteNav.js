@@ -6,12 +6,18 @@ import styles from "../styles/Nav.module.scss";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
+const GetCount = () => {
+  const { data, error } = useSWR("/api/get-archives", fetcher);
+
+  return data;
+};
+
 const SiteNav = ({ page }) => {
   const [count, update] = useContext(ClickContext);
 
   if (!count) {
-    const { data, error } = useSWR("/api/get-archives", fetcher);
-    console.log("FROM API", data, error);
+    const data = GetCount();
+    console.log("FROM API", data);
     update(data);
   } else {
     console.log("FROM CONTEXT");

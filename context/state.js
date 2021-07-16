@@ -7,7 +7,7 @@ export const ClickProvider = ({ children }) => {
   const update = (amount) => setCount(amount);
 
   useEffect(() => {
-    console.log("FROM STATE", count);
+    // console.log("FROM STATE", count);
   }, [count]);
 
   return (
