@@ -1,3 +1,5 @@
+import { useContext } from "react";
+import ClickContext from "../context/state";
 import Head from "next/head";
 import { getProfilePage } from "../lib/api";
 import { RichText } from "prismic-reactjs";
@@ -15,13 +17,16 @@ export async function getServerSideProps() {
 
 const Profile = ({ data }) => {
   console.log("Profile Content", data[0].node);
-
   const page_content = data[0].node;
+
+  const [count, update] = useContext(ClickContext);
+
+  console.log("PROFILE CONTEXT", count);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>About COLLECT NYC</title>
+        <title>COLLECT NYC Profile</title>
         <meta
           name="description"
           content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
@@ -29,7 +34,7 @@ const Profile = ({ data }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SiteNav />
+      <SiteNav page="profile" />
 
       <main className={styles.main}>
         <div className={styles.about}>
@@ -140,9 +145,9 @@ const Profile = ({ data }) => {
             </div>
           </div>
 
-          <div className={styles.copyright}>
+          {/*<div className={styles.copyright}>
             &copy;{new Date().getFullYear()} Collect NYC
-          </div>
+                </div>*/}
         </aside>
       </main>
     </div>

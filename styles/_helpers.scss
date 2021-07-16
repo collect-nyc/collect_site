@@ -1,8 +1,18 @@
-
-
 // Nav
 $navGutter_desktop: 30px;
 
-
 // Gutters
 $gutter_desktop: 8.3333333333%;
+
+// Breakpoints
+
+$mq-mobile-max: 900px;
+$mq-mobile-min: 400px;
+
+$mq-tablet-min: 901px;
+$mq-tablet-max: 1200px;
+
+$mq-desktop-min: 1201px;
+$mq-desktop-max: 1500px;
+
+$mq-oversized: 1501px;

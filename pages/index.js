@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { getIndexPage, getAllArchives } from "../lib/api";
-// import { RichText } from 'prismic-reactjs';
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
@@ -33,7 +32,7 @@ const Home = ({ data, archives }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <SiteNav />
+      <SiteNav page="index" count={archives.length} />
 
       <main className={styles.main}>
         <h1 className={styles.title}>
