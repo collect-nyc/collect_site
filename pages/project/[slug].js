@@ -34,8 +34,6 @@ const ArchiveItem = ({ response }) => {
 
   console.log("Page Data", page_data.title[0].text);
 
-  // {page_data.title}
-
   return (
     <MyLayout page="project">
       <div className={styles.container}>
