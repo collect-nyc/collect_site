@@ -11,7 +11,8 @@ import styles from "../../styles/Work.module.scss";
 export async function getStaticProps({ params, preview = false, previewData }) {
   const response = await getArchiveItem(params.slug, previewData);
 
-  return { props: { response, revalidate: 60 } };
+  const page = "project";
+  return { props: { response, page, revalidate: 60 } };
 }
 
 export async function getStaticPaths() {
@@ -35,42 +36,39 @@ const ArchiveItem = ({ response }) => {
   console.log("Page Data", page_data.title[0].text);
 
   return (
-    <MyLayout page="project">
-      <div className={styles.container}>
-        <Head>
-          <title>
-            {page_data.title ? page_data.title[0].text : "Archive Item"} _{" "}
-            {SITE_NAME}
-          </title>
-          <meta
-            name="description"
-            content={
-              page_data.description ? page_data.description[0].text : null
-            }
-          />
-          <link rel="icon" href="/favicon.ico" />
-        </Head>
+    <div className={styles.container}>
+      <Head>
+        <title>
+          {page_data.title ? page_data.title[0].text : "Archive Item"} _{" "}
+          {SITE_NAME}
+        </title>
+        <meta
+          name="description"
+          content={page_data.description ? page_data.description[0].text : null}
+        />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
-        <main className={styles.main}>
-          <Link href="/">Close</Link>
-          <h1>{page_data.title[0].text}</h1>
-          {page_data.description ? (
-            <RichText render={page_data.description} />
-          ) : null}
+      <main className={styles.main}>
+        <Link href="/">Close</Link>
+        <h1>{page_data.title[0].text}</h1>
+        {page_data.description ? (
+          <RichText render={page_data.description} />
+        ) : null}
 
-          <div className="tags">
-            {page_data.tags.map((item, key) => (
-              <span key={key}>{item.tag.tag_name[0].text}</span>
-            ))}
-          </div>
+        <div className="tags">
+          {page_data.tags.map((item, key) => (
+            <span key={key}>{item.tag.tag_name[0].text}</span>
+          ))}
+        </div>
 
-          <span>
-            {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
-          </span>
-        </main>
-      </div>
-    </MyLayout>
+        <span>
+          {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
+        </span>
+      </main>
+    </div>
   );
 };
 
+ArchiveItem.Layout = MyLayout;
 export default ArchiveItem;

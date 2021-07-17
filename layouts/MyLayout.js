@@ -4,7 +4,7 @@ import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function MyLayout({ page, nonav, children }) {
+export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-archives", fetcher);
 
   console.log("PAGE PAGE Page", page);
@@ -12,7 +12,7 @@ export default function MyLayout({ page, nonav, children }) {
   return (
     <React.Fragment>
       {page !== "project" ? (
-        <SiteNav page={page} count={data ? data : null} nonav={nonav} />
+        <SiteNav page={page} count={data ? data : null} />
       ) : null}
 
       {children}
