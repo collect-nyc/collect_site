@@ -8,6 +8,10 @@
   position: fixed;
   top: 0;
   width: 100%;
+
+  &.nonav {
+    display: none;
+  }
 }
 
 .link_box {

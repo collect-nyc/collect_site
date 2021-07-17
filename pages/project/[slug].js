@@ -1,9 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import Link from "next/link";
+import MyLayout from "../../layouts/MyLayout";
 import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
-import SiteNav from "../../components/SiteNav";
 import { SITE_NAME } from "../../lib/constants";
 import styles from "../../styles/Work.module.scss";
 
@@ -36,38 +37,41 @@ const ArchiveItem = ({ response }) => {
   // {page_data.title}
 
   return (
-    <div className={styles.container}>
-      <Head>
-        <title>
-          {page_data.title ? page_data.title[0].text : "Archive Item"} _{" "}
-          {SITE_NAME}
-        </title>
-        <meta
-          name="description"
-          content={page_data.description ? page_data.description[0].text : null}
-        />
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+    <MyLayout page="project">
+      <div className={styles.container}>
+        <Head>
+          <title>
+            {page_data.title ? page_data.title[0].text : "Archive Item"} _{" "}
+            {SITE_NAME}
+          </title>
+          <meta
+            name="description"
+            content={
+              page_data.description ? page_data.description[0].text : null
+            }
+          />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
 
-      <SiteNav page="project" />
+        <main className={styles.main}>
+          <Link href="/">Close</Link>
+          <h1>{page_data.title[0].text}</h1>
+          {page_data.description ? (
+            <RichText render={page_data.description} />
+          ) : null}
 
-      <main className={styles.main}>
-        <h1>{page_data.title[0].text}</h1>
-        {page_data.description ? (
-          <RichText render={page_data.description} />
-        ) : null}
+          <div className="tags">
+            {page_data.tags.map((item, key) => (
+              <span key={key}>{item.tag.tag_name[0].text}</span>
+            ))}
+          </div>
 
-        <div className="tags">
-          {page_data.tags.map((item, key) => (
-            <span key={key}>{item.tag.tag_name[0].text}</span>
-          ))}
-        </div>
-
-        <span>
-          {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
-        </span>
-      </main>
-    </div>
+          <span>
+            {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
+          </span>
+        </main>
+      </div>
+    </MyLayout>
   );
 };
 
