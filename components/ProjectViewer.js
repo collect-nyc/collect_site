@@ -16,30 +16,7 @@ const ProjectViewer = ({ images, embeds }) => {
     console.log("PREVIOUS ITEM");
   };
 
-  console.log("IMAGES", images, embeds);
-
-  // useEffect(() => {
-  //   let combined = null;
-
-  //   if (images[0].image && embeds[0].embed) {
-  //     console.log("Both images and embeds");
-
-  //     combined = {
-  //       ...images,
-  //       ...embeds,
-  //     };
-  //   } else if (images[0].image) {
-  //     console.log("Only images");
-  //     combined = images;
-  //   } else if (embeds[0].embed) {
-  //     console.log("Only embeds");
-  //     combined = embeds;
-  //   }
-
-  //   console.log("ProjectViewer", combined);
-
-  //   setItems(combined);
-  // }, [images, embeds]);
+  console.log("IMAGES", images);
 
   return (
     <div className={styles.project_viewer}>
@@ -60,6 +37,7 @@ const ProjectViewer = ({ images, embeds }) => {
                 ) : image.video ? (
                   <video>
                     <source src={image.video.url} type="video/mp4" />
+                    Your browser does not support the video tag.
                   </video>
                 ) : null}
 

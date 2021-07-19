@@ -23,7 +23,9 @@
       padding: 60px;
       width: 100%;
 
-      img {
+      img,
+      video {
+        object-position: center center;
         object-fit: contain;
         max-height: 100%;
         max-width: 100%;
