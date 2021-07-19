@@ -4,11 +4,13 @@
 
 .container {
   .main {
-    background: red;
     height: calc(100vh - 67px);
+    position: relative;
+    z-index: 1;
   }
 
   .project_footer {
+    background-color: $alabaster;
     border-top: 1px solid $black;
     display: flex;
     padding: {
@@ -21,6 +23,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
+    z-index: 2;
 
     .close_col,
     .expand_col {
