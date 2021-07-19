@@ -6,7 +6,7 @@ import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
 import { SITE_NAME } from "../../lib/constants";
-import styles from "../../styles/Work.module.scss";
+import styles from "../../styles/Project.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const response = await getArchiveItem(params.slug, previewData);
@@ -49,23 +49,36 @@ const ArchiveItem = ({ response }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <Link href="/">Close</Link>
-        <h1>{page_data.title[0].text}</h1>
+      <main className={styles.main}></main>
+
+      <footer className={styles.project_footer}>
+        <div className={styles.close_col}>
+          <Link href="/">
+            <a className={styles.close_btn}>Close</a>
+          </Link>
+        </div>
+
+        <h1 className={styles.title}>{page_data.title[0].text}</h1>
+
         {page_data.description ? (
           <RichText render={page_data.description} />
         ) : null}
 
-        <div className="tags">
+        <div className={styles.tags}>
           {page_data.tags.map((item, key) => (
-            <span key={key}>{item.tag.tag_name[0].text}</span>
+            <span key={key}>
+              {page_data.tags.length === key + 1
+                ? item.tag.tag_name[0].text
+                : item.tag.tag_name[0].text + ", "}
+            </span>
           ))}
         </div>
 
-        <span>
+        <span className={styles.date}>
           {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
         </span>
-      </main>
+        <div className={styles.expand_col}></div>
+      </footer>
     </div>
   );
 };

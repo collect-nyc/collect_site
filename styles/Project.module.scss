@@ -1,0 +1,46 @@
+@import "./colors";
+@import "./typography";
+@import "./helpers";
+
+.container {
+  .project_footer {
+    border-top: 1px solid $black;
+    display: flex;
+    padding: {
+      top: 22px;
+      bottom: 20px;
+      left: $navGutter_desktop;
+      right: $navGutter_desktop;
+    }
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+
+    .close_col,
+    .expand_col {
+      width: $gutter_desktop;
+    }
+
+    .close_col {
+      .close_btn {
+      }
+    }
+
+    .title {
+      @extend .body_text;
+      padding-left: 25px;
+    }
+
+    .tags {
+      padding-left: 25px;
+    }
+
+    .date {
+      margin-left: auto;
+    }
+
+    .expand_col {
+    }
+  }
+}
