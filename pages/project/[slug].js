@@ -30,11 +30,39 @@ export async function getStaticPaths() {
 }
 
 const ArchiveItem = ({ response }) => {
-  console.log("Response", response);
+  const [current, setCurrent] = useState(0);
 
   const page_data = response.archive_item;
+  console.log("Project Data", page_data);
+  const images = page_data.images;
 
-  console.log("Page Data", page_data.title[0].text);
+  const total = images.length;
+
+  const nextItem = () => {
+    // something
+    console.log("NEXT ITEM");
+
+    if (current + 1 >= total) {
+      setCurrent(0);
+    } else {
+      setCurrent(current + 1);
+    }
+
+    console.log("CURRENT", current);
+  };
+
+  const prevItem = () => {
+    // something
+    console.log("PREVIOUS ITEM");
+
+    if (current === 0) {
+      setCurrent(total - 1);
+    } else {
+      setCurrent(current - 1);
+    }
+
+    console.log("CURRENT", current);
+  };
 
   return (
     <div className={styles.container}>
@@ -51,7 +79,12 @@ const ArchiveItem = ({ response }) => {
       </Head>
 
       <main className={styles.main}>
-        <ProjectViewer images={page_data.images} embeds={page_data.embeds} />
+        <ProjectViewer
+          images={images}
+          prevItem={prevItem}
+          nextItem={nextItem}
+          current={current}
+        />
       </main>
 
       <footer className={styles.project_footer}>
@@ -80,7 +113,13 @@ const ArchiveItem = ({ response }) => {
         <span className={styles.date}>
           {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
         </span>
-        <div className={styles.expand_col}></div>
+        <div className={styles.multi_col}>
+          {total > 1 ? (
+            <span>
+              {current + 1}/{total}
+            </span>
+          ) : null}
+        </div>
       </footer>
     </div>
   );

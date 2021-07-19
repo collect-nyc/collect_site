@@ -26,8 +26,12 @@
     z-index: 2;
 
     .close_col,
-    .expand_col {
+    .multi_col {
       width: $gutter_desktop;
+    }
+
+    .multi_col {
+      text-align: right;
     }
 
     .close_col {

@@ -3,37 +3,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import styles from "../styles/ProjectViewer.module.scss";
 
-const ProjectViewer = ({ images, embeds }) => {
-  const [current, setCurrent] = useState(0);
-
-  const total = images.length;
-
-  const nextItem = () => {
-    // something
-    console.log("NEXT ITEM");
-
-    if (current + 1 >= total) {
-      setCurrent(0);
-    } else {
-      setCurrent(current + 1);
-    }
-
-    console.log("CURRENT", current);
-  };
-
-  const prevItem = () => {
-    // something
-    console.log("PREVIOUS ITEM");
-
-    if (current === 0) {
-      setCurrent(total - 1);
-    } else {
-      setCurrent(current - 1);
-    }
-
-    console.log("CURRENT", current);
-  };
-
+const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   console.log("IMAGES", images);
 
   return (
@@ -46,14 +16,6 @@ const ProjectViewer = ({ images, embeds }) => {
                 index={key}
                 className={key === current ? styles.current : styles.hidden}
               >
-                {/*<Image
-                  height={image.image.dimensions.height}
-                  width={image.image.dimensions.width}
-                  layout={"fill"}
-                  src={image.image.url}
-                  alt={image.image.alt}
-                />*/}
-
                 {images.length > 1 ? (
                   <React.Fragment>
                     <button
