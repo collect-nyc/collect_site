@@ -3,6 +3,11 @@
 @import "./helpers";
 
 .container {
+  .main {
+    background: red;
+    height: calc(100vh - 67px);
+  }
+
   .project_footer {
     border-top: 1px solid $black;
     display: flex;

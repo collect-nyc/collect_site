@@ -1,7 +1,10 @@
-@import './colors';
-@import './helpers';
-@import './typography';
+@import "./colors";
+@import "./helpers";
+@import "./typography";
 
+.container {
+  padding-top: 55px;
+}
 
 .main {
   padding: 60px $gutter_desktop 20px;
@@ -27,7 +30,6 @@
       li {
         border-bottom: 1px solid $black;
         list-style: none;
-        
 
         &:last-of-type {
           border-bottom: none;

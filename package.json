@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "framer-motion": "^4.1.17",
     "luxon": "^2.0.1",
     "next": "11.0.1",
     "prismic-javascript": "^3.0.2",

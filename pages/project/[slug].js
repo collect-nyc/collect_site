@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import MyLayout from "../../layouts/MyLayout";
+import ProjectViewer from "../../components/ProjectViewer";
 import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
@@ -49,7 +50,9 @@ const ArchiveItem = ({ response }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}></main>
+      <main className={styles.main}>
+        <ProjectViewer images={page_data.images} embeds={page_data.embeds} />
+      </main>
 
       <footer className={styles.project_footer}>
         <div className={styles.close_col}>
