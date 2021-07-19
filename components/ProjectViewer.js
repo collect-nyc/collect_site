@@ -33,9 +33,15 @@ const ProjectViewer = ({ images, embeds }) => {
                 />*/}
 
                 {image.image ? (
-                  <img src={image.image.url} alt={image.image.alt} />
+                  <Image
+                    src={image.image.url}
+                    alt={image.image.alt}
+                    height={image.image.dimensions.height}
+                    width={image.image.dimensions.width}
+                    layout={"responsive"}
+                  />
                 ) : image.video ? (
-                  <video>
+                  <video controls>
                     <source src={image.video.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>

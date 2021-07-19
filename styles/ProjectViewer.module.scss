@@ -23,6 +23,11 @@
       padding: 60px;
       width: 100%;
 
+      > div {
+        height: 100%;
+        width: 100%;
+      }
+
       img,
       video {
         object-position: center center;
