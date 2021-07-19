@@ -6,6 +6,16 @@ import styles from "../styles/ProjectViewer.module.scss";
 const ProjectViewer = ({ images, embeds }) => {
   const [items, setItems] = useState(null);
 
+  const nextItem = () => {
+    // something
+    console.log("NEXT ITEM");
+  };
+
+  const prevItem = () => {
+    // something
+    console.log("PREVIOUS ITEM");
+  };
+
   console.log("IMAGES", images, embeds);
 
   // useEffect(() => {
@@ -44,7 +54,23 @@ const ProjectViewer = ({ images, embeds }) => {
                   src={image.image.url}
                   alt={image.image.alt}
                 />*/}
-                <img src={image.image.url} alt={image.image.alt} />
+
+                {image.image ? (
+                  <img src={image.image.url} alt={image.image.alt} />
+                ) : image.video ? (
+                  <video>
+                    <source src={image.video.url} type="video/mp4" />
+                  </video>
+                ) : null}
+
+                <button
+                  onClick={() => prevItem()}
+                  className={styles.prev_btn}
+                />
+                <button
+                  onClick={() => nextItem()}
+                  className={styles.next_btn}
+                />
               </li>
             ))
           : null}

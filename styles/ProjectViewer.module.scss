@@ -28,6 +28,27 @@
         max-height: 100%;
         max-width: 100%;
       }
+
+      .prev_btn,
+      .next_btn {
+        background: transparent;
+        cursor: pointer;
+        border: none;
+        padding: 0;
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 50%;
+      }
+      .prev_btn {
+        // background-color: pink;
+        left: 0;
+      }
+
+      .next_btn {
+        // background-color: lavender;
+        right: 0;
+      }
     }
   }
 }
