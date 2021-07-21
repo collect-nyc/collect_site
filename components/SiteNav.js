@@ -1,44 +1,45 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Nav.module.scss";
 
 const SiteNav = ({ page, count, nonav }) => {
-  let nav_link;
+  const [navLink, setNavLink] = useState(null);
+
   switch (page) {
     case "index":
-      nav_link = "/profile";
+      setNavLink("/profile");
       break;
     case "profile":
-      nav_link = "/";
+      setNavLink("/");
       break;
     case "project":
       console.log("project here");
-      nav_link = "/";
+      setNavLink("/");
       break;
     default:
-      nav_link = "/profile";
+      setNavLink("/profile");
   }
 
   useEffect(() => {
     switch (page) {
       case "index":
-        nav_link = "/profile";
+        setNavLink("/profile");
         break;
       case "profile":
-        nav_link = "/";
+        setNavLink("/");
         break;
       case "project":
         console.log("project here");
-        nav_link = "/";
+        setNavLink("/");
         break;
       default:
-        nav_link = "/profile";
+        setNavLink("/profile");
     }
   }, [page]);
 
   return (
     <nav className={styles.navigation}>
-      <Link href={nav_link}>
+      <Link href={navLink}>
         <a className={styles.link_box}>
           <span>
             {page === "profile" ? "COLLECT New York City" : "COLLECT Archive"}
