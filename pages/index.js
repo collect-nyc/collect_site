@@ -52,9 +52,11 @@ const Home = ({ data, archives }) => {
                         <span>
                           {archive.node.tags.map((item, key) => (
                             <span key={key}>
-                              {archive.node.tags.length === key + 1
+                              {archive.node.tags.length === key + 1 && item.tag
                                 ? item.tag.tag_name[0].text
-                                : item.tag.tag_name[0].text + ", "}
+                                : item.tag
+                                ? item.tag.tag_name[0].text + ", "
+                                : null}
                             </span>
                           ))}
                         </span>
