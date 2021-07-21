@@ -1,0 +1,22 @@
+@import "./colors";
+@import "./helpers";
+@import "./typography";
+
+.container {
+  padding-top: 55px;
+}
+
+.main {
+  padding: 60px $gutter_desktop 20px;
+
+  .title {
+    @extend .heading_h1;
+    margin-bottom: 70px;
+    text-align: center;
+    text-transform: uppercase;
+
+    span {
+      display: block;
+    }
+  }
+}
