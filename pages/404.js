@@ -18,7 +18,7 @@ const Custom404 = () => {
       <main className={styles.main}>
         <h2 className={styles.title}>404 - Page Not Found</h2>
         <p>
-          You've arrived on a page that doesn't exist.
+          You have arrived on a page that does not exist.
           <br /> Find your way back to something real on the{" "}
           <Link href="/">
             <a>index page.</a>

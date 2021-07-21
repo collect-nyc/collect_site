@@ -3,7 +3,7 @@ import Link from "next/link";
 import styles from "../styles/Nav.module.scss";
 
 const SiteNav = ({ page, count, nonav }) => {
-  const [navLink, setNavLink] = useState(null);
+  const [navLink, setNavLink] = useState("/profile");
 
   switch (page) {
     case "index":
