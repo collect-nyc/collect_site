@@ -15,6 +15,9 @@ const SiteNav = ({ page, count, nonav }) => {
       case "profile":
         nav_link = "/";
         break;
+      case "404":
+        nav_link = "/";
+        break;
       case "project":
         console.log("project here");
         nav_link = "/";

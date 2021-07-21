@@ -3,6 +3,14 @@ import MyLayout from "../layouts/MyLayout";
 import Link from "next/link";
 import styles from "../styles/404.module.scss";
 
+export async function getStaticProps() {
+  const page = "404";
+
+  return {
+    props: { page },
+  };
+}
+
 const Custom404 = () => {
   return (
     <div className={styles.container}>
