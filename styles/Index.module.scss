@@ -37,8 +37,16 @@
 
         a {
           display: flex;
-          justify-content: space-between;
+          justify-content: flex-start;
           padding: 19px 20px 17px;
+
+          .name {
+            width: 40%;
+          }
+
+          .date {
+            margin-left: auto;
+          }
         }
       }
     }

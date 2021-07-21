@@ -47,9 +47,11 @@ const Home = ({ data, archives }) => {
                   <li key={key}>
                     <Link href={"/project/" + archive.node._meta.uid}>
                       <a>
-                        <span>{archive.node.title[0].text}</span>
+                        <span className={styles.name}>
+                          {archive.node.title[0].text}
+                        </span>
 
-                        <span>
+                        <span className={styles.tags}>
                           {archive.node.tags.map((item, key) => (
                             <span key={key}>
                               {archive.node.tags.length === key + 1 && item.tag
@@ -61,10 +63,12 @@ const Home = ({ data, archives }) => {
                           ))}
                         </span>
 
-                        <span>
-                          {DateTime.fromISO(
-                            archive.node.creation_date
-                          ).toFormat("yyyy")}
+                        <span className={styles.date}>
+                          {archive.node.creation_date
+                            ? DateTime.fromISO(
+                                archive.node.creation_date
+                              ).toFormat("yyyy")
+                            : "TBD"}
                         </span>
                       </a>
                     </Link>
