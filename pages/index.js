@@ -28,6 +28,8 @@ const Home = ({ data, archives, taggers }) => {
 
   // State
   const [gridView, setGridView] = useState(false);
+  const [azSort, setAzSort] = useState(null);
+  const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState(archives);
   const [currentTag, setCurrentTag] = useState(null);
 
@@ -54,48 +56,119 @@ const Home = ({ data, archives, taggers }) => {
       });
   };
 
+  // Switch from List to Grid view
   const SwapView = () => {
     setGridView(!gridView);
   };
 
+  // Sort by title alphabetically
+  const AlphabetSort = () => {
+    if (azSort === "az") {
+      const list = _.orderBy(
+        archiveList,
+        [
+          function (o) {
+            return o.node.title[0].text;
+          },
+        ],
+        ["desc"]
+      );
+
+      setArchiveList(list);
+      setAzSort("za");
+    } else if (azSort === "za" || !azSort) {
+      const list = _.orderBy(
+        archiveList,
+        [
+          function (o) {
+            return o.node.title[0].text;
+          },
+        ],
+        ["asc"]
+      );
+
+      setArchiveList(list);
+      setAzSort("az");
+    }
+  };
+
+  // Sort by creation date
+  const TimeSort = () => {
+    if (timeSort === "new" || !timeSort) {
+      const list = _.orderBy(
+        archiveList,
+        [
+          function (o) {
+            return o.node.creation_date;
+          },
+        ],
+        ["desc"]
+      );
+
+      setArchiveList(list);
+      setTimeSort("old");
+    } else if (timeSort === "old") {
+      const list = _.orderBy(
+        archiveList,
+        [
+          function (o) {
+            return o.node.creation_date;
+          },
+        ],
+        ["asc"]
+      );
+
+      setArchiveList(list);
+      setTimeSort("new");
+    }
+  };
+
+  // List View JSX
   const ListView = () => {
-    return archiveList.length > 0 ? (
-      archiveList.map((archive, key) => (
-        <li key={key}>
-          <Link href={"/item/" + archive.node._meta.uid}>
-            <a>
-              <span className={styles.name}>{archive.node.title[0].text}</span>
-
-              <span className={styles.tags}>
-                {archive.node.tags.map((item, key) => (
-                  <span key={key}>
-                    {archive.node.tags.length === key + 1 && item.tag
-                      ? item.tag.tag_name[0].text
-                      : item.tag
-                      ? item.tag.tag_name[0].text + ", "
-                      : null}
+    return (
+      <ul>
+        {archiveList.length > 0 ? (
+          archiveList.map((archive, key) => (
+            <li key={key}>
+              <Link href={"/item/" + archive.node._meta.uid}>
+                <a>
+                  <span className={styles.name}>
+                    {archive.node.title[0].text}
                   </span>
-                ))}
-              </span>
 
-              <span className={styles.date}>
-                {archive.node.creation_date
-                  ? DateTime.fromISO(archive.node.creation_date).toFormat(
-                      "yyyy"
-                    )
-                  : "TBD"}
-              </span>
-            </a>
-          </Link>
-        </li>
-      ))
-    ) : (
-      <li className={styles.no_items}>
-        No &ldquo;{currentTag}&rdquo; items found.
-      </li>
+                  <span className={styles.tags}>
+                    {archive.node.tags.map((item, key) => (
+                      <span key={key}>
+                        {archive.node.tags.length === key + 1 && item.tag
+                          ? item.tag.tag_name[0].text
+                          : item.tag
+                          ? item.tag.tag_name[0].text + ", "
+                          : null}
+                      </span>
+                    ))}
+                  </span>
+
+                  <span className={styles.date}>
+                    {archive.node.creation_date
+                      ? DateTime.fromISO(archive.node.creation_date).toFormat(
+                          "yyyy"
+                        )
+                      : "TBD"}
+                  </span>
+                </a>
+              </Link>
+            </li>
+          ))
+        ) : (
+          <li className={styles.no_items}>
+            No &ldquo;{currentTag}&rdquo; items found.
+          </li>
+        )}
+      </ul>
     );
   };
 
+  // Grid View JSX
   const GridView = () => {
     return <h1>Grid View</h1>;
   };
@@ -134,8 +207,12 @@ const Home = ({ data, archives, taggers }) => {
           <button onClick={() => SwapView()}>
             {gridView ? "List" : "Grid"}
           </button>
-          <button>A-Z</button>
-          <button>New, Old</button>
+          <button onClick={() => AlphabetSort()}>
+            {!azSort || azSort === "za" ? "A-Z" : "Z-A"}
+          </button>
+          <button onClick={() => TimeSort()}>
+            {!timeSort || timeSort === "new" ? "New, Old" : "Old, New"}
+          </button>
         </span>
       </nav>
 
@@ -146,7 +223,7 @@ const Home = ({ data, archives, taggers }) => {
         </h1>
 
         <section className={styles.all_archives}>
-          <ul>{gridView ? <GridView /> : <ListView />}</ul>
+          {gridView ? <GridView /> : <ListView />}
         </section>
       </main>
       <footer className={styles.footer}>
