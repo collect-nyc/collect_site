@@ -68,7 +68,7 @@ const ArchiveItem = ({ response }) => {
     <div className={styles.container}>
       <Head>
         <title>
-          {page_data.title ? page_data.title[0].text : "Archive Item"} _{" "}
+          {page_data.title ? page_data.title[0].text : "COLLECT Project"} _{" "}
           {SITE_NAME}
         </title>
         <meta
@@ -94,7 +94,9 @@ const ArchiveItem = ({ response }) => {
           </Link>
         </div>
 
-        <h1 className={styles.title}>{page_data.title[0].text}</h1>
+        <h1 className={styles.title}>
+          {page_data.title[0] ? page_data.title[0].text : "COLLECT Project"}
+        </h1>
 
         {/*page_data.description ? (
           <RichText render={page_data.description} />
@@ -103,15 +105,19 @@ const ArchiveItem = ({ response }) => {
         <div className={styles.tags}>
           {page_data.tags.map((item, key) => (
             <span key={key}>
-              {page_data.tags.length === key + 1
+              {page_data.tags.length === key + 1 && item.tag
                 ? item.tag.tag_name[0].text
-                : item.tag.tag_name[0].text + ", "}
+                : item.tag
+                ? item.tag.tag_name[0].text + ", "
+                : null}
             </span>
           ))}
         </div>
 
         <span className={styles.date}>
-          {DateTime.fromISO(page_data.creation_date).toFormat("yyyy")}
+          {page_data.creation_date
+            ? DateTime.fromISO(page_data.creation_date).toFormat("yyyy")
+            : "TBD"}
         </span>
         <div className={styles.multi_col}>
           {total > 1 ? (
