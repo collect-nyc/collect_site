@@ -10,7 +10,7 @@ const Custom404 = () => {
         <title>404 - COLLECT NYC</title>
         <meta
           name="description"
-          content="You've reached a page that does not exist. Head back to the COLLECT index."
+          content="You have reached a page that does not exist. Head back to the COLLECT index."
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>

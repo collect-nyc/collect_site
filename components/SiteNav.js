@@ -5,36 +5,25 @@ import styles from "../styles/Nav.module.scss";
 const SiteNav = ({ page, count, nonav }) => {
   const [navLink, setNavLink] = useState("/profile");
 
-  switch (page) {
-    case "index":
-      setNavLink("/profile");
-      break;
-    case "profile":
-      setNavLink("/");
-      break;
-    case "project":
-      console.log("project here");
-      setNavLink("/");
-      break;
-    default:
-      setNavLink("/profile");
-  }
-
   useEffect(() => {
+    let nav_link;
+
     switch (page) {
       case "index":
-        setNavLink("/profile");
+        nav_link = "/profile";
         break;
       case "profile":
-        setNavLink("/");
+        nav_link = "/";
         break;
       case "project":
         console.log("project here");
-        setNavLink("/");
+        nav_link = "/";
         break;
       default:
-        setNavLink("/profile");
+        nav_link = "/profile";
     }
+
+    setNavLink(nav_link);
   }, [page]);
 
   return (
