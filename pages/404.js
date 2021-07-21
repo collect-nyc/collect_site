@@ -1,5 +1,6 @@
 import Head from "next/head";
 import MyLayout from "../layouts/MyLayout";
+import Link from "next/link";
 import styles from "../styles/404.module.scss";
 
 const Custom404 = () => {
@@ -16,6 +17,13 @@ const Custom404 = () => {
 
       <main className={styles.main}>
         <h2 className={styles.title}>404 - Page Not Found</h2>
+        <p>
+          You've arrived on a page that doesn't exist.
+          <br /> Find your way back to something real on the{" "}
+          <Link href="/">
+            <a>index page.</a>
+          </Link>
+        </p>
       </main>
     </div>
   );

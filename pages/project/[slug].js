@@ -96,9 +96,9 @@ const ArchiveItem = ({ response }) => {
 
         <h1 className={styles.title}>{page_data.title[0].text}</h1>
 
-        {page_data.description ? (
+        {/*page_data.description ? (
           <RichText render={page_data.description} />
-        ) : null}
+        ) : null*/}
 
         <div className={styles.tags}>
           {page_data.tags.map((item, key) => (

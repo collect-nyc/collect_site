@@ -7,11 +7,12 @@
 }
 
 .main {
-  padding: 60px $gutter_desktop 20px;
+  padding: 100px $gutter_desktop 20px;
+  text-align: center;
 
   .title {
     @extend .heading_h1;
-    margin-bottom: 70px;
+    margin-bottom: 20px;
     text-align: center;
     text-transform: uppercase;
 
