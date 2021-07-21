@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Nav.module.scss";
 
-const SiteNav = ({ page, count, nonav }) => {
+const SiteNav = ({ page, count }) => {
   const [navLink, setNavLink] = useState("/profile");
 
   useEffect(() => {

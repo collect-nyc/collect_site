@@ -7,8 +7,6 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-archives", fetcher);
 
-  console.log("PAGE PAGE Page", page);
-
   return (
     <React.Fragment>
       {page !== "project" ? (
