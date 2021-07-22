@@ -37,7 +37,7 @@ const SiteNav = ({ page, count }) => {
             {page === "profile" ? "COLLECT New York City" : "COLLECT Archive"}
           </span>
           <div className={styles.info}>
-            <span className={styles.latest}>Latest</span>
+            {/*<span className={styles.latest}>Latest</span>*/}
             <span>({count ? count : 0})</span>
           </div>
         </a>
