@@ -48,6 +48,18 @@ export default async function handler(req, res) {
           node {
             title
             description
+            images {
+              image
+              video {
+                _linkType
+
+                ... on _FileLink {
+                  name
+                  url
+                  size
+                }
+              }
+            }
             tags {
               tag {
                 __typename

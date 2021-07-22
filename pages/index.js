@@ -6,6 +6,7 @@ import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
 import axios from "axios";
+import Masonry from "react-masonry-css";
 import _ from "lodash";
 import styles from "../styles/Index.module.scss";
 
@@ -126,51 +127,86 @@ const Home = ({ data, archives, taggers }) => {
   // List View JSX
   const ListView = () => {
     return (
-      <ul>
-        {archiveList.length > 0 ? (
-          archiveList.map((archive, key) => (
-            <li key={key}>
-              <Link href={"/item/" + archive.node._meta.uid}>
-                <a>
-                  <span className={styles.name}>
-                    {archive.node.title[0].text}
-                  </span>
+      <section className={styles.all_archives}>
+        <ul>
+          {archiveList.length > 0 ? (
+            archiveList.map((archive, key) => (
+              <li key={key}>
+                <Link href={"/item/" + archive.node._meta.uid}>
+                  <a>
+                    <span className={styles.name}>
+                      {archive.node.title[0].text}
+                    </span>
 
-                  <span className={styles.tags}>
-                    {archive.node.tags.map((item, key) => (
-                      <span key={key}>
-                        {archive.node.tags.length === key + 1 && item.tag
-                          ? item.tag.tag_name[0].text
-                          : item.tag
-                          ? item.tag.tag_name[0].text + ", "
-                          : null}
-                      </span>
-                    ))}
-                  </span>
+                    <span className={styles.tags}>
+                      {archive.node.tags.map((item, key) => (
+                        <span key={key}>
+                          {archive.node.tags.length === key + 1 && item.tag
+                            ? item.tag.tag_name[0].text
+                            : item.tag
+                            ? item.tag.tag_name[0].text + ", "
+                            : null}
+                        </span>
+                      ))}
+                    </span>
 
-                  <span className={styles.date}>
-                    {archive.node.creation_date
-                      ? DateTime.fromISO(archive.node.creation_date).toFormat(
-                          "yyyy"
-                        )
-                      : "TBD"}
-                  </span>
-                </a>
-              </Link>
+                    <span className={styles.date}>
+                      {archive.node.creation_date
+                        ? DateTime.fromISO(archive.node.creation_date).toFormat(
+                            "yyyy"
+                          )
+                        : "TBD"}
+                    </span>
+                  </a>
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li className={styles.no_items}>
+              No &ldquo;{currentTag}&rdquo; items found.
             </li>
-          ))
-        ) : (
-          <li className={styles.no_items}>
-            No &ldquo;{currentTag}&rdquo; items found.
-          </li>
-        )}
-      </ul>
+          )}
+        </ul>
+      </section>
     );
   };
 
   // Grid View JSX
   const GridView = () => {
-    return <h1>Grid View</h1>;
+    return (
+      <section className={styles.all_archives_grid}>
+        <Masonry
+          breakpointCols={3}
+          className="my-masonry-grid"
+          columnClassName="my-masonry-grid_column"
+        >
+          {archiveList.length > 0 ? (
+            archiveList.map((archive, key) => (
+              <article key={key} className={styles.grid_item}>
+                <Link href={"/item/" + archive.node._meta.uid}>
+                  <a className={styles.thumbnail}>
+                    {archive.node.images[0] ? (
+                      <Image
+                        className={styles.lazyloaded}
+                        data-src="/image-1"
+                        alt={archive.node.images[0].image.alt}
+                        src={archive.node.images[0].image.url}
+                        height={archive.node.images[0].image.dimensions.height}
+                        width={archive.node.images[0].image.dimensions.width}
+                      />
+                    ) : null}
+                  </a>
+                </Link>
+              </article>
+            ))
+          ) : (
+            <li className={styles.no_items}>
+              No &ldquo;{currentTag}&rdquo; items found.
+            </li>
+          )}
+        </Masonry>
+      </section>
+    );
   };
 
   return (
@@ -216,15 +252,15 @@ const Home = ({ data, archives, taggers }) => {
         </span>
       </nav>
 
-      <main className={styles.main}>
+      <main
+        className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
+      >
         <h1 className={styles.title}>
           <span>{page_content.title[0].text}</span>
           <span>{page_content.date_range[0].text}</span>
         </h1>
 
-        <section className={styles.all_archives}>
-          {gridView ? <GridView /> : <ListView />}
-        </section>
+        {gridView ? <GridView /> : <ListView />}
       </main>
       <footer className={styles.footer}>
         <Image
