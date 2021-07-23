@@ -1,0 +1,56 @@
+
+░█████╗░░█████╗░██╗░░░░░██╗░░░░░███████╗░█████╗░████████╗  ███╗░░██╗██╗░░░██╗░█████╗░
+██╔══██╗██╔══██╗██║░░░░░██║░░░░░██╔════╝██╔══██╗╚══██╔══╝  ████╗░██║╚██╗░██╔╝██╔══██╗
+██║░░╚═╝██║░░██║██║░░░░░██║░░░░░█████╗░░██║░░╚═╝░░░██║░░░  ██╔██╗██║░╚████╔╝░██║░░╚═╝
+██║░░██╗██║░░██║██║░░░░░██║░░░░░██╔══╝░░██║░░██╗░░░██║░░░  ██║╚████║░░╚██╔╝░░██║░░██╗
+╚█████╔╝╚█████╔╝███████╗███████╗███████╗╚█████╔╝░░░██║░░░  ██║░╚███║░░░██║░░░╚█████╔╝
+░╚════╝░░╚════╝░╚══════╝╚══════╝╚══════╝░╚════╝░░░░╚═╝░░░  ╚═╝░░╚══╝░░░╚═╝░░░░╚════╝░
+
+
+_______________________________________________________________________________
+
+PEOPLE
+
+This website was hand-crafted by COLLECT NYC.
+
+@collect.nyc
+@uncollectedworks
+@cafecollect.nyc
+
+Joshua Tuscan
+Development, User Experience, Interaction, Software, Objects
+@joshuatuscan
+
+Andrew J.S.
+Direction, Design, Photography, Space
+@andrew_js
+
+
+_______________________________________________________________________________
+
+TECHNOLOGY
+
+Next.js
+https://nextjs.org/
+
+Vercel
+https://vercel.com
+
+Prismic
+https://prismic.io
+
+Github
+https://github.com/
+
+_______________________________________________________________________________
+
+GRAPHIC ASSETS
+
+Futura No. 2 (font)
+https://www.linotype.com/1381510/futura-no-2-family.html
+
+Untitled Sans (font)
+https://klim.co.nz/retail-fonts/untitled-sans/
+
+Courier Prime (font)
+https://fonts.google.com/specimen/Courier+Prime#standard-styles

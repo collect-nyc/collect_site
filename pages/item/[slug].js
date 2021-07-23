@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
+import SharedHead from "../../components/SharedHead";
 import Link from "next/link";
 import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
@@ -75,7 +76,7 @@ const ArchiveItem = ({ response }) => {
           name="description"
           content={page_data.description ? page_data.description[0].text : null}
         />
-        <link rel="icon" href="/favicon.ico" />
+        <SharedHead />
       </Head>
 
       <main className={styles.main}>

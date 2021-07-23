@@ -1,4 +1,5 @@
 import Head from "next/head";
+import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import { getProfilePage } from "../lib/api";
 import { RichText } from "prismic-reactjs";
@@ -27,7 +28,7 @@ const Profile = ({ data }) => {
           name="description"
           content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <SharedHead />
       </Head>
 
       <main className={styles.main}>

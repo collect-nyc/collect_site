@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from "next/head";
+import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import { getIndexPage, getAllArchives, getAllTags } from "../lib/api";
 import { DateTime } from "luxon";
@@ -230,7 +231,7 @@ const Home = ({ data, archives, taggers }) => {
           name="description"
           content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <SharedHead />
       </Head>
 
       <nav className={styles.filter_bar}>
