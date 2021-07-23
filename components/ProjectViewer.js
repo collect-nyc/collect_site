@@ -29,7 +29,12 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   </React.Fragment>
                 ) : null}
 
-                {image.image ? (
+                {image.video ? (
+                  <video loop autoPlay muted>
+                    <source src={image.video.url} type="video/mp4" />
+                    Your browser does not support the video tag.
+                  </video>
+                ) : image.image ? (
                   <Image
                     src={image.image.url}
                     alt={image.image.alt}
@@ -37,11 +42,6 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                     width={image.image.dimensions.width}
                     layout={"responsive"}
                   />
-                ) : image.video ? (
-                  <video loop autoPlay muted>
-                    <source src={image.video.url} type="video/mp4" />
-                    Your browser does not support the video tag.
-                  </video>
                 ) : null}
               </li>
             ))
