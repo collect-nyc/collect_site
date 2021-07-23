@@ -9,7 +9,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   return (
     <div className={styles.project_viewer}>
       <ul className={styles.image_array}>
-        {images[0].image
+        {images[0].image || images[0].video
           ? images.map((image, key) => (
               <li
                 key={key}
@@ -38,7 +38,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                     layout={"responsive"}
                   />
                 ) : image.video ? (
-                  <video controls>
+                  <video loop autoPlay muted>
                     <source src={image.video.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
