@@ -255,10 +255,15 @@ const Home = ({ data, archives, taggers }) => {
       <main
         className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
       >
-        <h1 className={styles.title}>
-          <span>{page_content.title[0].text}</span>
-          <span>{page_content.date_range[0].text}</span>
-        </h1>
+        <div className={styles.title}>
+          <Image
+            layout={"responsive"}
+            src={page_content.header_image.url}
+            alt={page_content.header_image.alt}
+            height={page_content.header_image.dimensions.height}
+            width={page_content.header_image.dimensions.width}
+          />
+        </div>
 
         {gridView ? <GridView /> : <ListView />}
       </main>
