@@ -57,10 +57,13 @@
   }
 
   .contact_info {
-    width: 30%;
+    position: fixed;
+    top: 172px;
+    right: $gutter_desktop;
+    width: 25%;
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
-      width: 40%;
+      width: 35%;
     }
 
     h3 {
