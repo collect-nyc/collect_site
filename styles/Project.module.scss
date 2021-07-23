@@ -43,6 +43,7 @@
     .title {
       @extend .body_text;
       padding-left: 25px;
+      text-transform: uppercase;
     }
 
     .tags {
