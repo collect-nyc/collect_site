@@ -269,6 +269,7 @@ const Home = ({ data, archives, taggers }) => {
 
         {gridView ? <GridView /> : <ListView />}
       </main>
+
       <footer className={styles.footer}>
         <Image
           layout="responsive"

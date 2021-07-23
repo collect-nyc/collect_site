@@ -1,6 +1,7 @@
 const path = require("path");
+const withSvgr = require("next-svgr");
 
-module.exports = {
+module.exports = withSvgr({
   images: {
     domains: ["images.prismic.io", "collectnyc.cdn.prismic.io"],
   },
@@ -8,4 +9,4 @@ module.exports = {
     includePaths: [path.join(__dirname, "styles")],
   },
   reactStrictMode: true,
-};
+});
