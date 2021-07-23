@@ -288,9 +288,7 @@ const Home = ({ data, archives, taggers }) => {
         </span>
       </nav>
 
-      <main
-        className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
-      >
+      <div className={styles.title_holder}>
         <div className={styles.title}>
           {page_content.header_image ? (
             <Image
@@ -302,7 +300,11 @@ const Home = ({ data, archives, taggers }) => {
             />
           ) : null}
         </div>
+      </div>
 
+      <main
+        className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
+      >
         {gridView ? <GridView /> : <ListView />}
       </main>
 

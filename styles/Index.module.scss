@@ -6,18 +6,31 @@
   padding-top: 55px;
 }
 
-.main {
-  padding: 185px $gutter_desktop 20px;
+.title_holder {
+  display: block;
+  position: fixed;
+  top: 185px;
+  width: 100%;
+  left: 0;
+  z-index: 1;
+}
 
-  .title {
-    max-width: 385px;
-    margin: 0 auto 70px;
-    text-align: center;
+.title {
+  max-width: 385px;
+  margin: 0 auto 70px;
+  text-align: center;
 
-    svg {
-      width: 100%;
-    }
+  svg {
+    width: 100%;
   }
+}
+
+.main {
+  background-color: $alabaster;
+  padding: 0 $gutter_desktop 20px;
+  margin-top: 330px;
+  position: relative;
+  z-index: 2;
 
   .all_archives {
     ul {
@@ -57,7 +70,7 @@
 }
 
 .main.grid {
-  padding: 185px $navGutter_desktop 20px;
+  padding: 0 $navGutter_desktop 20px;
 
   .all_archives_grid {
     .grid_item {
@@ -102,7 +115,7 @@
   position: fixed;
   top: 56px;
   width: 100%;
-  z-index: 2;
+  z-index: 3;
 
   .label {
     button {
