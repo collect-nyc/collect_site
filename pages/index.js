@@ -277,13 +277,13 @@ const Home = ({ data, archives, taggers }) => {
 
         <span className={styles.controls}>
           <button onClick={() => SwapView()}>
-            {gridView ? "List" : "Grid"}
+            {gridView ? "Grid" : "List"}
           </button>
           <button onClick={() => AlphabetSort()}>
-            {!azSort || azSort === "za" ? "A-Z" : "Z-A"}
+            {!azSort || azSort === "za" ? "Z-A" : "A-Z"}
           </button>
           <button onClick={() => TimeSort()}>
-            {!timeSort || timeSort === "new" ? "New, Old" : "Old, New"}
+            {!timeSort || timeSort === "new" ? "Old, New" : "New, Old"}
           </button>
         </span>
       </nav>
