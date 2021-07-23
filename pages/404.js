@@ -1,4 +1,5 @@
 import Head from "next/head";
+import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Link from "next/link";
 import styles from "../styles/404.module.scss";
@@ -20,7 +21,7 @@ const Custom404 = () => {
           name="description"
           content="You have reached a page that does not exist. Head back to the COLLECT index."
         />
-        <link rel="icon" href="/favicon.ico" />
+        <SharedHead />
       </Head>
 
       <main className={styles.main}>
