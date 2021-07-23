@@ -33,7 +33,7 @@ const Home = ({ data, archives, taggers }) => {
   const [gridView, setGridView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(archives);
+  const [archiveList, setArchiveList] = useState(archives.edges);
   const [filterOpen, setFilterOpen] = useState(false);
   const [currentTag, setCurrentTag] = useState("All Work");
 
