@@ -8,6 +8,7 @@ import Link from "next/link";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
+import Carot from "../svg/carot.svg";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps() {
@@ -32,7 +33,8 @@ const Home = ({ data, archives, taggers }) => {
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState(archives);
-  const [currentTag, setCurrentTag] = useState(null);
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [currentTag, setCurrentTag] = useState("All Work");
 
   console.log("DATA", page_content, "ARCHIVES", archives, "TAGS", taggers);
 
@@ -42,6 +44,7 @@ const Home = ({ data, archives, taggers }) => {
     console.log("TAG CLICK", id);
 
     setCurrentTag(name);
+    setFilterOpen(false);
 
     axios
       .post("/api/get-tag-archives", {
@@ -55,6 +58,16 @@ const Home = ({ data, archives, taggers }) => {
       .catch(function (error) {
         console.log(error);
       });
+  };
+
+  const AllTags = () => {
+    setCurrentTag("All Work");
+    setArchiveList(archives);
+    setFilterOpen(false);
+  };
+
+  const ToggleFilters = () => {
+    setFilterOpen(!filterOpen);
   };
 
   // Switch from List to Grid view
@@ -221,21 +234,44 @@ const Home = ({ data, archives, taggers }) => {
       </Head>
 
       <nav className={styles.filter_bar}>
-        <span className={styles.label}>Filter by:</span>
+        <span className={styles.label}>
+          <button
+            className={filterOpen ? styles.open : styles.closed}
+            onClick={() => ToggleFilters()}
+          >
+            {currentTag} <Carot />
+          </button>
+        </span>
 
-        <ul className={styles.tag_list}>
+        <ul
+          className={
+            filterOpen
+              ? `${styles.tag_list} ${styles.tag_list_open}`
+              : styles.tag_list
+          }
+        >
+          {currentTag === "All Work" ? null : (
+            <li>
+              <button onClick={() => AllTags()}>All Work</button>
+            </li>
+          )}
           {taggers && taggers[0]
-            ? taggers.map((tag, key) => (
-                <li key={key}>
-                  <button
-                    onClick={() =>
-                      GetByTag(tag.node._meta.id, tag.node.tag_name[0].text)
-                    }
-                  >
-                    {tag.node.tag_name[0].text}
-                  </button>
-                </li>
-              ))
+            ? taggers.map(
+                (tag, key) => (
+                  tag.node._meta.id,
+                  tag.node.tag_name[0].text === currentTag ? null : (
+                    <li key={key}>
+                      <button
+                        onClick={() =>
+                          GetByTag(tag.node._meta.id, tag.node.tag_name[0].text)
+                        }
+                      >
+                        {tag.node.tag_name[0].text}
+                      </button>
+                    </li>
+                  )
+                )
+              )
             : null}
         </ul>
 

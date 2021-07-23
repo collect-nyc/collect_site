@@ -7,7 +7,7 @@
 }
 
 .main {
-  padding: 125px $gutter_desktop 20px;
+  padding: 185px $gutter_desktop 20px;
 
   .title {
     max-width: 385px;
@@ -57,7 +57,7 @@
 }
 
 .main.grid {
-  padding: 125px $navGutter_desktop 20px;
+  padding: 185px $navGutter_desktop 20px;
 
   .all_archives_grid {
     .grid_item {
@@ -98,21 +98,51 @@
   border-bottom: 1px solid $black;
   display: flex;
   left: 0;
-  padding: 19px $navGutter_desktop 17px 0;
+  padding: 19px $navGutter_desktop 17px;
   position: fixed;
   top: 56px;
   width: 100%;
   z-index: 2;
 
   .label {
-    padding-left: $navGutter_desktop;
-    width: 8.3333333333%;
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+      line-height: 2;
+      padding: 0;
+      text-align: left;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    .open {
+      svg {
+        transform: rotate(180deg);
+      }
+    }
+
+    .closed {
+    }
+    svg {
+      display: inline-block;
+    }
   }
 
   .tag_list {
-    margin: 0;
+    display: none;
+    column-count: 3;
+    column-gap: 50px;
+    column-width: 33.3333333333%;
+    margin: 0 0 0 45px;
     padding: 0;
     list-style: none;
+    width: 28%;
+
+    &.tag_list_open {
+      display: block;
+    }
 
     li {
       display: inline-block;
@@ -121,8 +151,9 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
+        line-height: 2;
         padding: 0;
-        margin-right: 27px;
+        text-align: left;
 
         &:hover {
           text-decoration: underline;
@@ -139,6 +170,7 @@
       background-color: transparent;
       border: none;
       cursor: pointer;
+      line-height: 2;
       margin: 0 0 0 25px;
       padding: 0;
 
