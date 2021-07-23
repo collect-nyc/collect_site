@@ -31,6 +31,7 @@
     }
 
     .multi_col {
+      @extend .courier_label;
       text-align: right;
     }
 
@@ -49,6 +50,7 @@
     }
 
     .date {
+      @extend .courier_label;
       margin-left: auto;
     }
   }

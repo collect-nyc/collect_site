@@ -57,6 +57,7 @@
           }
 
           .date {
+            @extend .courier_label;
             margin-left: auto;
           }
         }
