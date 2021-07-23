@@ -256,13 +256,15 @@ const Home = ({ data, archives, taggers }) => {
         className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
       >
         <div className={styles.title}>
-          <Image
-            layout={"responsive"}
-            src={page_content.header_image.url}
-            alt={page_content.header_image.alt}
-            height={page_content.header_image.dimensions.height}
-            width={page_content.header_image.dimensions.width}
-          />
+          {page_content.header_image ? (
+            <Image
+              layout={"responsive"}
+              src={page_content.header_image.url}
+              alt={page_content.header_image.alt}
+              height={page_content.header_image.dimensions.height}
+              width={page_content.header_image.dimensions.width}
+            />
+          ) : null}
         </div>
 
         {gridView ? <GridView /> : <ListView />}
