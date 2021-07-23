@@ -83,21 +83,32 @@
 
     .contact_details {
       display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
 
       .phone,
       .address {
         width: 50%;
       }
 
-      .phone {
-        padding-right: 20px;
-      }
-      .address {
-        padding-left: 20px;
-      }
-
       h4 {
         @extend .body_text;
+      }
+
+      @media screen and (min-width: $mq-tablet-min) and (max-width: 1015px) {
+        .phone,
+        .address {
+          width: 100%;
+        }
+
+        .phone {
+          margin-bottom: 15px;
+          // width: 45%;
+        }
+
+        .address {
+          // width: 55%;
+        }
       }
     }
   }

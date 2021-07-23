@@ -281,7 +281,7 @@ const Home = ({ data, archives, taggers }) => {
             {gridView ? "Grid" : "List"}
           </button>
           <button onClick={() => AlphabetSort()}>
-            {!azSort || azSort === "za" ? "Z-A" : "A-Z"}
+            {!azSort || azSort === "az" ? "A-Z" : "Z-A"}
           </button>
           <button onClick={() => TimeSort()}>
             {!timeSort || timeSort === "new" ? "Old, New" : "New, Old"}
