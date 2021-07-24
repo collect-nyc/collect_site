@@ -51,7 +51,6 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ archives, document, everything }) => {
-  console.log("EVERYTHING", everything.tags);
   const page_content = document.data;
   const tags = everything.tags;
 
@@ -75,7 +74,7 @@ const Home = ({ archives, document, everything }) => {
         name: name,
       })
       .then(function (response) {
-        // console.log("NEW LIST", response.data.results);
+        // console.log("NEW LIST", response.data);
 
         setArchiveList(response.data.results);
       })
