@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@prismicio/client": "^5.1.0",
     "axios": "^0.21.1",
     "framer-motion": "^4.1.17",
     "lodash": "^4.17.21",

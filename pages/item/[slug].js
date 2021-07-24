@@ -7,22 +7,51 @@ import ProjectViewer from "../../components/ProjectViewer";
 import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
+import Prismic from "prismic-javascript";
+import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
 import styles from "../../styles/Project.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const response = await getArchiveItem(params.slug, previewData);
+  const archiveQuery = `{
+    archive_item {
+      title
+      description
+      creation_date
+      password_protected
+      images {
+        image
+        video
+      }
+      tags {
+        tag {
+          tag_name
+        }
+      }
+    }
+  }`;
+
+  const document = await Client().getByUID("archive_item", params.slug, {
+    graphQuery: archiveQuery,
+  });
 
   const page = "project";
-  return { props: { response, page, revalidate: 60 } };
+  return { props: { document, page, revalidate: 60 } };
 }
 
 export async function getStaticPaths() {
-  const posts = await getAllArchivesWithSlug();
+  const archives = await Client().query(
+    Prismic.Predicates.at("document.type", "archive_item"),
+    { pageSize: 100 }
+  );
+
+  const posts = archives.results;
+
+  console.log(posts);
 
   const paths = posts.map((post) => ({
     params: {
-      slug: post.node._meta.uid,
+      slug: post.uid,
     },
   }));
 
@@ -30,10 +59,11 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-const ArchiveItem = ({ response }) => {
+const ArchiveItem = ({ document }) => {
+  console.log("DOCUMENT", document);
   const [current, setCurrent] = useState(0);
 
-  const page_data = response.archive_item;
+  const page_data = document.data;
   console.log("Project Data", page_data);
   const images = page_data.images;
 
@@ -69,12 +99,18 @@ const ArchiveItem = ({ response }) => {
     <div className={styles.container}>
       <Head>
         <title>
-          {page_data.title ? page_data.title[0].text : "COLLECT Project"} _{" "}
-          {SITE_NAME}
+          {page_data.title[0].text
+            ? page_data.title[0].text
+            : "COLLECT Project"}{" "}
+          _ {SITE_NAME}
         </title>
         <meta
           name="description"
-          content={page_data.description ? page_data.description[0].text : null}
+          content={
+            page_data.description.length > 0
+              ? page_data.description[0].text
+              : "An archive item by COLLECT NYC."
+          }
         />
         <SharedHead />
       </Head>
@@ -104,12 +140,12 @@ const ArchiveItem = ({ response }) => {
         ) : null*/}
 
         <div className={styles.tags}>
-          {page_data.tags.map((item, key) => (
+          {document.tags.map((tag, key) => (
             <span key={key}>
-              {page_data.tags.length === key + 1 && item.tag
-                ? item.tag.tag_name[0].text
-                : item.tag
-                ? item.tag.tag_name[0].text + ", "
+              {document.tags.length === key + 1 && tag
+                ? tag
+                : tag
+                ? tag + ", "
                 : null}
             </span>
           ))}

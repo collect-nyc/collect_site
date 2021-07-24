@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React from "react";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function MyLayout({ page, children }) {
-  const { data, error } = useSWR("/api/get-archives", fetcher);
+  const { data, error } = useSWR("/api/get-count", fetcher);
+
+  // console.log("MYLAYOUT", data);
 
   return (
     <React.Fragment>
       {page !== "project" ? (
-        <SiteNav page={page} count={data ? data : null} />
+        <SiteNav page={page} count={data ? data.results_size : null} />
       ) : null}
 
       {children}

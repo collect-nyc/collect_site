@@ -3,9 +3,12 @@ import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import { getIndexPage, getAllArchives, getAllTags } from "../lib/api";
+import Prismic from "prismic-javascript";
+import { Client } from "../lib/prismic-config";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
+import useSWR from "swr";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
@@ -13,48 +16,83 @@ import Carot from "../svg/carot.svg";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps() {
-  const data = await getIndexPage();
+  const everything = await fetch(
+    "https://collectnyc.cdn.prismic.io/api/v2"
+  ).then((res) => res.json());
 
-  const archives = await getAllArchives();
+  //Page Data
+  const document = await Client().getSingle("index_page");
+
+  //new api
+  const archiveQuery = `{
+    archive_item {
+      title
+      creation_date
+      password_protected
+      images {
+        image
+      }
+      tags {
+        tag {
+          tag_name
+        }
+      }
+    }
+  }`;
+  const archives = await Client().query(
+    Prismic.Predicates.at("document.type", "archive_item"),
+    { pageSize: 100, graphQuery: archiveQuery }
+  );
 
   const taggers = await getAllTags();
+
+  const tagQuery = `{
+    archiv {
+      tag_name
+    }
+  }`;
+  const taggs = await Client().query(
+    Prismic.Predicates.at("document.type", "archiv"),
+    { pageSize: 100, graphQuery: tagQuery }
+  );
 
   const page = "index";
 
   return {
-    props: { data, archives, taggers, page },
+    props: { document, archives, taggers, page, taggs, everything },
   };
 }
 
-const Home = ({ data, archives, taggers }) => {
-  const page_content = data[0].node;
+const Home = ({ archives, taggers, document, taggs, everything }) => {
+  console.log("EVERYTHING", everything.tags);
+  console.log("NEW TAGS", taggs.results);
+  const page_content = document.data;
+  const tag_list = taggs.results;
+  const tags = everything.tags;
 
   // State
   const [gridView, setGridView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(archives.edges);
+  const [archiveList, setArchiveList] = useState(archives.results);
   const [filterOpen, setFilterOpen] = useState(false);
   const [currentTag, setCurrentTag] = useState("All Work");
 
   console.log("DATA", page_content, "ARCHIVES", archives, "TAGS", taggers);
 
   // Pull archive items by tag
-  const GetByTag = (id, name) => {
-    // do something
-    console.log("TAG CLICK", id);
-
+  const GetByTag = (name) => {
     setCurrentTag(name);
     setFilterOpen(false);
 
     axios
       .post("/api/get-tag-archives", {
-        id: id,
+        name: name,
       })
       .then(function (response) {
-        console.log("NEW LIST", response.data);
+        // console.log("NEW LIST", response.data.results);
 
-        setArchiveList(response.data);
+        setArchiveList(response.data.results);
       })
       .catch(function (error) {
         console.log(error);
@@ -63,7 +101,7 @@ const Home = ({ data, archives, taggers }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
-    setArchiveList(archives);
+    setArchiveList(archives.results);
     setFilterOpen(false);
   };
 
@@ -83,7 +121,7 @@ const Home = ({ data, archives, taggers }) => {
         archiveList,
         [
           function (o) {
-            return o.node.title[0].text;
+            return o.data.title[0].text;
           },
         ],
         ["desc"]
@@ -96,7 +134,7 @@ const Home = ({ data, archives, taggers }) => {
         archiveList,
         [
           function (o) {
-            return o.node.title[0].text;
+            return o.data.title[0].text;
           },
         ],
         ["asc"]
@@ -114,7 +152,7 @@ const Home = ({ data, archives, taggers }) => {
         archiveList,
         [
           function (o) {
-            return o.node.creation_date;
+            return o.data.creation_date;
           },
         ],
         ["desc"]
@@ -127,7 +165,7 @@ const Home = ({ data, archives, taggers }) => {
         archiveList,
         [
           function (o) {
-            return o.node.creation_date;
+            return o.data.creation_date;
           },
         ],
         ["asc"]
@@ -146,27 +184,27 @@ const Home = ({ data, archives, taggers }) => {
           {archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <li key={key}>
-                <Link href={"/item/" + archive.node._meta.uid}>
+                <Link href={"/item/" + archive.uid}>
                   <a>
                     <span className={styles.name}>
-                      {archive.node.title[0].text}
+                      {archive.data.title[0].text}
                     </span>
 
                     <span className={styles.tags}>
-                      {archive.node.tags.map((item, key) => (
+                      {archive.tags.map((tag, key) => (
                         <span key={key}>
-                          {archive.node.tags.length === key + 1 && item.tag
-                            ? item.tag.tag_name[0].text
-                            : item.tag
-                            ? item.tag.tag_name[0].text + ", "
+                          {archive.tags.length === key + 1 && tag
+                            ? tag
+                            : tag
+                            ? tag + ", "
                             : null}
                         </span>
                       ))}
                     </span>
 
                     <span className={styles.date}>
-                      {archive.node.creation_date
-                        ? DateTime.fromISO(archive.node.creation_date).toFormat(
+                      {archive.data.creation_date
+                        ? DateTime.fromISO(archive.data.creation_date).toFormat(
                             "yyyy"
                           )
                         : "TBD"}
@@ -197,16 +235,16 @@ const Home = ({ data, archives, taggers }) => {
           {archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <article key={key} className={styles.grid_item}>
-                <Link href={"/item/" + archive.node._meta.uid}>
+                <Link href={"/item/" + archive.uid}>
                   <a className={styles.thumbnail}>
-                    {archive.node.images[0] ? (
+                    {archive.data.images[0] ? (
                       <Image
                         className={styles.lazyloaded}
                         data-src="/image-1"
-                        alt={archive.node.images[0].image.alt}
-                        src={archive.node.images[0].image.url}
-                        height={archive.node.images[0].image.dimensions.height}
-                        width={archive.node.images[0].image.dimensions.width}
+                        alt={archive.data.images[0].image.alt}
+                        src={archive.data.images[0].image.url}
+                        height={archive.data.images[0].image.dimensions.height}
+                        width={archive.data.images[0].image.dimensions.width}
                       />
                     ) : null}
                   </a>
@@ -256,21 +294,15 @@ const Home = ({ data, archives, taggers }) => {
               <button onClick={() => AllTags()}>All Work</button>
             </li>
           )}
-          {taggers && taggers[0]
-            ? taggers.map(
-                (tag, key) => (
-                  tag.node._meta.id,
-                  tag.node.tag_name[0].text === currentTag ? null : (
-                    <li key={key}>
-                      <button
-                        onClick={() =>
-                          GetByTag(tag.node._meta.id, tag.node.tag_name[0].text)
-                        }
-                      >
-                        {tag.node.tag_name[0].text}
-                      </button>
-                    </li>
-                  )
+
+          {tags && tags.length > 0
+            ? tags.map((tag, key) =>
+                tag === currentTag ? null : (
+                  <li key={key}>
+                    <button index={tag.id} onClick={() => GetByTag(tag)}>
+                      {tag}
+                    </button>
+                  </li>
                 )
               )
             : null}

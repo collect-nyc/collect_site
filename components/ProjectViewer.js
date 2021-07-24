@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import styles from "../styles/ProjectViewer.module.scss";
 
 const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
-  console.log("IMAGES", images);
+  // console.log("IMAGES", images);
 
   return (
     <div className={styles.project_viewer}>
@@ -29,12 +29,12 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   </React.Fragment>
                 ) : null}
 
-                {image.video ? (
+                {image.video.url ? (
                   <video loop autoPlay muted>
                     <source src={image.video.url} type="video/mp4" />
                     Your browser does not support the video tag.
                   </video>
-                ) : image.image ? (
+                ) : image.image.url ? (
                   <Image
                     src={image.image.url}
                     alt={image.image.alt}
