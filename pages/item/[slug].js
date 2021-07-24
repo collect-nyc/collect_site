@@ -24,11 +24,6 @@ export async function getStaticProps({ params, preview = false, previewData }) {
         image
         video
       }
-      tags {
-        tag {
-          tag_name
-        }
-      }
     }
   }`;
 
