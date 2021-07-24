@@ -51,6 +51,7 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ archives, document, everything }) => {
+  // console.log("EVERY", everything);
   const page_content = document.data;
   const tags = everything.tags;
 
