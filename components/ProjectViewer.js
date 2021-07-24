@@ -36,10 +36,13 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   </video>
                 ) : image.image.url ? (
                   <Image
+                    priority
                     src={image.image.url}
                     alt={image.image.alt}
                     height={image.image.dimensions.height}
                     width={image.image.dimensions.width}
+                    placeholder={"blur"}
+                    blurDataURL={image.image.url}
                     layout={"responsive"}
                   />
                 ) : null}
