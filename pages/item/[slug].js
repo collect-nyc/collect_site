@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import SharedHead from "../../components/SharedHead";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
 import { RichText } from "prismic-reactjs";
@@ -10,7 +11,7 @@ import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
 import Prismic from "prismic-javascript";
 import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
-import styles from "../../styles/Project.module.scss";
+import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const archiveQuery = `{
@@ -60,6 +61,7 @@ export async function getStaticPaths() {
 }
 
 const ArchiveItem = ({ document }) => {
+  const router = useRouter();
   console.log("DOCUMENT", document);
   const [current, setCurrent] = useState(0);
 
@@ -94,6 +96,38 @@ const ArchiveItem = ({ document }) => {
 
     console.log("CURRENT", current);
   };
+
+  const Exit = () => {
+    router.push("/");
+  };
+
+  // Event handlers
+  const onDown = (event) => {
+    console.log("Key Pressed", event.key);
+
+    switch (event.key) {
+      case "ArrowRight":
+        nextItem();
+        break;
+      case "ArrowLeft":
+        //do something
+        prevItem();
+        break;
+      case "Escape":
+        //do something
+        Exit();
+        break;
+    }
+  };
+
+  // Bind and unbind events
+  useEffect(() => {
+    window.addEventListener("keydown", onDown);
+
+    return () => {
+      window.removeEventListener("keydown", onDown);
+    };
+  });
 
   return (
     <div className={styles.container}>
