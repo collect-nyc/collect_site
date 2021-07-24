@@ -2,7 +2,7 @@ import { useState } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import { getIndexPage, getAllArchives, getAllTags } from "../lib/api";
+// import { getIndexPage, getAllArchives, getAllTags } from "../lib/api";
 import Prismic from "prismic-javascript";
 import { Client } from "../lib/prismic-config";
 import { DateTime } from "luxon";
@@ -30,11 +30,6 @@ export async function getServerSideProps() {
       password_protected
       images {
         image
-      }
-      tags {
-        tag {
-          tag_name
-        }
       }
     }
   }`;

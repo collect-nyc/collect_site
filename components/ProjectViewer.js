@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import styles from "../styles/ProjectViewer.module.scss";
 
 const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
