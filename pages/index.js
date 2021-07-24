@@ -8,7 +8,6 @@ import { Client } from "../lib/prismic-config";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import useSWR from "swr";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
@@ -44,30 +43,16 @@ export async function getServerSideProps() {
     { pageSize: 100, graphQuery: archiveQuery }
   );
 
-  const taggers = await getAllTags();
-
-  const tagQuery = `{
-    archiv {
-      tag_name
-    }
-  }`;
-  const taggs = await Client().query(
-    Prismic.Predicates.at("document.type", "archiv"),
-    { pageSize: 100, graphQuery: tagQuery }
-  );
-
   const page = "index";
 
   return {
-    props: { document, archives, taggers, page, taggs, everything },
+    props: { document, archives, page, everything },
   };
 }
 
-const Home = ({ archives, taggers, document, taggs, everything }) => {
+const Home = ({ archives, document, everything }) => {
   console.log("EVERYTHING", everything.tags);
-  console.log("NEW TAGS", taggs.results);
   const page_content = document.data;
-  const tag_list = taggs.results;
   const tags = everything.tags;
 
   // State
@@ -78,7 +63,7 @@ const Home = ({ archives, taggers, document, taggs, everything }) => {
   const [filterOpen, setFilterOpen] = useState(false);
   const [currentTag, setCurrentTag] = useState("All Work");
 
-  console.log("DATA", page_content, "ARCHIVES", archives, "TAGS", taggers);
+  console.log("DATA", page_content, "ARCHIVES", archives);
 
   // Pull archive items by tag
   const GetByTag = (name) => {
