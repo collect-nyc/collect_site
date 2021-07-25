@@ -1,3 +1,5 @@
+import Prismic from "prismic-javascript";
+import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -7,18 +9,19 @@ import { RichText } from "prismic-reactjs";
 import styles from "../styles/Profile.module.scss";
 
 export async function getServerSideProps() {
-  const data = await getProfilePage();
+  //Page Data
+  const document = await Client().getSingle("profile");
 
   const page = "profile";
 
   return {
-    props: { data, page },
+    props: { page, document },
   };
 }
 
-const Profile = ({ data }) => {
-  console.log("Profile Content", data[0].node);
-  const page_content = data[0].node;
+const Profile = ({ document }) => {
+  console.log("Profile Content", document.data);
+  const page_content = document.data;
 
   return (
     <div className={styles.container}>
