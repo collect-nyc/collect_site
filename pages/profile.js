@@ -1,11 +1,8 @@
-import Prismic from "prismic-javascript";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import { getProfilePage } from "../lib/api";
 import { RichText } from "prismic-reactjs";
-// import Image from 'next/image';
 import styles from "../styles/Profile.module.scss";
 
 export async function getServerSideProps() {
