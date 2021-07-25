@@ -7,7 +7,6 @@ import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
 import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
-import { getAllArchivesWithSlug, getArchiveItem } from "../../lib/api";
 import Prismic from "prismic-javascript";
 import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
