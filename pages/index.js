@@ -126,7 +126,7 @@ const Home = ({ archives, document, everything }) => {
 
   // Sort by creation date
   const TimeSort = () => {
-    if (timeSort === "new" || !timeSort) {
+    if (!timeSort) {
       const list = _.orderBy(
         archiveList,
         [
@@ -135,6 +135,19 @@ const Home = ({ archives, document, everything }) => {
           },
         ],
         ["desc"]
+      );
+
+      setArchiveList(list);
+      setTimeSort("new");
+    } else if (timeSort === "new") {
+      const list = _.orderBy(
+        archiveList,
+        [
+          function (o) {
+            return o.data.creation_date;
+          },
+        ],
+        ["asc"]
       );
 
       setArchiveList(list);
@@ -147,7 +160,7 @@ const Home = ({ archives, document, everything }) => {
             return o.data.creation_date;
           },
         ],
-        ["asc"]
+        ["desc"]
       );
 
       setArchiveList(list);
@@ -295,7 +308,13 @@ const Home = ({ archives, document, everything }) => {
             {!azSort || azSort === "az" ? "A-Z" : "Z-A"}
           </button>
           <button onClick={() => TimeSort()}>
-            {!timeSort || timeSort === "new" ? "Old, New" : "New, Old"}
+            {!timeSort
+              ? "New, Old"
+              : timeSort === "new"
+              ? "New, Old"
+              : timeSort === "old"
+              ? "Old, New"
+              : null}
           </button>
         </span>
       </nav>
