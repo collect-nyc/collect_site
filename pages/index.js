@@ -167,10 +167,11 @@ const Home = ({ archives, document, everything }) => {
           {archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <li key={key}>
-                <Link href={"/item/" + archive.uid}>
-                  <a>
+                {archive.data.coming_soon ? (
+                  <div className={styles.coming_soon}>
                     <span className={styles.name}>
-                      {archive.data.title[0].text}
+                      <span>{archive.data.title[0].text}</span>
+                      <span>Coming Soon</span>
                     </span>
 
                     <span className={styles.tags}>
@@ -192,8 +193,36 @@ const Home = ({ archives, document, everything }) => {
                           )
                         : "TBD"}
                     </span>
-                  </a>
-                </Link>
+                  </div>
+                ) : (
+                  <Link href={"/item/" + archive.uid}>
+                    <a>
+                      <span className={styles.name}>
+                        {archive.data.title[0].text}
+                      </span>
+
+                      <span className={styles.tags}>
+                        {archive.tags.map((tag, key) => (
+                          <span key={key}>
+                            {archive.tags.length === key + 1 && tag
+                              ? tag
+                              : tag
+                              ? tag + ", "
+                              : null}
+                          </span>
+                        ))}
+                      </span>
+
+                      <span className={styles.date}>
+                        {archive.data.creation_date
+                          ? DateTime.fromISO(
+                              archive.data.creation_date
+                            ).toFormat("yyyy")
+                          : "TBD"}
+                      </span>
+                    </a>
+                  </Link>
+                )}
               </li>
             ))
           ) : (
@@ -219,8 +248,8 @@ const Home = ({ archives, document, everything }) => {
           {archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <article key={key} className={styles.grid_item}>
-                <Link href={"/item/" + archive.uid}>
-                  <a className={styles.thumbnail}>
+                {archive.data.coming_soon ? (
+                  <a className={`${styles.thumbnail} ${styles.coming_soon}`}>
                     {archive.data.index_thumbnail?.url ? (
                       <Image
                         className={styles.lazyloaded}
@@ -239,7 +268,33 @@ const Home = ({ archives, document, everything }) => {
                       />
                     ) : null}
                   </a>
-                </Link>
+                ) : (
+                  <Link href={"/item/" + archive.uid}>
+                    <a className={styles.thumbnail}>
+                      {archive.data.index_thumbnail?.url ? (
+                        <Image
+                          className={styles.lazyloaded}
+                          alt={archive.data.index_thumbnail.alt}
+                          src={archive.data.index_thumbnail.url}
+                          height={
+                            archive.data.index_thumbnail.dimensions.height
+                          }
+                          width={archive.data.index_thumbnail.dimensions.width}
+                        />
+                      ) : archive.data.images[0].image.url ? (
+                        <Image
+                          className={styles.lazyloaded}
+                          alt={archive.data.images[0].image.alt}
+                          src={archive.data.images[0].image.url}
+                          height={
+                            archive.data.images[0].image.dimensions.height
+                          }
+                          width={archive.data.images[0].image.dimensions.width}
+                        />
+                      ) : null}
+                    </a>
+                  </Link>
+                )}
               </article>
             ))
           ) : (
