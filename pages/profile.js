@@ -17,7 +17,7 @@ export async function getServerSideProps() {
 }
 
 const Profile = ({ document }) => {
-  console.log("Profile Content", document.data);
+  // console.log("Profile Content", document.data);
   const page_content = document.data;
 
   return (

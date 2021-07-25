@@ -19,9 +19,17 @@
   display: flex;
   justify-content: space-between;
   padding: 19px $navGutter_desktop 17px;
+
+  &:active {
+    color: $black;
+  }
 }
 
 .info {
+  &:active {
+    color: $black;
+  }
+
   .latest {
     color: $alert;
     margin-right: 5px;

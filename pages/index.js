@@ -21,20 +21,10 @@ export async function getServerSideProps() {
   //Page Data
   const document = await Client().getSingle("index_page");
 
-  //new api
-  const archiveQuery = `{
-    archive_item {
-      title
-      creation_date
-      password_protected
-      images {
-        image
-      }
-    }
-  }`;
+  // Archive Items
   const archives = await Client().query(
     Prismic.Predicates.at("document.type", "archive_item"),
-    { pageSize: 100, graphQuery: archiveQuery }
+    { pageSize: 100 }
   );
 
   const page = "index";
@@ -170,6 +160,7 @@ const Home = ({ archives, document, everything }) => {
 
   // List View JSX
   const ListView = () => {
+    console.log("LIST", archiveList);
     return (
       <section className={styles.all_archives}>
         <ul>
@@ -217,6 +208,7 @@ const Home = ({ archives, document, everything }) => {
 
   // Grid View JSX
   const GridView = () => {
+    console.log("GRID", archiveList);
     return (
       <section className={styles.all_archives_grid}>
         <Masonry
@@ -229,10 +221,17 @@ const Home = ({ archives, document, everything }) => {
               <article key={key} className={styles.grid_item}>
                 <Link href={"/item/" + archive.uid}>
                   <a className={styles.thumbnail}>
-                    {archive.data.images[0] ? (
+                    {archive.data.index_thumbnail?.url ? (
                       <Image
                         className={styles.lazyloaded}
-                        data-src="/image-1"
+                        alt={archive.data.index_thumbnail.alt}
+                        src={archive.data.index_thumbnail.url}
+                        height={archive.data.index_thumbnail.dimensions.height}
+                        width={archive.data.index_thumbnail.dimensions.width}
+                      />
+                    ) : archive.data.images[0].image.url ? (
+                      <Image
+                        className={styles.lazyloaded}
                         alt={archive.data.images[0].image.alt}
                         src={archive.data.images[0].image.url}
                         height={archive.data.images[0].image.dimensions.height}

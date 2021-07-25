@@ -28,7 +28,7 @@
 .main {
   background-color: $alabaster;
   padding: 0 $gutter_desktop 20px;
-  margin-top: 440px;
+  margin-top: 450px;
   position: relative;
   z-index: 2;
 
@@ -129,6 +129,10 @@
       padding: 0;
       text-align: left;
 
+      &:active {
+        color: $black;
+      }
+
       &:hover {
         text-decoration: underline;
       }
@@ -137,9 +141,6 @@
       svg {
         transform: rotate(180deg);
       }
-    }
-
-    .closed {
     }
 
     svg {
@@ -174,6 +175,10 @@
         padding: 0;
         text-align: left;
 
+        &:active {
+          color: $black;
+        }
+
         &:hover {
           text-decoration: underline;
         }
@@ -192,6 +197,10 @@
       line-height: 2;
       margin: 0 0 0 25px;
       padding: 0;
+
+      &:active {
+        color: $black;
+      }
 
       &:first-of-type {
         margin-left: 0;

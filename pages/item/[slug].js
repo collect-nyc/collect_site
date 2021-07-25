@@ -13,22 +13,20 @@ import { SITE_NAME } from "../../lib/constants";
 import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  const archiveQuery = `{
-    archive_item {
-      title
-      description
-      creation_date
-      password_protected
-      images {
-        image
-        video
-      }
-    }
-  }`;
+  // const archiveQuery = `{
+  //   archive_item {
+  //     title
+  //     description
+  //     creation_date
+  //     password_protected
+  //     images {
+  //       image
+  //       video
+  //     }
+  //   }
+  // }`;
 
-  const document = await Client().getByUID("archive_item", params.slug, {
-    graphQuery: archiveQuery,
-  });
+  const document = await Client().getByUID("archive_item", params.slug);
 
   const page = "project";
   return { props: { document, page, revalidate: 60 } };
