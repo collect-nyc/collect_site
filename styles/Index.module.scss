@@ -16,9 +16,14 @@
 }
 
 .title {
-  max-width: 385px;
+  width: 385px;
+  max-width: 100%;
   margin: 0 auto 70px;
   text-align: center;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    width: 67%;
+  }
 
   svg {
     width: 100%;
@@ -31,6 +36,11 @@
   margin-top: 450px;
   position: relative;
   z-index: 2;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    margin-top: 370px;
+    padding: 0 $gutter_mobile 20px;
+  }
 
   .all_archives {
     ul {
@@ -51,12 +61,21 @@
         .coming_soon {
           display: flex;
           justify-content: flex-start;
+          align-items: center;
           padding: 19px 20px 17px;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            padding: 20px 0;
+          }
 
           .name {
             padding-right: 20px;
             text-transform: uppercase;
             width: 40%;
+
+            @media screen and (max-width: $mq-mobile-max) {
+              width: calc(100% - 40px);
+            }
           }
 
           .date {
@@ -85,6 +104,12 @@
             }
           }
         }
+
+        .tags {
+          @media screen and (max-width: $mq-mobile-max) {
+            display: none;
+          }
+        }
       }
 
       .no_items {
@@ -97,10 +122,20 @@
 .main.grid {
   padding: 0 $navGutter_desktop 20px;
 
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 0 $gutter_mobile 20px;
+  }
+
   .all_archives_grid {
     .grid_item {
       padding: {
         bottom: 60px;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: {
+          bottom: 20px;
+        }
       }
 
       .coming_soon {
@@ -115,17 +150,6 @@
     img {
       width: 100%;
       height: auto;
-    }
-  }
-
-  @media (max-width: 800px) {
-    .all_archives_grid {
-      width: 90%;
-      grid-template-columns: 1fr;
-      grid-auto-rows: auto;
-    }
-    .grid_item {
-      grid-row-end: auto;
     }
   }
 }
@@ -146,6 +170,10 @@
   top: 56px;
   width: 100%;
   z-index: 3;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 20px $gutter_mobile;
+  }
 
   .label {
     button {
@@ -187,6 +215,13 @@
     list-style: none;
     width: 28%;
 
+    @media screen and (max-width: $mq-mobile-max) {
+      column-count: 2;
+      column-gap: 0px;
+      margin: 0 0 0 30px;
+      width: 55%;
+    }
+
     &.tag_list_open {
       display: block;
     }
@@ -215,6 +250,12 @@
 
   .controls {
     margin-left: auto;
+
+    &.controls_open {
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
+    }
 
     button {
       @extend .untitled_caps;

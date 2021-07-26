@@ -12,8 +12,7 @@ body {
 }
 
 body {
-  font-family: $untitled_sans;
-  font-size: 16px;
+  @extend .body_text;
 }
 
 a {
@@ -31,13 +30,19 @@ a {
 
 /* Set Up Masonry Grid for Index */
 .my-masonry-grid {
-  // display: -webkit-box; /* Not needed if autoprefixing */
-  // display: -ms-flexbox; /* Not needed if autoprefixing */
   display: flex;
   margin-left: -60px; /* gutter size offset */
   width: auto;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    margin-left: -20px; /* gutter size offset */
+  }
 }
 .my-masonry-grid_column {
   padding-left: 60px; /* gutter size */
   background-clip: padding-box;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding-left: 20px; /* gutter size */
+  }
 }

@@ -1,3 +1,5 @@
+@import "./helpers";
+
 @font-face {
   font-family: "Futura No2 D";
   src: url("/fonts/FuturaNo2D-ExtBol.woff2") format("woff2"),
@@ -75,6 +77,10 @@ $courier: "Courier Prime";
 .body_text {
   font-size: 16px;
   font-weight: normal;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    font-size: 14px;
+  }
 }
 
 .untitled_caps {

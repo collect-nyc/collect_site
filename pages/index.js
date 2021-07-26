@@ -39,7 +39,7 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ archives, document, taggers }) => {
-  console.log("TAGS", taggers);
+  // console.log("TAGS", taggers);
   const page_content = document.data;
   const tags = taggers;
 
@@ -242,10 +242,16 @@ const Home = ({ archives, document, taggers }) => {
   // Grid View JSX
   const GridView = () => {
     console.log("GRID", archiveList);
+
+    const breakpointColumnsObj = {
+      default: 3,
+      900: 2,
+    };
+
     return (
       <section className={styles.all_archives_grid}>
         <Masonry
-          breakpointCols={3}
+          breakpointCols={breakpointColumnsObj}
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
@@ -358,7 +364,13 @@ const Home = ({ archives, document, taggers }) => {
             : null}
         </ul>
 
-        <span className={styles.controls}>
+        <span
+          className={
+            filterOpen
+              ? `${styles.controls} ${styles.controls_open}`
+              : styles.controls
+          }
+        >
           <button onClick={() => SwapView()}>
             {gridView ? "Grid" : "List"}
           </button>

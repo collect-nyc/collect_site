@@ -20,6 +20,10 @@
   justify-content: space-between;
   padding: 19px $navGutter_desktop 17px;
 
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 20px $gutter_mobile;
+  }
+
   &:active {
     color: $black;
   }
