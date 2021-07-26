@@ -67,6 +67,10 @@ $courier: "Courier Prime";
   &.xtra_bold {
     font-weight: 700;
   }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    font-size: 32px;
+  }
 }
 
 .heading_h2 {

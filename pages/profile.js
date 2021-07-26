@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
@@ -20,6 +21,12 @@ const Profile = ({ document }) => {
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
+  const [profilePage, setProfilePage] = useState("info");
+
+  const ChangePage = (page) => {
+    setProfilePage(page);
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -31,7 +38,28 @@ const Profile = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <main className={styles.main}>
+      <nav className={styles.mobile_profile_nav}>
+        <button
+          onClick={() => ChangePage("info")}
+          className={profilePage === "info" ? styles.active : null}
+        >
+          Info
+        </button>
+        <button
+          onClick={() => ChangePage("contact")}
+          className={profilePage === "contact" ? styles.active : null}
+        >
+          Contact
+        </button>
+      </nav>
+
+      <main
+        className={
+          profilePage === "contact"
+            ? `${styles.main} ${styles.contact_page}`
+            : styles.main
+        }
+      >
         <div className={styles.about}>
           <div className={styles.summary}>
             <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
@@ -88,6 +116,9 @@ const Profile = ({ document }) => {
           <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
+          {profilePage === "contact" ? (
+            <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
+          ) : null}
           <div className={styles.contact_summary}>
             <h3 className="untitled_caps">Contact</h3>
 

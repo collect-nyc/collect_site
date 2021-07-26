@@ -172,15 +172,17 @@
   z-index: 3;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 20px $gutter_mobile;
+    padding: 20px $navGutter_mobile 14px;
   }
 
   .label {
     button {
       background-color: transparent;
       border: none;
+      display: inline;
       cursor: pointer;
       line-height: 2;
+      margin: 0;
       padding: 0;
       text-align: left;
 
