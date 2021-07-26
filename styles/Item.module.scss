@@ -13,6 +13,7 @@
     background-color: $alabaster;
     border-top: 1px solid $black;
     display: flex;
+    align-items: center;
     padding: {
       top: 22px;
       bottom: 20px;
@@ -25,9 +26,22 @@
     width: 100%;
     z-index: 2;
 
+    @media screen and (max-width: $mq-mobile-max) {
+      padding: {
+        top: 20px;
+        bottom: 18px;
+        left: $navGutter_mobile;
+        right: $navGutter_mobile;
+      }
+    }
+
     .close_col,
     .multi_col {
       width: $gutter_desktop;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
 
     .multi_col {
@@ -44,10 +58,18 @@
       @extend .body_text;
       padding-left: 25px;
       text-transform: uppercase;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-left: 0;
+      }
     }
 
     .tags {
       padding-left: 25px;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
 
     .date {
