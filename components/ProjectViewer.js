@@ -8,7 +8,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   // console.log("IMAGES", images);
 
   const HandleSwipe = (swipe) => {
-    console.log("swipe", swipe.direction);
+    // console.log("swipe", swipe.direction);
     if (images.length > 1) {
       const dir = swipe.direction;
 
