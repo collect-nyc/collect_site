@@ -56,6 +56,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                       placeholder={"empty"}
                       blurDataURL={image.image.url}
                       layout={"responsive"}
+                      className={images.length > 1 ? styles.multi : null}
                     />
                   ) : null}
                 </li>

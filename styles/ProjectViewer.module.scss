@@ -66,13 +66,17 @@
 
       img {
         // outline: 2px solid red;
-        cursor: pointer;
+
         object-position: center center;
         object-fit: contain;
         max-height: 100%;
         max-width: 100%;
         position: relative;
         z-index: 1;
+
+        &.multi {
+          cursor: pointer;
+        }
       }
 
       video {
