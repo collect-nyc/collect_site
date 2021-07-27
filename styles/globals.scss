@@ -2,20 +2,12 @@
 @import "./colors";
 @import "./typography";
 
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 html,
 body {
   background-color: $alabaster;
   padding: 0;
   margin: 0;
   font-family: $untitled_sans, Arial, Helvetica, sans-serif;
-
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
