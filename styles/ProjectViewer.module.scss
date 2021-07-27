@@ -6,6 +6,28 @@
   height: 100%;
   width: 100%;
 
+  .prev_btn,
+  .next_btn {
+    background: transparent;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    z-index: 1;
+  }
+  .prev_btn {
+    left: 0;
+    cursor: w-resize;
+  }
+
+  .next_btn {
+    right: 0;
+    cursor: e-resize;
+  }
+
   .image_array {
     display: block;
     position: relative;
@@ -44,6 +66,7 @@
 
       img {
         // outline: 2px solid red;
+        cursor: pointer;
         object-position: center center;
         object-fit: contain;
         max-height: 100%;
@@ -55,28 +78,6 @@
       video {
         max-height: 100%;
         max-width: 100%;
-      }
-
-      .prev_btn,
-      .next_btn {
-        background: transparent;
-        cursor: pointer;
-        border: none;
-        padding: 0;
-        position: absolute;
-        top: 0;
-        height: 100%;
-        width: 50%;
-        z-index: 1;
-      }
-      .prev_btn {
-        left: 0;
-        cursor: w-resize;
-      }
-
-      .next_btn {
-        right: 0;
-        cursor: e-resize;
       }
     }
   }

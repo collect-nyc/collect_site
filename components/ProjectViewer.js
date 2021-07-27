@@ -26,6 +26,12 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
 
   return (
     <div className={styles.project_viewer}>
+      {images.length > 1 ? (
+        <React.Fragment>
+          <button onClick={() => prevItem()} className={styles.prev_btn} />
+          <button onClick={() => nextItem()} className={styles.next_btn} />
+        </React.Fragment>
+      ) : null}
       <Hammer onSwipe={(swipe) => HandleSwipe(swipe)} onTap={() => HandleTap()}>
         <ul className={styles.image_array}>
           {images[0].image || images[0].video
@@ -35,19 +41,6 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   index={key}
                   className={key === current ? styles.current : styles.hidden}
                 >
-                  {images.length > 1 ? (
-                    <React.Fragment>
-                      <button
-                        onClick={() => prevItem()}
-                        className={styles.prev_btn}
-                      />
-                      <button
-                        onClick={() => nextItem()}
-                        className={styles.next_btn}
-                      />
-                    </React.Fragment>
-                  ) : null}
-
                   {image.video.url ? (
                     <video loop autoPlay muted>
                       <source src={image.video.url} type="video/mp4" />
