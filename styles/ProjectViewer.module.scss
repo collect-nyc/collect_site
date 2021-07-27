@@ -35,53 +35,59 @@
     width: 100%;
     margin: 0;
     padding: 0;
+    z-index: 2;
 
     li {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      display: block;
       position: absolute;
       height: 100%;
-      padding: 60px #{$gutter_desktop * 2};
       width: 100%;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 50px $gutter_mobile;
-      }
 
       &.hidden {
         display: none;
       }
 
       &.current {
+        display: block;
+      }
+
+      .image_container {
         display: flex;
-      }
-
-      > div {
+        align-items: center;
+        justify-content: center;
         height: 100%;
+        padding: 60px #{$gutter_desktop * 2};
         position: relative;
-        z-index: 2;
         width: 100%;
-      }
+        z-index: 2;
 
-      img {
-        // outline: 2px solid red;
+        @media screen and (max-width: $mq-mobile-max) {
+          padding: 50px $gutter_mobile;
+        }
 
-        object-position: center center;
-        object-fit: contain;
-        max-height: 100%;
-        max-width: 100%;
-        position: relative;
-        z-index: 1;
+        > div {
+          position: unset !important;
+          height: 100%;
+        }
 
-        &.multi {
-          cursor: pointer;
+        img {
+          object-fit: contain;
+          width: 100% !important;
+          position: relative !important;
+          height: unset !important;
+          z-index: 2;
+
+          &.multi {
+            cursor: pointer;
+          }
         }
       }
 
       video {
         max-height: 100%;
         max-width: 100%;
+        position: relative;
+        z-index: 2;
       }
     }
   }

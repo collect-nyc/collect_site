@@ -26,13 +26,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
 
   return (
     <div className={styles.project_viewer}>
-      {images.length > 1 ? (
-        <React.Fragment>
-          <button onClick={() => prevItem()} className={styles.prev_btn} />
-          <button onClick={() => nextItem()} className={styles.next_btn} />
-        </React.Fragment>
-      ) : null}
-      <Hammer onSwipe={(swipe) => HandleSwipe(swipe)} onTap={() => HandleTap()}>
+      <Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
         <ul className={styles.image_array}>
           {images[0].image || images[0].video
             ? images.map((image, key) => (
@@ -41,24 +35,40 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   index={key}
                   className={key === current ? styles.current : styles.hidden}
                 >
-                  {image.video.url ? (
-                    <video loop autoPlay muted>
-                      <source src={image.video.url} type="video/mp4" />
-                      Your browser does not support the video tag.
-                    </video>
-                  ) : image.image.url ? (
-                    <Image
-                      priority
-                      src={image.image.url}
-                      alt={image.image.alt}
-                      height={image.image.dimensions.height}
-                      width={image.image.dimensions.width}
-                      placeholder={"empty"}
-                      blurDataURL={image.image.url}
-                      layout={"responsive"}
-                      className={images.length > 1 ? styles.multi : null}
-                    />
-                  ) : null}
+                  <div
+                    className={styles.image_container}
+                    onClick={images.length > 1 ? () => HandleTap() : null}
+                  >
+                    {images.length > 1 ? (
+                      <React.Fragment>
+                        <button
+                          onClick={() => prevItem()}
+                          className={styles.prev_btn}
+                        />
+                        <button
+                          onClick={() => nextItem()}
+                          className={styles.next_btn}
+                        />
+                      </React.Fragment>
+                    ) : null}
+                    {image.video.url ? (
+                      <video loop autoPlay muted>
+                        <source src={image.video.url} type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                    ) : image.image.url ? (
+                      <Image
+                        priority
+                        src={image.image.url}
+                        alt={image.image.alt}
+                        // height={image.image.dimensions.height}
+                        // width={image.image.dimensions.width}
+                        blurDataURL={image.image.url}
+                        layout={"fill"}
+                        className={images.length > 1 ? styles.multi : null}
+                      />
+                    ) : null}
+                  </div>
                 </li>
               ))
             : null}
