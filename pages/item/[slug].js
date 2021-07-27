@@ -2,10 +2,11 @@ import React, { useEffect, useRef, useState } from "react";
 import Head from "next/head";
 import SharedHead from "../../components/SharedHead";
 import Link from "next/link";
+
 import { useRouter } from "next/router";
 import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
-import { RichText } from "prismic-reactjs";
+// import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import Prismic from "prismic-javascript";
 import { Client } from "../../lib/prismic-config";
@@ -13,19 +14,6 @@ import { SITE_NAME } from "../../lib/constants";
 import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-  // const archiveQuery = `{
-  //   archive_item {
-  //     title
-  //     description
-  //     creation_date
-  //     password_protected
-  //     images {
-  //       image
-  //       video
-  //     }
-  //   }
-  // }`;
-
   const document = await Client().getByUID("archive_item", params.slug);
 
   const page = "project";
@@ -72,8 +60,6 @@ const ArchiveItem = ({ document }) => {
     } else {
       setCurrent(current + 1);
     }
-
-    console.log("CURRENT", current);
   };
 
   const prevItem = () => {
@@ -85,8 +71,6 @@ const ArchiveItem = ({ document }) => {
     } else {
       setCurrent(current - 1);
     }
-
-    console.log("CURRENT", current);
   };
 
   const Exit = () => {

@@ -2694,6 +2694,11 @@ graceful-fs@^4.1.2:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.6.tgz#ff040b2b0853b23c3d31027523706f1885d76bee"
   integrity sha512-nTnJ528pbqxYanhpDYsi4Rd8MAeaBA67+RZ10CM1m3bTAVFEDcd5AuA4a6W5YkGZ1iNXHzZz8T6TBKLeBuNriQ==
 
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
+  integrity sha1-BO93hiz/K7edMPdpIJWTAiK/YPE=
+
 has-bigints@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/has-bigints/-/has-bigints-1.0.1.tgz#64fe6acb020673e3b78db035a5af69aa9d07b113"
@@ -3944,6 +3949,13 @@ react-dom@17.0.2:
     loose-envify "^1.1.0"
     object-assign "^4.1.1"
     scheduler "^0.20.2"
+
+react-hammerjs@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/react-hammerjs/-/react-hammerjs-1.0.1.tgz#bc1ed9e9ef7da057163fb169ce12917b6d6ca7d8"
+  integrity sha1-vB7Z6e99oFcWP7FpzhKRe21sp9g=
+  dependencies:
+    hammerjs "^2.0.8"
 
 react-is@17.0.2:
   version "17.0.2"
