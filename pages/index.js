@@ -42,12 +42,13 @@ const Home = ({ archives, document, taggers }) => {
   // console.log("TAGS", taggers);
   const page_content = document.data;
   const tags = taggers;
+  const default_list = _.shuffle(archives.results);
 
   // State
   const [gridView, setGridView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(archives.results);
+  const [archiveList, setArchiveList] = useState(default_list);
   const [filterOpen, setFilterOpen] = useState(false);
   const [currentTag, setCurrentTag] = useState("All Work");
 
@@ -65,7 +66,9 @@ const Home = ({ archives, document, taggers }) => {
       .then(function (response) {
         // console.log("NEW LIST", response.data);
 
-        setArchiveList(response.data.results);
+        const shuffled_tag_results = _.shuffle(response.data.results);
+
+        setArchiveList(shuffled_tag_results);
       })
       .catch(function (error) {
         console.log(error);
@@ -74,7 +77,7 @@ const Home = ({ archives, document, taggers }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
-    setArchiveList(archives.results);
+    setArchiveList(default_list);
     setFilterOpen(false);
   };
 
@@ -164,7 +167,7 @@ const Home = ({ archives, document, taggers }) => {
 
   // List View JSX
   const ListView = () => {
-    console.log("LIST", archiveList);
+    // console.log("LIST", archiveList);
     return (
       <section className={styles.all_archives}>
         <ul>
@@ -241,7 +244,7 @@ const Home = ({ archives, document, taggers }) => {
 
   // Grid View JSX
   const GridView = () => {
-    console.log("GRID", archiveList);
+    // console.log("GRID", archiveList);
 
     const breakpointColumnsObj = {
       default: 3,
