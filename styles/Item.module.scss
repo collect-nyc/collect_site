@@ -38,6 +38,7 @@
     z-index: 2;
 
     @media screen and (max-width: $mq-mobile-max) {
+      justify-content: space-between;
       padding: {
         top: 20px;
         bottom: 18px;
@@ -49,19 +50,21 @@
     .close_col,
     .multi_col {
       width: $gutter_desktop;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
     }
 
     .multi_col {
       @extend .courier_label;
       text-align: right;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        text-align: right;
+        width: 60px;
+      }
     }
 
     .close_col {
-      .close_btn {
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
       }
     }
 
@@ -86,6 +89,10 @@
     .date {
       @extend .courier_label;
       margin-left: auto;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
   }
 }

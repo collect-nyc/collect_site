@@ -57,6 +57,7 @@ $courier: "Courier Prime";
 .heading_h6 {
   font-family: $futura;
   font-size: 48px;
+  text-rendering: optimizeLegibility;
 }
 
 .heading_h1 {
@@ -81,6 +82,7 @@ $courier: "Courier Prime";
 .body_text {
   font-size: 16px;
   font-weight: normal;
+  text-rendering: optimizeLegibility;
 
   @media screen and (max-width: $mq-mobile-max) {
     font-size: 15px;

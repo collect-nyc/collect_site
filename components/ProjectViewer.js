@@ -20,9 +20,13 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
     }
   };
 
+  const HandleTap = () => {
+    nextItem();
+  };
+
   return (
     <div className={styles.project_viewer}>
-      <Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
+      <Hammer onSwipe={(swipe) => HandleSwipe(swipe)} onTap={() => HandleTap()}>
         <ul className={styles.image_array}>
           {images[0].image || images[0].video
             ? images.map((image, key) => (
