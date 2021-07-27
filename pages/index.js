@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -42,17 +42,26 @@ const Home = ({ archives, document, taggers }) => {
   // console.log("TAGS", taggers);
   const page_content = document.data;
   const tags = taggers;
-  const default_list = _.shuffle(archives.results);
+  const loaded_archives = [...archives.results];
 
   // State
   const [gridView, setGridView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(default_list);
+  const [archiveList, setArchiveList] = useState(null);
   const [filterOpen, setFilterOpen] = useState(false);
   const [currentTag, setCurrentTag] = useState("All Work");
 
-  console.log("DATA", page_content, "ARCHIVES", archives);
+  const ShuffeList = (list) => {
+    const default_list = _.shuffle(loaded_archives);
+    setArchiveList(default_list);
+  };
+
+  useEffect(() => {
+    ShuffeList();
+  }, []);
+
+  console.log("DATA", page_content, "ARCHIVES", archiveList);
 
   // Pull archive items by tag
   const GetByTag = (name) => {
@@ -77,6 +86,7 @@ const Home = ({ archives, document, taggers }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
+    const default_list = _.shuffle(loaded_archives);
     setArchiveList(default_list);
     setFilterOpen(false);
   };
@@ -171,7 +181,7 @@ const Home = ({ archives, document, taggers }) => {
     return (
       <section className={styles.all_archives}>
         <ul>
-          {archiveList.length > 0 ? (
+          {archiveList && archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <li key={key}>
                 {archive.data.coming_soon ? (
