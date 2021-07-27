@@ -56,7 +56,7 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                       alt={image.image.alt}
                       height={image.image.dimensions.height}
                       width={image.image.dimensions.width}
-                      placeholder={"blur"}
+                      placeholder={"empty"}
                       blurDataURL={image.image.url}
                       layout={"responsive"}
                     />

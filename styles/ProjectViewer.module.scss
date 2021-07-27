@@ -23,6 +23,10 @@
       padding: 60px #{$gutter_desktop * 2};
       width: 100%;
 
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 50px $gutter_mobile;
+      }
+
       &.hidden {
         display: none;
       }

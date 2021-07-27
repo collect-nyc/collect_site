@@ -3,6 +3,17 @@
 @import "./helpers";
 
 .container {
+  .mobile_close {
+    display: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: block;
+      position: fixed;
+      right: $navGutter_mobile;
+      top: 20px;
+      z-index: 5;
+    }
+  }
   .main {
     height: calc(100vh - 67px);
     position: relative;

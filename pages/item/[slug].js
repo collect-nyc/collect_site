@@ -125,6 +125,12 @@ const ArchiveItem = ({ document }) => {
         <SharedHead />
       </Head>
 
+      <div className={styles.mobile_close}>
+        <Link href="/">
+          <a className={styles.close_btn}>Close</a>
+        </Link>
+      </div>
+
       <main className={styles.main}>
         <ProjectViewer
           images={images}
