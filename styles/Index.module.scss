@@ -70,7 +70,7 @@
         .coming_soon {
           display: flex;
           justify-content: flex-start;
-          align-items: center;
+          align-items: flex-end;
           padding: 19px 20px 17px;
 
           @media screen and (max-width: $mq-mobile-max) {
