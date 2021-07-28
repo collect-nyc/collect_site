@@ -7,6 +7,22 @@ import styles from "../styles/ProjectViewer.module.scss";
 const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   // console.log("IMAGES", images);
 
+  const [appHeight, setAppHeight] = useState(null);
+
+  useEffect(() => {
+    const doc = window.document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+    setAppHeight(`${window.innerHeight}px`);
+
+    const appHeight = () => {
+      const doc = window.document.documentElement;
+      doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+      setAppHeight(`${window.innerHeight}px`);
+    };
+
+    window.addEventListener("resize", appHeight);
+  }, []);
+
   const HandleSwipe = (swipe) => {
     // console.log("swipe", swipe.direction);
     if (images.length > 1) {
@@ -25,7 +41,16 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   };
 
   return (
-    <div className={styles.project_viewer}>
+    <div
+      className={styles.project_viewer}
+      style={
+        appHeight
+          ? {
+              "--app-height": appHeight,
+            }
+          : null
+      }
+    >
       <Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
         <ul className={styles.image_array}>
           {images[0].image || images[0].video

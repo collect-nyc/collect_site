@@ -3,8 +3,13 @@
 @import "./typography";
 
 .project_viewer {
+  // background-color: lightblue;
   height: 100%;
   width: 100%;
+
+  @media (hover: none) {
+    height: calc(var(--app-height) - 61px);
+  }
 
   .prev_btn,
   .next_btn {

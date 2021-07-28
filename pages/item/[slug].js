@@ -51,6 +51,10 @@ const ArchiveItem = ({ document }) => {
 
   const total = images.length;
 
+  useEffect(() => {
+    window.document.querySelector("body").classList.add("item_page");
+  }, []);
+
   const nextItem = () => {
     // something
     console.log("NEXT ITEM");
@@ -140,7 +144,13 @@ const ArchiveItem = ({ document }) => {
         />
       </main>
 
-      <footer className={styles.project_footer}>
+      <footer
+        className={
+          images.length > 1
+            ? `${styles.project_footer} ${styles.multi_item}`
+            : `${styles.project_footer} ${styles.single_item}`
+        }
+      >
         <div className={styles.close_col}>
           <Link href="/">
             <a className={styles.close_btn}>Close</a>

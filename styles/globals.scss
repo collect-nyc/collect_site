@@ -50,3 +50,10 @@ a {
     padding-left: 20px; /* gutter size */
   }
 }
+
+.item_page {
+  overflow: hidden;
+  height: 100vh;
+  max-height: 100vh;
+  height: -webkit-fill-available;
+}

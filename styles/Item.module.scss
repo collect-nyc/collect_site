@@ -17,17 +17,24 @@
       z-index: 5;
     }
   }
+
   .main {
+    // background-color: red;
     height: calc(100vh - 67px);
     position: relative;
     z-index: 1;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      height: calc(100vh - 61px);
+    }
   }
 
   .project_footer {
     background-color: $alabaster;
     border-top: 1px solid $black;
     display: flex;
-    align-items: center;
+    // display: none;
+    align-items: flex-end;
     padding: {
       top: 22px;
       bottom: 20px;
@@ -45,8 +52,8 @@
       padding: {
         top: 20px;
         bottom: 18px;
-        left: $navGutter_mobile;
-        right: $navGutter_mobile;
+        left: $gutter_mobile;
+        right: $gutter_mobile;
       }
     }
 
@@ -92,9 +99,18 @@
     .date {
       @extend .courier_label;
       margin-left: auto;
+    }
+    @media screen and (max-width: $mq-mobile-max) {
+      &.multi_item {
+        .date {
+          display: none;
+        }
+      }
 
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
+      &.single_item {
+        .multi_col {
+          display: none;
+        }
       }
     }
   }
