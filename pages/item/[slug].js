@@ -42,13 +42,11 @@ export async function getStaticPaths() {
 
 const ArchiveItem = ({ document }) => {
   const router = useRouter();
-  console.log("DOCUMENT", document);
   const [current, setCurrent] = useState(0);
 
   const page_data = document.data;
-  console.log("Project Data", page_data);
+  // console.log("Project Data", page_data);
   const images = page_data.images;
-
   const total = images.length;
 
   useEffect(() => {

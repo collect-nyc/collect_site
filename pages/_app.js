@@ -8,6 +8,7 @@ function MyApp({ Component, pageProps }) {
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState(null);
   const [currentTag, setCurrentTag] = useState("All Work");
+  const [scrollPos, setScrollPos] = useState(null);
 
   // If component is passed
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -25,6 +26,8 @@ function MyApp({ Component, pageProps }) {
         setCurrentTag: setCurrentTag,
         archiveList: archiveList,
         setArchiveList: setArchiveList,
+        scrollPos: scrollPos,
+        setScrollPos: setScrollPos,
       }}
     >
       <Layout page={pageProps.page}>

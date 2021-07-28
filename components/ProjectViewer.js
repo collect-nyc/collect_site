@@ -10,21 +10,19 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
   const [appHeight, setAppHeight] = useState(null);
 
   useEffect(() => {
-    const doc = window.document.documentElement;
-    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+    // const doc = window.document.documentElement;
+    // doc.style.setProperty("--app-height", `${window.innerHeight}px`);
     setAppHeight(`${window.innerHeight}px`);
 
     const appHeight = () => {
-      const doc = window.document.documentElement;
+      // const doc = window.document.documentElement;
       setAppHeight(`${window.innerHeight}px`);
     };
 
     window.addEventListener("resize", appHeight);
-    // window.addEventListener("scroll", appHeight);
 
     return () => {
       window.removeEventListener("resize", appHeight);
-      // window.removeEventListener("scroll", appHeight);
     };
   }, []);
 

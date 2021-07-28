@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -51,7 +51,11 @@ const Home = ({ archives, document, everything }) => {
     setCurrentTag,
     archiveList,
     setArchiveList,
+    scrollPos,
+    setScrollPos,
   } = useContext(MemoryContext);
+
+  const mainRef = useRef(null);
 
   // data
   const page_content = document.data;
@@ -59,11 +63,11 @@ const Home = ({ archives, document, everything }) => {
   const loaded_archives = [...archives.results];
 
   // State
+  const [filterOpen, setFilterOpen] = useState(false);
   // const [gridView, setGridView] = useState(false);
   // const [azSort, setAzSort] = useState(null);
   // const [timeSort, setTimeSort] = useState(null);
   // const [archiveList, setArchiveList] = useState(null);
-  const [filterOpen, setFilterOpen] = useState(false);
   // const [currentTag, setCurrentTag] = useState("All Work");
 
   const ShuffeList = (list) => {
@@ -75,7 +79,18 @@ const Home = ({ archives, document, everything }) => {
 
   useEffect(() => {
     ShuffeList();
+
+    // console.log("SCROLL POS", scrollPos);
+
+    if (scrollPos) {
+      mainRef.current.scrollTop = parseInt(scrollPos, 10);
+    }
   }, []);
+
+  const ScrollTracker = () => {
+    // console.log(mainRef.current.scrollTop);
+    setScrollPos(mainRef.current.scrollTop);
+  };
 
   // console.log("DATA", page_content, "ARCHIVES", archiveList);
 
@@ -232,7 +247,7 @@ const Home = ({ archives, document, everything }) => {
                   </div>
                 ) : (
                   <Link href={"/item/" + archive.uid}>
-                    <a>
+                    <a onClick={() => ScrollTracker()}>
                       <span className={styles.name}>
                         {archive.data.title[0].text}
                       </span>
@@ -312,7 +327,10 @@ const Home = ({ archives, document, everything }) => {
                   </a>
                 ) : (
                   <Link href={"/item/" + archive.uid}>
-                    <a className={styles.thumbnail}>
+                    <a
+                      className={styles.thumbnail}
+                      onClick={() => ScrollTracker()}
+                    >
                       {archive.data.index_thumbnail?.url ? (
                         <Image
                           className={styles.lazyloaded}
@@ -350,7 +368,7 @@ const Home = ({ archives, document, everything }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={mainRef}>
       <Head>
         <title>COLLECT NYC</title>
         <meta
