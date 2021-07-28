@@ -248,12 +248,13 @@
   .tag_list {
     display: none;
     column-count: 3;
-    column-gap: 50px;
+    column-gap: 0;
     column-width: 33.3333333333%;
     margin: 0 0 0 45px;
     padding: 0;
     list-style: none;
-    width: 28%;
+    width: 33%;
+    max-width: 350px;
 
     @media screen and (max-width: $mq-mobile-max) {
       column-count: 2;
