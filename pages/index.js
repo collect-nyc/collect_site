@@ -40,24 +40,37 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ archives, document, everything }) => {
-  const { layoutView, setLayoutView } = useContext(MemoryContext);
-  console.log("First View", layoutView);
+  const {
+    layoutView,
+    setLayoutView,
+    azSort,
+    setAzSort,
+    timeSort,
+    setTimeSort,
+    currentTag,
+    setCurrentTag,
+    archiveList,
+    setArchiveList,
+  } = useContext(MemoryContext);
+
+  // data
   const page_content = document.data;
   const tags = everything.tags;
   const loaded_archives = [...archives.results];
 
   // State
   // const [gridView, setGridView] = useState(false);
-  const [azSort, setAzSort] = useState(null);
-  const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(null);
+  // const [azSort, setAzSort] = useState(null);
+  // const [timeSort, setTimeSort] = useState(null);
+  // const [archiveList, setArchiveList] = useState(null);
   const [filterOpen, setFilterOpen] = useState(false);
-  const [currentTag, setCurrentTag] = useState("All Work");
+  // const [currentTag, setCurrentTag] = useState("All Work");
 
   const ShuffeList = (list) => {
-    // const default_list = _.shuffle(loaded_archives);
-    const default_list = loaded_archives;
-    setArchiveList(default_list);
+    if (!archiveList) {
+      const default_list = _.shuffle(loaded_archives);
+      setArchiveList(default_list);
+    }
   };
 
   useEffect(() => {
@@ -104,8 +117,6 @@ const Home = ({ archives, document, everything }) => {
   const SwapView = () => {
     setLayoutView(!layoutView);
     // setGridView(!gridView);
-
-    console.log("LAYOUT", gridView, layoutView);
   };
 
   // Sort by title alphabetically
