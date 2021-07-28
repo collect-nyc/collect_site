@@ -145,7 +145,7 @@
 }
 
 .main.grid {
-  padding: 450px 60px 20px;
+  padding: 450px $navGutter_desktop 20px;
 
   @media screen and (max-width: $mq-mobile-min) {
     padding: 340px $gutter_mobile 20px;
@@ -159,7 +159,7 @@
     .grid_item {
       margin: 0;
       padding: {
-        bottom: 55px;
+        bottom: 25px;
       }
 
       @media screen and (max-width: $mq-mobile-max) {
