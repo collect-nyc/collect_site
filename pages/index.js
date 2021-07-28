@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -11,6 +11,7 @@ import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
 import Carot from "../svg/carot.svg";
+import MemoryContext from "../components/MemoryContext";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps() {
@@ -39,13 +40,14 @@ export async function getServerSideProps() {
 }
 
 const Home = ({ archives, document, everything }) => {
-  // console.log("TAGS", taggers);
+  const { layoutView, setLayoutView } = useContext(MemoryContext);
+  console.log("First View", layoutView);
   const page_content = document.data;
   const tags = everything.tags;
   const loaded_archives = [...archives.results];
 
   // State
-  const [gridView, setGridView] = useState(false);
+  // const [gridView, setGridView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState(null);
@@ -100,7 +102,10 @@ const Home = ({ archives, document, everything }) => {
 
   // Switch from List to Grid view
   const SwapView = () => {
-    setGridView(!gridView);
+    setLayoutView(!layoutView);
+    // setGridView(!gridView);
+
+    console.log("LAYOUT", gridView, layoutView);
   };
 
   // Sort by title alphabetically
@@ -271,7 +276,7 @@ const Home = ({ archives, document, everything }) => {
           className="my-masonry-grid"
           columnClassName="my-masonry-grid_column"
         >
-          {archiveList.length > 0 ? (
+          {archiveList && archiveList.length > 0 ? (
             archiveList.map((archive, key) => (
               <article key={key} className={styles.grid_item}>
                 {archive.data.coming_soon ? (
@@ -388,7 +393,7 @@ const Home = ({ archives, document, everything }) => {
           }
         >
           <button onClick={() => SwapView()}>
-            {gridView ? "Grid" : "List"}
+            {layoutView ? "Grid" : "List"}
           </button>
           <button onClick={() => AlphabetSort()}>
             {!azSort || azSort === "az" ? "A-Z" : "Z-A"}
@@ -420,10 +425,10 @@ const Home = ({ archives, document, everything }) => {
       </div>
 
       <main
-        className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
+        className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
       >
         <div className={styles.interior}>
-          {gridView ? <GridView /> : <ListView />}
+          {layoutView ? <GridView /> : <ListView />}
         </div>
       </main>
 
