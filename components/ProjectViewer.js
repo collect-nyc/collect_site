@@ -16,14 +16,15 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
 
     const appHeight = () => {
       const doc = window.document.documentElement;
-      doc.style.setProperty("--app-height", `${window.innerHeight}px`);
       setAppHeight(`${window.innerHeight}px`);
     };
 
     window.addEventListener("resize", appHeight);
+    // window.addEventListener("scroll", appHeight);
 
     return () => {
       window.removeEventListener("resize", appHeight);
+      // window.removeEventListener("scroll", appHeight);
     };
   }, []);
 

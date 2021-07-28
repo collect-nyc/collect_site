@@ -3,7 +3,13 @@
 @import "./typography";
 
 .container {
-  padding-top: 55px;
+  padding: 55px 0 0;
+  overflow-y: scroll;
+  height: 100vh;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding-bottom: 55px;
+  }
 }
 
 .mobile_profile_nav {

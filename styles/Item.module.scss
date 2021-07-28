@@ -3,8 +3,9 @@
 @import "./helpers";
 
 .container {
-  height: 100vh;
-  height: -webkit-fill-available;
+  height: 100%;
+  overflow: hidden;
+  // height: -webkit-fill-available;
 
   .mobile_close {
     display: none;

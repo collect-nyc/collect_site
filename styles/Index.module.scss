@@ -3,7 +3,9 @@
 @import "./typography";
 
 .container {
-  padding-top: 55px;
+  padding: 55px 0 0;
+  overflow-y: scroll;
+  height: 100vh;
 }
 
 .title_holder {
@@ -36,8 +38,9 @@
 
 .main {
   background-color: $alabaster;
-  padding: 0 $gutter_desktop 20px;
+  padding: 0 $gutter_desktop 40px;
   margin-top: 450px;
+
   position: relative;
   z-index: 2;
 
