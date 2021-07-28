@@ -41,20 +41,29 @@
 }
 
 .main {
-  padding: 450px $gutter_desktop 40px;
+  padding: 450px $gutter_desktop 0;
   position: relative;
   z-index: 2;
 
   @media screen and (max-width: $mq-mobile-min) {
-    padding: 340px $gutter_mobile 20px;
+    padding: 340px $gutter_mobile 0;
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    padding: 370px $gutter_mobile 20px;
+    padding: 370px $gutter_mobile 0;
   }
 
   .interior {
     background-color: $alabaster;
+    padding-bottom: 40px;
+
+    @media screen and (max-width: $mq-mobile-min) {
+      padding-bottom: 20px;
+    }
+
+    @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
+      padding-bottom: 20px;
+    }
   }
 
   .all_archives {
