@@ -14,13 +14,13 @@ import Carot from "../svg/carot.svg";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps() {
-  // const everything = await fetch(
-  //   "https://collectnyc.cdn.prismic.io/api/v2"
-  // ).then((res) => res.json());
-
-  const taggers = await fetch(
-    "https://collectnyc.cdn.prismic.io/api/tags"
+  const everything = await fetch(
+    "https://collectnyc.cdn.prismic.io/api/v2"
   ).then((res) => res.json());
+
+  // const taggers = await fetch(
+  //   "https://collectnyc.cdn.prismic.io/api/tags"
+  // ).then((res) => res.json());
 
   //Page Data
   const document = await Client().getSingle("index_page");
@@ -34,14 +34,14 @@ export async function getServerSideProps() {
   const page = "index";
 
   return {
-    props: { document, archives, page, taggers },
+    props: { document, archives, page, everything },
   };
 }
 
-const Home = ({ archives, document, taggers }) => {
+const Home = ({ archives, document, everything }) => {
   // console.log("TAGS", taggers);
   const page_content = document.data;
-  const tags = taggers;
+  const tags = everything.tags;
   const loaded_archives = [...archives.results];
 
   // State
