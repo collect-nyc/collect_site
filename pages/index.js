@@ -103,8 +103,8 @@ const Home = ({ archives, document, everything }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
-    // const default_list = _.shuffle(loaded_archives);
-    const default_list = loaded_archives;
+    const default_list = _.shuffle(loaded_archives);
+    // const default_list = loaded_archives;
     setArchiveList(default_list);
     setFilterOpen(false);
   };
