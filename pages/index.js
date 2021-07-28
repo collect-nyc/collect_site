@@ -422,7 +422,9 @@ const Home = ({ archives, document, everything }) => {
       <main
         className={gridView ? `${styles.main} ${styles.grid}` : styles.main}
       >
-        {gridView ? <GridView /> : <ListView />}
+        <div className={styles.interior}>
+          {gridView ? <GridView /> : <ListView />}
+        </div>
       </main>
 
       <footer className={styles.footer}>

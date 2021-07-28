@@ -41,21 +41,20 @@
 }
 
 .main {
-  background-color: $alabaster;
-  padding: 0 $gutter_desktop 40px;
-  margin-top: 450px;
-
+  padding: 450px $gutter_desktop 40px;
   position: relative;
   z-index: 2;
 
   @media screen and (max-width: $mq-mobile-min) {
-    margin-top: 340px;
-    padding: 0 $gutter_mobile 20px;
+    padding: 340px $gutter_mobile 20px;
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    margin-top: 370px;
-    padding: 0 $gutter_mobile 20px;
+    padding: 370px $gutter_mobile 20px;
+  }
+
+  .interior {
+    background-color: $alabaster;
   }
 
   .all_archives {
@@ -146,10 +145,14 @@
 }
 
 .main.grid {
-  padding: 0 $navGutter_desktop 20px;
+  padding: 450px $navGutter_desktop 20px;
 
-  @media screen and (max-width: $mq-mobile-max) {
-    padding: 0 $gutter_mobile 20px;
+  @media screen and (max-width: $mq-mobile-min) {
+    padding: 340px $gutter_mobile 20px;
+  }
+
+  @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
+    padding: 370px $gutter_mobile 20px;
   }
 
   .all_archives_grid {
