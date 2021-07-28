@@ -21,6 +21,10 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
     };
 
     window.addEventListener("resize", appHeight);
+
+    return () => {
+      window.removeEventListener("resize", appHeight);
+    };
   }, []);
 
   const HandleSwipe = (swipe) => {

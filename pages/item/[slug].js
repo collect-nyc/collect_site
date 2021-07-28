@@ -53,6 +53,10 @@ const ArchiveItem = ({ document }) => {
 
   useEffect(() => {
     window.document.querySelector("body").classList.add("item_page");
+
+    return () => {
+      window.document.querySelector("body").classList.remove("item_page");
+    };
   }, []);
 
   const nextItem = () => {
