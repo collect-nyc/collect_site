@@ -12,7 +12,7 @@ export default function MyLayout({ page, children }) {
   return (
     <React.Fragment>
       {page !== "project" ? (
-        <SiteNav page={page} count={data ? data.results_size : null} />
+        <SiteNav page={page} count={data ? data.results_size * 4 : null} />
       ) : null}
 
       {children}
