@@ -186,9 +186,9 @@ const Home = ({ archives, document, everything }) => {
               <li key={key}>
                 {archive.data.coming_soon ? (
                   <div className={styles.coming_soon}>
+                    <span className={styles.coming_text}>Coming Soon</span>
                     <span className={styles.name}>
                       <span>{archive.data.title[0].text}</span>
-                      <span>Coming Soon</span>
                     </span>
 
                     <span className={styles.tags}>

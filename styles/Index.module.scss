@@ -79,9 +79,29 @@
           justify-content: flex-start;
           align-items: flex-end;
           padding: 19px 20px 17px;
+          position: relative;
 
           @media screen and (max-width: $mq-mobile-max) {
             padding: 20px 0;
+          }
+
+          .coming_text {
+            background-color: $alabaster;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            padding-top: 6px;
+            font-family: $futura;
+            font-size: 24px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1;
+            width: 100%;
+            z-index: 2;
           }
 
           .name {
@@ -103,21 +123,15 @@
         .coming_soon {
           cursor: not-allowed;
 
-          .name {
-            span:last-of-type {
-              display: none;
-            }
-          }
-
           &:hover {
-            .name {
-              span:first-of-type {
-                display: none;
-              }
-              span:last-of-type {
-                display: inline;
-              }
+            .coming_text {
+              display: flex;
             }
+            // .name,
+            // .tags,
+            // .date {
+            //   display: none;
+            // }
           }
         }
 
