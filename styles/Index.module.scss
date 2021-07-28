@@ -6,6 +6,10 @@
   padding: 55px 0 0;
   overflow-y: scroll;
   height: 100vh;
+
+  @media (hover: none) {
+    padding-bottom: 130px;
+  }
 }
 
 .title_holder {
