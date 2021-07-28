@@ -145,7 +145,7 @@
 }
 
 .main.grid {
-  padding: 450px $navGutter_desktop 20px;
+  padding: 450px 60px 20px;
 
   @media screen and (max-width: $mq-mobile-min) {
     padding: 340px $gutter_mobile 20px;
