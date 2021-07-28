@@ -10,7 +10,7 @@ function MyApp({ Component, pageProps }) {
   const [currentTag, setCurrentTag] = useState("All Work");
   const [scrollPos, setScrollPos] = useState(null);
 
-  // If component is passed
+  // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
 
   return (
