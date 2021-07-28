@@ -29,6 +29,7 @@
   }
 
   .image_array {
+    // background-color: lightpink;
     display: block;
     position: relative;
     height: 100%;
@@ -52,22 +53,29 @@
       }
 
       .image_container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        // background-color: lightyellow;
         height: 100%;
         padding: 60px #{$gutter_desktop * 2};
         position: relative;
+        text-align: center;
         width: 100%;
         z-index: 2;
+
+        &.image_container_video {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
 
         @media screen and (max-width: $mq-mobile-max) {
           padding: 50px $gutter_mobile;
         }
 
         > div {
+          // background-color: lightcoral;
           position: unset !important;
           height: 100%;
+          width: auto;
         }
 
         img {

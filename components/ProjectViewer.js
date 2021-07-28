@@ -36,7 +36,11 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                   className={key === current ? styles.current : styles.hidden}
                 >
                   <div
-                    className={styles.image_container}
+                    className={
+                      image.video.url
+                        ? `${styles.image_container} ${styles.image_container_video}`
+                        : styles.image_container
+                    }
                     onClick={images.length > 1 ? () => HandleTap() : null}
                   >
                     {images.length > 1 ? (

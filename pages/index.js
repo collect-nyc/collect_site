@@ -61,7 +61,7 @@ const Home = ({ archives, document, taggers }) => {
     ShuffeList();
   }, []);
 
-  console.log("DATA", page_content, "ARCHIVES", archiveList);
+  // console.log("DATA", page_content, "ARCHIVES", archiveList);
 
   // Pull archive items by tag
   const GetByTag = (name) => {
