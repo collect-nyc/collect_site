@@ -53,7 +53,8 @@ const Home = ({ archives, document, everything }) => {
   const [currentTag, setCurrentTag] = useState("All Work");
 
   const ShuffeList = (list) => {
-    const default_list = _.shuffle(loaded_archives);
+    // const default_list = _.shuffle(loaded_archives);
+    const default_list = loaded_archives;
     setArchiveList(default_list);
   };
 
@@ -75,7 +76,8 @@ const Home = ({ archives, document, everything }) => {
       .then(function (response) {
         // console.log("NEW LIST", response.data);
 
-        const shuffled_tag_results = _.shuffle(response.data.results);
+        // const shuffled_tag_results = _.shuffle(response.data.results);
+        const shuffled_tag_results = response.data.results;
 
         setArchiveList(shuffled_tag_results);
       })
@@ -86,7 +88,8 @@ const Home = ({ archives, document, everything }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
-    const default_list = _.shuffle(loaded_archives);
+    // const default_list = _.shuffle(loaded_archives);
+    const default_list = loaded_archives;
     setArchiveList(default_list);
     setFilterOpen(false);
   };
