@@ -3,116 +3,152 @@
 @import "./helpers";
 
 .container {
-  height: 100%;
-  overflow: hidden;
-  // height: -webkit-fill-available;
+    height: 100%;
+    overflow: hidden;
+    // height: -webkit-fill-available;
 
-  .mobile_close {
-    display: none;
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: block;
-      position: fixed;
-      right: $navGutter_mobile;
-      top: 20px;
-      z-index: 5;
-    }
-  }
-
-  .main {
-    // background-color: red;
-    height: calc(100vh - 67px);
-    position: relative;
-    z-index: 1;
-
-    @media screen and (max-width: $mq-mobile-max) {
-      height: calc(100vh - 61px);
-    }
-  }
-
-  .project_footer {
-    background-color: $alabaster;
-    border-top: 1px solid $black;
-    display: flex;
-    // display: none;
-    align-items: flex-end;
-    padding: {
-      top: 22px;
-      bottom: 20px;
-      left: $navGutter_desktop;
-      right: $navGutter_desktop;
-    }
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    z-index: 2;
-
-    @media screen and (max-width: $mq-mobile-max) {
-      justify-content: space-between;
-      padding: {
-        top: 20px;
-        bottom: 18px;
-        left: $gutter_mobile;
-        right: $gutter_mobile;
-      }
-    }
-
-    .close_col,
-    .multi_col {
-      width: $gutter_desktop;
-    }
-
-    .multi_col {
-      @extend .courier_label;
-      text-align: right;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        text-align: right;
-        width: 60px;
-      }
-    }
-
-    .close_col {
-      @media screen and (max-width: $mq-mobile-max) {
+    .mobile_close {
         display: none;
-      }
-    }
 
-    .title {
-      @extend .body_text;
-      padding-left: 25px;
-      text-transform: uppercase;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding-left: 0;
-      }
-    }
-
-    .tags {
-      padding-left: 25px;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
-    }
-
-    .date {
-      @extend .courier_label;
-      margin-left: auto;
-    }
-    @media screen and (max-width: $mq-mobile-max) {
-      &.multi_item {
-        .date {
-          display: none;
+        @media screen and (max-width: $mq-mobile-max) {
+            display: block;
+            position: fixed;
+            right: $navGutter_mobile;
+            top: 20px;
+            z-index: 5;
         }
-      }
+    }
 
-      &.single_item {
+    .main {
+        // background-color: red;
+        height: calc(100vh - 67px);
+        position: relative;
+        z-index: 1;
+
+        @media screen and (max-width: $mq-mobile-max) {
+            height: calc(100vh - 61px);
+        }
+    }
+
+    .project_footer {
+        background-color: $alabaster;
+        border-top: 1px solid $black;
+        display: flex;
+        // display: none;
+        align-items: flex-end;
+        padding: {
+            top: 22px;
+            bottom: 20px;
+            left: $navGutter_desktop;
+            right: $navGutter_desktop;
+        }
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+
+        @media screen and (max-width: $mq-mobile-max) {
+            justify-content: space-between;
+            padding: {
+                top: 20px;
+                bottom: 18px;
+                left: $gutter_mobile;
+                right: $gutter_mobile;
+            }
+        }
+
+        .close_col,
         .multi_col {
-          display: none;
+            width: $gutter_desktop;
         }
-      }
+
+        .multi_col {
+            @extend .courier_label;
+            text-align: right;
+
+            @media screen and (max-width: $mq-mobile-max) {
+                text-align: right;
+                width: 60px;
+            }
+        }
+
+        .close_col {
+            @media screen and (max-width: $mq-mobile-max) {
+                display: none;
+            }
+        }
+
+        .title {
+            @extend .body_text;
+            padding-left: 25px;
+            text-transform: uppercase;
+
+            @media screen and (max-width: $mq-mobile-max) {
+                padding-left: 0;
+            }
+        }
+
+        .tags {
+            padding-left: 25px;
+
+            @media screen and (max-width: $mq-mobile-max) {
+                display: none;
+            }
+        }
+
+        .date {
+            @extend .courier_label;
+            margin-left: auto;
+        }
+        @media screen and (max-width: $mq-mobile-max) {
+            &.multi_item {
+                .date {
+                    display: none;
+                }
+            }
+
+            &.single_item {
+                .multi_col {
+                    display: none;
+                }
+            }
+        }
     }
-  }
+    .password_wrapper {
+        margin: 0 auto;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .password_field {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            border-top: 1px solid #000;
+            border-bottom: 1px solid #000;
+            margin: {
+                left: $gutter_desktop;
+                right: $gutter_desktop;
+            }
+            padding: {
+                top: 20px;
+                bottom: 20px;
+            }
+            .text_input {
+                border: none;
+                appearance: none;
+                background: none;
+                &:focus {
+                    outline: none;
+                }
+            }
+            .password_button {
+                border: none;
+                background: none;
+            }
+        }
+    }
 }
