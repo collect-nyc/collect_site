@@ -10,11 +10,44 @@ import ProjectViewer from "../../components/ProjectViewer";
 import { DateTime } from "luxon";
 import Prismic from "prismic-javascript";
 import { Client } from "../../lib/prismic-config";
+import { apolloClient } from "../../lib/apollo-config";
+import { gql } from "@apollo/client";
 import { SITE_NAME } from "../../lib/constants";
 import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-    const document = await Client().getByUID("archive_item", params.slug);
+    const uid = params.slug;
+    const { loading, error, data } = await apolloClient.query({
+        query: gql`
+            query archive_item($uid: String!) {
+                archive_item(lang: "en-us", uid: $uid) {
+                    _meta {
+                        tags
+                        uid
+                    }
+                    title
+                    description
+                    images {
+                        image
+                        video {
+                            _linkType
+                            ... on _ExternalLink {
+                                url
+                            }
+                            ... on _FileLink {
+                                url
+                            }
+                        }
+                    }
+                    password_protected
+                }
+            }
+        `,
+        variables: {
+            uid: params.slug,
+        },
+    });
+    const document = data.archive_item;
 
     const page = "project";
     return { props: { document, page, revalidate: 60 } };
@@ -45,17 +78,17 @@ const ArchiveItem = ({ document }) => {
     const [current, setCurrent] = useState(0);
     const [passwordField, setPasswordField] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
-    const [isLocked, setIsLocked] = useState(document.data.password_protected);
+    const [isLocked, setIsLocked] = useState(document.password_protected);
 
-    const page_data = document.data;
-    const slug = document.uid;
+    const page_data = document;
+    const slug = document._meta.uid;
     // console.log("Project Data", page_data);
     const images = page_data.images;
     const total = images.length;
+    document.tags = document._meta.tags;
 
     useEffect(() => {
         window.document.querySelector("body").classList.add("item_page");
-        console.log(document);
         return () => {
             window.document.querySelector("body").classList.remove("item_page");
         };
@@ -146,7 +179,7 @@ const ArchiveItem = ({ document }) => {
                 <meta
                     name="description"
                     content={
-                        page_data.description.length > 0
+                        page_data.description > 0
                             ? page_data.description[0].text
                             : "An archive item by COLLECT NYC."
                     }

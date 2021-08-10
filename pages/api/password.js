@@ -24,15 +24,19 @@ export default async function handler(req, res) {
         const query = await Client().query(
             Prismic.Predicates.at("my.archive_item.uid", slug)
         );
+        const master = await Client().query(
+            Prismic.Predicates.at("document.type", "master_password")
+        );
+
+        const masterPassword = master.results[0].data.password;
 
         const secret = query.results[0].data.password;
-
-        if (secret !== passwordField) {
-            throw { message: "Password is not correct." };
+        if (secret === passwordField || masterPassword === passwordField) {
+            res.statusCode = 200;
+            res.json({ success: true });
+        } else {
+            throw { message: "Password is incorrect." };
         }
-
-        res.statusCode = 200;
-        res.json({ success: true });
     } catch (error) {
         res.statusCode = 403;
         res.json({ message: error.message });
