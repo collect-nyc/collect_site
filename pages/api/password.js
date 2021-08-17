@@ -12,35 +12,35 @@ import { Client } from "../../lib/prismic-config";
 // }
 
 export default async function handler(req, res) {
-    res.setHeader("Content-Type", "application/json");
+  res.setHeader("Content-Type", "application/json");
 
-    try {
-        const { slug, passwordField } = JSON.parse(req.body);
+  try {
+    const { slug, passwordField } = JSON.parse(req.body);
 
-        if (passwordField == "") {
-            throw { message: "Please enter a password." };
-        }
-
-        const query = await Client().query(
-            Prismic.Predicates.at("my.archive_item.uid", slug)
-        );
-        const master = await Client().query(
-            Prismic.Predicates.at("document.type", "master_password")
-        );
-
-        const masterPassword = master.results[0].data.password;
-
-        const secret = query.results[0].data.password;
-        if (secret === passwordField || masterPassword === passwordField) {
-            res.statusCode = 200;
-            res.json({ success: true });
-        } else {
-            throw { message: "Password is incorrect." };
-        }
-    } catch (error) {
-        res.statusCode = 403;
-        res.json({ message: error.message });
-    } finally {
-        res.statusCode = 500;
+    if (passwordField == "") {
+      throw { message: "Please enter a password." };
     }
+
+    const query = await Client().query(
+      Prismic.Predicates.at("my.archive_item.uid", slug)
+    );
+    const master = await Client().query(
+      Prismic.Predicates.at("document.type", "master_password")
+    );
+
+    const masterPassword = master.results[0].data.password;
+
+    const secret = query.results[0].data.password;
+    if (secret === passwordField || masterPassword === passwordField) {
+      res.statusCode = 200;
+      res.json({ success: true });
+    } else {
+      throw { message: "Password is incorrect." };
+    }
+  } catch (error) {
+    res.statusCode = 403;
+    res.json({ message: error.message });
+  } finally {
+    res.statusCode = 500;
+  }
 }

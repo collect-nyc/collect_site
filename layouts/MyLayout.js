@@ -7,7 +7,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-count", fetcher);
 
-  // console.log("MYLAYOUT", data);
+  console.log("MYLAYOUT", data);
 
   return (
     <React.Fragment>
