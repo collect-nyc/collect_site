@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 
@@ -9,10 +9,12 @@ export default function MyLayout({ page, children }) {
 
   // console.log("MYLAYOUT", data);
 
+  const totalCount = data ? data.count + data.media : null;
+
   return (
     <React.Fragment>
       {page !== "project" ? (
-        <SiteNav page={page} count={data ? data.results_size * 4 : null} />
+        <SiteNav page={page} count={data ? totalCount : null} />
       ) : null}
 
       {children}
