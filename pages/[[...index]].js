@@ -36,7 +36,7 @@ export async function getServerSideProps({ query }) {
   // Archive Items
   const archives = await Client().query(
     Prismic.Predicates.at("document.type", "archive_item"),
-    { pageSize: 10, page: paginate }
+    { pageSize: 30, page: paginate }
   );
 
   const page = "index";
