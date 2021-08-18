@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import SharedHead from "../../components/SharedHead";
 import Link from "next/link";
-
 import { useRouter } from "next/router";
 import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
@@ -11,6 +10,7 @@ import { DateTime } from "luxon";
 import Prismic from "prismic-javascript";
 import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
+import MemoryContext from "../../components/MemoryContext";
 import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
@@ -43,6 +43,8 @@ export async function getStaticPaths() {
 const ArchiveItem = ({ document }) => {
   const router = useRouter();
   const [current, setCurrent] = useState(0);
+
+  const { itemsPage } = useContext(MemoryContext);
 
   const page_data = document.data;
   // console.log("Project Data", page_data);
@@ -132,7 +134,7 @@ const ArchiveItem = ({ document }) => {
       </Head>
 
       <div className={styles.mobile_close}>
-        <Link href="/">
+        <Link href={itemsPage ? `/${itemsPage}` : "/"}>
           <a className={styles.close_btn}>Close</a>
         </Link>
       </div>
@@ -154,7 +156,7 @@ const ArchiveItem = ({ document }) => {
         }
       >
         <div className={styles.close_col}>
-          <Link href="/">
+          <Link href={itemsPage ? `/${itemsPage}` : "/"}>
             <a className={styles.close_btn}>Close</a>
           </Link>
         </div>

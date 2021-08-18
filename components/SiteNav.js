@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import Link from "next/link";
+import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 
 const SiteNav = ({ page, count }) => {
+  const { itemsPage } = useContext(MemoryContext);
   const [navLink, setNavLink] = useState("/profile");
 
   useEffect(() => {
@@ -13,14 +15,14 @@ const SiteNav = ({ page, count }) => {
         nav_link = "/profile";
         break;
       case "profile":
-        nav_link = "/";
+        nav_link = itemsPage ? `/${itemsPage}` : "/";
         break;
       case "404":
-        nav_link = "/";
+        nav_link = itemsPage ? `/${itemsPage}` : "/";
         break;
       case "project":
         console.log("project here");
-        nav_link = "/";
+        nav_link = itemsPage ? `/${itemsPage}` : "/";
         break;
       default:
         nav_link = "/profile";

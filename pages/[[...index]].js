@@ -62,6 +62,7 @@ const Home = ({ archives, document, everything, paginate }) => {
     setArchiveList,
     scrollPos,
     setScrollPos,
+    setItemsPage,
   } = useContext(MemoryContext);
 
   const mainRef = useRef(null);
@@ -74,15 +75,15 @@ const Home = ({ archives, document, everything, paginate }) => {
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
-  const ShuffeList = (list) => {
-    if (!archiveList) {
-      const default_list = _.shuffle(loaded_archives);
-      setArchiveList(default_list);
-    }
-  };
+  // const ShuffeList = (list) => {
+  //   if (!archiveList) {
+  //     const default_list = _.shuffle(loaded_archives);
+  //     setArchiveList(default_list);
+  //   }
+  // };
 
   useEffect(() => {
-    ShuffeList();
+    // ShuffeList();
     // console.log("SCROLL POS", scrollPos);
 
     if (scrollPos) {
@@ -91,9 +92,10 @@ const Home = ({ archives, document, everything, paginate }) => {
   }, []);
 
   useEffect(() => {
-    // need to not shuffle after the first time..got to be able to come back to the same order
-    const loaded_archives = [...archives.results];
-    const default_list = _.shuffle(loaded_archives);
+    let loaded_archives, default_list;
+    loaded_archives = [...archives.results];
+    default_list = loaded_archives;
+
     setArchiveList(default_list);
   }, [archives]);
 
@@ -382,6 +384,8 @@ const Home = ({ archives, document, everything, paginate }) => {
     const newpage = page.selected + 1;
 
     console.log("Page Selected", newpage);
+
+    setItemsPage(newpage);
 
     router.push(`/${newpage}`);
   };
