@@ -80,7 +80,7 @@ const ArchiveItem = ({ document }) => {
   };
 
   const Exit = () => {
-    router.push("/");
+    router.back();
   };
 
   // Event handlers
