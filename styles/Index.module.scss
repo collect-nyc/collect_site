@@ -159,13 +159,26 @@
     margin-bottom: 30px;
 
     .pagination_list {
+      padding: 0;
+      position: relative;
       margin: 0;
 
       li {
         display: inline-block;
         cursor: pointer;
+        font-family: $courier;
         margin: 0 10px;
         text-transform: uppercase;
+        position: relative;
+        top: -1px;
+      }
+
+      li:first-of-type,
+      li:last-of-type {
+        font-family: $untitled_sans;
+        padding: 0;
+        margin: 0 15px;
+        top: auto;
       }
     }
     .active {
