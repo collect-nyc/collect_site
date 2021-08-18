@@ -383,7 +383,7 @@ const Home = ({ archives, document, everything, paginate }) => {
   const PaginationHandler = (page) => {
     const newpage = page.selected + 1;
 
-    console.log("Page Selected", newpage);
+    // console.log("Page Selected", newpage);
 
     setItemsPage(newpage);
 
