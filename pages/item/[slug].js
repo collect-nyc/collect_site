@@ -82,7 +82,8 @@ const ArchiveItem = ({ document }) => {
   };
 
   const Exit = () => {
-    router.back();
+    // router.back();
+    router.push(itemsPage ? `/${itemsPage}` : "/");
   };
 
   // Event handlers
