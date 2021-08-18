@@ -44,8 +44,8 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, everything, paginate }) => {
-  console.log("ITEMS", archives);
-  console.log("QUERY", paginate);
+  // console.log("ITEMS", archives);
+  // console.log("QUERY", paginate);
 
   const router = useRouter();
 
