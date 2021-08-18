@@ -17,9 +17,6 @@ import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
-  // const integer = query.index ? parseInt(query.index, 10) : null;
-  // const paginate = integer && Number.isInteger(query.index) ? query.index : null;
-
   const paginate = query.index || 1;
 
   const everything = await fetch(
@@ -76,11 +73,6 @@ const Home = ({ archives, document, everything, paginate }) => {
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-  // const [gridView, setGridView] = useState(false);
-  // const [azSort, setAzSort] = useState(null);
-  // const [timeSort, setTimeSort] = useState(null);
-  // const [archiveList, setArchiveList] = useState(null);
-  // const [currentTag, setCurrentTag] = useState("All Work");
 
   const ShuffeList = (list) => {
     if (!archiveList) {
@@ -91,7 +83,6 @@ const Home = ({ archives, document, everything, paginate }) => {
 
   useEffect(() => {
     ShuffeList();
-
     // console.log("SCROLL POS", scrollPos);
 
     if (scrollPos) {
@@ -100,6 +91,7 @@ const Home = ({ archives, document, everything, paginate }) => {
   }, []);
 
   useEffect(() => {
+    // need to not shuffle after the first time..got to be able to come back to the same order
     const loaded_archives = [...archives.results];
     const default_list = _.shuffle(loaded_archives);
     setArchiveList(default_list);
@@ -385,9 +377,8 @@ const Home = ({ archives, document, everything, paginate }) => {
     );
   };
 
+  // Handle Pagination Clicks
   const PaginationHandler = (page) => {
-    //something
-
     const newpage = page.selected + 1;
 
     console.log("Page Selected", newpage);
