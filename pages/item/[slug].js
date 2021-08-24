@@ -53,9 +53,11 @@ const ArchiveItem = ({ document }) => {
 
   useEffect(() => {
     window.document.querySelector("body").classList.add("item_page");
+    window.addEventListener("keydown", onDown);
 
     return () => {
       window.document.querySelector("body").classList.remove("item_page");
+      window.removeEventListener("keydown", onDown);
     };
   }, []);
 
@@ -103,15 +105,6 @@ const ArchiveItem = ({ document }) => {
         break;
     }
   };
-
-  // Bind and unbind events
-  useEffect(() => {
-    window.addEventListener("keydown", onDown);
-
-    return () => {
-      window.removeEventListener("keydown", onDown);
-    };
-  });
 
   return (
     <div className={styles.container}>
