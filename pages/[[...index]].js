@@ -12,9 +12,13 @@ import Masonry from "react-masonry-css";
 import _ from "lodash";
 import Carot from "../svg/carot.svg";
 import MemoryContext from "../components/MemoryContext";
+import ReactPaginate from "react-paginate";
+import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ query }) {
+  const paginate = query.index || 1;
+
   const everything = await fetch(
     "https://collectnyc.cdn.prismic.io/api/v2"
   ).then((res) => res.json());
@@ -29,17 +33,22 @@ export async function getServerSideProps() {
   // Archive Items
   const archives = await Client().query(
     Prismic.Predicates.at("document.type", "archive_item"),
-    { pageSize: 100 }
+    { pageSize: 20, page: paginate }
   );
 
   const page = "index";
 
   return {
-    props: { document, archives, page, everything },
+    props: { document, archives, page, everything, paginate },
   };
 }
 
-const Home = ({ archives, document, everything }) => {
+const Home = ({ archives, document, everything, paginate }) => {
+  // console.log("ITEMS", archives);
+  // console.log("QUERY", paginate);
+
+  const router = useRouter();
+
   const {
     layoutView,
     setLayoutView,
@@ -53,6 +62,7 @@ const Home = ({ archives, document, everything }) => {
     setArchiveList,
     scrollPos,
     setScrollPos,
+    setItemsPage,
   } = useContext(MemoryContext);
 
   const mainRef = useRef(null);
@@ -64,28 +74,30 @@ const Home = ({ archives, document, everything }) => {
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-  // const [gridView, setGridView] = useState(false);
-  // const [azSort, setAzSort] = useState(null);
-  // const [timeSort, setTimeSort] = useState(null);
-  // const [archiveList, setArchiveList] = useState(null);
-  // const [currentTag, setCurrentTag] = useState("All Work");
 
-  const ShuffeList = (list) => {
-    if (!archiveList) {
-      const default_list = _.shuffle(loaded_archives);
-      setArchiveList(default_list);
-    }
-  };
+  // const ShuffeList = (list) => {
+  //   if (!archiveList) {
+  //     const default_list = _.shuffle(loaded_archives);
+  //     setArchiveList(default_list);
+  //   }
+  // };
 
   useEffect(() => {
-    ShuffeList();
-
+    // ShuffeList();
     // console.log("SCROLL POS", scrollPos);
 
     if (scrollPos) {
       mainRef.current.scrollTop = parseInt(scrollPos, 10);
     }
   }, []);
+
+  useEffect(() => {
+    let loaded_archives, default_list;
+    loaded_archives = [...archives.results];
+    default_list = loaded_archives;
+
+    setArchiveList(default_list);
+  }, [archives]);
 
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
@@ -367,6 +379,17 @@ const Home = ({ archives, document, everything }) => {
     );
   };
 
+  // Handle Pagination Clicks
+  const PaginationHandler = (page) => {
+    const newpage = page.selected + 1;
+
+    // console.log("Page Selected", newpage);
+
+    setItemsPage(newpage);
+
+    router.push(`/${newpage}`);
+  };
+
   return (
     <div className={styles.container} ref={mainRef}>
       <Head>
@@ -458,6 +481,23 @@ const Home = ({ archives, document, everything }) => {
       >
         <div className={styles.interior}>
           {layoutView ? <GridView /> : <ListView />}
+        </div>
+
+        <div className={styles.pagination}>
+          <ReactPaginate
+            previousLabel={"back"}
+            nextLabel={"next"}
+            breakLabel={"..."}
+            breakClassName={"break-me"}
+            activeClassName={styles.active}
+            containerClassName={styles.pagination_list}
+            subContainerClassName={styles.pages}
+            initialPage={parseInt(paginate - 1, 10)}
+            pageCount={archives.total_pages}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={2}
+            onPageChange={PaginationHandler}
+          />
         </div>
       </main>
 
