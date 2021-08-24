@@ -86,7 +86,7 @@ const ArchiveItem = ({ document }) => {
   const page_data = document;
   console.log("Project Data", page_data);
   const images = page_data.images;
-  const total = images.length;
+  const total = images ? images.length : 0;
   const slug = document._meta.uid;
 
   document.tags = document._meta.tags;
@@ -179,7 +179,7 @@ const ArchiveItem = ({ document }) => {
         <meta
           name="description"
           content={
-            page_data.description.length > 0
+            page_data.description && page_data.description.length > 0
               ? page_data.description[0].text
               : "An archive item by COLLECT NYC."
           }
@@ -222,7 +222,7 @@ const ArchiveItem = ({ document }) => {
 
           <footer
             className={
-              images.length > 1
+              images && images.length > 1
                 ? `${styles.project_footer} ${styles.multi_item}`
                 : `${styles.project_footer} ${styles.single_item}`
             }
