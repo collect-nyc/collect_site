@@ -1,8 +1,7 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import Head from "next/head";
 import SharedHead from "../../components/SharedHead";
 import Link from "next/link";
-
 import { useRouter } from "next/router";
 import MyLayout from "../../layouts/MyLayout";
 import ProjectViewer from "../../components/ProjectViewer";
@@ -13,269 +12,264 @@ import { Client } from "../../lib/prismic-config";
 import { apolloClient } from "../../lib/apollo-config";
 import { gql } from "@apollo/client";
 import { SITE_NAME } from "../../lib/constants";
+import MemoryContext from "../../components/MemoryContext";
 import styles from "../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
-    const uid = params.slug;
-    const { loading, error, data } = await apolloClient.query({
-        query: gql`
-            query archive_item($uid: String!) {
-                archive_item(lang: "en-us", uid: $uid) {
-                    _meta {
-                        tags
-                        uid
-                    }
-                    title
-                    description
-                    images {
-                        image
-                        video {
-                            _linkType
-                            ... on _ExternalLink {
-                                url
-                            }
-                            ... on _FileLink {
-                                url
-                            }
-                        }
-                    }
-                    password_protected
-                }
+  const uid = params.slug;
+  const { loading, error, data } = await apolloClient.query({
+    query: gql`
+      query archive_item($uid: String!) {
+        archive_item(lang: "en-us", uid: $uid) {
+          _meta {
+            tags
+            uid
+          }
+          creation_date
+          title
+          description
+          images {
+            image
+            video {
+              _linkType
+              ... on _ExternalLink {
+                url
+              }
+              ... on _FileLink {
+                url
+              }
             }
-        `,
-        variables: {
-            uid: params.slug,
-        },
-    });
-    const document = data.archive_item;
+          }
+          password_protected
+        }
+      }
+    `,
+    variables: {
+      uid: params.slug,
+    },
+  });
 
-    const page = "project";
-    return { props: { document, page, revalidate: 60 } };
+  const document = data.archive_item;
+  const page = "project";
+
+  return { props: { document, page, revalidate: 60 } };
 }
 
 export async function getStaticPaths() {
-    const archives = await Client().query(
-        Prismic.Predicates.at("document.type", "archive_item"),
-        { pageSize: 100 }
-    );
+  const archives = await Client().query(
+    Prismic.Predicates.at("document.type", "archive_item"),
+    { pageSize: 100 }
+  );
 
-    const posts = archives.results;
+  const posts = archives.results;
 
-    // console.log(posts);
+  // console.log(posts);
 
-    const paths = posts.map((post) => ({
-        params: {
-            slug: post.uid,
-        },
-    }));
+  const paths = posts.map((post) => ({
+    params: {
+      slug: post.uid,
+    },
+  }));
 
-    // console.log(paths);
-    return { paths, fallback: "blocking" };
+  // console.log(paths);
+  return { paths, fallback: "blocking" };
 }
 
 const ArchiveItem = ({ document }) => {
-    const router = useRouter();
-    const [current, setCurrent] = useState(0);
-    const [passwordField, setPasswordField] = useState("");
-    const [errorMessage, setErrorMessage] = useState("");
-    const [isLocked, setIsLocked] = useState(document.password_protected);
+  const router = useRouter();
+  const [current, setCurrent] = useState(0);
+  const [passwordField, setPasswordField] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLocked, setIsLocked] = useState(document.password_protected);
+  const { itemsPage } = useContext(MemoryContext);
 
-    const page_data = document;
-    const slug = document._meta.uid;
-    // console.log("Project Data", page_data);
-    const images = page_data.images;
-    const total = images.length;
-    document.tags = document._meta.tags;
+  const page_data = document;
+  console.log("Project Data", page_data);
+  const images = page_data.images;
+  const total = images.length;
+  const slug = document._meta.uid;
 
-    useEffect(() => {
-        window.document.querySelector("body").classList.add("item_page");
-        return () => {
-            window.document.querySelector("body").classList.remove("item_page");
-        };
-    }, []);
+  document.tags = document._meta.tags;
 
-    const nextItem = () => {
-        // something
-        console.log("NEXT ITEM");
+  useEffect(() => {
+    window.document.querySelector("body").classList.add("item_page");
+    window.addEventListener("keydown", onDown);
 
-        if (current + 1 >= total) {
-            setCurrent(0);
-        } else {
-            setCurrent(current + 1);
-        }
+    return () => {
+      window.document.querySelector("body").classList.remove("item_page");
+      window.removeEventListener("keydown", onDown);
     };
+  }, []);
 
-    const prevItem = () => {
-        // something
-        console.log("PREVIOUS ITEM");
+  const nextItem = () => {
+    // something
+    console.log("NEXT ITEM");
 
-        if (current === 0) {
-            setCurrent(total - 1);
-        } else {
-            setCurrent(current - 1);
-        }
-    };
+    if (current + 1 >= total) {
+      setCurrent(0);
+    } else {
+      setCurrent(current + 1);
+    }
+  };
 
-    const Exit = () => {
-        router.push("/");
-    };
+  const prevItem = () => {
+    // something
+    console.log("PREVIOUS ITEM");
 
-    // Event handlers
-    const onDown = (event) => {
-        console.log("Key Pressed", event.key);
+    if (current === 0) {
+      setCurrent(total - 1);
+    } else {
+      setCurrent(current - 1);
+    }
+  };
 
-        switch (event.key) {
-            case "ArrowRight":
-                nextItem();
-                break;
-            case "ArrowLeft":
-                //do something
-                prevItem();
-                break;
-            case "Escape":
-                //do something
-                Exit();
-                break;
-        }
-    };
+  const Exit = () => {
+    router.push(itemsPage ? `/${itemsPage}` : "/");
+  };
 
-    const handlePasswordSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await fetch("/api/password", {
-                method: "post",
-                body: JSON.stringify({ slug, passwordField }),
-                //pass current page slug and whats in the password field
-            });
+  // Event handlers
+  const onDown = (event) => {
+    console.log("Key Pressed", event.key);
 
-            const body = await response.json();
+    switch (event.key) {
+      case "ArrowRight":
+        nextItem();
+        break;
+      case "ArrowLeft":
+        //do something
+        prevItem();
+        break;
+      case "Escape":
+        //do something
+        Exit();
+        break;
+    }
+  };
 
-            if (!body.success) {
-                setErrorMessage(body.message);
-            } else {
-                setIsLocked(false);
+  const handlePasswordSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch("/api/password", {
+        method: "post",
+        body: JSON.stringify({ slug, passwordField }),
+        //pass current page slug and whats in the password field
+      });
+
+      const body = await response.json();
+
+      if (!body.success) {
+        setErrorMessage(body.message);
+      } else {
+        setIsLocked(false);
+      }
+    } catch (error) {}
+  };
+
+  // return <h1>hello world</h1>;
+
+  return (
+    <div className={styles.container}>
+      <Head>
+        <title>
+          {page_data.title[0].text
+            ? page_data.title[0].text
+            : "COLLECT Project"}{" "}
+          _ {SITE_NAME}
+        </title>
+        <meta
+          name="description"
+          content={
+            page_data.description.length > 0
+              ? page_data.description[0].text
+              : "An archive item by COLLECT NYC."
+          }
+        />
+        <SharedHead />
+      </Head>
+      {isLocked ? (
+        <div className={styles.password_wrapper}>
+          <form
+            className={styles.password_field}
+            onSubmit={handlePasswordSubmit}
+          >
+            <input
+              className={styles.text_input}
+              type="text"
+              value={passwordField}
+              placeholder="Enter Password"
+              onChange={(e) => setPasswordField(e.target.value)}
+            />
+            <p>{errorMessage}</p>
+            <button className={styles.password_button}>View Case Study</button>
+          </form>
+        </div>
+      ) : (
+        <div>
+          <div className={styles.mobile_close}>
+            <Link href={itemsPage ? `/${itemsPage}` : "/"}>
+              <a className={styles.close_btn}>Close</a>
+            </Link>
+          </div>
+
+          <main className={styles.main}>
+            <ProjectViewer
+              images={images}
+              prevItem={prevItem}
+              nextItem={nextItem}
+              current={current}
+            />
+          </main>
+
+          <footer
+            className={
+              images.length > 1
+                ? `${styles.project_footer} ${styles.multi_item}`
+                : `${styles.project_footer} ${styles.single_item}`
             }
-        } catch (error) {}
-    };
+          >
+            <div className={styles.close_col}>
+              <Link href="/">
+                <a className={styles.close_btn}>Close</a>
+              </Link>
+            </div>
 
-    // Bind and unbind events
-    useEffect(() => {
-        window.addEventListener("keydown", onDown);
+            <h1 className={styles.title}>
+              {page_data.title[0] ? page_data.title[0].text : "COLLECT Project"}
+            </h1>
 
-        return () => {
-            window.removeEventListener("keydown", onDown);
-        };
-    });
-
-    return (
-        <div className={styles.container}>
-            <Head>
-                <title>
-                    {page_data.title[0].text
-                        ? page_data.title[0].text
-                        : "COLLECT Project"}{" "}
-                    _ {SITE_NAME}
-                </title>
-                <meta
-                    name="description"
-                    content={
-                        page_data.description > 0
-                            ? page_data.description[0].text
-                            : "An archive item by COLLECT NYC."
-                    }
-                />
-                <SharedHead />
-            </Head>
-            {isLocked ? (
-                <div className={styles.password_wrapper}>
-                    <form
-                        className={styles.password_field}
-                        onSubmit={handlePasswordSubmit}
-                    >
-                        <input
-                            className={styles.text_input}
-                            type="text"
-                            value={passwordField}
-                            placeholder="Enter Password"
-                            onChange={(e) => setPasswordField(e.target.value)}
-                        />
-                        <p>{errorMessage}</p>
-                        <button className={styles.password_button}>
-                            View Case Study
-                        </button>
-                    </form>
-                </div>
-            ) : (
-                <div>
-                    <div className={styles.mobile_close}>
-                        <Link href="/">
-                            <a className={styles.close_btn}>Close</a>
-                        </Link>
-                    </div>
-
-                    <main className={styles.main}>
-                        <ProjectViewer
-                            images={images}
-                            prevItem={prevItem}
-                            nextItem={nextItem}
-                            current={current}
-                        />
-                    </main>
-
-                    <footer
-                        className={
-                            images.length > 1
-                                ? `${styles.project_footer} ${styles.multi_item}`
-                                : `${styles.project_footer} ${styles.single_item}`
-                        }
-                    >
-                        <div className={styles.close_col}>
-                            <Link href="/">
-                                <a className={styles.close_btn}>Close</a>
-                            </Link>
-                        </div>
-
-                        <h1 className={styles.title}>
-                            {page_data.title[0]
-                                ? page_data.title[0].text
-                                : "COLLECT Project"}
-                        </h1>
-
-                        {/*page_data.description ? (
+            {/*page_data.description ? (
           <RichText render={page_data.description} />
         ) : null*/}
 
-                        <div className={styles.tags}>
-                            {document.tags.map((tag, key) => (
-                                <span key={key}>
-                                    {document.tags.length === key + 1 && tag
-                                        ? tag
-                                        : tag
-                                        ? tag + ", "
-                                        : null}
-                                </span>
-                            ))}
-                        </div>
+            <div className={styles.tags}>
+              {document.tags.map((tag, key) => (
+                <span key={key}>
+                  {document.tags.length === key + 1 && tag
+                    ? tag
+                    : tag
+                    ? tag + ", "
+                    : null}
+                </span>
+              ))}
+            </div>
 
-                        <span className={styles.date}>
-                            {page_data.creation_date
-                                ? DateTime.fromISO(
-                                      page_data.creation_date
-                                  ).toFormat("yyyy")
-                                : "TBD"}
-                        </span>
-                        <div className={styles.multi_col}>
-                            {total > 1 ? (
-                                <span>
-                                    {current + 1}/{total}
-                                </span>
-                            ) : null}
-                        </div>
-                    </footer>
-                </div>
-            )}
+            <span className={styles.date}>
+              {page_data.creation_date
+                ? DateTime.fromISO(page_data.creation_date).toFormat("yyyy")
+                : "TBD"}
+            </span>
+            <div className={styles.multi_col}>
+              {total > 1 ? (
+                <span>
+                  {current + 1}/{total}
+                </span>
+              ) : null}
+            </div>
+          </footer>
         </div>
-    );
+      )}
+    </div>
+  );
 };
 
 ArchiveItem.Layout = MyLayout;
