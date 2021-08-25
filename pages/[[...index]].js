@@ -44,9 +44,6 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, everything, paginate }) => {
-  // console.log("ITEMS", archives);
-  // console.log("QUERY", paginate);
-
   const router = useRouter();
 
   const {
@@ -82,6 +79,7 @@ const Home = ({ archives, document, everything, paginate }) => {
   //   }
   // };
 
+  // ComponentDidMount
   useEffect(() => {
     // ShuffeList();
     // console.log("SCROLL POS", scrollPos);
@@ -91,13 +89,13 @@ const Home = ({ archives, document, everything, paginate }) => {
     }
   }, []);
 
+  // Set archive list when archive data changes
   useEffect(() => {
-    let loaded_archives, default_list;
-    loaded_archives = [...archives.results];
-    default_list = loaded_archives;
+    let loaded_archives = [...archives.results];
 
-    setArchiveList(default_list);
-  }, [archives]);
+    console.log("ARCHIVES UPDATED", loaded_archives);
+    setArchiveList(loaded_archives);
+  }, [archives, setArchiveList]);
 
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
@@ -114,14 +112,15 @@ const Home = ({ archives, document, everything, paginate }) => {
     axios
       .post("/api/get-tag-archives", {
         name: name,
+        paginate: 1,
       })
       .then(function (response) {
-        // console.log("NEW LIST", response.data);
+        console.log("NEW LIST", response.data);
 
         // const shuffled_tag_results = _.shuffle(response.data.results);
-        const shuffled_tag_results = response.data.results;
+        const tag_results = response.data.results;
 
-        setArchiveList(shuffled_tag_results);
+        setArchiveList(tag_results);
       })
       .catch(function (error) {
         console.log(error);
@@ -130,8 +129,8 @@ const Home = ({ archives, document, everything, paginate }) => {
 
   const AllTags = () => {
     setCurrentTag("All Work");
-    const default_list = _.shuffle(loaded_archives);
-    // const default_list = loaded_archives;
+    // const default_list = _.shuffle(loaded_archives);
+    const default_list = loaded_archives;
     setArchiveList(default_list);
     setFilterOpen(false);
   };
