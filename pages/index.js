@@ -75,6 +75,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     setArchiveList,
     scrollPos,
     setScrollPos,
+    itemsPage,
     setItemsPage,
   } = useContext(MemoryContext);
 
@@ -83,7 +84,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   // data
   const page_content = document.data;
   const tags = everything.tags;
-  const loaded_archives = [...archives.results];
+  // const loaded_archives = [...archives.results];
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
@@ -96,6 +97,11 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
       mainRef.current.scrollTop = parseInt(scrollPos, 10);
     }
   }, []);
+
+  // Make sure any time paginate is updated, it's also updated in state
+  useEffect(() => {
+    setItemsPage(paginate);
+  }, [paginate]);
 
   // Set archive list when archive data changes
   useEffect(() => {
@@ -118,23 +124,6 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     setFilterOpen(false);
 
     router.push(`/?tag=${name}&page=1`);
-
-    // axios
-    //   .post("/api/get-tag-archives", {
-    //     name: name,
-    //     paginate: 1,
-    //   })
-    //   .then(function (response) {
-    //     console.log("NEW LIST", response.data);
-
-    //     // const shuffled_tag_results = _.shuffle(response.data.results);
-    //     const tag_results = response.data.results;
-
-    //     setArchiveList(tag_results);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error);
-    //   });
   };
 
   const AllTags = () => {
@@ -390,12 +379,15 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
 
   // Handle Pagination Clicks
   const PaginationHandler = (page) => {
-    console.log("TAGGED", tagged);
     const newpage = page.selected + 1;
+
+    console.log("Pagination Handler", page, newpage, tagged);
 
     // console.log("Page Selected", newpage);
 
     setItemsPage(newpage);
+
+    console.log("ITEMS PAGE", itemsPage);
 
     if (tagged && tagged !== "All Work") {
       setCurrentTag(tagged);
@@ -508,6 +500,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
             containerClassName={styles.pagination_list}
             subContainerClassName={styles.pages}
             initialPage={parseInt(paginate - 1, 10)}
+            forcePage={itemsPage - 1}
             pageCount={archives.total_pages}
             marginPagesDisplayed={1}
             pageRangeDisplayed={2}
