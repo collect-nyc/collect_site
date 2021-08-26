@@ -7,7 +7,6 @@ import { Client } from "../lib/prismic-config";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
 import Carot from "../svg/carot.svg";
@@ -34,6 +33,7 @@ export async function getServerSideProps({ query }) {
 
   let archives;
 
+  // Pull Items Data Based On Params
   if (tagged) {
     // Tagged items
     archives = await Client().query(
@@ -59,7 +59,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, everything, paginate, tagged, query }) => {
-  console.log("QUERY", query);
+  // console.log("QUERY", query);
   const router = useRouter();
 
   const {
@@ -107,7 +107,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   useEffect(() => {
     let loaded_archives = [...archives.results];
 
-    console.log("ARCHIVES UPDATED", loaded_archives);
+    // console.log("ARCHIVES UPDATED", loaded_archives);
     setArchiveList(loaded_archives);
   }, [archives, setArchiveList]);
 
@@ -381,13 +381,9 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   const PaginationHandler = (page) => {
     const newpage = page.selected + 1;
 
-    console.log("Pagination Handler", page, newpage, tagged);
-
-    // console.log("Page Selected", newpage);
+    // console.log("Pagination Handler", page, newpage, tagged);
 
     setItemsPage(newpage);
-
-    console.log("ITEMS PAGE", itemsPage);
 
     if (tagged && tagged !== "All Work") {
       setCurrentTag(tagged);
