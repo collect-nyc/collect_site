@@ -7,7 +7,6 @@ import { Client } from "../lib/prismic-config";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import axios from "axios";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
 import Carot from "../svg/carot.svg";
@@ -17,12 +16,14 @@ import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
-  const paginate = query.index || 1;
+  const paginate = query.page || 1;
+  const tagged = query.tag || null;
 
   const everything = await fetch(
     "https://collectnyc.cdn.prismic.io/api/v2"
   ).then((res) => res.json());
 
+  // New method of pulling tags
   // const taggers = await fetch(
   //   "https://collectnyc.cdn.prismic.io/api/tags"
   // ).then((res) => res.json());
@@ -30,23 +31,35 @@ export async function getServerSideProps({ query }) {
   //Page Data
   const document = await Client().getSingle("index_page");
 
-  // Archive Items
-  const archives = await Client().query(
-    Prismic.Predicates.at("document.type", "archive_item"),
-    { pageSize: 20, page: paginate }
-  );
+  let archives;
+
+  // Pull Items Data Based On Params
+  if (tagged) {
+    // Tagged items
+    archives = await Client().query(
+      [
+        Prismic.Predicates.at("document.type", "archive_item"),
+        Prismic.Predicates.at("document.tags", [tagged]),
+      ],
+      { pageSize: 20, page: paginate }
+    );
+  } else {
+    // All Work items
+    archives = await Client().query(
+      Prismic.Predicates.at("document.type", "archive_item"),
+      { pageSize: 20, page: paginate }
+    );
+  }
 
   const page = "index";
 
   return {
-    props: { document, archives, page, everything, paginate },
+    props: { document, archives, page, everything, paginate, tagged, query },
   };
 }
 
-const Home = ({ archives, document, everything, paginate }) => {
-  // console.log("ITEMS", archives);
-  // console.log("QUERY", paginate);
-
+const Home = ({ archives, document, everything, paginate, tagged, query }) => {
+  // console.log("QUERY", query);
   const router = useRouter();
 
   const {
@@ -62,6 +75,7 @@ const Home = ({ archives, document, everything, paginate }) => {
     setArchiveList,
     scrollPos,
     setScrollPos,
+    itemsPage,
     setItemsPage,
   } = useContext(MemoryContext);
 
@@ -70,20 +84,13 @@ const Home = ({ archives, document, everything, paginate }) => {
   // data
   const page_content = document.data;
   const tags = everything.tags;
-  const loaded_archives = [...archives.results];
+  // const loaded_archives = [...archives.results];
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
-  // const ShuffeList = (list) => {
-  //   if (!archiveList) {
-  //     const default_list = _.shuffle(loaded_archives);
-  //     setArchiveList(default_list);
-  //   }
-  // };
-
+  // ComponentDidMount
   useEffect(() => {
-    // ShuffeList();
     // console.log("SCROLL POS", scrollPos);
 
     if (scrollPos) {
@@ -91,13 +98,18 @@ const Home = ({ archives, document, everything, paginate }) => {
     }
   }, []);
 
+  // Make sure any time paginate is updated, it's also updated in state
   useEffect(() => {
-    let loaded_archives, default_list;
-    loaded_archives = [...archives.results];
-    default_list = loaded_archives;
+    setItemsPage(paginate);
+  }, [paginate]);
 
-    setArchiveList(default_list);
-  }, [archives]);
+  // Set archive list when archive data changes
+  useEffect(() => {
+    let loaded_archives = [...archives.results];
+
+    // console.log("ARCHIVES UPDATED", loaded_archives);
+    setArchiveList(loaded_archives);
+  }, [archives, setArchiveList]);
 
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
@@ -111,28 +123,14 @@ const Home = ({ archives, document, everything, paginate }) => {
     setCurrentTag(name);
     setFilterOpen(false);
 
-    axios
-      .post("/api/get-tag-archives", {
-        name: name,
-      })
-      .then(function (response) {
-        // console.log("NEW LIST", response.data);
-
-        // const shuffled_tag_results = _.shuffle(response.data.results);
-        const shuffled_tag_results = response.data.results;
-
-        setArchiveList(shuffled_tag_results);
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    router.push(`/?tag=${name}&page=1`);
   };
 
   const AllTags = () => {
-    setCurrentTag("All Work");
-    const default_list = _.shuffle(loaded_archives);
     // const default_list = loaded_archives;
-    setArchiveList(default_list);
+    // setArchiveList(default_list);
+    setCurrentTag("All Work");
+    router.push("/?page=1");
     setFilterOpen(false);
   };
 
@@ -383,11 +381,16 @@ const Home = ({ archives, document, everything, paginate }) => {
   const PaginationHandler = (page) => {
     const newpage = page.selected + 1;
 
-    // console.log("Page Selected", newpage);
+    // console.log("Pagination Handler", page, newpage, tagged);
 
     setItemsPage(newpage);
 
-    router.push(`/${newpage}`);
+    if (tagged && tagged !== "All Work") {
+      setCurrentTag(tagged);
+      router.push(`/?tag=${tagged}&page=${newpage}`);
+    } else {
+      router.push(`/?page=${newpage}`);
+    }
   };
 
   return (
@@ -493,6 +496,7 @@ const Home = ({ archives, document, everything, paginate }) => {
             containerClassName={styles.pagination_list}
             subContainerClassName={styles.pages}
             initialPage={parseInt(paginate - 1, 10)}
+            forcePage={itemsPage - 1}
             pageCount={archives.total_pages}
             marginPagesDisplayed={1}
             pageRangeDisplayed={2}

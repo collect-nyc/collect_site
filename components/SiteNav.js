@@ -4,7 +4,7 @@ import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 
 const SiteNav = ({ page, count }) => {
-  const { itemsPage } = useContext(MemoryContext);
+  const { itemsPage, currentTag } = useContext(MemoryContext);
   const [navLink, setNavLink] = useState("/profile");
 
   useEffect(() => {
@@ -15,14 +15,14 @@ const SiteNav = ({ page, count }) => {
         nav_link = "/profile";
         break;
       case "profile":
-        nav_link = itemsPage ? `/${itemsPage}` : "/";
-        break;
       case "404":
-        nav_link = itemsPage ? `/${itemsPage}` : "/";
-        break;
       case "project":
-        console.log("project here");
-        nav_link = itemsPage ? `/${itemsPage}` : "/";
+        nav_link =
+          itemsPage && currentTag && currentTag !== "All Work"
+            ? `/?tag=${currentTag}&page=${itemsPage}`
+            : itemsPage
+            ? `/?page=${itemsPage}`
+            : "/?page=1";
         break;
       default:
         nav_link = "/profile";

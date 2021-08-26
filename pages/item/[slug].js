@@ -81,7 +81,8 @@ const ArchiveItem = ({ document }) => {
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(document.password_protected);
-  const { itemsPage } = useContext(MemoryContext);
+
+  const { itemsPage, currentTag } = useContext(MemoryContext);
 
   const page_data = document;
   // console.log("Project Data", page_data);
@@ -121,7 +122,13 @@ const ArchiveItem = ({ document }) => {
     };
 
     const Exit = () => {
-      router.push(itemsPage ? `/${itemsPage}` : "/");
+      router.push(
+        itemsPage && currentTag && currentTag !== "All Work"
+          ? `/?tag=${currentTag}&page=${itemsPage}`
+          : itemsPage
+          ? `/?page=${itemsPage}`
+          : "/?page=1"
+      );
     };
 
     const handleDown = (event) => {
@@ -212,6 +219,20 @@ const ArchiveItem = ({ document }) => {
             </Link>
           </div>
 
+          <div className={styles.mobile_close}>
+            <Link
+              href={
+                itemsPage && currentTag && currentTag !== "All Work"
+                  ? `/?tag=${currentTag}&page=${itemsPage}`
+                  : itemsPage
+                  ? `/?page=${itemsPage}`
+                  : "/?page=1"
+              }
+            >
+              <a className={styles.close_btn}>Close</a>
+            </Link>
+          </div>
+
           <main className={styles.main}>
             <ProjectViewer
               images={images}
@@ -223,13 +244,21 @@ const ArchiveItem = ({ document }) => {
 
           <footer
             className={
-              images && images.length > 1
+              images.length > 1
                 ? `${styles.project_footer} ${styles.multi_item}`
                 : `${styles.project_footer} ${styles.single_item}`
             }
           >
             <div className={styles.close_col}>
-              <Link href="/">
+              <Link
+                href={
+                  itemsPage && currentTag && currentTag !== "All Work"
+                    ? `/?tag=${currentTag}&page=${itemsPage}`
+                    : itemsPage
+                    ? `/?page=${itemsPage}`
+                    : "/?page=1"
+                }
+              >
                 <a className={styles.close_btn}>Close</a>
               </Link>
             </div>

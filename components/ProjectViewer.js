@@ -4,7 +4,7 @@ import Hammer from "react-hammerjs";
 // import { motion } from "framer-motion";
 import styles from "../styles/ProjectViewer.module.scss";
 
-const ProjectViewer = ({ images, PrevItem, NextItem, Exit, currentImage }) => {
+const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
   // console.log("IMAGES", images);
 
   const [appHeight, setAppHeight] = useState(null);
