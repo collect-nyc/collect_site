@@ -44,7 +44,7 @@ const ArchiveItem = ({ document }) => {
   const router = useRouter();
   const [current, setCurrent] = useState(0);
 
-  const { itemsPage } = useContext(MemoryContext);
+  const { itemsPage, currentTag } = useContext(MemoryContext);
 
   const page_data = document.data;
   // console.log("Project Data", page_data);
@@ -84,7 +84,15 @@ const ArchiveItem = ({ document }) => {
   };
 
   const Exit = () => {
-    router.push(itemsPage ? `/${itemsPage}` : "/");
+    if (currentTag && itemsPage) {
+      router.push(`/?tag=${currentTag}&page=${itemsPage}`);
+    } else if (currentTag && !itemsPage) {
+      router.push(`/?tag=${currentTag}`);
+    } else if (itemsPage && !currentTag) {
+      router.push(`/${itemsPage}`);
+    } else {
+      router.push("/?page=1");
+    }
   };
 
   // Event handlers
