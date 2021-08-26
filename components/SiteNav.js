@@ -18,7 +18,7 @@ const SiteNav = ({ page, count }) => {
       case "404":
       case "project":
         nav_link =
-          itemsPage && currentTag
+          itemsPage && currentTag && currentTag !== "All Work"
             ? `/?tag=${currentTag}&page=${itemsPage}`
             : itemsPage
             ? `/?page=${itemsPage}`

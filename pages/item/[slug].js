@@ -42,7 +42,7 @@ export async function getStaticPaths() {
 
 const ArchiveItem = ({ document }) => {
   const router = useRouter();
-  const [current, setCurrent] = useState(0);
+  const [currentImage, setCurrentImage] = useState(0);
 
   const { itemsPage, currentTag } = useContext(MemoryContext);
 
@@ -53,66 +53,68 @@ const ArchiveItem = ({ document }) => {
 
   useEffect(() => {
     window.document.querySelector("body").classList.add("item_page");
-    window.addEventListener("keydown", onDown);
 
     return () => {
       window.document.querySelector("body").classList.remove("item_page");
-      window.removeEventListener("keydown", onDown);
     };
   }, []);
 
-  const nextItem = () => {
-    // something
-    console.log("NEXT ITEM");
-
-    if (current + 1 >= total) {
-      setCurrent(0);
-    } else {
-      setCurrent(current + 1);
-    }
+  const NextItem = () => {
+    let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
+    setCurrentImage(newcurrent);
   };
 
-  const prevItem = () => {
-    // something
-    console.log("PREVIOUS ITEM");
-
-    if (current === 0) {
-      setCurrent(total - 1);
-    } else {
-      setCurrent(current - 1);
-    }
+  const PrevItem = () => {
+    let newcurrent = currentImage === 0 ? total - 1 : currentImage - 1;
+    setCurrentImage(newcurrent);
   };
 
-  const Exit = () => {
-    if (currentTag && itemsPage) {
-      router.push(`/?tag=${currentTag}&page=${itemsPage}`);
-    } else if (currentTag && !itemsPage) {
-      router.push(`/?tag=${currentTag}`);
-    } else if (itemsPage && !currentTag) {
-      router.push(`/${itemsPage}`);
-    } else {
-      router.push("/?page=1");
-    }
-  };
+  // Use Effect for Keyboard Controls
+  useEffect(() => {
+    const NextItem = () => {
+      let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
+      setCurrentImage(newcurrent);
+    };
 
-  // Event handlers
-  const onDown = (event) => {
-    console.log("Key Pressed", event.key);
+    const PrevItem = () => {
+      let newcurrent = currentImage === 0 ? total - 1 : currentImage - 1;
+      setCurrentImage(newcurrent);
+    };
 
-    switch (event.key) {
-      case "ArrowRight":
-        nextItem();
-        break;
-      case "ArrowLeft":
-        //do something
-        prevItem();
-        break;
-      case "Escape":
-        //do something
-        Exit();
-        break;
-    }
-  };
+    const Exit = () => {
+      router.push(
+        itemsPage && currentTag && currentTag !== "All Work"
+          ? `/?tag=${currentTag}&page=${itemsPage}`
+          : itemsPage
+          ? `/?page=${itemsPage}`
+          : "/?page=1"
+      );
+    };
+
+    const handleDown = (event) => {
+      switch (event.key) {
+        case "ArrowLeft":
+          // Left pressed
+          PrevItem();
+          break;
+        case "ArrowRight":
+          // Right pressed
+          NextItem();
+          break;
+        case "Escape":
+          // Down pressed
+          Exit();
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleDown);
+      window.removeEventListener("keydown", handleDown);
+    };
+  }, [currentImage]);
 
   return (
     <div className={styles.container}>
@@ -135,7 +137,15 @@ const ArchiveItem = ({ document }) => {
       </Head>
 
       <div className={styles.mobile_close}>
-        <Link href={itemsPage ? `/${itemsPage}` : "/"}>
+        <Link
+          href={
+            itemsPage && currentTag && currentTag !== "All Work"
+              ? `/?tag=${currentTag}&page=${itemsPage}`
+              : itemsPage
+              ? `/?page=${itemsPage}`
+              : "/?page=1"
+          }
+        >
           <a className={styles.close_btn}>Close</a>
         </Link>
       </div>
@@ -143,9 +153,9 @@ const ArchiveItem = ({ document }) => {
       <main className={styles.main}>
         <ProjectViewer
           images={images}
-          prevItem={prevItem}
-          nextItem={nextItem}
-          current={current}
+          PrevItem={PrevItem}
+          NextItem={NextItem}
+          currentImage={currentImage}
         />
       </main>
 
@@ -157,7 +167,15 @@ const ArchiveItem = ({ document }) => {
         }
       >
         <div className={styles.close_col}>
-          <Link href={itemsPage ? `/${itemsPage}` : "/"}>
+          <Link
+            href={
+              itemsPage && currentTag && currentTag !== "All Work"
+                ? `/?tag=${currentTag}&page=${itemsPage}`
+                : itemsPage
+                ? `/?page=${itemsPage}`
+                : "/?page=1"
+            }
+          >
             <a className={styles.close_btn}>Close</a>
           </Link>
         </div>
@@ -190,7 +208,7 @@ const ArchiveItem = ({ document }) => {
         <div className={styles.multi_col}>
           {total > 1 ? (
             <span>
-              {current + 1}/{total}
+              {currentImage + 1}/{total}
             </span>
           ) : null}
         </div>

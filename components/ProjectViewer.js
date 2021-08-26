@@ -4,7 +4,7 @@ import Hammer from "react-hammerjs";
 // import { motion } from "framer-motion";
 import styles from "../styles/ProjectViewer.module.scss";
 
-const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
+const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
   // console.log("IMAGES", images);
 
   const [appHeight, setAppHeight] = useState(null);
@@ -32,15 +32,15 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
       const dir = swipe.direction;
 
       if (dir === 4) {
-        prevItem();
+        PrevItem();
       } else if (dir === 2) {
-        nextItem();
+        NextItem();
       }
     }
   };
 
   const HandleTap = () => {
-    nextItem();
+    NextItem();
   };
 
   return (
@@ -61,7 +61,9 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                 <li
                   key={key}
                   index={key}
-                  className={key === current ? styles.current : styles.hidden}
+                  className={
+                    key === currentImage ? styles.current : styles.hidden
+                  }
                 >
                   <div
                     className={
@@ -74,11 +76,11 @@ const ProjectViewer = ({ images, prevItem, nextItem, current }) => {
                     {images.length > 1 ? (
                       <React.Fragment>
                         <button
-                          onClick={() => prevItem()}
+                          onClick={() => PrevItem()}
                           className={styles.prev_btn}
                         />
                         <button
-                          onClick={() => nextItem()}
+                          onClick={() => NextItem()}
                           className={styles.next_btn}
                         />
                       </React.Fragment>
