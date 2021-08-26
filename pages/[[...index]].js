@@ -72,16 +72,8 @@ const Home = ({ archives, document, everything, paginate }) => {
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
-  // const ShuffeList = (list) => {
-  //   if (!archiveList) {
-  //     const default_list = _.shuffle(loaded_archives);
-  //     setArchiveList(default_list);
-  //   }
-  // };
-
   // ComponentDidMount
   useEffect(() => {
-    // ShuffeList();
     // console.log("SCROLL POS", scrollPos);
 
     if (scrollPos) {
