@@ -3,9 +3,11 @@ import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 
-const SiteNav = ({ page, count }) => {
+const SiteNav = ({ page, count, latest }) => {
   const { itemsPage, currentTag } = useContext(MemoryContext);
   const [navLink, setNavLink] = useState("/profile");
+
+  console.log("LATEST", latest);
 
   useEffect(() => {
     let nav_link;
@@ -29,7 +31,7 @@ const SiteNav = ({ page, count }) => {
     }
 
     setNavLink(nav_link);
-  }, [page]);
+  }, [page, itemsPage, currentTag]);
 
   return (
     <nav className={styles.navigation}>
@@ -39,7 +41,7 @@ const SiteNav = ({ page, count }) => {
             {page === "profile" ? "COLLECT New York City" : "COLLECT Archive"}
           </span>
           <div className={styles.info}>
-            {/*<span className={styles.latest}>Latest</span>*/}
+            {latest ? <span className={styles.latest}>Latest</span> : null}
             <span>({count ? count : 0})</span>
           </div>
         </a>

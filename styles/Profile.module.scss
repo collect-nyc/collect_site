@@ -92,6 +92,35 @@
       p {
         margin-bottom: 25px;
       }
+
+      .latest_info {
+        &.update {
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+            }
+            to {
+              opacity: 1;
+            }
+          }
+
+          @keyframes colorFade {
+            from {
+              color: $alert;
+            }
+            to {
+              color: $black;
+            }
+          }
+
+          p {
+            color: $alert;
+            opacity: 0;
+            animation: fadeIn 0.7s linear 0.5s forwards,
+              colorFade 0.7s linear 2.2s forwards;
+          }
+        }
+      }
     }
 
     h2 {
