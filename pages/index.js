@@ -32,6 +32,7 @@ export async function getServerSideProps({ query }) {
   const document = await Client().getSingle("index_page");
 
   let archives;
+  const pageSize = 50;
 
   // Pull Items Data Based On Params
   if (tagged) {
@@ -41,13 +42,13 @@ export async function getServerSideProps({ query }) {
         Prismic.Predicates.at("document.type", "archive_item"),
         Prismic.Predicates.at("document.tags", [tagged]),
       ],
-      { pageSize: 20, page: paginate }
+      { pageSize: pageSize, page: paginate }
     );
   } else {
     // All Work items
     archives = await Client().query(
       Prismic.Predicates.at("document.type", "archive_item"),
-      { pageSize: 20, page: paginate }
+      { pageSize: pageSize, page: paginate }
     );
   }
 
