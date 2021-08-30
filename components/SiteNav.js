@@ -7,8 +7,6 @@ const SiteNav = ({ page, count, latest }) => {
   const { itemsPage, currentTag } = useContext(MemoryContext);
   const [navLink, setNavLink] = useState("/profile");
 
-  console.log("LATEST", latest);
-
   useEffect(() => {
     let nav_link;
 
