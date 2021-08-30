@@ -32,7 +32,7 @@ export async function getServerSideProps({ query }) {
   const document = await Client().getSingle("index_page");
 
   let archives;
-  const pageSize = 50;
+  const pageSize = 75;
 
   // Pull Items Data Based On Params
   if (tagged) {
@@ -117,7 +117,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     setScrollPos(mainRef.current.scrollTop);
   };
 
-  // console.log("DATA", page_content, "ARCHIVES", archiveList);
+  console.log("DATA", page_content, "ARCHIVES", archiveList);
 
   // Pull archive items by tag
   const GetByTag = (name) => {
@@ -125,6 +125,8 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     setFilterOpen(false);
 
     router.push(`/?tag=${name}&page=1`);
+
+    mainRef.current.scrollTo(0, 0);
   };
 
   const AllTags = () => {
@@ -392,6 +394,8 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     } else {
       router.push(`/?page=${newpage}`);
     }
+
+    mainRef.current.scrollTo(0, 0);
   };
 
   return (
@@ -468,13 +472,14 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
 
       <div className={styles.title_holder}>
         <div className={styles.title}>
-          {page_content.header_image ? (
+          {page_content && page_content.header_image ? (
             <Image
-              layout={"responsive"}
               src={page_content.header_image.url}
               alt={page_content.header_image.alt}
+              layout={"responsive"}
               height={page_content.header_image.dimensions.height}
               width={page_content.header_image.dimensions.width}
+              unoptimized={true}
             />
           ) : null}
         </div>
@@ -487,8 +492,15 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
           {layoutView ? <GridView /> : <ListView />}
         </div>
 
-        <div className={styles.pagination}>
+        <div
+          className={
+            archives.total_pages > 1
+              ? `${styles.show} ${styles.pagination}`
+              : styles.pagination
+          }
+        >
           <ReactPaginate
+            disableInitialCallback={true}
             previousLabel={"back"}
             nextLabel={"next"}
             breakLabel={"..."}
