@@ -34,6 +34,9 @@ export default async function handler(req, res) {
     // console.log(mediaCount);
   });
 
+  //Page Data
+  const document = await Client().getSingle("profile");
+
   totalCount = data.length + mediaCount;
 
   // console.log("Total Count", totalCount);
@@ -43,6 +46,7 @@ export default async function handler(req, res) {
     data: data,
     count: data.length,
     media: totalCount,
+    profile: document.data?.latest,
   });
   res.status(200).json(jsondata);
 }

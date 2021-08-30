@@ -1,20 +1,28 @@
-import React, { useContext, useEffect } from "react";
+import React from "react";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
+import _ from "lodash";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function MyLayout({ page, children }) {
-  const { data, error } = useSWR("/api/get-count", fetcher);
+  const { data, error } = useSWR("/api/get-nav-data", fetcher);
 
   // console.log("MYLAYOUT", data);
 
   const totalCount = data ? data.count + data.media : null;
 
+  const latest_active =
+    data && _.find(data.profile, { update: true }) ? true : false;
+
   return (
     <React.Fragment>
       {page !== "project" ? (
-        <SiteNav page={page} count={data ? totalCount : null} />
+        <SiteNav
+          page={page}
+          count={data ? totalCount : null}
+          latest={latest_active}
+        />
       ) : null}
 
       {children}

@@ -18,7 +18,7 @@ export async function getServerSideProps() {
 }
 
 const Profile = ({ document }) => {
-  // console.log("Profile Content", document.data);
+  console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
@@ -64,6 +64,21 @@ const Profile = ({ document }) => {
           <div className={styles.summary}>
             <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
             <RichText render={page_content.summary} />
+
+            {page_content && page_content.latest
+              ? page_content.latest.map((handle, key) => (
+                  <div
+                    key={key}
+                    className={
+                      handle.update === true
+                        ? `${styles.latest_info} ${styles.update}`
+                        : styles.latest_info
+                    }
+                  >
+                    <RichText render={handle.text} />
+                  </div>
+                ))
+              : null}
           </div>
 
           <div className={styles.clients_collabs}>
