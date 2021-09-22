@@ -85,7 +85,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   // data
   const page_content = document.data;
   const tags = everything.tags;
-  // const loaded_archives = [...archives.results];
+  // const loaded_archives = archives;
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
