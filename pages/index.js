@@ -11,12 +11,10 @@ import Masonry from "react-masonry-css";
 import _ from "lodash";
 import Carot from "../svg/carot.svg";
 import MemoryContext from "../components/MemoryContext";
-import ReactPaginate from "react-paginate";
 import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
-  const paginate = query.page || 1;
   const tagged = query.tag || null;
 
   const everything = await fetch(
@@ -32,35 +30,65 @@ export async function getServerSideProps({ query }) {
   const document = await Client().getSingle("index_page");
 
   let archives;
-  const pageSize = 75;
+  const pageSize = 100;
+
+  const allItems = [];
+  let pageNum = 1;
+  let lastResult = [];
 
   // Pull Items Data Based On Params
   if (tagged) {
-    // Tagged items
-    archives = await Client().query(
-      [
-        Prismic.Predicates.at("document.type", "archive_item"),
-        Prismic.Predicates.at("document.tags", [tagged]),
-      ],
-      { pageSize: pageSize, page: paginate }
-    );
+    // if there is a Tag
+    do {
+      const resp = await Client().query(
+        [
+          Prismic.Predicates.at("document.type", "archive_item"),
+          Prismic.Predicates.at("document.tags", [tagged]),
+        ],
+        { pageSize: pageSize, page: pageNum }
+      );
+
+      lastResult = resp;
+
+      allItems.push(...resp.results);
+
+      pageNum++;
+      // console.log("Page Num", pageNum);
+    } while (lastResult.next_page !== null);
   } else {
-    // All Work items
-    archives = await Client().query(
-      Prismic.Predicates.at("document.type", "archive_item"),
-      { pageSize: pageSize, page: paginate }
-    );
+    // Get all items
+    do {
+      const resp = await Client().query(
+        Prismic.Predicates.at("document.type", "archive_item"),
+        { pageSize: pageSize, page: pageNum }
+      );
+
+      lastResult = resp;
+
+      allItems.push(...resp.results);
+
+      pageNum++;
+      // console.log("Page Num", pageNum);
+    } while (lastResult.next_page !== null);
   }
+
+  archives = allItems;
 
   const page = "index";
 
   return {
-    props: { document, archives, page, everything, paginate, tagged, query },
+    props: {
+      document,
+      archives,
+      page,
+      everything,
+      tagged,
+    },
   };
 }
 
-const Home = ({ archives, document, everything, paginate, tagged, query }) => {
-  // console.log("QUERY", query);
+const Home = ({ archives, document, everything, tagged }) => {
+  console.log("ALL ITEMS", archives);
   const router = useRouter();
 
   const {
@@ -76,65 +104,75 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     setArchiveList,
     scrollPos,
     setScrollPos,
-    itemsPage,
-    setItemsPage,
+    returnPage,
+    setReturnPage,
   } = useContext(MemoryContext);
+
+  console.log(returnPage);
 
   const mainRef = useRef(null);
 
   // data
   const page_content = document.data;
   const tags = everything.tags;
+<<<<<<< HEAD
   // const loaded_archives = archives;
+=======
+  const loadedArchives = [...archives];
+>>>>>>> biglist
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
+  const ShuffeList = (list) => {
+    const new_list = _.shuffle(list);
+    setArchiveList(new_list);
+  };
+
   // ComponentDidMount
   useEffect(() => {
     // console.log("SCROLL POS", scrollPos);
+
+    if (tagged) {
+      setCurrentTag(tagged);
+    }
 
     if (scrollPos) {
       mainRef.current.scrollTop = parseInt(scrollPos, 10);
     }
   }, []);
 
-  // Make sure any time paginate is updated, it's also updated in state
-  useEffect(() => {
-    setItemsPage(paginate);
-  }, [paginate]);
-
   // Set archive list when archive data changes
   useEffect(() => {
-    let loaded_archives = [...archives.results];
+    console.log("ARCHIVES CHANGED!");
 
-    // console.log("ARCHIVES UPDATED", loaded_archives);
-    setArchiveList(loaded_archives);
-  }, [archives, setArchiveList]);
+    if (!returnPage || !archiveList) {
+      let loaded_archives = loadedArchives;
+      ShuffeList(loaded_archives);
+    } else {
+      setReturnPage(false);
+    }
+  }, [archives]);
 
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
     setScrollPos(mainRef.current.scrollTop);
   };
 
-  console.log("DATA", page_content, "ARCHIVES", archiveList);
-
   // Pull archive items by tag
   const GetByTag = (name) => {
     setCurrentTag(name);
     setFilterOpen(false);
 
-    router.push(`/?tag=${name}&page=1`);
+    router.push(`/?tag=${name}`);
 
     mainRef.current.scrollTo(0, 0);
   };
 
   const AllTags = () => {
-    // const default_list = loaded_archives;
-    // setArchiveList(default_list);
     setCurrentTag("All Work");
-    router.push("/?page=1");
     setFilterOpen(false);
+    router.push(`/`);
   };
 
   const ToggleFilters = () => {
@@ -380,24 +418,6 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
     );
   };
 
-  // Handle Pagination Clicks
-  const PaginationHandler = (page) => {
-    const newpage = page.selected + 1;
-
-    // console.log("Pagination Handler", page, newpage, tagged);
-
-    setItemsPage(newpage);
-
-    if (tagged && tagged !== "All Work") {
-      setCurrentTag(tagged);
-      router.push(`/?tag=${tagged}&page=${newpage}`);
-    } else {
-      router.push(`/?page=${newpage}`);
-    }
-
-    mainRef.current.scrollTo(0, 0);
-  };
-
   return (
     <div className={styles.container} ref={mainRef}>
       <Head>
@@ -490,31 +510,6 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
       >
         <div className={styles.interior}>
           {layoutView ? <GridView /> : <ListView />}
-        </div>
-
-        <div
-          className={
-            archives.total_pages > 1
-              ? `${styles.show} ${styles.pagination}`
-              : styles.pagination
-          }
-        >
-          <ReactPaginate
-            disableInitialCallback={true}
-            previousLabel={"back"}
-            nextLabel={"next"}
-            breakLabel={"..."}
-            breakClassName={"break-me"}
-            activeClassName={styles.active}
-            containerClassName={styles.pagination_list}
-            subContainerClassName={styles.pages}
-            initialPage={parseInt(paginate - 1, 10)}
-            forcePage={itemsPage - 1}
-            pageCount={archives.total_pages}
-            marginPagesDisplayed={1}
-            pageRangeDisplayed={2}
-            onPageChange={PaginationHandler}
-          />
         </div>
       </main>
 

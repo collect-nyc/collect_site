@@ -44,7 +44,7 @@ const ArchiveItem = ({ document }) => {
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
 
-  const { itemsPage, currentTag } = useContext(MemoryContext);
+  const { currentTag, setReturnPage } = useContext(MemoryContext);
 
   const page_data = document.data;
   // console.log("Project Data", page_data);
@@ -53,6 +53,7 @@ const ArchiveItem = ({ document }) => {
 
   useEffect(() => {
     window.document.querySelector("body").classList.add("item_page");
+    setReturnPage(true);
 
     return () => {
       window.document.querySelector("body").classList.remove("item_page");
@@ -83,11 +84,7 @@ const ArchiveItem = ({ document }) => {
 
     const Exit = () => {
       router.push(
-        itemsPage && currentTag && currentTag !== "All Work"
-          ? `/?tag=${currentTag}&page=${itemsPage}`
-          : itemsPage
-          ? `/?page=${itemsPage}`
-          : "/?page=1"
+        currentTag && currentTag !== "All Work" ? `/?tag=${currentTag}` : "/"
       );
     };
 
@@ -139,11 +136,9 @@ const ArchiveItem = ({ document }) => {
       <div className={styles.mobile_close}>
         <Link
           href={
-            itemsPage && currentTag && currentTag !== "All Work"
-              ? `/?tag=${currentTag}&page=${itemsPage}`
-              : itemsPage
-              ? `/?page=${itemsPage}`
-              : "/?page=1"
+            currentTag && currentTag !== "All Work"
+              ? `/?tag=${currentTag}`
+              : "/"
           }
         >
           <a className={styles.close_btn}>Close</a>
@@ -169,11 +164,9 @@ const ArchiveItem = ({ document }) => {
         <div className={styles.close_col}>
           <Link
             href={
-              itemsPage && currentTag && currentTag !== "All Work"
-                ? `/?tag=${currentTag}&page=${itemsPage}`
-                : itemsPage
-                ? `/?page=${itemsPage}`
-                : "/?page=1"
+              currentTag && currentTag !== "All Work"
+                ? `/?tag=${currentTag}`
+                : "/"
             }
           >
             <a className={styles.close_btn}>Close</a>

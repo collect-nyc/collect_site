@@ -1,6 +1,8 @@
+import { useContext, useEffect } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
+import MemoryContext from "../components/MemoryContext";
 import Link from "next/link";
 import styles from "../styles/404.module.scss";
 
@@ -13,6 +15,12 @@ export async function getStaticProps() {
 }
 
 const Custom404 = () => {
+  const { setReturnPage } = useContext(MemoryContext);
+
+  useEffect(() => {
+    setReturnPage(true);
+  }, []);
+
   return (
     <div className={styles.container}>
       <Head>
