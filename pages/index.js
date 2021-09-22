@@ -34,6 +34,10 @@ export async function getServerSideProps({ query }) {
   let archives;
   const pageSize = 75;
 
+  const allItems = [];
+  let pageNum = 1;
+  let lastResult = [];
+
   // Pull Items Data Based On Params
   if (tagged) {
     // Tagged items
@@ -46,21 +50,47 @@ export async function getServerSideProps({ query }) {
     );
   } else {
     // All Work items
-    archives = await Client().query(
-      Prismic.Predicates.at("document.type", "archive_item"),
-      { pageSize: pageSize, page: paginate }
-    );
+    // archives = await Client().query(
+    //   Prismic.Predicates.at("document.type", "archive_item"),
+    //   { pageSize: pageSize, page: paginate }
+    // );
+
+    // Loop through pages of results and add those results to a storage array
+    do {
+      const resp = await Client().query(
+        Prismic.Predicates.at("document.type", "archive_item"),
+        { pageSize: pageSize, page: pageNum }
+      );
+
+      lastResult = resp;
+
+      allItems.push(...resp.results);
+
+      pageNum++;
+      // console.log("Page Num", pageNum);
+    } while (lastResult.next_page !== null);
   }
+
+  archives = allItems;
 
   const page = "index";
 
   return {
-    props: { document, archives, page, everything, paginate, tagged, query },
+    props: {
+      document,
+      archives,
+      page,
+      everything,
+      paginate,
+      tagged,
+      query,
+    },
   };
 }
 
 const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   // console.log("QUERY", query);
+  console.log("ALL ITEMS", archives);
   const router = useRouter();
 
   const {
@@ -85,7 +115,6 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   // data
   const page_content = document.data;
   const tags = everything.tags;
-  // const loaded_archives = [...archives.results];
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
@@ -106,7 +135,7 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
 
   // Set archive list when archive data changes
   useEffect(() => {
-    let loaded_archives = [...archives.results];
+    let loaded_archives = archives;
 
     // console.log("ARCHIVES UPDATED", loaded_archives);
     setArchiveList(loaded_archives);
