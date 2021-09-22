@@ -119,6 +119,13 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
+  const ShuffeList = (list, tag) => {
+    if (!archiveList && !tag) {
+      const new_list = _.shuffle(list);
+      setArchiveList(new_list);
+    }
+  };
+
   // ComponentDidMount
   useEffect(() => {
     // console.log("SCROLL POS", scrollPos);
@@ -137,8 +144,10 @@ const Home = ({ archives, document, everything, paginate, tagged, query }) => {
   useEffect(() => {
     let loaded_archives = archives;
 
+    ShuffeList(loaded_archives);
+
     // console.log("ARCHIVES UPDATED", loaded_archives);
-    setArchiveList(loaded_archives);
+    // setArchiveList(loaded_archives);
   }, [archives, setArchiveList]);
 
   const ScrollTracker = () => {
