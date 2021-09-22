@@ -88,7 +88,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, everything, tagged }) => {
-  console.log("ALL ITEMS", archives);
+  // console.log("ALL ITEMS", archives);
   const router = useRouter();
 
   const {
@@ -108,18 +108,12 @@ const Home = ({ archives, document, everything, tagged }) => {
     setReturnPage,
   } = useContext(MemoryContext);
 
-  console.log(returnPage);
-
   const mainRef = useRef(null);
 
   // data
   const page_content = document.data;
   const tags = everything.tags;
-<<<<<<< HEAD
-  // const loaded_archives = archives;
-=======
   const loadedArchives = [...archives];
->>>>>>> biglist
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
@@ -144,8 +138,6 @@ const Home = ({ archives, document, everything, tagged }) => {
 
   // Set archive list when archive data changes
   useEffect(() => {
-    console.log("ARCHIVES CHANGED!");
-
     if (!returnPage || !archiveList) {
       let loaded_archives = loadedArchives;
       ShuffeList(loaded_archives);
