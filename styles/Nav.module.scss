@@ -3,12 +3,133 @@
 
 .navigation {
   background-color: $alabaster;
-  border-bottom: 1px solid $black;
+  border-bottom: 1px solid $platinum;
   left: 0;
   position: fixed;
   top: 0;
   width: 100%;
   z-index: 4;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 20px $navGutter_desktop 19px;
+  .top_left {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    width: 50%;
+    .filter_button {
+      width: 75%;
+      display: flex;
+      .label {
+        display: flex;
+        justify-content: center;
+        button {
+          display: flex;
+          background-color: transparent;
+          border: none;
+          display: inline;
+          cursor: pointer;
+          margin: 0;
+          padding: {
+            top: 0px;
+            left: 0px;
+            right: 50px;
+            bottom: 0px;
+          }
+          text-align: left;
+          font-size: 13px;
+          height: 24px;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .open {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        svg {
+          display: inline-block;
+          position: relative;
+          top: -2px;
+        }
+      }
+    }
+    .tag_list {
+      margin: 0;
+      display: none;
+      column-count: 3;
+      column-gap: 0;
+      column-width: 33.3333333333%;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+      max-width: 350px;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        column-count: 2;
+        column-gap: 0px;
+        margin: 0 0 0 30px;
+        width: 55%;
+      }
+
+      &.tag_list_open {
+        display: block;
+      }
+
+      li {
+        display: block;
+        line-height: 19.5px;
+        padding-bottom: 10px;
+
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-align: left;
+          font-size: 13px;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .top_right {
+    display: flex;
+    font-size: 13px;
+    align-items: center;
+    &:active {
+      color: $black;
+    }
+    .controls {
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        padding-right: 10px;
+        height: 24px;
+      }
+    }
+
+    .latest {
+      color: $alert;
+      margin-right: 5px;
+    }
+  }
 
   &.nonav {
     display: none;
@@ -17,8 +138,14 @@
 
 .link_box {
   display: flex;
-  justify-content: space-between;
-  padding: 19px $navGutter_desktop 17px;
+  padding-right: 50px;
+  align-items: center;
+  width: 25%;
+  height: 24px;
+  a {
+    font-size: 13px;
+    display: flex;
+  }
 
   @media screen and (max-width: $mq-mobile-max) {
     padding: 20px $navGutter_mobile;

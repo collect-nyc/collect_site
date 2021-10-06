@@ -37,6 +37,12 @@ export default async function handler(req, res) {
   //Page Data
   const document = await Client().getSingle("profile");
 
+  const everything = await fetch(
+    "https://collectnyc.cdn.prismic.io/api/v2"
+  ).then((res) => res.json());
+
+  const tags = everything.tags;
+
   totalCount = data.length + mediaCount;
 
   // console.log("Total Count", totalCount);
@@ -46,6 +52,7 @@ export default async function handler(req, res) {
     data: data,
     count: data.length,
     media: totalCount,
+    tags: tags,
     profile: document.data?.latest,
   });
   res.status(200).json(jsondata);

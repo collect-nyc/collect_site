@@ -12,8 +12,12 @@ export default function MyLayout({ page, children }) {
 
   const totalCount = data ? data.count + data.media : null;
 
+  const tags = data ? data.tags : null;
+
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
+
+  console.log(page);
 
   return (
     <React.Fragment>
@@ -22,6 +26,7 @@ export default function MyLayout({ page, children }) {
           page={page}
           count={data ? totalCount : null}
           latest={latest_active}
+          tags={data ? tags : null}
         />
       ) : null}
 

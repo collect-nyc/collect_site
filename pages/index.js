@@ -87,9 +87,8 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-const Home = ({ archives, document, everything, tagged }) => {
+const Home = ({ archives, document, tagged }) => {
   // console.log("ALL ITEMS", archives);
-  const router = useRouter();
 
   const {
     layoutView,
@@ -109,14 +108,12 @@ const Home = ({ archives, document, everything, tagged }) => {
   } = useContext(MemoryContext);
 
   const mainRef = useRef(null);
+  const initialAzSort = useRef(true);
+  const initialTimeSort = useRef(true);
 
   // data
   const page_content = document.data;
-  const tags = everything.tags;
   const loadedArchives = [...archives];
-
-  // State
-  const [filterOpen, setFilterOpen] = useState(false);
 
   const ShuffeList = (list) => {
     const new_list = _.shuffle(list);
@@ -146,40 +143,37 @@ const Home = ({ archives, document, everything, tagged }) => {
     }
   }, [archives]);
 
+  useEffect(() => {
+    if (initialAzSort.current == true) {
+      // dont do any sorting on first render
+      initialAzSort.current = false;
+    } else {
+      AlphabetSort();
+    }
+  }, [azSort]);
+
+  useEffect(() => {
+    if (initialTimeSort.current == true) {
+      // dont do any sorting on first render
+      initialTimeSort.current = false;
+    } else {
+      TimeSort();
+    }
+  }, [timeSort]);
+
+  useEffect(() => {
+    mainRef.current.scrollTo(0, 0);
+  }, [currentTag]);
+
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
     setScrollPos(mainRef.current.scrollTop);
   };
 
-  // Pull archive items by tag
-  const GetByTag = (name) => {
-    setCurrentTag(name);
-    setFilterOpen(false);
-
-    router.push(`/?tag=${name}`);
-
-    mainRef.current.scrollTo(0, 0);
-  };
-
-  const AllTags = () => {
-    setCurrentTag("All Work");
-    setFilterOpen(false);
-    router.push(`/`);
-  };
-
-  const ToggleFilters = () => {
-    setFilterOpen(!filterOpen);
-  };
-
-  // Switch from List to Grid view
-  const SwapView = () => {
-    setLayoutView(!layoutView);
-    // setGridView(!gridView);
-  };
-
   // Sort by title alphabetically
   const AlphabetSort = () => {
     if (azSort === "az") {
+      console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -189,10 +183,11 @@ const Home = ({ archives, document, everything, tagged }) => {
         ],
         ["desc"]
       );
+      console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
-      setAzSort("za");
     } else if (azSort === "za" || !azSort) {
+      console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -202,9 +197,9 @@ const Home = ({ archives, document, everything, tagged }) => {
         ],
         ["asc"]
       );
+      console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
-      setAzSort("az");
     }
   };
 
@@ -222,7 +217,7 @@ const Home = ({ archives, document, everything, tagged }) => {
       );
 
       setArchiveList(list);
-      setTimeSort("new");
+      // setTimeSort("new");
     } else if (timeSort === "new") {
       const list = _.orderBy(
         archiveList,
@@ -235,7 +230,7 @@ const Home = ({ archives, document, everything, tagged }) => {
       );
 
       setArchiveList(list);
-      setTimeSort("old");
+      // setTimeSort("old");
     } else if (timeSort === "old") {
       const list = _.orderBy(
         archiveList,
@@ -248,7 +243,7 @@ const Home = ({ archives, document, everything, tagged }) => {
       );
 
       setArchiveList(list);
-      setTimeSort("new");
+      // setTimeSort("new");
     }
   };
 
@@ -421,66 +416,7 @@ const Home = ({ archives, document, everything, tagged }) => {
         <SharedHead />
       </Head>
 
-      <nav className={styles.filter_bar}>
-        <span className={styles.label}>
-          <button
-            className={filterOpen ? styles.open : styles.closed}
-            onClick={() => ToggleFilters()}
-          >
-            {currentTag} <Carot />
-          </button>
-        </span>
-
-        <ul
-          className={
-            filterOpen
-              ? `${styles.tag_list} ${styles.tag_list_open}`
-              : styles.tag_list
-          }
-        >
-          {currentTag === "All Work" ? null : (
-            <li>
-              <button onClick={() => AllTags()}>All Work</button>
-            </li>
-          )}
-
-          {tags && tags.length > 0
-            ? tags.map((tag, key) =>
-                tag === currentTag ? null : (
-                  <li key={key}>
-                    <button index={tag.id} onClick={() => GetByTag(tag)}>
-                      {tag}
-                    </button>
-                  </li>
-                )
-              )
-            : null}
-        </ul>
-
-        <span
-          className={
-            filterOpen
-              ? `${styles.controls} ${styles.controls_open}`
-              : styles.controls
-          }
-        >
-          <button onClick={() => SwapView()}>
-            {layoutView ? "Grid" : "List"}
-          </button>
-          <button onClick={() => AlphabetSort()}>
-            {!azSort || azSort === "az" ? "A-Z" : "Z-A"}
-          </button>
-          <button onClick={() => TimeSort()}>
-            {!timeSort
-              ? "New, Old"
-              : timeSort === "new"
-              ? "New, Old"
-              : timeSort === "old"
-              ? "Old, New"
-              : null}
-          </button>
-        </span>
-      </nav>
+      {/* <nav className={styles.filter_bar}></nav> */}
 
       <div className={styles.title_holder}>
         <div className={styles.title}>

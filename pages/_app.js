@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }) {
   const [layoutView, setLayoutView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
-  const [archiveList, setArchiveList] = useState(null);
+  const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
   const [scrollPos, setScrollPos] = useState(null);
   const [returnPage, setReturnPage] = useState(false);

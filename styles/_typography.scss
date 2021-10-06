@@ -96,6 +96,16 @@ $courier: "Courier Prime";
   text-transform: uppercase;
 }
 
+.nav_text {
+  font-size: 13px;
+  font-weight: normal;
+  text-rendering: optimizeLegibility;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    font-size: 15px;
+  }
+}
+
 .courier_label {
   font-family: $courier;
   font-size: 16px;
