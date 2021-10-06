@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
-import Carot from "../svg/carot.svg";
+import RightArrow from "./../svg/right-arrow.svg";
 import MemoryContext from "../components/MemoryContext";
 import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
@@ -303,11 +303,16 @@ const Home = ({ archives, document, tagged }) => {
                       </span>
 
                       <span className={styles.date}>
-                        {archive.data.creation_date
-                          ? DateTime.fromISO(
-                              archive.data.creation_date
-                            ).toFormat("yyyy")
-                          : "TBD"}
+                        <span>
+                          {archive.data.creation_date
+                            ? DateTime.fromISO(
+                                archive.data.creation_date
+                              ).toFormat("yyyy")
+                            : "TBD"}
+                        </span>
+                        <span className={styles.view_project}>
+                          View Project <RightArrow />
+                        </span>
                       </span>
                     </a>
                   </Link>
