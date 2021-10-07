@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
+import LoaderContext from "../components/LoaderContext";
+import Loader from "../components/Loader";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
+  const [loaderDidRun, setLoaderDidRun] = useState(false);
 
   // console.log("MYLAYOUT", data);
 
@@ -17,20 +20,20 @@ export default function MyLayout({ page, children }) {
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
 
-  console.log(page);
-
   return (
     <React.Fragment>
-      {page !== "project" ? (
-        <SiteNav
-          page={page}
-          count={data ? totalCount : null}
-          latest={latest_active}
-          tags={data ? tags : null}
-        />
-      ) : null}
-
-      {children}
+      <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
+        <Loader page={page} />
+        {page !== "project" ? (
+          <SiteNav
+            page={page}
+            count={data ? totalCount : null}
+            latest={latest_active}
+            tags={data ? tags : null}
+          />
+        ) : null}
+        {children}
+      </LoaderContext.Provider>
     </React.Fragment>
   );
 }

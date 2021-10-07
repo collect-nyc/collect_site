@@ -131,6 +131,8 @@ const Home = ({ archives, document, tagged }) => {
     if (scrollPos) {
       mainRef.current.scrollTop = parseInt(scrollPos, 10);
     }
+
+    setArchiveList(archiveList);
   }, []);
 
   // Set archive list when archive data changes

@@ -1,0 +1,29 @@
+@import "./colors";
+@import "./helpers";
+
+.site_loader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  height: 100vh;
+  .inner_card {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    background-color: $alabaster;
+    .nyc,
+    .archive {
+      width: 50%;
+      height: 100vh;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nyc {
+      border-right: 1px solid $black;
+    }
+  }
+}
