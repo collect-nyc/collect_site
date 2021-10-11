@@ -3,9 +3,11 @@
 @import "./helpers";
 
 .container {
-  height: 100%;
-  overflow: hidden;
-  // height: -webkit-fill-available;
+  // height: 100%;
+  // overflow: hidden;
+  // height: 100%;
+
+  height: -webkit-fill-available;
 
   .mobile_close {
     display: none;
@@ -20,31 +22,59 @@
   }
 
   .main {
+    height: 100vh;
     // background-color: red;
-    height: calc(100vh - 67px);
-    position: relative;
-    z-index: 1;
+
+    // position: relative;
+    z-index: 0;
+    .inner {
+      height: 100vh;
+      position: relative;
+    }
 
     @media screen and (max-width: $mq-mobile-max) {
       height: calc(100vh - 61px);
     }
   }
 
+  .archive {
+    position: absolute;
+    left: $navGutter_desktop;
+    top: 50%;
+    z-index: 10;
+  }
+  .info {
+    :first-child {
+      padding-right: 40px;
+    }
+    a {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    position: absolute;
+    right: $navGutter_desktop;
+    top: 50%;
+    z-index: 10;
+  }
+
   .project_footer {
     background-color: $alabaster;
-    border-top: 1px solid $black;
+    border-top: 1px solid $platinum;
     display: flex;
+    // position: relative;
+    // justify-content: space-between;
     // display: none;
-    align-items: flex-end;
+    align-items: flex-start;
     padding: {
       top: 22px;
       bottom: 20px;
       left: $navGutter_desktop;
       right: $navGutter_desktop;
     }
-    position: fixed;
-    bottom: 0;
-    left: 0;
+    // position: fixed;
+    // bottom: 0;
+    // left: 0;
     width: 100%;
     z-index: 2;
 
@@ -66,6 +96,7 @@
     .multi_col {
       @extend .courier_label;
       text-align: right;
+      margin-left: auto;
 
       @media screen and (max-width: $mq-mobile-max) {
         text-align: right;
@@ -79,21 +110,45 @@
       }
     }
 
-    .title {
-      @extend .body_text;
-      padding-left: 25px;
-      text-transform: uppercase;
+    .title_and_description {
+      width: 50%;
+      .title {
+        @extend .body_text;
+        text-transform: uppercase;
 
-      @media screen and (max-width: $mq-mobile-max) {
-        padding-left: 0;
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: 0;
+        }
       }
     }
 
-    .tags {
-      padding-left: 25px;
+    .credits_and_download {
+      display: flex;
+      justify-content: space-between;
+      width: 50%;
+      .credits {
+        @extend .body_text;
+        text-transform: uppercase;
+        line-height: 18px;
+        width: 50%;
+        .credit {
+          padding-bottom: 20px;
+        }
+        a {
+          text-decoration: underline;
+        }
+        .name {
+          text-transform: none;
+        }
 
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: 0;
+        }
+      }
+
+      .download {
+        width: 50%;
+        text-align: right;
       }
     }
 
