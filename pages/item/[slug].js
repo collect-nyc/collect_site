@@ -136,7 +136,7 @@ const ArchiveItem = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <div className={styles.mobile_close}>
+      {/* <div className={styles.mobile_close}>
         <Link
           href={
             currentTag && currentTag !== "All Work"
@@ -146,7 +146,7 @@ const ArchiveItem = ({ document }) => {
         >
           <a className={styles.close_btn}>Close</a>
         </Link>
-      </div>
+      </div> */}
 
       <main className={styles.main}>
         <div className={styles.inner}>
@@ -165,7 +165,7 @@ const ArchiveItem = ({ document }) => {
           </div>
           <div className={styles.info}>
             {total > 1 ? (
-              <span>
+              <span className={styles.current_image}>
                 {currentImage + 1}/{total}
               </span>
             ) : null}

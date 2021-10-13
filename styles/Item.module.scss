@@ -42,6 +42,10 @@
     left: $navGutter_desktop;
     top: 50%;
     z-index: 10;
+    @media screen and (max-width: $mq-mobile-max) {
+      top: 20px;
+      left: $gutter_mobile;
+    }
   }
   .info {
     :first-child {
@@ -52,10 +56,27 @@
         cursor: pointer;
       }
     }
+    .current_image {
+      text-align: left;
+    }
     position: absolute;
     right: $navGutter_desktop;
     top: 50%;
     z-index: 10;
+    @media screen and (max-width: $mq-mobile-max) {
+      position: absolute;
+      top: auto;
+      bottom: 20px;
+      left: $gutter_mobile;
+      flex-direction: row-reverse;
+      justify-content: space-between;
+      align-items: flex-start;
+      .current_image {
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+      }
+    }
   }
 
   .project_footer {
@@ -79,6 +100,7 @@
     z-index: 2;
 
     @media screen and (max-width: $mq-mobile-max) {
+      flex-direction: column;
       justify-content: space-between;
       padding: {
         top: 20px;
@@ -115,9 +137,13 @@
       .title {
         @extend .body_text;
         text-transform: uppercase;
-
-        @media screen and (max-width: $mq-mobile-max) {
-          padding-left: 0;
+      }
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-left: 0;
+        padding-bottom: 50px;
+        width: 100%;
+        .title {
+          width: 100%;
         }
       }
     }
@@ -126,6 +152,7 @@
       display: flex;
       justify-content: space-between;
       width: 50%;
+      line-height: 18px;
       .credits {
         @extend .body_text;
         text-transform: uppercase;
@@ -149,6 +176,19 @@
       .download {
         width: 50%;
         text-align: right;
+        @media screen and (max-width: $mq-mobile-max) {
+          display: none;
+        }
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
+        .credits {
+          width: 100%;
+          padding-left: 0;
+        }
+        .download {
+        }
       }
     }
 
