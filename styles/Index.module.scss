@@ -46,7 +46,7 @@
   z-index: 2;
 
   @media screen and (max-width: $mq-mobile-min) {
-    padding: 340px $gutter_mobile 0;
+    padding: 340px 0 0 0;
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
@@ -129,6 +129,17 @@
             display: flex;
             justify-content: space-between;
             width: 33.33%;
+            @media screen and (max-width: $mq-mobile-max) {
+              justify-content: flex-end;
+              padding: {
+                right: $gutter_mobile;
+              }
+            }
+          }
+          @media screen and (max-width: $mq-mobile-max) {
+            padding: {
+              left: $gutter_mobile;
+            }
           }
         }
 

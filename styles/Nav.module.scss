@@ -61,6 +61,9 @@
           top: -2px;
         }
       }
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
     .tag_list {
       margin: 0;
@@ -116,12 +119,16 @@
       color: $black;
     }
     .controls {
+      display: flex;
       button {
         background-color: transparent;
         border: none;
         cursor: pointer;
         padding-right: 10px;
         height: 24px;
+      }
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
       }
     }
 
@@ -133,6 +140,11 @@
 
   &.nonav {
     display: none;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    align-items: center;
+    padding: 20px $navGutter_mobile;
   }
 }
 
@@ -148,7 +160,8 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 20px $navGutter_mobile;
+    padding: 0px;
+    width: 100%;
   }
 
   &:active {
@@ -164,5 +177,129 @@
   .latest {
     color: $alert;
     margin-right: 5px;
+  }
+}
+
+.mobile_navigation {
+  display: none;
+  @media screen and (max-width: $mq-mobile-max) {
+    background-color: $alabaster;
+    border-bottom: 1px solid $platinum;
+    left: 0;
+    position: fixed;
+    top: 65px;
+    width: 100%;
+    z-index: 5;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 20px $navGutter_mobile;
+  }
+  .mobile_left {
+    display: flex;
+    list-style: none;
+    justify-content: flex-start;
+    width: 50%;
+    .filter_button {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+      .label {
+        display: flex;
+        justify-content: flex-start;
+        button {
+          display: flex;
+          background-color: transparent;
+          border: none;
+          display: inline;
+          cursor: pointer;
+          margin: 0;
+          padding: {
+            top: 0px;
+            left: 0px;
+            right: 50px;
+            bottom: 0px;
+          }
+          text-align: left;
+          font-size: 13px;
+          height: 24px;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        .open {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        svg {
+          display: inline-block;
+          position: relative;
+          top: -2px;
+        }
+      }
+    }
+    .tag_list {
+      margin: 0;
+      display: none;
+      column-count: 2;
+      column-gap: 0;
+      column-width: 50%;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+      max-width: 350px;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        column-count: 2;
+        column-gap: 0px;
+        width: 100%;
+      }
+
+      &.tag_list_open {
+        display: block;
+      }
+
+      li {
+        line-height: 19.5px;
+        // padding-bottom: 10px;
+        margin-bottom: auto;
+        width: 50%;
+
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-align: left;
+          font-size: 13px;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+      }
+    }
+  }
+  .mobile_right {
+    .controls {
+      display: flex;
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        height: 24px;
+      }
+    }
   }
 }

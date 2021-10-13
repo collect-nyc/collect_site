@@ -422,9 +422,6 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
-
-      {/* <nav className={styles.filter_bar}></nav> */}
-
       <div className={styles.title_holder}>
         <div className={styles.title}>
           {page_content && page_content.header_image ? (
@@ -439,7 +436,6 @@ const Home = ({ archives, document, tagged }) => {
           ) : null}
         </div>
       </div>
-
       <main
         className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
       >
@@ -447,7 +443,6 @@ const Home = ({ archives, document, tagged }) => {
           {layoutView ? <GridView /> : <ListView />}
         </div>
       </main>
-
       <footer className={styles.footer}>
         <Image
           layout="responsive"
