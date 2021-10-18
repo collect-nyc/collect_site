@@ -201,8 +201,8 @@ const ArchiveItem = ({ document }) => {
             <div className={styles.credits}>
               {page_data.body1[0]
                 ? page_data.body1[0].items.map((credit, index) => (
-                    <div className={styles.credit}>
-                      <p key={index}>{credit.title_or_category[0].text}</p>
+                    <div key={index} className={styles.credit}>
+                      <p>{credit.title_or_category[0].text}</p>
                       {/* loop through name under this title or category */}
                       {credit.names.map((name, index) =>
                         name.spans.length > 0 ? (
