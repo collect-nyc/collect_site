@@ -3,11 +3,42 @@
 @import "./typography";
 
 .container {
-  padding: 50px 0 0;
   overflow-y: scroll;
   height: 100vh;
 
   @media (hover: none) {
     padding-bottom: 130px;
+  }
+}
+
+.main {
+  padding: 50px 0 0;
+  position: relative;
+
+  .divider {
+    background-color: $platinum;
+    display: block;
+    position: fixed;
+    left: calc(50% - 7px);
+    top: 0;
+    height: 100%;
+    // transform: translateX(-50%);
+    width: 1px;
+    z-index: 0;
+  }
+
+  section.double_image {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    .left_side,
+    .right_side {
+      width: 50%;
+    }
+
+    .left_side {
+      width: 50%;
+    }
   }
 }

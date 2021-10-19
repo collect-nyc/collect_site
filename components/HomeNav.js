@@ -45,7 +45,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
 
   return (
     <>
-      <nav className={styles.navigation}>
+      <nav className={`${styles.navigation} ${styles.home}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
             <Link href={navLink}>

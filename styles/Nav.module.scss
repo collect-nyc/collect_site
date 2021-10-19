@@ -14,6 +14,11 @@
   align-items: flex-start;
   padding: 13px $navGutter_desktop 12px;
 
+  &.home {
+    background-color: transparent;
+    border-bottom: none;
+  }
+
   .top_left {
     display: flex;
     list-style: none;

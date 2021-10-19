@@ -76,35 +76,52 @@ const Home = ({ document }) => {
     // 2up Images
     if (slice.slice_type === "2up_images") {
       return (
-        <section className={styles.double_image} key={index}>
-          <p>hello</p>
+        <section
+          key={index}
+          className={
+            slice.primary.left_side_gutters && slice.primary.left_side_gutters
+              ? `${styles.double_image} ${styles.left_gutters} ${styles.right_gutters}`
+              : slice.primary.left_side_gutters &&
+                !slice.primary.right_side_gutters
+              ? `${styles.double_image} ${styles.left_gutters}`
+              : slice.primary.right_side_gutters &&
+                !slice.primary.left_side_gutters
+              ? `${styles.double_image} ${styles.right_gutters}`
+              : `${styles.double_image}`
+          }
+        >
+          <div className={styles.left_side}>
+            {slice.primary.first_image.url ? (
+              <Image
+                src={slice.primary.first_image.url}
+                layout={"responsive"}
+                height={slice.primary.first_image.dimensions.height}
+                width={slice.primary.first_image.dimensions.width}
+                alt={slice.primary.first_image.alt}
+              />
+            ) : null}
+          </div>
+          <div className={styles.right_side}>
+            {slice.primary.second_image.url ? (
+              <Image
+                src={slice.primary.second_image.url}
+                layout={"responsive"}
+                height={slice.primary.second_image.dimensions.height}
+                width={slice.primary.second_image.dimensions.width}
+                alt={slice.primary.second_image.alt}
+              />
+            ) : null}
+          </div>
         </section>
       );
 
       // Featured Items Slice
-    } else if (slice.slice_type === "featured_items") {
-      const featuredContent = slice.items.map((featuredItem, featuredIndex) => (
-        <div key={featuredIndex}>
-          <img src={featuredItem.image.url} alt={featuredItem.image.alt} />
-          {RichText.render(featuredItem.title, linkResolver)}
-          {RichText.render(featuredItem.summary, linkResolver)}
-        </div>
-      ));
+    } else if (slice.slice_type === "single_image") {
       return (
-        <div className="featured-items" key={index}>
-          {featuredContent}
-        </div>
+        <section key={index}>
+          <p>sup</p>
+        </section>
       );
-
-      // Text Slice
-    } else if (slice.slice_type === "text") {
-      return (
-        <div className="text" key={index}>
-          {RichText.render(slice.primary.rich_text, linkResolver)}
-        </div>
-      );
-
-      // Return null by default
     } else {
       return null;
     }
@@ -121,7 +138,10 @@ const Home = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <main className={`${styles.main} ${styles.grid}`}>{pageContent}</main>
+      <main className={styles.main}>
+        <div className={styles.divider} />
+        {pageContent}
+      </main>
     </div>
   );
 };
