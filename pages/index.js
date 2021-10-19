@@ -79,18 +79,22 @@ const Home = ({ document }) => {
         <section
           key={index}
           className={
-            slice.primary.left_side_gutters && slice.primary.left_side_gutters
-              ? `${styles.double_image} ${styles.left_gutters} ${styles.right_gutters}`
-              : slice.primary.left_side_gutters &&
-                !slice.primary.right_side_gutters
-              ? `${styles.double_image} ${styles.left_gutters}`
-              : slice.primary.right_side_gutters &&
-                !slice.primary.left_side_gutters
-              ? `${styles.double_image} ${styles.right_gutters}`
+            slice.primary.vertical_padding === "Default"
+              ? `${styles.double_image} ${styles.default}`
+              : slice.primary.vertical_padding === "Half"
+              ? `${styles.double_image} ${styles.half}`
+              : slice.primary.vertical_padding === "Extra"
+              ? `${styles.double_image} ${styles.extra}`
               : `${styles.double_image}`
           }
         >
-          <div className={styles.left_side}>
+          <div
+            className={
+              slice.primary.left_side_gutters
+                ? `${styles.left_side} ${styles.gutters}`
+                : `${styles.left_side}`
+            }
+          >
             {slice.primary.first_image.url ? (
               <Image
                 src={slice.primary.first_image.url}
@@ -101,7 +105,13 @@ const Home = ({ document }) => {
               />
             ) : null}
           </div>
-          <div className={styles.right_side}>
+          <div
+            className={
+              slice.primary.right_side_gutters
+                ? `${styles.right_side} ${styles.gutters}`
+                : `${styles.right_side}`
+            }
+          >
             {slice.primary.second_image.url ? (
               <Image
                 src={slice.primary.second_image.url}

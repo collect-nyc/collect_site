@@ -12,7 +12,7 @@
 }
 
 .main {
-  padding: 50px 0 0;
+  padding: 90px 0 0;
   position: relative;
 
   .divider {
@@ -32,6 +32,18 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
+    &.default {
+      margin-bottom: 120px;
+    }
+
+    &.half {
+      margin-bottom: 60px;
+    }
+
+    &.extra {
+      margin-bottom: 240px;
+    }
+
     .left_side,
     .right_side {
       width: 50%;
@@ -39,6 +51,14 @@
 
     .left_side {
       width: 50%;
+    }
+
+    .left_side.gutters {
+      padding: 0 $gutter_desktop;
+    }
+
+    .right_side.gutters {
+      padding: 0 $gutter_desktop;
     }
   }
 }
