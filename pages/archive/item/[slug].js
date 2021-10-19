@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
-import LeftArrow from "../../svg/left-arrow.svg";
+import LeftArrow from "../../../svg/left-arrow.svg";
 // import { RichText } from "prismic-reactjs";
 import { DateTime } from "luxon";
 import Prismic from "prismic-javascript";
