@@ -12,18 +12,22 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 20px $navGutter_desktop 19px;
+  padding: 13px $navGutter_desktop 12px;
+
   .top_left {
     display: flex;
     list-style: none;
     justify-content: flex-start;
     width: 50%;
+
     .filter_button {
       width: 75%;
       display: flex;
+
       .label {
         display: flex;
         justify-content: center;
+
         button {
           display: flex;
           background-color: transparent;
@@ -49,6 +53,7 @@
             text-decoration: underline;
           }
         }
+
         .open {
           svg {
             transform: rotate(180deg);
@@ -115,6 +120,9 @@
     display: flex;
     font-size: 13px;
     align-items: center;
+    justify-content: space-between;
+    width: 50%;
+
     &:active {
       color: $black;
     }
@@ -152,8 +160,9 @@
   display: flex;
   padding-right: 50px;
   align-items: center;
-  width: 25%;
+  width: auto;
   height: 24px;
+
   a {
     font-size: 13px;
     display: flex;

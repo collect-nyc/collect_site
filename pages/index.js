@@ -41,7 +41,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ document }) => {
-  // console.log("Landing Data", document);
+  console.log("Landing Data", document.data);
 
   const {
     layoutView,
@@ -70,6 +70,46 @@ const Home = ({ document }) => {
     setScrollPos(mainRef.current.scrollTop);
   };
 
+  const pageContent = document.data.body.map((slice, index) => {
+    // Render the right markup for the given slice type
+
+    // 2up Images
+    if (slice.slice_type === "2up_images") {
+      return (
+        <section className={styles.double_image} key={index}>
+          <p>hello</p>
+        </section>
+      );
+
+      // Featured Items Slice
+    } else if (slice.slice_type === "featured_items") {
+      const featuredContent = slice.items.map((featuredItem, featuredIndex) => (
+        <div key={featuredIndex}>
+          <img src={featuredItem.image.url} alt={featuredItem.image.alt} />
+          {RichText.render(featuredItem.title, linkResolver)}
+          {RichText.render(featuredItem.summary, linkResolver)}
+        </div>
+      ));
+      return (
+        <div className="featured-items" key={index}>
+          {featuredContent}
+        </div>
+      );
+
+      // Text Slice
+    } else if (slice.slice_type === "text") {
+      return (
+        <div className="text" key={index}>
+          {RichText.render(slice.primary.rich_text, linkResolver)}
+        </div>
+      );
+
+      // Return null by default
+    } else {
+      return null;
+    }
+  });
+
   return (
     <div className={styles.container}>
       <Head>
@@ -81,7 +121,7 @@ const Home = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <main className={`${styles.main} ${styles.grid}`}></main>
+      <main className={`${styles.main} ${styles.grid}`}>{pageContent}</main>
     </div>
   );
 };

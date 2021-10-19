@@ -12,7 +12,7 @@ import _ from "lodash";
 import RightArrow from "./../svg/right-arrow.svg";
 import MemoryContext from "../../../components/MemoryContext";
 import { useRouter } from "next/router";
-import styles from "../styles/Index.module.scss";
+import styles from "../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
   const tagged = query.tag || null;
@@ -74,7 +74,7 @@ export async function getServerSideProps({ query }) {
 
   archives = allItems;
 
-  const page = "index";
+  const page = "archive_index";
 
   return {
     props: {
