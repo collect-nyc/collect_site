@@ -12,7 +12,7 @@ import Prismic from "prismic-javascript";
 import { Client } from "../../../lib/prismic-config";
 import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
-import styles from "../../styles/Item.module.scss";
+import styles from "../../../styles/Item.module.scss";
 import { divide } from "lodash";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
