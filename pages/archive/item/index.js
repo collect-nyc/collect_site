@@ -1,18 +1,18 @@
 import { useState, useEffect, useContext, useRef } from "react";
 import Head from "next/head";
-import SharedHead from "../../../components/SharedHead";
-import MyLayout from "../../../layouts/MyLayout";
 import Prismic from "prismic-javascript";
-import { Client } from "../../../lib/prismic-config";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
-import RightArrow from "./../svg/right-arrow.svg";
+import SharedHead from "../../../components/SharedHead";
+import MyLayout from "../../../layouts/MyLayout";
+import { Client } from "../../../lib/prismic-config";
+import RightArrow from "../../../svg/right-arrow.svg";
 import MemoryContext from "../../../components/MemoryContext";
-import { useRouter } from "next/router";
-import styles from "../styles/ArchiveIndex.module.scss";
+import styles from "../../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
   const tagged = query.tag || null;

@@ -1,19 +1,19 @@
 import React, { useEffect, useState, useContext, createRef } from "react";
 import Head from "next/head";
-import SharedHead from "../../../components/SharedHead";
 import Link from "next/link";
+import { DateTime } from "luxon";
+import { divide } from "lodash";
+import Prismic from "prismic-javascript";
+// import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
+import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
 import LeftArrow from "../../../svg/left-arrow.svg";
-// import { RichText } from "prismic-reactjs";
-import { DateTime } from "luxon";
-import Prismic from "prismic-javascript";
 import { Client } from "../../../lib/prismic-config";
 import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
 import styles from "../../../styles/Item.module.scss";
-import { divide } from "lodash";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const document = await Client().getByUID("archive_item", params.slug);
