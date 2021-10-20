@@ -12,7 +12,7 @@
 }
 
 .main {
-  padding: 90px 0 0;
+  padding: 90px 0 130px;
   position: relative;
 
   .divider {
@@ -59,6 +59,16 @@
 
     .right_side.gutters {
       padding: 0 $gutter_desktop;
+    }
+  }
+
+  section.single_image {
+    figure {
+      padding: 0 #{$gutter_desktop * 2};
+
+      &.full_bleed {
+        padding: 0;
+      }
     }
   }
 }

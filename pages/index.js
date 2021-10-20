@@ -128,8 +128,31 @@ const Home = ({ document }) => {
       // Featured Items Slice
     } else if (slice.slice_type === "single_image") {
       return (
-        <section key={index}>
-          <p>sup</p>
+        <section
+          key={index}
+          className={
+            slice.primary.vertical_padding === "Default"
+              ? `${styles.single_image} ${styles.default}`
+              : slice.primary.vertical_padding === "Half"
+              ? `${styles.single_image} ${styles.half}`
+              : slice.primary.vertical_padding === "Extra"
+              ? `${styles.single_image} ${styles.extra}`
+              : `${styles.single_image}`
+          }
+        >
+          <figure
+            className={slice.primary.full_bleed ? `${styles.full_bleed}` : null}
+          >
+            {slice.primary.image.url ? (
+              <Image
+                src={slice.primary.image.url}
+                layout={"responsive"}
+                height={slice.primary.image.dimensions.height}
+                width={slice.primary.image.dimensions.width}
+                alt={slice.primary.image.alt}
+              />
+            ) : null}
+          </figure>
         </section>
       );
     } else {
