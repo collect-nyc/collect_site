@@ -73,7 +73,7 @@ const Home = ({ document }) => {
   const pageContent = document.data.body.map((slice, index) => {
     // Render the right markup for the given slice type
 
-    // 2up Images
+    // 2up Images Slice
     if (slice.slice_type === "2up_images") {
       return (
         <section
@@ -125,8 +125,31 @@ const Home = ({ document }) => {
         </section>
       );
 
-      // Featured Items Slice
+      // Single Image Slice
     } else if (slice.slice_type === "single_image") {
+      const SingleImage =
+        slice.primary.archive_link && slice.primary.archive_link.slug ? (
+          <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+            <a>
+              <Image
+                src={slice.primary.image.url}
+                layout={"responsive"}
+                height={slice.primary.image.dimensions.height}
+                width={slice.primary.image.dimensions.width}
+                alt={slice.primary.image.alt}
+              />
+            </a>
+          </Link>
+        ) : (
+          <Image
+            src={slice.primary.image.url}
+            layout={"responsive"}
+            height={slice.primary.image.dimensions.height}
+            width={slice.primary.image.dimensions.width}
+            alt={slice.primary.image.alt}
+          />
+        );
+
       return (
         <section
           key={index}
@@ -140,19 +163,35 @@ const Home = ({ document }) => {
               : `${styles.single_image}`
           }
         >
-          <figure
-            className={slice.primary.full_bleed ? `${styles.full_bleed}` : null}
-          >
-            {slice.primary.image.url ? (
-              <Image
-                src={slice.primary.image.url}
-                layout={"responsive"}
-                height={slice.primary.image.dimensions.height}
-                width={slice.primary.image.dimensions.width}
-                alt={slice.primary.image.alt}
-              />
-            ) : null}
-          </figure>
+          {slice.primary.image.url ? (
+            <figure
+              className={
+                slice.primary.full_bleed ? `${styles.full_bleed}` : null
+              }
+            >
+              {slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.image.url}
+                      layout={"responsive"}
+                      height={slice.primary.image.dimensions.height}
+                      width={slice.primary.image.dimensions.width}
+                      alt={slice.primary.image.alt}
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.image.url}
+                  layout={"responsive"}
+                  height={slice.primary.image.dimensions.height}
+                  width={slice.primary.image.dimensions.width}
+                  alt={slice.primary.image.alt}
+                />
+              )}
+            </figure>
+          ) : null}
         </section>
       );
     } else {
