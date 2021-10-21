@@ -286,7 +286,7 @@ const Home = ({ archives, document, tagged }) => {
                     </span>
                   </div>
                 ) : (
-                  <Link href={"/item/" + archive.uid}>
+                  <Link href={"/archive/item/" + archive.uid}>
                     <a onClick={() => ScrollTracker()}>
                       <span className={styles.name}>
                         {archive.data.title[0].text}
@@ -371,7 +371,7 @@ const Home = ({ archives, document, tagged }) => {
                     ) : null}
                   </a>
                 ) : (
-                  <Link href={"/item/" + archive.uid}>
+                  <Link href={"/archive/item/" + archive.uid}>
                     <a
                       className={styles.thumbnail}
                       onClick={() => ScrollTracker()}
