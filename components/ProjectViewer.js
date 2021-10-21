@@ -95,8 +95,6 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         priority
                         src={image.image.url}
                         alt={image.image.alt}
-                        // height={image.image.dimensions.height}
-                        // width={image.image.dimensions.width}
                         blurDataURL={image.image.url}
                         layout={"fill"}
                         className={images.length > 1 ? styles.multi : null}

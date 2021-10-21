@@ -87,7 +87,9 @@ const ArchiveItem = ({ document }) => {
 
     const Exit = () => {
       router.push(
-        currentTag && currentTag !== "All Work" ? `/?tag=${currentTag}` : "/"
+        currentTag && currentTag !== "All Work"
+          ? `/?tag=${currentTag}`
+          : "/archive"
       );
     };
 
@@ -141,7 +143,7 @@ const ArchiveItem = ({ document }) => {
           href={
             currentTag && currentTag !== "All Work"
               ? `/?tag=${currentTag}`
-              : "/"
+              : "/archive"
           }
         >
           <a className={styles.close_btn}>Close</a>
@@ -156,19 +158,22 @@ const ArchiveItem = ({ document }) => {
             NextItem={NextItem}
             currentImage={currentImage}
           />
+
           <div className={styles.archive}>
-            <Link href="/">
+            <Link href="/archive">
               <a>
                 <LeftArrow /> Archive
               </a>
             </Link>
           </div>
+
           <div className={styles.info}>
             {total > 1 ? (
               <span className={styles.current_image}>
                 {currentImage + 1}/{total}
               </span>
             ) : null}
+
             <a
               onClick={() => {
                 footerRef.current.scrollIntoView({ behavior: "smooth" });
@@ -178,6 +183,7 @@ const ArchiveItem = ({ document }) => {
             </a>
           </div>
         </div>
+
         <div ref={footerRef}></div>
 
         <footer
