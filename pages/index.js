@@ -96,13 +96,27 @@ const Home = ({ document }) => {
             }
           >
             {slice.primary.first_image.url ? (
-              <Image
-                src={slice.primary.first_image.url}
-                layout={"responsive"}
-                height={slice.primary.first_image.dimensions.height}
-                width={slice.primary.first_image.dimensions.width}
-                alt={slice.primary.first_image.alt}
-              />
+              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.first_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.first_image.dimensions.height}
+                      width={slice.primary.first_image.dimensions.width}
+                      alt={slice.primary.first_image.alt}
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.first_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.first_image.dimensions.height}
+                  width={slice.primary.first_image.dimensions.width}
+                  alt={slice.primary.first_image.alt}
+                />
+              )
             ) : null}
           </div>
           <div
@@ -113,13 +127,27 @@ const Home = ({ document }) => {
             }
           >
             {slice.primary.second_image.url ? (
-              <Image
-                src={slice.primary.second_image.url}
-                layout={"responsive"}
-                height={slice.primary.second_image.dimensions.height}
-                width={slice.primary.second_image.dimensions.width}
-                alt={slice.primary.second_image.alt}
-              />
+              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.second_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.second_image.dimensions.height}
+                      width={slice.primary.second_image.dimensions.width}
+                      alt={slice.primary.second_image.alt}
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.second_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.second_image.dimensions.height}
+                  width={slice.primary.second_image.dimensions.width}
+                  alt={slice.primary.second_image.alt}
+                />
+              )
             ) : null}
           </div>
         </section>
@@ -127,29 +155,6 @@ const Home = ({ document }) => {
 
       // Single Image Slice
     } else if (slice.slice_type === "single_image") {
-      const SingleImage =
-        slice.primary.archive_link && slice.primary.archive_link.slug ? (
-          <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
-            <a>
-              <Image
-                src={slice.primary.image.url}
-                layout={"responsive"}
-                height={slice.primary.image.dimensions.height}
-                width={slice.primary.image.dimensions.width}
-                alt={slice.primary.image.alt}
-              />
-            </a>
-          </Link>
-        ) : (
-          <Image
-            src={slice.primary.image.url}
-            layout={"responsive"}
-            height={slice.primary.image.dimensions.height}
-            width={slice.primary.image.dimensions.width}
-            alt={slice.primary.image.alt}
-          />
-        );
-
       return (
         <section
           key={index}
