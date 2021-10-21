@@ -26,6 +26,7 @@
     width: 50%;
 
     .filter_button {
+      min-width: 116px;
       width: 75%;
       display: flex;
 
@@ -40,6 +41,7 @@
           display: inline;
           cursor: pointer;
           margin: 0;
+          min-width: 116px;
           padding: {
             top: 0px;
             left: 0px;
@@ -170,6 +172,10 @@
   align-items: center;
   width: auto;
   height: 24px;
+
+  &.archive {
+    min-width: 170px;
+  }
 
   a {
     font-size: 13px;

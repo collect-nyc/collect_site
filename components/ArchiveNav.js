@@ -47,7 +47,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
     <>
       <nav className={styles.navigation}>
         <div className={styles.top_left}>
-          <div className={styles.link_box}>
+          <div className={`${styles.link_box} ${styles.archive}`}>
             <Link href={navLink}>
               <a>
                 {page === "profile"
