@@ -7,12 +7,12 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
-import SharedHead from "../../../components/SharedHead";
-import MyLayout from "../../../layouts/MyLayout";
-import { Client } from "../../../lib/prismic-config";
-import RightArrow from "../../../svg/right-arrow.svg";
-import MemoryContext from "../../../components/MemoryContext";
-import styles from "../../../styles/ArchiveIndex.module.scss";
+import SharedHead from "../../components/SharedHead";
+import MyLayout from "../../layouts/MyLayout";
+import { Client } from "../../lib/prismic-config";
+import RightArrow from "../../svg/right-arrow.svg";
+import MemoryContext from "../../components/MemoryContext";
+import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
   const tagged = query.tag || null;

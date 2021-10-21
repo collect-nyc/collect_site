@@ -71,10 +71,12 @@
           top: -2px;
         }
       }
+
       @media screen and (max-width: $mq-mobile-max) {
         display: none;
       }
     }
+
     .tag_list {
       margin: 0;
       display: none;
