@@ -69,6 +69,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             }
           }
           password_protected
+          case_study
           body1 {
             ... on Archive_itemBody1Credits {
               type
@@ -115,19 +116,21 @@ export async function getStaticPaths() {
 }
 
 const ArchiveItem = ({ document, uid }) => {
+  const page_data = document;
+  console.log("Project Data", page_data);
+
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLocked, setIsLocked] = useState(document.password_protected);
+  const [isLocked, setIsLocked] = useState(page_data.password_protected);
 
   const { currentTag, setReturnPage } = useContext(MemoryContext);
   const footerRef = createRef();
 
-  const page_data = document;
-  console.log("Project Data", page_data);
   const images = page_data.images;
   const total = images ? images.length : 0;
+
   document.tags = document._meta.tags;
 
   useEffect(() => {
@@ -261,38 +264,44 @@ const ArchiveItem = ({ document, uid }) => {
         </div>
       ) : (
         <main className={styles.main}>
-          <div className={styles.inner}>
-            <ProjectViewer
-              images={images}
-              PrevItem={PrevItem}
-              NextItem={NextItem}
-              currentImage={currentImage}
-            />
+          {page_data.case_study ? (
+            <div className={styles.casestudy_container}>
+              <h1>Case Study</h1>
+            </div>
+          ) : (
+            <div className={styles.inner}>
+              <ProjectViewer
+                images={images}
+                PrevItem={PrevItem}
+                NextItem={NextItem}
+                currentImage={currentImage}
+              />
 
-            <div className={styles.archive}>
-              <Link href="/archive">
-                <a>
-                  <LeftArrow /> Archive
+              <div className={styles.archive}>
+                <Link href="/archive">
+                  <a>
+                    <LeftArrow /> Archive
+                  </a>
+                </Link>
+              </div>
+
+              <div className={styles.info}>
+                {total > 1 ? (
+                  <span className={styles.current_image}>
+                    {currentImage + 1}/{total}
+                  </span>
+                ) : null}
+
+                <a
+                  onClick={() => {
+                    footerRef.current.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  View Info
                 </a>
-              </Link>
+              </div>
             </div>
-
-            <div className={styles.info}>
-              {total > 1 ? (
-                <span className={styles.current_image}>
-                  {currentImage + 1}/{total}
-                </span>
-              ) : null}
-
-              <a
-                onClick={() => {
-                  footerRef.current.scrollIntoView({ behavior: "smooth" });
-                }}
-              >
-                View Info
-              </a>
-            </div>
-          </div>
+          )}
 
           <div ref={footerRef}></div>
 

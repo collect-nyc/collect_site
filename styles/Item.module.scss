@@ -105,20 +105,9 @@
       }
     }
 
-    .main {
-      // background-color: red;
-      height: calc(100vh - 67px);
-      position: relative;
-      z-index: 1;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        height: calc(100vh - 61px);
-      }
-    }
-
-    .multi_col {
-      @extend .courier_label;
-      text-align: right;
+    &.multi_item {
+      @extend .body_text;
+      // text-align: right;
       margin-left: auto;
 
       .close_col,
@@ -161,9 +150,9 @@
             padding-bottom: 20px;
           }
 
-          a {
-            text-decoration: underline;
-          }
+          // a {
+          //   text-decoration: underline;
+          // }
 
           .name {
             text-transform: none;
