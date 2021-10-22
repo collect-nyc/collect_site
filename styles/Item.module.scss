@@ -36,6 +36,7 @@
     left: $navGutter_desktop;
     top: 50%;
     z-index: 10;
+
     @media screen and (max-width: $mq-mobile-max) {
       top: 20px;
       left: $gutter_mobile;
@@ -43,6 +44,11 @@
   }
 
   .info {
+    position: absolute;
+    right: $navGutter_desktop;
+    top: 50%;
+    z-index: 10;
+
     :first-child {
       padding-right: 40px;
     }
@@ -56,11 +62,6 @@
     .current_image {
       text-align: left;
     }
-
-    position: absolute;
-    right: $navGutter_desktop;
-    top: 50%;
-    z-index: 10;
 
     @media screen and (max-width: $mq-mobile-max) {
       position: absolute;
@@ -104,9 +105,15 @@
       }
     }
 
-    .close_col,
-    .multi_col {
-      width: $gutter_desktop;
+    .main {
+      // background-color: red;
+      height: calc(100vh - 67px);
+      position: relative;
+      z-index: 1;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        height: calc(100vh - 61px);
+      }
     }
 
     .multi_col {
@@ -114,93 +121,142 @@
       text-align: right;
       margin-left: auto;
 
-      @media screen and (max-width: $mq-mobile-max) {
-        text-align: right;
-        width: 60px;
+      .close_col,
+      .multi_col {
+        width: $gutter_desktop;
       }
-    }
 
-    .close_col {
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
-    }
+      .title_and_description {
+        width: 50%;
 
-    .title_and_description {
-      width: 50%;
-      .title {
-        @extend .body_text;
-        text-transform: uppercase;
-      }
-      @media screen and (max-width: $mq-mobile-max) {
-        padding-left: 0;
-        padding-bottom: 50px;
-        width: 100%;
         .title {
+          @extend .body_text;
+          text-transform: uppercase;
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: 0;
+          padding-bottom: 50px;
           width: 100%;
+
+          .title {
+            width: 100%;
+          }
+        }
+      }
+
+      .credits_and_download {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        line-height: 18px;
+
+        .credits {
+          @extend .body_text;
+          text-transform: uppercase;
+          line-height: 18px;
+          width: 50%;
+
+          .credit {
+            padding-bottom: 20px;
+          }
+
+          a {
+            text-decoration: underline;
+          }
+
+          .name {
+            text-transform: none;
+          }
+
+          @media screen and (max-width: $mq-mobile-max) {
+            padding-left: 0;
+          }
+        }
+
+        .download {
+          width: 50%;
+          text-align: right;
+          @media screen and (max-width: $mq-mobile-max) {
+            display: none;
+          }
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          width: 100%;
+          .credits {
+            width: 100%;
+            padding-left: 0;
+          }
+        }
+      }
+
+      .tags {
+        padding-left: 25px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          display: none;
+        }
+      }
+
+      .date {
+        @extend .courier_label;
+        margin-left: auto;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        &.multi_item {
+          .date {
+            display: none;
+          }
+        }
+
+        &.single_item {
+          .multi_col {
+            display: none;
+          }
         }
       }
     }
+  }
 
-    .credits_and_download {
+  .password_wrapper {
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .password_field {
       display: flex;
       justify-content: space-between;
-      width: 50%;
-      line-height: 18px;
-      .credits {
-        @extend .body_text;
-        text-transform: uppercase;
-        line-height: 18px;
-        width: 50%;
-        .credit {
-          padding-bottom: 20px;
-        }
-        a {
-          text-decoration: underline;
-        }
-        .name {
-          text-transform: none;
-        }
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      margin: {
+        left: $gutter_desktop;
+        right: $gutter_desktop;
+      }
+      padding: {
+        top: 20px;
+        bottom: 20px;
+      }
 
-        @media screen and (max-width: $mq-mobile-max) {
-          padding-left: 0;
+      .text_input {
+        border: none;
+        appearance: none;
+        background: none;
+
+        &:focus {
+          outline: none;
         }
       }
 
-      .download {
-        width: 50%;
-        text-align: right;
-        @media screen and (max-width: $mq-mobile-max) {
-          display: none;
-        }
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-        .credits {
-          width: 100%;
-          padding-left: 0;
-        }
-        .download {
-        }
-      }
-    }
-
-    .date {
-      @extend .courier_label;
-      margin-left: auto;
-    }
-    @media screen and (max-width: $mq-mobile-max) {
-      &.multi_item {
-        .date {
-          display: none;
-        }
-      }
-
-      &.single_item {
-        .multi_col {
-          display: none;
-        }
+      .password_button {
+        border: none;
+        background: none;
       }
     }
   }

@@ -67,11 +67,11 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                 >
                   <div
                     className={
-                      image.video.url
+                      image.video
                         ? `${styles.image_container} ${styles.image_container_video}`
                         : styles.image_container
                     }
-                    onClick={images.length > 1 ? () => HandleTap() : null}
+                    onTouchEnd={images.length > 1 ? () => HandleTap() : null}
                   >
                     {images.length > 1 ? (
                       <React.Fragment>
@@ -85,7 +85,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         />
                       </React.Fragment>
                     ) : null}
-                    {image.video.url ? (
+                    {image.video ? (
                       <video loop autoPlay muted>
                         <source src={image.video.url} type="video/mp4" />
                         Your browser does not support the video tag.
