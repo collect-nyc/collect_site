@@ -197,7 +197,7 @@ const ArchiveItem = ({ document, uid }) => {
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
 
-    console.log("Password is:", passwordField, "Slug is:", uid);
+    // console.log("Password is:", passwordField, "Slug is:", uid);
 
     const response = await fetch("/api/password", {
       method: "post",
@@ -214,10 +214,6 @@ const ArchiveItem = ({ document, uid }) => {
       console.log("body win");
       setIsLocked(false);
     }
-
-    // try {
-
-    // } catch (error) {}
   };
 
   return (

@@ -14,12 +14,8 @@ import { Client } from "../../lib/prismic-config";
 export default async function handler(req, res) {
   res.setHeader("Content-Type", "application/json");
 
-  console.log("Password API");
-
   try {
     const { uid, passwordField } = JSON.parse(req.body);
-
-    console.log(uid, passwordField);
 
     if (passwordField == "") {
       throw { message: "Please enter a password." };
