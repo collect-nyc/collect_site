@@ -71,7 +71,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         ? `${styles.image_container} ${styles.image_container_video}`
                         : styles.image_container
                     }
-                    onTouchEnd={images.length > 1 ? () => HandleTap() : null}
+                    onClick={images.length > 1 ? () => HandleTap() : null}
                   >
                     {images.length > 1 ? (
                       <React.Fragment>
