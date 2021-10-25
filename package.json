@@ -3,10 +3,11 @@
   "version": "0.2.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "npm run build-fragment && next dev",
+    "build": "npm run build-fragment && next build",
+    "start": "npm run build-fragment && next start",
+    "lint": "next lint",
+    "build-fragment": "node lib/schemaQuery.js"
   },
   "dependencies": {
     "@apollo/client": "^3.4.6",
