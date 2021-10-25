@@ -23,11 +23,11 @@
     z-index: 0;
 
     .casestudy_container {
-      padding: 0 $gutter_desktop;
+      padding: 0;
       position: relative;
 
       .case_study_intro {
-        padding: 0 $gutter_desktop;
+        padding: 0 #{$gutter_desktop * 2};
 
         .title_image {
           display: flex;
