@@ -24,6 +24,21 @@
 
     .casestudy_container {
       padding: 0 $gutter_desktop;
+      position: relative;
+
+      .case_study_intro {
+        padding: 0 $gutter_desktop;
+
+        .title_image {
+          display: flex;
+          height: 100vh;
+          align-items: center;
+        }
+
+        .support_image {
+          transform: translateY(-20%);
+        }
+      }
     }
 
     .inner {

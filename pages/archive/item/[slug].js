@@ -284,10 +284,7 @@ const ArchiveItem = ({ document, uid }) => {
       </Head>
 
       {isLocked ? (
-        <div
-          // className={styles.password_wrapper}
-          style={{ backgroundColor: "#00000" }}
-        >
+        <div className={styles.password_wrapper}>
           <form
             className={styles.password_field}
             onSubmit={handlePasswordSubmit}
@@ -314,16 +311,31 @@ const ArchiveItem = ({ document, uid }) => {
             <div
               className={styles.casestudy_container}
               style={
-                background_color ? { backgroundColor: background_color } : null
+                case_study && background_color
+                  ? {
+                      backgroundColor: background_color,
+                      borderColor: text_color,
+                      color: text_color,
+                    }
+                  : null
               }
             >
-              <section>
-                <figure>
+              <section className={styles.case_study_intro}>
+                <figure className={styles.title_image}>
                   <Image
                     src={title_image.url}
                     alt={title_image.alt}
                     height={title_image.dimensions.height}
                     width={title_image.dimensions.width}
+                  />
+                </figure>
+
+                <figure className={styles.support_image}>
+                  <Image
+                    src={supporting_image.url}
+                    alt={supporting_image.alt}
+                    height={supporting_image.dimensions.height}
+                    width={supporting_image.dimensions.width}
                   />
                 </figure>
               </section>
