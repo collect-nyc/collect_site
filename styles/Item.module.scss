@@ -4,6 +4,7 @@
 
 .container {
   height: -webkit-fill-available;
+  min-height: 100vh;
 
   .mobile_close {
     display: none;
@@ -20,6 +21,10 @@
   .main {
     height: 100vh;
     z-index: 0;
+
+    .casestudy_container {
+      padding: 0 $gutter_desktop;
+    }
 
     .inner {
       height: 100vh;
@@ -108,7 +113,7 @@
     &.multi_item {
       @extend .body_text;
       // text-align: right;
-      margin-left: auto;
+      // margin-left: auto;
 
       .close_col,
       .multi_col {

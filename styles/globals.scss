@@ -15,8 +15,14 @@ body {
   @extend .body_text;
 }
 
-a {
+a,
+button {
   color: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
   text-decoration: none;
 
   &:hover {

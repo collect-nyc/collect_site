@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext, createRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
+import Image from "next/image";
 import { DateTime } from "luxon";
 import { divide } from "lodash";
 import Prismic from "prismic-javascript";
@@ -70,6 +71,11 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           }
           password_protected
           case_study
+          background_color
+          text_color
+          title_image
+          backup_text
+          supporting_image
           body1 {
             ... on Archive_itemBody1Credits {
               type
@@ -90,6 +96,10 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   });
 
   const document = data.archive_item;
+  const customColors = {
+    text_color: document.text_color,
+    bg_color: document.background_color,
+  };
   const page = "project";
 
   return { props: { document, page, uid, revalidate: 60 } };
@@ -117,6 +127,17 @@ export async function getStaticPaths() {
 
 const ArchiveItem = ({ document, uid }) => {
   const page_data = document;
+
+  const {
+    title_image,
+    title,
+    case_study,
+    description,
+    text_color,
+    background_color,
+    backup_text,
+    supporting_image,
+  } = page_data;
   console.log("Project Data", page_data);
 
   const router = useRouter();
@@ -125,7 +146,8 @@ const ArchiveItem = ({ document, uid }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
 
-  const { currentTag, setReturnPage } = useContext(MemoryContext);
+  const { currentTag, setReturnPage, setNavTextColor } =
+    useContext(MemoryContext);
   const footerRef = createRef();
 
   const images = page_data.images;
@@ -141,6 +163,16 @@ const ArchiveItem = ({ document, uid }) => {
       window.document.querySelector("body").classList.remove("item_page");
     };
   }, []);
+
+  useEffect(() => {
+    console.log("Nav Text Color", text_color);
+
+    setNavTextColor(text_color);
+
+    return () => {
+      setNavTextColor(null);
+    };
+  }, [text_color]);
 
   const NextItem = () => {
     let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
@@ -220,7 +252,18 @@ const ArchiveItem = ({ document, uid }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={
+        case_study && background_color
+          ? {
+              backgroundColor: background_color,
+              borderColor: text_color,
+              color: text_color,
+            }
+          : null
+      }
+    >
       <Head>
         <title>
           {page_data.title[0].text
@@ -241,7 +284,10 @@ const ArchiveItem = ({ document, uid }) => {
       </Head>
 
       {isLocked ? (
-        <div className={styles.password_wrapper}>
+        <div
+          // className={styles.password_wrapper}
+          style={{ backgroundColor: "#00000" }}
+        >
           <form
             className={styles.password_field}
             onSubmit={handlePasswordSubmit}
@@ -264,9 +310,23 @@ const ArchiveItem = ({ document, uid }) => {
         </div>
       ) : (
         <main className={styles.main}>
-          {page_data.case_study ? (
-            <div className={styles.casestudy_container}>
-              <h1>Case Study</h1>
+          {case_study ? (
+            <div
+              className={styles.casestudy_container}
+              style={
+                background_color ? { backgroundColor: background_color } : null
+              }
+            >
+              <section>
+                <figure>
+                  <Image
+                    src={title_image.url}
+                    alt={title_image.alt}
+                    height={title_image.dimensions.height}
+                    width={title_image.dimensions.width}
+                  />
+                </figure>
+              </section>
             </div>
           ) : (
             <div className={styles.inner}>
@@ -310,6 +370,15 @@ const ArchiveItem = ({ document, uid }) => {
               images.length > 1
                 ? `${styles.project_footer} ${styles.multi_item}`
                 : `${styles.project_footer} ${styles.single_item}`
+            }
+            style={
+              case_study && background_color
+                ? {
+                    backgroundColor: background_color,
+                    borderColor: text_color,
+                    color: text_color,
+                  }
+                : null
             }
           >
             <div className={styles.title_and_description}>

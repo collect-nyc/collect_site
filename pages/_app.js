@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [currentTag, setCurrentTag] = useState("All Work");
   const [scrollPos, setScrollPos] = useState(null);
   const [returnPage, setReturnPage] = useState(false);
+  const [navTextColor, setNavTextColor] = useState(null);
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -45,6 +46,8 @@ function MyApp({ Component, pageProps }) {
         setScrollPos: setScrollPos,
         returnPage: returnPage,
         setReturnPage: setReturnPage,
+        navTextColor: navTextColor,
+        setNavTextColor: setNavTextColor,
       }}
     >
       <Layout page={pageProps.page}>

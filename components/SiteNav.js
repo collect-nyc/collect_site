@@ -1,5 +1,6 @@
 import HomeNav from "../components/HomeNav";
 import ArchiveNav from "../components/ArchiveNav";
+import CaseStudyNav from "../components/CaseStudyNav";
 import ProfileNav from "../components/ProfileNav";
 
 const SiteNav = ({ page, count, latest, tags }) => {
@@ -11,6 +12,7 @@ const SiteNav = ({ page, count, latest, tags }) => {
           archive_index: (
             <ArchiveNav count={count} latest={latest} tags={tags} />
           ),
+          project: <CaseStudyNav />,
           profile: <ProfileNav count={count} />,
         }[page]
       }

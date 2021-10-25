@@ -2,8 +2,8 @@
 @import "./helpers";
 
 .navigation {
-  background-color: $alabaster;
-  border-bottom: 1px solid $platinum;
+  background-color: transparent;
+  // border-bottom: 1px solid $platinum;
   left: 0;
   position: fixed;
   top: 0;
@@ -13,11 +13,6 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 13px $navGutter_desktop 12px;
-
-  &.home {
-    background-color: transparent;
-    border-bottom: none;
-  }
 
   .top_left {
     display: flex;
@@ -163,6 +158,21 @@
   @media screen and (max-width: $mq-mobile-max) {
     align-items: center;
     padding: 20px $navGutter_mobile;
+  }
+
+  &.home {
+    // background-color: transparent;
+    // border-bottom: none;
+  }
+
+  &.casestudy {
+    .top_right {
+      justify-content: flex-end;
+
+      button:last-of-type {
+        margin-left: 10px;
+      }
+    }
   }
 }
 
