@@ -15,8 +15,9 @@ body {
   @extend .body_text;
 }
 
-a {
-  color: inherit;
+a,
+button {
+  color: $black;
   text-decoration: none;
 
   &:hover {
