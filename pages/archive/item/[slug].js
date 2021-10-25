@@ -289,33 +289,37 @@ const ArchiveItem = ({ document, uid }) => {
           className={
             slice.primary.layout === "Equal"
               ? `${styles.double_image} ${styles.equal}`
-              : slice.primary.vertical_padding === "Asymmetrical Left"
+              : slice.primary.layout === "Asymmetrical Left"
               ? `${styles.double_image} ${styles.left}`
-              : slice.primary.vertical_padding === "Asymmetrical Right"
+              : slice.primary.layout === "Asymmetrical Right"
               ? `${styles.double_image} ${styles.right}`
               : `${styles.double_image}`
           }
         >
-          <div className={`${styles.left_side}`}>
+          <div className={styles.left_side}>
             {slice.primary.first_image.url ? (
-              <Image
-                src={slice.primary.first_image.url}
-                layout={"responsive"}
-                height={slice.primary.first_image.dimensions.height}
-                width={slice.primary.first_image.dimensions.width}
-                alt={slice.primary.first_image.alt}
-              />
+              <figure>
+                <Image
+                  src={slice.primary.first_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.first_image.dimensions.height}
+                  width={slice.primary.first_image.dimensions.width}
+                  alt={slice.primary.first_image.alt}
+                />
+              </figure>
             ) : null}
           </div>
-          <div className={`${styles.right_side}`}>
+          <div className={styles.right_side}>
             {slice.primary.second_image.url ? (
-              <Image
-                src={slice.primary.second_image.url}
-                layout={"responsive"}
-                height={slice.primary.second_image.dimensions.height}
-                width={slice.primary.second_image.dimensions.width}
-                alt={slice.primary.second_image.alt}
-              />
+              <figure>
+                <Image
+                  src={slice.primary.second_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.second_image.dimensions.height}
+                  width={slice.primary.second_image.dimensions.width}
+                  alt={slice.primary.second_image.alt}
+                />
+              </figure>
             ) : null}
           </div>
         </section>
