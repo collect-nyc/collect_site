@@ -54,6 +54,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             tags
             uid
           }
+          coming_soon
           creation_date
           title
           description
@@ -79,7 +80,6 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           body1 {
             ... on Archive_itemBody1Credits {
               type
-
               fields {
                 names
                 title_or_category
@@ -87,6 +87,32 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             }
             __typename
           }
+          body {
+            ... on Archive_itemBodySingle_image {
+              type
+              primary {
+                image
+                columns
+              }
+            }
+            ... on Archive_itemBodyImages_slider {
+              type
+              fields {
+                image
+                description
+              }
+            }
+            ... on Archive_itemBody2up_images {
+              type
+              primary {
+                layout
+                first_image
+                second_image
+              }
+            }
+            __typename
+          }
+          _linkType
         }
       }
     `,
@@ -95,11 +121,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
     },
   });
 
+  console.log(data);
+
   const document = data.archive_item;
-  const customColors = {
-    text_color: document.text_color,
-    bg_color: document.background_color,
-  };
   const page = "project";
 
   return { props: { document, page, uid, revalidate: 60 } };
@@ -138,6 +162,7 @@ const ArchiveItem = ({ document, uid }) => {
     backup_text,
     supporting_image,
   } = page_data;
+
   console.log("Project Data", page_data);
 
   const router = useRouter();
