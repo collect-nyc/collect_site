@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
@@ -11,7 +11,7 @@ export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
   const [loaderDidRun, setLoaderDidRun] = useState(false);
 
-  // console.log("MYLAYOUT", data);
+  // console.log("MYLAYOUT", page, data);
 
   const totalCount = data ? data.count + data.media : null;
 
@@ -24,14 +24,13 @@ export default function MyLayout({ page, children }) {
     <React.Fragment>
       <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
         <Loader page={page} />
-        {page !== "project" ? (
-          <SiteNav
-            page={page}
-            count={data ? totalCount : null}
-            latest={latest_active}
-            tags={data ? tags : null}
-          />
-        ) : null}
+
+        <SiteNav
+          page={page}
+          count={data ? totalCount : null}
+          latest={latest_active}
+          tags={data ? tags : null}
+        />
         {children}
       </LoaderContext.Provider>
     </React.Fragment>

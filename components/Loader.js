@@ -18,7 +18,7 @@ export default function Loader({ page }) {
               display: "none",
             },
           }}
-          transition={{ ease: "easeOut", delay: 1.2, duration: 0.1 }}
+          transition={{ ease: "easeOut", delay: 1.5, duration: 0.4 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
           <div className={styles.nyc}>COLLECT NYC</div>

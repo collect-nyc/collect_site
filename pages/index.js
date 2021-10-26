@@ -2,14 +2,10 @@ import { useState, useEffect, useContext, useRef } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import Prismic from "prismic-javascript";
 import { Client } from "../lib/prismic-config";
-import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import Masonry from "react-masonry-css";
 import _ from "lodash";
-import RightArrow from "./../svg/right-arrow.svg";
 import MemoryContext from "../components/MemoryContext";
 import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
@@ -27,68 +23,21 @@ export async function getServerSideProps({ query }) {
   // ).then((res) => res.json());
 
   //Page Data
-  const document = await Client().getSingle("index_page");
-
-  let archives;
-  const pageSize = 100;
-
-  const allItems = [];
-  let pageNum = 1;
-  let lastResult = [];
-
-  // Pull Items Data Based On Params
-  if (tagged) {
-    // if there is a Tag
-    do {
-      const resp = await Client().query(
-        [
-          Prismic.Predicates.at("document.type", "archive_item"),
-          Prismic.Predicates.at("document.tags", [tagged]),
-        ],
-        { pageSize: pageSize, page: pageNum }
-      );
-
-      lastResult = resp;
-
-      allItems.push(...resp.results);
-
-      pageNum++;
-      // console.log("Page Num", pageNum);
-    } while (lastResult.next_page !== null);
-  } else {
-    // Get all items
-    do {
-      const resp = await Client().query(
-        Prismic.Predicates.at("document.type", "archive_item"),
-        { pageSize: pageSize, page: pageNum }
-      );
-
-      lastResult = resp;
-
-      allItems.push(...resp.results);
-
-      pageNum++;
-      // console.log("Page Num", pageNum);
-    } while (lastResult.next_page !== null);
-  }
-
-  archives = allItems;
+  const document = await Client().getSingle("landing_page");
 
   const page = "index";
 
   return {
     props: {
       document,
-      archives,
       page,
       everything,
-      tagged,
     },
   };
 }
 
-const Home = ({ archives, document, tagged }) => {
-  // console.log("ALL ITEMS", archives);
+const Home = ({ document }) => {
+  console.log("Landing Data", document.data);
 
   const {
     layoutView,
@@ -107,313 +56,152 @@ const Home = ({ archives, document, tagged }) => {
     setReturnPage,
   } = useContext(MemoryContext);
 
-  const mainRef = useRef(null);
-  const initialAzSort = useRef(true);
-  const initialTimeSort = useRef(true);
-
-  // data
-  const page_content = document.data;
-  const loadedArchives = [...archives];
-
-  const ShuffeList = (list) => {
-    const new_list = _.shuffle(list);
-    setArchiveList(new_list);
-  };
-
   // ComponentDidMount
   useEffect(() => {
     // console.log("SCROLL POS", scrollPos);
-
-    if (tagged) {
-      setCurrentTag(tagged);
-    }
-
-    if (scrollPos) {
-      mainRef.current.scrollTop = parseInt(scrollPos, 10);
-    }
-
-    setArchiveList(archiveList);
   }, []);
-
-  // Set archive list when archive data changes
-  useEffect(() => {
-    if (!returnPage || !archiveList) {
-      let loaded_archives = loadedArchives;
-      ShuffeList(loaded_archives);
-    } else {
-      setReturnPage(false);
-    }
-  }, [archives]);
-
-  useEffect(() => {
-    if (initialAzSort.current == true) {
-      // dont do any sorting on first render
-      initialAzSort.current = false;
-    } else {
-      AlphabetSort();
-    }
-  }, [azSort]);
-
-  useEffect(() => {
-    if (initialTimeSort.current == true) {
-      // dont do any sorting on first render
-      initialTimeSort.current = false;
-    } else {
-      TimeSort();
-    }
-  }, [timeSort]);
-
-  useEffect(() => {
-    mainRef.current.scrollTo(0, 0);
-  }, [currentTag]);
 
   const ScrollTracker = () => {
     // console.log(mainRef.current.scrollTop);
     setScrollPos(mainRef.current.scrollTop);
   };
 
-  // Sort by title alphabetically
-  const AlphabetSort = () => {
-    if (azSort === "az") {
-      console.log("pre archive: ", archiveList);
-      const list = _.orderBy(
-        archiveList,
-        [
-          function (o) {
-            return o.data.title[0].text;
-          },
-        ],
-        ["desc"]
-      );
-      console.log("ALPHA SORT: ", list);
+  const pageContent = document.data.body.map((slice, index) => {
+    // Render the right markup for the given slice type
 
-      setArchiveList(list);
-    } else if (azSort === "za" || !azSort) {
-      console.log("pre archive: ", archiveList);
-      const list = _.orderBy(
-        archiveList,
-        [
-          function (o) {
-            return o.data.title[0].text;
-          },
-        ],
-        ["asc"]
-      );
-      console.log("ALPHA SORT: ", list);
-
-      setArchiveList(list);
-    }
-  };
-
-  // Sort by creation date
-  const TimeSort = () => {
-    if (!timeSort) {
-      const list = _.orderBy(
-        archiveList,
-        [
-          function (o) {
-            return o.data.creation_date;
-          },
-        ],
-        ["desc"]
-      );
-
-      setArchiveList(list);
-      // setTimeSort("new");
-    } else if (timeSort === "new") {
-      const list = _.orderBy(
-        archiveList,
-        [
-          function (o) {
-            return o.data.creation_date;
-          },
-        ],
-        ["asc"]
-      );
-
-      setArchiveList(list);
-      // setTimeSort("old");
-    } else if (timeSort === "old") {
-      const list = _.orderBy(
-        archiveList,
-        [
-          function (o) {
-            return o.data.creation_date;
-          },
-        ],
-        ["desc"]
-      );
-
-      setArchiveList(list);
-      // setTimeSort("new");
-    }
-  };
-
-  // List View JSX
-  const ListView = () => {
-    // console.log("LIST", archiveList);
-    return (
-      <section className={styles.all_archives}>
-        <ul>
-          {archiveList && archiveList.length > 0 ? (
-            archiveList.map((archive, key) => (
-              <li key={key}>
-                {archive.data.coming_soon ? (
-                  <div className={styles.coming_soon}>
-                    <span className={styles.coming_text}>Coming Soon</span>
-                    <span className={styles.name}>
-                      <span>{archive.data.title[0].text}</span>
-                    </span>
-
-                    <span className={styles.tags}>
-                      {archive.tags.map((tag, key) => (
-                        <span key={key}>
-                          {archive.tags.length === key + 1 && tag
-                            ? tag
-                            : tag
-                            ? tag + ", "
-                            : null}
-                        </span>
-                      ))}
-                    </span>
-
-                    <span className={styles.date}>
-                      {archive.data.creation_date
-                        ? DateTime.fromISO(archive.data.creation_date).toFormat(
-                            "yyyy"
-                          )
-                        : "TBD"}
-                    </span>
-                  </div>
-                ) : (
-                  <Link href={"/item/" + archive.uid}>
-                    <a onClick={() => ScrollTracker()}>
-                      <span className={styles.name}>
-                        {archive.data.title[0].text}
-                      </span>
-
-                      <span className={styles.tags}>
-                        {archive.tags.map((tag, key) => (
-                          <span key={key}>
-                            {archive.tags.length === key + 1 && tag
-                              ? tag
-                              : tag
-                              ? tag + ", "
-                              : null}
-                          </span>
-                        ))}
-                      </span>
-
-                      <span className={styles.date}>
-                        <span>
-                          {archive.data.creation_date
-                            ? DateTime.fromISO(
-                                archive.data.creation_date
-                              ).toFormat("yyyy")
-                            : "TBD"}
-                        </span>
-                        <span className={styles.view_project}>
-                          View Project <RightArrow />
-                        </span>
-                      </span>
-                    </a>
-                  </Link>
-                )}
-              </li>
-            ))
-          ) : (
-            <li className={styles.no_items}>
-              No &ldquo;{currentTag}&rdquo; items found.
-            </li>
-          )}
-        </ul>
-      </section>
-    );
-  };
-
-  // Grid View JSX
-  const GridView = () => {
-    // console.log("GRID", archiveList);
-
-    const breakpointColumnsObj = {
-      default: 3,
-      900: 2,
-    };
-
-    return (
-      <section className={styles.all_archives_grid}>
-        <Masonry
-          breakpointCols={breakpointColumnsObj}
-          className="my-masonry-grid"
-          columnClassName="my-masonry-grid_column"
+    // 2up Images Slice
+    if (slice.slice_type === "2up_images") {
+      return (
+        <section
+          key={index}
+          className={
+            slice.primary.vertical_padding === "Default"
+              ? `${styles.double_image} ${styles.default}`
+              : slice.primary.vertical_padding === "Half"
+              ? `${styles.double_image} ${styles.half}`
+              : slice.primary.vertical_padding === "Extra"
+              ? `${styles.double_image} ${styles.extra}`
+              : `${styles.double_image}`
+          }
         >
-          {archiveList && archiveList.length > 0 ? (
-            archiveList.map((archive, key) => (
-              <article key={key} className={styles.grid_item}>
-                {archive.data.coming_soon ? (
-                  <a className={`${styles.thumbnail} ${styles.coming_soon}`}>
-                    {archive.data.index_thumbnail?.url ? (
-                      <Image
-                        className={styles.lazyloaded}
-                        alt={archive.data.index_thumbnail.alt}
-                        src={archive.data.index_thumbnail.url}
-                        height={archive.data.index_thumbnail.dimensions.height}
-                        width={archive.data.index_thumbnail.dimensions.width}
-                      />
-                    ) : archive.data.images[0].image.url ? (
-                      <Image
-                        className={styles.lazyloaded}
-                        alt={archive.data.images[0].image.alt}
-                        src={archive.data.images[0].image.url}
-                        height={archive.data.images[0].image.dimensions.height}
-                        width={archive.data.images[0].image.dimensions.width}
-                      />
-                    ) : null}
+          <div
+            className={
+              slice.primary.left_side_gutters
+                ? `${styles.left_side} ${styles.gutters}`
+                : `${styles.left_side}`
+            }
+          >
+            {slice.primary.first_image.url ? (
+              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.first_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.first_image.dimensions.height}
+                      width={slice.primary.first_image.dimensions.width}
+                      alt={slice.primary.first_image.alt}
+                    />
                   </a>
-                ) : (
-                  <Link href={"/item/" + archive.uid}>
-                    <a
-                      className={styles.thumbnail}
-                      onClick={() => ScrollTracker()}
-                    >
-                      {archive.data.index_thumbnail?.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.index_thumbnail.alt}
-                          src={archive.data.index_thumbnail.url}
-                          height={
-                            archive.data.index_thumbnail.dimensions.height
-                          }
-                          width={archive.data.index_thumbnail.dimensions.width}
-                        />
-                      ) : archive.data.images[0].image.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.images[0].image.alt}
-                          src={archive.data.images[0].image.url}
-                          height={
-                            archive.data.images[0].image.dimensions.height
-                          }
-                          width={archive.data.images[0].image.dimensions.width}
-                        />
-                      ) : null}
-                    </a>
-                  </Link>
-                )}
-              </article>
-            ))
-          ) : (
-            <li className={styles.no_items}>
-              No &ldquo;{currentTag}&rdquo; items found.
-            </li>
-          )}
-        </Masonry>
-      </section>
-    );
-  };
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.first_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.first_image.dimensions.height}
+                  width={slice.primary.first_image.dimensions.width}
+                  alt={slice.primary.first_image.alt}
+                />
+              )
+            ) : null}
+          </div>
+          <div
+            className={
+              slice.primary.right_side_gutters
+                ? `${styles.right_side} ${styles.gutters}`
+                : `${styles.right_side}`
+            }
+          >
+            {slice.primary.second_image.url ? (
+              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.second_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.second_image.dimensions.height}
+                      width={slice.primary.second_image.dimensions.width}
+                      alt={slice.primary.second_image.alt}
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.second_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.second_image.dimensions.height}
+                  width={slice.primary.second_image.dimensions.width}
+                  alt={slice.primary.second_image.alt}
+                />
+              )
+            ) : null}
+          </div>
+        </section>
+      );
+
+      // Single Image Slice
+    } else if (slice.slice_type === "single_image") {
+      return (
+        <section
+          key={index}
+          className={
+            slice.primary.vertical_padding === "Default"
+              ? `${styles.single_image} ${styles.default}`
+              : slice.primary.vertical_padding === "Half"
+              ? `${styles.single_image} ${styles.half}`
+              : slice.primary.vertical_padding === "Extra"
+              ? `${styles.single_image} ${styles.extra}`
+              : `${styles.single_image}`
+          }
+        >
+          {slice.primary.image.url ? (
+            <figure
+              className={
+                slice.primary.full_bleed ? `${styles.full_bleed}` : null
+              }
+            >
+              {slice.primary.archive_link && slice.primary.archive_link.slug ? (
+                <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
+                  <a>
+                    <Image
+                      src={slice.primary.image.url}
+                      layout={"responsive"}
+                      height={slice.primary.image.dimensions.height}
+                      width={slice.primary.image.dimensions.width}
+                      alt={slice.primary.image.alt}
+                    />
+                  </a>
+                </Link>
+              ) : (
+                <Image
+                  src={slice.primary.image.url}
+                  layout={"responsive"}
+                  height={slice.primary.image.dimensions.height}
+                  width={slice.primary.image.dimensions.width}
+                  alt={slice.primary.image.alt}
+                />
+              )}
+            </figure>
+          ) : null}
+        </section>
+      );
+    } else {
+      return null;
+    }
+  });
 
   return (
-    <div className={styles.container} ref={mainRef}>
+    <div className={styles.container}>
       <Head>
         <title>COLLECT NYC</title>
         <meta
@@ -422,36 +210,11 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
-      <div className={styles.title_holder}>
-        <div className={styles.title}>
-          {page_content && page_content.header_image ? (
-            <Image
-              src={page_content.header_image.url}
-              alt={page_content.header_image.alt}
-              layout={"responsive"}
-              height={page_content.header_image.dimensions.height}
-              width={page_content.header_image.dimensions.width}
-              unoptimized={true}
-            />
-          ) : null}
-        </div>
-      </div>
-      <main
-        className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
-      >
-        <div className={styles.interior}>
-          {layoutView ? <GridView /> : <ListView />}
-        </div>
+
+      <main className={styles.main}>
+        <div className={styles.divider} />
+        {pageContent}
       </main>
-      <footer className={styles.footer}>
-        <Image
-          layout="responsive"
-          width={page_content.footer_graphic.dimensions.width}
-          height={page_content.footer_graphic.dimensions.height}
-          src={page_content.footer_graphic.url}
-          alt="Collect Graphic"
-        />
-      </footer>
     </div>
   );
 };

@@ -67,7 +67,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                 >
                   <div
                     className={
-                      image.video.url
+                      image.video
                         ? `${styles.image_container} ${styles.image_container_video}`
                         : styles.image_container
                     }
@@ -85,7 +85,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         />
                       </React.Fragment>
                     ) : null}
-                    {image.video.url ? (
+                    {image.video ? (
                       <video loop autoPlay muted>
                         <source src={image.video.url} type="video/mp4" />
                         Your browser does not support the video tag.
@@ -95,8 +95,6 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         priority
                         src={image.image.url}
                         alt={image.image.alt}
-                        // height={image.image.dimensions.height}
-                        // width={image.image.dimensions.width}
                         blurDataURL={image.image.url}
                         layout={"fill"}
                         className={images.length > 1 ? styles.multi : null}

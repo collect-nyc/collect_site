@@ -3,7 +3,6 @@
 @import "./typography";
 
 .project_viewer {
-  // background-color: lightblue;
   height: 100%;
   width: 100%;
 
@@ -39,7 +38,6 @@
   }
 
   .image_array {
-    // background-color: lightpink;
     display: block;
     position: relative;
     height: 100%;
@@ -63,7 +61,6 @@
       }
 
       .image_container {
-        // background-color: lightyellow;
         height: 100%;
         padding: 60px #{$gutter_desktop * 2};
         position: relative;
@@ -82,7 +79,6 @@
         }
 
         > div {
-          // background-color: lightcoral;
           position: unset !important;
           height: 100%;
           width: auto;

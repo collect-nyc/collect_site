@@ -1,11 +1,19 @@
 import HomeNav from "../components/HomeNav";
+import ArchiveNav from "../components/ArchiveNav";
+import CaseStudyNav from "../components/CaseStudyNav";
+import ProfileNav from "../components/ProfileNav";
 
 const SiteNav = ({ page, count, latest, tags }) => {
   return (
     <div>
       {
         {
-          index: <HomeNav count={count} latest={latest} tags={tags} />,
+          index: <HomeNav count={count} />,
+          archive_index: (
+            <ArchiveNav count={count} latest={latest} tags={tags} />
+          ),
+          project: <CaseStudyNav />,
+          profile: <ProfileNav count={count} />,
         }[page]
       }
     </div>

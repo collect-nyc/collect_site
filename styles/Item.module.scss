@@ -3,11 +3,8 @@
 @import "./helpers";
 
 .container {
-  // height: 100%;
-  // overflow: hidden;
-  // height: 100%;
-
   height: -webkit-fill-available;
+  min-height: 100vh;
 
   .mobile_close {
     display: none;
@@ -23,10 +20,106 @@
 
   .main {
     height: 100vh;
-    // background-color: red;
-
-    // position: relative;
     z-index: 0;
+
+    .casestudy_container {
+      padding: 0;
+      position: relative;
+
+      .case_study_intro {
+        padding: 0 #{$gutter_desktop * 2};
+
+        .title_image {
+          display: flex;
+          height: 100vh;
+          align-items: center;
+        }
+
+        .support_image {
+          transform: translateY(-20%);
+        }
+      }
+
+      .single_image,
+      .image_slider,
+      .double_image {
+        margin-bottom: 180px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+      }
+
+      .double_image {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding: 0 $gutter_desktop;
+
+        > div {
+          display: flex;
+          align-items: center;
+
+          figure {
+            display: block;
+            width: 100%;
+          }
+        }
+
+        &.equal {
+          > div {
+            width: calc(50% - 60px);
+          }
+        }
+
+        &.left,
+        &.right {
+          > div {
+            width: 50%;
+          }
+        }
+
+        &.left {
+          > div:first-child {
+            padding-right: 20%;
+          }
+        }
+
+        &.right {
+          > div:last-child {
+            padding-left: 20%;
+          }
+        }
+      }
+
+      .single_image {
+        &.twelve {
+          padding: 0;
+        }
+        &.ten {
+          padding: 0 $gutter_desktop;
+        }
+        &.eight {
+          padding: 0 #{$gutter_desktop * 2};
+        }
+        &.six {
+          padding: 0 #{$gutter_desktop * 3};
+        }
+        &.four {
+          padding: 0 #{$gutter_desktop * 4};
+        }
+      }
+
+      .image_slider {
+        display: flex;
+        justify-content: space-between;
+
+        figure {
+          flex: 1;
+        }
+      }
+    }
+
     .inner {
       height: 100vh;
       position: relative;
@@ -42,27 +135,33 @@
     left: $navGutter_desktop;
     top: 50%;
     z-index: 10;
+
     @media screen and (max-width: $mq-mobile-max) {
       top: 20px;
       left: $gutter_mobile;
     }
   }
+
   .info {
+    position: absolute;
+    right: $navGutter_desktop;
+    top: 50%;
+    z-index: 10;
+
     :first-child {
       padding-right: 40px;
     }
+
     a {
       &:hover {
         cursor: pointer;
       }
     }
+
     .current_image {
       text-align: left;
     }
-    position: absolute;
-    right: $navGutter_desktop;
-    top: 50%;
-    z-index: 10;
+
     @media screen and (max-width: $mq-mobile-max) {
       position: absolute;
       top: auto;
@@ -71,6 +170,7 @@
       flex-direction: row-reverse;
       justify-content: space-between;
       align-items: flex-start;
+
       .current_image {
         position: absolute;
         bottom: 0px;
@@ -83,9 +183,6 @@
     background-color: $alabaster;
     border-top: 1px solid $platinum;
     display: flex;
-    // position: relative;
-    // justify-content: space-between;
-    // display: none;
     align-items: flex-start;
     padding: {
       top: 22px;
@@ -93,9 +190,6 @@
       left: $navGutter_desktop;
       right: $navGutter_desktop;
     }
-    // position: fixed;
-    // bottom: 0;
-    // left: 0;
     width: 100%;
     z-index: 2;
 
@@ -110,103 +204,147 @@
       }
     }
 
-    .close_col,
-    .multi_col {
-      width: $gutter_desktop;
-    }
+    &.multi_item {
+      @extend .body_text;
+      // text-align: right;
+      // margin-left: auto;
 
-    .multi_col {
-      @extend .courier_label;
-      text-align: right;
-      margin-left: auto;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        text-align: right;
-        width: 60px;
+      .close_col,
+      .multi_col {
+        width: $gutter_desktop;
       }
-    }
 
-    .close_col {
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
-    }
+      .title_and_description {
+        width: 50%;
 
-    .title_and_description {
-      width: 50%;
-      .title {
-        @extend .body_text;
-        text-transform: uppercase;
-      }
-      @media screen and (max-width: $mq-mobile-max) {
-        padding-left: 0;
-        padding-bottom: 50px;
-        width: 100%;
         .title {
+          @extend .body_text;
+          text-transform: uppercase;
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: 0;
+          padding-bottom: 50px;
           width: 100%;
+
+          .title {
+            width: 100%;
+          }
+        }
+      }
+
+      .credits_and_download {
+        display: flex;
+        justify-content: space-between;
+        width: 50%;
+        line-height: 18px;
+
+        .credits {
+          @extend .body_text;
+          text-transform: uppercase;
+          line-height: 18px;
+          width: 50%;
+
+          .credit {
+            padding-bottom: 20px;
+          }
+
+          // a {
+          //   text-decoration: underline;
+          // }
+
+          .name {
+            text-transform: none;
+          }
+
+          @media screen and (max-width: $mq-mobile-max) {
+            padding-left: 0;
+          }
+        }
+
+        .download {
+          width: 50%;
+          text-align: right;
+          @media screen and (max-width: $mq-mobile-max) {
+            display: none;
+          }
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          width: 100%;
+          .credits {
+            width: 100%;
+            padding-left: 0;
+          }
+        }
+      }
+
+      .tags {
+        padding-left: 25px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          display: none;
+        }
+      }
+
+      .date {
+        @extend .courier_label;
+        margin-left: auto;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        &.multi_item {
+          .date {
+            display: none;
+          }
+        }
+
+        &.single_item {
+          .multi_col {
+            display: none;
+          }
         }
       }
     }
+  }
 
-    .credits_and_download {
+  .password_wrapper {
+    margin: 0 auto;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .password_field {
       display: flex;
       justify-content: space-between;
-      width: 50%;
-      line-height: 18px;
-      .credits {
-        @extend .body_text;
-        text-transform: uppercase;
-        line-height: 18px;
-        width: 50%;
-        .credit {
-          padding-bottom: 20px;
-        }
-        a {
-          text-decoration: underline;
-        }
-        .name {
-          text-transform: none;
-        }
+      align-items: center;
+      width: 100%;
+      border-top: 1px solid #000;
+      border-bottom: 1px solid #000;
+      margin: {
+        left: $gutter_desktop;
+        right: $gutter_desktop;
+      }
+      padding: {
+        top: 20px;
+        bottom: 20px;
+      }
 
-        @media screen and (max-width: $mq-mobile-max) {
-          padding-left: 0;
+      .text_input {
+        border: none;
+        appearance: none;
+        background: none;
+
+        &:focus {
+          outline: none;
         }
       }
 
-      .download {
-        width: 50%;
-        text-align: right;
-        @media screen and (max-width: $mq-mobile-max) {
-          display: none;
-        }
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-        .credits {
-          width: 100%;
-          padding-left: 0;
-        }
-        .download {
-        }
-      }
-    }
-
-    .date {
-      @extend .courier_label;
-      margin-left: auto;
-    }
-    @media screen and (max-width: $mq-mobile-max) {
-      &.multi_item {
-        .date {
-          display: none;
-        }
-      }
-
-      &.single_item {
-        .multi_col {
-          display: none;
-        }
+      .password_button {
+        border: none;
+        background: none;
       }
     }
   }
