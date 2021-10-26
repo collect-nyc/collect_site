@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState, useRef, useEffect } from "react";
+import { createRef, useState, useRef, useEffect } from "react";
 import {
   motion,
   AnimatePresence,
@@ -44,23 +44,34 @@ const swipePower = (offset, velocity) => {
 };
 
 export const ImageSlider = (images) => {
+  const ImageSet = images.images;
+
   const constraintsRef = useRef(null);
+  // create the refs for the figure elements in the slider
+  const myRefs = useRef([]);
+  myRefs.current = ImageSet.map(
+    (element, i) => myRefs.current[i] ?? createRef()
+  );
+
   const x = useMotionValue(0);
   // const bounceStiffness = 90; // Affects the stiffness of the bounce spring. Higher values will create more sudden movement.
   // const bounceDamping = 80;
 
+  const [elRefs, setElRefs] = React.useState([]);
   const [sliderWidth, setSliderWidth] = useState(0);
   const [sliderChildrenWidth, setSliderChildrenWidth] = useState(0);
   const [sliderConstraints, setSliderConstraints] = useState(0);
   const [coverWidth, setCoverWidth] = useState(0);
+
+  // some state for the slider
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [slidesOffset, setSlidesOffset] = useState(0);
 
   useEffect(() => {
     setCoverWidth(constraintsRef?.current?.scrollWidth);
   }, []);
 
   useEffect(() => {
-    console.log("FREAK");
-
     if (!constraintsRef && !constraintsRef.current) return;
 
     const calcSliderChildrenWidth = () => {
@@ -92,72 +103,90 @@ export const ImageSlider = (images) => {
     );
   }, [constraintsRef, sliderChildrenWidth, sliderWidth]);
 
-  const ImageSet = images.images;
-
   return (
-    <motion.div className={styles.image_slider_container} ref={constraintsRef}>
+    <>
       <motion.div
-        className={styles.image_row}
-        drag="x"
-        // dragPropagation={true}
-        initial={{ x: 0 }}
-        style={{ x }}
-        dragConstraints={{
-          left: -Math.abs(sliderConstraints),
-          // left: -1648,
-          right: 0,
-        }}
-        dragElastic={0}
-        // dragTransition={{ bounceStiffness, bounceDamping }}
+        className={styles.image_slider_container}
+        ref={constraintsRef}
       >
         <motion.div
-          className={styles.cover}
-          style={{ width: coverWidth + "px" }}
-        ></motion.div>
+          className={styles.image_row}
+          animate={{ x: slidesOffset }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          // drag="x"
+          // initial={{ x: 0 }}
+          // style={{ x }}
+          // dragConstraints={{
+          //   left: -Math.abs(sliderConstraints),
+          //   right: 0,
+          // }}
+          // dragElastic={0}
+          // dragTransition={{ bounceStiffness, bounceDamping }}
+        >
+          <motion.div
+            className={styles.cover}
+            style={{ width: coverWidth + "px" }}
+          ></motion.div>
 
-        {ImageSet.map((imageItem, index) => (
-          <figure
-            key={index}
-            // custom={direction}
-            // variants={variants}
-            // initial="enter"
-            // animate="center"
-            // exit="exit"
-            // onClick={() => paginate(1)}
-            // transition={{
-            //   x: { type: "spring", stiffness: 300, damping: 30 },
-            //   opacity: { duration: 0.2 },
-            // }}
-            // drag="x"
-            // dragConstraints={{ left: 0, right: 0 }}
-            // dragElastic={1}
-            // onDragEnd={(e, { offset, velocity }) => {
-            //   const swipe = swipePower(offset.x, velocity.x);
+          {ImageSet.map((imageItem, index) => (
+            <figure
+              key={index}
+              onClick={() => {
+                console.log(myRefs.current[index]);
+                console.log(myRefs.current[index].current.offsetLeft);
+                console.log(myRefs.current[index].current.offsetWidth);
+                myRefs.current[index].current.focus();
+                setCurrentSlide(index);
+                setSlidesOffset(
+                  -Math.abs(myRefs.current[index].current.offsetLeft)
+                );
+              }}
+              ref={myRefs.current[index]}
+              // custom={direction}
+              // variants={variants}
+              // initial="enter"
+              // animate="center"
+              // exit="exit"
+              // onClick={() => paginate(1)}
+              // transition={{
+              //   x: { type: "spring", stiffness: 300, damping: 30 },
+              //   opacity: { duration: 0.2 },
+              // }}
+              // drag="x"
+              // dragConstraints={{ left: 0, right: 0 }}
+              // dragElastic={1}
+              // onDragEnd={(e, { offset, velocity }) => {
+              //   const swipe = swipePower(offset.x, velocity.x);
 
-            //   if (swipe < -swipeConfidenceThreshold) {
-            //     paginate(1);
-            //   } else if (swipe > swipeConfidenceThreshold) {
-            //     paginate(-1);
-            //   }
-            // }}
-          >
-            <Image
-              src={imageItem.image.url}
-              alt={imageItem.image.alt}
-              height={imageItem.image.dimensions.height}
-              width={imageItem.image.dimensions.width}
-              layout={"responsive"}
-              objectFit={"cover"}
-            />
-          </figure>
-        ))}
+              //   if (swipe < -swipeConfidenceThreshold) {
+              //     paginate(1);
+              //   } else if (swipe > swipeConfidenceThreshold) {
+              //     paginate(-1);
+              //   }
+              // }}
+            >
+              <Image
+                src={imageItem.image.url}
+                alt={imageItem.image.alt}
+                height={imageItem.image.dimensions.height}
+                width={imageItem.image.dimensions.width}
+                layout={"responsive"}
+                objectFit={"cover"}
+              />
+            </figure>
+          ))}
+        </motion.div>
+
+        <div className={styles.next} onClick={() => paginate(1)}>
+          {"‣"}
+        </div>
+        <div className={styles.prev} onClick={() => paginate(-1)}>
+          {"‣"}
+        </div>
+        <div className={styles.controls}>
+          <span>{currentSlide + 1}</span>/<span>{ImageSet.length}</span>
+        </div>
       </motion.div>
-      <div className={styles.next} onClick={() => paginate(1)}>
-        {"‣"}
-      </div>
-      <div className={styles.prev} onClick={() => paginate(-1)}>
-        {"‣"}
-      </div>
-    </motion.div>
+    </>
   );
 };
