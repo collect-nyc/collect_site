@@ -18,32 +18,6 @@ import MemoryContext from "../../../components/MemoryContext";
 import styles from "../../../styles/Item.module.scss";
 import { apolloClient } from "../../../lib/apollo-config";
 
-// export async function getStaticProps({ params, preview = false, previewData }) {
-//   const document = await Client().getByUID("archive_item", params.slug);
-
-//   const page = "project";
-//   return { props: { document, page, revalidate: 60 } };
-// }
-// export async function getStaticPaths() {
-//   const archives = await Client().query(
-//     Prismic.Predicates.at("document.type", "archive_item"),
-//     { pageSize: 100 }
-//   );
-
-//   const posts = archives.results;
-
-//   // console.log(posts);
-
-//   const paths = posts.map((post) => ({
-//     params: {
-//       slug: post.uid,
-//     },
-//   }));
-
-//   // console.log(paths);
-//   return { paths, fallback: "blocking" };
-// }
-
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;
   const { loading, error, data } = await apolloClient.query({
@@ -108,6 +82,12 @@ export async function getStaticProps({ params, preview = false, previewData }) {
                 layout
                 first_image
                 second_image
+              }
+            }
+            ... on Archive_itemBodyText_block {
+              type
+              primary {
+                text
               }
             }
             __typename
@@ -363,8 +343,22 @@ const ArchiveItem = ({ document, uid }) => {
         </section>
       );
     } else if (slice.type === "images_slider") {
-      console.log("images_slider");
-      return <h1 key={index}>Images Slider</h1>;
+      const galleryContent = slice.fields.map((image, imageIndex) => (
+        <figure key={imageIndex}>
+          <Image
+            src={image.image.url}
+            alt={image.image.alt}
+            height={image.image.dimensions.height}
+            width={image.image.dimensions.width}
+            layout={"responsive"}
+          />
+        </figure>
+      ));
+      return (
+        <section key={index} className={styles.image_slider}>
+          {galleryContent}
+        </section>
+      );
     } else {
       return null;
     }

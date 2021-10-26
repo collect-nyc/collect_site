@@ -41,7 +41,7 @@
       }
 
       .single_image,
-      .images_slider,
+      .image_slider,
       .double_image {
         margin-bottom: 180px;
 
@@ -107,6 +107,15 @@
         }
         &.four {
           padding: 0 #{$gutter_desktop * 4};
+        }
+      }
+
+      .image_slider {
+        display: flex;
+        justify-content: space-between;
+
+        figure {
+          flex: 1;
         }
       }
     }
