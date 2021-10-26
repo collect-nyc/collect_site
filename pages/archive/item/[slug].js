@@ -435,7 +435,6 @@ const ArchiveItem = ({ document, uid }) => {
             >
               <section className={styles.case_study_intro}>
                 <figure className={styles.title_image}>
-                  _
                   {title_image && title_image.url ? (
                     <Image
                       src={title_image.url}
