@@ -373,6 +373,7 @@ const ArchiveItem = ({ document, uid }) => {
   return (
     <div
       className={styles.container}
+      id="itemContainer"
       style={
         case_study && background_color
           ? {
@@ -517,6 +518,7 @@ const ArchiveItem = ({ document, uid }) => {
                 ? `${styles.project_footer} ${styles.multi_item}`
                 : `${styles.project_footer} ${styles.single_item}`
             }
+            id={"itemFooter"}
             style={
               case_study && background_color
                 ? {
