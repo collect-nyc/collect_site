@@ -9,6 +9,7 @@ import Prismic from "prismic-javascript";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
+import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
@@ -501,7 +502,16 @@ const ArchiveItem = ({ document, uid }) => {
 
                 <a
                   onClick={() => {
-                    footerRef.current.scrollIntoView({ behavior: "smooth" });
+                    animateScrollTo(footerRef.current, {
+                      elementToScroll: window.document.querySelector("body"),
+                      easing: (t) => {
+                        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                      },
+                      maxDuration: 1500,
+                      minDuration: 800,
+                      speed: 1000,
+                      verticalOffset: -100,
+                    });
                   }}
                 >
                   View Info
