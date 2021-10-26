@@ -256,113 +256,116 @@ const ArchiveItem = ({ document, uid }) => {
     }
   };
 
-  const pageContent = page_data.body.map((slice, index) => {
-    // Render the right markup for the given slice type
-    // console.log(slice, index);
+  const pageContent = page_data.body
+    ? page_data.body.map((slice, index) => {
+        // Render the right markup for the given slice type
+        // console.log(slice, index);
 
-    // 2up Images Slice
-    if (slice.type === "2up_images") {
-      return (
-        <section
-          key={index}
-          className={
-            slice.primary.layout === "Equal"
-              ? `${styles.double_image} ${styles.equal}`
-              : slice.primary.layout === "Asymmetrical Left"
-              ? `${styles.double_image} ${styles.left}`
-              : slice.primary.layout === "Asymmetrical Right"
-              ? `${styles.double_image} ${styles.right}`
-              : `${styles.double_image}`
-          }
-        >
-          <div className={styles.left_side}>
-            {slice.primary.first_image && slice.primary.first_image.url ? (
-              <figure>
-                <Image
-                  src={slice.primary.first_image.url}
-                  layout={"responsive"}
-                  height={slice.primary.first_image.dimensions.height}
-                  width={slice.primary.first_image.dimensions.width}
-                  alt={slice.primary.first_image.alt}
-                />
-              </figure>
-            ) : null}
-          </div>
-          <div className={styles.right_side}>
-            {slice.primary.second_image && slice.primary.second_image.url ? (
-              <figure>
-                <Image
-                  src={slice.primary.second_image.url}
-                  layout={"responsive"}
-                  height={slice.primary.second_image.dimensions.height}
-                  width={slice.primary.second_image.dimensions.width}
-                  alt={slice.primary.second_image.alt}
-                />
-              </figure>
-            ) : null}
-          </div>
-        </section>
-      );
-
-      // Single Image Slice
-    } else if (slice.type === "single_image") {
-      return (
-        <section
-          key={index}
-          className={
-            slice.primary.columns === "12"
-              ? `${styles.single_image} ${styles.twelve}`
-              : slice.primary.columns === "10"
-              ? `${styles.single_image} ${styles.ten}`
-              : slice.primary.columns === "8"
-              ? `${styles.single_image} ${styles.eight}`
-              : slice.primary.columns === "6"
-              ? `${styles.single_image} ${styles.six}`
-              : slice.primary.columns === "4"
-              ? `${styles.single_image} ${styles.four}`
-              : `${styles.single_image}`
-          }
-        >
-          {slice.primary.image && slice.primary.image.url ? (
-            <figure
+        // 2up Images Slice
+        if (slice.type === "2up_images") {
+          return (
+            <section
+              key={index}
               className={
-                slice.primary.full_bleed ? `${styles.full_bleed}` : null
+                slice.primary.layout === "Equal"
+                  ? `${styles.double_image} ${styles.equal}`
+                  : slice.primary.layout === "Asymmetrical Left"
+                  ? `${styles.double_image} ${styles.left}`
+                  : slice.primary.layout === "Asymmetrical Right"
+                  ? `${styles.double_image} ${styles.right}`
+                  : `${styles.double_image}`
               }
             >
-              <Image
-                src={slice.primary.image.url}
-                layout={"responsive"}
-                height={slice.primary.image.dimensions.height}
-                width={slice.primary.image.dimensions.width}
-                alt={slice.primary.image.alt}
-              />
+              <div className={styles.left_side}>
+                {slice.primary.first_image && slice.primary.first_image.url ? (
+                  <figure>
+                    <Image
+                      src={slice.primary.first_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.first_image.dimensions.height}
+                      width={slice.primary.first_image.dimensions.width}
+                      alt={slice.primary.first_image.alt}
+                    />
+                  </figure>
+                ) : null}
+              </div>
+              <div className={styles.right_side}>
+                {slice.primary.second_image &&
+                slice.primary.second_image.url ? (
+                  <figure>
+                    <Image
+                      src={slice.primary.second_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.second_image.dimensions.height}
+                      width={slice.primary.second_image.dimensions.width}
+                      alt={slice.primary.second_image.alt}
+                    />
+                  </figure>
+                ) : null}
+              </div>
+            </section>
+          );
+
+          // Single Image Slice
+        } else if (slice.type === "single_image") {
+          return (
+            <section
+              key={index}
+              className={
+                slice.primary.columns === "12"
+                  ? `${styles.single_image} ${styles.twelve}`
+                  : slice.primary.columns === "10"
+                  ? `${styles.single_image} ${styles.ten}`
+                  : slice.primary.columns === "8"
+                  ? `${styles.single_image} ${styles.eight}`
+                  : slice.primary.columns === "6"
+                  ? `${styles.single_image} ${styles.six}`
+                  : slice.primary.columns === "4"
+                  ? `${styles.single_image} ${styles.four}`
+                  : `${styles.single_image}`
+              }
+            >
+              {slice.primary.image && slice.primary.image.url ? (
+                <figure
+                  className={
+                    slice.primary.full_bleed ? `${styles.full_bleed}` : null
+                  }
+                >
+                  <Image
+                    src={slice.primary.image.url}
+                    layout={"responsive"}
+                    height={slice.primary.image.dimensions.height}
+                    width={slice.primary.image.dimensions.width}
+                    alt={slice.primary.image.alt}
+                  />
+                </figure>
+              ) : null}
+            </section>
+          );
+        } else if (slice.type === "images_slider") {
+          const galleryContent = slice.fields.map((image, imageIndex) => (
+            <figure key={imageIndex}>
+              {image.image && image.image.url ? (
+                <Image
+                  src={image.image.url}
+                  alt={image.image.alt}
+                  height={image.image.dimensions.height}
+                  width={image.image.dimensions.width}
+                  layout={"responsive"}
+                />
+              ) : null}
             </figure>
-          ) : null}
-        </section>
-      );
-    } else if (slice.type === "images_slider") {
-      const galleryContent = slice.fields.map((image, imageIndex) => (
-        <figure key={imageIndex}>
-          {image.image && image.image.url ? (
-            <Image
-              src={image.image.url}
-              alt={image.image.alt}
-              height={image.image.dimensions.height}
-              width={image.image.dimensions.width}
-              layout={"responsive"}
-            />
-          ) : null}
-        </figure>
-      ));
-      return (
-        <section key={index} className={styles.image_slider}>
-          {galleryContent}
-        </section>
-      );
-    } else {
-      return null;
-    }
-  });
+          ));
+          return (
+            <section key={index} className={styles.image_slider}>
+              {galleryContent}
+            </section>
+          );
+        } else {
+          return null;
+        }
+      })
+    : null;
 
   return (
     <div
@@ -456,7 +459,7 @@ const ArchiveItem = ({ document, uid }) => {
                   ) : null}
                 </figure>
               </section>
-              {pageContent ? pageContent : null}
+              {pageContent}
             </div>
           ) : (
             <div className={styles.inner}>
