@@ -258,11 +258,10 @@ const ArchiveItem = ({ document, uid }) => {
 
   const pageContent = page_data.body.map((slice, index) => {
     // Render the right markup for the given slice type
-    console.log(slice, index);
+    // console.log(slice, index);
 
     // 2up Images Slice
     if (slice.type === "2up_images") {
-      console.log("2up_images");
       return (
         <section
           key={index}
@@ -277,7 +276,7 @@ const ArchiveItem = ({ document, uid }) => {
           }
         >
           <div className={styles.left_side}>
-            {slice.primary.first_image.url ? (
+            {slice.primary.first_image && slice.primary.first_image.url ? (
               <figure>
                 <Image
                   src={slice.primary.first_image.url}
@@ -290,7 +289,7 @@ const ArchiveItem = ({ document, uid }) => {
             ) : null}
           </div>
           <div className={styles.right_side}>
-            {slice.primary.second_image.url ? (
+            {slice.primary.second_image && slice.primary.second_image.url ? (
               <figure>
                 <Image
                   src={slice.primary.second_image.url}
@@ -307,7 +306,6 @@ const ArchiveItem = ({ document, uid }) => {
 
       // Single Image Slice
     } else if (slice.type === "single_image") {
-      console.log("single_image");
       return (
         <section
           key={index}
@@ -325,7 +323,7 @@ const ArchiveItem = ({ document, uid }) => {
               : `${styles.single_image}`
           }
         >
-          {slice.primary.image.url ? (
+          {slice.primary.image && slice.primary.image.url ? (
             <figure
               className={
                 slice.primary.full_bleed ? `${styles.full_bleed}` : null
@@ -345,13 +343,15 @@ const ArchiveItem = ({ document, uid }) => {
     } else if (slice.type === "images_slider") {
       const galleryContent = slice.fields.map((image, imageIndex) => (
         <figure key={imageIndex}>
-          <Image
-            src={image.image.url}
-            alt={image.image.alt}
-            height={image.image.dimensions.height}
-            width={image.image.dimensions.width}
-            layout={"responsive"}
-          />
+          {image.image && image.image.url ? (
+            <Image
+              src={image.image.url}
+              alt={image.image.alt}
+              height={image.image.dimensions.height}
+              width={image.image.dimensions.width}
+              layout={"responsive"}
+            />
+          ) : null}
         </figure>
       ));
       return (
@@ -435,21 +435,26 @@ const ArchiveItem = ({ document, uid }) => {
             >
               <section className={styles.case_study_intro}>
                 <figure className={styles.title_image}>
-                  <Image
-                    src={title_image.url}
-                    alt={title_image.alt}
-                    height={title_image.dimensions.height}
-                    width={title_image.dimensions.width}
-                  />
+                  _
+                  {title_image && title_image.url ? (
+                    <Image
+                      src={title_image.url}
+                      alt={title_image.alt}
+                      height={title_image.dimensions.height}
+                      width={title_image.dimensions.width}
+                    />
+                  ) : null}
                 </figure>
 
                 <figure className={styles.support_image}>
-                  <Image
-                    src={supporting_image.url}
-                    alt={supporting_image.alt}
-                    height={supporting_image.dimensions.height}
-                    width={supporting_image.dimensions.width}
-                  />
+                  {supporting_image && supporting_image.url ? (
+                    <Image
+                      src={supporting_image.url}
+                      alt={supporting_image.alt}
+                      height={supporting_image.dimensions.height}
+                      width={supporting_image.dimensions.width}
+                    />
+                  ) : null}
                 </figure>
               </section>
               {pageContent}
