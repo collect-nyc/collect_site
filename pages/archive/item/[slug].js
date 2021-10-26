@@ -456,7 +456,7 @@ const ArchiveItem = ({ document, uid }) => {
                   ) : null}
                 </figure>
               </section>
-              {pageContent}
+              {pageContent ? pageContent : null}
             </div>
           ) : (
             <div className={styles.inner}>
