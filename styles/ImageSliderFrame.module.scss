@@ -1,0 +1,45 @@
+@import "./colors";
+@import "./helpers";
+
+.image_slider_container {
+  display: block;
+  height: 600px;
+  position: relative;
+  width: 100%;
+
+  figure {
+    display: block;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  .next,
+  .prev {
+    top: calc(50% - 20px);
+    position: absolute;
+    background: white;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .prev {
+    left: 10px;
+    transform: scale(-1);
+  }
+}

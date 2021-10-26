@@ -111,12 +111,13 @@
       }
 
       .image_slider {
-        display: flex;
-        justify-content: space-between;
+        display: block;
+        padding: 0 $gutter_desktop;
+        overflow: hidden;
 
-        figure {
-          flex: 1;
-        }
+        // figure {
+        //   flex: 1;
+        // }
       }
     }
 

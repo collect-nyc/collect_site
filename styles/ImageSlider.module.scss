@@ -1,0 +1,68 @@
+@import "./colors";
+@import "./helpers";
+
+.image_slider_container {
+  overflow: visible;
+  position: relative;
+
+  .next,
+  .prev {
+    top: calc(50% - 20px);
+    position: absolute;
+    background: white;
+    border-radius: 30px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 18px;
+    z-index: 2;
+
+    display: none;
+  }
+
+  .next {
+    right: 10px;
+  }
+
+  .prev {
+    left: 10px;
+    transform: scale(-1);
+  }
+}
+
+.image_row {
+  display: flex;
+  justify-content: flex-start;
+  overflow: visible;
+
+  .cover {
+    background-color: rgba(red, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+  }
+
+  figure {
+    // scroll-snap-align: start;
+    flex-shrink: 0;
+    width: 80%;
+    margin-right: 60px;
+    position: relative;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+
+    > div {
+      position: unset !important;
+    }
+  }
+}

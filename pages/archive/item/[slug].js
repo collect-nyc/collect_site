@@ -17,6 +17,7 @@ import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
 import styles from "../../../styles/Item.module.scss";
 import { apolloClient } from "../../../lib/apollo-config";
+import { ImageSlider } from "../../../components/ImageSlider";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;
@@ -343,8 +344,8 @@ const ArchiveItem = ({ document, uid }) => {
             </section>
           );
         } else if (slice.type === "images_slider") {
-          const galleryContent = slice.fields.map((image, imageIndex) => (
-            <figure key={imageIndex}>
+          const galleryContent = slice.fields.map((image, imageIndex) => ({
+            /*<figure key={imageIndex}>
               {image.image && image.image.url ? (
                 <Image
                   src={image.image.url}
@@ -354,11 +355,12 @@ const ArchiveItem = ({ document, uid }) => {
                   layout={"responsive"}
                 />
               ) : null}
-            </figure>
-          ));
+              </figure> */
+          }));
           return (
             <section key={index} className={styles.image_slider}>
-              {galleryContent}
+              {/* galleryContent */}
+              <ImageSlider images={slice.fields} />
             </section>
           );
         } else {
