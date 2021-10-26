@@ -8,6 +8,7 @@ import Prismic from "prismic-javascript";
 // import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
+import { motion } from "framer-motion";
 import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
@@ -439,7 +440,12 @@ const ArchiveItem = ({ document, uid }) => {
               }
             >
               <section className={styles.case_study_intro}>
-                <figure className={styles.title_image}>
+                <motion.figure
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                  className={styles.title_image}
+                >
                   {title_image && title_image.url ? (
                     <Image
                       src={title_image.url}
@@ -448,9 +454,14 @@ const ArchiveItem = ({ document, uid }) => {
                       width={title_image.dimensions.width}
                     />
                   ) : null}
-                </figure>
+                </motion.figure>
 
-                <figure className={styles.support_image}>
+                <motion.figure
+                  initial={{ opacity: 0, y: "0%" }}
+                  animate={{ opacity: [0, 1], y: ["0%", "-20%"] }}
+                  transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+                  className={styles.support_image}
+                >
                   {supporting_image && supporting_image.url ? (
                     <Image
                       src={supporting_image.url}
@@ -459,7 +470,7 @@ const ArchiveItem = ({ document, uid }) => {
                       width={supporting_image.dimensions.width}
                     />
                   ) : null}
-                </figure>
+                </motion.figure>
               </section>
               {pageContent}
             </div>
@@ -511,6 +522,7 @@ const ArchiveItem = ({ document, uid }) => {
                 ? {
                     backgroundColor: background_color,
                     borderColor: text_color,
+                    border: "none",
                     color: text_color,
                   }
                 : null
