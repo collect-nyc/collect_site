@@ -35,6 +35,12 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           creation_date
           title
           description
+          download {
+            _linkType
+            ... on _FileLink {
+              url
+            }
+          }
           images {
             image
             video {
@@ -143,6 +149,7 @@ const ArchiveItem = ({ document, uid }) => {
     text_color,
     background_color,
     backup_text,
+    download,
     supporting_image,
   } = page_data;
 
@@ -600,7 +607,11 @@ const ArchiveItem = ({ document, uid }) => {
                     ))
                   : null}
               </div>
-              <div className={styles.download}>Download Project Images</div>
+              {download && download.url ? (
+                <a href={download.url} className={styles.download}>
+                  Download Project Images
+                </a>
+              ) : null}
             </div>
           </footer>
         </main>
