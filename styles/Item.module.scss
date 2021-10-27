@@ -184,7 +184,7 @@
     align-items: flex-start;
     padding: {
       top: 22px;
-      bottom: 40px;
+      bottom: 20px;
       left: $navGutter_desktop;
       right: $navGutter_desktop;
     }
@@ -235,6 +235,7 @@
         width: 50%;
 
         .inner_desc {
+          padding-bottom: 50px;
           width: 60%;
         }
 
