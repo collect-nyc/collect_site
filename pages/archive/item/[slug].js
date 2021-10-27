@@ -596,12 +596,15 @@ const ArchiveItem = ({ document, uid }) => {
                             <a
                               href={name.spans[0].data.url}
                               className={styles.name}
+                              key={index}
                             >
                               {" "}
                               {name.text}
                             </a>
                           ) : (
-                            <p className={styles.name}>{name.text}</p>
+                            <p key={index} className={styles.name}>
+                              {name.text}
+                            </p>
                           )
                         )}
                       </div>
