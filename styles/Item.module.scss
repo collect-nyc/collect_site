@@ -214,6 +214,10 @@
       .title_and_description {
         width: 50%;
 
+        .inner_desc {
+          width: 60%;
+        }
+
         .title {
           @extend .body_text;
           text-transform: uppercase;

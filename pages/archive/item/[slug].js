@@ -541,23 +541,25 @@ const ArchiveItem = ({ document, uid }) => {
             }
           >
             <div className={styles.title_and_description}>
-              <h1 className={styles.title}>
-                {page_data.title[0]
-                  ? page_data.title[0].text
-                  : "COLLECT Project"}
-              </h1>
+              <div className={styles.inner_desc}>
+                <h1 className={styles.title}>
+                  {page_data.title[0]
+                    ? page_data.title[0].text
+                    : "COLLECT Project"}
+                </h1>
 
-              <div className={styles.description}>
-                {page_data.description && page_data.description.length > 0
-                  ? page_data.description[0].text
-                  : null}
+                <div className={styles.description}>
+                  {page_data.description && page_data.description.length > 0
+                    ? page_data.description[0].text
+                    : null}
+                </div>
               </div>
             </div>
 
             <div className={styles.credits_and_download}>
               <div className={styles.credits}>
-                {/* page_data.body1[0]
-                  ? page_data.body1[0].items.map((credit, index) => (
+                {page_data.body1[0]
+                  ? page_data.body1[0].fields.map((credit, index) => (
                       <div key={index} className={styles.credit}>
                         <p>{credit.title_or_category[0].text}</p>
                         {credit.names.map((name, index) =>
@@ -575,7 +577,7 @@ const ArchiveItem = ({ document, uid }) => {
                         )}
                       </div>
                     ))
-                          : null */}
+                  : null}
               </div>
               <div className={styles.download}>Download Project Images</div>
             </div>
