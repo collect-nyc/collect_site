@@ -173,8 +173,6 @@ const ArchiveItem = ({ document, uid }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Nav Text Color", text_color);
-
     setNavTextColor(text_color);
 
     return () => {

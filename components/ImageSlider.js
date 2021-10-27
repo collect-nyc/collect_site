@@ -6,34 +6,32 @@ import {
   useMotionValue,
   useDragControls,
 } from "framer-motion";
-import { wrap } from "popmotion";
-// import { images } from "./image-data";
+// import { wrap } from "popmotion";
 import Image from "next/image";
-import Link from "next/link";
 import styles from "../styles/ImageSlider.module.scss";
 import LeftArrow from "../svg/left-arrow.svg";
 import RightArrow from "../svg/right-arrow.svg";
 
-const variants = {
-  enter: (direction) => {
-    return {
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-  center: {
-    zIndex: 1,
-    x: 0,
-    opacity: 1,
-  },
-  exit: (direction) => {
-    return {
-      zIndex: 0,
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-    };
-  },
-};
+// const variants = {
+//   enter: (direction) => {
+//     return {
+//       x: direction > 0 ? 1000 : -1000,
+//       opacity: 0,
+//     };
+//   },
+//   center: {
+//     zIndex: 1,
+//     x: 0,
+//     opacity: 1,
+//   },
+//   exit: (direction) => {
+//     return {
+//       zIndex: 0,
+//       x: direction < 0 ? 1000 : -1000,
+//       opacity: 0,
+//     };
+//   },
+// };
 
 /**
  * Experimenting with distilling swipe offset and velocity into a single variable, so the
@@ -97,13 +95,13 @@ export const ImageSlider = ({ images, text_color, background_color }) => {
     calcSliderConstraints();
     window.addEventListener("resize", calcSliderConstraints);
 
-    console.log(
-      "Measurements",
-      sliderConstraints,
-      -Math.abs(sliderConstraints),
-      sliderChildrenWidth,
-      sliderWidth
-    );
+    // console.log(
+    //   "Measurements",
+    //   sliderConstraints,
+    //   -Math.abs(sliderConstraints),
+    //   sliderChildrenWidth,
+    //   sliderWidth
+    // );
   }, [constraintsRef, sliderChildrenWidth, sliderWidth]);
 
   const NextSlide = () => {
