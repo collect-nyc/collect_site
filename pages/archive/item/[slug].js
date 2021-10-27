@@ -558,7 +558,7 @@ const ArchiveItem = ({ document, uid }) => {
 
             <div className={styles.credits_and_download}>
               <div className={styles.credits}>
-                {page_data.body1[0]
+                {page_data.body1[0] && page_data.body1[0].fields
                   ? page_data.body1[0].fields.map((credit, index) => (
                       <div key={index} className={styles.credit}>
                         <p>{credit.title_or_category[0].text}</p>
