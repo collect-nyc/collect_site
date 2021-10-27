@@ -183,10 +183,11 @@
     align-items: flex-start;
     padding: {
       top: 22px;
-      bottom: 20px;
+      bottom: 40px;
       left: $navGutter_desktop;
       right: $navGutter_desktop;
     }
+    position: relative;
     width: 100%;
     z-index: 2;
 
@@ -198,6 +199,24 @@
         bottom: 18px;
         left: $gutter_mobile;
         right: $gutter_mobile;
+      }
+    }
+
+    .back_nav {
+      position: absolute;
+      bottom: 20px;
+      left: $navGutter_desktop;
+
+      a {
+        svg {
+          // path {
+          //   fill: $alabaster;
+          // }
+        }
+
+        &:first-of-type {
+          margin-right: 20px;
+        }
       }
     }
 

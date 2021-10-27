@@ -75,4 +75,21 @@
   justify-content: flex-end;
   padding-top: 6px;
   width: 80%;
+
+  .slider_nav {
+    margin-right: 5px;
+
+    button {
+      display: inline-block;
+
+      &:first-of-type {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .status {
+    text-align: right;
+    width: 40px;
+  }
 }

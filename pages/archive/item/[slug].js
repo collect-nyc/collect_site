@@ -362,7 +362,11 @@ const ArchiveItem = ({ document, uid }) => {
           return (
             <section key={index} className={styles.image_slider}>
               {/* galleryContent */}
-              <ImageSlider images={slice.fields} />
+              <ImageSlider
+                images={slice.fields}
+                text_color={text_color}
+                background_color={background_color}
+              />
             </section>
           );
         } else {
@@ -540,6 +544,23 @@ const ArchiveItem = ({ document, uid }) => {
                 : null
             }
           >
+            <nav className={styles.back_nav}>
+              <Link href={"/"}>
+                <a>
+                  <LeftArrow className={"color_svg"} /> Back to Home
+                </a>
+              </Link>
+              <Link href={"/archive"}>
+                <a>
+                  <LeftArrow className={"color_svg"} /> Back to Archive
+                </a>
+              </Link>
+              <style global jsx>{`
+                .color_svg path {
+                  fill: ${text_color};
+                }
+              `}</style>
+            </nav>
             <div className={styles.title_and_description}>
               <div className={styles.inner_desc}>
                 <h1 className={styles.title}>

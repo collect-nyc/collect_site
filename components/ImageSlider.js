@@ -9,7 +9,10 @@ import {
 import { wrap } from "popmotion";
 // import { images } from "./image-data";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "../styles/ImageSlider.module.scss";
+import LeftArrow from "../svg/left-arrow.svg";
+import RightArrow from "../svg/right-arrow.svg";
 
 const variants = {
   enter: (direction) => {
@@ -43,8 +46,8 @@ const swipePower = (offset, velocity) => {
   return Math.abs(offset) * velocity;
 };
 
-export const ImageSlider = (images) => {
-  const ImageSet = images.images;
+export const ImageSlider = ({ images, text_color, background_color }) => {
+  const ImageSet = images;
 
   const constraintsRef = useRef(null);
   // create the refs for the figure elements in the slider
@@ -103,6 +106,32 @@ export const ImageSlider = (images) => {
     );
   }, [constraintsRef, sliderChildrenWidth, sliderWidth]);
 
+  const NextSlide = () => {
+    if (currentSlide + 1 >= ImageSet.length) {
+      setSlidesOffset(-Math.abs(myRefs.current[0].current.offsetLeft));
+      setCurrentSlide(0);
+    } else {
+      setSlidesOffset(
+        -Math.abs(myRefs.current[currentSlide + 1].current.offsetLeft)
+      );
+      setCurrentSlide(currentSlide + 1);
+    }
+  };
+
+  const PrevSlide = () => {
+    if (currentSlide == 0) {
+      setSlidesOffset(
+        -Math.abs(myRefs.current[ImageSet.length - 1].current.offsetLeft)
+      );
+      setCurrentSlide(ImageSet.length - 1);
+    } else {
+      setSlidesOffset(
+        -Math.abs(myRefs.current[currentSlide - 1].current.offsetLeft)
+      );
+      setCurrentSlide(currentSlide - 1);
+    }
+  };
+
   return (
     <>
       <motion.div
@@ -135,7 +164,7 @@ export const ImageSlider = (images) => {
                 console.log(myRefs.current[index]);
                 console.log(myRefs.current[index].current.offsetLeft);
                 console.log(myRefs.current[index].current.offsetWidth);
-                myRefs.current[index].current.focus();
+                // myRefs.current[index].current.focus();
                 setCurrentSlide(index);
                 setSlidesOffset(
                   -Math.abs(myRefs.current[index].current.offsetLeft)
@@ -177,14 +206,23 @@ export const ImageSlider = (images) => {
           ))}
         </motion.div>
 
-        <div className={styles.next} onClick={() => paginate(1)}>
-          {"‣"}
-        </div>
-        <div className={styles.prev} onClick={() => paginate(-1)}>
-          {"‣"}
-        </div>
         <div className={styles.controls}>
-          <span>{currentSlide + 1}</span>/<span>{ImageSet.length}</span>
+          <nav className={styles.slider_nav}>
+            <button onClick={() => PrevSlide()}>
+              <LeftArrow className={"color_svg"} />
+            </button>
+            <button onClick={() => NextSlide()}>
+              <RightArrow className={"color_svg"} />
+            </button>
+            <style global jsx>{`
+              .color_svg path {
+                fill: ${text_color};
+              }
+            `}</style>
+          </nav>
+          <div className={styles.status}>
+            <span>{currentSlide + 1}</span>/<span>{ImageSet.length}</span>
+          </div>
         </div>
       </motion.div>
     </>
