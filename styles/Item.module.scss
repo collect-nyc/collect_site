@@ -271,14 +271,6 @@
             padding-bottom: 20px;
           }
 
-          // a {
-          //   text-decoration: underline;
-          // }
-
-          .name {
-            text-transform: none;
-          }
-
           @media screen and (max-width: $mq-mobile-max) {
             padding-left: 0;
           }
@@ -287,6 +279,7 @@
         .download {
           width: 50%;
           text-align: right;
+
           @media screen and (max-width: $mq-mobile-max) {
             display: none;
           }

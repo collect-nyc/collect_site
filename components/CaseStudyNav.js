@@ -26,16 +26,24 @@ const HomeNav = ({ page, count, latest, tags }) => {
       }
       style={navTextColor ? { color: navTextColor } : null}
     >
+      <style global jsx>{`
+        .color_link {
+          color: ${navTextColor};
+        }
+      `}</style>
       <div className={styles.top_left}>
         <div className={styles.link_box}>
           <Link href={"/archive"}>
-            <a>COLLECT New York City</a>
+            <a className="color_link">COLLECT New York City</a>
           </Link>
         </div>
       </div>
       <div className={styles.top_right}>
-        <button onClick={() => ArchiveViewToggle()}>Archive View</button>
+        <button className="color_link" onClick={() => ArchiveViewToggle()}>
+          Archive View
+        </button>
         <button
+          className="color_link"
           onClick={() => {
             animateScrollTo(document.querySelector("#itemFooter"), {
               elementToScroll: window.document.querySelector("body"),

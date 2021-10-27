@@ -491,6 +491,7 @@ const ArchiveItem = ({ document, uid }) => {
                     onClick={() => {
                       setArchiveView(!archiveView);
                     }}
+                    className={"color_link"}
                   >
                     <LeftArrow className={"color_svg"} /> Case Study
                   </button>
@@ -523,6 +524,7 @@ const ArchiveItem = ({ document, uid }) => {
                       verticalOffset: -100,
                     });
                   }}
+                  className={"color_link"}
                 >
                   View Info
                 </a>
@@ -552,18 +554,21 @@ const ArchiveItem = ({ document, uid }) => {
           >
             <nav className={styles.back_nav}>
               <Link href={"/"}>
-                <a>
+                <a className={"color_link"}>
                   <LeftArrow className={"color_svg"} /> Back to Home
                 </a>
               </Link>
               <Link href={"/archive"}>
-                <a>
+                <a className={"color_link"}>
                   <LeftArrow className={"color_svg"} /> Back to Archive
                 </a>
               </Link>
               <style global jsx>{`
                 .color_svg path {
                   fill: ${text_color};
+                }
+                .color_link {
+                  color: ${text_color};
                 }
               `}</style>
             </nav>
@@ -595,7 +600,7 @@ const ArchiveItem = ({ document, uid }) => {
                           name.spans.length > 0 ? (
                             <a
                               href={name.spans[0].data.url}
-                              className={styles.name}
+                              className={"color_link name"}
                               key={index}
                             >
                               {" "}
@@ -612,9 +617,11 @@ const ArchiveItem = ({ document, uid }) => {
                   : null}
               </div>
               {download && download.url ? (
-                <a href={download.url} className={styles.download}>
-                  Download Project Images
-                </a>
+                <div className={styles.download}>
+                  <a className={"color_link"} href={download.url}>
+                    Download Project Images
+                  </a>
+                </div>
               ) : null}
             </div>
           </footer>
