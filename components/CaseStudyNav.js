@@ -19,7 +19,11 @@ const HomeNav = ({ page, count, latest, tags }) => {
 
   return (
     <nav
-      className={`${styles.navigation} ${styles.casestudy}`}
+      className={
+        archiveView
+          ? `${styles.navigation} ${styles.casestudy} ${styles.archive_view}`
+          : `${styles.navigation} ${styles.casestudy}`
+      }
       style={navTextColor ? { color: navTextColor } : null}
     >
       <div className={styles.top_left}>

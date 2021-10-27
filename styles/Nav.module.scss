@@ -166,6 +166,10 @@
   }
 
   &.casestudy {
+    &.archive_view {
+      display: none;
+    }
+
     .top_right {
       justify-content: flex-end;
 
