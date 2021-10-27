@@ -351,22 +351,8 @@ const ArchiveItem = ({ document, uid }) => {
             </section>
           );
         } else if (slice.type === "images_slider") {
-          const galleryContent = slice.fields.map((image, imageIndex) => ({
-            /*<figure key={imageIndex}>
-              {image.image && image.image.url ? (
-                <Image
-                  src={image.image.url}
-                  alt={image.image.alt}
-                  height={image.image.dimensions.height}
-                  width={image.image.dimensions.width}
-                  layout={"responsive"}
-                />
-              ) : null}
-              </figure> */
-          }));
           return (
             <section key={index} className={styles.image_slider}>
-              {/* galleryContent */}
               <ImageSlider
                 images={slice.fields}
                 text_color={text_color}
