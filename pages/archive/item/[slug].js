@@ -161,8 +161,13 @@ const ArchiveItem = ({ document, uid }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
 
-  const { currentTag, setReturnPage, setNavTextColor } =
-    useContext(MemoryContext);
+  const {
+    currentTag,
+    setReturnPage,
+    setNavTextColor,
+    archiveView,
+    setArchiveView,
+  } = useContext(MemoryContext);
   const footerRef = createRef();
 
   const images = page_data.images;
@@ -423,7 +428,7 @@ const ArchiveItem = ({ document, uid }) => {
         </div>
       ) : (
         <main className={styles.main}>
-          {case_study ? (
+          {case_study && !archiveView ? (
             <div
               className={styles.casestudy_container}
               style={

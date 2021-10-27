@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
@@ -7,10 +7,15 @@ import animateScrollTo from "animated-scroll-to";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const router = useRouter();
-  const { navTextColor } = useContext(MemoryContext);
+  const { navTextColor, archiveView, setArchiveView } =
+    useContext(MemoryContext);
 
   // State
   // const [filterOpen, setFilterOpen] = useState(false);
+
+  const ArchiveViewToggle = () => {
+    setArchiveView(!archiveView);
+  };
 
   return (
     <nav
@@ -25,7 +30,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
         </div>
       </div>
       <div className={styles.top_right}>
-        <button>Archive View</button>
+        <button onClick={() => ArchiveViewToggle()}>Archive View</button>
         <button
           onClick={() => {
             animateScrollTo(document.querySelector("#itemFooter"), {

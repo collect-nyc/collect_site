@@ -25,6 +25,10 @@ button {
   margin: 0;
   text-decoration: none;
 
+  &:active {
+    color: inherit;
+  }
+
   &:hover {
     text-decoration: underline;
   }
