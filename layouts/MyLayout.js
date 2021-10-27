@@ -11,7 +11,7 @@ export default function MyLayout({ page, children }) {
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
   const [loaderDidRun, setLoaderDidRun] = useState(false);
 
-  // console.log("MYLAYOUT", page, data);
+  console.log("MYLAYOUT", page, data);
 
   const totalCount = data ? data.count + data.media : null;
 
@@ -30,6 +30,7 @@ export default function MyLayout({ page, children }) {
           count={data ? totalCount : null}
           latest={latest_active}
           tags={data ? tags : null}
+          case_study={page.case_study}
         />
         {children}
       </LoaderContext.Provider>

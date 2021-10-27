@@ -148,7 +148,7 @@
     top: 50%;
     z-index: 10;
 
-    :first-child {
+    .current_image {
       padding-right: 40px;
     }
 
@@ -184,6 +184,7 @@
     border-top: 1px solid $platinum;
     display: flex;
     align-items: flex-start;
+    justify-content: space-between;
     padding: {
       top: 22px;
       bottom: 20px;
@@ -346,6 +347,23 @@
         border: none;
         background: none;
       }
+    }
+  }
+
+  .casestudy {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 $navGutter_desktop 0 $navGutter_desktop;
+    padding-top: 20px;
+    .top_right {
+      justify-content: flex-end;
+
+      button:last-of-type {
+        margin-left: 20px;
+      }
+    }
+    @media screen and (max-width: $mq-mobile-max) {
+      display: none;
     }
   }
 }

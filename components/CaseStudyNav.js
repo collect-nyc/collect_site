@@ -13,22 +13,23 @@ const HomeNav = ({ page, count, latest, tags }) => {
   // const [filterOpen, setFilterOpen] = useState(false);
 
   return (
-    <nav
-      className={`${styles.navigation} ${styles.casestudy}`}
-      style={navTextColor ? { color: navTextColor } : null}
-    >
-      <div className={styles.top_left}>
-        <div className={styles.link_box}>
-          <Link href={"/archive"}>
-            <a>COLLECT New York City</a>
-          </Link>
-        </div>
-      </div>
-      <div className={styles.top_right}>
-        <button>Archive View</button>
-        <button>Project Info</button>
-      </div>
-    </nav>
+    // <nav
+    //   className={`${styles.navigation} ${styles.casestudy}`}
+    //   style={navTextColor ? { color: navTextColor } : null}
+    // >
+    //   <div className={styles.top_left}>
+    //     <div className={styles.link_box}>
+    //       <Link href={"/archive"}>
+    //         <a>COLLECT New York City</a>
+    //       </Link>
+    //     </div>
+    //   </div>
+    //   <div className={styles.top_right}>
+    //     <button>Archive View</button>
+    //     <button>Project Info</button>
+    //   </div>
+    // </nav>
+    null
   );
 };
 

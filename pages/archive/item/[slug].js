@@ -150,6 +150,7 @@ const ArchiveItem = ({ document, uid }) => {
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
+  const { navTextColor } = useContext(MemoryContext);
 
   const { currentTag, setReturnPage, setNavTextColor } =
     useContext(MemoryContext);
@@ -398,6 +399,24 @@ const ArchiveItem = ({ document, uid }) => {
 
         <SharedHead />
       </Head>
+      {page_data.case_study ? (
+        <nav
+          className={`${styles.navigation} ${styles.casestudy}`}
+          style={navTextColor ? { color: navTextColor } : null}
+        >
+          <div className={styles.top_left}>
+            <div className={styles.link_box}>
+              <Link href={"/archive"}>
+                <a>COLLECT New York City</a>
+              </Link>
+            </div>
+          </div>
+          <div className={styles.top_right}>
+            <button>Archive View</button>
+            <button>Project Info</button>
+          </div>
+        </nav>
+      ) : null}
 
       {isLocked ? (
         <div className={styles.password_wrapper}>
@@ -515,11 +534,11 @@ const ArchiveItem = ({ document, uid }) => {
             }
           >
             <div className={styles.title_and_description}>
-              <h1 className={styles.title}>
+              <p className={styles.title}>
                 {page_data.title[0]
                   ? page_data.title[0].text
                   : "COLLECT Project"}
-              </h1>
+              </p>
 
               <div className={styles.description}>
                 {page_data.description && page_data.description.length > 0

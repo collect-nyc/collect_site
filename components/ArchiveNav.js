@@ -5,7 +5,7 @@ import styles from "../styles/Nav.module.scss";
 import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
 
-const HomeNav = ({ page, count, latest, tags }) => {
+const HomeNav = ({ page, count, latest, tags, case_study }) => {
   const router = useRouter();
   const {
     layoutView,
@@ -94,7 +94,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
             </div>
           ) : null}
         </div>
-        <div className={styles.top_right}>
+        <div className={`${styles.top_right} ${styles.archive_right}`}>
           <div
             className={
               filterOpen
