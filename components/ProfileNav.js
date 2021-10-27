@@ -25,7 +25,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
   // State
   const [filterOpen, setFilterOpen] = useState(false);
 
-  const [navLink, setNavLink] = useState("/profile");
+  const [navLink, setNavLink] = useState("/");
 
   const ToggleFilters = () => {
     setFilterOpen(!filterOpen);
@@ -45,7 +45,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
 
   return (
     <>
-      <nav className={`${styles.navigation} ${styles.home}`}>
+      <nav className={`${styles.navigation} ${styles.profile}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
             <Link href={navLink}>
@@ -53,58 +53,23 @@ const HomeNav = ({ page, count, latest, tags }) => {
             </Link>
           </div>
         </div>
-        <div className={styles.top_right}>
-          <Link href="/archive">
-            <a>COLLECT Archive</a>
-          </Link>
+        <div className={`${styles.top_right} ${styles.profile_right}`}>
+          <div className={styles.contact}>CONTACT</div>
+          {/* <Link href="/archive">
+            <a className={styles.archive}>COLLECT Archive</a>
+          </Link> */}
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
             <span>({count ? count : 0})</span>
           </div>
         </div>
       </nav>
-      <nav className={styles.mobile_navigation}>
-        <div className={styles.mobile_left}>
-          {" "}
-          {tags ? (
-            <div className={styles.filter_button}>
-              <span className={styles.label}>
-                <button
-                  className={filterOpen ? styles.open : styles.closed}
-                  onClick={() => ToggleFilters()}
-                >
-                  {currentTag} <Carot />
-                </button>
-              </span>
-              <ul
-                className={
-                  filterOpen
-                    ? `${styles.tag_list} ${styles.tag_list_open}`
-                    : styles.tag_list
-                }
-              >
-                {currentTag === "All Work" ? null : (
-                  <li>
-                    <button onClick={() => AllTags()}>All Work</button>
-                  </li>
-                )}
-
-                {tags && tags.length > 0
-                  ? tags.map((tag, key) =>
-                      tag === currentTag ? null : (
-                        <li key={key}>
-                          <button index={tag.id} onClick={() => GetByTag(tag)}>
-                            {tag}
-                          </button>
-                        </li>
-                      )
-                    )
-                  : null}
-              </ul>
-            </div>
-          ) : null}
+      {/* <nav className={styles.mobile_navigation}>
+        <div className={styles.profile}>
+          <button>Info</button>
+          <button>Contact</button>
         </div>
-      </nav>
+      </nav> */}
     </>
   );
 };

@@ -444,13 +444,11 @@ const Home = ({ archives, document, tagged }) => {
         </div>
       </main>
       <footer className={styles.footer}>
-        <Image
-          layout="responsive"
-          width={page_content.footer_graphic.dimensions.width}
-          height={page_content.footer_graphic.dimensions.height}
-          src={page_content.footer_graphic.url}
-          alt="Collect Graphic"
-        />
+        <div>©2021 Collect NYC, All Rights Reserved</div>
+        <div>
+          <Link href="/privacy">Privacy</Link>
+          <Link href="/privacy">Impressum</Link>
+        </div>
       </footer>
     </div>
   );

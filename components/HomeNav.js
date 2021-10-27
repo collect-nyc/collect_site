@@ -55,15 +55,17 @@ const HomeNav = ({ page, count, latest, tags }) => {
         </div>
         <div className={styles.top_right}>
           <Link href="/archive">
-            <a>COLLECT Archive</a>
+            <a className={styles.archive}>COLLECT Archive</a>
           </Link>
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
-            <span>({count ? count : 0})</span>
+            <Link href="/archive">
+              <span>({count ? count : 0})</span>
+            </Link>
           </div>
         </div>
       </nav>
-      <nav className={styles.mobile_navigation}>
+      {/* <nav className={styles.mobile_navigation}>
         <div className={styles.mobile_left}>
           {" "}
           {tags ? (
@@ -104,7 +106,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
             </div>
           ) : null}
         </div>
-      </nav>
+      </nav> */}
     </>
   );
 };
