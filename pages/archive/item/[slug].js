@@ -486,11 +486,21 @@ const ArchiveItem = ({ document, uid }) => {
               />
 
               <div className={styles.archive}>
-                <Link href="/archive">
-                  <a>
-                    <LeftArrow /> Archive
-                  </a>
-                </Link>
+                {archiveView ? (
+                  <button
+                    onClick={() => {
+                      setArchiveView(!archiveView);
+                    }}
+                  >
+                    <LeftArrow className={"color_svg"} /> Case Study
+                  </button>
+                ) : (
+                  <Link href="/archive">
+                    <a>
+                      <LeftArrow /> Archive
+                    </a>
+                  </Link>
+                )}
               </div>
 
               <div className={styles.info}>
