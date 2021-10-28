@@ -3,7 +3,6 @@
 
 .navigation {
   background-color: transparent;
-  border-bottom: 1px solid $platinum;
   left: 0;
   position: fixed;
   top: 0;
@@ -13,6 +12,34 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 13px $navGutter_desktop 12px;
+
+  &.home {
+    // background-color: transparent;
+    // border-bottom: none;
+  }
+
+  &.archive {
+    background-color: $alabaster;
+    border-bottom: 1px solid $platinum;
+
+    .top_right {
+      justify-content: flex-end;
+    }
+  }
+
+  &.archive_view {
+    display: none;
+  }
+
+  &.casestudy {
+    .top_right {
+      justify-content: flex-end;
+
+      button:last-of-type {
+        margin-left: 20px;
+      }
+    }
+  }
 
   .top_left {
     display: flex;
@@ -75,7 +102,7 @@
     }
 
     .tag_list {
-      margin: 0;
+      margin: 3px 0 0 0;
       display: none;
       column-count: 3;
       column-gap: 0;
@@ -128,16 +155,14 @@
     padding-left: 20px;
     width: 50%;
 
-    &:active {
-      color: $black;
-    }
     .controls {
       display: flex;
+
       button {
         background-color: transparent;
         border: none;
         cursor: pointer;
-        padding-right: 10px;
+        margin-right: 20px;
         height: 24px;
       }
       @media screen and (max-width: $mq-mobile-max) {
@@ -182,31 +207,6 @@
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
   }
-
-  &.home {
-    // background-color: transparent;
-    // border-bottom: none;
-  }
-  &.archive_nav {
-    background-color: $alabaster;
-  }
-
-  // &.casestudy {
-  //   .top_right {
-  //     justify-content: flex-end;
-
-  //     button:last-of-type {
-  //       margin-left: 20px;
-  //     }
-  //   }
-  //   @media screen and (max-width: $mq-mobile-max) {
-  //     display: none;
-  //   }
-  // }
-}
-.home {
-  border-bottom: none;
-  background: none;
 }
 .profile {
   border-bottom: none;

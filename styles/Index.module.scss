@@ -3,9 +3,6 @@
 @import "./typography";
 
 .container {
-  overflow-y: scroll;
-  height: 100vh;
-
   a,
   button {
     color: $black;

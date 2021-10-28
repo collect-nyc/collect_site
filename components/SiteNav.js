@@ -6,7 +6,7 @@ import ProfileNav from "../components/ProfileNav";
 const SiteNav = ({ page, count, latest, tags, case_study }) => {
   console.log("siteNav: ", page);
   return (
-    <div>
+    <>
       {
         {
           index: <HomeNav count={count} />,
@@ -22,7 +22,7 @@ const SiteNav = ({ page, count, latest, tags, case_study }) => {
           profile: <ProfileNav count={count} />,
         }[page]
       }
-    </div>
+    </>
   );
 };
 
