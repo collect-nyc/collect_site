@@ -46,7 +46,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
           className="color_link"
           onClick={() => {
             animateScrollTo(document.querySelector("#itemFooter"), {
-              elementToScroll: window.document.querySelector("body"),
+              // elementToScroll: window.document.querySelector("body"),
               easing: (t) => {
                 return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
               },

@@ -533,7 +533,7 @@ const ArchiveItem = ({ document, uid }) => {
                 <a
                   onClick={() => {
                     animateScrollTo(footerRef.current, {
-                      elementToScroll: window.document.querySelector("body"),
+                      // elementToScroll: window.document.querySelector("body"),
                       easing: (t) => {
                         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
                       },
