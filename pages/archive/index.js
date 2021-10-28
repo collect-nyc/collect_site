@@ -444,8 +444,10 @@ const Home = ({ archives, document, tagged }) => {
         </div>
       </main>
       <footer className={styles.footer}>
-        <div>©2021 Collect NYC, All Rights Reserved</div>
-        <div>
+        <div className={styles.copyright}>
+          ©{new Date().getFullYear()} Collect NYC, All Rights Reserved
+        </div>
+        <div className={styles.links}>
           <Link href="/privacy">Privacy</Link>
           <Link href="/privacy">Impressum</Link>
         </div>
