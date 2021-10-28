@@ -101,6 +101,7 @@ const Home = ({ document }) => {
                       height={slice.primary.first_image.dimensions.height}
                       width={slice.primary.first_image.dimensions.width}
                       alt={slice.primary.first_image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -111,6 +112,7 @@ const Home = ({ document }) => {
                   height={slice.primary.first_image.dimensions.height}
                   width={slice.primary.first_image.dimensions.width}
                   alt={slice.primary.first_image.alt}
+                  priority
                 />
               )
             ) : null}
@@ -132,6 +134,7 @@ const Home = ({ document }) => {
                       height={slice.primary.second_image.dimensions.height}
                       width={slice.primary.second_image.dimensions.width}
                       alt={slice.primary.second_image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -142,6 +145,7 @@ const Home = ({ document }) => {
                   height={slice.primary.second_image.dimensions.height}
                   width={slice.primary.second_image.dimensions.width}
                   alt={slice.primary.second_image.alt}
+                  priority
                 />
               )
             ) : null}
@@ -179,6 +183,7 @@ const Home = ({ document }) => {
                       height={slice.primary.image.dimensions.height}
                       width={slice.primary.image.dimensions.width}
                       alt={slice.primary.image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -189,6 +194,7 @@ const Home = ({ document }) => {
                   height={slice.primary.image.dimensions.height}
                   width={slice.primary.image.dimensions.width}
                   alt={slice.primary.image.alt}
+                  priority
                 />
               )}
             </figure>

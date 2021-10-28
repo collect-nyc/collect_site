@@ -14,6 +14,7 @@ function MyApp({ Component, pageProps }) {
   const [returnPage, setReturnPage] = useState(false);
   const [navTextColor, setNavTextColor] = useState(null);
   const [archiveView, setArchiveView] = useState(false);
+  const [caseStudyView, setCaseStudyView] = useState(false);
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -53,6 +54,8 @@ function MyApp({ Component, pageProps }) {
         setReturnPage: setReturnPage,
         navTextColor: navTextColor,
         setNavTextColor: setNavTextColor,
+        caseStudyView: caseStudyView,
+        setCaseStudyView: setCaseStudyView,
         archiveView: archiveView,
         setArchiveView: setArchiveView,
       }}

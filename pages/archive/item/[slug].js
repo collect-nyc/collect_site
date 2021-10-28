@@ -152,6 +152,20 @@ const ArchiveItem = ({ document, uid }) => {
     download,
     supporting_image,
   } = page_data;
+  const { navTextColor, caseStudyView, setCaseStudyView } =
+    useContext(MemoryContext);
+
+  useEffect(() => {
+    if (case_study) {
+      setCaseStudyView(true);
+    } else {
+      setCaseStudyView(false);
+    }
+
+    return () => {
+      setCaseStudyView(false);
+    };
+  }, [case_study, setCaseStudyView]);
 
   console.log("Project Data", page_data);
 
@@ -160,7 +174,6 @@ const ArchiveItem = ({ document, uid }) => {
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
-  const { navTextColor } = useContext(MemoryContext);
 
   const {
     currentTag,

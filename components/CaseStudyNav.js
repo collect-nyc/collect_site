@@ -6,8 +6,13 @@ import { useRouter } from "next/router";
 import animateScrollTo from "animated-scroll-to";
 
 const CaseStudyNav = ({ page, count, latest, tags }) => {
-  const { navTextColor, archiveView, setArchiveView } =
-    useContext(MemoryContext);
+  const {
+    navTextColor,
+    archiveView,
+    setArchiveView,
+    caseStudyView,
+    setCaseStudyView,
+  } = useContext(MemoryContext);
 
   // State
   const [logoHover, setLogoHover] = useState(false);
@@ -18,7 +23,7 @@ const CaseStudyNav = ({ page, count, latest, tags }) => {
 
   return (
     <>
-      {!archiveView ? (
+      {!archiveView && caseStudyView ? (
         <nav
           className={`${styles.navigation} ${styles.casestudy}`}
           style={navTextColor ? { color: navTextColor } : null}
