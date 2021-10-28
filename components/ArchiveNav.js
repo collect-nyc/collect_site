@@ -137,7 +137,9 @@ const HomeNav = ({ page, count, latest, tags }) => {
             </button>
           </div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
-          <span>({count ? count : 0})</span>
+          <Link href="/archive">
+            <a>({count ? count : 0})</a>
+          </Link>
         </div>
       </nav>
       <nav className={styles.mobile_navigation}>

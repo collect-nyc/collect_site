@@ -59,7 +59,9 @@ const HomeNav = ({ page, count, latest, tags }) => {
           </Link>
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
-            <span>({count ? count : 0})</span>
+            <Link href="/archive">
+              <a>({count ? count : 0})</a>
+            </Link>
           </div>
         </div>
       </nav>
