@@ -8,6 +8,8 @@ import Prismic from "prismic-javascript";
 // import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
+import { motion } from "framer-motion";
+import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
@@ -17,6 +19,7 @@ import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
 import styles from "../../../styles/Item.module.scss";
 import { apolloClient } from "../../../lib/apollo-config";
+import { ImageSlider } from "../../../components/ImageSlider";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;
@@ -32,6 +35,12 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           creation_date
           title
           description
+          download {
+            _linkType
+            ... on _FileLink {
+              url
+            }
+          }
           images {
             image
             video {
@@ -140,6 +149,7 @@ const ArchiveItem = ({ document, uid }) => {
     text_color,
     background_color,
     backup_text,
+    download,
     supporting_image,
   } = page_data;
 
@@ -152,8 +162,13 @@ const ArchiveItem = ({ document, uid }) => {
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
   const { navTextColor } = useContext(MemoryContext);
 
-  const { currentTag, setReturnPage, setNavTextColor } =
-    useContext(MemoryContext);
+  const {
+    currentTag,
+    setReturnPage,
+    setNavTextColor,
+    archiveView,
+    setArchiveView,
+  } = useContext(MemoryContext);
   const footerRef = createRef();
 
   const images = page_data.images;
@@ -171,8 +186,6 @@ const ArchiveItem = ({ document, uid }) => {
   }, []);
 
   useEffect(() => {
-    console.log("Nav Text Color", text_color);
-
     setNavTextColor(text_color);
 
     return () => {
@@ -344,22 +357,13 @@ const ArchiveItem = ({ document, uid }) => {
             </section>
           );
         } else if (slice.type === "images_slider") {
-          const galleryContent = slice.fields.map((image, imageIndex) => (
-            <figure key={imageIndex}>
-              {image.image && image.image.url ? (
-                <Image
-                  src={image.image.url}
-                  alt={image.image.alt}
-                  height={image.image.dimensions.height}
-                  width={image.image.dimensions.width}
-                  layout={"responsive"}
-                />
-              ) : null}
-            </figure>
-          ));
           return (
             <section key={index} className={styles.image_slider}>
-              {galleryContent}
+              <ImageSlider
+                images={slice.fields}
+                text_color={text_color}
+                background_color={background_color}
+              />
             </section>
           );
         } else {
@@ -371,6 +375,7 @@ const ArchiveItem = ({ document, uid }) => {
   return (
     <div
       className={styles.container}
+      id="itemContainer"
       style={
         case_study && background_color
           ? {
@@ -442,7 +447,7 @@ const ArchiveItem = ({ document, uid }) => {
         </div>
       ) : (
         <main className={styles.main}>
-          {case_study ? (
+          {case_study && !archiveView ? (
             <div
               className={styles.casestudy_container}
               style={
@@ -456,7 +461,12 @@ const ArchiveItem = ({ document, uid }) => {
               }
             >
               <section className={styles.case_study_intro}>
-                <figure className={styles.title_image}>
+                <motion.figure
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                  className={styles.title_image}
+                >
                   {title_image && title_image.url ? (
                     <Image
                       src={title_image.url}
@@ -465,9 +475,14 @@ const ArchiveItem = ({ document, uid }) => {
                       width={title_image.dimensions.width}
                     />
                   ) : null}
-                </figure>
+                </motion.figure>
 
-                <figure className={styles.support_image}>
+                <motion.figure
+                  initial={{ opacity: 0, y: "0%" }}
+                  animate={{ opacity: [0, 1], y: ["0%", "-20%"] }}
+                  transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+                  className={styles.support_image}
+                >
                   {supporting_image && supporting_image.url ? (
                     <Image
                       src={supporting_image.url}
@@ -476,7 +491,7 @@ const ArchiveItem = ({ document, uid }) => {
                       width={supporting_image.dimensions.width}
                     />
                   ) : null}
-                </figure>
+                </motion.figure>
               </section>
               {pageContent}
             </div>
@@ -490,11 +505,22 @@ const ArchiveItem = ({ document, uid }) => {
               />
 
               <div className={styles.archive}>
-                <Link href="/archive">
-                  <a>
-                    <LeftArrow /> Archive
-                  </a>
-                </Link>
+                {archiveView ? (
+                  <button
+                    onClick={() => {
+                      setArchiveView(!archiveView);
+                    }}
+                    className={"color_link"}
+                  >
+                    <LeftArrow className={"color_svg"} /> Case Study
+                  </button>
+                ) : (
+                  <Link href="/archive">
+                    <a>
+                      <LeftArrow /> Archive
+                    </a>
+                  </Link>
+                )}
               </div>
 
               <div className={styles.info}>
@@ -506,8 +532,18 @@ const ArchiveItem = ({ document, uid }) => {
 
                 <a
                   onClick={() => {
-                    footerRef.current.scrollIntoView({ behavior: "smooth" });
+                    animateScrollTo(footerRef.current, {
+                      elementToScroll: window.document.querySelector("body"),
+                      easing: (t) => {
+                        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                      },
+                      maxDuration: 1500,
+                      minDuration: 800,
+                      speed: 1000,
+                      verticalOffset: -100,
+                    });
                   }}
+                  className={"color_link"}
                 >
                   View Info
                 </a>
@@ -523,54 +559,89 @@ const ArchiveItem = ({ document, uid }) => {
                 ? `${styles.project_footer} ${styles.multi_item}`
                 : `${styles.project_footer} ${styles.single_item}`
             }
+            id={"itemFooter"}
             style={
               case_study && background_color
                 ? {
                     backgroundColor: background_color,
                     borderColor: text_color,
+                    border: "none",
                     color: text_color,
                   }
                 : null
             }
           >
+            <nav className={styles.back_nav}>
+              <Link href={"/"}>
+                <a className={"color_link"}>
+                  <LeftArrow className={"color_svg"} /> Back to Home
+                </a>
+              </Link>
+              <Link href={"/archive"}>
+                <a className={"color_link"}>
+                  <LeftArrow className={"color_svg"} /> Back to Archive
+                </a>
+              </Link>
+              <style global jsx>{`
+                .color_svg path {
+                  fill: ${text_color};
+                }
+                .color_link {
+                  color: ${text_color};
+                }
+              `}</style>
+            </nav>
             <div className={styles.title_and_description}>
-              <p className={styles.title}>
-                {page_data.title[0]
-                  ? page_data.title[0].text
-                  : "COLLECT Project"}
-              </p>
+              <div className={styles.inner_desc}>
+                <h1 className={styles.title}>
+                  {page_data.title[0]
+                    ? page_data.title[0].text
+                    : "COLLECT Project"}
+                </h1>
 
-              <div className={styles.description}>
-                {page_data.description && page_data.description.length > 0
-                  ? page_data.description[0].text
-                  : null}
+                <div className={styles.description}>
+                  {page_data.description && page_data.description.length > 0
+                    ? page_data.description[0].text
+                    : null}
+                </div>
               </div>
             </div>
 
             <div className={styles.credits_and_download}>
               <div className={styles.credits}>
-                {/* page_data.body1[0]
-                  ? page_data.body1[0].items.map((credit, index) => (
+                {page_data.body1 &&
+                page_data.body1[0] &&
+                page_data.body1[0].fields
+                  ? page_data.body1[0].fields.map((credit, index) => (
                       <div key={index} className={styles.credit}>
                         <p>{credit.title_or_category[0].text}</p>
                         {credit.names.map((name, index) =>
                           name.spans.length > 0 ? (
                             <a
                               href={name.spans[0].data.url}
-                              className={styles.name}
+                              className={"color_link name"}
+                              key={index}
                             >
                               {" "}
                               {name.text}
                             </a>
                           ) : (
-                            <p className={styles.name}>{name.text}</p>
+                            <p key={index} className={styles.name}>
+                              {name.text}
+                            </p>
                           )
                         )}
                       </div>
                     ))
-                          : null */}
+                  : null}
               </div>
-              <div className={styles.download}>Download Project Images</div>
+              {download && download.url ? (
+                <div className={styles.download}>
+                  <a className={"color_link"} href={download.url}>
+                    Download Project Images
+                  </a>
+                </div>
+              ) : null}
             </div>
           </footer>
         </main>

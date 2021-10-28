@@ -45,7 +45,7 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
 
   return (
     <>
-      <nav className={styles.navigation}>
+      <nav className={`${styles.navigation} ${styles.archive}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
             <Link href={navLink}>
@@ -137,7 +137,9 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
             </button>
           </div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
-          <span>({count ? count : 0})</span>
+          <Link href="/archive">
+            <a>({count ? count : 0})</a>
+          </Link>
         </div>
       </nav>
       <nav className={styles.mobile_navigation}>
