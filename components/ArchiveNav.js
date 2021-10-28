@@ -1,11 +1,11 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
 
-const HomeNav = ({ page, count, latest, tags, case_study }) => {
+const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
   const router = useRouter();
   const {
     layoutView,
@@ -16,16 +16,11 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
     setTimeSort,
     currentTag,
     setCurrentTag,
-    archiveList,
-    setArchiveList,
-    returnPage,
-    setReturnPage,
   } = useContext(MemoryContext);
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-
-  const [navLink, setNavLink] = useState("/profile");
+  const [logoHover, setLogoHover] = useState(false);
 
   const ToggleFilters = () => {
     setFilterOpen(!filterOpen);
@@ -45,14 +40,19 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
 
   return (
     <>
-      <nav className={`${styles.navigation} ${styles.archive_nav}`}>
+      <nav className={`${styles.navigation} ${styles.archive}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
-            <Link href={navLink}>
-              <a>
-                {page === "profile"
-                  ? "COLLECT New York City"
-                  : "COLLECT Archive"}
+            <Link href={"/"}>
+              <a
+                onMouseEnter={() => {
+                  setLogoHover(true);
+                }}
+                onMouseLeave={() => {
+                  setLogoHover(false);
+                }}
+              >
+                {logoHover ? "COLLECT Home" : "COLLECT Archive"}
               </a>
             </Link>
           </div>
@@ -137,7 +137,9 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
             </button>
           </div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
-          <span>({count ? count : 0})</span>
+          <Link href="/archive">
+            <a>({count ? count : 0})</a>
+          </Link>
         </div>
       </nav>
       <nav className={styles.mobile_navigation}>
@@ -230,4 +232,4 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
   );
 };
 
-export default HomeNav;
+export default ArchiveNav;
