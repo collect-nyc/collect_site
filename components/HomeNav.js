@@ -1,26 +1,10 @@
 import { useEffect, useState, useContext, useRef } from "react";
 import Link from "next/link";
-import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
-import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const router = useRouter();
-  // const {
-  //   layoutView,
-  //   setLayoutView,
-  //   azSort,
-  //   setAzSort,
-  //   timeSort,
-  //   setTimeSort,
-  //   currentTag,
-  //   setCurrentTag,
-  //   archiveList,
-  //   setArchiveList,
-  //   returnPage,
-  //   setReturnPage,
-  // } = useContext(MemoryContext);
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);

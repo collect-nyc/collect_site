@@ -19,6 +19,10 @@ function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
 
   useEffect(() => {
+    console.log("Archive View Set: ", archiveView);
+  }, [archiveView]);
+
+  useEffect(() => {
     const handleRouteChange = (url) => {
       window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
         page_path: url,

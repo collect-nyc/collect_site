@@ -3,7 +3,6 @@
 
 .navigation {
   background-color: transparent;
-  // border-bottom: 1px solid $platinum;
   left: 0;
   position: fixed;
   top: 0;
@@ -13,6 +12,34 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 13px $navGutter_desktop 12px;
+
+  &.home {
+    // background-color: transparent;
+    // border-bottom: none;
+  }
+
+  &.archive {
+    background-color: $alabaster;
+    border-bottom: 1px solid $platinum;
+
+    .top_right {
+      justify-content: flex-end;
+    }
+  }
+
+  &.archive_view {
+    display: none;
+  }
+
+  &.casestudy {
+    .top_right {
+      justify-content: flex-end;
+
+      button:last-of-type {
+        margin-left: 20px;
+      }
+    }
+  }
 
   .top_left {
     display: flex;
@@ -179,34 +206,6 @@
     border-top: 1px solid $platinum;
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
-  }
-
-  &.home {
-    // background-color: transparent;
-    // border-bottom: none;
-  }
-
-  &.archive {
-    background-color: $alabaster;
-    border-bottom: 1px solid $platinum;
-
-    .top_right {
-      justify-content: flex-end;
-    }
-  }
-
-  &.casestudy {
-    &.archive_view {
-      display: none;
-    }
-
-    .top_right {
-      justify-content: flex-end;
-
-      button:last-of-type {
-        margin-left: 20px;
-      }
-    }
   }
 }
 

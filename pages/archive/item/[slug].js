@@ -404,24 +404,6 @@ const ArchiveItem = ({ document, uid }) => {
 
         <SharedHead />
       </Head>
-      {page_data.case_study ? (
-        <nav
-          className={`${styles.navigation} ${styles.casestudy}`}
-          style={navTextColor ? { color: navTextColor } : null}
-        >
-          <div className={styles.top_left}>
-            <div className={styles.link_box}>
-              <Link href={"/archive"}>
-                <a>COLLECT New York City</a>
-              </Link>
-            </div>
-          </div>
-          <div className={styles.top_right}>
-            <button>Archive View</button>
-            <button>Project Info</button>
-          </div>
-        </nav>
-      ) : null}
 
       {isLocked ? (
         <div className={styles.password_wrapper}>

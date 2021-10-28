@@ -1,11 +1,11 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
 
-const HomeNav = ({ page, count, latest, tags, case_study }) => {
+const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
   const router = useRouter();
   const {
     layoutView,
@@ -16,10 +16,6 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
     setTimeSort,
     currentTag,
     setCurrentTag,
-    archiveList,
-    setArchiveList,
-    returnPage,
-    setReturnPage,
   } = useContext(MemoryContext);
 
   // State
@@ -236,4 +232,4 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
   );
 };
 
-export default HomeNav;
+export default ArchiveNav;
