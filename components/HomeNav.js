@@ -7,49 +7,41 @@ import { useRouter } from "next/router";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const router = useRouter();
-  const {
-    layoutView,
-    setLayoutView,
-    azSort,
-    setAzSort,
-    timeSort,
-    setTimeSort,
-    currentTag,
-    setCurrentTag,
-    archiveList,
-    setArchiveList,
-    returnPage,
-    setReturnPage,
-  } = useContext(MemoryContext);
+  // const {
+  //   layoutView,
+  //   setLayoutView,
+  //   azSort,
+  //   setAzSort,
+  //   timeSort,
+  //   setTimeSort,
+  //   currentTag,
+  //   setCurrentTag,
+  //   archiveList,
+  //   setArchiveList,
+  //   returnPage,
+  //   setReturnPage,
+  // } = useContext(MemoryContext);
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-
-  const [navLink, setNavLink] = useState("/profile");
-
-  const ToggleFilters = () => {
-    setFilterOpen(!filterOpen);
-  };
-
-  const GetByTag = (name) => {
-    setCurrentTag(name);
-    setFilterOpen(false);
-    router.push(`/?tag=${name}`);
-  };
-
-  const AllTags = () => {
-    setCurrentTag("All Work");
-    setFilterOpen(false);
-    router.push(`/`);
-  };
+  const [logoHover, setLogoHover] = useState(false);
 
   return (
     <>
       <nav className={`${styles.navigation} ${styles.home}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
-            <Link href={navLink}>
-              <a>COLLECT New York City</a>
+            <Link href={"/profile"}>
+              <a
+                onMouseEnter={() => {
+                  setLogoHover(true);
+                }}
+                onMouseLeave={() => {
+                  setLogoHover(false);
+                }}
+              >
+                {logoHover ? "COLLECT Profile" : "COLLECT New York City"}
+              </a>
             </Link>
           </div>
         </div>

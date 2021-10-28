@@ -24,8 +24,7 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-
-  const [navLink, setNavLink] = useState("/profile");
+  const [logoHover, setLogoHover] = useState(false);
 
   const ToggleFilters = () => {
     setFilterOpen(!filterOpen);
@@ -48,11 +47,16 @@ const HomeNav = ({ page, count, latest, tags, case_study }) => {
       <nav className={`${styles.navigation} ${styles.archive}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
-            <Link href={navLink}>
-              <a>
-                {page === "profile"
-                  ? "COLLECT New York City"
-                  : "COLLECT Archive"}
+            <Link href={"/"}>
+              <a
+                onMouseEnter={() => {
+                  setLogoHover(true);
+                }}
+                onMouseLeave={() => {
+                  setLogoHover(false);
+                }}
+              >
+                {logoHover ? "COLLECT Home" : "COLLECT Archive"}
               </a>
             </Link>
           </div>
