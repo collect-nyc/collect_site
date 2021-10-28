@@ -75,7 +75,7 @@
     }
 
     .tag_list {
-      margin: 0;
+      margin: 3px 0 0 0;
       display: none;
       column-count: 3;
       column-gap: 0;
@@ -130,11 +130,12 @@
 
     .controls {
       display: flex;
+
       button {
         background-color: transparent;
         border: none;
         cursor: pointer;
-        padding-right: 10px;
+        margin-right: 20px;
         height: 24px;
       }
       @media screen and (max-width: $mq-mobile-max) {
@@ -160,6 +161,15 @@
   &.home {
     // background-color: transparent;
     // border-bottom: none;
+  }
+
+  &.archive {
+    background-color: $alabaster;
+    border-bottom: 1px solid $platinum;
+
+    .top_right {
+      justify-content: flex-end;
+    }
   }
 
   &.casestudy {
