@@ -614,6 +614,7 @@ const ArchiveItem = ({ document, uid }) => {
                           name.spans.length > 0 ? (
                             <a
                               href={name.spans[0].data.url}
+                              target={"blank"}
                               className={"color_link name"}
                               key={index}
                             >
