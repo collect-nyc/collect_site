@@ -187,6 +187,9 @@
     // background-color: transparent;
     // border-bottom: none;
   }
+  &.archive_nav {
+    background-color: $alabaster;
+  }
 
   // &.casestudy {
   //   .top_right {
@@ -204,6 +207,12 @@
 .home {
   border-bottom: none;
   background: none;
+}
+.profile {
+  border-bottom: none;
+  @media screen and (max-width: $mq-mobile-max) {
+    border-bottom: 1px solid $platinum;
+  }
 }
 
 .link_box {

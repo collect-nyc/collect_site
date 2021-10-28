@@ -1,9 +1,10 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import MemoryContext from "../components/MemoryContext";
+import { motion, useElementScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import styles from "../styles/Profile.module.scss";
 
@@ -24,18 +25,39 @@ const Profile = ({ document }) => {
   useEffect(() => {
     setReturnPage(true);
   }, []);
-
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
 
+  const ref = useRef();
+
+  const { scrollYProgress } = useElementScroll(ref);
+
+  // this prints out number between 0 and 1 for scroll position of the page
+  // useEffect(() => {
+  //   scrollYProgress.onChange((latest) => {
+  //     console.log(latest);
+  //   });
+  // });
+
+  const top_gradient = useTransform(
+    scrollYProgress,
+    [0, 0.29, 0.3, 1],
+    [0, 0, 1, 1]
+  );
+
+  const bottom_gradient = useTransform(
+    scrollYProgress,
+    [0, 0.99, 1],
+    [1, 0.5, 0]
+  );
   const ChangePage = (page) => {
     setProfilePage(page);
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.container} ref={ref}>
       <Head>
         <title>COLLECT NYC Profile</title>
         <meta
@@ -68,8 +90,18 @@ const Profile = ({ document }) => {
         }
       >
         <div className={styles.about}>
+          <motion.div
+            className={styles.gradient_top}
+            style={{ scrollYProgress, opacity: top_gradient }}
+            key={"top"}
+          />
+          <motion.div
+            className={styles.gradient_bottom}
+            style={{ scrollYProgress, opacity: bottom_gradient }}
+            key={"bottom"}
+          />
           <div className={styles.summary}>
-            <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
+            {/* <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1> */}
             <RichText render={page_content.summary} />
 
             {page_content && page_content.latest
