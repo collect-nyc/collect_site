@@ -29,13 +29,13 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
   const GetByTag = (name) => {
     setCurrentTag(name);
     setFilterOpen(false);
-    router.push(`/?tag=${name}`);
+    router.push(`/archive?tag=${name}`);
   };
 
   const AllTags = () => {
     setCurrentTag("All Work");
     setFilterOpen(false);
-    router.push(`/`);
+    router.push(`/archive`);
   };
 
   return (
