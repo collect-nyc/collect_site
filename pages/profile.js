@@ -174,8 +174,6 @@ const Profile = ({ document }) => {
             <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
           ) : null}
           <div className={styles.contact_summary}>
-            <h3 className="untitled_caps">Contact</h3>
-
             {page_content ? (
               <RichText render={page_content.instruction} />
             ) : null}
@@ -224,10 +222,6 @@ const Profile = ({ document }) => {
               <RichText render={page_content.address} />
             </div>
           </div>
-
-          {/*<div className={styles.copyright}>
-            &copy;{new Date().getFullYear()} Collect NYC
-                </div>*/}
         </aside>
       </main>
     </div>
