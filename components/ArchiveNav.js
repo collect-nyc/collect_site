@@ -148,6 +148,7 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
           </Link>
         </div>
       </nav>
+
       <nav className={styles.mobile_navigation}>
         <div className={styles.mobile_left}>
           {" "}

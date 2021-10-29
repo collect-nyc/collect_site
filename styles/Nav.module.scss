@@ -39,7 +39,13 @@
         margin-left: 20px;
       }
     }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      background-color: transparent;
+      border: none;
+    }
   }
+
   &.essential_text_nav {
     .top_right {
       justify-content: flex-end;
@@ -207,7 +213,7 @@
 
   @media screen and (max-width: $mq-mobile-max) {
     align-items: center;
-    padding: 20px $navGutter_mobile;
+    padding: 12px $navGutter_mobile 12px;
     border-top: 1px solid $platinum;
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
@@ -215,6 +221,7 @@
 }
 .profile {
   border-bottom: none;
+
   @media screen and (max-width: $mq-mobile-max) {
     border-bottom: 1px solid $platinum;
   }
@@ -260,19 +267,21 @@
 
 .mobile_navigation {
   display: none;
+
   @media screen and (max-width: $mq-mobile-max) {
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
     left: 0;
     position: fixed;
-    top: 66px;
+    top: 50px;
     width: 100%;
     z-index: 5;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 20px $navGutter_mobile;
+    padding: 13px $navGutter_mobile 12px;
   }
+
   .mobile_left {
     display: flex;
     list-style: none;
