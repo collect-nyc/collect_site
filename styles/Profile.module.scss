@@ -79,6 +79,7 @@
     padding-left: $navGutter_desktop;
 
     @media screen and (max-width: $mq-mobile-max) {
+      padding: 95px 0;
       width: 100%;
     }
 
@@ -91,7 +92,12 @@
       width: 340px;
 
       h1 {
+        display: none;
         margin-bottom: 45px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          display: block;
+        }
       }
 
       p {
@@ -154,6 +160,10 @@
       height: 120px;
       transform: rotate(180deg);
       width: calc(50% - 1px);
+
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
+      }
     }
 
     .gradient_top {
@@ -167,6 +177,10 @@
       top: 0;
       left: 0;
       width: calc(50% - 1px);
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
   }
 
@@ -180,6 +194,7 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
+      padding: 95px 0;
       position: relative;
       right: auto;
       top: auto;
