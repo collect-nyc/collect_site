@@ -2,17 +2,11 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
-import { useRouter } from "next/router";
 import animateScrollTo from "animated-scroll-to";
 
-const CaseStudyNav = ({ page, count, latest, tags }) => {
-  const {
-    navTextColor,
-    archiveView,
-    setArchiveView,
-    caseStudyView,
-    setCaseStudyView,
-  } = useContext(MemoryContext);
+const CaseStudyNav = () => {
+  const { navTextColor, archiveView, setArchiveView, caseStudyView } =
+    useContext(MemoryContext);
 
   // State
   const [logoHover, setLogoHover] = useState(false);
