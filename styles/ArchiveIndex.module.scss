@@ -4,8 +4,6 @@
 
 .container {
   padding: 55px 0 0;
-  overflow-y: scroll;
-  height: 100vh;
 
   @media (hover: none) {
     padding-bottom: 130px;
@@ -231,14 +229,19 @@
 
 .footer {
   background-color: $alabaster;
-  width: 100%;
   display: flex;
   justify-content: space-between;
-  padding: {
-    left: $navGutter_desktop;
-    right: $navGutter_desktop;
-    bottom: $navGutter_desktop;
+  padding: 90px $navGutter_desktop 16px $navGutter_desktop;
+
+  .copyright {
   }
+
+  .links {
+    a {
+      margin-left: 20px;
+    }
+  }
+
   img {
     max-width: 100%;
   }
