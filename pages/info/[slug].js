@@ -37,7 +37,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
     },
   });
 
-  console.log(data);
+  // console.log(data);
 
   const document = data;
   const page = "essential_text";
@@ -67,17 +67,12 @@ export async function getStaticPaths() {
 const EssentialText = ({ document, uid }) => {
   const page_data = document;
 
-  console.log("Project Data", page_data);
+  // console.log("Project Data", page_data);
 
   const router = useRouter();
 
   const ref = useRef();
   const { scrollYProgress } = useViewportScroll(ref);
-  useEffect(() => {
-    scrollYProgress.onChange((latest) => {
-      console.log(latest);
-    });
-  }, []);
 
   const top_gradient = useTransform(
     scrollYProgress,
