@@ -166,6 +166,7 @@
     position: absolute;
     left: $navGutter_desktop;
     top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
 
     @media screen and (max-width: $mq-mobile-max) {
@@ -178,6 +179,7 @@
     position: absolute;
     right: $navGutter_desktop;
     top: 50%;
+    transform: translateY(-50%);
     z-index: 10;
 
     .current_image {
