@@ -3,6 +3,7 @@ import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import animateScrollTo from "animated-scroll-to";
+import LeftArrow from "../svg/left-arrow.svg";
 
 const CaseStudyNav = () => {
   const { navTextColor, archiveView, setArchiveView, caseStudyView } =
@@ -26,6 +27,9 @@ const CaseStudyNav = () => {
             .color_link {
               color: ${navTextColor};
             }
+            .color_svg path {
+              fill: ${navTextColor};
+            }
           `}</style>
           <div className={styles.top_left}>
             <div className={styles.link_box}>
@@ -40,6 +44,13 @@ const CaseStudyNav = () => {
                   }}
                 >
                   {logoHover ? "COLLECT Home" : "COLLECT New York City"}
+                </a>
+              </Link>
+            </div>
+            <div className={styles.mobile_back}>
+              <Link href={"/archive"}>
+                <a className="color_link">
+                  <LeftArrow className="color_svg" /> Archive
                 </a>
               </Link>
             </div>

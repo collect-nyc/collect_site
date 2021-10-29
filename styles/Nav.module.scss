@@ -32,6 +32,22 @@
   }
 
   &.casestudy {
+    .top_left {
+      .link_box {
+        display: none;
+      }
+      .mobile_back {
+        display: flex;
+        padding-right: 50px;
+        align-items: center;
+        width: auto;
+        height: 24px;
+
+        a {
+          font-size: 13px;
+        }
+      }
+    }
     .top_right {
       justify-content: flex-end;
 
@@ -43,6 +59,10 @@
     @media screen and (max-width: $mq-mobile-max) {
       background-color: transparent;
       border: none;
+
+      button:first-of-type {
+        display: none;
+      }
     }
   }
 
