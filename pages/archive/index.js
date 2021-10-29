@@ -133,9 +133,19 @@ const Home = ({ archives, document, tagged }) => {
     }
   }, []);
 
+  // Checking on memory version of archive list
+  useEffect(() => {
+    console.log("Memory", archiveList.length);
+  }, [archiveList]);
+
   // Set archive list when archive data changes
   useEffect(() => {
-    if (archiveList === undefined || archiveList.length === 0) {
+    console.log("Archives: ", archives.length);
+    if (
+      archiveList === undefined ||
+      archiveList.length === 0 ||
+      archives.length !== archiveList.length
+    ) {
       ShuffeList(archives);
       setReturnPage(false);
     } else if (returnPage) {
@@ -253,9 +263,37 @@ const Home = ({ archives, document, tagged }) => {
     }
   };
 
+  const ModifyTags = (list) => {
+    // console.log("The Tag", tagged);
+    let MyTags = list;
+
+    if (tagged) {
+      // console.log("Original List", MyTags);
+      let TagIndex = MyTags.indexOf(tagged);
+      // console.log("Position in array", MyTags.indexOf(tagged));
+      MyTags.splice(TagIndex, 1);
+      // console.log("Modified List", MyTags);
+      MyTags.unshift(tagged);
+      // console.log("Final List", MyTags);
+
+      return MyTags.map((tag, key) => (
+        <span key={key}>
+          {MyTags.length === key + 1 && tag ? tag : tag ? tag + ", " : null}
+        </span>
+      ));
+    } else {
+      return MyTags.map((tag, key) => (
+        <span key={key}>
+          {MyTags.length === key + 1 && tag ? tag : tag ? tag + ", " : null}
+        </span>
+      ));
+    }
+  };
+
   // List View JSX
   const ListView = () => {
-    // console.log("LIST", archiveList);
+    // console.log("LIST", archiveList)
+
     return (
       <section className={styles.all_archives}>
         <ul>
@@ -270,15 +308,7 @@ const Home = ({ archives, document, tagged }) => {
                     </span>
 
                     <span className={styles.tags}>
-                      {archive.tags.map((tag, key) => (
-                        <span key={key}>
-                          {archive.tags.length === key + 1 && tag
-                            ? tag
-                            : tag
-                            ? tag + ", "
-                            : null}
-                        </span>
-                      ))}
+                      {ModifyTags(archive.tags)}
                     </span>
 
                     <span className={styles.date}>
@@ -297,15 +327,7 @@ const Home = ({ archives, document, tagged }) => {
                       </span>
 
                       <span className={styles.tags}>
-                        {archive.tags.map((tag, key) => (
-                          <span key={key}>
-                            {archive.tags.length === key + 1 && tag
-                              ? tag
-                              : tag
-                              ? tag + ", "
-                              : null}
-                          </span>
-                        ))}
+                        {ModifyTags(archive.tags)}
                       </span>
 
                       <span className={styles.date}>
