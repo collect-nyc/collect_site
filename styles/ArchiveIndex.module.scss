@@ -13,6 +13,10 @@
   width: 100%;
   left: 0;
   z-index: 1;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    top: 155px;
+  }
 }
 
 .title {
@@ -45,7 +49,7 @@
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    padding: 370px $gutter_mobile 0;
+    padding: 350px 0 0;
   }
 
   .interior {

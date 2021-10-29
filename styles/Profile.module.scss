@@ -19,9 +19,9 @@
   background-color: $alabaster;
   border-bottom: 1px solid $platinum;
   display: none;
-  padding: 20px $navGutter_mobile 14px;
+  padding: 10px $navGutter_mobile 9px;
   position: fixed;
-  top: 65px;
+  top: 50px;
   width: 100%;
   z-index: 2;
 
@@ -59,7 +59,7 @@
 
   @media screen and (max-width: $mq-mobile-max) {
     padding: {
-      top: 117px;
+      top: 100px;
       left: $gutter_mobile;
       right: $gutter_mobile;
       bottom: 100px;
@@ -79,10 +79,9 @@
     padding-left: $navGutter_desktop;
 
     @media screen and (max-width: $mq-mobile-max) {
-      padding: 95px 0;
+      padding: 45px 0;
       width: 100%;
       border-right: none;
-      padding-top: 70px;
     }
 
     // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
@@ -90,6 +89,7 @@
     // }
 
     .summary {
+      @extend .body_text;
       margin-bottom: 50px;
       width: 340px;
 
@@ -190,6 +190,7 @@
   }
 
   .contact_info {
+    @extend .body_text;
     padding-left: $navGutter_desktop;
     padding-right: 25%;
     position: fixed;
@@ -199,12 +200,11 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
-      padding: 95px 0;
+      padding: 45px 0;
       position: relative;
       right: auto;
-      top: 60px;
+      top: 0px;
       width: 100%;
-      font-size: 13px;
 
       h1 {
         margin-bottom: 45px;
