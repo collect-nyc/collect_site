@@ -134,13 +134,13 @@ const Home = ({ archives, document, tagged }) => {
   }, []);
 
   // Checking on memory version of archive list
-  useEffect(() => {
-    console.log("Memory", archiveList.length);
-  }, [archiveList]);
+  // useEffect(() => {
+  //   console.log("Memory", archiveList.length);
+  // }, [archiveList]);
 
   // Set archive list when archive data changes
   useEffect(() => {
-    console.log("Archives: ", archives.length);
+    // console.log("Archives: ", archives.length);
     if (
       archiveList === undefined ||
       archiveList.length === 0 ||
