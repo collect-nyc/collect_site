@@ -443,13 +443,7 @@ const Home = ({ archives, document, tagged }) => {
           {layoutView ? <GridView /> : <ListView />}
         </div>
       </main>
-      <footer className={styles.footer}>
-        <div>©2021 Collect NYC, All Rights Reserved</div>
-        <div>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/privacy">Impressum</Link>
-        </div>
-      </footer>
+      <footer className={styles.footer}></footer>
     </div>
   );
 };

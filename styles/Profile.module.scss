@@ -82,6 +82,8 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       width: 100%;
+      border-right: none;
+      padding-top: 70px;
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
@@ -127,6 +129,9 @@
               colorFade 0.7s linear 2.2s forwards;
           }
         }
+      }
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
       }
     }
 
@@ -178,8 +183,9 @@
       display: none;
       position: relative;
       right: auto;
-      top: auto;
+      top: 60px;
       width: 100%;
+      font-size: 13px;
 
       h1 {
         margin-bottom: 45px;
@@ -198,6 +204,9 @@
     .partner {
       margin-bottom: 30px;
       width: 340px;
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
+      }
     }
 
     .partner {
@@ -210,6 +219,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      width: 340px;
 
       .phone,
       .address {
@@ -221,6 +231,7 @@
       }
 
       @media screen and (min-width: $mq-tablet-min) and (max-width: 1015px) {
+        width: 100%;
         .phone,
         .address {
           width: 100%;
@@ -233,6 +244,14 @@
 
         .address {
           // width: 55%;
+        }
+      }
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
+        flex-direction: column;
+        //mobile spacing after 'Office'
+        div:first-of-type {
+          padding-bottom: 20px;
         }
       }
     }

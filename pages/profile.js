@@ -101,7 +101,7 @@ const Profile = ({ document }) => {
             key={"bottom"}
           />
           <div className={styles.summary}>
-            {/* <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1> */}
+            <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
             <RichText render={page_content.summary} />
 
             {page_content && page_content.latest

@@ -1,0 +1,63 @@
+@import "./colors";
+@import "./typography";
+@import "./helpers";
+
+.page_title {
+  text-transform: capitalize;
+}
+
+.container {
+  padding: 108px $navGutter_desktop 0 $navGutter_desktop;
+}
+
+.text {
+  width: 460px;
+  padding-bottom: 20px;
+
+  .heading {
+    @extend .body_text;
+    font-size: 13px;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .paragraph {
+    padding-bottom: 20px;
+  }
+  li {
+    list-style: none;
+    &:before {
+      content: "- ";
+    }
+    &:last-of-type {
+      padding-bottom: 20px;
+    }
+  }
+
+  .gradient_bottom {
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    bottom: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(250, 250, 250, 0.8) 0%,
+      rgba(250, 250, 250, 0) 78.12%
+    );
+    transform: rotate(180deg);
+  }
+  .gradient_top {
+    position: fixed;
+    width: 100%;
+    height: 120px;
+    top: 0;
+    background: linear-gradient(
+      180deg,
+      rgba(250, 250, 250, 0.8) 0%,
+      rgba(250, 250, 250, 0) 78.12%
+    );
+  }
+  @media screen and (max-width: $mq-mobile-max) {
+    width: 100%;
+    font-size: 13px;
+  }
+}

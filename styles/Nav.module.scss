@@ -40,6 +40,11 @@
       }
     }
   }
+  &.essential_text_nav {
+    .top_right {
+      justify-content: flex-end;
+    }
+  }
 
   .top_left {
     display: flex;

@@ -231,6 +231,14 @@
 
 .footer {
   background-color: $alabaster;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: {
+    left: $navGutter_desktop;
+    right: $navGutter_desktop;
+    bottom: $navGutter_desktop;
+  }
   img {
     max-width: 100%;
   }
