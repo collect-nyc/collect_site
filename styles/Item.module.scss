@@ -39,6 +39,10 @@
         .support_image {
           transform: translateY(-20%);
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding: 0 $gutter_mobile;
+        }
       }
 
       .single_image,
@@ -64,6 +68,7 @@
         > div {
           display: flex;
           align-items: center;
+          flex-wrap: wrap;
 
           figure {
             display: block;
@@ -95,6 +100,18 @@
             padding-left: 20%;
           }
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding: 0 $gutter_mobile;
+
+          &.equal,
+          &.left,
+          &.right {
+            > div {
+              width: 100%;
+            }
+          }
+        }
       }
 
       .single_image {
@@ -112,6 +129,19 @@
         }
         &.four {
           padding: 0 #{$gutter_desktop * 4};
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          &.twelve {
+            padding: 0;
+          }
+
+          &.ten,
+          &.eight,
+          &.six,
+          &.four {
+            padding: 0 $gutter_mobile;
+          }
         }
       }
 
@@ -201,8 +231,8 @@
       flex-direction: column;
       justify-content: space-between;
       padding: {
-        top: 20px;
-        bottom: 18px;
+        top: $gutter_mobile;
+        bottom: $gutter_mobile;
         left: $gutter_mobile;
         right: $gutter_mobile;
       }
