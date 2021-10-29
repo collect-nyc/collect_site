@@ -46,6 +46,10 @@
       .double_image {
         margin-bottom: 180px;
 
+        @media screen and (max-width: $mq-mobile-max) {
+          margin-bottom: 80px;
+        }
+
         &:last-of-type {
           margin-bottom: 0;
         }
@@ -229,6 +233,10 @@
     .title_and_description {
       padding-bottom: 40px;
 
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-bottom: 0;
+      }
+
       .inner_desc {
         h1,
         h2,
@@ -265,6 +273,11 @@
           h6 {
             @extend .body_text;
           }
+
+          @media screen and (max-width: $mq-mobile-max) {
+            padding-bottom: 0;
+            width: 100%;
+          }
         }
 
         .title {
@@ -274,7 +287,7 @@
 
         @media screen and (max-width: $mq-mobile-max) {
           padding-left: 0;
-          padding-bottom: 50px;
+          margin-bottom: 45px;
           width: 100%;
 
           .title {
@@ -405,6 +418,7 @@
         margin-left: 20px;
       }
     }
+
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
     }
