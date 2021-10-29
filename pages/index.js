@@ -39,17 +39,13 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   console.log("Landing Data", document.data);
 
-  const { scrollPos, setScrollPos } = useContext(MemoryContext);
+  const { setScrollPos, setReturnPage } = useContext(MemoryContext);
 
-  // ComponentDidMount
-  // useEffect(() => {
-  //   console.log("SCROLL POS", scrollPos);
-  //   let top =
-  //     (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
-  //   top = window.pageYOffset;
-  //   console.log("Scroll Pos", top);
-
-  // }, []);
+  useEffect(() => {
+    // Reset scroll position for Archive Index
+    setScrollPos(0);
+    setReturnPage(false);
+  }, []);
 
   const pageContent = document.data.body.map((slice, index) => {
     // Render the right markup for the given slice type

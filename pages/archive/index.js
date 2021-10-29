@@ -29,6 +29,7 @@ export async function getServerSideProps({ query }) {
   //Page Data
   const document = await Client().getSingle("index_page");
 
+  // Loop through all pages of results and build one big array
   let archives;
   const pageSize = 100;
 
@@ -91,6 +92,8 @@ const Home = ({ archives, document, tagged }) => {
   // console.log("ALL ITEMS", archives);
 
   const {
+    archiveList,
+    setArchiveList,
     layoutView,
     setLayoutView,
     azSort,
@@ -99,21 +102,18 @@ const Home = ({ archives, document, tagged }) => {
     setTimeSort,
     currentTag,
     setCurrentTag,
-    archiveList,
-    setArchiveList,
     scrollPos,
     setScrollPos,
     returnPage,
     setReturnPage,
   } = useContext(MemoryContext);
 
-  const mainRef = useRef(null);
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
 
   // data
   const page_content = document.data;
-  const loadedArchives = [...archives];
+  // const loadedArchives = [...archives];
 
   const ShuffeList = (list) => {
     const new_list = _.shuffle(list);
@@ -130,17 +130,20 @@ const Home = ({ archives, document, tagged }) => {
 
     if (scrollPos) {
       window.scrollBy(0, parseInt(scrollPos, 10));
+      setScrollPos(0);
     }
-
-    setArchiveList(archiveList);
   }, []);
 
   // Set archive list when archive data changes
   useEffect(() => {
-    if (!returnPage || !archiveList) {
-      let loaded_archives = loadedArchives;
-      ShuffeList(loaded_archives);
+    if (archiveList === undefined || archiveList.length === 0) {
+      ShuffeList(archives);
+      setReturnPage(false);
+    } else if (returnPage) {
+      setArchiveList(archiveList);
+      setReturnPage(false);
     } else {
+      ShuffeList(archiveList);
       setReturnPage(false);
     }
   }, [archives]);
@@ -164,7 +167,7 @@ const Home = ({ archives, document, tagged }) => {
   }, [timeSort]);
 
   useEffect(() => {
-    mainRef.current.scrollTo(0, 0);
+    window.scrollBy(0, 0);
   }, [currentTag]);
 
   const ScrollTracker = () => {
@@ -177,7 +180,7 @@ const Home = ({ archives, document, tagged }) => {
   // Sort by title alphabetically
   const AlphabetSort = () => {
     if (azSort === "az") {
-      console.log("pre archive: ", archiveList);
+      // console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -187,11 +190,11 @@ const Home = ({ archives, document, tagged }) => {
         ],
         ["desc"]
       );
-      console.log("ALPHA SORT: ", list);
+      // console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
     } else if (azSort === "za" || !azSort) {
-      console.log("pre archive: ", archiveList);
+      // console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -201,7 +204,7 @@ const Home = ({ archives, document, tagged }) => {
         ],
         ["asc"]
       );
-      console.log("ALPHA SORT: ", list);
+      // console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
     }
@@ -415,7 +418,7 @@ const Home = ({ archives, document, tagged }) => {
   };
 
   return (
-    <div className={styles.container} ref={mainRef}>
+    <div className={styles.container}>
       <Head>
         <title>Collect Archive</title>
         <meta

@@ -152,6 +152,9 @@ const ArchiveItem = ({ document, uid }) => {
     download,
     supporting_image,
   } = page_data;
+
+  // console.log("Project Data", page_data);
+
   const { navTextColor, caseStudyView, setCaseStudyView } =
     useContext(MemoryContext);
 
@@ -166,8 +169,6 @@ const ArchiveItem = ({ document, uid }) => {
       setCaseStudyView(false);
     };
   }, [case_study, setCaseStudyView]);
-
-  console.log("Project Data", page_data);
 
   const router = useRouter();
   const [currentImage, setCurrentImage] = useState(0);
@@ -187,15 +188,12 @@ const ArchiveItem = ({ document, uid }) => {
   const images = page_data.images;
   const total = images ? images.length : 0;
 
-  document.tags = document._meta.tags;
+  // document.tags = document._meta.tags;
 
   useEffect(() => {
-    window.document.querySelector("body").classList.add("item_page");
     setReturnPage(true);
-
-    return () => {
-      window.document.querySelector("body").classList.remove("item_page");
-    };
+    // return () => {
+    // };
   }, []);
 
   useEffect(() => {
@@ -231,7 +229,7 @@ const ArchiveItem = ({ document, uid }) => {
     const Exit = () => {
       router.push(
         currentTag && currentTag !== "All Work"
-          ? `/?tag=${currentTag}`
+          ? `/archive?tag=${currentTag}`
           : "/archive"
       );
     };

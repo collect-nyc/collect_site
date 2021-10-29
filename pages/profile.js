@@ -25,11 +25,14 @@ export async function getServerSideProps() {
 }
 
 const Profile = ({ document }) => {
-  const { setReturnPage } = useContext(MemoryContext);
+  const { setReturnPage, setScrollPos } = useContext(MemoryContext);
+  // Reset scroll position for Archive Index
+  setScrollPos(0);
 
   useEffect(() => {
-    setReturnPage(true);
+    setReturnPage(false);
   }, []);
+
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 

@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
   const [scrollPos, setScrollPos] = useState(null);
+  // returnPage = true if you are coming from a page where it's ok to shuffle the archive list
   const [returnPage, setReturnPage] = useState(false);
   const [navTextColor, setNavTextColor] = useState(null);
   const [archiveView, setArchiveView] = useState(false);
@@ -19,9 +20,9 @@ function MyApp({ Component, pageProps }) {
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
 
-  useEffect(() => {
-    console.log("Archive View Set: ", archiveView);
-  }, [archiveView]);
+  // useEffect(() => {
+  //   console.log("Archive View Set: ", archiveView);
+  // }, [archiveView]);
 
   useEffect(() => {
     const handleRouteChange = (url) => {
