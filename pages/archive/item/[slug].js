@@ -403,7 +403,7 @@ const ArchiveItem = ({ document, uid }) => {
           {page_data.title[0].text
             ? page_data.title[0].text
             : "COLLECT Project"}{" "}
-          _ {SITE_NAME}
+          – {SITE_NAME}
         </title>
         <meta
           name="description"
