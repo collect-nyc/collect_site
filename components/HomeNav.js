@@ -19,16 +19,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
         <div className={styles.top_left}>
           <div className={styles.link_box}>
             <Link href={"/profile"}>
-              <a
-                onMouseEnter={() => {
-                  setLogoHover(true);
-                }}
-                onMouseLeave={() => {
-                  setLogoHover(false);
-                }}
-              >
-                {logoHover ? "COLLECT Profile" : "COLLECT New York City"}
-              </a>
+              <a>COLLECT New York City</a>
             </Link>
           </div>
         </div>
