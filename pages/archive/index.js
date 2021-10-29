@@ -474,8 +474,8 @@ const Home = ({ archives, document, tagged }) => {
           ©{new Date().getFullYear()} Collect NYC, All Rights Reserved
         </div>
         <div className={styles.links}>
-          <Link href="/privacy">Privacy</Link>
-          <Link href="/privacy">Impressum</Link>
+          <Link href="/info/privacy">Privacy</Link>
+          <Link href="/info/privacy">Impressum</Link>
         </div>
       </footer>
     </div>
