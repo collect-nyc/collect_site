@@ -280,7 +280,7 @@
     width: 50%;
 
     .filter_button {
-      width: 75%;
+      width: 85%;
       display: flex;
       flex-direction: column;
 
@@ -325,6 +325,7 @@
         }
       }
     }
+
     .tag_list {
       margin: 0;
       display: none;
@@ -339,6 +340,7 @@
       @media screen and (max-width: $mq-mobile-max) {
         column-count: 2;
         column-gap: 0px;
+        margin-top: 10px;
         width: 100%;
       }
 
@@ -347,7 +349,7 @@
       }
 
       li {
-        line-height: 19.5px;
+        line-height: 25px;
         // padding-bottom: 10px;
         margin-bottom: auto;
         width: 50%;
@@ -359,6 +361,7 @@
           padding: 0;
           text-align: left;
           font-size: 13px;
+          white-space: nowrap;
 
           &:active {
             color: $black;
