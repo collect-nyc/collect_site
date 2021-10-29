@@ -4,10 +4,6 @@
 
 .container {
   padding: 55px 0 0;
-
-  @media (hover: none) {
-    padding-bottom: 130px;
-  }
 }
 
 .title_holder {
@@ -148,6 +144,10 @@
           &:hover {
             .coming_text {
               display: flex;
+
+              @media screen and (max-width: $mq-mobile-max) {
+                width: 65%;
+              }
             }
           }
         }
@@ -167,8 +167,13 @@
           }
           &:hover {
             text-decoration: nonegit;
+
             .view_project {
               display: block;
+
+              @media screen and (max-width: $mq-mobile-max) {
+                display: none;
+              }
             }
           }
         }
@@ -231,6 +236,7 @@
 .footer {
   background-color: $alabaster;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   padding: 90px $navGutter_desktop 16px $navGutter_desktop;
 
@@ -240,11 +246,25 @@
   .links {
     a {
       margin-left: 20px;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
     }
   }
 
   img {
     max-width: 100%;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    .copyright {
+      margin-bottom: 10px;
+    }
+    .links {
+      margin-left: 0;
+      width: 100%;
+    }
   }
 }
 
