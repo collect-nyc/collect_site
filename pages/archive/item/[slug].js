@@ -2,10 +2,7 @@ import React, { useEffect, useState, useContext, createRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { DateTime } from "luxon";
-import { divide } from "lodash";
 import Prismic from "prismic-javascript";
-// import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
@@ -171,11 +168,14 @@ const ArchiveItem = ({ document, uid }) => {
   }, [case_study, setCaseStudyView]);
 
   const router = useRouter();
+
+  // State
   const [currentImage, setCurrentImage] = useState(0);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
 
+  // Contexts
   const {
     currentTag,
     setReturnPage,
@@ -183,12 +183,13 @@ const ArchiveItem = ({ document, uid }) => {
     archiveView,
     setArchiveView,
   } = useContext(MemoryContext);
+
+  // Refs
   const footerRef = createRef();
 
+  // Variables
   const images = page_data.images;
   const total = images ? images.length : 0;
-
-  // document.tags = document._meta.tags;
 
   useEffect(() => {
     setReturnPage(true);
