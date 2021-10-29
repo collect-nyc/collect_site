@@ -6,8 +6,13 @@ import animateScrollTo from "animated-scroll-to";
 import LeftArrow from "../svg/left-arrow.svg";
 
 const CaseStudyNav = () => {
-  const { navTextColor, archiveView, setArchiveView, caseStudyView } =
-    useContext(MemoryContext);
+  const {
+    navTextColor,
+    archiveView,
+    setArchiveView,
+    caseStudyView,
+    currentTag,
+  } = useContext(MemoryContext);
 
   // State
   const [logoHover, setLogoHover] = useState(false);
@@ -48,7 +53,13 @@ const CaseStudyNav = () => {
               </Link>
             </div>
             <div className={styles.mobile_back}>
-              <Link href={"/archive"}>
+              <Link
+                href={
+                  currentTag && currentTag !== "All Work"
+                    ? `/archive?tag=${currentTag}`
+                    : "/archive"
+                }
+              >
                 <a className="color_link">
                   <LeftArrow className="color_svg" /> Archive
                 </a>
