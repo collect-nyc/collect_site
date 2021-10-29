@@ -129,7 +129,7 @@ const Home = ({ archives, document, tagged }) => {
     }
 
     if (scrollPos) {
-      mainRef.current.scrollTop = parseInt(scrollPos, 10);
+      window.scrollBy(0, parseInt(scrollPos, 10));
     }
 
     setArchiveList(archiveList);
@@ -168,8 +168,10 @@ const Home = ({ archives, document, tagged }) => {
   }, [currentTag]);
 
   const ScrollTracker = () => {
-    // console.log(mainRef.current.scrollTop);
-    setScrollPos(mainRef.current.scrollTop);
+    let top =
+      (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+    console.log("Scroll Pos", top);
+    setScrollPos(top);
   };
 
   // Sort by title alphabetically

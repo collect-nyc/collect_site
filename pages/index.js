@@ -39,32 +39,17 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   console.log("Landing Data", document.data);
 
-  const {
-    layoutView,
-    setLayoutView,
-    azSort,
-    setAzSort,
-    timeSort,
-    setTimeSort,
-    currentTag,
-    setCurrentTag,
-    archiveList,
-    setArchiveList,
-    scrollPos,
-    setScrollPos,
-    returnPage,
-    setReturnPage,
-  } = useContext(MemoryContext);
+  const { scrollPos, setScrollPos } = useContext(MemoryContext);
 
   // ComponentDidMount
-  useEffect(() => {
-    // console.log("SCROLL POS", scrollPos);
-  }, []);
+  // useEffect(() => {
+  //   console.log("SCROLL POS", scrollPos);
+  //   let top =
+  //     (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+  //   top = window.pageYOffset;
+  //   console.log("Scroll Pos", top);
 
-  const ScrollTracker = () => {
-    // console.log(mainRef.current.scrollTop);
-    setScrollPos(mainRef.current.scrollTop);
-  };
+  // }, []);
 
   const pageContent = document.data.body.map((slice, index) => {
     // Render the right markup for the given slice type
