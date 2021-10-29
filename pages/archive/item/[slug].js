@@ -2,10 +2,7 @@ import React, { useEffect, useState, useContext, createRef } from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
-import { DateTime } from "luxon";
-import { divide } from "lodash";
 import Prismic from "prismic-javascript";
-// import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
@@ -153,15 +150,32 @@ const ArchiveItem = ({ document, uid }) => {
     supporting_image,
   } = page_data;
 
-  console.log("Project Data", page_data);
+  // console.log("Project Data", page_data);
+
+  const { navTextColor, caseStudyView, setCaseStudyView } =
+    useContext(MemoryContext);
+
+  useEffect(() => {
+    if (case_study) {
+      setCaseStudyView(true);
+    } else {
+      setCaseStudyView(false);
+    }
+
+    return () => {
+      setCaseStudyView(false);
+    };
+  }, [case_study, setCaseStudyView]);
 
   const router = useRouter();
+
+  // State
   const [currentImage, setCurrentImage] = useState(0);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
-  const { navTextColor } = useContext(MemoryContext);
 
+  // Contexts
   const {
     currentTag,
     setReturnPage,
@@ -169,20 +183,18 @@ const ArchiveItem = ({ document, uid }) => {
     archiveView,
     setArchiveView,
   } = useContext(MemoryContext);
+
+  // Refs
   const footerRef = createRef();
 
+  // Variables
   const images = page_data.images;
   const total = images ? images.length : 0;
 
-  document.tags = document._meta.tags;
-
   useEffect(() => {
-    window.document.querySelector("body").classList.add("item_page");
     setReturnPage(true);
-
-    return () => {
-      window.document.querySelector("body").classList.remove("item_page");
-    };
+    // return () => {
+    // };
   }, []);
 
   useEffect(() => {
@@ -218,7 +230,7 @@ const ArchiveItem = ({ document, uid }) => {
     const Exit = () => {
       router.push(
         currentTag && currentTag !== "All Work"
-          ? `/?tag=${currentTag}`
+          ? `/archive?tag=${currentTag}`
           : "/archive"
       );
     };
@@ -497,7 +509,13 @@ const ArchiveItem = ({ document, uid }) => {
                     <LeftArrow className={"color_svg"} /> Case Study
                   </button>
                 ) : (
-                  <Link href="/archive">
+                  <Link
+                    href={
+                      currentTag && currentTag !== "All Work"
+                        ? `/archive?tag=${currentTag}`
+                        : "/archive"
+                    }
+                  >
                     <a>
                       <LeftArrow /> Archive
                     </a>
@@ -559,7 +577,13 @@ const ArchiveItem = ({ document, uid }) => {
                   <LeftArrow className={"color_svg"} /> Back to Home
                 </a>
               </Link>
-              <Link href={"/archive"}>
+              <Link
+                href={
+                  currentTag && currentTag !== "All Work"
+                    ? `/archive?tag=${currentTag}`
+                    : "/archive"
+                }
+              >
                 <a className={"color_link"}>
                   <LeftArrow className={"color_svg"} /> Back to Archive
                 </a>
@@ -601,6 +625,7 @@ const ArchiveItem = ({ document, uid }) => {
                           name.spans.length > 0 ? (
                             <a
                               href={name.spans[0].data.url}
+                              target={"blank"}
                               className={"color_link name"}
                               key={index}
                             >

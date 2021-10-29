@@ -1,10 +1,10 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import MemoryContext from "../components/MemoryContext";
-import { motion, useElementScroll, useTransform } from "framer-motion";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import styles from "../styles/Profile.module.scss";
 
@@ -20,19 +20,20 @@ export async function getServerSideProps() {
 }
 
 const Profile = ({ document }) => {
-  const { setReturnPage } = useContext(MemoryContext);
+  const { setReturnPage, setScrollPos } = useContext(MemoryContext);
+  // Reset scroll position for Archive Index
+  setScrollPos(0);
 
   useEffect(() => {
-    setReturnPage(true);
+    setReturnPage(false);
   }, []);
+
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
 
-  const ref = useRef();
-
-  const { scrollYProgress } = useElementScroll(ref);
+  const { scrollYProgress } = useViewportScroll();
 
   // this prints out number between 0 and 1 for scroll position of the page
   // useEffect(() => {
@@ -43,21 +44,17 @@ const Profile = ({ document }) => {
 
   const top_gradient = useTransform(
     scrollYProgress,
-    [0, 0.29, 0.3, 1],
+    [0, 0.2, 0.2, 1],
     [0, 0, 1, 1]
   );
 
-  const bottom_gradient = useTransform(
-    scrollYProgress,
-    [0, 0.99, 1],
-    [1, 0.5, 0]
-  );
+  const bottom_gradient = useTransform(scrollYProgress, [0, 1, 1], [1, 0.5, 0]);
   const ChangePage = (page) => {
     setProfilePage(page);
   };
 
   return (
-    <div className={styles.container} ref={ref}>
+    <div className={styles.container}>
       <Head>
         <title>COLLECT NYC Profile</title>
         <meta
@@ -100,6 +97,7 @@ const Profile = ({ document }) => {
             style={{ scrollYProgress, opacity: bottom_gradient }}
             key={"bottom"}
           />
+
           <div className={styles.summary}>
             <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
             <RichText render={page_content.summary} />
@@ -170,12 +168,7 @@ const Profile = ({ document }) => {
           <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
-          {profilePage === "contact" ? (
-            <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
-          ) : null}
           <div className={styles.contact_summary}>
-            <h3 className="untitled_caps">Contact</h3>
-
             {page_content ? (
               <RichText render={page_content.instruction} />
             ) : null}
@@ -224,10 +217,6 @@ const Profile = ({ document }) => {
               <RichText render={page_content.address} />
             </div>
           </div>
-
-          {/*<div className={styles.copyright}>
-            &copy;{new Date().getFullYear()} Collect NYC
-                </div>*/}
         </aside>
       </main>
     </div>

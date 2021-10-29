@@ -68,7 +68,7 @@
           display: inline;
           cursor: pointer;
           margin: 0;
-          min-width: 116px;
+          min-width: 140px;
           padding: {
             top: 0px;
             left: 0px;
@@ -97,7 +97,7 @@
         svg {
           display: inline-block;
           position: relative;
-          top: -2px;
+          top: -1px;
         }
       }
 
@@ -234,6 +234,7 @@
   a {
     font-size: 13px;
     display: flex;
+    min-width: 150px;
   }
 
   @media screen and (max-width: $mq-mobile-max) {
@@ -277,13 +278,16 @@
     list-style: none;
     justify-content: flex-start;
     width: 50%;
+
     .filter_button {
       width: 75%;
       display: flex;
       flex-direction: column;
+
       .label {
         display: flex;
         justify-content: flex-start;
+
         button {
           display: flex;
           background-color: transparent;
@@ -318,7 +322,6 @@
         svg {
           display: inline-block;
           position: relative;
-          top: -2px;
         }
       }
     }

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useEffect, useContext } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -7,11 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import _ from "lodash";
 import MemoryContext from "../components/MemoryContext";
-import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
-  const tagged = query.tag || null;
+  // const tagged = query.tag || null;
 
   const everything = await fetch(
     "https://collectnyc.cdn.prismic.io/api/v2"
@@ -39,32 +38,13 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   console.log("Landing Data", document.data);
 
-  const {
-    layoutView,
-    setLayoutView,
-    azSort,
-    setAzSort,
-    timeSort,
-    setTimeSort,
-    currentTag,
-    setCurrentTag,
-    archiveList,
-    setArchiveList,
-    scrollPos,
-    setScrollPos,
-    returnPage,
-    setReturnPage,
-  } = useContext(MemoryContext);
+  const { setScrollPos, setReturnPage } = useContext(MemoryContext);
 
-  // ComponentDidMount
   useEffect(() => {
-    // console.log("SCROLL POS", scrollPos);
+    // Reset scroll position for Archive Index
+    setScrollPos(0);
+    setReturnPage(false);
   }, []);
-
-  const ScrollTracker = () => {
-    // console.log(mainRef.current.scrollTop);
-    setScrollPos(mainRef.current.scrollTop);
-  };
 
   const pageContent = document.data.body.map((slice, index) => {
     // Render the right markup for the given slice type
@@ -101,6 +81,7 @@ const Home = ({ document }) => {
                       height={slice.primary.first_image.dimensions.height}
                       width={slice.primary.first_image.dimensions.width}
                       alt={slice.primary.first_image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -111,6 +92,7 @@ const Home = ({ document }) => {
                   height={slice.primary.first_image.dimensions.height}
                   width={slice.primary.first_image.dimensions.width}
                   alt={slice.primary.first_image.alt}
+                  priority
                 />
               )
             ) : null}
@@ -132,6 +114,7 @@ const Home = ({ document }) => {
                       height={slice.primary.second_image.dimensions.height}
                       width={slice.primary.second_image.dimensions.width}
                       alt={slice.primary.second_image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -142,6 +125,7 @@ const Home = ({ document }) => {
                   height={slice.primary.second_image.dimensions.height}
                   width={slice.primary.second_image.dimensions.width}
                   alt={slice.primary.second_image.alt}
+                  priority
                 />
               )
             ) : null}
@@ -179,6 +163,7 @@ const Home = ({ document }) => {
                       height={slice.primary.image.dimensions.height}
                       width={slice.primary.image.dimensions.width}
                       alt={slice.primary.image.alt}
+                      priority
                     />
                   </a>
                 </Link>
@@ -189,6 +174,7 @@ const Home = ({ document }) => {
                   height={slice.primary.image.dimensions.height}
                   width={slice.primary.image.dimensions.width}
                   alt={slice.primary.image.alt}
+                  priority
                 />
               )}
             </figure>

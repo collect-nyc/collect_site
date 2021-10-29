@@ -3,7 +3,7 @@
 @import "./typography";
 
 .container {
-  padding: 55px 0 0;
+  padding: 0;
 
   a,
   button {
@@ -54,8 +54,6 @@
   display: flex;
   justify-content: space-between;
   padding: {
-    left: 20px;
-    right: 20px;
     bottom: 20px;
   }
 
@@ -78,23 +76,30 @@
     width: 50%;
     border-right: 1px solid $platinum;
     padding-top: 172px;
+    padding-left: $navGutter_desktop;
 
     @media screen and (max-width: $mq-mobile-max) {
+      padding: 95px 0;
       width: 100%;
       border-right: none;
       padding-top: 70px;
     }
 
-    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
-      width: 45%;
-    }
+    // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
+    //   width: 45%;
+    // }
 
     .summary {
       margin-bottom: 50px;
       width: 340px;
 
       h1 {
+        display: none;
         margin-bottom: 45px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          display: block;
+        }
       }
 
       p {
@@ -147,39 +152,54 @@
         margin-bottom: 30px;
       }
     }
+
     .gradient_bottom {
-      position: absolute;
-      width: 100%;
-      height: 120px;
+      background: linear-gradient(
+        180deg,
+        rgba(250, 250, 250, 0.8) 0%,
+        rgba(250, 250, 250, 0) 78.12%
+      );
       bottom: 0;
-      background: linear-gradient(
-        180deg,
-        rgba(250, 250, 250, 0.8) 0%,
-        rgba(250, 250, 250, 0) 78.12%
-      );
-      transform: rotate(180deg);
-    }
-    .gradient_top {
-      position: absolute;
-      width: 100%;
+      left: 0;
+      position: fixed;
       height: 120px;
-      top: 0;
+      transform: rotate(180deg);
+      width: calc(50% - 1px);
+
+      @media screen and (max-width: $mq-mobile-max) {
+        width: 100%;
+      }
+    }
+
+    .gradient_top {
       background: linear-gradient(
         180deg,
         rgba(250, 250, 250, 0.8) 0%,
         rgba(250, 250, 250, 0) 78.12%
       );
+      height: 120px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: calc(50% - 1px);
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
     }
   }
 
   .contact_info {
+    padding-left: $navGutter_desktop;
+    padding-right: 25%;
     position: fixed;
+    right: 0;
     top: 172px;
-    right: -20px;
     width: 50%;
 
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
+      padding: 95px 0;
       position: relative;
       right: auto;
       top: 60px;
@@ -191,9 +211,9 @@
       }
     }
 
-    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
-      width: 35%;
-    }
+    // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
+    //   width: 35%;
+    // }
 
     h3 {
       margin-bottom: 5px;

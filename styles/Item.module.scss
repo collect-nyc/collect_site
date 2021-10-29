@@ -222,10 +222,22 @@
       }
     }
 
+    .title_and_description {
+      .inner_desc {
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+          @extend .body_text;
+          text-transform: uppercase;
+        }
+      }
+    }
+
     &.multi_item {
       @extend .body_text;
-      // text-align: right;
-      // margin-left: auto;
 
       .close_col,
       .multi_col {
@@ -238,6 +250,15 @@
         .inner_desc {
           padding-bottom: 30px;
           width: 60%;
+
+          h1,
+          h2,
+          h3,
+          h4,
+          h5,
+          h6 {
+            @extend .body_text;
+          }
         }
 
         .title {
@@ -370,6 +391,7 @@
     justify-content: space-between;
     margin: 0 $navGutter_desktop 0 $navGutter_desktop;
     padding-top: 20px;
+
     .top_right {
       justify-content: flex-end;
 

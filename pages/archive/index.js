@@ -1,10 +1,9 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
 import SharedHead from "../../components/SharedHead";
@@ -29,6 +28,7 @@ export async function getServerSideProps({ query }) {
   //Page Data
   const document = await Client().getSingle("index_page");
 
+  // Loop through all pages of results and build one big array
   let archives;
   const pageSize = 100;
 
@@ -91,6 +91,8 @@ const Home = ({ archives, document, tagged }) => {
   // console.log("ALL ITEMS", archives);
 
   const {
+    archiveList,
+    setArchiveList,
     layoutView,
     setLayoutView,
     azSort,
@@ -99,21 +101,18 @@ const Home = ({ archives, document, tagged }) => {
     setTimeSort,
     currentTag,
     setCurrentTag,
-    archiveList,
-    setArchiveList,
     scrollPos,
     setScrollPos,
     returnPage,
     setReturnPage,
   } = useContext(MemoryContext);
 
-  const mainRef = useRef(null);
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
 
   // data
   const page_content = document.data;
-  const loadedArchives = [...archives];
+  // const loadedArchives = [...archives];
 
   const ShuffeList = (list) => {
     const new_list = _.shuffle(list);
@@ -129,18 +128,31 @@ const Home = ({ archives, document, tagged }) => {
     }
 
     if (scrollPos) {
-      mainRef.current.scrollTop = parseInt(scrollPos, 10);
+      window.scrollBy(0, parseInt(scrollPos, 10));
+      setScrollPos(0);
     }
-
-    setArchiveList(archiveList);
   }, []);
+
+  // Checking on memory version of archive list
+  // useEffect(() => {
+  //   console.log("Memory", archiveList.length);
+  // }, [archiveList]);
 
   // Set archive list when archive data changes
   useEffect(() => {
-    if (!returnPage || !archiveList) {
-      let loaded_archives = loadedArchives;
-      ShuffeList(loaded_archives);
+    // console.log("Archives: ", archives.length);
+    if (
+      archiveList === undefined ||
+      archiveList.length === 0 ||
+      archives.length !== archiveList.length
+    ) {
+      ShuffeList(archives);
+      setReturnPage(false);
+    } else if (returnPage) {
+      setArchiveList(archiveList);
+      setReturnPage(false);
     } else {
+      ShuffeList(archiveList);
       setReturnPage(false);
     }
   }, [archives]);
@@ -164,18 +176,20 @@ const Home = ({ archives, document, tagged }) => {
   }, [timeSort]);
 
   useEffect(() => {
-    mainRef.current.scrollTo(0, 0);
+    window.scrollBy(0, 0);
   }, [currentTag]);
 
   const ScrollTracker = () => {
-    // console.log(mainRef.current.scrollTop);
-    setScrollPos(mainRef.current.scrollTop);
+    let top =
+      (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+    console.log("Scroll Pos", top);
+    setScrollPos(top);
   };
 
   // Sort by title alphabetically
   const AlphabetSort = () => {
     if (azSort === "az") {
-      console.log("pre archive: ", archiveList);
+      // console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -185,11 +199,11 @@ const Home = ({ archives, document, tagged }) => {
         ],
         ["desc"]
       );
-      console.log("ALPHA SORT: ", list);
+      // console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
     } else if (azSort === "za" || !azSort) {
-      console.log("pre archive: ", archiveList);
+      // console.log("pre archive: ", archiveList);
       const list = _.orderBy(
         archiveList,
         [
@@ -199,7 +213,7 @@ const Home = ({ archives, document, tagged }) => {
         ],
         ["asc"]
       );
-      console.log("ALPHA SORT: ", list);
+      // console.log("ALPHA SORT: ", list);
 
       setArchiveList(list);
     }
@@ -249,9 +263,37 @@ const Home = ({ archives, document, tagged }) => {
     }
   };
 
+  const ModifyTags = (list) => {
+    // console.log("The Tag", tagged);
+    let MyTags = list;
+
+    if (tagged) {
+      // console.log("Original List", MyTags);
+      let TagIndex = MyTags.indexOf(tagged);
+      // console.log("Position in array", MyTags.indexOf(tagged));
+      MyTags.splice(TagIndex, 1);
+      // console.log("Modified List", MyTags);
+      MyTags.unshift(tagged);
+      // console.log("Final List", MyTags);
+
+      return MyTags.map((tag, key) => (
+        <span key={key}>
+          {MyTags.length === key + 1 && tag ? tag : tag ? tag + ", " : null}
+        </span>
+      ));
+    } else {
+      return MyTags.map((tag, key) => (
+        <span key={key}>
+          {MyTags.length === key + 1 && tag ? tag : tag ? tag + ", " : null}
+        </span>
+      ));
+    }
+  };
+
   // List View JSX
   const ListView = () => {
-    // console.log("LIST", archiveList);
+    // console.log("LIST", archiveList)
+
     return (
       <section className={styles.all_archives}>
         <ul>
@@ -266,15 +308,7 @@ const Home = ({ archives, document, tagged }) => {
                     </span>
 
                     <span className={styles.tags}>
-                      {archive.tags.map((tag, key) => (
-                        <span key={key}>
-                          {archive.tags.length === key + 1 && tag
-                            ? tag
-                            : tag
-                            ? tag + ", "
-                            : null}
-                        </span>
-                      ))}
+                      {ModifyTags(archive.tags)}
                     </span>
 
                     <span className={styles.date}>
@@ -293,15 +327,7 @@ const Home = ({ archives, document, tagged }) => {
                       </span>
 
                       <span className={styles.tags}>
-                        {archive.tags.map((tag, key) => (
-                          <span key={key}>
-                            {archive.tags.length === key + 1 && tag
-                              ? tag
-                              : tag
-                              ? tag + ", "
-                              : null}
-                          </span>
-                        ))}
+                        {ModifyTags(archive.tags)}
                       </span>
 
                       <span className={styles.date}>
@@ -413,7 +439,7 @@ const Home = ({ archives, document, tagged }) => {
   };
 
   return (
-    <div className={styles.container} ref={mainRef}>
+    <div className={styles.container}>
       <Head>
         <title>Collect Archive</title>
         <meta

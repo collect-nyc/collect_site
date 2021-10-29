@@ -6,7 +6,7 @@ import EssentialTextNav from "./EssentialTextNav";
 import EssentialText from "../pages/info/[slug]";
 
 const SiteNav = ({ page, count, latest, tags, case_study }) => {
-  console.log("siteNav: ", page);
+  // console.log("siteNav: ", page);
   return (
     <>
       {
