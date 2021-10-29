@@ -1,15 +1,10 @@
-import { useState, useContext, useEffect, useRef } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import MemoryContext from "../components/MemoryContext";
-import {
-  motion,
-  useElementScroll,
-  useViewportScroll,
-  useTransform,
-} from "framer-motion";
+import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import styles from "../styles/Profile.module.scss";
 

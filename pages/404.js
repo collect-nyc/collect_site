@@ -18,7 +18,7 @@ const Custom404 = () => {
   const { setReturnPage } = useContext(MemoryContext);
 
   useEffect(() => {
-    setReturnPage(true);
+    setReturnPage(false);
   }, []);
 
   return (

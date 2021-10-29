@@ -1,10 +1,9 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useEffect, useContext, useRef } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import { DateTime } from "luxon";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/router";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
 import SharedHead from "../../components/SharedHead";

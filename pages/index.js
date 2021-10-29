@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useRef } from "react";
+import { useEffect, useContext } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -7,11 +7,10 @@ import Image from "next/image";
 import Link from "next/link";
 import _ from "lodash";
 import MemoryContext from "../components/MemoryContext";
-import { useRouter } from "next/router";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
-  const tagged = query.tag || null;
+  // const tagged = query.tag || null;
 
   const everything = await fetch(
     "https://collectnyc.cdn.prismic.io/api/v2"
