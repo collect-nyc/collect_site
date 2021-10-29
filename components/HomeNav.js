@@ -1,10 +1,13 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
+import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import { useRouter } from "next/router";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const router = useRouter();
+
+  const { currentTag } = useContext(MemoryContext);
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
@@ -30,12 +33,24 @@ const HomeNav = ({ page, count, latest, tags }) => {
           </div>
         </div>
         <div className={styles.top_right}>
-          <Link href="/archive">
+          <Link
+            href={
+              currentTag && currentTag !== "All Work"
+                ? `/archive?tag=${currentTag}`
+                : "/archive"
+            }
+          >
             <a className={styles.archive}>COLLECT Archive</a>
           </Link>
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
-            <Link href="/archive">
+            <Link
+              href={
+                currentTag && currentTag !== "All Work"
+                  ? `/archive?tag=${currentTag}`
+                  : "/archive"
+              }
+            >
               <a>({count ? count : 0})</a>
             </Link>
           </div>

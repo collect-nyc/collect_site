@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Link from "next/link";
+import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 
 const ProfileNav = ({ page, count, latest, tags }) => {
+  const { currentTag } = useContext(MemoryContext);
+
   // State
   const [logoHover, setLogoHover] = useState(false);
 
@@ -30,7 +33,13 @@ const ProfileNav = ({ page, count, latest, tags }) => {
 
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
-            <Link href="/archive">
+            <Link
+              href={
+                currentTag && currentTag !== "All Work"
+                  ? `/archive?tag=${currentTag}`
+                  : "/archive"
+              }
+            >
               <a>({count ? count : 0})</a>
             </Link>
           </div>

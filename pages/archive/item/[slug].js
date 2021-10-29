@@ -509,7 +509,13 @@ const ArchiveItem = ({ document, uid }) => {
                     <LeftArrow className={"color_svg"} /> Case Study
                   </button>
                 ) : (
-                  <Link href="/archive">
+                  <Link
+                    href={
+                      currentTag && currentTag !== "All Work"
+                        ? `/archive?tag=${currentTag}`
+                        : "/archive"
+                    }
+                  >
                     <a>
                       <LeftArrow /> Archive
                     </a>
@@ -571,7 +577,13 @@ const ArchiveItem = ({ document, uid }) => {
                   <LeftArrow className={"color_svg"} /> Back to Home
                 </a>
               </Link>
-              <Link href={"/archive"}>
+              <Link
+                href={
+                  currentTag && currentTag !== "All Work"
+                    ? `/archive?tag=${currentTag}`
+                    : "/archive"
+                }
+              >
                 <a className={"color_link"}>
                   <LeftArrow className={"color_svg"} /> Back to Archive
                 </a>

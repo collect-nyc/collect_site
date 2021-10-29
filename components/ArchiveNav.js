@@ -137,7 +137,13 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
             </button>
           </div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
-          <Link href="/archive">
+          <Link
+            href={
+              currentTag && currentTag !== "All Work"
+                ? `/archive?tag=${currentTag}`
+                : "/archive"
+            }
+          >
             <a>({count ? count : 0})</a>
           </Link>
         </div>
