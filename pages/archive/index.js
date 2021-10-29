@@ -469,9 +469,6 @@ const Home = ({ archives, document, tagged }) => {
           {layoutView ? <GridView /> : <ListView />}
         </div>
       </main>
-<<<<<<< HEAD
-      <footer className={styles.footer}></footer>
-=======
       <footer className={styles.footer}>
         <div className={styles.copyright}>
           ©{new Date().getFullYear()} Collect NYC, All Rights Reserved
@@ -481,7 +478,6 @@ const Home = ({ archives, document, tagged }) => {
           <Link href="/privacy">Impressum</Link>
         </div>
       </footer>
->>>>>>> d7b570690695582668af4598d59d3c382654f960
     </div>
   );
 };
