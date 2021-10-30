@@ -39,10 +39,11 @@ import RightArrow from "../svg/right-arrow.svg";
  * Should accomodate longer swipes and short flicks without having binary checks on
  * just distance thresholds and velocity > 0.
  */
-const swipeConfidenceThreshold = 10000;
-const swipePower = (offset, velocity) => {
-  return Math.abs(offset) * velocity;
-};
+
+// const swipeConfidenceThreshold = 10000;
+// const swipePower = (offset, velocity) => {
+//   return Math.abs(offset) * velocity;
+// };
 
 export const ImageSlider = ({ images, text_color, background_color }) => {
   const ImageSet = images;
@@ -102,6 +103,11 @@ export const ImageSlider = ({ images, text_color, background_color }) => {
     //   sliderChildrenWidth,
     //   sliderWidth
     // );
+
+    return () => {
+      window.removeEventListener("resize", calcSliderWidth);
+      window.removeEventListener("resize", calcSliderConstraints);
+    };
   }, [constraintsRef, sliderChildrenWidth, sliderWidth]);
 
   const NextSlide = () => {
@@ -159,14 +165,11 @@ export const ImageSlider = ({ images, text_color, background_color }) => {
             <figure
               key={index}
               onClick={() => {
-                console.log(myRefs.current[index]);
-                console.log(myRefs.current[index].current.offsetLeft);
-                console.log(myRefs.current[index].current.offsetWidth);
-                // myRefs.current[index].current.focus();
-                setCurrentSlide(index);
-                setSlidesOffset(
-                  -Math.abs(myRefs.current[index].current.offsetLeft)
-                );
+                NextSlide();
+                // setCurrentSlide(index);
+                // setSlidesOffset(
+                //   -Math.abs(myRefs.current[index].current.offsetLeft)
+                // );
               }}
               ref={myRefs.current[index]}
               // custom={direction}
