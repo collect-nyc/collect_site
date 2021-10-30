@@ -537,10 +537,10 @@ const ArchiveItem = ({ document, uid }) => {
                       easing: (t) => {
                         return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
                       },
-                      maxDuration: 1500,
-                      minDuration: 800,
+                      maxDuration: 300,
+                      minDuration: 300,
                       speed: 1000,
-                      verticalOffset: -100,
+                      verticalOffset: 0,
                     });
                   }}
                   className={"color_link"}
