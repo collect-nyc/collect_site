@@ -15,7 +15,7 @@ const EssentialTextNav = ({ page, count, latest, tags }) => {
       <nav className={`${styles.navigation} ${styles.essential_text_nav}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
-            <Link href={"/profile"}>
+            <Link href={"/"}>
               <a
                 onMouseEnter={() => {
                   setLogoHover(true);
@@ -24,7 +24,7 @@ const EssentialTextNav = ({ page, count, latest, tags }) => {
                   setLogoHover(false);
                 }}
               >
-                {logoHover ? "COLLECT Profile" : "COLLECT New York City"}
+                {logoHover ? "COLLECT Home" : "COLLECT New York City"}
               </a>
             </Link>
           </div>

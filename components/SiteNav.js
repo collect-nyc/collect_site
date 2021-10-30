@@ -22,7 +22,7 @@ const SiteNav = ({ page, count, latest, tags, case_study }) => {
           ),
           project: <CaseStudyNav />,
           profile: <ProfileNav count={count} />,
-          essential_text: <EssentialTextNav />,
+          essential_text: <EssentialTextNav count={count} />,
         }[page]
       }
     </>
