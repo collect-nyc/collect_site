@@ -472,9 +472,9 @@ const ArchiveItem = ({ document, uid }) => {
                 </motion.figure>
 
                 <motion.figure
-                  initial={{ opacity: 0, y: "0%" }}
-                  animate={{ opacity: [0, 1], y: ["0%", "-20%"] }}
-                  transition={{ duration: 1, delay: 1.2, ease: "easeOut" }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
                   className={styles.support_image}
                 >
                   {supporting_image && supporting_image.url ? (
