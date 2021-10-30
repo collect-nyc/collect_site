@@ -571,32 +571,6 @@ const ArchiveItem = ({ document, uid }) => {
                 : null
             }
           >
-            <nav className={styles.back_nav}>
-              <Link href={"/"}>
-                <a className={"color_link"}>
-                  <LeftArrow className={"color_svg"} /> Back to Home
-                </a>
-              </Link>
-              <Link
-                href={
-                  currentTag && currentTag !== "All Work"
-                    ? `/archive?tag=${currentTag}`
-                    : "/archive"
-                }
-              >
-                <a className={"color_link"}>
-                  <LeftArrow className={"color_svg"} /> Back to Archive
-                </a>
-              </Link>
-              <style global jsx>{`
-                .color_svg path {
-                  fill: ${text_color};
-                }
-                .color_link {
-                  color: ${text_color};
-                }
-              `}</style>
-            </nav>
             <div className={styles.title_and_description}>
               <div className={styles.inner_desc}>
                 <h1 className={styles.title}>
@@ -650,6 +624,34 @@ const ArchiveItem = ({ document, uid }) => {
                 </div>
               ) : null}
             </div>
+            {case_study ? (
+              <nav className={styles.back_nav}>
+                <Link href={"/"}>
+                  <a className={"color_link"}>
+                    <LeftArrow className={"color_svg"} /> Back to Home
+                  </a>
+                </Link>
+                <Link
+                  href={
+                    currentTag && currentTag !== "All Work"
+                      ? `/archive?tag=${currentTag}`
+                      : "/archive"
+                  }
+                >
+                  <a className={"color_link"}>
+                    <LeftArrow className={"color_svg"} /> Back to Archive
+                  </a>
+                </Link>
+                <style global jsx>{`
+                  .color_svg path {
+                    fill: ${text_color};
+                  }
+                  .color_link {
+                    color: ${text_color};
+                  }
+                `}</style>
+              </nav>
+            ) : null}
           </footer>
         </main>
       )}

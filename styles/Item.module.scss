@@ -217,11 +217,12 @@
     background-color: $alabaster;
     border-top: 1px solid $platinum;
     display: flex;
+    flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-between;
     padding: {
       top: 22px;
-      bottom: 50px;
+      bottom: 0;
       left: $navGutter_desktop;
       right: $navGutter_desktop;
     }
@@ -234,16 +235,16 @@
       justify-content: space-between;
       padding: {
         top: $gutter_mobile;
-        bottom: $gutter_mobile;
+        bottom: 0;
         left: $gutter_mobile;
         right: $gutter_mobile;
       }
     }
 
     .back_nav {
-      position: absolute;
-      bottom: 20px;
-      left: $navGutter_desktop;
+      position: relative;
+      padding-bottom: 20px;
+      width: 100%;
 
       a {
         svg {
@@ -263,11 +264,7 @@
     }
 
     .title_and_description {
-      padding-bottom: 40px;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding-bottom: 0;
-      }
+      padding-bottom: 20px;
 
       .inner_desc {
         h1,
@@ -294,7 +291,6 @@
         width: 50%;
 
         .inner_desc {
-          padding-bottom: 30px;
           width: 60%;
 
           h1,
