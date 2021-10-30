@@ -143,6 +143,7 @@ const Home = ({ archives, document, tagged }) => {
     setTitleHeight(TitleHolder.current.offsetHeight);
     // console.log(titleHeight);
 
+    // Check to see if Index Art has changed size
     window.addEventListener("resize", handleResize, false);
 
     return () => {

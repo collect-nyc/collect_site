@@ -28,18 +28,15 @@
 }
 
 .main {
-  // padding: 450px 0 0;
   min-height: calc(100vh - 180px);
   position: relative;
   z-index: 2;
 
-  @media screen and (max-width: $mq-mobile-min) {
-    // padding: 340px 0 0 0;
-  }
+  // @media screen and (max-width: $mq-mobile-min) {
+  // }
 
-  @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    // padding: 350px 0 0;
-  }
+  // @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
+  // }
 
   .interior {
     background-color: $alabaster;
