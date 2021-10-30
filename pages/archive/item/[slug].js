@@ -561,11 +561,17 @@ const ArchiveItem = ({ document, uid }) => {
             }
             id={"itemFooter"}
             style={
-              case_study && background_color
+              case_study && background_color && !archiveView
                 ? {
                     backgroundColor: background_color,
                     borderColor: text_color,
                     border: "none",
+                    color: text_color,
+                  }
+                : archiveView
+                ? {
+                    backgroundColor: background_color,
+                    borderColor: text_color,
                     color: text_color,
                   }
                 : null
