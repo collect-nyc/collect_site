@@ -99,7 +99,6 @@ const Profile = ({ document }) => {
           />
 
           <div className={styles.summary}>
-            <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
             <RichText render={page_content.summary} />
 
             {page_content && page_content.latest
@@ -168,7 +167,6 @@ const Profile = ({ document }) => {
           <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
-          <h1 className="heading_h1 xtra_bold">COLLECT NYC</h1>
           <div className={styles.contact_summary}>
             {page_content ? (
               <RichText render={page_content.instruction} />
