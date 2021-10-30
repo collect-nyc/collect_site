@@ -247,12 +247,6 @@
       width: 100%;
 
       a {
-        svg {
-          // path {
-          //   fill: $alabaster;
-          // }
-        }
-
         &:first-of-type {
           margin-right: 20px;
         }
@@ -332,12 +326,20 @@
 
         .credits {
           @extend .body_text;
-          text-transform: uppercase;
+
           line-height: 18px;
           width: 50%;
 
+          .credit_title {
+            text-transform: uppercase;
+          }
+
           .credit {
             padding-bottom: 20px;
+
+            a {
+              text-decoration: underline;
+            }
           }
 
           @media screen and (max-width: $mq-mobile-max) {

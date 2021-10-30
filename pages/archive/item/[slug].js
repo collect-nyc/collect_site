@@ -594,7 +594,10 @@ const ArchiveItem = ({ document, uid }) => {
                 page_data.body1[0].fields
                   ? page_data.body1[0].fields.map((credit, index) => (
                       <div key={index} className={styles.credit}>
-                        <p>{credit.title_or_category[0].text}</p>
+                        <p className={styles.credit_title}>
+                          {credit.title_or_category[0].text}
+                        </p>
+
                         {credit.names.map((name, index) =>
                           name.spans.length > 0 ? (
                             <a
