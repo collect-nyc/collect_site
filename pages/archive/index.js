@@ -1,4 +1,4 @@
-import { useEffect, useContext, useRef } from "react";
+import { useEffect, useContext, useRef, useState } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import { DateTime } from "luxon";
@@ -109,10 +109,17 @@ const Home = ({ archives, document, tagged }) => {
 
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
+  const TitleHolder = useRef();
+
+  const [titleHeight, setTitleHeight] = useState(null);
 
   // data
   const page_content = document.data;
   // const loadedArchives = [...archives];
+
+  const handleResize = () => {
+    setTitleHeight(TitleHolder.current.offsetHeight);
+  };
 
   const ShuffeList = (list) => {
     const new_list = _.shuffle(list);
@@ -131,6 +138,16 @@ const Home = ({ archives, document, tagged }) => {
       window.scrollBy(0, parseInt(scrollPos, 10));
       setScrollPos(0);
     }
+
+    // console.log(TitleHolder.current.offsetHeight);
+    setTitleHeight(TitleHolder.current.offsetHeight);
+    // console.log(titleHeight);
+
+    window.addEventListener("resize", handleResize, false);
+
+    return () => {
+      window.removeEventListener("resize", handleResize, false);
+    };
   }, []);
 
   // Checking on memory version of archive list
@@ -448,7 +465,7 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
-      <div className={styles.title_holder}>
+      <div className={styles.title_holder} ref={TitleHolder}>
         <div className={styles.title}>
           {page_content && page_content.header_image ? (
             <Image
@@ -464,6 +481,7 @@ const Home = ({ archives, document, tagged }) => {
       </div>
       <main
         className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
+        style={titleHeight ? { paddingTop: titleHeight } : null}
       >
         <div className={styles.interior}>
           {layoutView ? <GridView /> : <ListView />}

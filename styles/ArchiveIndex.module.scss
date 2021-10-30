@@ -3,35 +3,24 @@
 @import "./typography";
 
 .container {
-  padding: 55px 0 0;
+  padding: 0 0 0;
 }
 
 .title_holder {
   display: block;
+  padding: 150px 0 110px;
   position: fixed;
-  top: 185px;
+  top: 0;
   width: 100%;
   left: 0;
   z-index: 1;
-
-  @media screen and (max-width: $mq-mobile-max) {
-    top: 155px;
-  }
 }
 
 .title {
-  width: 385px;
+  width: 40%;
   max-width: 100%;
-  margin: 0 auto 70px;
+  margin: 0 auto;
   text-align: center;
-
-  @media screen and (max-width: $mq-mobile-min) {
-    width: 235px;
-  }
-
-  @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    width: 285px;
-  }
 
   svg {
     width: 100%;
@@ -39,17 +28,17 @@
 }
 
 .main {
-  padding: 450px 0 0;
+  // padding: 450px 0 0;
   min-height: calc(100vh - 180px);
   position: relative;
   z-index: 2;
 
   @media screen and (max-width: $mq-mobile-min) {
-    padding: 340px 0 0 0;
+    // padding: 340px 0 0 0;
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    padding: 350px 0 0;
+    // padding: 350px 0 0;
   }
 
   .interior {
