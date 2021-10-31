@@ -571,11 +571,7 @@ const ArchiveItem = ({ document, uid }) => {
           <div ref={footerRef}></div>
 
           <footer
-            className={
-              images.length > 1
-                ? `${styles.project_footer} ${styles.multi_item}`
-                : `${styles.project_footer} ${styles.single_item}`
-            }
+            className={`${styles.project_footer} ${styles.multi_item}`}
             id={"itemFooter"}
             style={
               case_study && background_color && !archiveView
