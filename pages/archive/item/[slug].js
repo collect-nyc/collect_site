@@ -597,7 +597,7 @@ const ArchiveItem = ({ document, uid }) => {
             <div className={styles.title_and_description}>
               <div className={styles.inner_desc}>
                 <h1 className={styles.title}>
-                  {page_data.title[0]
+                  {page_data?.title[0]?.text
                     ? page_data.title[0].text
                     : "COLLECT Project"}
                 </h1>

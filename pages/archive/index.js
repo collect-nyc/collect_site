@@ -322,7 +322,9 @@ const Home = ({ archives, document, tagged }) => {
                   <div className={styles.coming_soon}>
                     <span className={styles.coming_text}>Coming Soon</span>
                     <span className={styles.name}>
-                      <span>{archive.data.title[0].text}</span>
+                      {archive.data?.title[0]?.text ? (
+                        <span>{archive.data.title[0].text}</span>
+                      ) : null}
                     </span>
 
                     <span className={styles.tags}>
@@ -341,7 +343,9 @@ const Home = ({ archives, document, tagged }) => {
                   <Link href={"/archive/item/" + archive.uid}>
                     <a onClick={() => ScrollTracker()}>
                       <span className={styles.name}>
-                        {archive.data.title[0].text}
+                        {archive.data?.title[0]?.text ? (
+                          <span>{archive.data.title[0].text}</span>
+                        ) : null}
                       </span>
 
                       <span className={styles.tags}>
