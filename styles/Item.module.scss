@@ -286,6 +286,12 @@
       }
     }
 
+    .credits_and_download {
+      .credits {
+        padding-bottom: 20px;
+      }
+    }
+
     &.multi_item {
       @extend .body_text;
 
