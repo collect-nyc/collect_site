@@ -36,7 +36,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ document }) => {
-  console.log("Landing Data", document.data);
+  // console.log("Landing Data", document.data);
 
   const { setScrollPos, setReturnPage } = useContext(MemoryContext);
 

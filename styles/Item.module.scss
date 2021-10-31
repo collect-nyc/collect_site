@@ -47,7 +47,8 @@
 
       .single_image,
       .image_slider,
-      .double_image {
+      .double_image,
+      .text_block {
         margin-bottom: 180px;
 
         @media screen and (max-width: $mq-mobile-max) {
@@ -57,6 +58,10 @@
         &:last-of-type {
           margin-bottom: 0;
         }
+      }
+
+      .text_block {
+        padding: 0 #{$gutter_desktop * 3};
       }
 
       .double_image {

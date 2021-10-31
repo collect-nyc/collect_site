@@ -3,6 +3,7 @@ import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
 import Prismic from "prismic-javascript";
+import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
@@ -82,6 +83,12 @@ export async function getStaticProps({ params, preview = false, previewData }) {
                 description
               }
             }
+            ... on Archive_itemBodyText_block {
+              type
+              primary {
+                text
+              }
+            }
             ... on Archive_itemBody2up_images {
               type
               primary {
@@ -150,7 +157,7 @@ const ArchiveItem = ({ document, uid }) => {
     supporting_image,
   } = page_data;
 
-  // console.log("Project Data", page_data);
+  console.log("Project Data", page_data);
 
   const { navTextColor, caseStudyView, setCaseStudyView } =
     useContext(MemoryContext);
@@ -365,6 +372,14 @@ const ArchiveItem = ({ document, uid }) => {
                     alt={slice.primary.image.alt}
                   />
                 </figure>
+              ) : null}
+            </section>
+          );
+        } else if (slice.type === "text_block") {
+          return (
+            <section key={index} className={`${styles.text_block} `}>
+              {slice.primary.text ? (
+                <RichText render={slice.primary.text} />
               ) : null}
             </section>
           );
