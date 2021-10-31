@@ -34,6 +34,14 @@
           display: flex;
           height: 100vh;
           align-items: center;
+          // width: 100%;
+        }
+
+        .backup_text {
+          @extend .casestudy_title;
+          text-transform: uppercase;
+          text-align: center;
+          width: 100%;
         }
 
         .support_image {

@@ -483,6 +483,8 @@ const ArchiveItem = ({ document, uid }) => {
                       height={title_image.dimensions.height}
                       width={title_image.dimensions.width}
                     />
+                  ) : backup_text && backup_text[0] ? (
+                    <p className={styles.backup_text}>{backup_text[0].text}</p>
                   ) : null}
                 </motion.figure>
 
