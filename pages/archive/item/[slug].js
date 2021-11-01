@@ -57,6 +57,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           text_color
           archive_view_text
           archive_view_background
+          archive_view_linear_rule
           title_image
           title_image_width
           backup_text
@@ -157,6 +158,7 @@ const ArchiveItem = ({ document, uid }) => {
     description,
     archive_view_text,
     archive_view_background,
+    archive_view_linear_rule,
     text_color,
     background_color,
     backup_text,
@@ -648,7 +650,11 @@ const ArchiveItem = ({ document, uid }) => {
                 : archiveView
                 ? {
                     backgroundColor: archive_view_background,
-                    borderColor: archive_view_text,
+                    borderColor: archive_view_linear_rule
+                      ? archive_view_linear_rule
+                      : archive_view_text
+                      ? archive_view_text
+                      : "inherit",
                     color: archive_view_text,
                   }
                 : null
