@@ -498,7 +498,7 @@ const Home = ({ archives, document, tagged }) => {
         </div>
         <div className={styles.links}>
           <Link href="/info/privacy">Privacy</Link>
-          <Link href="/info/privacy">Impressum</Link>
+          <Link href="/info/impressum">Impressum</Link>
         </div>
       </footer>
     </div>
