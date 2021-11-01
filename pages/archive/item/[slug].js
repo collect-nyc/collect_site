@@ -322,6 +322,7 @@ const ArchiveItem = ({ document, uid }) => {
                       height={slice.primary.first_image.dimensions.height}
                       width={slice.primary.first_image.dimensions.width}
                       alt={slice.primary.first_image.alt}
+                      quality={100}
                     />
                   </figure>
                 ) : null}
@@ -336,6 +337,7 @@ const ArchiveItem = ({ document, uid }) => {
                       height={slice.primary.second_image.dimensions.height}
                       width={slice.primary.second_image.dimensions.width}
                       alt={slice.primary.second_image.alt}
+                      quality={100}
                     />
                   </figure>
                 ) : null}
@@ -374,6 +376,7 @@ const ArchiveItem = ({ document, uid }) => {
                     height={slice.primary.image.dimensions.height}
                     width={slice.primary.image.dimensions.width}
                     alt={slice.primary.image.alt}
+                    quality={100}
                   />
                 </figure>
               ) : null}
@@ -394,6 +397,7 @@ const ArchiveItem = ({ document, uid }) => {
                 images={slice.fields}
                 text_color={text_color}
                 background_color={background_color}
+                quality={100}
               />
             </section>
           );
@@ -485,6 +489,7 @@ const ArchiveItem = ({ document, uid }) => {
                     alt={title_image.alt}
                     height={title_image.dimensions.height}
                     width={title_image.dimensions.width}
+                    quality={100}
                   />
                 ) : backup_text && backup_text[0] ? (
                   <p className={styles.backup_text}>{backup_text[0].text}</p>
@@ -520,6 +525,7 @@ const ArchiveItem = ({ document, uid }) => {
                         alt={supporting_image.alt}
                         height={supporting_image.dimensions.height}
                         width={supporting_image.dimensions.width}
+                        quality={100}
                       />
                     ) : null}
                   </motion.figure>
