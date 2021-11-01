@@ -700,50 +700,55 @@ const ArchiveItem = ({ document, uid }) => {
               </div>
             </div>
 
-            <div className={styles.credits_and_download}>
-              <div className={styles.credits}>
-                {page_data.body1 &&
-                page_data.body1[0] &&
-                page_data.body1[0].fields
-                  ? page_data.body1[0].fields.map((credit, index) => (
-                      <div key={index} className={styles.credit}>
-                        <p className={styles.credit_title}>
-                          {credit.title_or_category
-                            ? credit.title_or_category[0]?.text
-                            : null}
-                        </p>
+            {page_data.body1 &&
+            page_data.body1[0] &&
+            page_data.body1[0].fields ? (
+              <div className={styles.credits_and_download}>
+                <div className={styles.credits}>
+                  {page_data.body1 &&
+                  page_data.body1[0] &&
+                  page_data.body1[0].fields
+                    ? page_data.body1[0].fields.map((credit, index) => (
+                        <div key={index} className={styles.credit}>
+                          <p className={styles.credit_title}>
+                            {credit.title_or_category
+                              ? credit.title_or_category[0]?.text
+                              : null}
+                          </p>
 
-                        {credit.names
-                          ? credit.names.map((name, index) =>
-                              name.spans.length > 0 ? (
-                                <a
-                                  href={name.spans[0].data.url}
-                                  target={"blank"}
-                                  className={"color_link name"}
-                                  key={index}
-                                >
-                                  {" "}
-                                  {name.text}
-                                </a>
-                              ) : (
-                                <p key={index} className={styles.name}>
-                                  {name.text}
-                                </p>
+                          {credit.names
+                            ? credit.names.map((name, index) =>
+                                name.spans.length > 0 ? (
+                                  <a
+                                    href={name.spans[0].data.url}
+                                    target={"blank"}
+                                    className={"color_link name"}
+                                    key={index}
+                                  >
+                                    {" "}
+                                    {name.text}
+                                  </a>
+                                ) : (
+                                  <p key={index} className={styles.name}>
+                                    {name.text}
+                                  </p>
+                                )
                               )
-                            )
-                          : null}
-                      </div>
-                    ))
-                  : null}
-              </div>
-              {download && download.url ? (
-                <div className={styles.download}>
-                  <a className={"color_link"} href={download.url}>
-                    Download Project Images
-                  </a>
+                            : null}
+                        </div>
+                      ))
+                    : null}
                 </div>
-              ) : null}
-            </div>
+                {download && download.url ? (
+                  <div className={styles.download}>
+                    <a className={"color_link"} href={download.url}>
+                      Download Project Images
+                    </a>
+                  </div>
+                ) : null}
+              </div>
+            ) : null}
+
             {case_study ? (
               <nav className={styles.back_nav}>
                 <Link href={"/"}>
