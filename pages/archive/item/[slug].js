@@ -1,4 +1,10 @@
-import React, { useEffect, useState, useContext, createRef } from "react";
+import React, {
+  useEffect,
+  useState,
+  useContext,
+  useRef,
+  createRef,
+} from "react";
 import Head from "next/head";
 import Link from "next/link";
 import Image from "next/image";
@@ -191,6 +197,7 @@ const ArchiveItem = ({ document, uid }) => {
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
+  const [titleImageDist, setTitleImageDist] = useState(null);
 
   // Contexts
   const {
@@ -203,6 +210,7 @@ const ArchiveItem = ({ document, uid }) => {
 
   // Refs
   const footerRef = createRef();
+  const TitleImage = useRef();
 
   // Variables
   const images = page_data.images;
@@ -210,6 +218,20 @@ const ArchiveItem = ({ document, uid }) => {
 
   useEffect(() => {
     setReturnPage(true);
+
+    // const dist = TitleImage.current.getBoundingClientRect();
+    // const el = document.querySelector(".title_image");
+
+    // console.log("Dist", el);
+
+    const el = TitleImage.current.firstChild.getBoundingClientRect();
+
+    const top = el.top;
+
+    console.log("Dist", el, top);
+
+    setTitleImageDist(top);
+
     // return () => {
     // };
   }, []);
@@ -474,11 +496,10 @@ const ArchiveItem = ({ document, uid }) => {
             <div
               className={styles.casestudy_container}
               style={
-                case_study && background_color
+                case_study && text_color
                   ? {
-                      backgroundColor: background_color,
-                      borderColor: text_color,
                       color: text_color,
+                      paddingTop: "calc(100vh - " + titleImageDist + "px)",
                     }
                   : null
               }
@@ -487,6 +508,13 @@ const ArchiveItem = ({ document, uid }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1] }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                style={
+                  case_study && background_color
+                    ? {
+                        backgroundColor: background_color,
+                      }
+                    : null
+                }
                 className={
                   title_image_width && title_image_width === "12"
                     ? `${styles.title_image} ${styles.twelve}`
@@ -500,6 +528,7 @@ const ArchiveItem = ({ document, uid }) => {
                     ? `${styles.title_image} ${styles.four}`
                     : `${styles.title_image}`
                 }
+                ref={TitleImage}
               >
                 {title_image && title_image.url ? (
                   <Image
@@ -508,21 +537,13 @@ const ArchiveItem = ({ document, uid }) => {
                     height={title_image.dimensions.height}
                     width={title_image.dimensions.width}
                     quality={100}
+                    className="title_image"
                   />
                 ) : backup_text && backup_text[0] ? (
                   <p className={styles.backup_text}>{backup_text[0].text}</p>
                 ) : null}
               </motion.figure>
-              <div
-                className={styles.casestudy_content}
-                style={
-                  case_study && background_color
-                    ? {
-                        backgroundColor: background_color,
-                      }
-                    : null
-                }
-              >
+              <div className={styles.casestudy_content}>
                 <section
                   className={
                     supporting_image_width && supporting_image_width === "12"
@@ -540,13 +561,6 @@ const ArchiveItem = ({ document, uid }) => {
                     transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
                     // className={styles.support_image}
                     className={styles.support_image}
-                    style={
-                      case_study && background_color
-                        ? {
-                            backgroundColor: background_color,
-                          }
-                        : null
-                    }
                   >
                     {supporting_image && supporting_image.url ? (
                       <Image
@@ -559,8 +573,18 @@ const ArchiveItem = ({ document, uid }) => {
                     ) : null}
                   </motion.figure>
                 </section>
-
-                {pageContent}
+                <div
+                  style={
+                    case_study && background_color
+                      ? {
+                          backgroundColor: background_color,
+                        }
+                      : null
+                  }
+                  className={styles.lower_content}
+                >
+                  {pageContent}
+                </div>
               </div>
             </div>
           ) : (

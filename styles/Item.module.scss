@@ -23,7 +23,7 @@
     z-index: 0;
 
     .casestudy_container {
-      padding: 100vh 0 0;
+      padding: calc(100vh - 200px) 0 0;
       position: relative;
 
       .title_image {
@@ -70,7 +70,6 @@
       }
 
       .casestudy_content {
-        background-color: $alabaster;
         position: relative;
         z-index: 2;
       }
@@ -92,16 +91,20 @@
         }
 
         .support_image {
-          // background-color: lightblue !important;
-          transform: translateY(-20%);
+          display: flex;
         }
 
         @media screen and (max-width: $mq-mobile-max) {
           padding: 0 $gutter_mobile;
+        }
+      }
 
-          .support_image {
-            transform: translateY(-60%);
-          }
+      .lower_content {
+        background-color: $alabaster;
+        padding-top: 180px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-top: 80px;
         }
       }
 
