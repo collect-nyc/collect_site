@@ -46,7 +46,7 @@ const Home = ({ document }) => {
     setReturnPage(false);
   }, []);
 
-  const pageContent = document.data.body.map((slice, index) => {
+  const pageContent = document?.data?.body.map((slice, index) => {
     // Render the right markup for the given slice type
 
     // 2up Images Slice
