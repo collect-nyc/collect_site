@@ -469,42 +469,60 @@ const ArchiveItem = ({ document, uid }) => {
                   : null
               }
             >
-              <section className={styles.case_study_intro}>
-                <motion.figure
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1] }}
-                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                  className={styles.title_image}
-                >
-                  {title_image && title_image.url ? (
-                    <Image
-                      src={title_image.url}
-                      alt={title_image.alt}
-                      height={title_image.dimensions.height}
-                      width={title_image.dimensions.width}
-                    />
-                  ) : backup_text && backup_text[0] ? (
-                    <p className={styles.backup_text}>{backup_text[0].text}</p>
-                  ) : null}
-                </motion.figure>
+              <motion.figure
+                initial={{ opacity: 0 }}
+                animate={{ opacity: [0, 1] }}
+                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                className={styles.title_image}
+              >
+                {title_image && title_image.url ? (
+                  <Image
+                    src={title_image.url}
+                    alt={title_image.alt}
+                    height={title_image.dimensions.height}
+                    width={title_image.dimensions.width}
+                  />
+                ) : backup_text && backup_text[0] ? (
+                  <p className={styles.backup_text}>{backup_text[0].text}</p>
+                ) : null}
+              </motion.figure>
+              <div
+                className={styles.casestudy_content}
+                style={
+                  case_study && background_color
+                    ? {
+                        backgroundColor: background_color,
+                      }
+                    : null
+                }
+              >
+                <section className={styles.case_study_intro}>
+                  <motion.figure
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1] }}
+                    transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+                    className={styles.support_image}
+                    style={
+                      case_study && background_color
+                        ? {
+                            backgroundColor: background_color,
+                          }
+                        : null
+                    }
+                  >
+                    {supporting_image && supporting_image.url ? (
+                      <Image
+                        src={supporting_image.url}
+                        alt={supporting_image.alt}
+                        height={supporting_image.dimensions.height}
+                        width={supporting_image.dimensions.width}
+                      />
+                    ) : null}
+                  </motion.figure>
+                </section>
 
-                <motion.figure
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1] }}
-                  transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
-                  className={styles.support_image}
-                >
-                  {supporting_image && supporting_image.url ? (
-                    <Image
-                      src={supporting_image.url}
-                      alt={supporting_image.alt}
-                      height={supporting_image.dimensions.height}
-                      width={supporting_image.dimensions.width}
-                    />
-                  ) : null}
-                </motion.figure>
-              </section>
-              {pageContent}
+                {pageContent}
+              </div>
             </div>
           ) : (
             <div className={styles.inner}>
