@@ -81,7 +81,7 @@ const CaseStudyNav = () => {
                   maxDuration: 1500,
                   minDuration: 800,
                   speed: 1000,
-                  verticalOffset: -100,
+                  verticalOffset: 0,
                 });
               }}
             >
