@@ -499,7 +499,8 @@ const ArchiveItem = ({ document, uid }) => {
                 case_study && text_color
                   ? {
                       color: text_color,
-                      paddingTop: "calc(100vh - " + titleImageDist + "px)",
+                      paddingTop:
+                        "calc(100vh - " + titleImageDist + 180 + "px)",
                     }
                   : null
               }

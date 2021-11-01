@@ -21,8 +21,17 @@
   }
 
   &.home {
-    // background-color: transparent;
+    // background-color: $alabaster;
     // border-bottom: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      mix-blend-mode: normal;
+
+      a,
+      button {
+        color: $black;
+      }
+    }
   }
 
   &.archive {
