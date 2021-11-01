@@ -55,6 +55,8 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           case_study
           background_color
           text_color
+          archive_view_text
+          archive_view_background
           title_image
           backup_text
           supporting_image
@@ -150,6 +152,8 @@ const ArchiveItem = ({ document, uid }) => {
     title,
     case_study,
     description,
+    archive_view_text,
+    archive_view_background,
     text_color,
     background_color,
     backup_text,
@@ -525,7 +529,17 @@ const ArchiveItem = ({ document, uid }) => {
               </div>
             </div>
           ) : (
-            <div className={styles.inner}>
+            <div
+              className={styles.inner}
+              style={
+                archiveView && case_study && archive_view_background
+                  ? {
+                      backgroundColor: archive_view_background,
+                      color: archive_view_text,
+                    }
+                  : null
+              }
+            >
               <ProjectViewer
                 images={images}
                 PrevItem={PrevItem}
@@ -595,15 +609,14 @@ const ArchiveItem = ({ document, uid }) => {
               case_study && background_color && !archiveView
                 ? {
                     backgroundColor: background_color,
-                    borderColor: text_color,
-                    border: "none",
+                    borderColor: "transparent",
                     color: text_color,
                   }
                 : archiveView
                 ? {
-                    backgroundColor: background_color,
-                    borderColor: text_color,
-                    color: text_color,
+                    backgroundColor: archive_view_background,
+                    borderColor: archive_view_text,
+                    color: archive_view_text,
                   }
                 : null
             }
@@ -684,10 +697,14 @@ const ArchiveItem = ({ document, uid }) => {
                 </Link>
                 <style global jsx>{`
                   .color_svg path {
-                    fill: ${text_color};
+                    fill: ${archiveView && archive_view_text
+                      ? archive_view_text
+                      : text_color};
                   }
                   .color_link {
-                    color: ${text_color};
+                    color: ${archiveView && archive_view_text
+                      ? archive_view_text
+                      : text_color};
                   }
                 `}</style>
               </nav>
