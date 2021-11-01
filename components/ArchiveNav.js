@@ -151,7 +151,6 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
 
       <nav className={styles.mobile_navigation}>
         <div className={styles.mobile_left}>
-          {" "}
           {tags ? (
             <div className={styles.filter_button}>
               <span className={styles.label}>
@@ -162,36 +161,43 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
                   {currentTag} <Carot />
                 </button>
               </span>
-              <ul
-                className={
-                  filterOpen
-                    ? `${styles.tag_list} ${styles.tag_list_open}`
-                    : styles.tag_list
-                }
-              >
-                {currentTag === "All Work" ? null : (
-                  <li>
-                    <button onClick={() => AllTags()}>All Work</button>
-                  </li>
-                )}
-
-                {tags && tags.length > 0
-                  ? tags.map((tag, key) =>
-                      tag === currentTag ? null : (
-                        <li key={key}>
-                          <button index={tag.id} onClick={() => GetByTag(tag)}>
-                            {tag}
-                          </button>
-                        </li>
-                      )
-                    )
-                  : null}
-              </ul>
             </div>
           ) : null}
         </div>
-        <div className={styles.mobile_right}>
-          {" "}
+        <div
+          className={
+            filterOpen
+              ? `${styles.mobile_right} ${styles.open}`
+              : styles.mobile_right
+          }
+        >
+          {tags ? (
+            <ul
+              className={
+                filterOpen
+                  ? `${styles.tag_list} ${styles.tag_list_open}`
+                  : styles.tag_list
+              }
+            >
+              {currentTag === "All Work" ? null : (
+                <li>
+                  <button onClick={() => AllTags()}>All Work</button>
+                </li>
+              )}
+
+              {tags && tags.length > 0
+                ? tags.map((tag, key) =>
+                    tag === currentTag ? null : (
+                      <li key={key}>
+                        <button index={tag.id} onClick={() => GetByTag(tag)}>
+                          {tag}
+                        </button>
+                      </li>
+                    )
+                  )
+                : null}
+            </ul>
+          ) : null}
           <div
             className={
               filterOpen
