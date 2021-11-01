@@ -2,6 +2,10 @@
 @import "./colors";
 @import "./typography";
 
+html {
+  height: -webkit-fill-available;
+}
+
 html,
 body {
   background-color: $alabaster;
@@ -13,6 +17,7 @@ body {
 
 body {
   @extend .body_text;
+  min-height: -webkit-fill-available;
 }
 
 a,

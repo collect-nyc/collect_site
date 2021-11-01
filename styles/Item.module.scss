@@ -356,6 +356,10 @@
           }
         }
       }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-bottom: 0;
+      }
     }
 
     .credits_and_download {
@@ -400,7 +404,6 @@
 
         @media screen and (max-width: $mq-mobile-max) {
           padding-left: 0;
-          margin-bottom: 45px;
           width: 100%;
 
           .title {
