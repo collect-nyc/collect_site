@@ -219,18 +219,15 @@ const ArchiveItem = ({ document, uid }) => {
   useEffect(() => {
     setReturnPage(true);
 
-    // const dist = TitleImage.current.getBoundingClientRect();
-    // const el = document.querySelector(".title_image");
+    if (TitleImage.current) {
+      const el = TitleImage.current.firstChild.getBoundingClientRect();
 
-    // console.log("Dist", el);
+      const top = el.top;
 
-    const el = TitleImage.current.firstChild.getBoundingClientRect();
+      console.log("Dist", el, top);
 
-    const top = el.top;
-
-    console.log("Dist", el, top);
-
-    setTitleImageDist(top);
+      setTitleImageDist(top);
+    }
 
     // return () => {
     // };
