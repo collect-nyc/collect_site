@@ -82,6 +82,7 @@ const Home = ({ document }) => {
                       width={slice.primary.first_image.dimensions.width}
                       alt={slice.primary.first_image.alt}
                       priority
+                      quality={100}
                     />
                   </a>
                 </Link>
@@ -93,6 +94,7 @@ const Home = ({ document }) => {
                   width={slice.primary.first_image.dimensions.width}
                   alt={slice.primary.first_image.alt}
                   priority
+                  quality={100}
                 />
               )
             ) : null}
@@ -115,6 +117,7 @@ const Home = ({ document }) => {
                       width={slice.primary.second_image.dimensions.width}
                       alt={slice.primary.second_image.alt}
                       priority
+                      quality={100}
                     />
                   </a>
                 </Link>
@@ -126,6 +129,7 @@ const Home = ({ document }) => {
                   width={slice.primary.second_image.dimensions.width}
                   alt={slice.primary.second_image.alt}
                   priority
+                  quality={100}
                 />
               )
             ) : null}
@@ -164,6 +168,7 @@ const Home = ({ document }) => {
                       width={slice.primary.image.dimensions.width}
                       alt={slice.primary.image.alt}
                       priority
+                      quality={100}
                     />
                   </a>
                 </Link>
@@ -175,6 +180,7 @@ const Home = ({ document }) => {
                   width={slice.primary.image.dimensions.width}
                   alt={slice.primary.image.alt}
                   priority
+                  quality={100}
                 />
               )}
             </figure>

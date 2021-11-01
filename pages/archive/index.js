@@ -407,6 +407,7 @@ const Home = ({ archives, document, tagged }) => {
                         src={archive.data.index_thumbnail.url}
                         height={archive.data.index_thumbnail.dimensions.height}
                         width={archive.data.index_thumbnail.dimensions.width}
+                        quality={100}
                       />
                     ) : archive.data.images[0].image.url ? (
                       <Image
@@ -415,6 +416,7 @@ const Home = ({ archives, document, tagged }) => {
                         src={archive.data.images[0].image.url}
                         height={archive.data.images[0].image.dimensions.height}
                         width={archive.data.images[0].image.dimensions.width}
+                        quality={100}
                       />
                     ) : null}
                   </a>
@@ -433,6 +435,7 @@ const Home = ({ archives, document, tagged }) => {
                             archive.data.index_thumbnail.dimensions.height
                           }
                           width={archive.data.index_thumbnail.dimensions.width}
+                          quality={100}
                         />
                       ) : archive.data.images[0].image.url ? (
                         <Image
@@ -443,6 +446,7 @@ const Home = ({ archives, document, tagged }) => {
                             archive.data.images[0].image.dimensions.height
                           }
                           width={archive.data.images[0].image.dimensions.width}
+                          quality={100}
                         />
                       ) : null}
                     </a>
@@ -480,6 +484,7 @@ const Home = ({ archives, document, tagged }) => {
               height={page_content.header_image.dimensions.height}
               width={page_content.header_image.dimensions.width}
               unoptimized={true}
+              quality={100}
             />
           ) : null}
         </div>
