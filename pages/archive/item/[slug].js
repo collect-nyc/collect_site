@@ -496,8 +496,7 @@ const ArchiveItem = ({ document, uid }) => {
                 case_study && text_color
                   ? {
                       color: text_color,
-                      paddingTop:
-                        "calc(100vh - " + titleImageDist + 180 + "px)",
+                      paddingTop: "calc(100vh - " + titleImageDist + "px)",
                     }
                   : null
               }
@@ -567,6 +566,9 @@ const ArchiveItem = ({ document, uid }) => {
                         height={supporting_image.dimensions.height}
                         width={supporting_image.dimensions.width}
                         quality={100}
+                        // objectFit={"contain"}
+                        className={styles.image}
+                        layout={"responsive"}
                       />
                     ) : null}
                   </motion.figure>

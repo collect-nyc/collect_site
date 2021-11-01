@@ -77,6 +77,7 @@
       .case_study_intro {
         padding: 0 #{$gutter_desktop * 2};
         margin-bottom: 0;
+        width: 100%;
 
         &.eight {
           padding: 0 #{$gutter_desktop * 2};
@@ -91,7 +92,15 @@
         }
 
         .support_image {
-          display: flex;
+          display: block;
+          width: 100%;
+
+          // .image {
+          //   object-fit: contain;
+          //   width: 100% !important;
+          //   position: relative !important;
+          //   height: unset !important;
+          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
