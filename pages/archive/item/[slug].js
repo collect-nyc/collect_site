@@ -161,7 +161,7 @@ const ArchiveItem = ({ document, uid }) => {
     supporting_image,
   } = page_data;
 
-  console.log("Project Data", page_data);
+  // console.log("Project Data", page_data);
 
   const { navTextColor, caseStudyView, setCaseStudyView } =
     useContext(MemoryContext);
