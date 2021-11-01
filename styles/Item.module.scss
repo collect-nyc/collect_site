@@ -56,6 +56,10 @@
         &.twelve {
           padding: 0;
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding: 0 $gutter_mobile !important;
+        }
       }
 
       .backup_text {
@@ -88,11 +92,16 @@
         }
 
         .support_image {
+          // background-color: lightblue !important;
           transform: translateY(-20%);
         }
 
         @media screen and (max-width: $mq-mobile-max) {
           padding: 0 $gutter_mobile;
+
+          .support_image {
+            transform: translateY(-60%);
+          }
         }
       }
 
