@@ -12,6 +12,13 @@
   justify-content: space-between;
   align-items: flex-start;
   padding: 13px $navGutter_desktop 12px;
+  color: $alabaster;
+  mix-blend-mode: difference;
+
+  a,
+  button {
+    color: $alabaster;
+  }
 
   &.home {
     // background-color: transparent;
@@ -21,6 +28,12 @@
   &.archive {
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
+    mix-blend-mode: normal;
+
+    a,
+    button {
+      color: $black;
+    }
 
     .top_right {
       justify-content: flex-end;
@@ -245,6 +258,7 @@
     background-color: $alabaster;
   }
 }
+
 .profile {
   border-bottom: none;
 
