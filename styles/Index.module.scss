@@ -7,14 +7,10 @@
   button {
     color: $black;
   }
-
-  @media (hover: none) {
-    padding-bottom: 150px;
-  }
 }
 
 .main {
-  padding: 90px 0 130px;
+  padding: 90px 0 120px;
   position: relative;
 
   .divider {
@@ -51,6 +47,10 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       margin-bottom: 120px !important;
+
+      &:last-of-type {
+        margin-bottom: 0 !important;
+      }
     }
 
     .left_side,
@@ -94,6 +94,10 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       margin-bottom: 120px !important;
+
+      &:last-of-type {
+        margin-bottom: 0 !important;
+      }
     }
 
     figure {
@@ -107,5 +111,9 @@
         padding: 0;
       }
     }
+  }
+
+  section:last-of-type {
+    margin-bottom: 0 !important;
   }
 }
