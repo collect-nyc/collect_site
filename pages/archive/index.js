@@ -407,7 +407,8 @@ const Home = ({ archives, document, tagged }) => {
                         src={archive.data.index_thumbnail.url}
                         height={archive.data.index_thumbnail.dimensions.height}
                         width={archive.data.index_thumbnail.dimensions.width}
-                        quality={100}
+                        quality={75}
+                        priority
                       />
                     ) : archive.data.images[0].image.url ? (
                       <Image
@@ -416,7 +417,8 @@ const Home = ({ archives, document, tagged }) => {
                         src={archive.data.images[0].image.url}
                         height={archive.data.images[0].image.dimensions.height}
                         width={archive.data.images[0].image.dimensions.width}
-                        quality={100}
+                        quality={75}
+                        priority
                       />
                     ) : null}
                   </a>
@@ -435,7 +437,7 @@ const Home = ({ archives, document, tagged }) => {
                             archive.data.index_thumbnail.dimensions.height
                           }
                           width={archive.data.index_thumbnail.dimensions.width}
-                          quality={100}
+                          quality={75}
                         />
                       ) : archive.data.images[0].image.url ? (
                         <Image
@@ -446,7 +448,7 @@ const Home = ({ archives, document, tagged }) => {
                             archive.data.images[0].image.dimensions.height
                           }
                           width={archive.data.images[0].image.dimensions.width}
-                          quality={100}
+                          quality={75}
                         />
                       ) : null}
                     </a>
