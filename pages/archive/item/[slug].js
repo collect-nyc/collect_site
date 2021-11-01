@@ -645,26 +645,30 @@ const ArchiveItem = ({ document, uid }) => {
                   ? page_data.body1[0].fields.map((credit, index) => (
                       <div key={index} className={styles.credit}>
                         <p className={styles.credit_title}>
-                          {credit.title_or_category[0].text}
+                          {credit.title_or_category
+                            ? credit.title_or_category[0]?.text
+                            : null}
                         </p>
 
-                        {credit.names.map((name, index) =>
-                          name.spans.length > 0 ? (
-                            <a
-                              href={name.spans[0].data.url}
-                              target={"blank"}
-                              className={"color_link name"}
-                              key={index}
-                            >
-                              {" "}
-                              {name.text}
-                            </a>
-                          ) : (
-                            <p key={index} className={styles.name}>
-                              {name.text}
-                            </p>
-                          )
-                        )}
+                        {credit.names
+                          ? credit.names.map((name, index) =>
+                              name.spans.length > 0 ? (
+                                <a
+                                  href={name.spans[0].data.url}
+                                  target={"blank"}
+                                  className={"color_link name"}
+                                  key={index}
+                                >
+                                  {" "}
+                                  {name.text}
+                                </a>
+                              ) : (
+                                <p key={index} className={styles.name}>
+                                  {name.text}
+                                </p>
+                              )
+                            )
+                          : null}
                       </div>
                     ))
                   : null}

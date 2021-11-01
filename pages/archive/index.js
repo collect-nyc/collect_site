@@ -200,7 +200,7 @@ const Home = ({ archives, document, tagged }) => {
   const ScrollTracker = () => {
     let top =
       (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
-    console.log("Scroll Pos", top);
+    // console.log("Scroll Pos", top);
     setScrollPos(top);
   };
 
