@@ -36,6 +36,26 @@
         left: 0;
         width: 100%;
         z-index: 1;
+
+        &.four {
+          padding: 0 #{$gutter_desktop * 4};
+        }
+
+        &.six {
+          padding: 0 #{$gutter_desktop * 3};
+        }
+
+        &.eight {
+          padding: 0 #{$gutter_desktop * 2};
+        }
+
+        &.ten {
+          padding: 0 #{$gutter_desktop};
+        }
+
+        &.twelve {
+          padding: 0;
+        }
       }
 
       .backup_text {
@@ -54,6 +74,18 @@
       .case_study_intro {
         padding: 0 #{$gutter_desktop * 2};
         margin-bottom: 0;
+
+        &.eight {
+          padding: 0 #{$gutter_desktop * 2};
+        }
+
+        &.ten {
+          padding: 0 #{$gutter_desktop};
+        }
+
+        &.twelve {
+          padding: 0;
+        }
 
         .support_image {
           transform: translateY(-20%);

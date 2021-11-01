@@ -58,8 +58,10 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           archive_view_text
           archive_view_background
           title_image
+          title_image_width
           backup_text
           supporting_image
+          supporting_image_width
           body1 {
             ... on Archive_itemBody1Credits {
               type
@@ -150,6 +152,7 @@ const ArchiveItem = ({ document, uid }) => {
   const {
     title_image,
     title,
+    title_image_width,
     case_study,
     description,
     archive_view_text,
@@ -159,6 +162,7 @@ const ArchiveItem = ({ document, uid }) => {
     backup_text,
     download,
     supporting_image,
+    supporting_image_width,
   } = page_data;
 
   // console.log("Project Data", page_data);
@@ -481,7 +485,19 @@ const ArchiveItem = ({ document, uid }) => {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: [0, 1] }}
                 transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                className={styles.title_image}
+                className={
+                  title_image_width && title_image_width === "12"
+                    ? `${styles.title_image} ${styles.twelve}`
+                    : title_image_width === "10"
+                    ? `${styles.title_image} ${styles.ten}`
+                    : title_image_width === "8"
+                    ? `${styles.title_image} ${styles.eight}`
+                    : title_image_width === "6"
+                    ? `${styles.title_image} ${styles.six}`
+                    : title_image_width === "4"
+                    ? `${styles.title_image} ${styles.four}`
+                    : `${styles.title_image}`
+                }
               >
                 {title_image && title_image.url ? (
                   <Image
@@ -505,11 +521,22 @@ const ArchiveItem = ({ document, uid }) => {
                     : null
                 }
               >
-                <section className={styles.case_study_intro}>
+                <section
+                  className={
+                    supporting_image_width && supporting_image_width === "12"
+                      ? `${styles.case_study_intro} ${styles.twelve}`
+                      : supporting_image_width === "10"
+                      ? `${styles.case_study_intro} ${styles.ten}`
+                      : supporting_image_width === "8"
+                      ? `${styles.case_study_intro} ${styles.eight}`
+                      : `${styles.case_study_intro}`
+                  }
+                >
                   <motion.figure
                     initial={{ opacity: 0 }}
                     animate={{ opacity: [0, 1] }}
                     transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+                    // className={styles.support_image}
                     className={styles.support_image}
                     style={
                       case_study && background_color
