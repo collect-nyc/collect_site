@@ -49,6 +49,10 @@
       margin-bottom: 240px;
     }
 
+    @media screen and (max-width: $mq-mobile-max) {
+      margin-bottom: 120px !important;
+    }
+
     .left_side,
     .right_side {
       width: 50%;
@@ -86,6 +90,10 @@
 
     &.extra {
       margin-bottom: 240px;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      margin-bottom: 120px !important;
     }
 
     figure {
