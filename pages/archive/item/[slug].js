@@ -599,9 +599,9 @@ const ArchiveItem = ({ document, uid }) => {
                 </h1>
 
                 <div className={styles.description}>
-                  {page_data.description && page_data.description.length > 0
-                    ? page_data.description[0].text
-                    : null}
+                  {page_data.description && page_data.description.length > 0 ? (
+                    <RichText render={page_data.description} />
+                  ) : null}
                 </div>
               </div>
             </div>

@@ -28,7 +28,7 @@
 
       .case_study_intro {
         padding: 0 #{$gutter_desktop * 2};
-        margin-bottom: -8%;
+        margin-bottom: 0;
 
         .title_image {
           display: flex;
@@ -282,6 +282,10 @@
         h6 {
           @extend .body_text;
           text-transform: uppercase;
+        }
+
+        p {
+          margin-bottom: 15px;
         }
       }
     }
