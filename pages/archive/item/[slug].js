@@ -215,6 +215,16 @@ const ArchiveItem = ({ document, uid }) => {
   const images = page_data.images;
   const total = images ? images.length : 0;
 
+  // Debounce
+  const debounce = (func, time) => {
+    var time = time || 100; // 100 by default if no param
+    var timer;
+    return function (event) {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(func, time, event);
+    };
+  };
+
   // Get distance of title image from bottom of viewport
   const SupportDist = () => {
     if (TitleImage.current) {
@@ -242,11 +252,9 @@ const ArchiveItem = ({ document, uid }) => {
     FindHeight();
 
     window.addEventListener("resize", SupportDist);
-    window.addEventListener("resize", FindHeight);
 
     return () => {
       window.removeEventListener("resize", SupportDist);
-      window.removeEventListener("resize", FindHeight);
     };
   }, []);
 
@@ -357,7 +365,15 @@ const ArchiveItem = ({ document, uid }) => {
                   : `${styles.double_image}`
               }
             >
-              <div className={styles.left_side}>
+              <div
+                className={
+                  slice.primary.first_image && !slice.primary.second_image
+                    ? `${styles.no_marg}`
+                    : !slice.primary.first_image && slice.primary.second_image
+                    ? `${styles.no_marg}`
+                    : null
+                }
+              >
                 {slice.primary.first_image && slice.primary.first_image.url ? (
                   <figure>
                     <Image
@@ -371,7 +387,7 @@ const ArchiveItem = ({ document, uid }) => {
                   </figure>
                 ) : null}
               </div>
-              <div className={styles.right_side}>
+              <div>
                 {slice.primary.second_image &&
                 slice.primary.second_image.url ? (
                   <figure>
@@ -516,7 +532,11 @@ const ArchiveItem = ({ document, uid }) => {
                   ? {
                       color: text_color,
                       paddingTop:
-                        "calc(100vh - " + (titleImageDist - 50) + "px)",
+                        "calc(" +
+                        appHeight +
+                        "px - " +
+                        (titleImageDist - 50) +
+                        "px)",
                     }
                   : null
               }
@@ -529,6 +549,7 @@ const ArchiveItem = ({ document, uid }) => {
                   case_study && background_color
                     ? {
                         backgroundColor: background_color,
+                        height: appHeight + "px",
                       }
                     : null
                 }
