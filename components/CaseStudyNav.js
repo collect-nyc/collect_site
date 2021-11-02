@@ -32,8 +32,12 @@ const CaseStudyNav = () => {
             .color_link {
               color: ${navTextColor};
             }
+            .color_svg {
+              mix-blend-mode: difference;
+            }
             .color_svg path {
               fill: ${navTextColor};
+              fill: #fafafa;
             }
           `}</style>
           <div className={styles.top_left}>
