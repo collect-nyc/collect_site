@@ -67,6 +67,10 @@
     > div {
       position: unset !important;
     }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      margin-right: 20px;
+    }
   }
 }
 
