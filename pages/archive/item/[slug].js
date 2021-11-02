@@ -214,22 +214,29 @@ const ArchiveItem = ({ document, uid }) => {
   const images = page_data.images;
   const total = images ? images.length : 0;
 
-  useEffect(() => {
-    setReturnPage(true);
-
+  // Get distance of title image from bottom of viewport
+  const SupportDist = () => {
     if (TitleImage.current) {
       const el = TitleImage.current.firstChild.getBoundingClientRect();
-
       const top = el.top;
 
-      console.log("Dist", el, top);
+      console.log("Support Image Distance", top);
 
       setTitleImageDist(top);
     }
+  };
 
-    // return () => {
-    // };
-  }, []);
+  useEffect(() => {
+    setReturnPage(true);
+
+    SupportDist();
+
+    window.addEventListener("resize", SupportDist);
+
+    return () => {
+      window.removeEventListener("resize", SupportDist);
+    };
+  }, [SupportDist]);
 
   useEffect(() => {
     if (text_color) {
@@ -496,7 +503,8 @@ const ArchiveItem = ({ document, uid }) => {
                 case_study && text_color
                   ? {
                       color: text_color,
-                      paddingTop: "calc(100vh - " + titleImageDist + "px)",
+                      paddingTop:
+                        "calc(100vh - " + (titleImageDist - 50) + "px)",
                     }
                   : null
               }
@@ -535,6 +543,7 @@ const ArchiveItem = ({ document, uid }) => {
                     width={title_image.dimensions.width}
                     quality={100}
                     className="title_image"
+                    priority
                   />
                 ) : backup_text && backup_text[0] ? (
                   <p className={styles.backup_text}>{backup_text[0].text}</p>
@@ -569,6 +578,7 @@ const ArchiveItem = ({ document, uid }) => {
                         // objectFit={"contain"}
                         className={styles.image}
                         layout={"responsive"}
+                        priority
                       />
                     ) : null}
                   </motion.figure>
