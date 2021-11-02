@@ -487,6 +487,7 @@ const Home = ({ archives, document, tagged }) => {
               width={page_content.header_image.dimensions.width}
               unoptimized={true}
               quality={100}
+              priority
             />
           ) : null}
         </div>
