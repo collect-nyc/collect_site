@@ -125,8 +125,6 @@ export async function getStaticProps({ params, preview = false, previewData }) {
     },
   });
 
-  console.log(data);
-
   const document = data.archive_item;
   const page = "project";
 
