@@ -21,9 +21,9 @@ import LeftArrow from "../../../svg/left-arrow.svg";
 import { Client } from "../../../lib/prismic-config";
 import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
-import styles from "../../../styles/Item.module.scss";
 import { apolloClient } from "../../../lib/apollo-config";
 import { ImageSlider } from "../../../components/ImageSlider";
+import styles from "../../../styles/Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;

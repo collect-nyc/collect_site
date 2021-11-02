@@ -61,12 +61,19 @@
       }
 
       .image_container {
+        overflow: hidden;
         height: 100%;
         padding: 60px #{$gutter_desktop * 2};
         position: relative;
         text-align: center;
         width: 100%;
         z-index: 2;
+
+        .inner_bounds {
+          position: relative;
+          height: 100%;
+          width: 100%;
+        }
 
         &.image_container_video {
           display: flex;
@@ -78,23 +85,23 @@
           padding: 86px $gutter_mobile 50px;
         }
 
-        > div {
-          position: unset !important;
-          height: 100%;
-          width: auto;
-        }
+        // > span {
+        //   position: unset !important;
+        //   height: 100%;
+        //   width: auto;
+        // }
 
-        img {
-          object-fit: contain;
-          width: 100% !important;
-          position: relative !important;
-          height: unset !important;
-          z-index: 2;
+        // img {
+        //   object-fit: contain;
+        //   width: 100% !important;
+        //   position: relative !important;
+        //   height: unset !important;
+        //   z-index: 2;
 
-          &.multi {
-            cursor: pointer;
-          }
-        }
+        //   &.multi {
+        //     cursor: pointer;
+        //   }
+        // }
       }
 
       video {

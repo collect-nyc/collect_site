@@ -91,14 +91,19 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                         Your browser does not support the video tag.
                       </video>
                     ) : image.image.url ? (
-                      <Image
-                        priority
-                        src={image.image.url}
-                        alt={image.image.alt}
-                        blurDataURL={image.image.url}
-                        layout={"fill"}
-                        className={images.length > 1 ? styles.multi : null}
-                      />
+                      <div className={styles.inner_bounds}>
+                        <Image
+                          priority
+                          src={image.image.url}
+                          alt={image.image.alt}
+                          blurDataURL={image.image.url}
+                          layout={"fill"}
+                          objectFit={"cover"}
+                          // height={image.image.dimensions.height}
+                          // width={image.image.dimensions.width}
+                          className={images.length > 1 ? styles.multi : null}
+                        />
+                      </div>
                     ) : null}
                   </div>
                 </li>

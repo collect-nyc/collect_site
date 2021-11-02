@@ -32,11 +32,11 @@ const CaseStudyNav = () => {
             .color_link {
               color: ${navTextColor};
             }
-            .color_svg {
-              mix-blend-mode: difference;
-            }
             .color_svg path {
               fill: ${navTextColor};
+            }
+
+            .nav_color_svg path {
               fill: #fafafa;
             }
           `}</style>
@@ -65,7 +65,7 @@ const CaseStudyNav = () => {
                 }
               >
                 <a className="color_link">
-                  <LeftArrow className="color_svg" /> Archive
+                  <LeftArrow className="nav_color_svg" /> Archive
                 </a>
               </Link>
             </div>
