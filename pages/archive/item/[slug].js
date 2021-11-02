@@ -197,6 +197,7 @@ const ArchiveItem = ({ document, uid }) => {
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
   const [titleImageDist, setTitleImageDist] = useState(null);
   const [appHeight, setAppHeight] = useState(null);
+  const [onceAppHeight, setOnceAppHeight] = useState(null);
 
   // Contexts
   const {
@@ -245,16 +246,26 @@ const ArchiveItem = ({ document, uid }) => {
     setAppHeight(InnerHeight);
   };
 
+  const OnceFindHeight = () => {
+    const InnerHeight = window.innerHeight;
+    // console.log("App Height", InnerHeight);
+
+    setOnceAppHeight(InnerHeight);
+  };
+
   useEffect(() => {
     setReturnPage(true);
 
     SupportDist();
     FindHeight();
+    OnceFindHeight();
 
     window.addEventListener("resize", SupportDist);
+    window.addEventListener("resize", debounce(FindHeight, 150));
 
     return () => {
       window.removeEventListener("resize", SupportDist);
+      window.removeEventListener("resize", debounce(FindHeight, 150));
     };
   }, []);
 
@@ -533,7 +544,7 @@ const ArchiveItem = ({ document, uid }) => {
                       color: text_color,
                       paddingTop:
                         "calc(" +
-                        appHeight +
+                        onceAppHeight +
                         "px - " +
                         (titleImageDist - 50) +
                         "px)",
