@@ -196,6 +196,7 @@ const ArchiveItem = ({ document, uid }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(page_data.password_protected);
   const [titleImageDist, setTitleImageDist] = useState(null);
+  const [appHeight, setAppHeight] = useState(null);
 
   // Contexts
   const {
@@ -220,23 +221,34 @@ const ArchiveItem = ({ document, uid }) => {
       const el = TitleImage.current.firstChild.getBoundingClientRect();
       const top = el.top;
 
-      console.log("Support Image Distance", top);
+      // console.log("Support Image Distance", top);
 
       setTitleImageDist(top);
     }
+  };
+
+  // Get actual viewport height to use against iOS Safari 15 bottom bar
+  const FindHeight = () => {
+    const InnerHeight = window.innerHeight;
+    // console.log("App Height", InnerHeight);
+
+    setAppHeight(InnerHeight);
   };
 
   useEffect(() => {
     setReturnPage(true);
 
     SupportDist();
+    FindHeight();
 
     window.addEventListener("resize", SupportDist);
+    window.addEventListener("resize", FindHeight);
 
     return () => {
       window.removeEventListener("resize", SupportDist);
+      window.removeEventListener("resize", FindHeight);
     };
-  }, [SupportDist]);
+  }, []);
 
   useEffect(() => {
     if (text_color) {
@@ -606,7 +618,9 @@ const ArchiveItem = ({ document, uid }) => {
                       backgroundColor: archive_view_background,
                       color: archive_view_text,
                     }
-                  : null
+                  : {
+                      height: appHeight + "px",
+                    }
               }
             >
               <ProjectViewer
