@@ -94,6 +94,20 @@
     }
   }
 
+  &.profile {
+    border-bottom: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      border-bottom: 1px solid $platinum;
+      mix-blend-mode: normal;
+
+      a,
+      button {
+        color: $black;
+      }
+    }
+  }
+
   &.essential_text_nav {
     .top_right {
       justify-content: flex-end;
@@ -265,14 +279,6 @@
     border-top: 1px solid $platinum;
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
-  }
-}
-
-.profile {
-  border-bottom: none;
-
-  @media screen and (max-width: $mq-mobile-max) {
-    border-bottom: 1px solid $platinum;
   }
 }
 
