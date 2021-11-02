@@ -185,7 +185,17 @@
           &.left,
           &.right {
             > div {
+              padding: 0;
               width: 100%;
+
+              &:last-child {
+                padding-left: 0;
+                padding-right: 0;
+              }
+
+              &:first-of-type {
+                margin-bottom: 80px;
+              }
             }
           }
         }
