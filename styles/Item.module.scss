@@ -236,8 +236,8 @@
       @media screen and (max-width: $mq-mobile-max) {
         // height: calc(100vh - 61px);
         height: 100vh;
-        height: calc(100vh - env(safe-area-inset-bottom));
-        height: -webkit-fill-available;
+        // height: calc(100vh - env(safe-area-inset-bottom));
+        // height: -webkit-fill-available;
         // height: calc(100vh - 500px);
       }
     }
