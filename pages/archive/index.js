@@ -89,7 +89,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  console.log("ALL ITEMS", archives);
+  // console.log("ALL ITEMS", archives);
   const router = useRouter();
 
   const {
