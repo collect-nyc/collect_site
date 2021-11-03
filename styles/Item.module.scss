@@ -206,6 +206,9 @@
       }
 
       .single_image {
+        &.gutters {
+          padding: 0 $navGutter_desktop;
+        }
         &.twelve {
           padding: 0;
         }

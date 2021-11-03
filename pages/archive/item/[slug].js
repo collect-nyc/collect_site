@@ -422,7 +422,9 @@ const ArchiveItem = ({ document, uid }) => {
             <section
               key={index}
               className={
-                slice.primary.columns === "12"
+                slice.primary.columns === "Gutters"
+                  ? `${styles.single_image} ${styles.gutters}`
+                  : slice.primary.columns === "12"
                   ? `${styles.single_image} ${styles.twelve}`
                   : slice.primary.columns === "10"
                   ? `${styles.single_image} ${styles.ten}`
