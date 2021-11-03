@@ -18,7 +18,7 @@ export default function CaseStudyFade() {
         exit={{ opacity: [1, 0] }}
       >
         {/* this h1 is only here because Chrome has a fixed layer bug where it won't display unless there is content */}
-        <h1>c</h1>
+        <h1>.</h1>
         <motion.div
           animate={{
             backgroundColor: ["#fafafa", csColor ? csColor : "#fafafa"],
