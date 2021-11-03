@@ -58,7 +58,6 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             }
           }
           password_protected
-          case_study
           item_type
           background_color
           text_color
@@ -159,7 +158,6 @@ const ArchiveItem = ({ document, uid }) => {
     title_image,
     title,
     title_image_width,
-    case_study,
     item_type,
     description,
     archive_view_text,
@@ -175,8 +173,17 @@ const ArchiveItem = ({ document, uid }) => {
 
   // console.log("Project Data", page_data);
 
-  const { navTextColor, caseStudyView, setCaseStudyView } =
-    useContext(MemoryContext);
+  const {
+    navTextColor,
+    caseStudyView,
+    setCaseStudyView,
+    currentTag,
+    setReturnPage,
+    setNavTextColor,
+    archiveView,
+    setArchiveView,
+    setRunCSFade,
+  } = useContext(MemoryContext);
 
   useEffect(() => {
     if (item_type === "Case Study") {
@@ -200,19 +207,6 @@ const ArchiveItem = ({ document, uid }) => {
   const [titleImageDist, setTitleImageDist] = useState(null);
   const [appHeight, setAppHeight] = useState(null);
   const [onceAppHeight, setOnceAppHeight] = useState(null);
-
-  // Contexts
-  const {
-    currentTag,
-    setReturnPage,
-    setNavTextColor,
-    archiveView,
-    setArchiveView,
-    csColor,
-    setCsColor,
-    runCSFade,
-    setRunCSFade,
-  } = useContext(MemoryContext);
 
   // Refs
   const footerRef = createRef();
@@ -262,8 +256,8 @@ const ArchiveItem = ({ document, uid }) => {
   useEffect(() => {
     setReturnPage(true);
 
+    // Remove fade cover for case studies
     setTimeout(() => {
-      console.log("Unset Fade");
       setRunCSFade(false);
     }, 100);
 

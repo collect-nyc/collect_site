@@ -4,6 +4,7 @@ import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import { Client } from "../lib/prismic-config";
 import Image from "next/image";
+import Link from "next/link";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
@@ -41,14 +42,8 @@ const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
 
-  const {
-    setScrollPos,
-    setReturnPage,
-    runCSFade,
-    setRunCSFade,
-    csColor,
-    setCsColor,
-  } = useContext(MemoryContext);
+  const { setScrollPos, setReturnPage, setRunCSFade, setCsColor } =
+    useContext(MemoryContext);
 
   useEffect(() => {
     // Reset scroll position for Archive Index
@@ -57,8 +52,7 @@ const Home = ({ document }) => {
   }, []);
 
   const EnterCaseStudy = (color, url) => {
-    console.log("Case Study Color", color);
-    console.log("Another One");
+    // console.log("Case Study Color", color);
     setCsColor(color);
     setRunCSFade(true);
 
@@ -94,29 +88,48 @@ const Home = ({ document }) => {
           >
             {slice.primary.first_image.url ? (
               slice.primary.archive_link && slice.primary.archive_link.slug ? (
-                <a
-                  onClick={
-                    slice.primary.archive_link.data?.item_type ===
-                      "Case Study" &&
-                    slice.primary.archive_link.data?.background_color
-                      ? () =>
-                          EnterCaseStudy(
-                            slice.primary.archive_link.data?.background_color,
-                            "/archive/item/" + slice.primary.archive_link.slug
-                          )
-                      : null
-                  }
-                >
-                  <Image
-                    src={slice.primary.first_image.url}
-                    layout={"responsive"}
-                    height={slice.primary.first_image.dimensions.height}
-                    width={slice.primary.first_image.dimensions.width}
-                    alt={slice.primary.first_image.alt}
-                    priority
-                    quality={100}
-                  />
-                </a>
+                slice.primary.archive_link.data?.item_type === "Case Study" &&
+                slice.primary.archive_link.data?.background_color ? (
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color,
+                              "/archive/item/" + slice.primary.archive_link.slug
+                            )
+                        : null
+                    }
+                  >
+                    <Image
+                      src={slice.primary.first_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.first_image.dimensions.height}
+                      width={slice.primary.first_image.dimensions.width}
+                      alt={slice.primary.first_image.alt}
+                      priority
+                      quality={100}
+                    />
+                  </a>
+                ) : (
+                  <Link
+                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                  >
+                    <a>
+                      <Image
+                        src={slice.primary.first_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.first_image.dimensions.height}
+                        width={slice.primary.first_image.dimensions.width}
+                        alt={slice.primary.first_image.alt}
+                        priority
+                        quality={100}
+                      />
+                    </a>
+                  </Link>
+                )
               ) : (
                 <Image
                   src={slice.primary.first_image.url}
@@ -139,29 +152,48 @@ const Home = ({ document }) => {
           >
             {slice.primary.second_image.url ? (
               slice.primary.archive_link && slice.primary.archive_link.slug ? (
-                <a
-                  onClick={
-                    slice.primary.archive_link.data?.item_type ===
-                      "Case Study" &&
-                    slice.primary.archive_link.data?.background_color
-                      ? () =>
-                          EnterCaseStudy(
-                            slice.primary.archive_link.data?.background_color,
-                            "/archive/item/" + slice.primary.archive_link.slug
-                          )
-                      : null
-                  }
-                >
-                  <Image
-                    src={slice.primary.second_image.url}
-                    layout={"responsive"}
-                    height={slice.primary.second_image.dimensions.height}
-                    width={slice.primary.second_image.dimensions.width}
-                    alt={slice.primary.second_image.alt}
-                    priority
-                    quality={100}
-                  />
-                </a>
+                slice.primary.archive_link.data?.item_type === "Case Study" &&
+                slice.primary.archive_link.data?.background_color ? (
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color,
+                              "/archive/item/" + slice.primary.archive_link.slug
+                            )
+                        : null
+                    }
+                  >
+                    <Image
+                      src={slice.primary.second_image.url}
+                      layout={"responsive"}
+                      height={slice.primary.second_image.dimensions.height}
+                      width={slice.primary.second_image.dimensions.width}
+                      alt={slice.primary.second_image.alt}
+                      priority
+                      quality={100}
+                    />
+                  </a>
+                ) : (
+                  <Link
+                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                  >
+                    <a>
+                      <Image
+                        src={slice.primary.second_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.second_image.dimensions.height}
+                        width={slice.primary.second_image.dimensions.width}
+                        alt={slice.primary.second_image.alt}
+                        priority
+                        quality={100}
+                      />
+                    </a>
+                  </Link>
+                )
               ) : (
                 <Image
                   src={slice.primary.second_image.url}
@@ -200,29 +232,48 @@ const Home = ({ document }) => {
               }
             >
               {slice.primary.archive_link && slice.primary.archive_link.slug ? (
-                <a
-                  onClick={
-                    slice.primary.archive_link.data?.item_type ===
-                      "Case Study" &&
-                    slice.primary.archive_link.data?.background_color
-                      ? () =>
-                          EnterCaseStudy(
-                            slice.primary.archive_link.data?.background_color,
-                            "/archive/item/" + slice.primary.archive_link.slug
-                          )
-                      : null
-                  }
-                >
-                  <Image
-                    src={slice.primary.image.url}
-                    layout={"responsive"}
-                    height={slice.primary.image.dimensions.height}
-                    width={slice.primary.image.dimensions.width}
-                    alt={slice.primary.image.alt}
-                    priority
-                    quality={100}
-                  />
-                </a>
+                slice.primary.archive_link.data?.item_type === "Case Study" &&
+                slice.primary.archive_link.data?.background_color ? (
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color,
+                              "/archive/item/" + slice.primary.archive_link.slug
+                            )
+                        : null
+                    }
+                  >
+                    <Image
+                      src={slice.primary.image.url}
+                      layout={"responsive"}
+                      height={slice.primary.image.dimensions.height}
+                      width={slice.primary.image.dimensions.width}
+                      alt={slice.primary.image.alt}
+                      priority
+                      quality={100}
+                    />
+                  </a>
+                ) : (
+                  <Link
+                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                  >
+                    <a>
+                      <Image
+                        src={slice.primary.image.url}
+                        layout={"responsive"}
+                        height={slice.primary.image.dimensions.height}
+                        width={slice.primary.image.dimensions.width}
+                        alt={slice.primary.image.alt}
+                        priority
+                        quality={100}
+                      />
+                    </a>
+                  </Link>
+                )
               ) : (
                 <Image
                   src={slice.primary.image.url}

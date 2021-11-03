@@ -6,6 +6,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
+import { useRouter } from "next/router";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
@@ -88,7 +89,8 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  // console.log("ALL ITEMS", archives);
+  console.log("ALL ITEMS", archives);
+  const router = useRouter();
 
   const {
     archiveList,
@@ -105,6 +107,8 @@ const Home = ({ archives, document, tagged }) => {
     setScrollPos,
     returnPage,
     setReturnPage,
+    setRunCSFade,
+    setCsColor,
   } = useContext(MemoryContext);
 
   const initialAzSort = useRef(true);
@@ -308,6 +312,16 @@ const Home = ({ archives, document, tagged }) => {
     }
   };
 
+  const EnterCaseStudy = (color, url) => {
+    console.log("Case Study Color", color);
+    setCsColor(color);
+    setRunCSFade(true);
+
+    setTimeout(() => {
+      router.push(url);
+    }, 300);
+  };
+
   // List View JSX
   const ListView = () => {
     // console.log("LIST", archiveList)
@@ -339,6 +353,40 @@ const Home = ({ archives, document, tagged }) => {
                         : "TBD"}
                     </span>
                   </div>
+                ) : archive.data.item_type === "Case Study" &&
+                  archive.data.background_color ? (
+                  <a
+                    onClick={() => {
+                      ScrollTracker();
+                      EnterCaseStudy(
+                        archive.data.background_color,
+                        "/archive/item/" + archive.uid
+                      );
+                    }}
+                  >
+                    <span className={styles.name}>
+                      {archive.data?.title[0]?.text ? (
+                        <span>{archive.data.title[0].text}</span>
+                      ) : null}
+                    </span>
+
+                    <span className={styles.tags}>
+                      {ModifyTags(archive.tags)}
+                    </span>
+
+                    <span className={styles.date}>
+                      <span>
+                        {archive.data.creation_date
+                          ? DateTime.fromISO(
+                              archive.data.creation_date
+                            ).toFormat("yyyy")
+                          : "TBD"}
+                      </span>
+                      <span className={styles.view_project}>
+                        View Project <RightArrow />
+                      </span>
+                    </span>
+                  </a>
                 ) : (
                   <Link href={"/archive/item/" + archive.uid}>
                     <a onClick={() => ScrollTracker()}>
@@ -419,6 +467,38 @@ const Home = ({ archives, document, tagged }) => {
                         width={archive.data.images[0].image.dimensions.width}
                         quality={75}
                         priority
+                      />
+                    ) : null}
+                  </a>
+                ) : archive.data.item_type === "Case Study" &&
+                  archive.data.background_color ? (
+                  <a
+                    className={styles.thumbnail}
+                    onClick={() => {
+                      ScrollTracker();
+                      EnterCaseStudy(
+                        archive.data.background_color,
+                        "/archive/item/" + archive.uid
+                      );
+                    }}
+                  >
+                    {archive.data.index_thumbnail?.url ? (
+                      <Image
+                        className={styles.lazyloaded}
+                        alt={archive.data.index_thumbnail.alt}
+                        src={archive.data.index_thumbnail.url}
+                        height={archive.data.index_thumbnail.dimensions.height}
+                        width={archive.data.index_thumbnail.dimensions.width}
+                        quality={75}
+                      />
+                    ) : archive.data.images[0].image.url ? (
+                      <Image
+                        className={styles.lazyloaded}
+                        alt={archive.data.images[0].image.alt}
+                        src={archive.data.images[0].image.url}
+                        height={archive.data.images[0].image.dimensions.height}
+                        width={archive.data.images[0].image.dimensions.width}
+                        quality={75}
                       />
                     ) : null}
                   </a>
