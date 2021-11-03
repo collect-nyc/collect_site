@@ -1,11 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/CaseStudyFade.module.scss";
 
 export default function CaseStudyFade() {
-  const { csColor, setCsColor, runCSFade, setRunCSFade } =
-    useContext(MemoryContext);
+  const { csColor, runCSFade } = useContext(MemoryContext);
 
   return runCSFade ? (
     <AnimatePresence exitBeforeEnter>
@@ -15,10 +14,10 @@ export default function CaseStudyFade() {
           opacity: [0, 1],
           backgroundColor: ["#fafafa", csColor ? csColor : "#fafafa"],
         }}
-        transition={{ ease: "easeOut", duration: 0.3 }}
+        transition={{ ease: "easeOut", duration: 0.1 }}
         exit={{ opacity: [1, 0] }}
-        // onAnimationComplete={() => setRunCSFade(false)}
       >
+        {/* this h1 is only here because Chrome has a fixed layer bug where it won't display unless there is content */}
         <h1>c</h1>
         <motion.div
           animate={{

@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import Link from "next/link";
+import { motion } from "framer-motion";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import animateScrollTo from "animated-scroll-to";
@@ -12,6 +13,8 @@ const CaseStudyNav = () => {
     setArchiveView,
     caseStudyView,
     currentTag,
+    runCSFade,
+    setRunCSFade,
   } = useContext(MemoryContext);
 
   // State
@@ -24,9 +27,16 @@ const CaseStudyNav = () => {
   return (
     <>
       {!archiveView && caseStudyView ? (
-        <nav
+        <motion.nav
           className={`${styles.navigation} ${styles.casestudy}`}
           style={navTextColor ? { color: navTextColor } : null}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: [0, 1] }}
+          transition={{
+            duration: 1,
+            delay: 1.4,
+            ease: "easeOut",
+          }}
         >
           <style global jsx>{`
             .color_link {
@@ -92,7 +102,7 @@ const CaseStudyNav = () => {
               Project Info
             </button>
           </div>
-        </nav>
+        </motion.nav>
       ) : null}
     </>
   );

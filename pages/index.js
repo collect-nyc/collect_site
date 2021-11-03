@@ -135,7 +135,18 @@ const Home = ({ document }) => {
             {slice.primary.second_image.url ? (
               slice.primary.archive_link && slice.primary.archive_link.slug ? (
                 <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
-                  <a>
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color
+                            )
+                        : null
+                    }
+                  >
                     <Image
                       src={slice.primary.second_image.url}
                       layout={"responsive"}
@@ -186,7 +197,18 @@ const Home = ({ document }) => {
             >
               {slice.primary.archive_link && slice.primary.archive_link.slug ? (
                 <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
-                  <a>
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color
+                            )
+                        : null
+                    }
+                  >
                     <Image
                       src={slice.primary.image.url}
                       layout={"responsive"}

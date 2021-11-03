@@ -22,10 +22,6 @@ function MyApp({ Component, pageProps }) {
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
 
-  // useEffect(() => {
-  //   console.log("Archive View Set: ", archiveView);
-  // }, [archiveView]);
-
   useEffect(() => {
     const handleRouteChange = (url) => {
       window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
