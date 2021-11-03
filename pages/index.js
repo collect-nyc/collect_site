@@ -64,7 +64,7 @@ const Home = ({ document }) => {
 
     setTimeout(() => {
       router.push(url);
-    }, 500);
+    }, 300);
   };
 
   const pageContent = document?.data?.body.map((slice, index) => {

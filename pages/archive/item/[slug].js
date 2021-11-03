@@ -265,7 +265,7 @@ const ArchiveItem = ({ document, uid }) => {
     setTimeout(() => {
       console.log("Unset Fade");
       setRunCSFade(false);
-    }, 2000);
+    }, 100);
 
     SupportDist();
     FindHeight();
