@@ -16,6 +16,8 @@ function MyApp({ Component, pageProps }) {
   const [navTextColor, setNavTextColor] = useState(null);
   const [archiveView, setArchiveView] = useState(false);
   const [caseStudyView, setCaseStudyView] = useState(false);
+  const [runCSFade, setRunCSFade] = useState(false);
+  const [csColor, setCsColor] = useState(null);
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -59,6 +61,10 @@ function MyApp({ Component, pageProps }) {
         setCaseStudyView: setCaseStudyView,
         archiveView: archiveView,
         setArchiveView: setArchiveView,
+        runCSFade: runCSFade,
+        setRunCSFade: setRunCSFade,
+        csColor: csColor,
+        setCsColor: setCsColor,
       }}
     >
       <Layout page={pageProps.page}>

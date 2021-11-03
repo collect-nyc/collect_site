@@ -56,10 +56,10 @@ const Profile = ({ document }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>COLLECT NYC Profile</title>
+        <title>Collect NYC Profile</title>
         <meta
           name="description"
-          content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
+          content="Collect NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
         />
         <SharedHead />
       </Head>

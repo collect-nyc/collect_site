@@ -4,6 +4,7 @@ import useSWR from "swr";
 import _ from "lodash";
 import LoaderContext from "../components/LoaderContext";
 import Loader from "../components/Loader";
+import CaseStudyFade from "../components/CaseStudyFade";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
@@ -24,6 +25,8 @@ export default function MyLayout({ page, children }) {
     <React.Fragment>
       <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
         <Loader page={page} />
+
+        <CaseStudyFade />
 
         <SiteNav
           page={page}

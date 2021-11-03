@@ -1,0 +1,29 @@
+@import "./colors";
+@import "./helpers";
+
+.case_study_fade {
+  display: block;
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 500;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+
+  h1 {
+    color: transparent;
+  }
+
+  .double_hide {
+    background-color: $alabaster;
+    display: block;
+    left: 0;
+    top: 0;
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    z-index: 2;
+  }
+}

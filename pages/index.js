@@ -22,7 +22,9 @@ export async function getServerSideProps({ query }) {
   // ).then((res) => res.json());
 
   //Page Data
-  const document = await Client().getSingle("landing_page");
+  const document = await Client().getSingle("landing_page", {
+    fetchLinks: ["archive_item.background_color", "archive_item.item_type"],
+  });
 
   const page = "index";
 
@@ -36,15 +38,28 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ document }) => {
-  // console.log("Landing Data", document.data);
+  console.log("Landing Data", document.data);
 
-  const { setScrollPos, setReturnPage } = useContext(MemoryContext);
+  const {
+    setScrollPos,
+    setReturnPage,
+    runCSFade,
+    setRunCSFade,
+    csColor,
+    setCsColor,
+  } = useContext(MemoryContext);
 
   useEffect(() => {
     // Reset scroll position for Archive Index
     setScrollPos(0);
     setReturnPage(false);
   }, []);
+
+  const EnterCaseStudy = (color) => {
+    console.log("Case Study Color", color);
+    setCsColor(color);
+    setRunCSFade(true);
+  };
 
   const pageContent = document?.data?.body.map((slice, index) => {
     // Render the right markup for the given slice type
@@ -74,7 +89,18 @@ const Home = ({ document }) => {
             {slice.primary.first_image.url ? (
               slice.primary.archive_link && slice.primary.archive_link.slug ? (
                 <Link href={"/archive/item/" + slice.primary.archive_link.slug}>
-                  <a>
+                  <a
+                    onClick={
+                      slice.primary.archive_link.data?.item_type ===
+                        "Case Study" &&
+                      slice.primary.archive_link.data?.background_color
+                        ? () =>
+                            EnterCaseStudy(
+                              slice.primary.archive_link.data?.background_color
+                            )
+                        : null
+                    }
+                  >
                     <Image
                       src={slice.primary.first_image.url}
                       layout={"responsive"}
@@ -195,10 +221,10 @@ const Home = ({ document }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>COLLECT NYC</title>
+        <title>Collect NYC</title>
         <meta
           name="description"
-          content="COLLECT NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
+          content="Collect NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
         />
         <SharedHead />
       </Head>

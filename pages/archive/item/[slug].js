@@ -59,6 +59,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           }
           password_protected
           case_study
+          item_type
           background_color
           text_color
           archive_view_text
@@ -159,6 +160,7 @@ const ArchiveItem = ({ document, uid }) => {
     title,
     title_image_width,
     case_study,
+    item_type,
     description,
     archive_view_text,
     archive_view_background,
@@ -177,7 +179,7 @@ const ArchiveItem = ({ document, uid }) => {
     useContext(MemoryContext);
 
   useEffect(() => {
-    if (case_study) {
+    if (item_type === "Case Study") {
       setCaseStudyView(true);
     } else {
       setCaseStudyView(false);
@@ -186,7 +188,7 @@ const ArchiveItem = ({ document, uid }) => {
     return () => {
       setCaseStudyView(false);
     };
-  }, [case_study, setCaseStudyView]);
+  }, [item_type, setCaseStudyView]);
 
   const router = useRouter();
 
@@ -206,6 +208,10 @@ const ArchiveItem = ({ document, uid }) => {
     setNavTextColor,
     archiveView,
     setArchiveView,
+    csColor,
+    setCsColor,
+    runCSFade,
+    setRunCSFade,
   } = useContext(MemoryContext);
 
   // Refs
@@ -255,6 +261,7 @@ const ArchiveItem = ({ document, uid }) => {
 
   useEffect(() => {
     setReturnPage(true);
+    setRunCSFade(false);
 
     SupportDist();
     FindHeight();
@@ -481,202 +488,334 @@ const ArchiveItem = ({ document, uid }) => {
     : null;
 
   return (
-    <div
-      className={styles.container}
-      id="itemContainer"
-      style={
-        case_study && background_color
-          ? {
-              backgroundColor: background_color,
-              borderColor: text_color,
-              color: text_color,
+    <>
+      <div
+        className={styles.container}
+        id="itemContainer"
+        style={
+          item_type === "Case Study" && background_color
+            ? {
+                backgroundColor: background_color,
+                borderColor: text_color,
+                color: text_color,
+              }
+            : null
+        }
+      >
+        <Head>
+          <title>
+            {page_data.title[0].text
+              ? page_data.title[0].text
+              : "Collect NYC Project"}{" "}
+            – {SITE_NAME}
+          </title>
+          <meta
+            name="description"
+            content={
+              page_data.description && page_data.description.length > 0
+                ? page_data.description[0].text
+                : "An archive item by Collect NYC."
             }
-          : null
-      }
-    >
-      <Head>
-        <title>
-          {page_data.title[0].text
-            ? page_data.title[0].text
-            : "COLLECT Project"}{" "}
-          – {SITE_NAME}
-        </title>
-        <meta
-          name="description"
-          content={
-            page_data.description && page_data.description.length > 0
-              ? page_data.description[0].text
-              : "An archive item by COLLECT NYC."
-          }
-        />
+          />
 
-        <SharedHead />
-      </Head>
+          <SharedHead />
+        </Head>
 
-      {isLocked ? (
-        <div className={styles.password_wrapper}>
-          <form
-            className={styles.password_field}
-            onSubmit={handlePasswordSubmit}
-          >
-            <input
-              className={styles.text_input}
-              type="text"
-              value={passwordField}
-              placeholder="Enter Password"
-              onChange={(e) => setPasswordField(e.target.value)}
-            />
-            <p>{errorMessage}</p>
-            <button
-              className={styles.password_button}
-              onClick={(event) => handlePasswordSubmit(event)}
+        {isLocked ? (
+          <div className={styles.password_wrapper}>
+            <form
+              className={styles.password_field}
+              onSubmit={handlePasswordSubmit}
             >
-              View Case Study
-            </button>
-          </form>
-        </div>
-      ) : (
-        <main className={styles.main}>
-          {case_study && !archiveView ? (
-            <div
-              className={styles.casestudy_container}
+              <input
+                className={styles.text_input}
+                type="text"
+                value={passwordField}
+                placeholder="Enter Password"
+                onChange={(e) => setPasswordField(e.target.value)}
+              />
+              <p>{errorMessage}</p>
+              <button
+                className={styles.password_button}
+                onClick={(event) => handlePasswordSubmit(event)}
+              >
+                View Case Study
+              </button>
+            </form>
+          </div>
+        ) : (
+          <main className={styles.main}>
+            {item_type === "Case Study" && !archiveView ? (
+              <div
+                className={styles.casestudy_container}
+                style={
+                  item_type === "Case Study" && text_color
+                    ? {
+                        color: text_color,
+                        paddingTop:
+                          "calc(" +
+                          onceAppHeight +
+                          "px - " +
+                          (titleImageDist - 50) +
+                          "px)",
+                      }
+                    : null
+                }
+              >
+                <motion.figure
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: [0, 1] }}
+                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                  style={
+                    item_type === "Case Study" && background_color
+                      ? {
+                          backgroundColor: background_color,
+                          height: appHeight + "px",
+                        }
+                      : null
+                  }
+                  className={
+                    title_image_width && title_image_width === "12"
+                      ? `${styles.title_image} ${styles.twelve}`
+                      : title_image_width === "10"
+                      ? `${styles.title_image} ${styles.ten}`
+                      : title_image_width === "8"
+                      ? `${styles.title_image} ${styles.eight}`
+                      : title_image_width === "6"
+                      ? `${styles.title_image} ${styles.six}`
+                      : title_image_width === "4"
+                      ? `${styles.title_image} ${styles.four}`
+                      : `${styles.title_image}`
+                  }
+                  ref={TitleImage}
+                >
+                  {title_image && title_image.url ? (
+                    <Image
+                      src={title_image.url}
+                      alt={title_image.alt}
+                      height={title_image.dimensions.height}
+                      width={title_image.dimensions.width}
+                      quality={100}
+                      className="title_image"
+                      priority
+                    />
+                  ) : backup_text && backup_text[0] ? (
+                    <p className={styles.backup_text}>{backup_text[0].text}</p>
+                  ) : null}
+                </motion.figure>
+                <div className={styles.casestudy_content}>
+                  <section
+                    className={
+                      supporting_image_width && supporting_image_width === "12"
+                        ? `${styles.case_study_intro} ${styles.twelve}`
+                        : supporting_image_width === "10"
+                        ? `${styles.case_study_intro} ${styles.ten}`
+                        : supporting_image_width === "8"
+                        ? `${styles.case_study_intro} ${styles.eight}`
+                        : supporting_image_width === "Gutters"
+                        ? `${styles.case_study_intro} ${styles.gutters}`
+                        : `${styles.case_study_intro}`
+                    }
+                  >
+                    <motion.figure
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: [0, 1] }}
+                      transition={{
+                        duration: 1,
+                        delay: 1.4,
+                        ease: "easeOut",
+                      }}
+                      // className={styles.support_image}
+                      className={styles.support_image}
+                    >
+                      {supporting_image && supporting_image.url ? (
+                        <Image
+                          src={supporting_image.url}
+                          alt={supporting_image.alt}
+                          height={supporting_image.dimensions.height}
+                          width={supporting_image.dimensions.width}
+                          quality={100}
+                          // objectFit={"contain"}
+                          className={styles.image}
+                          layout={"responsive"}
+                          priority
+                        />
+                      ) : null}
+                    </motion.figure>
+                  </section>
+                  <div
+                    style={
+                      item_type === "Case Study" && background_color
+                        ? {
+                            backgroundColor: background_color,
+                          }
+                        : null
+                    }
+                    className={styles.lower_content}
+                  >
+                    {pageContent}
+                  </div>
+                </div>
+              </div>
+            ) : (
+              <div
+                className={styles.inner}
+                style={
+                  archiveView &&
+                  item_type === "Case Study" &&
+                  archive_view_background
+                    ? {
+                        backgroundColor: archive_view_background,
+                        color: archive_view_text,
+                      }
+                    : {
+                        height: appHeight + "px",
+                      }
+                }
+              >
+                <ProjectViewer
+                  images={images}
+                  PrevItem={PrevItem}
+                  NextItem={NextItem}
+                  currentImage={currentImage}
+                />
+
+                <div className={styles.archive}>
+                  {archiveView ? (
+                    <button
+                      onClick={() => {
+                        setArchiveView(!archiveView);
+                      }}
+                      className={"color_link"}
+                    >
+                      <LeftArrow className={"color_svg"} /> Case Study
+                    </button>
+                  ) : (
+                    <Link
+                      href={
+                        currentTag && currentTag !== "All Work"
+                          ? `/archive?tag=${currentTag}`
+                          : "/archive"
+                      }
+                    >
+                      <a>
+                        <LeftArrow /> Archive
+                      </a>
+                    </Link>
+                  )}
+                </div>
+
+                <div className={styles.info}>
+                  {total > 1 ? (
+                    <span className={styles.current_image}>
+                      {currentImage + 1}/{total}
+                    </span>
+                  ) : null}
+
+                  <a
+                    onClick={() => {
+                      animateScrollTo(footerRef.current, {
+                        // elementToScroll: window.document.querySelector("body"),
+                        easing: (t) => {
+                          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                        },
+                        maxDuration: 300,
+                        minDuration: 300,
+                        speed: 1000,
+                        verticalOffset: 0,
+                      });
+                    }}
+                    className={"color_link"}
+                  >
+                    View Info
+                  </a>
+                </div>
+              </div>
+            )}
+
+            <div ref={footerRef}></div>
+
+            <footer
+              className={`${styles.project_footer} ${styles.multi_item}`}
+              id={"itemFooter"}
               style={
-                case_study && text_color
+                item_type === "Case Study" && background_color && !archiveView
                   ? {
+                      backgroundColor: background_color,
+                      borderColor: "transparent",
                       color: text_color,
-                      paddingTop:
-                        "calc(" +
-                        onceAppHeight +
-                        "px - " +
-                        (titleImageDist - 50) +
-                        "px)",
+                    }
+                  : archiveView
+                  ? {
+                      backgroundColor: archive_view_background,
+                      borderColor: archive_view_linear_rule
+                        ? archive_view_linear_rule
+                        : archive_view_text
+                        ? archive_view_text
+                        : "inherit",
+                      color: archive_view_text,
                     }
                   : null
               }
             >
-              <motion.figure
-                initial={{ opacity: 0 }}
-                animate={{ opacity: [0, 1] }}
-                transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                style={
-                  case_study && background_color
-                    ? {
-                        backgroundColor: background_color,
-                        height: appHeight + "px",
-                      }
-                    : null
-                }
-                className={
-                  title_image_width && title_image_width === "12"
-                    ? `${styles.title_image} ${styles.twelve}`
-                    : title_image_width === "10"
-                    ? `${styles.title_image} ${styles.ten}`
-                    : title_image_width === "8"
-                    ? `${styles.title_image} ${styles.eight}`
-                    : title_image_width === "6"
-                    ? `${styles.title_image} ${styles.six}`
-                    : title_image_width === "4"
-                    ? `${styles.title_image} ${styles.four}`
-                    : `${styles.title_image}`
-                }
-                ref={TitleImage}
-              >
-                {title_image && title_image.url ? (
-                  <Image
-                    src={title_image.url}
-                    alt={title_image.alt}
-                    height={title_image.dimensions.height}
-                    width={title_image.dimensions.width}
-                    quality={100}
-                    className="title_image"
-                    priority
-                  />
-                ) : backup_text && backup_text[0] ? (
-                  <p className={styles.backup_text}>{backup_text[0].text}</p>
-                ) : null}
-              </motion.figure>
-              <div className={styles.casestudy_content}>
-                <section
-                  className={
-                    supporting_image_width && supporting_image_width === "12"
-                      ? `${styles.case_study_intro} ${styles.twelve}`
-                      : supporting_image_width === "10"
-                      ? `${styles.case_study_intro} ${styles.ten}`
-                      : supporting_image_width === "8"
-                      ? `${styles.case_study_intro} ${styles.eight}`
-                      : supporting_image_width === "Gutters"
-                      ? `${styles.case_study_intro} ${styles.gutters}`
-                      : `${styles.case_study_intro}`
-                  }
-                >
-                  <motion.figure
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: [0, 1] }}
-                    transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
-                    // className={styles.support_image}
-                    className={styles.support_image}
-                  >
-                    {supporting_image && supporting_image.url ? (
-                      <Image
-                        src={supporting_image.url}
-                        alt={supporting_image.alt}
-                        height={supporting_image.dimensions.height}
-                        width={supporting_image.dimensions.width}
-                        quality={100}
-                        // objectFit={"contain"}
-                        className={styles.image}
-                        layout={"responsive"}
-                        priority
-                      />
+              <div className={styles.title_and_description}>
+                <div className={styles.inner_desc}>
+                  <h1 className={styles.title}>
+                    {page_data?.title[0]?.text
+                      ? page_data.title[0].text
+                      : "COLLECT Project"}
+                  </h1>
+
+                  <div className={styles.description}>
+                    {page_data.description &&
+                    page_data.description.length > 0 ? (
+                      <RichText render={page_data.description} />
                     ) : null}
-                  </motion.figure>
-                </section>
-                <div
-                  style={
-                    case_study && background_color
-                      ? {
-                          backgroundColor: background_color,
-                        }
-                      : null
-                  }
-                  className={styles.lower_content}
-                >
-                  {pageContent}
+                  </div>
                 </div>
               </div>
-            </div>
-          ) : (
-            <div
-              className={styles.inner}
-              style={
-                archiveView && case_study && archive_view_background
-                  ? {
-                      backgroundColor: archive_view_background,
-                      color: archive_view_text,
-                    }
-                  : {
-                      height: appHeight + "px",
-                    }
-              }
-            >
-              <ProjectViewer
-                images={images}
-                PrevItem={PrevItem}
-                NextItem={NextItem}
-                currentImage={currentImage}
-              />
 
-              <div className={styles.archive}>
-                {archiveView ? (
-                  <button
-                    onClick={() => {
-                      setArchiveView(!archiveView);
-                    }}
-                    className={"color_link"}
-                  >
-                    <LeftArrow className={"color_svg"} /> Case Study
-                  </button>
-                ) : (
+              {page_data.body1 &&
+              page_data.body1[0] &&
+              page_data.body1[0].fields ? (
+                <div className={styles.credits_and_download}>
+                  <div className={styles.credits}>
+                    {page_data.body1 &&
+                    page_data.body1[0] &&
+                    page_data.body1[0].fields
+                      ? page_data.body1[0].fields.map((credit, index) => (
+                          <div key={index} className={styles.credit}>
+                            <p className={styles.credit_title}>
+                              {credit.title_or_category
+                                ? credit.title_or_category[0]?.text
+                                : null}
+                            </p>
+                            {credit.names ? (
+                              <div className={"list_of_names"}>
+                                <RichText render={credit.names} />
+                              </div>
+                            ) : null}
+                          </div>
+                        ))
+                      : null}
+                  </div>
+                  {download && download.url ? (
+                    <div className={styles.download}>
+                      <a className={"color_link"} href={download.url}>
+                        Download Project Images
+                      </a>
+                    </div>
+                  ) : null}
+                </div>
+              ) : null}
+
+              {item_type === "Case Study" ? (
+                <nav className={styles.back_nav}>
+                  <Link href={"/"}>
+                    <a className={"color_link"}>
+                      <LeftArrow className={"color_svg"} /> Back to Home
+                    </a>
+                  </Link>
                   <Link
                     href={
                       currentTag && currentTag !== "All Work"
@@ -684,158 +823,35 @@ const ArchiveItem = ({ document, uid }) => {
                         : "/archive"
                     }
                   >
-                    <a>
-                      <LeftArrow /> Archive
+                    <a className={"color_link"}>
+                      <LeftArrow className={"color_svg"} /> Back to Archive
                     </a>
                   </Link>
-                )}
-              </div>
+                  <style global jsx>{`
+                    .color_svg path {
+                      fill: ${archiveView && archive_view_text
+                        ? archive_view_text
+                        : text_color};
+                    }
+                    .color_link {
+                      color: ${archiveView && archive_view_text
+                        ? archive_view_text
+                        : text_color};
+                    }
 
-              <div className={styles.info}>
-                {total > 1 ? (
-                  <span className={styles.current_image}>
-                    {currentImage + 1}/{total}
-                  </span>
-                ) : null}
-
-                <a
-                  onClick={() => {
-                    animateScrollTo(footerRef.current, {
-                      // elementToScroll: window.document.querySelector("body"),
-                      easing: (t) => {
-                        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                      },
-                      maxDuration: 300,
-                      minDuration: 300,
-                      speed: 1000,
-                      verticalOffset: 0,
-                    });
-                  }}
-                  className={"color_link"}
-                >
-                  View Info
-                </a>
-              </div>
-            </div>
-          )}
-
-          <div ref={footerRef}></div>
-
-          <footer
-            className={`${styles.project_footer} ${styles.multi_item}`}
-            id={"itemFooter"}
-            style={
-              case_study && background_color && !archiveView
-                ? {
-                    backgroundColor: background_color,
-                    borderColor: "transparent",
-                    color: text_color,
-                  }
-                : archiveView
-                ? {
-                    backgroundColor: archive_view_background,
-                    borderColor: archive_view_linear_rule
-                      ? archive_view_linear_rule
-                      : archive_view_text
-                      ? archive_view_text
-                      : "inherit",
-                    color: archive_view_text,
-                  }
-                : null
-            }
-          >
-            <div className={styles.title_and_description}>
-              <div className={styles.inner_desc}>
-                <h1 className={styles.title}>
-                  {page_data?.title[0]?.text
-                    ? page_data.title[0].text
-                    : "COLLECT Project"}
-                </h1>
-
-                <div className={styles.description}>
-                  {page_data.description && page_data.description.length > 0 ? (
-                    <RichText render={page_data.description} />
-                  ) : null}
-                </div>
-              </div>
-            </div>
-
-            {page_data.body1 &&
-            page_data.body1[0] &&
-            page_data.body1[0].fields ? (
-              <div className={styles.credits_and_download}>
-                <div className={styles.credits}>
-                  {page_data.body1 &&
-                  page_data.body1[0] &&
-                  page_data.body1[0].fields
-                    ? page_data.body1[0].fields.map((credit, index) => (
-                        <div key={index} className={styles.credit}>
-                          <p className={styles.credit_title}>
-                            {credit.title_or_category
-                              ? credit.title_or_category[0]?.text
-                              : null}
-                          </p>
-                          {credit.names ? (
-                            <div className={"list_of_names"}>
-                              <RichText render={credit.names} />
-                            </div>
-                          ) : null}
-                        </div>
-                      ))
-                    : null}
-                </div>
-                {download && download.url ? (
-                  <div className={styles.download}>
-                    <a className={"color_link"} href={download.url}>
-                      Download Project Images
-                    </a>
-                  </div>
-                ) : null}
-              </div>
-            ) : null}
-
-            {case_study ? (
-              <nav className={styles.back_nav}>
-                <Link href={"/"}>
-                  <a className={"color_link"}>
-                    <LeftArrow className={"color_svg"} /> Back to Home
-                  </a>
-                </Link>
-                <Link
-                  href={
-                    currentTag && currentTag !== "All Work"
-                      ? `/archive?tag=${currentTag}`
-                      : "/archive"
-                  }
-                >
-                  <a className={"color_link"}>
-                    <LeftArrow className={"color_svg"} /> Back to Archive
-                  </a>
-                </Link>
-                <style global jsx>{`
-                  .color_svg path {
-                    fill: ${archiveView && archive_view_text
-                      ? archive_view_text
-                      : text_color};
-                  }
-                  .color_link {
-                    color: ${archiveView && archive_view_text
-                      ? archive_view_text
-                      : text_color};
-                  }
-
-                  .list_of_names a {
-                    color: ${archiveView && archive_view_text
-                      ? archive_view_text
-                      : text_color};
-                  }
-                `}</style>
-              </nav>
-            ) : null}
-          </footer>
-        </main>
-      )}
-    </div>
+                    .list_of_names a {
+                      color: ${archiveView && archive_view_text
+                        ? archive_view_text
+                        : text_color};
+                    }
+                  `}</style>
+                </nav>
+              ) : null}
+            </footer>
+          </main>
+        )}
+      </div>
+    </>
   );
 };
 
