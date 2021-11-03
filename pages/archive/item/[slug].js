@@ -775,8 +775,13 @@ const ArchiveItem = ({ document, uid }) => {
                               ? credit.title_or_category[0]?.text
                               : null}
                           </p>
+                          {credit.names ? (
+                            <div className={"list_of_names"}>
+                              <RichText render={credit.names} />
+                            </div>
+                          ) : null}
 
-                          {credit.names
+                          {/*credit.names
                             ? credit.names.map((name, index) =>
                                 name.spans.length > 0 ? (
                                   <a
@@ -794,7 +799,7 @@ const ArchiveItem = ({ document, uid }) => {
                                   </p>
                                 )
                               )
-                            : null}
+                                : null */}
                         </div>
                       ))
                     : null}
@@ -834,6 +839,12 @@ const ArchiveItem = ({ document, uid }) => {
                       : text_color};
                   }
                   .color_link {
+                    color: ${archiveView && archive_view_text
+                      ? archive_view_text
+                      : text_color};
+                  }
+
+                  .list_of_names a {
                     color: ${archiveView && archive_view_text
                       ? archive_view_text
                       : text_color};
