@@ -1,17 +1,13 @@
-import React, { useEffect, useState, useContext, useRef } from "react";
+import React, { useRef } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import _ from "lodash";
-import { Link, RichText, Date } from "prismic-reactjs";
-
+import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
-
 import { Client } from "../../lib/prismic-config";
-import { SITE_NAME } from "../../lib/constants";
-import MemoryContext from "../../components/MemoryContext";
 import { apolloClient } from "../../lib/apollo-config";
 import {
   motion,
@@ -67,7 +63,7 @@ export async function getStaticPaths() {
 const EssentialText = ({ document, uid }) => {
   const page_data = document;
 
-  // console.log("Project Data", page_data);
+  console.log("Project Data", page_data);
 
   const router = useRouter();
 
@@ -107,25 +103,9 @@ const EssentialText = ({ document, uid }) => {
             style={{ scrollYProgress, opacity: bottom_gradient }}
             key={"essential_bottom"}
           />
-          {page_data.essential_text
-            ? page_data.essential_text.text.map((text, index) => {
-                if (text.type == "heading6") {
-                  return (
-                    <h6 className={styles.heading} key={index}>
-                      {text.text}
-                    </h6>
-                  );
-                } else if (text.type == "paragraph") {
-                  return (
-                    <p className={styles.paragraph} key={index}>
-                      {text.text}
-                    </p>
-                  );
-                } else if (text.type == "list-item") {
-                  return <li>{text.text}</li>;
-                }
-              })
-            : null}
+          {page_data.essential_text ? (
+            <RichText render={page_data.essential_text.text} />
+          ) : null}
         </div>
       </main>
     </div>
