@@ -300,7 +300,7 @@ const Home = ({ document }) => {
         <title>Collect NYC</title>
         <meta
           name="description"
-          content="Collect NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
+          content="Collect NYC is a full-spectrum interdisciplinary creative practice centered in direction, photography, technology and development."
         />
         <SharedHead />
       </Head>
