@@ -263,6 +263,7 @@ const ArchiveItem = ({ document, uid }) => {
     setReturnPage(true);
 
     setTimeout(() => {
+      console.log("Unset Fade");
       setRunCSFade(false);
     }, 2000);
 
