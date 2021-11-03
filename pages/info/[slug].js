@@ -3,19 +3,12 @@ import Head from "next/head";
 import Prismic from "prismic-javascript";
 import _ from "lodash";
 import { RichText } from "prismic-reactjs";
-import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import { apolloClient } from "../../lib/apollo-config";
-import {
-  motion,
-  useElementScroll,
-  useTransform,
-  useViewportScroll,
-} from "framer-motion";
-
+import { motion, useTransform, useViewportScroll } from "framer-motion";
 import styles from "../../styles/EssentialText.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
@@ -63,9 +56,7 @@ export async function getStaticPaths() {
 const EssentialText = ({ document, uid }) => {
   const page_data = document;
 
-  console.log("Project Data", page_data);
-
-  const router = useRouter();
+  // console.log("Project Data", page_data);
 
   const ref = useRef();
   const { scrollYProgress } = useViewportScroll(ref);
