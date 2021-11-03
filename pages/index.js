@@ -38,7 +38,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ document }) => {
-  console.log("Landing Data", document.data);
+  // console.log("Landing Data", document.data);
 
   const {
     setScrollPos,
@@ -57,6 +57,7 @@ const Home = ({ document }) => {
 
   const EnterCaseStudy = (color) => {
     console.log("Case Study Color", color);
+    console.log("Updated Joshua");
     setCsColor(color);
     setRunCSFade(true);
   };

@@ -261,7 +261,10 @@ const ArchiveItem = ({ document, uid }) => {
 
   useEffect(() => {
     setReturnPage(true);
-    setRunCSFade(false);
+
+    setTimeout(() => {
+      setRunCSFade(false);
+    }, 2000);
 
     SupportDist();
     FindHeight();
