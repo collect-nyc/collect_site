@@ -98,7 +98,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
                           alt={image.image.alt}
                           blurDataURL={image.image.url}
                           layout={"fill"}
-                          objectFit={"cover"}
+                          objectFit={"contain"}
                           // height={image.image.dimensions.height}
                           // width={image.image.dimensions.width}
                           className={images.length > 1 ? styles.multi : null}
