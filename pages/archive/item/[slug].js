@@ -780,26 +780,6 @@ const ArchiveItem = ({ document, uid }) => {
                               <RichText render={credit.names} />
                             </div>
                           ) : null}
-
-                          {/*credit.names
-                            ? credit.names.map((name, index) =>
-                                name.spans.length > 0 ? (
-                                  <a
-                                    href={name.spans[0].data.url}
-                                    target={"blank"}
-                                    className={"color_link name"}
-                                    key={index}
-                                  >
-                                    {" "}
-                                    {name.text}
-                                  </a>
-                                ) : (
-                                  <p key={index} className={styles.name}>
-                                    {name.text}
-                                  </p>
-                                )
-                              )
-                                : null */}
                         </div>
                       ))
                     : null}
