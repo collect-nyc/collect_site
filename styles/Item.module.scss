@@ -91,6 +91,10 @@
           padding: 0;
         }
 
+        &.gutters {
+          padding: 0 $navGutter_desktop;
+        }
+
         .support_image {
           display: block;
           width: 100%;

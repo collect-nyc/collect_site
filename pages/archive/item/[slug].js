@@ -604,6 +604,8 @@ const ArchiveItem = ({ document, uid }) => {
                       ? `${styles.case_study_intro} ${styles.ten}`
                       : supporting_image_width === "8"
                       ? `${styles.case_study_intro} ${styles.eight}`
+                      : supporting_image_width === "Gutters"
+                      ? `${styles.case_study_intro} ${styles.gutters}`
                       : `${styles.case_study_intro}`
                   }
                 >
