@@ -14,7 +14,7 @@ export default function CaseStudyFade() {
           opacity: [0, 1],
           backgroundColor: ["#fafafa", csColor ? csColor : "#fafafa"],
         }}
-        transition={{ ease: "easeOut", duration: 0.3 }}
+        transition={{ ease: "easeOut", duration: 2 }}
         exit={{ opacity: [1, 0] }}
       >
         {/* this h1 is only here because Chrome has a fixed layer bug where it won't display unless there is content */}
