@@ -49,6 +49,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
               onMouseEnter={() => setNavHover(true)}
               onMouseLeave={() => setNavHover(false)}
               style={navHover ? { textDecoration: "underline" } : null}
+              className={styles.count_link}
             >
               ({count ? count : 0})
             </a>

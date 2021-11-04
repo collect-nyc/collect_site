@@ -11,7 +11,7 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: 13px $navGutter_desktop 12px;
+  padding: 16px $navGutter_desktop 14px;
   color: $alabaster;
   mix-blend-mode: difference;
 
@@ -280,6 +280,12 @@
       margin-right: 5px;
     }
 
+    .count_link {
+      display: flex;
+      position: relative;
+      top: -1px;
+    }
+
     &.profile_right {
       justify-content: space-between;
       @media screen and (max-width: $mq-mobile-max) {
@@ -307,7 +313,7 @@
 
   @media screen and (max-width: $mq-mobile-max) {
     align-items: center;
-    padding: 12px $navGutter_mobile 12px;
+    padding: 15px $navGutter_mobile 14px;
     border-top: 1px solid $platinum;
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
@@ -328,7 +334,7 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    padding: 13px $navGutter_mobile 12px;
+    padding: 14px $navGutter_mobile 17px;
   }
 
   .mobile_left {

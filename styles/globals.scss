@@ -17,6 +17,7 @@ body {
 
 a,
 button {
+  @extend .body_text;
   color: $black;
   cursor: pointer;
   background-color: transparent;

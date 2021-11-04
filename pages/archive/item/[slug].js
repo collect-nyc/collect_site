@@ -248,7 +248,7 @@ const ArchiveItem = ({ document, uid }) => {
 
   const OnceFindHeight = () => {
     const InnerHeight = window.innerHeight;
-    // console.log("App Height", InnerHeight);
+    console.log("App Height", InnerHeight);
 
     setOnceAppHeight(InnerHeight);
   };
@@ -568,7 +568,7 @@ const ArchiveItem = ({ document, uid }) => {
                     item_type === "Case Study" && background_color
                       ? {
                           backgroundColor: background_color,
-                          height: appHeight + "px",
+                          height: onceAppHeight + "px",
                         }
                       : null
                   }

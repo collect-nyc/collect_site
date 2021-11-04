@@ -33,7 +33,7 @@ const EssentialTextNav = ({ page, count, latest, tags }) => {
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
             <Link href="/archive">
-              <a>({count ? count : 0})</a>
+              <a className={styles.count_link}>({count ? count : 0})</a>
             </Link>
           </div>
         </div>

@@ -144,7 +144,7 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
                 : "/archive"
             }
           >
-            <a>({count ? count : 0})</a>
+            <a className={styles.count_link}>({count ? count : 0})</a>
           </Link>
         </div>
       </nav>
