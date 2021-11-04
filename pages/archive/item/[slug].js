@@ -592,8 +592,10 @@ const ArchiveItem = ({ document, uid }) => {
                       className="title_image"
                       priority
                     />
-                  ) : backup_text && backup_text[0] ? (
-                    <p className={styles.backup_text}>{backup_text[0].text}</p>
+                  ) : page_data.backup_text && page_data.backup_text[0] ? (
+                    <p className={styles.backup_text}>
+                      {page_data.backup_text[0].text}
+                    </p>
                   ) : null}
                 </motion.figure>
                 <div className={styles.casestudy_content}>
