@@ -58,6 +58,8 @@ $courier: "Courier Prime";
   font-family: $futura;
   font-size: 48px;
   text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .heading_h1 {
@@ -94,6 +96,8 @@ $courier: "Courier Prime";
   font-size: 13px;
   font-weight: normal;
   text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
 }
 
 .untitled_caps {
