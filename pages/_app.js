@@ -5,6 +5,8 @@ import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+  const [currentPage, setCurrentPage] = useState(null);
+  const [pageHistory, setPageHistory] = useState(null);
   const [layoutView, setLayoutView] = useState(false);
   const [azSort, setAzSort] = useState(null);
   const [timeSort, setTimeSort] = useState(null);
@@ -23,11 +25,17 @@ function MyApp({ Component, pageProps }) {
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
 
   useEffect(() => {
+    setPageHistory(currentPage ? currentPage : null);
+    setCurrentPage(router.asPath);
+  }, [router.asPath]);
+
+  useEffect(() => {
     const handleRouteChange = (url) => {
       window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
         page_path: url,
       });
     };
+
     router.events.on("routeChangeComplete", handleRouteChange);
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
@@ -37,6 +45,8 @@ function MyApp({ Component, pageProps }) {
   return (
     <MemoryContext.Provider
       value={{
+        pageHistory: pageHistory,
+        currentPage: currentPage,
         layoutView: layoutView,
         setLayoutView: setLayoutView,
         azSort: azSort,

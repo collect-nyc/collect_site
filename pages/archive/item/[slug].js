@@ -174,8 +174,8 @@ const ArchiveItem = ({ document, uid }) => {
   // console.log("Project Data", page_data);
 
   const {
-    navTextColor,
-    caseStudyView,
+    currentPage,
+    pageHistory,
     setCaseStudyView,
     currentTag,
     setReturnPage,
@@ -254,6 +254,7 @@ const ArchiveItem = ({ document, uid }) => {
   };
 
   useEffect(() => {
+    console.log(Window.history);
     setReturnPage(true);
 
     // Remove fade cover for case studies
@@ -688,6 +689,12 @@ const ArchiveItem = ({ document, uid }) => {
                     >
                       <LeftArrow className={"color_svg"} /> Case Study
                     </button>
+                  ) : pageHistory === "/" ? (
+                    <Link href={"/"}>
+                      <a>
+                        <LeftArrow /> Home
+                      </a>
+                    </Link>
                   ) : (
                     <Link
                       href={
