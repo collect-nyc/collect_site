@@ -167,6 +167,8 @@ const ArchiveItem = ({ document, uid }) => {
     setRunCSFade,
   } = useContext(MemoryContext);
 
+  console.log("Page History", pageHistory);
+
   useEffect(() => {
     if (
       page_data &&
@@ -243,13 +245,10 @@ const ArchiveItem = ({ document, uid }) => {
 
   const OnceFindHeight = () => {
     const InnerHeight = window.innerHeight;
-    console.log("App Height", InnerHeight);
-
     setOnceAppHeight(InnerHeight);
   };
 
   useEffect(() => {
-    console.log(Window.history);
     setReturnPage(true);
 
     // Remove fade cover for case studies
@@ -293,8 +292,12 @@ const ArchiveItem = ({ document, uid }) => {
     };
 
     const Exit = () => {
+      console.log(pageHistory);
+
       router.push(
-        currentTag && currentTag !== "All Work"
+        pageHistory === "/"
+          ? "/"
+          : currentTag && currentTag !== "All Work"
           ? `/archive?tag=${currentTag}`
           : "/archive"
       );
@@ -323,7 +326,7 @@ const ArchiveItem = ({ document, uid }) => {
       window.removeEventListener("keydown", handleDown);
       window.removeEventListener("keydown", handleDown);
     };
-  }, [currentImage]);
+  }, [currentImage, pageHistory, total]);
 
   const handlePasswordSubmit = async (e) => {
     e.preventDefault();
