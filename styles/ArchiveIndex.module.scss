@@ -40,22 +40,20 @@
   position: relative;
   z-index: 2;
 
-  // @media screen and (max-width: $mq-mobile-min) {
-  // }
-
-  // @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-  // }
+  @media screen and (max-width: $mq-mobile-max) {
+    min-height: calc(100vh - 154px);
+  }
 
   .interior {
     background-color: $alabaster;
     padding-bottom: 40px;
 
     @media screen and (max-width: $mq-mobile-min) {
-      padding-bottom: 20px;
+      padding-bottom: 0;
     }
 
     @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-      padding-bottom: 20px;
+      padding-bottom: 0;
     }
   }
 
@@ -237,6 +235,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   padding: 90px $navGutter_desktop 16px $navGutter_desktop;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 75px $navGutter_desktop 16px $navGutter_desktop;
+  }
 
   .copyright {
   }
