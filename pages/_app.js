@@ -12,6 +12,7 @@ function MyApp({ Component, pageProps }) {
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
+  const [homeScrollPos, setHomeScrollPos] = useState(null);
   const [scrollPos, setScrollPos] = useState(null);
   // returnPage = true if you are coming from a page where it's ok to shuffle the archive list
   const [returnPage, setReturnPage] = useState(false);
@@ -31,9 +32,11 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
-        page_path: url,
-      });
+      if (window && window.gtag) {
+        window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
+          page_path: url,
+        });
+      }
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -71,6 +74,8 @@ function MyApp({ Component, pageProps }) {
         setRunCSFade: setRunCSFade,
         csColor: csColor,
         setCsColor: setCsColor,
+        homeScrollPos: homeScrollPos,
+        setHomeScrollPos: setHomeScrollPos,
       }}
     >
       <Layout page={pageProps.page}>

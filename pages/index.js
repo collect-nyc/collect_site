@@ -42,14 +42,32 @@ const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
 
-  const { setScrollPos, setReturnPage, setRunCSFade, setCsColor } =
-    useContext(MemoryContext);
+  const {
+    setScrollPos,
+    setReturnPage,
+    setRunCSFade,
+    setCsColor,
+    homeScrollPos,
+    setHomeScrollPos,
+  } = useContext(MemoryContext);
 
   useEffect(() => {
     // Reset scroll position for Archive Index
     setScrollPos(0);
     setReturnPage(false);
+
+    if (homeScrollPos) {
+      window.scrollBy(0, parseInt(homeScrollPos, 10));
+      setHomeScrollPos(0);
+    }
   }, []);
+
+  const ScrollTracker = () => {
+    let top =
+      (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
+    // console.log("Scroll Pos", top);
+    setHomeScrollPos(top);
+  };
 
   const EnterCaseStudy = (color, url) => {
     // console.log("Case Study Color", color);
@@ -57,6 +75,7 @@ const Home = ({ document }) => {
     setRunCSFade(true);
 
     setTimeout(() => {
+      ScrollTracker();
       router.push(url);
     }, 300);
   };
@@ -117,7 +136,7 @@ const Home = ({ document }) => {
                   <Link
                     href={"/archive/item/" + slice.primary.archive_link.slug}
                   >
-                    <a>
+                    <a onClick={() => ScrollTracker()}>
                       <Image
                         src={slice.primary.first_image.url}
                         layout={"responsive"}
@@ -181,7 +200,7 @@ const Home = ({ document }) => {
                   <Link
                     href={"/archive/item/" + slice.primary.archive_link.slug}
                   >
-                    <a>
+                    <a onClick={() => ScrollTracker()}>
                       <Image
                         src={slice.primary.second_image.url}
                         layout={"responsive"}
@@ -261,7 +280,7 @@ const Home = ({ document }) => {
                   <Link
                     href={"/archive/item/" + slice.primary.archive_link.slug}
                   >
-                    <a>
+                    <a onClick={() => ScrollTracker()}>
                       <Image
                         src={slice.primary.image.url}
                         layout={"responsive"}

@@ -105,6 +105,7 @@ const Home = ({ archives, document, tagged }) => {
     setCurrentTag,
     scrollPos,
     setScrollPos,
+    setHomeScrollPos,
     returnPage,
     setReturnPage,
     setRunCSFade,
@@ -138,6 +139,9 @@ const Home = ({ archives, document, tagged }) => {
       setCurrentTag(tagged);
     }
 
+    // reset home scroll
+    setHomeScrollPos(0);
+    // check if archive scroll has been stored
     if (scrollPos) {
       window.scrollBy(0, parseInt(scrollPos, 10));
       setScrollPos(0);

@@ -154,27 +154,9 @@ export async function getStaticPaths() {
 const ArchiveItem = ({ document, uid }) => {
   const page_data = document;
 
-  const {
-    title_image,
-    title,
-    title_image_width,
-    item_type,
-    description,
-    archive_view_text,
-    archive_view_background,
-    archive_view_linear_rule,
-    text_color,
-    background_color,
-    backup_text,
-    download,
-    supporting_image,
-    supporting_image_width,
-  } = page_data;
-
-  // console.log("Project Data", page_data);
+  console.log("Project Data", page_data);
 
   const {
-    currentPage,
     pageHistory,
     setCaseStudyView,
     currentTag,
@@ -186,16 +168,25 @@ const ArchiveItem = ({ document, uid }) => {
   } = useContext(MemoryContext);
 
   useEffect(() => {
-    if (item_type === "Case Study") {
+    if (
+      page_data &&
+      page_data.item_type &&
+      page_data.item_type === "Case Study"
+    ) {
       setCaseStudyView(true);
     } else {
       setCaseStudyView(false);
     }
 
+    if (page_data && page_data.text_color) {
+      setNavTextColor(page_data.text_color);
+    }
+
     return () => {
       setCaseStudyView(false);
+      setNavTextColor(null);
     };
-  }, [item_type, setCaseStudyView]);
+  }, [page_data, setCaseStudyView]);
 
   const router = useRouter();
 
@@ -203,7 +194,11 @@ const ArchiveItem = ({ document, uid }) => {
   const [currentImage, setCurrentImage] = useState(0);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const [isLocked, setIsLocked] = useState(page_data.password_protected);
+  const [isLocked, setIsLocked] = useState(
+    page_data && page_data.password_protected
+      ? page_data.password_protected
+      : null
+  );
   const [titleImageDist, setTitleImageDist] = useState(null);
   const [appHeight, setAppHeight] = useState(null);
   const [onceAppHeight, setOnceAppHeight] = useState(null);
@@ -213,7 +208,7 @@ const ArchiveItem = ({ document, uid }) => {
   const TitleImage = useRef();
 
   // Variables
-  const images = page_data.images;
+  const images = page_data && page_data.images ? page_data.images : null;
   const total = images ? images.length : 0;
 
   // Debounce
@@ -274,16 +269,6 @@ const ArchiveItem = ({ document, uid }) => {
       window.removeEventListener("resize", debounce(FindHeight, 150));
     };
   }, []);
-
-  useEffect(() => {
-    if (text_color) {
-      setNavTextColor(text_color);
-    }
-
-    return () => {
-      setNavTextColor(null);
-    };
-  }, [text_color]);
 
   const NextItem = () => {
     let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
@@ -362,129 +347,135 @@ const ArchiveItem = ({ document, uid }) => {
     }
   };
 
-  const pageContent = page_data.body
-    ? page_data.body.map((slice, index) => {
-        // Render the right markup for the given slice type
-        // console.log(slice, index);
+  const pageContent =
+    page_data && page_data.body
+      ? page_data.body.map((slice, index) => {
+          // Render the right markup for the given slice type
+          // console.log(slice, index);
 
-        // 2up Images Slice
-        if (slice.type === "2up_images") {
-          return (
-            <section
-              key={index}
-              className={
-                slice.primary.layout === "Equal"
-                  ? `${styles.double_image} ${styles.equal}`
-                  : slice.primary.layout === "Asymmetrical Left"
-                  ? `${styles.double_image} ${styles.left}`
-                  : slice.primary.layout === "Asymmetrical Right"
-                  ? `${styles.double_image} ${styles.right}`
-                  : `${styles.double_image}`
-              }
-            >
-              <div
+          // 2up Images Slice
+          if (slice.type === "2up_images") {
+            return (
+              <section
+                key={index}
                 className={
-                  slice.primary.first_image && !slice.primary.second_image
-                    ? `${styles.no_marg}`
-                    : !slice.primary.first_image && slice.primary.second_image
-                    ? `${styles.no_marg}`
-                    : null
+                  slice.primary.layout === "Equal"
+                    ? `${styles.double_image} ${styles.equal}`
+                    : slice.primary.layout === "Asymmetrical Left"
+                    ? `${styles.double_image} ${styles.left}`
+                    : slice.primary.layout === "Asymmetrical Right"
+                    ? `${styles.double_image} ${styles.right}`
+                    : `${styles.double_image}`
                 }
               >
-                {slice.primary.first_image && slice.primary.first_image.url ? (
-                  <figure>
-                    <Image
-                      src={slice.primary.first_image.url}
-                      layout={"responsive"}
-                      height={slice.primary.first_image.dimensions.height}
-                      width={slice.primary.first_image.dimensions.width}
-                      alt={slice.primary.first_image.alt}
-                      quality={100}
-                    />
-                  </figure>
-                ) : null}
-              </div>
-              <div>
-                {slice.primary.second_image &&
-                slice.primary.second_image.url ? (
-                  <figure>
-                    <Image
-                      src={slice.primary.second_image.url}
-                      layout={"responsive"}
-                      height={slice.primary.second_image.dimensions.height}
-                      width={slice.primary.second_image.dimensions.width}
-                      alt={slice.primary.second_image.alt}
-                      quality={100}
-                    />
-                  </figure>
-                ) : null}
-              </div>
-            </section>
-          );
-
-          // Single Image Slice
-        } else if (slice.type === "single_image") {
-          return (
-            <section
-              key={index}
-              className={
-                slice.primary.columns === "Gutters"
-                  ? `${styles.single_image} ${styles.gutters}`
-                  : slice.primary.columns === "12"
-                  ? `${styles.single_image} ${styles.twelve}`
-                  : slice.primary.columns === "10"
-                  ? `${styles.single_image} ${styles.ten}`
-                  : slice.primary.columns === "8"
-                  ? `${styles.single_image} ${styles.eight}`
-                  : slice.primary.columns === "6"
-                  ? `${styles.single_image} ${styles.six}`
-                  : slice.primary.columns === "4"
-                  ? `${styles.single_image} ${styles.four}`
-                  : `${styles.single_image}`
-              }
-            >
-              {slice.primary.image && slice.primary.image.url ? (
-                <figure
+                <div
                   className={
-                    slice.primary.full_bleed ? `${styles.full_bleed}` : null
+                    slice.primary.first_image && !slice.primary.second_image
+                      ? `${styles.no_marg}`
+                      : !slice.primary.first_image && slice.primary.second_image
+                      ? `${styles.no_marg}`
+                      : null
                   }
                 >
-                  <Image
-                    src={slice.primary.image.url}
-                    layout={"responsive"}
-                    height={slice.primary.image.dimensions.height}
-                    width={slice.primary.image.dimensions.width}
-                    alt={slice.primary.image.alt}
-                    quality={100}
-                  />
-                </figure>
-              ) : null}
-            </section>
-          );
-        } else if (slice.type === "text_block") {
-          return (
-            <section key={index} className={`${styles.text_block} `}>
-              {slice.primary.text ? (
-                <RichText render={slice.primary.text} />
-              ) : null}
-            </section>
-          );
-        } else if (slice.type === "images_slider") {
-          return (
-            <section key={index} className={styles.image_slider}>
-              <ImageSlider
-                images={slice.fields}
-                text_color={text_color}
-                background_color={background_color}
-                quality={100}
-              />
-            </section>
-          );
-        } else {
-          return null;
-        }
-      })
-    : null;
+                  {slice.primary.first_image &&
+                  slice.primary.first_image.url ? (
+                    <figure>
+                      <Image
+                        src={slice.primary.first_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.first_image.dimensions.height}
+                        width={slice.primary.first_image.dimensions.width}
+                        alt={slice.primary.first_image.alt}
+                        quality={100}
+                      />
+                    </figure>
+                  ) : null}
+                </div>
+                <div>
+                  {slice.primary.second_image &&
+                  slice.primary.second_image.url ? (
+                    <figure>
+                      <Image
+                        src={slice.primary.second_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.second_image.dimensions.height}
+                        width={slice.primary.second_image.dimensions.width}
+                        alt={slice.primary.second_image.alt}
+                        quality={100}
+                      />
+                    </figure>
+                  ) : null}
+                </div>
+              </section>
+            );
+
+            // Single Image Slice
+          } else if (slice.type === "single_image") {
+            return (
+              <section
+                key={index}
+                className={
+                  slice.primary.columns === "Gutters"
+                    ? `${styles.single_image} ${styles.gutters}`
+                    : slice.primary.columns === "12"
+                    ? `${styles.single_image} ${styles.twelve}`
+                    : slice.primary.columns === "10"
+                    ? `${styles.single_image} ${styles.ten}`
+                    : slice.primary.columns === "8"
+                    ? `${styles.single_image} ${styles.eight}`
+                    : slice.primary.columns === "6"
+                    ? `${styles.single_image} ${styles.six}`
+                    : slice.primary.columns === "4"
+                    ? `${styles.single_image} ${styles.four}`
+                    : `${styles.single_image}`
+                }
+              >
+                {slice.primary.image && slice.primary.image.url ? (
+                  <figure
+                    className={
+                      slice.primary.full_bleed ? `${styles.full_bleed}` : null
+                    }
+                  >
+                    <Image
+                      src={slice.primary.image.url}
+                      layout={"responsive"}
+                      height={slice.primary.image.dimensions.height}
+                      width={slice.primary.image.dimensions.width}
+                      alt={slice.primary.image.alt}
+                      quality={100}
+                    />
+                  </figure>
+                ) : null}
+              </section>
+            );
+          } else if (slice.type === "text_block") {
+            return (
+              <section key={index} className={`${styles.text_block} `}>
+                {slice.primary.text ? (
+                  <RichText render={slice.primary.text} />
+                ) : null}
+              </section>
+            );
+          } else if (slice.type === "images_slider") {
+            return (
+              <section key={index} className={styles.image_slider}>
+                <ImageSlider
+                  images={slice.fields}
+                  text_color={page_data.text_color}
+                  background_color={page_data.background_color}
+                  quality={100}
+                />
+              </section>
+            );
+          } else {
+            return null;
+          }
+        })
+      : null;
+
+  if (!page_data) {
+    return null;
+  }
 
   return (
     <>
@@ -492,11 +483,13 @@ const ArchiveItem = ({ document, uid }) => {
         className={styles.container}
         id="itemContainer"
         style={
-          item_type === "Case Study" && background_color
+          page_data &&
+          page_data.item_type === "Case Study" &&
+          page_data.background_color
             ? {
-                backgroundColor: background_color,
-                borderColor: text_color,
-                color: text_color,
+                backgroundColor: page_data.background_color,
+                borderColor: page_data.text_color,
+                color: page_data.text_color,
               }
             : null
         }
@@ -544,13 +537,13 @@ const ArchiveItem = ({ document, uid }) => {
           </div>
         ) : (
           <main className={styles.main}>
-            {item_type === "Case Study" && !archiveView ? (
+            {page_data.item_type === "Case Study" && !archiveView ? (
               <div
                 className={styles.casestudy_container}
                 style={
-                  item_type === "Case Study" && text_color
+                  page_data.item_type === "Case Study" && page_data.text_color
                     ? {
-                        color: text_color,
+                        color: page_data.text_color,
                         paddingTop:
                           "calc(" +
                           onceAppHeight +
@@ -566,34 +559,36 @@ const ArchiveItem = ({ document, uid }) => {
                   animate={{ opacity: [0, 1] }}
                   transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                   style={
-                    item_type === "Case Study" && background_color
+                    page_data.item_type === "Case Study" &&
+                    page_data.background_color
                       ? {
-                          backgroundColor: background_color,
+                          backgroundColor: page_data.background_color,
                           height: onceAppHeight + "px",
                         }
                       : null
                   }
                   className={
-                    title_image_width && title_image_width === "12"
+                    page_data.title_image_width &&
+                    page_data.title_image_width === "12"
                       ? `${styles.title_image} ${styles.twelve}`
-                      : title_image_width === "10"
+                      : page_data.title_image_width === "10"
                       ? `${styles.title_image} ${styles.ten}`
-                      : title_image_width === "8"
+                      : page_data.title_image_width === "8"
                       ? `${styles.title_image} ${styles.eight}`
-                      : title_image_width === "6"
+                      : page_data.title_image_width === "6"
                       ? `${styles.title_image} ${styles.six}`
-                      : title_image_width === "4"
+                      : page_data.title_image_width === "4"
                       ? `${styles.title_image} ${styles.four}`
                       : `${styles.title_image}`
                   }
                   ref={TitleImage}
                 >
-                  {title_image && title_image.url ? (
+                  {page_data.title_image && page_data.title_image.url ? (
                     <Image
-                      src={title_image.url}
-                      alt={title_image.alt}
-                      height={title_image.dimensions.height}
-                      width={title_image.dimensions.width}
+                      src={page_data.title_image.url}
+                      alt={page_data.title_image.alt}
+                      height={page_data.title_image.dimensions.height}
+                      width={page_data.title_image.dimensions.width}
                       quality={100}
                       className="title_image"
                       priority
@@ -605,13 +600,14 @@ const ArchiveItem = ({ document, uid }) => {
                 <div className={styles.casestudy_content}>
                   <section
                     className={
-                      supporting_image_width && supporting_image_width === "12"
+                      page_data.supporting_image_width &&
+                      page_data.supporting_image_width === "12"
                         ? `${styles.case_study_intro} ${styles.twelve}`
-                        : supporting_image_width === "10"
+                        : page_data.supporting_image_width === "10"
                         ? `${styles.case_study_intro} ${styles.ten}`
-                        : supporting_image_width === "8"
+                        : page_data.supporting_image_width === "8"
                         ? `${styles.case_study_intro} ${styles.eight}`
-                        : supporting_image_width === "Gutters"
+                        : page_data.supporting_image_width === "Gutters"
                         ? `${styles.case_study_intro} ${styles.gutters}`
                         : `${styles.case_study_intro}`
                     }
@@ -627,12 +623,13 @@ const ArchiveItem = ({ document, uid }) => {
                       // className={styles.support_image}
                       className={styles.support_image}
                     >
-                      {supporting_image && supporting_image.url ? (
+                      {page_data.supporting_image &&
+                      page_data.supporting_image.url ? (
                         <Image
-                          src={supporting_image.url}
-                          alt={supporting_image.alt}
-                          height={supporting_image.dimensions.height}
-                          width={supporting_image.dimensions.width}
+                          src={page_data.supporting_image.url}
+                          alt={page_data.supporting_image.alt}
+                          height={page_data.supporting_image.dimensions.height}
+                          width={page_data.supporting_image.dimensions.width}
                           quality={100}
                           // objectFit={"contain"}
                           className={styles.image}
@@ -644,9 +641,10 @@ const ArchiveItem = ({ document, uid }) => {
                   </section>
                   <div
                     style={
-                      item_type === "Case Study" && background_color
+                      page_data.item_type === "Case Study" &&
+                      page_data.background_color
                         ? {
-                            backgroundColor: background_color,
+                            backgroundColor: page_data.background_color,
                           }
                         : null
                     }
@@ -661,11 +659,11 @@ const ArchiveItem = ({ document, uid }) => {
                 className={styles.inner}
                 style={
                   archiveView &&
-                  item_type === "Case Study" &&
-                  archive_view_background
+                  page_data.item_type === "Case Study" &&
+                  page_data.archive_view_background
                     ? {
-                        backgroundColor: archive_view_background,
-                        color: archive_view_text,
+                        backgroundColor: page_data.archive_view_background,
+                        color: page_data.archive_view_text,
                       }
                     : {
                         height: appHeight + "px",
@@ -744,21 +742,23 @@ const ArchiveItem = ({ document, uid }) => {
               className={`${styles.project_footer} ${styles.multi_item}`}
               id={"itemFooter"}
               style={
-                item_type === "Case Study" && background_color && !archiveView
+                page_data.item_type === "Case Study" &&
+                page_data.background_color &&
+                !archiveView
                   ? {
-                      backgroundColor: background_color,
+                      backgroundColor: page_data.background_color,
                       borderColor: "transparent",
-                      color: text_color,
+                      color: page_data.text_color,
                     }
                   : archiveView
                   ? {
-                      backgroundColor: archive_view_background,
-                      borderColor: archive_view_linear_rule
-                        ? archive_view_linear_rule
-                        : archive_view_text
-                        ? archive_view_text
+                      backgroundColor: page_data.archive_view_background,
+                      borderColor: page_data.archive_view_linear_rule
+                        ? page_data.archive_view_linear_rule
+                        : page_data.archive_view_text
+                        ? page_data.archive_view_text
                         : "inherit",
-                      color: archive_view_text,
+                      color: page_data.archive_view_text,
                     }
                   : null
               }
@@ -804,9 +804,9 @@ const ArchiveItem = ({ document, uid }) => {
                         ))
                       : null}
                   </div>
-                  {download && download.url ? (
+                  {page_data.download && page_data.download.url ? (
                     <div className={styles.download}>
-                      <a className={"color_link"} href={download.url}>
+                      <a className={"color_link"} href={page_data.download.url}>
                         Download Project Images
                       </a>
                     </div>
@@ -814,7 +814,7 @@ const ArchiveItem = ({ document, uid }) => {
                 </div>
               ) : null}
 
-              {item_type === "Case Study" ? (
+              {page_data.item_type === "Case Study" ? (
                 <nav className={styles.back_nav}>
                   <Link href={"/"}>
                     <a className={"color_link"}>
@@ -834,20 +834,20 @@ const ArchiveItem = ({ document, uid }) => {
                   </Link>
                   <style global jsx>{`
                     .color_svg path {
-                      fill: ${archiveView && archive_view_text
-                        ? archive_view_text
-                        : text_color};
+                      fill: ${archiveView && page_data.archive_view_text
+                        ? page_data.archive_view_text
+                        : page_data.text_color};
                     }
                     .color_link {
-                      color: ${archiveView && archive_view_text
-                        ? archive_view_text
-                        : text_color};
+                      color: ${archiveView && page_data.archive_view_text
+                        ? page_data.archive_view_text
+                        : page_data.text_color};
                     }
 
                     .list_of_names a {
-                      color: ${archiveView && archive_view_text
-                        ? archive_view_text
-                        : text_color};
+                      color: ${archiveView && page_data.archive_view_text
+                        ? page_data.archive_view_text
+                        : page_data.text_color};
                     }
                   `}</style>
                 </nav>
