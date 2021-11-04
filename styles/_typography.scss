@@ -94,10 +94,6 @@ $courier: "Courier Prime";
   font-size: 13px;
   font-weight: normal;
   text-rendering: optimizeLegibility;
-
-  // @media screen and (max-width: $mq-mobile-max) {
-  //   font-size: 15px;
-  // }
 }
 
 .untitled_caps {
@@ -105,16 +101,6 @@ $courier: "Courier Prime";
   font-family: $untitled_sans;
   font-weight: normal;
   text-transform: uppercase;
-}
-
-.nav_text {
-  font-size: 13px;
-  font-weight: normal;
-  text-rendering: optimizeLegibility;
-
-  // @media screen and (max-width: $mq-mobile-max) {
-  //   font-size: 15px;
-  // }
 }
 
 .courier_label {

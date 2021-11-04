@@ -43,6 +43,7 @@
 
     .top_right {
       justify-content: flex-end;
+      align-items: flex-start;
     }
   }
 
@@ -77,11 +78,7 @@
           padding-right: 50px;
           align-items: center;
           width: auto;
-          height: 24px;
-
-          a {
-            font-size: 13px;
-          }
+          // height: 24px;
         }
       }
 
@@ -125,13 +122,41 @@
   .top_left {
     display: flex;
     list-style: none;
+    align-items: flex-start;
     justify-content: flex-start;
     width: 50%;
+
+    .link_box {
+      display: flex;
+      padding-right: 50px;
+      align-items: center;
+      width: auto;
+      // height: 24px;
+
+      &.archive {
+        min-width: 170px;
+      }
+
+      a {
+        display: flex;
+        min-width: 150px;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 0px;
+        width: 100%;
+      }
+
+      &:active {
+        color: $black;
+      }
+    }
 
     .filter_button {
       min-width: 116px;
       width: 75%;
       display: flex;
+      align-items: flex-start;
 
       .label {
         display: flex;
@@ -152,8 +177,8 @@
             bottom: 0px;
           }
           text-align: left;
-          font-size: 13px;
-          height: 24px;
+          position: relative;
+          top: 1px;
 
           &:active {
             color: $black;
@@ -183,7 +208,7 @@
     }
 
     .tag_list {
-      margin: 3px 0 0 0;
+      margin: 0;
       display: none;
       column-count: 3;
       column-gap: 0;
@@ -215,7 +240,6 @@
           cursor: pointer;
           padding: 0;
           text-align: left;
-          font-size: 13px;
 
           &:active {
             color: $black;
@@ -230,8 +254,7 @@
   }
   .top_right {
     display: flex;
-    font-size: 13px;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     padding-left: 20px;
     width: 50%;
@@ -244,8 +267,9 @@
         border: none;
         cursor: pointer;
         margin-right: 20px;
-        height: 24px;
+        // height: 24px;
       }
+
       @media screen and (max-width: $mq-mobile-max) {
         display: none;
       }
@@ -287,33 +311,6 @@
     border-top: 1px solid $platinum;
     border-bottom: 1px solid $platinum;
     background-color: $alabaster;
-  }
-}
-
-.link_box {
-  display: flex;
-  padding-right: 50px;
-  align-items: center;
-  width: auto;
-  height: 24px;
-
-  &.archive {
-    min-width: 170px;
-  }
-
-  a {
-    font-size: 13px;
-    display: flex;
-    min-width: 150px;
-  }
-
-  @media screen and (max-width: $mq-mobile-max) {
-    padding: 0px;
-    width: 100%;
-  }
-
-  &:active {
-    color: $black;
   }
 }
 
@@ -363,8 +360,7 @@
             bottom: 0px;
           }
           text-align: left;
-          font-size: 13px;
-          height: 24px;
+          // height: 24px;
 
           &:active {
             color: $black;
@@ -417,7 +413,6 @@
           cursor: pointer;
           padding: 0;
           text-align: left;
-          font-size: 13px;
           white-space: nowrap;
 
           &:active {
@@ -437,9 +432,8 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
-        height: 24px;
+        // height: 24px;
         padding-right: 10px;
-        font-size: 13px;
       }
     }
 
@@ -459,7 +453,7 @@
   .profile {
     button {
       padding-right: 10px;
-      font-size: 13px;
+
       & .selected {
         text-decoration: underline;
       }
