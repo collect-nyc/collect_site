@@ -574,7 +574,13 @@ const Home = ({ archives, document, tagged }) => {
       </div>
       <main
         className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
-        style={titleHeight ? { paddingTop: titleHeight } : null}
+        style={
+          titleHeight
+            ? {
+                paddingTop: titleHeight,
+              }
+            : null
+        }
       >
         <div className={styles.interior}>
           {layoutView ? <GridView /> : <ListView />}
