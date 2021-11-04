@@ -349,9 +349,6 @@ const ArchiveItem = ({ document, uid }) => {
   const pageContent =
     page_data && page_data.body
       ? page_data.body.map((slice, index) => {
-          // Render the right markup for the given slice type
-          // console.log(slice, index);
-
           // 2up Images Slice
           if (slice.type === "2up_images") {
             return (
