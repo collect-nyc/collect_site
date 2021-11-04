@@ -154,7 +154,7 @@ export async function getStaticPaths() {
 const ArchiveItem = ({ document, uid }) => {
   const page_data = document;
 
-  console.log("Project Data", page_data);
+  // console.log("Project Data", page_data);
 
   const {
     pageHistory,
@@ -166,8 +166,6 @@ const ArchiveItem = ({ document, uid }) => {
     setArchiveView,
     setRunCSFade,
   } = useContext(MemoryContext);
-
-  console.log("Page History", pageHistory);
 
   useEffect(() => {
     if (
@@ -292,8 +290,6 @@ const ArchiveItem = ({ document, uid }) => {
     };
 
     const Exit = () => {
-      console.log(pageHistory);
-
       router.push(
         pageHistory === "/"
           ? "/"
