@@ -302,8 +302,9 @@
     z-index: 10;
 
     @media screen and (max-width: $mq-mobile-max) {
-      top: 20px;
+      top: $gutter_mobile;
       left: $gutter_mobile;
+      transform: none;
     }
   }
 
@@ -331,11 +332,12 @@
     @media screen and (max-width: $mq-mobile-max) {
       position: absolute;
       top: auto;
-      bottom: 20px;
+      bottom: $gutter_mobile;
       left: $gutter_mobile;
       flex-direction: row-reverse;
       justify-content: space-between;
       align-items: flex-start;
+      transform: none;
 
       .current_image {
         position: absolute;
