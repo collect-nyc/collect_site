@@ -23,8 +23,6 @@ const CaseStudyNav = () => {
     setArchiveView(!archiveView);
   };
 
-  console.log(imageTotal);
-
   return (
     <>
       {!archiveView && caseStudyView ? (
