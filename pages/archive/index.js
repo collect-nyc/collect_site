@@ -89,7 +89,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  console.log("ALL ITEMS", archives);
+  // console.log("ALL ITEMS", archives);
   const router = useRouter();
 
   const {
@@ -317,7 +317,6 @@ const Home = ({ archives, document, tagged }) => {
   };
 
   const EnterCaseStudy = (color, url) => {
-    console.log("Case Study Color", color);
     setCsColor(color);
     setRunCSFade(true);
 

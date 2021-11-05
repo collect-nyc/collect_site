@@ -40,7 +40,7 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ document }) => {
   const router = useRouter();
-  console.log("Landing Data", document.data);
+  // console.log("Landing Data", document.data);
 
   const {
     setScrollPos,
@@ -70,7 +70,6 @@ const Home = ({ document }) => {
   };
 
   const EnterCaseStudy = (color, url) => {
-    // console.log("Case Study Color", color);
     setCsColor(color);
     setRunCSFade(true);
 
