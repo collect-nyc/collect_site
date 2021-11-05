@@ -40,7 +40,7 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ document }) => {
   const router = useRouter();
-  // console.log("Landing Data", document.data);
+  console.log("Landing Data", document.data);
 
   const {
     setScrollPos,
@@ -106,7 +106,7 @@ const Home = ({ document }) => {
             }
           >
             {slice.primary.first_image.url ? (
-              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+              slice.primary.archive_link && slice.primary.archive_link.uid ? (
                 slice.primary.archive_link.data?.item_type === "Case Study" &&
                 slice.primary.archive_link.data?.background_color ? (
                   <a
@@ -117,7 +117,7 @@ const Home = ({ document }) => {
                         ? () =>
                             EnterCaseStudy(
                               slice.primary.archive_link.data?.background_color,
-                              "/archive/item/" + slice.primary.archive_link.slug
+                              "/archive/item/" + slice.primary.archive_link.uid
                             )
                         : null
                     }
@@ -134,7 +134,7 @@ const Home = ({ document }) => {
                   </a>
                 ) : (
                   <Link
-                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                    href={"/archive/item/" + slice.primary.archive_link.uid}
                   >
                     <a onClick={() => ScrollTracker()}>
                       <Image
@@ -170,7 +170,7 @@ const Home = ({ document }) => {
             }
           >
             {slice.primary.second_image.url ? (
-              slice.primary.archive_link && slice.primary.archive_link.slug ? (
+              slice.primary.archive_link && slice.primary.archive_link.uid ? (
                 slice.primary.archive_link.data?.item_type === "Case Study" &&
                 slice.primary.archive_link.data?.background_color ? (
                   <a
@@ -181,7 +181,7 @@ const Home = ({ document }) => {
                         ? () =>
                             EnterCaseStudy(
                               slice.primary.archive_link.data?.background_color,
-                              "/archive/item/" + slice.primary.archive_link.slug
+                              "/archive/item/" + slice.primary.archive_link.uid
                             )
                         : null
                     }
@@ -198,7 +198,7 @@ const Home = ({ document }) => {
                   </a>
                 ) : (
                   <Link
-                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                    href={"/archive/item/" + slice.primary.archive_link.uid}
                   >
                     <a onClick={() => ScrollTracker()}>
                       <Image
@@ -250,7 +250,7 @@ const Home = ({ document }) => {
                 slice.primary.full_bleed ? `${styles.full_bleed}` : null
               }
             >
-              {slice.primary.archive_link && slice.primary.archive_link.slug ? (
+              {slice.primary.archive_link && slice.primary.archive_link.uid ? (
                 slice.primary.archive_link.data?.item_type === "Case Study" &&
                 slice.primary.archive_link.data?.background_color ? (
                   <a
@@ -261,7 +261,7 @@ const Home = ({ document }) => {
                         ? () =>
                             EnterCaseStudy(
                               slice.primary.archive_link.data?.background_color,
-                              "/archive/item/" + slice.primary.archive_link.slug
+                              "/archive/item/" + slice.primary.archive_link.uid
                             )
                         : null
                     }
@@ -278,7 +278,7 @@ const Home = ({ document }) => {
                   </a>
                 ) : (
                   <Link
-                    href={"/archive/item/" + slice.primary.archive_link.slug}
+                    href={"/archive/item/" + slice.primary.archive_link.uid}
                   >
                     <a onClick={() => ScrollTracker()}>
                       <Image
