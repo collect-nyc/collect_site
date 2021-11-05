@@ -23,6 +23,24 @@
       display: flex;
       align-items: center;
       justify-content: center;
+
+      .desktop {
+        display: inline-block;
+      }
+
+      .mobile {
+        display: none;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        .mobile {
+          display: inline-block;
+        }
+
+        .desktop {
+          display: none;
+        }
+      }
     }
     .nyc {
       border-right: 1px solid $platinum;

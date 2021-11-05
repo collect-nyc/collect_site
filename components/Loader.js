@@ -21,8 +21,22 @@ export default function Loader({ page }) {
           transition={{ ease: "easeOut", delay: 1.5, duration: 0.4 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
-          <div className={styles.nyc}>COLLECT NYC</div>
-          <div className={styles.archive}>COLLECT Archive</div>
+          <div className={styles.nyc}>
+            <span className={styles.desktop}>COLLECT NYC</span>
+            <span className={styles.mobile}>
+              COLLECT
+              <br />
+              New York City
+            </span>
+          </div>
+          <div className={styles.archive}>
+            <span className={styles.desktop}>COLLECT Archive</span>
+            <span className={styles.mobile}>
+              COLLECT
+              <br />
+              Archive
+            </span>
+          </div>
         </motion.div>
       </AnimatePresence>
     </div>
