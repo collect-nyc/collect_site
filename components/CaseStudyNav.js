@@ -13,8 +13,6 @@ const CaseStudyNav = () => {
     setArchiveView,
     caseStudyView,
     currentTag,
-    runCSFade,
-    setRunCSFade,
     imageTotal,
   } = useContext(MemoryContext);
 
