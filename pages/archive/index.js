@@ -12,6 +12,7 @@ import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import RightArrow from "../../svg/right-arrow.svg";
 import MemoryContext from "../../components/MemoryContext";
+import { isEqual } from "../../lib/helpers";
 import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -89,18 +90,15 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  // console.log("ALL ITEMS", archives);
+  // console.log("Pure Archive from Data", archives);
   const router = useRouter();
 
   const {
     archiveList,
     setArchiveList,
     layoutView,
-    setLayoutView,
     azSort,
-    setAzSort,
     timeSort,
-    setTimeSort,
     currentTag,
     setCurrentTag,
     scrollPos,
@@ -159,18 +157,23 @@ const Home = ({ archives, document, tagged }) => {
     };
   }, []);
 
-  // Checking on memory version of archive list
-  // useEffect(() => {
-  //   console.log("Memory", archiveList.length);
-  // }, [archiveList]);
-
-  // Set archive list when archive data changes
+  // ARCHIVES UPDATER: ALL ARCHIVE MUTATION HAPPENS HERE
   useEffect(() => {
-    // console.log("Archives: ", archives.length);
+    // console.log("Archives Changed", archives, "Archive List", archiveList);
+
+    // Create a version of each object that is an array with only the ids to compare
+    const newArchives = archives.map((a) => a.id);
+    const newArchiveList = archiveList.map((a) => a.id);
+
+    // console.log("Whatever", isEqual(newArchives, newArchiveList));
+
+    // Check if memory version exists, if it has content, if pulled and memory version
+    // are different lengths, and then check if their content is the same
     if (
       archiveList === undefined ||
       archiveList.length === 0 ||
-      archives.length !== archiveList.length
+      archives.length !== archiveList.length ||
+      !isEqual(newArchives, newArchiveList)
     ) {
       ShuffeList(archives);
       setReturnPage(false);
