@@ -165,6 +165,7 @@ const ArchiveItem = ({ document, uid }) => {
     archiveView,
     setArchiveView,
     setRunCSFade,
+    setImageTotal,
   } = useContext(MemoryContext);
 
   useEffect(() => {
@@ -210,6 +211,10 @@ const ArchiveItem = ({ document, uid }) => {
   // Variables
   const images = page_data && page_data.images ? page_data.images : null;
   const total = images ? images.length : 0;
+
+  useEffect(() => {
+    setImageTotal(total);
+  }, [total]);
 
   // Debounce
   const debounce = (func, time) => {

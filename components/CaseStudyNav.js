@@ -15,6 +15,7 @@ const CaseStudyNav = () => {
     currentTag,
     runCSFade,
     setRunCSFade,
+    imageTotal,
   } = useContext(MemoryContext);
 
   // State
@@ -23,6 +24,8 @@ const CaseStudyNav = () => {
   const ArchiveViewToggle = () => {
     setArchiveView(!archiveView);
   };
+
+  console.log(imageTotal);
 
   return (
     <>
@@ -81,9 +84,15 @@ const CaseStudyNav = () => {
             </div>
           </div>
           <div className={styles.top_right}>
-            <button className="color_link" onClick={() => ArchiveViewToggle()}>
-              Archive View
-            </button>
+            {imageTotal > 0 ? (
+              <button
+                className="color_link"
+                onClick={() => ArchiveViewToggle()}
+              >
+                Archive View
+              </button>
+            ) : null}
+
             <button
               className="color_link"
               onClick={() => {

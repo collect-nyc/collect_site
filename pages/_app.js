@@ -21,6 +21,7 @@ function MyApp({ Component, pageProps }) {
   const [caseStudyView, setCaseStudyView] = useState(false);
   const [runCSFade, setRunCSFade] = useState(false);
   const [csColor, setCsColor] = useState(null);
+  const [imageTotal, setImageTotal] = useState(null);
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -76,6 +77,8 @@ function MyApp({ Component, pageProps }) {
         setCsColor: setCsColor,
         homeScrollPos: homeScrollPos,
         setHomeScrollPos: setHomeScrollPos,
+        imageTotal: imageTotal,
+        setImageTotal: setImageTotal,
       }}
     >
       <Layout page={pageProps.page}>
