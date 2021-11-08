@@ -91,6 +91,7 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ archives, document, tagged }) => {
   // console.log("Pure Archive from Data", archives);
+  // console.log("Page Data", document);
   const router = useRouter();
 
   const {
@@ -562,7 +563,24 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
-      <div className={styles.title_holder} ref={TitleHolder}>
+      <div
+        ref={TitleHolder}
+        className={
+          document.data.columns === "Gutters"
+            ? `${styles.title_holder} ${styles.gutters}`
+            : document.data.columns === "12"
+            ? `${styles.title_holder} ${styles.twelve}`
+            : document.data.columns === "10"
+            ? `${styles.title_holder} ${styles.ten}`
+            : document.data.columns === "8"
+            ? `${styles.title_holder} ${styles.eight}`
+            : document.data.columns === "6"
+            ? `${styles.title_holder} ${styles.six}`
+            : document.data.columns === "4"
+            ? `${styles.title_holder} ${styles.four}`
+            : `${styles.title_holder}`
+        }
+      >
         <div className={styles.title}>
           {page_content && page_content.header_image ? (
             <Image
