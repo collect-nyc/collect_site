@@ -122,7 +122,12 @@ const Home = ({ archives, document, tagged }) => {
   // const loadedArchives = [...archives];
 
   const handleResize = () => {
+    console.log("Resizing");
     setTitleHeight(TitleHolder.current.offsetHeight);
+
+    setTimeout(() => {
+      setTitleHeight(TitleHolder.current.offsetHeight);
+    }, 100);
   };
 
   const ShuffeList = (list) => {
@@ -582,17 +587,34 @@ const Home = ({ archives, document, tagged }) => {
         }
       >
         <div className={styles.title}>
-          {page_content && page_content.header_image ? (
-            <Image
-              src={page_content.header_image.url}
-              alt={page_content.header_image.alt}
-              layout={"responsive"}
-              height={page_content.header_image.dimensions.height}
-              width={page_content.header_image.dimensions.width}
-              unoptimized={true}
-              quality={100}
-              priority
-            />
+          {page_content.mobile_header.url ? (
+            <div className={styles.mobile_art}>
+              <Image
+                src={page_content.mobile_header.url}
+                alt={page_content.mobile_header.alt}
+                layout={"responsive"}
+                height={page_content.mobile_header.dimensions.height}
+                width={page_content.mobile_header.dimensions.width}
+                unoptimized={true}
+                quality={100}
+                priority
+              />
+            </div>
+          ) : null}
+
+          {page_content.header_image.url ? (
+            <div className={styles.desktop_art}>
+              <Image
+                src={page_content.header_image.url}
+                alt={page_content.header_image.alt}
+                layout={"responsive"}
+                height={page_content.header_image.dimensions.height}
+                width={page_content.header_image.dimensions.width}
+                unoptimized={true}
+                quality={100}
+                priority
+              />
+            </div>
           ) : null}
         </div>
       </div>

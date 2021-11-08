@@ -54,9 +54,23 @@
     width: 100%;
   }
 
-  // @media screen and (max-width: $mq-mobile-max) {
-  //   width: calc(100% - 80px);
-  // }
+  .desktop_art {
+    display: block !important;
+  }
+
+  .mobile_art {
+    display: none !important;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    .desktop_art {
+      display: none !important;
+    }
+
+    .mobile_art {
+      display: block !important;
+    }
+  }
 }
 
 .main {
