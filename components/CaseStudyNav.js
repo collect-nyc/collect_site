@@ -21,6 +21,16 @@ const CaseStudyNav = () => {
 
   const ArchiveViewToggle = () => {
     setArchiveView(!archiveView);
+
+    animateScrollTo(0, {
+      easing: (t) => {
+        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+      },
+      maxDuration: 0,
+      minDuration: 0,
+      speed: 1000,
+      verticalOffset: 0,
+    });
   };
 
   return (
