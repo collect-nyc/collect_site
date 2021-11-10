@@ -561,10 +561,10 @@ const Home = ({ archives, document, tagged }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>COLLECT Archive</title>
+        <title>Collect Archive</title>
         <meta
           name="description"
-          content="COLLECT Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
+          content="Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
         />
         <SharedHead />
       </Head>
