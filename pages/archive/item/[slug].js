@@ -69,6 +69,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
           backup_text
           supporting_image
           supporting_image_width
+          support_vertical_spacing
           body1 {
             ... on Archive_itemBody1Credits {
               type
@@ -358,6 +359,9 @@ const ArchiveItem = ({ document, uid }) => {
       case "Gutters":
         output.push(`${styles.single_image} ${styles.gutters}`);
         break;
+      case "Ultra":
+        output.push(`${styles.single_image} ${styles.ultra}`);
+        break;
       case "12":
         output.push(`${styles.single_image} ${styles.twelve}`);
         break;
@@ -379,19 +383,19 @@ const ArchiveItem = ({ document, uid }) => {
 
     switch (vertical) {
       case "Default":
-        output.push(` ${styles.default}`);
+        output.push(` ${styles.vertical_default}`);
         break;
-      case "Column":
+      case "120":
         output.push(` ${styles.column}`);
         break;
-      case "Thirty":
+      case "30":
         output.push(` ${styles.thirty}`);
         break;
-      case "Ten":
-        output.push(` ${styles.ultra}`);
+      case "10":
+        output.push(` ${styles.vertical_ultra}`);
         break;
       case "None":
-        output.push(` ${styles.none}`);
+        output.push(` ${styles.vertical_none}`);
         break;
       default:
         break;
@@ -419,19 +423,19 @@ const ArchiveItem = ({ document, uid }) => {
 
     switch (vertical) {
       case "Default":
-        output.push(` ${styles.default}`);
+        output.push(` ${styles.vertical_default}`);
         break;
-      case "Column":
+      case "120":
         output.push(` ${styles.column}`);
         break;
-      case "Thirty":
+      case "30":
         output.push(` ${styles.thirty}`);
         break;
-      case "Ten":
-        output.push(` ${styles.ultra}`);
+      case "10":
+        output.push(` ${styles.vertical_ultra}`);
         break;
       case "None":
-        output.push(` ${styles.none}`);
+        output.push(` ${styles.vertical_none}`);
         break;
       default:
         break;
@@ -447,19 +451,19 @@ const ArchiveItem = ({ document, uid }) => {
 
     switch (vertical) {
       case "Default":
-        output.push(` ${styles.default}`);
+        output.push(` ${styles.vertical_default}`);
         break;
-      case "Column":
+      case "120":
         output.push(` ${styles.column}`);
         break;
-      case "Thirty":
+      case "30":
         output.push(` ${styles.thirty}`);
         break;
-      case "Ten":
-        output.push(` ${styles.ultra}`);
+      case "10":
+        output.push(` ${styles.vertical_ultra}`);
         break;
       case "None":
-        output.push(` ${styles.none}`);
+        output.push(` ${styles.vertical_none}`);
         break;
       default:
         break;
@@ -693,6 +697,10 @@ const ArchiveItem = ({ document, uid }) => {
                       ? `${styles.title_image} ${styles.six}`
                       : page_data.title_image_width === "4"
                       ? `${styles.title_image} ${styles.four}`
+                      : page_data.title_image_width === "Gutters"
+                      ? `${styles.title_image} ${styles.gutters}`
+                      : page_data.title_image_width === "Ultra"
+                      ? `${styles.title_image} ${styles.ultra}`
                       : `${styles.title_image}`
                   }
                   ref={TitleImage}
@@ -725,6 +733,8 @@ const ArchiveItem = ({ document, uid }) => {
                         ? `${styles.case_study_intro} ${styles.eight}`
                         : page_data.supporting_image_width === "Gutters"
                         ? `${styles.case_study_intro} ${styles.gutters}`
+                        : page_data.supporting_image_width === "Ultra"
+                        ? `${styles.case_study_intro} ${styles.ultra}`
                         : `${styles.case_study_intro}`
                     }
                   >
@@ -764,7 +774,21 @@ const ArchiveItem = ({ document, uid }) => {
                           }
                         : null
                     }
-                    className={styles.lower_content}
+                    // className={styles.lower_content}
+                    className={
+                      page_data.support_vertical_spacing &&
+                      page_data.support_vertical_spacing === "Default"
+                        ? `${styles.lower_content} ${styles.vertical_default}`
+                        : page_data.support_vertical_spacing === "10"
+                        ? `${styles.lower_content} ${styles.ten}`
+                        : page_data.support_vertical_spacing === "30"
+                        ? `${styles.lower_content} ${styles.thirty}`
+                        : page_data.support_vertical_spacing === "None"
+                        ? `${styles.lower_content} ${styles.vertical_none}`
+                        : page_data.support_vertical_spacing === "120"
+                        ? `${styles.lower_content} ${styles.one_twenty}`
+                        : `${styles.lower_content}`
+                    }
                   >
                     {pageContent}
                   </div>

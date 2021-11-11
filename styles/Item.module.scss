@@ -124,6 +124,10 @@
           padding: 0 $navGutter_desktop;
         }
 
+        &.ultra {
+          padding: 0 10px;
+        }
+
         .support_image {
           display: block;
           width: 100%;
@@ -136,10 +140,29 @@
 
       .lower_content {
         background-color: $alabaster;
-        padding-top: 180px;
+
+        &.vertical_default {
+          padding-top: 180px;
+        }
+
+        &.vertical_ultra {
+          padding-top: 10px;
+        }
+
+        &.thirty {
+          padding-top: 30px;
+        }
+
+        &.one_twenty {
+          padding-top: 120px;
+        }
+
+        &.vertical_none {
+          padding-top: 0;
+        }
 
         @media screen and (max-width: $mq-mobile-max) {
-          padding-top: 80px;
+          padding-top: 80px !important;
         }
       }
 
@@ -147,14 +170,8 @@
       .image_slider,
       .double_image,
       .text_block {
-        // margin-bottom: 180px;
-
-        // @media screen and (max-width: $mq-mobile-max) {
-        //   margin-bottom: 80px;
-        // }
-
         // Vertical Spacing
-        &.default {
+        &.vertical_default {
           margin-bottom: 180px;
 
           @media screen and (max-width: $mq-mobile-max) {
@@ -178,7 +195,7 @@
           }
         }
 
-        &.ultra {
+        &.vertical_ultra {
           margin-bottom: 10px;
 
           @media screen and (max-width: $mq-mobile-max) {
@@ -186,7 +203,7 @@
           }
         }
 
-        &.none {
+        &.vertical_none {
           margin-bottom: 0;
 
           @media screen and (max-width: $mq-mobile-max) {
@@ -276,6 +293,9 @@
         // Columns Width
         &.gutters {
           padding: 0 $navGutter_desktop;
+        }
+        &.ultra {
+          padding: 0 10px;
         }
         &.twelve {
           padding: 0;
