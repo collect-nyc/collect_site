@@ -85,10 +85,14 @@ export async function getStaticProps({ params, preview = false, previewData }) {
               primary {
                 image
                 columns
+                vertical_spacing
               }
             }
             ... on Archive_itemBodyImages_slider {
               type
+              primary {
+                vertical_spacing
+              }
               fields {
                 image
                 description
@@ -97,6 +101,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             ... on Archive_itemBodyText_block {
               type
               primary {
+                vertical_spacing
                 text
               }
             }
@@ -104,14 +109,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
               type
               primary {
                 layout
+                vertical_spacing
                 first_image
                 second_image
-              }
-            }
-            ... on Archive_itemBodyText_block {
-              type
-              primary {
-                text
               }
             }
             __typename
@@ -351,6 +351,123 @@ const ArchiveItem = ({ document, uid }) => {
     }
   };
 
+  const SingleImageClasses = (columns, vertical) => {
+    let output = [];
+
+    switch (columns) {
+      case "Gutters":
+        output.push(`${styles.single_image} ${styles.gutters}`);
+        break;
+      case "12":
+        output.push(`${styles.single_image} ${styles.twelve}`);
+        break;
+      case "10":
+        output.push(`${styles.single_image} ${styles.ten}`);
+        break;
+      case "8":
+        output.push(`${styles.single_image} ${styles.eight}`);
+        break;
+      case "6":
+        output.push(`${styles.single_image} ${styles.six}`);
+        break;
+      case "4":
+        output.push(`${styles.single_image} ${styles.four}`);
+        break;
+      default:
+        output.push(`${styles.single_image}`);
+    }
+
+    switch (vertical) {
+      case "Default":
+        output.push(` ${styles.default}`);
+        break;
+      case "Column":
+        output.push(` ${styles.column}`);
+        break;
+      case "Thirty":
+        output.push(` ${styles.thirty}`);
+        break;
+      case "Ten":
+        output.push(` ${styles.ultra}`);
+        break;
+      case "None":
+        output.push(` ${styles.none}`);
+        break;
+      default:
+        break;
+    }
+
+    return output.join("");
+  };
+
+  const DoubleImageClasses = (layout, vertical) => {
+    let output = [];
+
+    switch (layout) {
+      case "Equal":
+        output.push(`${styles.double_image} ${styles.equal}`);
+        break;
+      case "Asymmetrical Left":
+        output.push(`${styles.double_image} ${styles.left}`);
+        break;
+      case "Asymmetrical Right":
+        output.push(`${styles.double_image} ${styles.right}`);
+        break;
+      default:
+        output.push(`${styles.double_image}`);
+    }
+
+    switch (vertical) {
+      case "Default":
+        output.push(` ${styles.default}`);
+        break;
+      case "Column":
+        output.push(` ${styles.column}`);
+        break;
+      case "Thirty":
+        output.push(` ${styles.thirty}`);
+        break;
+      case "Ten":
+        output.push(` ${styles.ultra}`);
+        break;
+      case "None":
+        output.push(` ${styles.none}`);
+        break;
+      default:
+        break;
+    }
+
+    return output.join("");
+  };
+
+  const OtherItemClasses = (default_class, vertical) => {
+    let output = [];
+
+    output.push(default_class);
+
+    switch (vertical) {
+      case "Default":
+        output.push(` ${styles.default}`);
+        break;
+      case "Column":
+        output.push(` ${styles.column}`);
+        break;
+      case "Thirty":
+        output.push(` ${styles.thirty}`);
+        break;
+      case "Ten":
+        output.push(` ${styles.ultra}`);
+        break;
+      case "None":
+        output.push(` ${styles.none}`);
+        break;
+      default:
+        break;
+    }
+
+    return output.join("");
+  };
+
   const pageContent =
     page_data && page_data.body
       ? page_data.body.map((slice, index) => {
@@ -359,15 +476,10 @@ const ArchiveItem = ({ document, uid }) => {
             return (
               <section
                 key={index}
-                className={
-                  slice.primary.layout === "Equal"
-                    ? `${styles.double_image} ${styles.equal}`
-                    : slice.primary.layout === "Asymmetrical Left"
-                    ? `${styles.double_image} ${styles.left}`
-                    : slice.primary.layout === "Asymmetrical Right"
-                    ? `${styles.double_image} ${styles.right}`
-                    : `${styles.double_image}`
-                }
+                className={DoubleImageClasses(
+                  slice.primary.layout,
+                  slice.primary.vertical_spacing
+                )}
               >
                 <div
                   className={
@@ -415,21 +527,10 @@ const ArchiveItem = ({ document, uid }) => {
             return (
               <section
                 key={index}
-                className={
-                  slice.primary.columns === "Gutters"
-                    ? `${styles.single_image} ${styles.gutters}`
-                    : slice.primary.columns === "12"
-                    ? `${styles.single_image} ${styles.twelve}`
-                    : slice.primary.columns === "10"
-                    ? `${styles.single_image} ${styles.ten}`
-                    : slice.primary.columns === "8"
-                    ? `${styles.single_image} ${styles.eight}`
-                    : slice.primary.columns === "6"
-                    ? `${styles.single_image} ${styles.six}`
-                    : slice.primary.columns === "4"
-                    ? `${styles.single_image} ${styles.four}`
-                    : `${styles.single_image}`
-                }
+                className={SingleImageClasses(
+                  slice.primary.columns,
+                  slice.primary.vertical_spacing
+                )}
               >
                 {slice.primary.image && slice.primary.image.url ? (
                   <figure
@@ -451,7 +552,13 @@ const ArchiveItem = ({ document, uid }) => {
             );
           } else if (slice.type === "text_block") {
             return (
-              <section key={index} className={`${styles.text_block} `}>
+              <section
+                key={index}
+                className={OtherItemClasses(
+                  styles.text_block,
+                  slice.primary.vertical_spacing
+                )}
+              >
                 {slice.primary.text ? (
                   <RichText render={slice.primary.text} />
                 ) : null}
@@ -459,7 +566,13 @@ const ArchiveItem = ({ document, uid }) => {
             );
           } else if (slice.type === "images_slider") {
             return (
-              <section key={index} className={styles.image_slider}>
+              <section
+                key={index}
+                className={OtherItemClasses(
+                  styles.image_slider,
+                  slice.primary.vertical_spacing
+                )}
+              >
                 <ImageSlider
                   images={slice.fields}
                   text_color={page_data.text_color}

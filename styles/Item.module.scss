@@ -127,13 +127,6 @@
         .support_image {
           display: block;
           width: 100%;
-
-          // .image {
-          //   object-fit: contain;
-          //   width: 100% !important;
-          //   position: relative !important;
-          //   height: unset !important;
-          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
@@ -154,14 +147,55 @@
       .image_slider,
       .double_image,
       .text_block {
-        margin-bottom: 180px;
+        // margin-bottom: 180px;
 
-        @media screen and (max-width: $mq-mobile-max) {
-          margin-bottom: 80px;
+        // @media screen and (max-width: $mq-mobile-max) {
+        //   margin-bottom: 80px;
+        // }
+
+        // Vertical Spacing
+        &.default {
+          margin-bottom: 180px;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            margin-bottom: 80px;
+          }
+        }
+
+        &.column {
+          margin-bottom: 120px;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            margin-bottom: 60px;
+          }
+        }
+
+        &.thirty {
+          margin-bottom: $navGutter_desktop;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            margin-bottom: $navGutter_mobile;
+          }
+        }
+
+        &.ultra {
+          margin-bottom: 10px;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            margin-bottom: 10px;
+          }
+        }
+
+        &.none {
+          margin-bottom: 0;
+
+          @media screen and (max-width: $mq-mobile-max) {
+            margin-bottom: 0;
+          }
         }
 
         &:last-of-type {
-          margin-bottom: 0;
+          margin-bottom: 0 !important;
         }
       }
 
@@ -239,6 +273,7 @@
       }
 
       .single_image {
+        // Columns Width
         &.gutters {
           padding: 0 $navGutter_desktop;
         }
