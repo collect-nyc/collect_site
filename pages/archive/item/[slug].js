@@ -58,6 +58,7 @@ export async function getStaticProps({ params, preview = false, previewData }) {
             }
           }
           password_protected
+          intro_style
           item_type
           background_color
           text_color
@@ -632,6 +633,7 @@ const ArchiveItem = ({ document, uid }) => {
         </Head>
 
         {isLocked ? (
+          // Locked Layout
           <div className={styles.password_wrapper}>
             <form
               className={styles.password_field}
@@ -654,12 +656,15 @@ const ArchiveItem = ({ document, uid }) => {
             </form>
           </div>
         ) : (
+          // Start of Case Study Layout
           <main className={styles.main}>
             {page_data.item_type === "Case Study" && !archiveView ? (
               <div
                 className={styles.casestudy_container}
                 style={
-                  page_data.item_type === "Case Study" && page_data.text_color
+                  page_data.item_type === "Case Study" &&
+                  page_data.intro_style !== "Default" &&
+                  page_data.text_color
                     ? {
                         color: page_data.text_color,
                         paddingTop:
@@ -669,102 +674,117 @@ const ArchiveItem = ({ document, uid }) => {
                           (titleImageDist - 50) +
                           "px)",
                       }
+                    : page_data.item_type === "Case Study" &&
+                      page_data.intro_style === "Default" &&
+                      page_data.text_color
+                    ? {
+                        color: page_data.text_color,
+                        paddingTop: "0px !important",
+                      }
                     : null
                 }
               >
-                <motion.figure
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: [0, 1] }}
-                  transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-                  style={
-                    page_data.item_type === "Case Study" &&
-                    page_data.background_color
-                      ? {
-                          backgroundColor: page_data.background_color,
-                          height: onceAppHeight + "px",
-                        }
-                      : null
-                  }
-                  className={
-                    page_data.title_image_width &&
-                    page_data.title_image_width === "12"
-                      ? `${styles.title_image} ${styles.twelve}`
-                      : page_data.title_image_width === "10"
-                      ? `${styles.title_image} ${styles.ten}`
-                      : page_data.title_image_width === "8"
-                      ? `${styles.title_image} ${styles.eight}`
-                      : page_data.title_image_width === "6"
-                      ? `${styles.title_image} ${styles.six}`
-                      : page_data.title_image_width === "4"
-                      ? `${styles.title_image} ${styles.four}`
-                      : page_data.title_image_width === "Gutters"
-                      ? `${styles.title_image} ${styles.gutters}`
-                      : page_data.title_image_width === "Ultra"
-                      ? `${styles.title_image} ${styles.ultra}`
-                      : `${styles.title_image}`
-                  }
-                  ref={TitleImage}
-                >
-                  {page_data.title_image && page_data.title_image.url ? (
-                    <Image
-                      src={page_data.title_image.url}
-                      alt={page_data.title_image.alt}
-                      height={page_data.title_image.dimensions.height}
-                      width={page_data.title_image.dimensions.width}
-                      quality={100}
-                      className="title_image"
-                      priority
-                    />
-                  ) : page_data.backup_text && page_data.backup_text[0] ? (
-                    <p className={styles.backup_text}>
-                      {page_data.backup_text[0].text}
-                    </p>
-                  ) : null}
-                </motion.figure>
-                <div className={styles.casestudy_content}>
-                  <section
-                    className={
-                      page_data.supporting_image_width &&
-                      page_data.supporting_image_width === "12"
-                        ? `${styles.case_study_intro} ${styles.twelve}`
-                        : page_data.supporting_image_width === "10"
-                        ? `${styles.case_study_intro} ${styles.ten}`
-                        : page_data.supporting_image_width === "8"
-                        ? `${styles.case_study_intro} ${styles.eight}`
-                        : page_data.supporting_image_width === "Gutters"
-                        ? `${styles.case_study_intro} ${styles.gutters}`
-                        : page_data.supporting_image_width === "Ultra"
-                        ? `${styles.case_study_intro} ${styles.ultra}`
-                        : `${styles.case_study_intro}`
+                {page_data && page_data.intro_style === "Scroll Over" ? (
+                  <motion.figure
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: [0, 1] }}
+                    transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+                    style={
+                      page_data.item_type === "Case Study" &&
+                      page_data.background_color
+                        ? {
+                            backgroundColor: page_data.background_color,
+                            height: onceAppHeight + "px",
+                          }
+                        : null
                     }
+                    className={
+                      page_data.title_image_width &&
+                      page_data.title_image_width === "12"
+                        ? `${styles.title_image} ${styles.twelve}`
+                        : page_data.title_image_width === "10"
+                        ? `${styles.title_image} ${styles.ten}`
+                        : page_data.title_image_width === "8"
+                        ? `${styles.title_image} ${styles.eight}`
+                        : page_data.title_image_width === "6"
+                        ? `${styles.title_image} ${styles.six}`
+                        : page_data.title_image_width === "4"
+                        ? `${styles.title_image} ${styles.four}`
+                        : page_data.title_image_width === "Gutters"
+                        ? `${styles.title_image} ${styles.gutters}`
+                        : page_data.title_image_width === "Ultra"
+                        ? `${styles.title_image} ${styles.ultra}`
+                        : `${styles.title_image}`
+                    }
+                    ref={TitleImage}
                   >
-                    <motion.figure
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: [0, 1] }}
-                      transition={{
-                        duration: 1,
-                        delay: 1.4,
-                        ease: "easeOut",
-                      }}
-                      // className={styles.support_image}
-                      className={styles.support_image}
+                    {page_data.title_image && page_data.title_image.url ? (
+                      <Image
+                        src={page_data.title_image.url}
+                        alt={page_data.title_image.alt}
+                        height={page_data.title_image.dimensions.height}
+                        width={page_data.title_image.dimensions.width}
+                        quality={100}
+                        className="title_image"
+                        priority
+                      />
+                    ) : page_data.backup_text && page_data.backup_text[0] ? (
+                      <p className={styles.backup_text}>
+                        {page_data.backup_text[0].text}
+                      </p>
+                    ) : null}
+                  </motion.figure>
+                ) : null}
+
+                <div className={styles.casestudy_content}>
+                  {page_data && page_data.intro_style === "Scroll Over" ? (
+                    <section
+                      className={
+                        page_data.supporting_image_width &&
+                        page_data.supporting_image_width === "12"
+                          ? `${styles.case_study_intro} ${styles.twelve}`
+                          : page_data.supporting_image_width === "10"
+                          ? `${styles.case_study_intro} ${styles.ten}`
+                          : page_data.supporting_image_width === "8"
+                          ? `${styles.case_study_intro} ${styles.eight}`
+                          : page_data.supporting_image_width === "Gutters"
+                          ? `${styles.case_study_intro} ${styles.gutters}`
+                          : page_data.supporting_image_width === "Ultra"
+                          ? `${styles.case_study_intro} ${styles.ultra}`
+                          : `${styles.case_study_intro}`
+                      }
                     >
-                      {page_data.supporting_image &&
-                      page_data.supporting_image.url ? (
-                        <Image
-                          src={page_data.supporting_image.url}
-                          alt={page_data.supporting_image.alt}
-                          height={page_data.supporting_image.dimensions.height}
-                          width={page_data.supporting_image.dimensions.width}
-                          quality={100}
-                          // objectFit={"contain"}
-                          className={styles.image}
-                          layout={"responsive"}
-                          priority
-                        />
-                      ) : null}
-                    </motion.figure>
-                  </section>
+                      <motion.figure
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 1] }}
+                        transition={{
+                          duration: 1,
+                          delay: 1.4,
+                          ease: "easeOut",
+                        }}
+                        // className={styles.support_image}
+                        className={styles.support_image}
+                      >
+                        {page_data.supporting_image &&
+                        page_data.supporting_image.url ? (
+                          <Image
+                            src={page_data.supporting_image.url}
+                            alt={page_data.supporting_image.alt}
+                            height={
+                              page_data.supporting_image.dimensions.height
+                            }
+                            width={page_data.supporting_image.dimensions.width}
+                            quality={100}
+                            // objectFit={"contain"}
+                            className={styles.image}
+                            layout={"responsive"}
+                            priority
+                          />
+                        ) : null}
+                      </motion.figure>
+                    </section>
+                  ) : null}
+
                   <div
                     style={
                       page_data.item_type === "Case Study" &&
@@ -774,7 +794,6 @@ const ArchiveItem = ({ document, uid }) => {
                           }
                         : null
                     }
-                    // className={styles.lower_content}
                     className={
                       page_data.support_vertical_spacing &&
                       page_data.support_vertical_spacing === "Default"
@@ -795,6 +814,7 @@ const ArchiveItem = ({ document, uid }) => {
                 </div>
               </div>
             ) : (
+              // Start Archive View
               <div
                 className={styles.inner}
                 style={
