@@ -774,13 +774,12 @@ const ArchiveItem = ({ document, uid }) => {
                           }
                         : null
                     }
-                    // className={styles.lower_content}
                     className={
                       page_data.support_vertical_spacing &&
                       page_data.support_vertical_spacing === "Default"
                         ? `${styles.lower_content} ${styles.vertical_default}`
                         : page_data.support_vertical_spacing === "10"
-                        ? `${styles.lower_content} ${styles.ten}`
+                        ? `${styles.lower_content} ${styles.vertical_ultra}`
                         : page_data.support_vertical_spacing === "30"
                         ? `${styles.lower_content} ${styles.thirty}`
                         : page_data.support_vertical_spacing === "None"
