@@ -235,7 +235,7 @@
     .grid_item {
       margin: 0;
       padding: {
-        bottom: 25px;
+        bottom: 20px;
       }
 
       @media screen and (max-width: $mq-mobile-max) {
@@ -253,7 +253,7 @@
       }
 
       a {
-        display: block;
+        display: flex;
         margin: 0;
         padding: 0;
       }
