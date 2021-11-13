@@ -746,7 +746,6 @@ const ArchiveItem = ({ document, uid }) => {
                         delay: 1.4,
                         ease: "easeOut",
                       }}
-                      // className={styles.support_image}
                       className={styles.support_image}
                     >
                       {page_data.supporting_image &&
@@ -757,7 +756,6 @@ const ArchiveItem = ({ document, uid }) => {
                           height={page_data.supporting_image.dimensions.height}
                           width={page_data.supporting_image.dimensions.width}
                           quality={100}
-                          // objectFit={"contain"}
                           className={styles.image}
                           layout={"responsive"}
                           priority
