@@ -56,7 +56,7 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
               </a>
             </Link>
           </div>
-          {tags ? (
+          {tags && tags.length > 0 ? (
             <div className={styles.filter_button}>
               <span className={styles.label}>
                 <button

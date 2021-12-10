@@ -32,7 +32,7 @@ export default function MyLayout({ page, children }) {
           page={page}
           count={data ? totalCount : null}
           latest={latest_active}
-          tags={data ? tags : null}
+          tags={data && tags ? tags : null}
           case_study={page.case_study}
         />
         {children}
