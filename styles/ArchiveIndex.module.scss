@@ -71,7 +71,7 @@
           display: flex;
           justify-content: flex-start;
           align-items: flex-start;
-          padding: 19px 20px 17px;
+          padding: 18px 0 38px;
           position: relative;
 
           @media screen and (max-width: $mq-mobile-max) {
@@ -82,43 +82,40 @@
             background-color: $alabaster;
             display: none;
             justify-content: flex-start;
-            align-items: center;
+            align-items: flex-start;
             position: absolute;
             left: 20px;
             top: 0;
             height: 100%;
-            padding-top: 6px;
+            padding-top: 18px;
             font-family: $futura;
             font-size: 14px;
             font-weight: 700;
             text-align: center;
             line-height: 1;
             text-transform: uppercase;
-            width: 25%;
+            width: calc($gutter_desktop * 3);
             z-index: 2;
           }
 
-          .coming_soon {
-            cursor: not-allowed;
-
-            &:hover {
-              .coming_text {
-                display: flex;
-
-                @media screen and (max-width: $mq-mobile-max) {
-                  width: 65%;
-                }
-              }
-            }
-          }
-
           .name {
-            padding-right: 20px;
+            padding: {
+              left: $navGutter_desktop;
+              right: $navGutter_desktop;
+            }
             text-transform: uppercase;
-            width: 33.33%;
+            width: calc($gutter_desktop * 3);
 
             @media screen and (max-width: $mq-mobile-max) {
               width: calc(100% - 40px);
+            }
+          }
+
+          .tags {
+            width: calc($gutter_desktop * 3);
+
+            @media screen and (max-width: $mq-mobile-max) {
+              display: none;
             }
           }
 
@@ -126,7 +123,8 @@
             @extend .courier_label;
             display: flex;
             justify-content: space-between;
-            width: 33.33%;
+            width: calc($gutter_desktop * 2);
+
             @media screen and (max-width: $mq-mobile-max) {
               justify-content: flex-end;
               padding: {
@@ -134,6 +132,12 @@
               }
             }
           }
+
+          .thumbnail {
+            width: calc($gutter_desktop * 2);
+            padding: 0 40px;
+          }
+
           @media screen and (max-width: $mq-mobile-max) {
             padding: {
               left: $gutter_mobile;
@@ -141,14 +145,25 @@
           }
         }
 
-        .thumbnail {
-          width: 33.33333%;
+        .coming_soon {
+          cursor: not-allowed;
+
+          &:hover {
+            .coming_text {
+              display: flex;
+
+              @media screen and (max-width: $mq-mobile-max) {
+                width: 65%;
+              }
+            }
+          }
         }
 
-        .tags {
-          width: 33.33%;
-          @media screen and (max-width: $mq-mobile-max) {
-            display: none;
+        .coming_soon {
+          .view_project {
+            opacity: 0;
+            padding-right: $navGutter_desktop;
+            text-align: right;
           }
         }
 
@@ -157,6 +172,9 @@
             font-family: $untitled_sans;
             font-size: 13px;
             opacity: 0;
+            padding-right: $navGutter_desktop;
+            text-align: right;
+            width: calc($gutter_desktop * 2);
           }
           &:hover {
             text-decoration: nonegit;
