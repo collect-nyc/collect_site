@@ -20,38 +20,13 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    // padding: 200px 11% 100px !important;
+    padding: 180px $navGutter_mobile 100px;
+
+    p {
+      max-width: none;
+    }
   }
 }
-
-// .title {
-//   width: 100%;
-//   max-width: 100%;
-//   margin: 0 auto;
-//   text-align: center;
-
-//   svg {
-//     width: 100%;
-//   }
-
-//   .desktop_art {
-//     display: block !important;
-//   }
-
-//   .mobile_art {
-//     display: none !important;
-//   }
-
-//   @media screen and (max-width: $mq-mobile-max) {
-//     .desktop_art {
-//       display: none !important;
-//     }
-
-//     .mobile_art {
-//       display: block !important;
-//     }
-//   }
-// }
 
 .main {
   min-height: calc(100vh - 125px);
@@ -95,7 +70,7 @@
         .coming_soon {
           display: flex;
           justify-content: flex-start;
-          align-items: flex-end;
+          align-items: flex-start;
           padding: 19px 20px 17px;
           position: relative;
 
@@ -121,6 +96,20 @@
             text-transform: uppercase;
             width: 25%;
             z-index: 2;
+          }
+
+          .coming_soon {
+            cursor: not-allowed;
+
+            &:hover {
+              .coming_text {
+                display: flex;
+
+                @media screen and (max-width: $mq-mobile-max) {
+                  width: 65%;
+                }
+              }
+            }
           }
 
           .name {
@@ -152,18 +141,8 @@
           }
         }
 
-        .coming_soon {
-          cursor: not-allowed;
-
-          &:hover {
-            .coming_text {
-              display: flex;
-
-              @media screen and (max-width: $mq-mobile-max) {
-                width: 65%;
-              }
-            }
-          }
+        .thumbnail {
+          width: 33.33333%;
         }
 
         .tags {
@@ -177,13 +156,14 @@
           .view_project {
             font-family: $untitled_sans;
             font-size: 13px;
-            display: none;
+            opacity: 0;
           }
           &:hover {
             text-decoration: nonegit;
 
             .view_project {
               display: block;
+              opacity: 1;
 
               @media screen and (max-width: $mq-mobile-max) {
                 display: none;

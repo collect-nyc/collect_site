@@ -90,7 +90,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  // console.log("Pure Archive from Data", archives);
+  console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
   const router = useRouter();
 
@@ -394,6 +394,39 @@ const Home = ({ archives, document, tagged }) => {
                             ).toFormat("yyyy")
                           : "TBD"}
                       </span>
+
+                      <span className={styles.thumbnail}>
+                        {archive.data.index_thumbnail?.url ? (
+                          <Image
+                            className={styles.lazyloaded}
+                            alt={archive.data.index_thumbnail.alt}
+                            src={archive.data.index_thumbnail.url}
+                            height={
+                              archive.data.index_thumbnail.dimensions.height
+                            }
+                            width={
+                              archive.data.index_thumbnail.dimensions.width
+                            }
+                            quality={75}
+                            priority
+                          />
+                        ) : archive.data.images[0].image.url ? (
+                          <Image
+                            className={styles.lazyloaded}
+                            alt={archive.data.images[0].image.alt}
+                            src={archive.data.images[0].image.url}
+                            height={
+                              archive.data.images[0].image.dimensions.height
+                            }
+                            width={
+                              archive.data.images[0].image.dimensions.width
+                            }
+                            quality={75}
+                            priority
+                          />
+                        ) : null}
+                      </span>
+
                       <span className={styles.view_project}>
                         View Project <RightArrow />
                       </span>
@@ -420,6 +453,39 @@ const Home = ({ archives, document, tagged }) => {
                               ).toFormat("yyyy")
                             : "TBD"}
                         </span>
+
+                        <span className={styles.thumbnail}>
+                          {archive.data.index_thumbnail?.url ? (
+                            <Image
+                              className={styles.lazyloaded}
+                              alt={archive.data.index_thumbnail.alt}
+                              src={archive.data.index_thumbnail.url}
+                              height={
+                                archive.data.index_thumbnail.dimensions.height
+                              }
+                              width={
+                                archive.data.index_thumbnail.dimensions.width
+                              }
+                              quality={75}
+                              priority
+                            />
+                          ) : archive.data.images[0].image.url ? (
+                            <Image
+                              className={styles.lazyloaded}
+                              alt={archive.data.images[0].image.alt}
+                              src={archive.data.images[0].image.url}
+                              height={
+                                archive.data.images[0].image.dimensions.height
+                              }
+                              width={
+                                archive.data.images[0].image.dimensions.width
+                              }
+                              quality={75}
+                              priority
+                            />
+                          ) : null}
+                        </span>
+
                         <span className={styles.view_project}>
                           View Project <RightArrow />
                         </span>
