@@ -568,55 +568,12 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
-      <div
-        ref={TitleHolder}
-        className={
-          document.data.columns === "Gutters"
-            ? `${styles.title_holder} ${styles.gutters}`
-            : document.data.columns === "12"
-            ? `${styles.title_holder} ${styles.twelve}`
-            : document.data.columns === "10"
-            ? `${styles.title_holder} ${styles.ten}`
-            : document.data.columns === "8"
-            ? `${styles.title_holder} ${styles.eight}`
-            : document.data.columns === "6"
-            ? `${styles.title_holder} ${styles.six}`
-            : document.data.columns === "4"
-            ? `${styles.title_holder} ${styles.four}`
-            : `${styles.title_holder}`
-        }
-      >
-        <div className={styles.title}>
-          {page_content.mobile_header.url ? (
-            <div className={styles.mobile_art}>
-              <Image
-                src={page_content.mobile_header.url}
-                alt={page_content.mobile_header.alt}
-                layout={"responsive"}
-                height={page_content.mobile_header.dimensions.height}
-                width={page_content.mobile_header.dimensions.width}
-                unoptimized={true}
-                quality={100}
-                priority
-              />
-            </div>
-          ) : null}
-
-          {page_content.header_image.url ? (
-            <div className={styles.desktop_art}>
-              <Image
-                src={page_content.header_image.url}
-                alt={page_content.header_image.alt}
-                layout={"responsive"}
-                height={page_content.header_image.dimensions.height}
-                width={page_content.header_image.dimensions.width}
-                unoptimized={true}
-                quality={100}
-                priority
-              />
-            </div>
-          ) : null}
-        </div>
+      <div ref={TitleHolder} className={styles.archive_header}>
+        <p>
+          A continuously updated look at our output and interests, from
+          observational photography and design études, to printed matter,
+          one-of-ones and more.
+        </p>
       </div>
       <main
         className={layoutView ? `${styles.main} ${styles.grid}` : styles.main}
