@@ -79,23 +79,17 @@
           }
 
           .coming_text {
-            background-color: $alabaster;
             display: none;
             justify-content: flex-start;
             align-items: flex-start;
             position: absolute;
             left: 20px;
-            top: 0;
-            height: 100%;
-            padding-top: 18px;
+            top: 22px;
             font-family: $futura;
             font-size: 14px;
             font-weight: 700;
-            text-align: center;
             line-height: 1;
             text-transform: uppercase;
-            width: calc($gutter_desktop * 3);
-            z-index: 2;
           }
 
           .name {
@@ -149,6 +143,9 @@
           cursor: not-allowed;
 
           &:hover {
+            .name {
+              opacity: 0;
+            }
             .coming_text {
               display: flex;
 
@@ -170,7 +167,7 @@
         a {
           .view_project {
             font-family: $untitled_sans;
-            font-size: 13px;
+            font-size: 12px;
             opacity: 0;
             padding-right: $navGutter_desktop;
             text-align: right;
