@@ -63,7 +63,7 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
                   className={filterOpen ? styles.open : styles.closed}
                   onClick={() => ToggleFilters()}
                 >
-                  {currentTag} <Carot />
+                  Now Viewing {currentTag} <Carot />
                 </button>
               </span>
               <ul

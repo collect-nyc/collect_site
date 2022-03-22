@@ -35,15 +35,31 @@
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
     mix-blend-mode: normal;
+    padding: {
+      left: 0;
+      right: 0;
+    }
 
     a,
     button {
       color: $black;
     }
 
+    .top_left {
+      width: calc($gutter_desktop * 10);
+
+      .link_box {
+        padding: 0 0 0 $navGutter_desktop;
+        width: 60%;
+        min-width: 170px;
+      }
+    }
+
     .top_right {
       justify-content: flex-end;
       align-items: flex-start;
+      padding: 0 $navGutter_desktop 0 0;
+      width: calc($gutter_desktop * 2);
     }
   }
 
@@ -121,6 +137,7 @@
   }
 
   .top_left {
+    background-color: lavender;
     display: flex;
     list-style: none;
     align-items: flex-start;
@@ -132,11 +149,6 @@
       padding-right: 50px;
       align-items: center;
       width: auto;
-      // height: 24px;
-
-      &.archive {
-        min-width: 170px;
-      }
 
       a {
         display: flex;
@@ -155,8 +167,10 @@
 
     .filter_button {
       min-width: 116px;
-      width: 75%;
+      // width: 75%;
+      max-width: calc($gutter_desktop * 4);
       display: flex;
+      flex-direction: column;
       align-items: flex-start;
 
       .label {
@@ -209,15 +223,15 @@
     }
 
     .tag_list {
-      margin: 0;
+      margin: 15px 0 0;
       display: none;
-      column-count: 3;
-      column-gap: 0;
-      column-width: auto;
+      // column-count: 3;
+      // column-gap: 10px;
+      // column-width: auto;
       padding: 0;
       list-style: none;
       width: 100%;
-      max-width: 350px;
+      // max-width: 350px;
 
       @media screen and (max-width: $mq-mobile-max) {
         column-count: 2;
@@ -231,9 +245,9 @@
       }
 
       li {
-        display: block;
-        line-height: 19.5px;
-        padding-bottom: 10px;
+        display: inline-block;
+        // line-height: 19.5px;
+        // padding-bottom: 10px;
 
         button {
           background-color: transparent;
