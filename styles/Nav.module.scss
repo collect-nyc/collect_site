@@ -137,7 +137,7 @@
   }
 
   .top_left {
-    background-color: lavender;
+    // background-color: lavender;
     display: flex;
     list-style: none;
     align-items: flex-start;
@@ -223,7 +223,7 @@
     }
 
     .tag_list {
-      margin: 15px 0 0;
+      margin: 10px 0 0;
       display: none;
       // column-count: 3;
       // column-gap: 10px;
@@ -231,7 +231,6 @@
       padding: 0;
       list-style: none;
       width: 100%;
-      // max-width: 350px;
 
       @media screen and (max-width: $mq-mobile-max) {
         column-count: 2;
@@ -246,7 +245,8 @@
 
       li {
         display: inline-block;
-        // line-height: 19.5px;
+        margin-right: 10px;
+        // line-height: 18px;
         // padding-bottom: 10px;
 
         button {
@@ -281,7 +281,7 @@
         background-color: transparent;
         border: none;
         cursor: pointer;
-        margin-right: 20px;
+        margin-right: 15px;
         // height: 24px;
       }
 
@@ -310,6 +310,7 @@
         }
       }
     }
+
     &.archive_right {
       justify-content: flex-end;
     }

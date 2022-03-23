@@ -18,6 +18,10 @@ export default function MyLayout({ page, children }) {
 
   const tags = data ? data.tags : null;
 
+  const tagPlus = data ? data.tagplus : null;
+
+  console.log(tagPlus);
+
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
 

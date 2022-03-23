@@ -1,9 +1,38 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
+import axios from "axios";
+
+const GetCount = ({ tag }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    console.log("count updated", count);
+  }, [count]);
+
+  axios
+    .get("/api/get-tag-count", {
+      params: {
+        name: tag,
+      },
+    })
+    .then(function (response) {
+      console.log("Response", tag, response.data);
+
+      setCount(response.data);
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      // always executed
+    });
+
+  return <span>({count})</span>;
+};
 
 const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
   const router = useRouter();
@@ -75,7 +104,9 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
               >
                 {currentTag === "All Work" ? null : (
                   <li>
-                    <button onClick={() => AllTags()}>All Work</button>
+                    <button onClick={() => AllTags()}>
+                      All Work <GetCount tag={"All Work"} />
+                    </button>
                   </li>
                 )}
 
@@ -84,7 +115,7 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
                       tag === currentTag ? null : (
                         <li key={key}>
                           <button index={tag.id} onClick={() => GetByTag(tag)}>
-                            {tag}
+                            {tag} <GetCount tag={tag} />
                           </button>
                         </li>
                       )

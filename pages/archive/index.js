@@ -90,7 +90,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  console.log("Pure Archive from Data", archives);
+  // console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
   const router = useRouter();
 
@@ -122,7 +122,7 @@ const Home = ({ archives, document, tagged }) => {
   // const loadedArchives = [...archives];
 
   const handleResize = () => {
-    console.log("Resizing");
+    // console.log("Resizing");
     setTitleHeight(TitleHolder.current.offsetHeight);
 
     setTimeout(() => {

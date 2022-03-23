@@ -1,4 +1,4 @@
-import Prismic from "prismic-javascript";
+import * as prismic from "@prismicio/client";
 import { Client } from "../../lib/prismic-config";
 
 export default async function handler(req, res) {
@@ -16,7 +16,7 @@ export default async function handler(req, res) {
   // Loop through pages of results and add those results to a storage array
   do {
     const resp = await Client().query(
-      Prismic.Predicates.at("document.type", "archive_item"),
+      prismic.Predicates.at("document.type", "archive_item"),
       { pageSize: 100, page: pageNum }
     );
 
