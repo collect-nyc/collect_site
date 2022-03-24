@@ -6,20 +6,13 @@ export default async function handler(req, res) {
 
   let archives;
 
-  if (name === "All Work") {
-    archives = await Client().query(
-      [prismic.Predicates.at("document.type", "archive_item")],
-      { pageSize: 100, page: 1 }
-    );
-  } else {
-    archives = await Client().query(
-      [
-        prismic.Predicates.at("document.type", "archive_item"),
-        prismic.Predicates.at("document.tags", [name]),
-      ],
-      { pageSize: 100, page: 1 }
-    );
-  }
+  archives = await Client().query(
+    [
+      prismic.Predicates.at("document.type", "archive_item"),
+      prismic.Predicates.at("document.tags", [name]),
+    ],
+    { pageSize: 100, page: 1 }
+  );
 
   const jsondata = JSON.stringify(archives.results_size);
   res.status(200).json(jsondata);

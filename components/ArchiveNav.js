@@ -95,33 +95,38 @@ const ArchiveNav = ({ page, count, latest, tags, case_study }) => {
                   Now Viewing {currentTag} <Carot />
                 </button>
               </span>
-              <ul
-                className={
-                  filterOpen
-                    ? `${styles.tag_list} ${styles.tag_list_open}`
-                    : styles.tag_list
-                }
-              >
-                {currentTag === "All Work" ? null : (
-                  <li>
-                    <button onClick={() => AllTags()}>
-                      All Work <GetCount tag={"All Work"} />
-                    </button>
-                  </li>
-                )}
+              <div className="filter_container">
+                <ul
+                  className={
+                    filterOpen
+                      ? `${styles.tag_list} ${styles.tag_list_open}`
+                      : styles.tag_list
+                  }
+                >
+                  {currentTag === "All Work" ? null : (
+                    <li>
+                      <button onClick={() => AllTags()}>All Work</button>
+                      &nbsp;&nbsp;
+                    </li>
+                  )}
 
-                {tags && tags.length > 0
-                  ? tags.map((tag, key) =>
-                      tag === currentTag ? null : (
-                        <li key={key}>
-                          <button index={tag.id} onClick={() => GetByTag(tag)}>
-                            {tag} <GetCount tag={tag} />
-                          </button>
-                        </li>
+                  {tags && tags.length > 0
+                    ? tags.map((tag, key) =>
+                        tag === currentTag ? null : (
+                          <li key={key}>
+                            <button
+                              index={tag.id}
+                              onClick={() => GetByTag(tag)}
+                            >
+                              {tag} <GetCount tag={tag} />
+                            </button>
+                            &nbsp;&nbsp;
+                          </li>
+                        )
                       )
-                    )
-                  : null}
-              </ul>
+                    : null}
+                </ul>
+              </div>
             </div>
           ) : null}
         </div>
