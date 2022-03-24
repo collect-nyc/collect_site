@@ -47,7 +47,6 @@
     }
 
     .top_left {
-      background-color: lavender;
       width: calc($gutter_desktop * 10);
 
       .link_box {
@@ -151,7 +150,6 @@
   }
 
   .top_left {
-    // background-color: lavender;
     display: flex;
     list-style: none;
     align-items: flex-start;
