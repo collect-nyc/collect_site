@@ -2,18 +2,19 @@
 @import "./helpers";
 
 .navigation {
+  align-items: flex-start;
   background-color: transparent;
-  left: 0;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  z-index: 4;
+  color: $alabaster;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
-  padding: 16px $navGutter_desktop 14px;
-  color: $alabaster;
   mix-blend-mode: difference;
+  flex-wrap: wrap;
+  left: 0;
+  top: 0;
+  padding: 16px $navGutter_desktop 14px;
+  position: fixed;
+  width: 100%;
+  z-index: 4;
 
   a,
   button {
@@ -221,50 +222,6 @@
         display: none;
       }
     }
-
-    .tag_list {
-      margin: 50px 0 0;
-      display: none;
-      // column-count: 3;
-      // column-gap: 10px;
-      // column-width: auto;
-      padding: 0;
-      list-style: none;
-      width: 100%;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        column-count: 2;
-        column-gap: 0px;
-        margin: 0 0 0 30px;
-        width: 55%;
-      }
-
-      &.tag_list_open {
-        display: block;
-      }
-
-      li {
-        display: inline-block;
-        // line-height: 18px;
-        // padding-bottom: 10px;
-
-        button {
-          background-color: transparent;
-          border: none;
-          cursor: pointer;
-          padding: 0;
-          text-align: left;
-
-          &:active {
-            color: $black;
-          }
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-      }
-    }
   }
   .top_right {
     display: flex;
@@ -318,6 +275,52 @@
       justify-content: flex-end;
       .archive {
         display: none;
+      }
+    }
+  }
+
+  .filter_container {
+    padding: 0 $gutter_mobile 0 calc($gutter_desktop * 6);
+
+    .tag_list {
+      margin: 50px 0 0;
+      display: none;
+      max-width: 66.66666667%;
+      padding: 0;
+      list-style: none;
+      width: 100%;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        column-count: 2;
+        column-gap: 0px;
+        margin: 0 0 0 30px;
+        width: 55%;
+      }
+
+      &.tag_list_open {
+        display: block;
+      }
+
+      li {
+        display: inline-block;
+        // line-height: 18px;
+        // padding-bottom: 10px;
+
+        button {
+          background-color: transparent;
+          border: none;
+          cursor: pointer;
+          padding: 0;
+          text-align: left;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
       }
     }
   }
