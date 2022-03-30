@@ -11,39 +11,44 @@
 
   .inner_card {
     display: flex;
+    flex-wrap: wrap;
     width: 100%;
     align-items: center;
     background-color: $alabaster;
 
-    .nyc,
-    .archive {
+    @media screen and (max-width: $mq-mobile-max) {
+      flex-direction: column;
+    }
+
+    .description,
+    .logo {
       width: 50%;
       height: 100vh;
       text-align: center;
       display: flex;
       align-items: center;
-      justify-content: center;
-
-      .desktop {
-        display: inline-block;
-      }
-
-      .mobile {
-        display: none;
-      }
+      justify-content: flex-start;
 
       @media screen and (max-width: $mq-mobile-max) {
-        .mobile {
-          display: inline-block;
-        }
-
-        .desktop {
-          display: none;
-        }
+        height: 50vh;
+        width: 100%;
+        justify-content: center;
       }
     }
-    .nyc {
-      border-right: 1px solid $platinum;
+
+    .logo {
+      padding-left: $gutter_desktop;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-left: 0;
+        align-items: flex-end;
+      }
+    }
+
+    .description {
+      @media screen and (max-width: $mq-mobile-max) {
+        align-items: flex-start;
+      }
     }
   }
 }

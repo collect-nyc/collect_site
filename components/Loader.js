@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "./LoaderContext";
+import CollectLogotype from "../svg/collect_logotype.svg";
 import styles from "../styles/Loader.module.scss";
 
 export default function Loader({ page }) {
@@ -21,21 +22,13 @@ export default function Loader({ page }) {
           transition={{ ease: "easeOut", delay: 1.5, duration: 0.4 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
-          <div className={styles.nyc}>
-            <span className={styles.desktop}>COLLECT NYC</span>
-            <span className={styles.mobile}>
-              COLLECT
-              <br />
-              New York City
+          <div className={styles.logo}>
+            <span>
+              <CollectLogotype />
             </span>
           </div>
-          <div className={styles.archive}>
-            <span className={styles.desktop}>COLLECT Archive</span>
-            <span className={styles.mobile}>
-              COLLECT
-              <br />
-              Archive
-            </span>
+          <div className={styles.description}>
+            <span>Studio for Direction, Development, Photo and Design</span>
           </div>
         </motion.div>
       </AnimatePresence>
