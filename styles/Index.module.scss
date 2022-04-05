@@ -20,6 +20,7 @@
   .divider {
     background-color: $platinum;
     display: block;
+    display: none;
     position: fixed;
     left: calc(50% - 1px);
     top: 0;
@@ -37,16 +38,28 @@
     justify-content: space-between;
     flex-wrap: wrap;
 
-    &.default {
-      margin-bottom: 120px;
+    &.top {
+      align-items: flex-start;
     }
 
-    &.half {
-      margin-bottom: 60px;
+    &.bottom {
+      align-items: flex-end;
     }
 
-    &.extra {
-      margin-bottom: 240px;
+    .image {
+      position: relative;
+      width: 50%;
+
+      @media screen and (max-width: $mq-mobile-max) {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      &.left {
+      }
+
+      &.right {
+      }
     }
 
     @media screen and (max-width: $mq-mobile-max) {
@@ -54,31 +67,6 @@
 
       &:last-of-type {
         margin-bottom: 0 !important;
-      }
-    }
-
-    .left_side,
-    .right_side {
-      width: 50%;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-      }
-    }
-
-    .left_side.gutters {
-      padding: 0 $gutter_desktop;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 0 $gutter_mobile;
-      }
-    }
-
-    .right_side.gutters {
-      padding: 0 $gutter_desktop;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 0 $gutter_mobile;
       }
     }
   }
