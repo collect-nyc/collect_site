@@ -8,6 +8,7 @@ import Link from "next/link";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
+import Footer from "../components/Footer";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -476,6 +477,8 @@ const Home = ({ document }) => {
       <main className={styles.main}>
         <div className={styles.divider} />
         {pageContent}
+
+        <Footer />
       </main>
     </div>
   );
