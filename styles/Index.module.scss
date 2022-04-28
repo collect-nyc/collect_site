@@ -120,24 +120,7 @@
   }
 
   section.single_image {
-    &.default {
-      margin-bottom: 120px;
-    }
-
-    &.half {
-      margin-bottom: 60px;
-    }
-
-    &.extra {
-      margin-bottom: 240px;
-    }
-
     @media screen and (max-width: $mq-mobile-max) {
-      margin-bottom: 120px !important;
-
-      &:last-of-type {
-        margin-bottom: 0 !important;
-      }
     }
 
     figure {
