@@ -321,11 +321,21 @@ const Home = ({ document }) => {
       return (
         <section
           key={index}
-          className={
-            slice.primary.alignment === "Top"
-              ? `${styles.double_image} ${styles.top}`
-              : `${styles.double_image} ${styles.bottom}`
-          }
+          className={`${styles.double_image} ${
+            slice.primary.alignment === "Top" ? styles.top : styles.bottom
+          } ${
+            slice.primary.gutter === "None" ? styles.no_gutter : styles.gutter
+          } ${
+            slice.primary.size === "Even"
+              ? styles.even
+              : slice.primary.size === "7/5"
+              ? styles.seven_five
+              : slice.primary.size === "5/7"
+              ? styles.five_seven
+              : slice.primary.size === "8/4"
+              ? styles.eight_four
+              : styles.four_eight
+          }`}
         >
           <div className={`${styles.image} ${styles.left}`}>
             {slice.primary.left_image.url ? (

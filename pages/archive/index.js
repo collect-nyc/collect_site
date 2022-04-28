@@ -13,6 +13,7 @@ import { Client } from "../../lib/prismic-config";
 import RightArrow from "../../svg/right-arrow.svg";
 import MemoryContext from "../../components/MemoryContext";
 import { isEqual } from "../../lib/helpers";
+import Footer from "../../components/Footer";
 import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -682,16 +683,8 @@ const Home = ({ archives, document, tagged }) => {
         <div className={styles.interior}>
           {layoutView ? <GridView /> : <ListView />}
         </div>
+        <Footer />
       </main>
-      <footer className={styles.footer}>
-        <div className={styles.copyright}>
-          ©{new Date().getFullYear()} Collect NYC, All Rights Reserved
-        </div>
-        <div className={styles.links}>
-          <Link href="/info/privacy">Privacy</Link>
-          <Link href="/info/impressum">Impressum</Link>
-        </div>
-      </footer>
     </div>
   );
 };

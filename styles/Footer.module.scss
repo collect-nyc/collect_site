@@ -1,0 +1,41 @@
+@import "./colors";
+@import "./typography";
+
+.footer {
+  background-color: $alabaster;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 90px $navGutter_desktop 16px $navGutter_desktop;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 75px $navGutter_desktop 16px $navGutter_desktop;
+  }
+
+  .copyright {
+  }
+
+  .links {
+    a {
+      margin-left: 20px;
+
+      &:first-of-type {
+        margin-left: 0;
+      }
+    }
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    .copyright {
+      margin-bottom: 10px;
+    }
+    .links {
+      margin-left: 0;
+      width: 100%;
+    }
+  }
+}
