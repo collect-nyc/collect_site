@@ -22,14 +22,23 @@
   }
 
   &.home {
-    @media screen and (max-width: $mq-mobile-max) {
-      mix-blend-mode: normal;
+    background-color: $alabaster;
+    color: $black;
+    mix-blend-mode: normal;
 
-      a,
-      button {
-        color: $black;
-      }
+    a,
+    button {
+      color: $black;
     }
+
+    // @media screen and (max-width: $mq-mobile-max) {
+    //   mix-blend-mode: normal;
+
+    //   a,
+    //   button {
+    //     color: $black;
+    //   }
+    // }
   }
 
   &.archive {
