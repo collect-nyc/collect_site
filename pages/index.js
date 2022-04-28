@@ -26,7 +26,12 @@ export async function getServerSideProps({ query }) {
   //Page Data
   // Used to be landing_page
   const document = await Client().getSingle("home_page", {
-    fetchLinks: ["archive_item.background_color", "archive_item.item_type"],
+    fetchLinks: [
+      "archive_item.background_color",
+      "archive_item.item_type",
+      "archive_item.title",
+      "archive_item.description",
+    ],
   });
 
   const page = "index";
