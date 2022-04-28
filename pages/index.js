@@ -415,7 +415,16 @@ const Home = ({ document }) => {
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.divider} />
+        <section className={styles.statement}>
+          <h1>
+            <span className={styles.untitled}>
+              {document?.data?.untitled_sans_headline}{" "}
+            </span>
+            <span className={styles.caslon}>
+              {document?.data?.caslon_headline}
+            </span>
+          </h1>
+        </section>
 
         {featureContent}
         {pageContent}

@@ -33,6 +33,29 @@
     }
   }
 
+  .statement {
+    display: flex;
+    justify-content: center;
+    padding: 300px $gutter_mobile 275px;
+
+    h1 {
+      font-size: 48px;
+      line-height: 1.125;
+      font-weight: normal;
+      text-align: center;
+      letter-spacing: -0.02em;
+      max-width: 720px;
+
+      .untitled {
+        font-family: $untitled_sans;
+      }
+
+      .caslon {
+        @include kingscaslon_regular;
+      }
+    }
+  }
+
   section.feature {
     padding: 0 $gutter_mobile;
     margin-bottom: 80px;
