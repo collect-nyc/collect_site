@@ -86,238 +86,83 @@ const Home = ({ document }) => {
     }, 300);
   };
 
-  // const pageContent = document?.data?.body.map((slice, index) => {
-  //   // Render the right markup for the given slice type
-
-  //   // 2up Images Slice
-  //   if (slice.slice_type === "2up_images") {
-  //     return (
-  //       <section
-  //         key={index}
-  //         className={
-  //           slice.primary.vertical_padding === "Default"
-  //             ? `${styles.double_image} ${styles.default}`
-  //             : slice.primary.vertical_padding === "Half"
-  //             ? `${styles.double_image} ${styles.half}`
-  //             : slice.primary.vertical_padding === "Extra"
-  //             ? `${styles.double_image} ${styles.extra}`
-  //             : `${styles.double_image}`
-  //         }
-  //       >
-  //         <div
-  //           className={
-  //             slice.primary.left_side_gutters
-  //               ? `${styles.left_side} ${styles.gutters}`
-  //               : `${styles.left_side}`
-  //           }
-  //         >
-  //           {slice.primary.first_image.url ? (
-  //             slice.primary.archive_link && slice.primary.archive_link.uid ? (
-  //               slice.primary.archive_link.data?.item_type === "Case Study" &&
-  //               slice.primary.archive_link.data?.background_color ? (
-  //                 <a
-  //                   onClick={
-  //                     slice.primary.archive_link.data?.item_type ===
-  //                       "Case Study" &&
-  //                     slice.primary.archive_link.data?.background_color
-  //                       ? () =>
-  //                           EnterCaseStudy(
-  //                             slice.primary.archive_link.data?.background_color,
-  //                             "/archive/item/" + slice.primary.archive_link.uid
-  //                           )
-  //                       : null
-  //                   }
-  //                 >
-  //                   <Image
-  //                     src={slice.primary.first_image.url}
-  //                     layout={"responsive"}
-  //                     height={slice.primary.first_image.dimensions.height}
-  //                     width={slice.primary.first_image.dimensions.width}
-  //                     alt={slice.primary.first_image.alt}
-  //                     priority
-  //                     quality={100}
-  //                   />
-  //                 </a>
-  //               ) : (
-  //                 <Link
-  //                   href={"/archive/item/" + slice.primary.archive_link.uid}
-  //                 >
-  //                   <a onClick={() => ScrollTracker()}>
-  //                     <Image
-  //                       src={slice.primary.first_image.url}
-  //                       layout={"responsive"}
-  //                       height={slice.primary.first_image.dimensions.height}
-  //                       width={slice.primary.first_image.dimensions.width}
-  //                       alt={slice.primary.first_image.alt}
-  //                       priority
-  //                       quality={100}
-  //                     />
-  //                   </a>
-  //                 </Link>
-  //               )
-  //             ) : (
-  //               <Image
-  //                 src={slice.primary.first_image.url}
-  //                 layout={"responsive"}
-  //                 height={slice.primary.first_image.dimensions.height}
-  //                 width={slice.primary.first_image.dimensions.width}
-  //                 alt={slice.primary.first_image.alt}
-  //                 priority
-  //                 quality={100}
-  //               />
-  //             )
-  //           ) : null}
-  //         </div>
-  //         <div
-  //           className={
-  //             slice.primary.right_side_gutters
-  //               ? `${styles.right_side} ${styles.gutters}`
-  //               : `${styles.right_side}`
-  //           }
-  //         >
-  //           {slice.primary.second_image.url ? (
-  //             slice.primary.archive_link && slice.primary.archive_link.uid ? (
-  //               slice.primary.archive_link.data?.item_type === "Case Study" &&
-  //               slice.primary.archive_link.data?.background_color ? (
-  //                 <a
-  //                   onClick={
-  //                     slice.primary.archive_link.data?.item_type ===
-  //                       "Case Study" &&
-  //                     slice.primary.archive_link.data?.background_color
-  //                       ? () =>
-  //                           EnterCaseStudy(
-  //                             slice.primary.archive_link.data?.background_color,
-  //                             "/archive/item/" + slice.primary.archive_link.uid
-  //                           )
-  //                       : null
-  //                   }
-  //                 >
-  //                   <Image
-  //                     src={slice.primary.second_image.url}
-  //                     layout={"responsive"}
-  //                     height={slice.primary.second_image.dimensions.height}
-  //                     width={slice.primary.second_image.dimensions.width}
-  //                     alt={slice.primary.second_image.alt}
-  //                     priority
-  //                     quality={100}
-  //                   />
-  //                 </a>
-  //               ) : (
-  //                 <Link
-  //                   href={"/archive/item/" + slice.primary.archive_link.uid}
-  //                 >
-  //                   <a onClick={() => ScrollTracker()}>
-  //                     <Image
-  //                       src={slice.primary.second_image.url}
-  //                       layout={"responsive"}
-  //                       height={slice.primary.second_image.dimensions.height}
-  //                       width={slice.primary.second_image.dimensions.width}
-  //                       alt={slice.primary.second_image.alt}
-  //                       priority
-  //                       quality={100}
-  //                     />
-  //                   </a>
-  //                 </Link>
-  //               )
-  //             ) : (
-  //               <Image
-  //                 src={slice.primary.second_image.url}
-  //                 layout={"responsive"}
-  //                 height={slice.primary.second_image.dimensions.height}
-  //                 width={slice.primary.second_image.dimensions.width}
-  //                 alt={slice.primary.second_image.alt}
-  //                 priority
-  //                 quality={100}
-  //               />
-  //             )
-  //           ) : null}
-  //         </div>
-  //       </section>
-  //     );
-
-  //     // Single Image Slice
-  //   } else if (slice.slice_type === "single_image") {
-  //     return (
-  //       <section
-  //         key={index}
-  //         className={
-  //           slice.primary.vertical_padding === "Default"
-  //             ? `${styles.single_image} ${styles.default}`
-  //             : slice.primary.vertical_padding === "Half"
-  //             ? `${styles.single_image} ${styles.half}`
-  //             : slice.primary.vertical_padding === "Extra"
-  //             ? `${styles.single_image} ${styles.extra}`
-  //             : `${styles.single_image}`
-  //         }
-  //       >
-  //         {slice.primary.image.url ? (
-  //           <figure
-  //             className={
-  //               slice.primary.full_bleed ? `${styles.full_bleed}` : null
-  //             }
-  //           >
-  //             {slice.primary.archive_link && slice.primary.archive_link.uid ? (
-  //               slice.primary.archive_link.data?.item_type === "Case Study" &&
-  //               slice.primary.archive_link.data?.background_color ? (
-  //                 <a
-  //                   onClick={
-  //                     slice.primary.archive_link.data?.item_type ===
-  //                       "Case Study" &&
-  //                     slice.primary.archive_link.data?.background_color
-  //                       ? () =>
-  //                           EnterCaseStudy(
-  //                             slice.primary.archive_link.data?.background_color,
-  //                             "/archive/item/" + slice.primary.archive_link.uid
-  //                           )
-  //                       : null
-  //                   }
-  //                 >
-  //                   <Image
-  //                     src={slice.primary.image.url}
-  //                     layout={"responsive"}
-  //                     height={slice.primary.image.dimensions.height}
-  //                     width={slice.primary.image.dimensions.width}
-  //                     alt={slice.primary.image.alt}
-  //                     priority
-  //                     quality={100}
-  //                   />
-  //                 </a>
-  //               ) : (
-  //                 <Link
-  //                   href={"/archive/item/" + slice.primary.archive_link.uid}
-  //                 >
-  //                   <a onClick={() => ScrollTracker()}>
-  //                     <Image
-  //                       src={slice.primary.image.url}
-  //                       layout={"responsive"}
-  //                       height={slice.primary.image.dimensions.height}
-  //                       width={slice.primary.image.dimensions.width}
-  //                       alt={slice.primary.image.alt}
-  //                       priority
-  //                       quality={100}
-  //                     />
-  //                   </a>
-  //                 </Link>
-  //               )
-  //             ) : (
-  //               <Image
-  //                 src={slice.primary.image.url}
-  //                 layout={"responsive"}
-  //                 height={slice.primary.image.dimensions.height}
-  //                 width={slice.primary.image.dimensions.width}
-  //                 alt={slice.primary.image.alt}
-  //                 priority
-  //                 quality={100}
-  //               />
-  //             )}
-  //           </figure>
-  //         ) : null}
-  //       </section>
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // });
+  const featureContent = document?.data?.body1?.map((slice, index) => {
+    if (slice.primary.featured_image?.url) {
+      return (
+        <section key={index} className={styles.feature}>
+          <header>
+            <span className={styles.tags}>
+              {slice.primary.case_study_link.tags?.map((tag, index, arr) => {
+                if (arr.length - 1 === index) {
+                  return <span key={index}>{tag}</span>;
+                } else {
+                  return <span key={index}>{tag}, </span>;
+                }
+              })}
+            </span>
+            <span className={styles.title}>
+              {slice.primary.case_study_link.data?.title[0]?.text}
+            </span>
+          </header>
+          {slice.primary.case_study_link &&
+          slice.primary.case_study_link.uid ? (
+            slice.primary.case_study_link.data?.item_type === "Case Study" &&
+            slice.primary.case_study_link.data?.background_color ? (
+              <a
+                onClick={
+                  slice.primary.case_study_link.data?.item_type ===
+                    "Case Study" &&
+                  slice.primary.case_study_link.data?.background_color
+                    ? () =>
+                        EnterCaseStudy(
+                          slice.primary.case_study_link.data?.background_color,
+                          "/archive/item/" + slice.primary.case_study_link.uid
+                        )
+                    : null
+                }
+              >
+                <Image
+                  src={slice.primary.featured_image.url}
+                  layout={"responsive"}
+                  height={slice.primary.featured_image.dimensions.height}
+                  width={slice.primary.featured_image.dimensions.width}
+                  alt={slice.primary.featured_image.alt}
+                  priority
+                  quality={100}
+                />
+              </a>
+            ) : (
+              <Link href={"/archive/item/" + slice.primary.case_study_link.uid}>
+                <a onClick={() => ScrollTracker()}>
+                  <Image
+                    src={slice.primary.featured_image.url}
+                    layout={"responsive"}
+                    height={slice.primary.featured_image.dimensions.height}
+                    width={slice.primary.featured_image.dimensions.width}
+                    alt={slice.primary.featured_image.alt}
+                    priority
+                    quality={100}
+                  />
+                </a>
+              </Link>
+            )
+          ) : (
+            <Image
+              src={slice.primary.featured_image.url}
+              layout={"responsive"}
+              height={slice.primary.featured_image.dimensions.height}
+              width={slice.primary.featured_image.dimensions.width}
+              alt={slice.primary.featured_image.alt}
+              priority
+              quality={100}
+            />
+          )}
+        </section>
+      );
+    } else {
+      return null;
+    }
+  });
 
   const pageContent = document?.data?.body.map((slice, index) => {
     // Render the right markup for the given slice type
@@ -571,6 +416,8 @@ const Home = ({ document }) => {
 
       <main className={styles.main}>
         <div className={styles.divider} />
+
+        {featureContent}
         {pageContent}
 
         <Footer />
