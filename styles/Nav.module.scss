@@ -267,6 +267,24 @@
     }
   }
 
+  &.profile {
+    .top_left {
+    }
+
+    .top_right {
+      justify-content: flex-start;
+
+      .statement {
+        margin-right: 6px;
+        width: 33.33333333%;
+      }
+
+      .archive_link {
+        margin-left: auto;
+      }
+    }
+  }
+
   &.info {
     &:active {
       color: $black;

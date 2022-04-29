@@ -74,7 +74,7 @@
 
   .about {
     width: 50%;
-    border-right: 1px solid $platinum;
+    // border-right: 1px solid $platinum;
     padding-top: 172px;
     padding-left: $navGutter_desktop;
 
@@ -91,7 +91,8 @@
     .summary {
       @extend .body_text;
       margin-bottom: 50px;
-      width: 340px;
+      width: 45%;
+      // width: 340px;
 
       h1 {
         display: none;
@@ -191,7 +192,7 @@
 
   .contact_info {
     @extend .body_text;
-    padding-left: $navGutter_desktop;
+    // padding-left: $navGutter_desktop;
     padding-right: 25%;
     position: fixed;
     right: 0;

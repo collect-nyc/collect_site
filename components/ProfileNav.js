@@ -29,9 +29,9 @@ const ProfileNav = ({ page, count, latest, tags }) => {
           </div>
         </div>
         <div className={`${styles.top_right} ${styles.profile_right}`}>
-          <div className={styles.contact}>CONTACT</div>
-
-          <div>
+          <div className={styles.statement}>Studio for New Identities</div>
+          <div className={styles.contact}>Contact</div>
+          <div className={styles.archive_link}>
             {latest ? <span className={styles.latest}>Latest</span> : null}
             <Link
               href={
@@ -45,12 +45,6 @@ const ProfileNav = ({ page, count, latest, tags }) => {
           </div>
         </div>
       </nav>
-      {/* <nav className={styles.mobile_navigation}>
-        <div className={styles.profile}>
-          <button>Info</button>
-          <button>Contact</button>
-        </div>
-      </nav> */}
     </>
   );
 };
