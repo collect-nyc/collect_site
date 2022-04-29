@@ -99,6 +99,10 @@
         display: none;
       }
     }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      padding-left: 0;
+    }
   }
 
   .top_right {
@@ -150,6 +154,8 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       justify-content: flex-end;
+      padding-right: 0;
+
       .archive {
         display: none;
       }
@@ -165,15 +171,6 @@
     button {
       color: $black;
     }
-
-    // @media screen and (max-width: $mq-mobile-max) {
-    //   mix-blend-mode: normal;
-
-    //   a,
-    //   button {
-    //     color: $black;
-    //   }
-    // }
   }
 
   &.archive {
@@ -475,7 +472,7 @@
         border: none;
         cursor: pointer;
         // height: 24px;
-        padding-right: 10px;
+        // padding-right: 10px;
       }
     }
 
