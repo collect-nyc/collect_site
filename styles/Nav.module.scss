@@ -11,7 +11,7 @@
   flex-wrap: wrap;
   left: 0;
   top: 0;
-  padding: 16px $navGutter_desktop 14px;
+  padding: 16px 0 14px;
   position: fixed;
   width: 100%;
   z-index: 4;
@@ -26,11 +26,12 @@
     list-style: none;
     align-items: flex-start;
     justify-content: flex-start;
+    padding-left: $navGutter_desktop;
     width: calc($gutter_desktop * 3);
 
     .link_box {
       display: flex;
-      padding-right: 50px;
+      // padding-right: 50px;
       align-items: center;
       width: auto;
 
@@ -99,11 +100,12 @@
       }
     }
   }
+
   .top_right {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding-left: 20px;
+    padding-right: $navGutter_desktop;
     width: calc($gutter_desktop * 9);
 
     .controls {
@@ -114,7 +116,6 @@
         border: none;
         cursor: pointer;
         margin-right: 15px;
-        // height: 24px;
       }
 
       @media screen and (max-width: $mq-mobile-max) {
@@ -179,10 +180,6 @@
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
     mix-blend-mode: normal;
-    padding: {
-      left: 0;
-      right: 0;
-    }
 
     a,
     button {
@@ -193,8 +190,7 @@
       width: calc($gutter_desktop * 10);
 
       .link_box {
-        padding: 0 0 0 $navGutter_desktop;
-        width: 60%;
+        width: calc(30% - 13px);
         min-width: 170px;
       }
 
@@ -210,7 +206,6 @@
     .top_right {
       justify-content: flex-end;
       align-items: flex-start;
-      padding: 0 $navGutter_desktop 0 0;
       width: calc($gutter_desktop * 2);
 
       @media screen and (max-width: 1280px) {
@@ -293,7 +288,7 @@
   }
 
   .filter_container {
-    padding: 0 $gutter_mobile 0 calc($gutter_desktop * 6);
+    padding: 0 $gutter_mobile 0 calc($gutter_desktop * 3);
 
     .tag_list {
       margin: 50px 0 0;
