@@ -21,6 +21,140 @@
     color: $alabaster;
   }
 
+  .top_left {
+    display: flex;
+    list-style: none;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: calc($gutter_desktop * 3);
+
+    .link_box {
+      display: flex;
+      padding-right: 50px;
+      align-items: center;
+      width: auto;
+
+      a {
+        display: flex;
+        min-width: 150px;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 0px;
+        width: 100%;
+      }
+
+      &:active {
+        color: $black;
+      }
+    }
+
+    .filter_button {
+      min-width: 168px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+
+      .label {
+        display: flex;
+        justify-content: center;
+
+        button {
+          display: flex;
+          background-color: transparent;
+          border: none;
+          display: inline;
+          cursor: pointer;
+          margin: 0;
+          min-width: 140px;
+          padding: 0;
+          text-align: left;
+          position: relative;
+          top: 1px;
+
+          &:active {
+            color: $black;
+          }
+
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+
+        .open {
+          svg {
+            transform: rotate(180deg);
+          }
+        }
+
+        svg {
+          display: inline-block;
+          position: relative;
+          top: -1px;
+        }
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
+    }
+  }
+  .top_right {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding-left: 20px;
+    width: calc($gutter_desktop * 9);
+
+    .controls {
+      display: flex;
+
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        margin-right: 15px;
+        // height: 24px;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
+    }
+
+    .latest {
+      color: $alert;
+      margin-right: 5px;
+    }
+
+    .count_link {
+      display: flex;
+      position: relative;
+      top: -1px;
+    }
+
+    &.profile_right {
+      justify-content: space-between;
+      @media screen and (max-width: $mq-mobile-max) {
+        justify-content: flex-end;
+        .contact {
+          display: none;
+        }
+      }
+    }
+
+    &.archive_right {
+      justify-content: flex-end;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      justify-content: flex-end;
+      .archive {
+        display: none;
+      }
+    }
+  }
+
   &.home {
     background-color: $alabaster;
     color: $black;
@@ -155,140 +289,6 @@
   &.essential_text_nav {
     .top_right {
       justify-content: flex-end;
-    }
-  }
-
-  .top_left {
-    display: flex;
-    list-style: none;
-    align-items: flex-start;
-    justify-content: flex-start;
-    width: 50%;
-
-    .link_box {
-      display: flex;
-      padding-right: 50px;
-      align-items: center;
-      width: auto;
-
-      a {
-        display: flex;
-        min-width: 150px;
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 0px;
-        width: 100%;
-      }
-
-      &:active {
-        color: $black;
-      }
-    }
-
-    .filter_button {
-      min-width: 168px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-
-      .label {
-        display: flex;
-        justify-content: center;
-
-        button {
-          display: flex;
-          background-color: transparent;
-          border: none;
-          display: inline;
-          cursor: pointer;
-          margin: 0;
-          min-width: 140px;
-          padding: 0;
-          text-align: left;
-          position: relative;
-          top: 1px;
-
-          &:active {
-            color: $black;
-          }
-
-          &:hover {
-            text-decoration: underline;
-          }
-        }
-
-        .open {
-          svg {
-            transform: rotate(180deg);
-          }
-        }
-
-        svg {
-          display: inline-block;
-          position: relative;
-          top: -1px;
-        }
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
-    }
-  }
-  .top_right {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    padding-left: 20px;
-    width: 50%;
-
-    .controls {
-      display: flex;
-
-      button {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        margin-right: 15px;
-        // height: 24px;
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
-      }
-    }
-
-    .latest {
-      color: $alert;
-      margin-right: 5px;
-    }
-
-    .count_link {
-      display: flex;
-      position: relative;
-      top: -1px;
-    }
-
-    &.profile_right {
-      justify-content: space-between;
-      @media screen and (max-width: $mq-mobile-max) {
-        justify-content: flex-end;
-        .contact {
-          display: none;
-        }
-      }
-    }
-
-    &.archive_right {
-      justify-content: flex-end;
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      justify-content: flex-end;
-      .archive {
-        display: none;
-      }
     }
   }
 

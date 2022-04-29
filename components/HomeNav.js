@@ -18,7 +18,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
       </div>
       <div className={styles.top_right}>
         <span className={styles.archive}>
-          Studio for Direction, Development, Photo and Design
+          Direction, Development, Imagery and Design
         </span>
         <div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
