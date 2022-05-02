@@ -220,7 +220,6 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   const [onceAppHeight, setOnceAppHeight] = useState(null);
 
   // Refs
-  const footerRef = createRef();
   const TitleImage = useRef();
 
   // Variables
@@ -827,67 +826,8 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   NextItem={NextItem}
                   currentImage={currentImage}
                 />
-
-                <div className={styles.archive}>
-                  {archiveView ? (
-                    <button
-                      onClick={() => {
-                        setArchiveView(!archiveView);
-                      }}
-                      className={"color_link"}
-                    >
-                      <LeftArrow className={"color_svg"} /> Case Study
-                    </button>
-                  ) : pageHistory === "/" ? (
-                    <Link href={"/"}>
-                      <a>
-                        <LeftArrow /> Home
-                      </a>
-                    </Link>
-                  ) : (
-                    <Link
-                      href={
-                        currentTag && currentTag !== "All Work"
-                          ? `/archive?tag=${currentTag}`
-                          : "/archive"
-                      }
-                    >
-                      <a>
-                        <LeftArrow /> Archive
-                      </a>
-                    </Link>
-                  )}
-                </div>
-
-                <div className={styles.info}>
-                  {total > 1 ? (
-                    <span className={styles.current_image}>
-                      {currentImage + 1}/{total}
-                    </span>
-                  ) : null}
-
-                  <a
-                    onClick={() => {
-                      animateScrollTo(footerRef.current, {
-                        // elementToScroll: window.document.querySelector("body"),
-                        easing: (t) => {
-                          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                        },
-                        maxDuration: 300,
-                        minDuration: 300,
-                        speed: 1000,
-                        verticalOffset: 0,
-                      });
-                    }}
-                    className={"color_link"}
-                  >
-                    View Info
-                  </a>
-                </div>
               </div>
             )}
-
-            <div ref={footerRef}></div>
 
             <footer
               className={`${styles.project_footer} ${styles.multi_item}`}
@@ -926,6 +866,14 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                     {page_data.description &&
                     page_data.description.length > 0 ? (
                       <RichText render={page_data.description} />
+                    ) : null}
+                  </div>
+
+                  <div className={styles.counter}>
+                    {total > 1 ? (
+                      <span className={styles.current_image}>
+                        {currentImage + 1}/{total}
+                      </span>
                     ) : null}
                   </div>
                 </div>
