@@ -81,7 +81,11 @@ function MyApp({ Component, pageProps }) {
         setImageTotal: setImageTotal,
       }}
     >
-      <Layout page={pageProps.page}>
+      <Layout
+        page={pageProps.page}
+        case_study={pageProps.case_study ? pageProps.case_study : false}
+        project_title={pageProps.project_title ? pageProps.project_title : null}
+      >
         <Component {...pageProps} />
       </Layout>
     </MemoryContext.Provider>

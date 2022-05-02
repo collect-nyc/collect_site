@@ -127,9 +127,17 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   });
 
   const document = data.archive_item;
-  const page = "project";
+  const page = "archive_item";
+  const case_study =
+    data?.archive_item?.item_type === "Case Study" ? true : false;
+  const project_title =
+    case_study && data?.archive_item?.title[0]?.text
+      ? data.archive_item.title[0].text
+      : null;
 
-  return { props: { document, page, uid, revalidate: 60 } };
+  return {
+    props: { document, page, case_study, project_title, uid, revalidate: 60 },
+  };
 }
 
 export async function getStaticPaths() {
@@ -152,10 +160,16 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-const ArchiveItem = ({ document, uid }) => {
+const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   const page_data = document;
 
-  // console.log("Project Data", page_data);
+  console.log(
+    "Project Data",
+    page_data,
+    "Is Case Study?",
+    case_study,
+    project_title
+  );
 
   const {
     pageHistory,

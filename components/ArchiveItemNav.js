@@ -34,7 +34,14 @@ const GetCount = ({ tag }) => {
   return <span>({count})</span>;
 };
 
-const ArchiveNav = ({ page, count, latest, tags }) => {
+const ArchiveItemNav = ({
+  page,
+  count,
+  latest,
+  tags,
+  case_study,
+  project_title,
+}) => {
   const router = useRouter();
   const {
     layoutView,
@@ -45,6 +52,7 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
     setTimeSort,
     currentTag,
     setCurrentTag,
+    pageHistory,
   } = useContext(MemoryContext);
 
   // State
@@ -69,77 +77,36 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
 
   return (
     <>
-      <nav className={`${styles.navigation} ${styles.archive_index}`}>
+      <nav className={`${styles.navigation} ${styles.archive_item}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
-            <Link href={"/"}>
-              <a
-                onMouseEnter={() => {
-                  setLogoHover(true);
-                }}
-                onMouseLeave={() => {
-                  setLogoHover(false);
-                }}
+            {pageHistory === "/" ? (
+              <Link href={"/"}>
+                <a>Back to Home</a>
+              </Link>
+            ) : (
+              <Link
+                href={
+                  currentTag && currentTag !== "All Work"
+                    ? `/archive?tag=${currentTag}`
+                    : "/archive"
+                }
               >
-                {logoHover ? "COLLECT Home" : "COLLECT Archive"}
-              </a>
-            </Link>
+                <a>Back to Archive</a>
+              </Link>
+            )}
           </div>
-          {tags && tags.length > 0 ? (
-            <div className={styles.filter_button}>
-              <span className={styles.label}>
-                <button
-                  className={filterOpen ? styles.open : styles.closed}
-                  onClick={() => ToggleFilters()}
-                >
-                  Now Viewing {currentTag} <Carot />
-                </button>
+          {case_study ? (
+            <div className={styles.title}>
+              <span>
+                {project_title
+                  ? project_title
+                  : "Direction, Development, Imagery and Design"}
               </span>
             </div>
           ) : null}
         </div>
         <div className={`${styles.top_right} ${styles.archive_right}`}>
-          <div
-            className={
-              filterOpen
-                ? ` ${styles.controls} ${styles.controls_open}`
-                : styles.controls
-            }
-          >
-            <button
-              onClick={() => {
-                setLayoutView(!layoutView);
-              }}
-            >
-              {layoutView ? "GRID" : "LIST"}
-            </button>
-            <button
-              onClick={() => {
-                setAzSort(!azSort || azSort === "az" ? "za" : "az");
-              }}
-            >
-              {!azSort
-                ? "A-Z"
-                : azSort === "az"
-                ? "Z-A"
-                : azSort === "za"
-                ? "A-Z"
-                : null}
-            </button>
-            <button
-              onClick={() => {
-                setTimeSort(!timeSort || timeSort === "new" ? "old" : "new");
-              }}
-            >
-              {!timeSort
-                ? "NEW, OLD"
-                : timeSort === "new"
-                ? "OLD, NEW"
-                : timeSort === "old"
-                ? "NEW, OLD"
-                : null}
-            </button>
-          </div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
           <Link
             href={
@@ -278,4 +245,4 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
   );
 };
 
-export default ArchiveNav;
+export default ArchiveItemNav;

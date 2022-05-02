@@ -8,11 +8,17 @@ import CaseStudyFade from "../components/CaseStudyFade";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
-export default function MyLayout({ page, children }) {
+export default function MyLayout({
+  document,
+  page,
+  case_study,
+  project_title,
+  children,
+}) {
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
   const [loaderDidRun, setLoaderDidRun] = useState(false);
 
-  // console.log("MYLAYOUT", page, data);
+  // console.log("MYLAYOUT", document, page, "Case Study", case_study, data);
 
   const totalCount = data ? data.count + data.media : null;
 
@@ -20,7 +26,7 @@ export default function MyLayout({ page, children }) {
 
   const tagPlus = data ? data.tagplus : null;
 
-  console.log(tagPlus);
+  // console.log(tagPlus);
 
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
@@ -37,7 +43,8 @@ export default function MyLayout({ page, children }) {
           count={data ? totalCount : null}
           latest={latest_active}
           tags={data && tags ? tags : null}
-          case_study={page.case_study}
+          case_study={case_study}
+          project_title={project_title}
         />
         {children}
       </LoaderContext.Provider>

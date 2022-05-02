@@ -173,7 +173,7 @@
     }
   }
 
-  &.archive {
+  &.archive_index {
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
     mix-blend-mode: normal;
@@ -211,8 +211,33 @@
     }
   }
 
-  &.archive_view {
-    display: none;
+  &.archive_item {
+    .top_left {
+      width: calc($gutter_desktop * 10);
+
+      .link_box {
+        width: calc(30% - 13px);
+        min-width: 170px;
+      }
+
+      @media screen and (max-width: 1280px) {
+        width: calc($gutter_desktop * 9);
+
+        .link_box {
+          width: 66.66666667%;
+        }
+      }
+    }
+
+    .top_right {
+      justify-content: flex-end;
+      align-items: flex-start;
+      width: calc($gutter_desktop * 2);
+
+      @media screen and (max-width: 1280px) {
+        width: calc($gutter_desktop * 3);
+      }
+    }
   }
 
   &.casestudy {

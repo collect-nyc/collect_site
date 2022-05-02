@@ -1,11 +1,12 @@
 import HomeNav from "../components/HomeNav";
 import ArchiveNav from "../components/ArchiveNav";
+import ArchiveItemNav from "../components/ArchiveItemNav";
 import CaseStudyNav from "../components/CaseStudyNav";
 import ProfileNav from "../components/ProfileNav";
 import EssentialTextNav from "./EssentialTextNav";
 import EssentialText from "../pages/info/[slug]";
 
-const SiteNav = ({ page, count, latest, tags, case_study }) => {
+const SiteNav = ({ page, count, latest, tags, case_study, project_title }) => {
   // console.log("siteNav: ", page);
   return (
     <>
@@ -13,11 +14,15 @@ const SiteNav = ({ page, count, latest, tags, case_study }) => {
         {
           index: <HomeNav count={count} />,
           archive_index: (
-            <ArchiveNav
+            <ArchiveNav count={count} latest={latest} tags={tags} />
+          ),
+          archive_item: (
+            <ArchiveItemNav
               count={count}
               latest={latest}
               tags={tags}
               case_study={case_study}
+              project_title={project_title}
             />
           ),
           project: <CaseStudyNav />,
