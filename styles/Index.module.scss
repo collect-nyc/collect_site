@@ -17,26 +17,12 @@
     padding: 90px 0 0;
   }
 
-  .divider {
-    background-color: $platinum;
-    display: block;
-    display: none;
-    position: fixed;
-    left: calc(50% - 1px);
-    top: 0;
-    height: 100%;
-    width: 1px;
-    z-index: 0;
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: none;
-    }
-  }
-
   .statement {
     display: flex;
     justify-content: center;
-    padding: 300px $gutter_mobile 275px;
+    align-items: center;
+    padding: 0 $gutter_mobile 0;
+    height: calc(100vh - 200px);
 
     h1 {
       font-size: 48px;
