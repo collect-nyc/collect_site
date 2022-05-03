@@ -13,7 +13,7 @@ import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
-import animateScrollTo from "animated-scroll-to";
+// import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";

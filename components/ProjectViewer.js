@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Hammer from "react-hammerjs";
 // import { motion } from "framer-motion";
+import Slider from "react-slick";
 import styles from "../styles/ProjectViewer.module.scss";
 
 const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
   // console.log("IMAGES", images);
+  const slider = useRef(null);
 
   const [appHeight, setAppHeight] = useState(null);
+  const [totalSlides, setTotalSlides] = useState(0);
+  const [activeSlide, setActiveSlide] = useState(0);
 
   useEffect(() => {
     // const doc = window.document.documentElement;
@@ -26,6 +30,22 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
     };
   }, []);
 
+  const nextImage = () => {
+    if (totalSlides === activeSlide + 1) {
+      slider.slickGoTo(0);
+    } else {
+      slider.slickNext();
+    }
+  };
+
+  const previousImage = () => {
+    if (activeSlide === 0) {
+      slider.slickGoTo(totalSlides - 1);
+    } else {
+      slider.slickPrev();
+    }
+  };
+
   const HandleSwipe = (swipe) => {
     // console.log("swipe", swipe.direction);
     if (images.length > 1) {
@@ -43,6 +63,35 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
     NextItem();
   };
 
+  const imgStyle = (imgSrc) => ({
+    backgroundImage: `url(${imgSrc})`,
+  });
+
+  let slide_settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    centerPadding: "25%",
+    centerMode: true,
+    dotsClass: `${styles.slick_dots}` + " slick-dots",
+    beforeChange: (current, next) => {
+      setActiveSlide(next);
+      setActiveCaption(data.cultureItems[next].fields.caption);
+    },
+    responsive: [
+      {
+        breakpoint: 900,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          centerPadding: "10%",
+        },
+      },
+    ],
+  };
+
   return (
     <div
       className={styles.project_viewer}
@@ -54,7 +103,7 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
           : null
       }
     >
-      <Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
+      {/*<Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
         <ul className={styles.image_array}>
           {images[0].image || images[0].video
             ? images.map((image, key) => (
@@ -110,7 +159,21 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
               ))
             : null}
         </ul>
-      </Hammer>
+                    </Hammer>*/}
+      {/*images[0].image || images[0].video ? (
+        <Slider ref={slider} {...slide_settings}>
+          {Object.keys(images).map((image, key) => (
+            <div
+              key={key}
+              index={parseInt(key, 10) + 1}
+              className={`${styles.culture_item} ` + " culture-item"}
+            >
+              <figure style={imgStyle(image.image.url)} />
+            </div>
+          ))}
+        </Slider>
+          ) : null*/}
+
       <div className={styles.holder}></div>
     </div>
   );
