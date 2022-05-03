@@ -163,13 +163,13 @@ export async function getStaticPaths() {
 const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   const page_data = document;
 
-  console.log(
-    "Project Data",
-    page_data,
-    "Is Case Study?",
-    case_study,
-    project_title
-  );
+  // console.log(
+  //   "Project Data",
+  //   page_data,
+  //   "Is Case Study?",
+  //   case_study,
+  //   project_title
+  // );
 
   const {
     pageHistory,
@@ -202,8 +202,14 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
 
   const router = useRouter();
 
+  // Variables
+  const images = page_data && page_data.images ? page_data.images : null;
+  const total = images ? images.length : 0;
+
   // State
   const [currentImage, setCurrentImage] = useState(0);
+  const [nextImage, setNextImage] = useState(1);
+  const [previousImage, setPreviousImage] = useState(total - 1);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(
@@ -217,10 +223,6 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
 
   // Refs
   const TitleImage = useRef();
-
-  // Variables
-  const images = page_data && page_data.images ? page_data.images : null;
-  const total = images ? images.length : 0;
 
   useEffect(() => {
     setImageTotal(total);
@@ -282,14 +284,30 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
     };
   }, []);
 
+  // Look at current image and update previous and next images
+  const UpdateSideImages = (newcurrent) => {
+    if (newcurrent === 0) {
+      setPreviousImage(total - 1);
+      setNextImage(1);
+    } else if (newcurrent === total - 1) {
+      setPreviousImage(total - 2);
+      setNextImage(0);
+    } else {
+      setPreviousImage(newcurrent - 1);
+      setNextImage(newcurrent + 1);
+    }
+  };
+
   const NextItem = () => {
     let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
     setCurrentImage(newcurrent);
+    UpdateSideImages(newcurrent);
   };
 
   const PrevItem = () => {
     let newcurrent = currentImage === 0 ? total - 1 : currentImage - 1;
     setCurrentImage(newcurrent);
+    UpdateSideImages(newcurrent);
   };
 
   // Use Effect for Keyboard Controls
@@ -819,6 +837,8 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   PrevItem={PrevItem}
                   NextItem={NextItem}
                   currentImage={currentImage}
+                  nextImage={nextImage}
+                  previousImage={previousImage}
                 />
 
                 {!case_study ? (

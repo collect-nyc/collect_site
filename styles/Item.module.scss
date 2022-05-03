@@ -346,7 +346,6 @@
       // margin-top: 50px;
       height: calc(100vh - 50px);
       position: relative;
-      background-color: lightblue;
 
       @media screen and (max-width: $mq-mobile-max) {
         height: 100vh;
@@ -354,7 +353,6 @@
       }
 
       .archive_footer {
-        background-color: lavender;
         display: flex;
         height: 50px;
         justify-content: space-between;

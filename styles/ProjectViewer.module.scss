@@ -15,26 +15,34 @@
     height: calc(var(--app-height) - 61px);
   }
 
+  .next_container,
+  .prev_container {
+    height: 100%;
+    // width: 50%;
+    z-index: 1;
+    width: calc($gutter_desktop - 40px);
+  }
+
   .prev_btn,
   .next_btn {
     background: transparent;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    display: block;
     cursor: pointer;
     border: none;
-    padding: 0;
-    position: absolute;
-    top: 0;
     height: 100%;
-    width: 50%;
-    z-index: 1;
+    width: 100%;
   }
+
   .prev_btn {
-    left: 0;
     cursor: w-resize;
+    background-position: center right;
   }
 
   .next_btn {
-    right: 0;
     cursor: e-resize;
+    background-position: center left;
   }
 
   .image_array {
@@ -61,6 +69,8 @@
       }
 
       .image_container {
+        display: flex;
+        justify-content: space-between;
         overflow: hidden;
         height: 100%;
         padding: 0;
@@ -72,7 +82,13 @@
         .inner_bounds {
           position: relative;
           height: 100%;
-          width: 100%;
+          width: calc($gutter_desktop * 10);
+
+          .multi {
+            img {
+              cursor: pointer;
+            }
+          }
         }
 
         &.image_container_video {
