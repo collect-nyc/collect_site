@@ -31,21 +31,29 @@ const ProjectViewer = ({
     NextItem();
   };
 
-  const imgStyle = (imgSrc) => ({
-    backgroundImage: `url(${imgSrc})`,
-  });
+  const GetNextImage = (current) => {
+    let next = current + 1;
+    if (next >= images.length) {
+      next = 0;
+    }
+
+    return {
+      backgroundImage: `url(${images[next].image.url})`,
+    };
+  };
+
+  const GetPreviousImage = (current) => {
+    let prev = current - 1;
+    if (prev < 0) {
+      prev = images.length - 1;
+    }
+    return {
+      backgroundImage: `url(${images[prev].image.url})`,
+    };
+  };
 
   return (
-    <div
-      className={styles.project_viewer}
-      // style={
-      //   appHeight
-      //     ? {
-      //         "--app-height": appHeight,
-      //       }
-      //     : null
-      // }
-    >
+    <div className={styles.project_viewer}>
       <ul className={styles.image_array}>
         {images[0].image || images[0].video
           ? images.map((image, key) => (
@@ -70,7 +78,7 @@ const ProjectViewer = ({
                         <button
                           onClick={() => PrevItem()}
                           className={styles.prev_btn}
-                          style={imgStyle(images[previousImage].image.url)}
+                          style={GetPreviousImage(key)}
                         />
                       </React.Fragment>
                     ) : null}
@@ -82,7 +90,11 @@ const ProjectViewer = ({
                         Your browser does not support the video tag.
                       </video>
                     ) : image.image.url ? (
-                      <div className={styles.inner_bounds}>
+                      <div
+                        className={`${styles.inner_bounds} ${
+                          images.length > 1 ? styles.multiple : null
+                        }`}
+                      >
                         <Image
                           priority
                           src={image.image.url}
@@ -104,7 +116,7 @@ const ProjectViewer = ({
                       <button
                         onClick={() => NextItem()}
                         className={styles.next_btn}
-                        style={imgStyle(images[nextImage].image.url)}
+                        style={GetNextImage(key)}
                       />
                     ) : null}
                   </div>

@@ -84,7 +84,7 @@
           height: 100%;
           width: calc($gutter_desktop * 10);
 
-          .multi {
+          &.multiple {
             img {
               cursor: pointer;
             }
