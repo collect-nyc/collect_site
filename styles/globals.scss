@@ -2,6 +2,10 @@
 @import "./colors";
 @import "./typography";
 
+/* Plugins */
+@import "./slick.scss";
+// @import "./slick_theme.scss";
+
 html,
 body {
   background-color: $alabaster;

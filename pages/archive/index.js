@@ -91,7 +91,7 @@ export async function getServerSideProps({ query }) {
 }
 
 const Home = ({ archives, document, tagged }) => {
-  // console.log("Pure Archive from Data", archives);
+  console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
   const router = useRouter();
 
@@ -112,6 +112,8 @@ const Home = ({ archives, document, tagged }) => {
     setCsColor,
   } = useContext(MemoryContext);
 
+  console.log("First Load", archiveList);
+
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
   const TitleHolder = useRef();
@@ -119,7 +121,7 @@ const Home = ({ archives, document, tagged }) => {
   const [titleHeight, setTitleHeight] = useState(null);
 
   // data
-  const page_content = document.data;
+  // const page_content = document.data;
   // const loadedArchives = [...archives];
 
   const handleResize = () => {

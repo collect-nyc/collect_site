@@ -3,7 +3,7 @@
 @import "./typography";
 
 .project_viewer {
-  height: 100%;
+  height: calc(100% - 50px);
   width: 100%;
 
   a,
@@ -15,26 +15,34 @@
     height: calc(var(--app-height) - 61px);
   }
 
+  .next_container,
+  .prev_container {
+    height: 100%;
+    // width: 50%;
+    z-index: 1;
+    width: calc($gutter_desktop - 40px);
+  }
+
   .prev_btn,
   .next_btn {
     background: transparent;
+    background-size: auto 100%;
+    background-repeat: no-repeat;
+    display: block;
     cursor: pointer;
     border: none;
-    padding: 0;
-    position: absolute;
-    top: 0;
     height: 100%;
-    width: 50%;
-    z-index: 1;
+    width: 100%;
   }
+
   .prev_btn {
-    left: 0;
     cursor: w-resize;
+    background-position: center right;
   }
 
   .next_btn {
-    right: 0;
     cursor: e-resize;
+    background-position: center left;
   }
 
   .image_array {
@@ -61,9 +69,11 @@
       }
 
       .image_container {
+        display: flex;
+        justify-content: space-between;
         overflow: hidden;
         height: 100%;
-        padding: 60px #{$gutter_desktop * 2};
+        padding: 0;
         position: relative;
         text-align: center;
         width: 100%;
@@ -72,7 +82,13 @@
         .inner_bounds {
           position: relative;
           height: 100%;
-          width: 100%;
+          width: calc($gutter_desktop * 10);
+
+          .multi {
+            img {
+              cursor: pointer;
+            }
+          }
         }
 
         &.image_container_video {
@@ -84,24 +100,6 @@
         @media screen and (max-width: $mq-mobile-max) {
           padding: 86px $gutter_mobile 50px;
         }
-
-        // > span {
-        //   position: unset !important;
-        //   height: 100%;
-        //   width: auto;
-        // }
-
-        // img {
-        //   object-fit: contain;
-        //   width: 100% !important;
-        //   position: relative !important;
-        //   height: unset !important;
-        //   z-index: 2;
-
-        //   &.multi {
-        //     cursor: pointer;
-        //   }
-        // }
       }
 
       video {

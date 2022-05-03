@@ -13,7 +13,7 @@ import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
 import { gql } from "@apollo/client";
 import { motion } from "framer-motion";
-import animateScrollTo from "animated-scroll-to";
+// import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../../components/SharedHead";
 import MyLayout from "../../../layouts/MyLayout";
 import ProjectViewer from "../../../components/ProjectViewer";
@@ -163,13 +163,13 @@ export async function getStaticPaths() {
 const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   const page_data = document;
 
-  console.log(
-    "Project Data",
-    page_data,
-    "Is Case Study?",
-    case_study,
-    project_title
-  );
+  // console.log(
+  //   "Project Data",
+  //   page_data,
+  //   "Is Case Study?",
+  //   case_study,
+  //   project_title
+  // );
 
   const {
     pageHistory,
@@ -184,11 +184,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   } = useContext(MemoryContext);
 
   useEffect(() => {
-    if (
-      page_data &&
-      page_data.item_type &&
-      page_data.item_type === "Case Study"
-    ) {
+    if (page_data && page_data.item_type && case_study) {
       setCaseStudyView(true);
     } else {
       setCaseStudyView(false);
@@ -206,8 +202,14 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
 
   const router = useRouter();
 
+  // Variables
+  const images = page_data && page_data.images ? page_data.images : null;
+  const total = images ? images.length : 0;
+
   // State
   const [currentImage, setCurrentImage] = useState(0);
+  const [nextImage, setNextImage] = useState(1);
+  const [previousImage, setPreviousImage] = useState(total - 1);
   const [passwordField, setPasswordField] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [isLocked, setIsLocked] = useState(
@@ -220,12 +222,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   const [onceAppHeight, setOnceAppHeight] = useState(null);
 
   // Refs
-  const footerRef = createRef();
   const TitleImage = useRef();
-
-  // Variables
-  const images = page_data && page_data.images ? page_data.images : null;
-  const total = images ? images.length : 0;
 
   useEffect(() => {
     setImageTotal(total);
@@ -287,14 +284,30 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
     };
   }, []);
 
+  // Look at current image and update previous and next images
+  const UpdateSideImages = (newcurrent) => {
+    if (newcurrent === 0) {
+      setPreviousImage(total - 1);
+      setNextImage(1);
+    } else if (newcurrent === total - 1) {
+      setPreviousImage(total - 2);
+      setNextImage(0);
+    } else {
+      setPreviousImage(newcurrent - 1);
+      setNextImage(newcurrent + 1);
+    }
+  };
+
   const NextItem = () => {
     let newcurrent = currentImage + 1 >= total ? 0 : currentImage + 1;
     setCurrentImage(newcurrent);
+    UpdateSideImages(newcurrent);
   };
 
   const PrevItem = () => {
     let newcurrent = currentImage === 0 ? total - 1 : currentImage - 1;
     setCurrentImage(newcurrent);
+    UpdateSideImages(newcurrent);
   };
 
   // Use Effect for Keyboard Controls
@@ -615,9 +628,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
         className={styles.container}
         id="itemContainer"
         style={
-          page_data &&
-          page_data.item_type === "Case Study" &&
-          page_data.background_color
+          page_data && case_study && page_data.background_color
             ? {
                 backgroundColor: page_data.background_color,
                 borderColor: page_data.text_color,
@@ -668,12 +679,16 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
             </form>
           </div>
         ) : (
-          <main className={styles.main}>
-            {page_data.item_type === "Case Study" && !archiveView ? (
+          <main
+            className={`${styles.main} ${
+              !case_study ? styles.archive_item : null
+            }`}
+          >
+            {case_study && !archiveView ? (
               <div
                 className={styles.casestudy_container}
                 style={
-                  page_data.item_type === "Case Study" && page_data.text_color
+                  case_study && page_data.text_color
                     ? {
                         color: page_data.text_color,
                         paddingTop:
@@ -691,8 +706,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   animate={{ opacity: [0, 1] }}
                   transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                   style={
-                    page_data.item_type === "Case Study" &&
-                    page_data.background_color
+                    case_study && page_data.background_color
                       ? {
                           backgroundColor: page_data.background_color,
                           height: onceAppHeight + "px",
@@ -779,8 +793,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   </section>
                   <div
                     style={
-                      page_data.item_type === "Case Study" &&
-                      page_data.background_color
+                      case_study && page_data.background_color
                         ? {
                             backgroundColor: page_data.background_color,
                           }
@@ -807,18 +820,16 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
               </div>
             ) : (
               <div
-                className={styles.inner}
+                className={`${styles.inner} ${
+                  !case_study ? styles.archive_item : null
+                }`}
                 style={
-                  archiveView &&
-                  page_data.item_type === "Case Study" &&
-                  page_data.archive_view_background
+                  archiveView && case_study && page_data.archive_view_background
                     ? {
                         backgroundColor: page_data.archive_view_background,
                         color: page_data.archive_view_text,
                       }
-                    : {
-                        height: appHeight + "px",
-                      }
+                    : null
                 }
               >
                 <ProjectViewer
@@ -826,76 +837,37 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   PrevItem={PrevItem}
                   NextItem={NextItem}
                   currentImage={currentImage}
+                  nextImage={nextImage}
+                  previousImage={previousImage}
                 />
 
-                <div className={styles.archive}>
-                  {archiveView ? (
-                    <button
-                      onClick={() => {
-                        setArchiveView(!archiveView);
-                      }}
-                      className={"color_link"}
-                    >
-                      <LeftArrow className={"color_svg"} /> Case Study
-                    </button>
-                  ) : pageHistory === "/" ? (
-                    <Link href={"/"}>
-                      <a>
-                        <LeftArrow /> Home
-                      </a>
-                    </Link>
-                  ) : (
-                    <Link
-                      href={
-                        currentTag && currentTag !== "All Work"
-                          ? `/archive?tag=${currentTag}`
-                          : "/archive"
-                      }
-                    >
-                      <a>
-                        <LeftArrow /> Archive
-                      </a>
-                    </Link>
-                  )}
-                </div>
-
-                <div className={styles.info}>
-                  {total > 1 ? (
-                    <span className={styles.current_image}>
-                      {currentImage + 1}/{total}
-                    </span>
-                  ) : null}
-
-                  <a
-                    onClick={() => {
-                      animateScrollTo(footerRef.current, {
-                        // elementToScroll: window.document.querySelector("body"),
-                        easing: (t) => {
-                          return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                        },
-                        maxDuration: 300,
-                        minDuration: 300,
-                        speed: 1000,
-                        verticalOffset: 0,
-                      });
-                    }}
-                    className={"color_link"}
-                  >
-                    View Info
-                  </a>
-                </div>
+                {!case_study ? (
+                  <footer className={styles.archive_footer}>
+                    <div className={styles.title}>
+                      {page_data?.title[0]?.text
+                        ? page_data.title[0].text
+                        : "COLLECT Project"}
+                    </div>
+                    <div className={styles.counter}>
+                      {total > 1 ? (
+                        <span className={styles.current_image}>
+                          {currentImage + 1}/{total}
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className={styles.spacer} />
+                  </footer>
+                ) : null}
               </div>
             )}
 
-            <div ref={footerRef}></div>
-
             <footer
-              className={`${styles.project_footer} ${styles.multi_item}`}
+              className={`${styles.project_footer} ${styles.multi_item} ${
+                !case_study ? styles.archive_item : null
+              }`}
               id={"itemFooter"}
               style={
-                page_data.item_type === "Case Study" &&
-                page_data.background_color &&
-                !archiveView
+                case_study && page_data.background_color && !archiveView
                   ? {
                       backgroundColor: page_data.background_color,
                       borderColor: "transparent",
@@ -931,7 +903,8 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                 </div>
               </div>
 
-              {page_data.body1 &&
+              {case_study &&
+              page_data.body1 &&
               page_data.body1[0] &&
               page_data.body1[0].fields ? (
                 <div className={styles.credits_and_download}>
@@ -965,7 +938,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                 </div>
               ) : null}
 
-              {page_data.item_type === "Case Study" ? (
+              {case_study ? (
                 <nav className={styles.back_nav}>
                   <Link href={"/"}>
                     <a className={"color_link"}>

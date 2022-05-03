@@ -18,3 +18,27 @@ $mq-desktop-min: 1201px;
 $mq-desktop-max: 1500px;
 
 $mq-oversized: 1501px;
+
+// aspect ratio calculation
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  &:before {
+    display: block;
+    content: "";
+    width: 100%;
+    padding-top: calc($height / $width * 100%);
+  }
+  > .content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+%bgcover {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
