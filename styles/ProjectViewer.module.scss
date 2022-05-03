@@ -3,7 +3,7 @@
 @import "./typography";
 
 .project_viewer {
-  height: 100%;
+  // height: 100%;
   width: 100%;
 
   a,
@@ -11,104 +11,82 @@
     color: $black;
   }
 
-  @media (hover: none) {
-    height: calc(var(--app-height) - 61px);
+  // @media (hover: none) {
+  //   height: calc(var(--app-height) - 61px);
+  // }
+
+  .image_item {
+    display: flex;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    // width: 83.33333333% !important;
+
+    figure {
+      @include aspect-ratio(3, 2);
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      // @extend %bgcover;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      padding-left: 10px;
+      padding-right: 10px;
+
+      figure {
+        @include aspect-ratio(2, 3);
+      }
+    }
   }
 
-  .prev_btn,
-  .next_btn {
-    background: transparent;
-    cursor: pointer;
-    border: none;
-    padding: 0;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    z-index: 1;
-  }
-  .prev_btn {
-    left: 0;
-    cursor: w-resize;
-  }
+  .slides_controls {
+    display: flex;
+    display: none;
+    justify-content: space-between;
+    margin-top: remify(10px);
+    width: calc(76.9311065% - 55px);
 
-  .next_btn {
-    right: 0;
-    cursor: e-resize;
-  }
-
-  .image_array {
-    display: block;
-    position: relative;
-    height: 100%;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    z-index: 2;
-
-    li {
-      display: block;
-      position: absolute;
-      height: 100%;
+    @media screen and (max-width: $mq-mobile-max) {
       width: 100%;
+    }
 
-      &.hidden {
-        display: none;
-      }
+    .controls {
+      min-width: 82px;
+      transform: translateY(-5px);
 
-      &.current {
-        display: block;
-      }
+      button {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+        display: inline-block;
+        height: 40px;
+        padding: 0;
 
-      .image_container {
-        overflow: hidden;
-        height: 100%;
-        padding: 60px #{$gutter_desktop * 2};
-        position: relative;
-        text-align: center;
-        width: 100%;
-        z-index: 2;
-
-        .inner_bounds {
-          position: relative;
-          height: 100%;
-          width: 100%;
+        &.next {
+          padding-left: remify(5px);
         }
 
-        &.image_container_video {
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        &.previous {
+          padding-right: remify(5px);
         }
 
-        @media screen and (max-width: $mq-mobile-max) {
-          padding: 86px $gutter_mobile 50px;
+        figure {
+          svg {
+            width: 100%;
+          }
         }
-
-        // > span {
-        //   position: unset !important;
-        //   height: 100%;
-        //   width: auto;
-        // }
-
-        // img {
-        //   object-fit: contain;
-        //   width: 100% !important;
-        //   position: relative !important;
-        //   height: unset !important;
-        //   z-index: 2;
-
-        //   &.multi {
-        //     cursor: pointer;
-        //   }
-        // }
       }
 
-      video {
-        max-height: 100%;
-        max-width: 100%;
-        position: relative;
-        z-index: 2;
+      @media screen and (max-width: $mq-mobile-max) {
+        min-width: 65px;
+        transform: translateY(-10px);
+        width: 65px;
+
+        button {
+          width: 30px;
+        }
       }
     }
   }

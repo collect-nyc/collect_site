@@ -184,11 +184,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
   } = useContext(MemoryContext);
 
   useEffect(() => {
-    if (
-      page_data &&
-      page_data.item_type &&
-      page_data.item_type === "Case Study"
-    ) {
+    if (page_data && page_data.item_type && case_study) {
       setCaseStudyView(true);
     } else {
       setCaseStudyView(false);
@@ -614,9 +610,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
         className={styles.container}
         id="itemContainer"
         style={
-          page_data &&
-          page_data.item_type === "Case Study" &&
-          page_data.background_color
+          page_data && case_study && page_data.background_color
             ? {
                 backgroundColor: page_data.background_color,
                 borderColor: page_data.text_color,
@@ -667,12 +661,16 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
             </form>
           </div>
         ) : (
-          <main className={styles.main}>
-            {page_data.item_type === "Case Study" && !archiveView ? (
+          <main
+            className={`${styles.main} ${
+              !case_study ? styles.archive_item : null
+            }`}
+          >
+            {case_study && !archiveView ? (
               <div
                 className={styles.casestudy_container}
                 style={
-                  page_data.item_type === "Case Study" && page_data.text_color
+                  case_study && page_data.text_color
                     ? {
                         color: page_data.text_color,
                         paddingTop:
@@ -690,8 +688,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   animate={{ opacity: [0, 1] }}
                   transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
                   style={
-                    page_data.item_type === "Case Study" &&
-                    page_data.background_color
+                    case_study && page_data.background_color
                       ? {
                           backgroundColor: page_data.background_color,
                           height: onceAppHeight + "px",
@@ -778,8 +775,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   </section>
                   <div
                     style={
-                      page_data.item_type === "Case Study" &&
-                      page_data.background_color
+                      case_study && page_data.background_color
                         ? {
                             backgroundColor: page_data.background_color,
                           }
@@ -806,18 +802,16 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
               </div>
             ) : (
               <div
-                className={styles.inner}
+                className={`${styles.inner} ${
+                  !case_study ? styles.archive_item : null
+                }`}
                 style={
-                  archiveView &&
-                  page_data.item_type === "Case Study" &&
-                  page_data.archive_view_background
+                  archiveView && case_study && page_data.archive_view_background
                     ? {
                         backgroundColor: page_data.archive_view_background,
                         color: page_data.archive_view_text,
                       }
-                    : {
-                        height: appHeight + "px",
-                      }
+                    : null
                 }
               >
                 <ProjectViewer
@@ -826,16 +820,34 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                   NextItem={NextItem}
                   currentImage={currentImage}
                 />
+
+                {!case_study ? (
+                  <footer className={styles.archive_footer}>
+                    <div className={styles.title}>
+                      {page_data?.title[0]?.text
+                        ? page_data.title[0].text
+                        : "COLLECT Project"}
+                    </div>
+                    <div className={styles.counter}>
+                      {total > 1 ? (
+                        <span className={styles.current_image}>
+                          {currentImage + 1}/{total}
+                        </span>
+                      ) : null}
+                    </div>
+                    <div className={styles.spacer} />
+                  </footer>
+                ) : null}
               </div>
             )}
 
             <footer
-              className={`${styles.project_footer} ${styles.multi_item}`}
+              className={`${styles.project_footer} ${styles.multi_item} ${
+                !case_study ? styles.archive_item : null
+              }`}
               id={"itemFooter"}
               style={
-                page_data.item_type === "Case Study" &&
-                page_data.background_color &&
-                !archiveView
+                case_study && page_data.background_color && !archiveView
                   ? {
                       backgroundColor: page_data.background_color,
                       borderColor: "transparent",
@@ -868,18 +880,11 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                       <RichText render={page_data.description} />
                     ) : null}
                   </div>
-
-                  <div className={styles.counter}>
-                    {total > 1 ? (
-                      <span className={styles.current_image}>
-                        {currentImage + 1}/{total}
-                      </span>
-                    ) : null}
-                  </div>
                 </div>
               </div>
 
-              {page_data.body1 &&
+              {case_study &&
+              page_data.body1 &&
               page_data.body1[0] &&
               page_data.body1[0].fields ? (
                 <div className={styles.credits_and_download}>
@@ -913,7 +918,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                 </div>
               ) : null}
 
-              {page_data.item_type === "Case Study" ? (
+              {case_study ? (
                 <nav className={styles.back_nav}>
                   <Link href={"/"}>
                     <a className={"color_link"}>

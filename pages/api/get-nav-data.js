@@ -53,13 +53,11 @@ export default async function handler(req, res) {
 
   // console.log("Total Count", totalCount);
 
-  // const jsondata = JSON.stringify(newarchives);
-  const jsondata = JSON.stringify({
-    data: data,
+  res.status(200).json({
+    // data: data,
     count: data.length,
     media: totalCount,
     tags: tags,
     profile: document.data?.latest,
   });
-  res.status(200).json(jsondata);
 }
