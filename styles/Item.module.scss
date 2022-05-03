@@ -346,6 +346,7 @@
       // margin-top: 50px;
       height: calc(100vh - 50px);
       position: relative;
+      background-color: lightblue;
 
       @media screen and (max-width: $mq-mobile-max) {
         height: 100vh;

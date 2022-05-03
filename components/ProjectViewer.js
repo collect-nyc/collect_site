@@ -46,13 +46,13 @@ const ProjectViewer = ({ images, PrevItem, NextItem, currentImage }) => {
   return (
     <div
       className={styles.project_viewer}
-      style={
-        appHeight
-          ? {
-              "--app-height": appHeight,
-            }
-          : null
-      }
+      // style={
+      //   appHeight
+      //     ? {
+      //         "--app-height": appHeight,
+      //       }
+      //     : null
+      // }
     >
       <Hammer onSwipe={(swipe) => HandleSwipe(swipe)}>
         <ul className={styles.image_array}>
