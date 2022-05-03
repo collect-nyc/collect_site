@@ -6,16 +6,33 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 90px $navGutter_desktop 16px $navGutter_desktop;
+  align-items: flex-end;
+  padding: $navGutter_desktop;
 
   @media screen and (max-width: $mq-mobile-max) {
     padding: 75px $navGutter_desktop 16px $navGutter_desktop;
   }
 
-  .copyright {
+  .contact {
+    span {
+      display: block;
+      margin-bottom: 15px;
+
+      &.company {
+        text-transform: uppercase;
+      }
+
+      // &.address {
+      //   margin-bottom: 15px;
+      // }
+    }
   }
 
   .links {
+    .copyright {
+      display: inline-block;
+      margin-right: 20px;
+    }
     a {
       margin-left: 20px;
 
