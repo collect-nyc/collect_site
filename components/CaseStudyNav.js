@@ -71,7 +71,7 @@ const CaseStudyNav = () => {
                     setLogoHover(false);
                   }}
                 >
-                  {logoHover ? "COLLECT Home" : "COLLECT New York City"}
+                  {logoHover ? "Collect HOME" : "Collect NEW YORK"}
                 </a>
               </Link>
             </div>

@@ -1,13 +1,9 @@
-import { useEffect, useState, useContext, useRef } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import styles from "../styles/Nav.module.scss";
-import { useRouter } from "next/router";
 
 const EssentialTextNav = ({ page, count, latest, tags }) => {
-  const router = useRouter();
-
   // State
-  const [filterOpen, setFilterOpen] = useState(false);
   const [logoHover, setLogoHover] = useState(false);
 
   return (

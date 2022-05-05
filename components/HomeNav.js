@@ -2,17 +2,27 @@ import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
-import { useRouter } from "next/router";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const { currentTag } = useContext(MemoryContext);
+
+  const [logoHover, setLogoHover] = useState(false);
 
   return (
     <nav className={`${styles.navigation} ${styles.home}`}>
       <div className={styles.top_left}>
         <div className={styles.link_box}>
           <Link href={"/profile"}>
-            <a>Collect NEW YORK</a>
+            <a
+              onMouseEnter={() => {
+                setLogoHover(true);
+              }}
+              onMouseLeave={() => {
+                setLogoHover(false);
+              }}
+            >
+              {logoHover ? "Collect STUDIO PROFILE" : "Collect NEW YORK"}
+            </a>
           </Link>
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
@@ -8,10 +8,6 @@ import axios from "axios";
 
 const GetCount = ({ tag }) => {
   const [count, setCount] = useState(0);
-
-  // useEffect(() => {
-  //   console.log("count updated", count);
-  // }, [count]);
 
   axios
     .get("/api/get-tag-count", {
@@ -57,7 +53,6 @@ const ArchiveItemNav = ({
 
   // State
   const [filterOpen, setFilterOpen] = useState(false);
-  const [logoHover, setLogoHover] = useState(false);
 
   const ToggleFilters = () => {
     setFilterOpen(!filterOpen);
