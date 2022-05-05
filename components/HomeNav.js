@@ -12,14 +12,12 @@ const HomeNav = ({ page, count, latest, tags }) => {
       <div className={styles.top_left}>
         <div className={styles.link_box}>
           <Link href={"/profile"}>
-            <a>COLLECT New York City</a>
+            <a>Collect NEW YORK</a>
           </Link>
         </div>
       </div>
       <div className={styles.top_right}>
-        <span className={styles.archive}>
-          Direction, Development, Imagery and Design
-        </span>
+        <span className={styles.archive}>SELECTED WORKS</span>
         <div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
           <Link
