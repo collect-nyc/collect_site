@@ -81,7 +81,7 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
                   setLogoHover(false);
                 }}
               >
-                {logoHover ? "COLLECT Home" : "COLLECT Archive"}
+                {logoHover ? "Collect HOME" : "Collect ARCHIVE"}
               </a>
             </Link>
           </div>

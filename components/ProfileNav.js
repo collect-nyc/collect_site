@@ -23,14 +23,14 @@ const ProfileNav = ({ page, count, latest, tags }) => {
                   setLogoHover(false);
                 }}
               >
-                {logoHover ? "COLLECT Home" : "COLLECT New York City"}
+                {logoHover ? "Collect HOME" : "Collect NEW YORK"}
               </a>
             </Link>
           </div>
         </div>
         <div className={`${styles.top_right} ${styles.profile_right}`}>
-          <div className={styles.statement}>Studio for New Identities</div>
-          <div className={styles.contact}>Contact</div>
+          <div className={styles.statement}>PROFILE</div>
+          <div className={styles.contact}>CONTACT</div>
           <div className={styles.archive_link}>
             {latest ? <span className={styles.latest}>Latest</span> : null}
             <Link
