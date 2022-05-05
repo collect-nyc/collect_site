@@ -9,6 +9,7 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
 import Footer from "../components/Footer";
+import { AnimatePresence, motion } from "framer-motion";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -47,7 +48,7 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ document }) => {
   const router = useRouter();
-  console.log("Landing Data", document.data);
+  // console.log("Landing Data", document.data);
 
   const {
     setScrollPos,

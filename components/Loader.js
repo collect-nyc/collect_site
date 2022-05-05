@@ -1,7 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "./LoaderContext";
-import CollectLogotype from "../svg/collect_logotype.svg";
 import styles from "../styles/Loader.module.scss";
 
 export default function Loader({ page }) {
@@ -10,8 +9,8 @@ export default function Loader({ page }) {
   return !loaderDidRun && page == "index" ? (
     <div className={styles.site_loader}>
       <AnimatePresence exitBeforeEnter>
-        <motion.div
-          className={styles.inner_card}
+        <motion.section
+          className={styles.statement}
           // initial={{ opacity: 1, backgroundColor: "#f3f3f3" }}
           animate={{
             opacity: [1, 0],
@@ -22,15 +21,13 @@ export default function Loader({ page }) {
           transition={{ ease: "easeOut", delay: 1.5, duration: 0.4 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
-          <div className={styles.logo}>
-            <span>
-              <CollectLogotype />
+          <h1>
+            <span className={styles.untitled}>NEW IDENTITIES</span>
+            <span className={styles.caslon}>
+              for Artists and Institutions, Commerce and Culture
             </span>
-          </div>
-          <div className={styles.description}>
-            <span>Studio for Direction, Development, Photo and Design</span>
-          </div>
-        </motion.div>
+          </h1>
+        </motion.section>
       </AnimatePresence>
     </div>
   ) : null;
