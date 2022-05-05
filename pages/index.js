@@ -9,7 +9,7 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
 import Footer from "../components/Footer";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -416,7 +416,14 @@ const Home = ({ document }) => {
       </Head>
 
       <main className={styles.main}>
-        <section className={styles.statement}>
+        <motion.section
+          className={styles.statement}
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0, 1],
+          }}
+          transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
+        >
           <h1>
             <span className={styles.untitled}>
               {document?.data?.untitled_sans_headline}{" "}
@@ -425,10 +432,17 @@ const Home = ({ document }) => {
               {document?.data?.caslon_headline}
             </span>
           </h1>
-        </section>
-
-        {featureContent}
-        {pageContent}
+        </motion.section>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{
+            opacity: [0, 1],
+          }}
+          transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
+        >
+          {featureContent}
+          {pageContent}
+        </motion.div>
 
         <Footer />
       </main>

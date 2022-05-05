@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
+import { motion } from "framer-motion";
 import styles from "../styles/Nav.module.scss";
 
 const HomeNav = ({ page, count, latest, tags }) => {
@@ -9,7 +10,14 @@ const HomeNav = ({ page, count, latest, tags }) => {
   const [logoHover, setLogoHover] = useState(false);
 
   return (
-    <nav className={`${styles.navigation} ${styles.home}`}>
+    <motion.nav
+      className={`${styles.navigation} ${styles.home}`}
+      initial={{ opacity: 0 }}
+      animate={{
+        opacity: [0, 1],
+      }}
+      transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
+    >
       <div className={styles.top_left}>
         <div className={styles.link_box}>
           <Link href={"/profile"}>
@@ -41,7 +49,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
           </Link>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

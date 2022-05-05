@@ -34,7 +34,7 @@ export default function MyLayout({
   return (
     <React.Fragment>
       <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
-        <Loader page={page} />
+        {/*<Loader page={page} />*/}
 
         <CaseStudyFade />
 
