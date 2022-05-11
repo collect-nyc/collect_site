@@ -65,21 +65,6 @@ const Profile = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <nav className={styles.mobile_profile_nav}>
-        <button
-          onClick={() => ChangePage("info")}
-          className={profilePage === "info" ? styles.active : null}
-        >
-          Info
-        </button>
-        <button
-          onClick={() => ChangePage("contact")}
-          className={profilePage === "contact" ? styles.active : null}
-        >
-          Contact
-        </button>
-      </nav>
-
       <main
         className={
           profilePage === "contact"

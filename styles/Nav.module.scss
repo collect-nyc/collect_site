@@ -302,6 +302,10 @@
       .statement {
         margin-right: 7px;
         width: 33.33333333%;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          display: none;
+        }
       }
 
       .archive_link {

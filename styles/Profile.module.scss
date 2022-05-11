@@ -53,6 +53,7 @@
 .main {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: {
     bottom: 20px;
   }
@@ -200,7 +201,7 @@
     width: 50%;
 
     @media screen and (max-width: $mq-mobile-max) {
-      display: none;
+      // display: none;
       padding: 45px 0;
       position: relative;
       right: auto;
