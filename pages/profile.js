@@ -149,10 +149,9 @@ const Profile = ({ document }) => {
                 : null}
             </ul>
           </div>
-
-          <p className={styles.thanks}>Thanks, talk soon.</p>
         </div>
         <aside className={styles.contact_info}>
+          <h2 className={styles.mobile_heading}>CONTACT</h2>
           <div className={styles.contact_summary}>
             {page_content ? (
               <RichText render={page_content.instruction} />
