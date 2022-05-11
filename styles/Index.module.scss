@@ -43,6 +43,15 @@
     }
   }
 
+  .marquee_section {
+    border: {
+      top: 1px solid $platinum;
+      bottom: 1px solid $platinum;
+    }
+    margin: 65px 0 95px;
+    padding: 8px 0;
+  }
+
   section.feature {
     padding: 0 $gutter_mobile;
     margin-bottom: 80px;

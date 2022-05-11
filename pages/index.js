@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
+import Marquee from "react-fast-marquee";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -440,8 +441,19 @@ const Home = ({ document }) => {
           }}
           transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
         >
-          {featureContent}
-          {pageContent}
+          <div className={styles.featured_section}>{featureContent}</div>
+
+          <div className={styles.marquee_section}>
+            <Marquee gradient={false}>
+              COLLECT is an studio for identity centered in design, direction,
+              development and the arts. In the realms of culture and commerce we
+              enable select collaborators to do more through design. ‘Suddenly a
+              mist fell from my eyes, and I knew the way I had to take.’ Edvard
+              Grieg &nbsp;
+            </Marquee>
+          </div>
+
+          <div className={styles.select_section}>{pageContent}</div>
         </motion.div>
 
         <Footer />
