@@ -41,6 +41,21 @@
         @include kingscaslon_regular;
       }
     }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      h1 {
+        line-height: 0.8;
+
+        padding: 0 5%;
+
+        .untitled {
+          font-size: 29px;
+        }
+        .caslon {
+          font-size: 30px;
+        }
+      }
+    }
   }
 
   .marquee_section {
@@ -50,6 +65,10 @@
     }
     margin: 60px 0 85px;
     padding: 8px 0;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      margin: 39px 0 37px;
+    }
   }
 
   .select_section {
@@ -66,6 +85,18 @@
 
         span {
           display: inline-block;
+
+          em {
+            font-style: normal;
+
+            &.desktop_txt {
+              display: inline;
+            }
+
+            &.mobile_txt {
+              display: none;
+            }
+          }
         }
 
         .caslon {
@@ -76,6 +107,28 @@
         .untitled {
           font-family: $untitled_sans;
           text-transform: uppercase;
+        }
+      }
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      header {
+        .left {
+          font-size: 13px;
+
+          span em {
+            &.desktop_txt {
+              display: none;
+            }
+
+            &.mobile_txt {
+              display: inline;
+            }
+          }
+        }
+
+        .right {
+          display: none;
         }
       }
     }
@@ -102,6 +155,14 @@
         @include kingscaslon_italic;
         padding-right: 20px;
       }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        font-size: 13px;
+
+        .tags {
+          padding-right: 10px;
+        }
+      }
     }
   }
 
@@ -122,10 +183,10 @@
       position: relative;
       width: 50%;
 
-      @media screen and (max-width: $mq-mobile-max) {
-        flex: 0 0 100%;
-        max-width: 100%;
-      }
+      // @media screen and (max-width: $mq-mobile-max) {
+      //   flex: 0 0 100%;
+      //   max-width: 100%;
+      // }
 
       &.left {
       }
@@ -182,25 +243,22 @@
       }
     }
 
-    @media screen and (max-width: $mq-mobile-max) {
-      margin-bottom: 120px !important;
+    // @media screen and (max-width: $mq-mobile-max) {
+    //   margin-bottom: 120px !important;
 
-      &:last-of-type {
-        margin-bottom: 0 !important;
-      }
-    }
+    //   &:last-of-type {
+    //     margin-bottom: 0 !important;
+    //   }
+    // }
   }
 
   section.single_image {
-    @media screen and (max-width: $mq-mobile-max) {
-    }
-
     figure {
       padding: 0 #{$gutter_desktop * 2};
 
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 0 $gutter_mobile;
-      }
+      // @media screen and (max-width: $mq-mobile-max) {
+      //   padding: 0 $gutter_mobile;
+      // }
 
       &.full_bleed {
         padding: 0;

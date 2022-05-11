@@ -458,7 +458,12 @@ const Home = ({ document }) => {
               <div className={styles.left}>
                 <span className={styles.caslon}>Selected Work</span>
                 <span className={styles.untitled}>
-                  Genre-spanning output from COLLECT Archive
+                  <em className={styles.desktop_txt}>
+                    Genre-spanning output from COLLECT Archive
+                  </em>
+                  <em className={styles.mobile_txt}>
+                    mixed media, collect archive
+                  </em>
                 </span>
               </div>
               <div className={styles.right}>
