@@ -48,13 +48,46 @@
       top: 1px solid $platinum;
       bottom: 1px solid $platinum;
     }
-    margin: 65px 0 95px;
+    margin: 60px 0 85px;
     padding: 8px 0;
+  }
+
+  .select_section {
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      padding: 0 $navGutter_desktop 15px;
+
+      .left {
+        font-size: 20px;
+        line-height: 1.4;
+
+        span {
+          display: inline-block;
+        }
+
+        .caslon {
+          @include kingscaslon_italic;
+          margin-right: 17px;
+        }
+
+        .untitled {
+          font-family: $untitled_sans;
+          text-transform: uppercase;
+        }
+      }
+    }
   }
 
   section.feature {
     padding: 0 $gutter_mobile;
     margin-bottom: 80px;
+
+    &last-of-type {
+      margin-bottom: 0;
+    }
 
     header {
       font-size: 20px;

@@ -447,13 +447,26 @@ const Home = ({ document }) => {
             <Marquee gradient={false}>
               COLLECT is an studio for identity centered in design, direction,
               development and the arts. In the realms of culture and commerce we
-              enable select collaborators to do more through design. ‘Suddenly a
-              mist fell from my eyes, and I knew the way I had to take.’ Edvard
-              Grieg &nbsp;
+              enable select collaborators to do more through design. ‘SUDDENLY A
+              MIST FELL FROM MY EYES, AND I KNEW THE WAY I HAD TO TAKE.’ EDVARD
+              GRIEG &nbsp;&nbsp;
             </Marquee>
           </div>
 
-          <div className={styles.select_section}>{pageContent}</div>
+          <div className={styles.select_section}>
+            <header>
+              <div className={styles.left}>
+                <span className={styles.caslon}>Selected Work</span>
+                <span className={styles.untitled}>
+                  Genre-spanning output from COLLECT Archive
+                </span>
+              </div>
+              <div className={styles.right}>
+                <span>Reopening Summer 2022</span>
+              </div>
+            </header>
+            {pageContent}
+          </div>
         </motion.div>
 
         <Footer />
