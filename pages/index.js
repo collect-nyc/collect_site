@@ -449,7 +449,7 @@ const Home = ({ document }) => {
               development and the arts. In the realms of culture and commerce we
               enable select collaborators to do more through design. ‘SUDDENLY A
               MIST FELL FROM MY EYES, AND I KNEW THE WAY I HAD TO TAKE.’ EDVARD
-              GRIEG &nbsp;&nbsp;
+              GRIEG &nbsp;&nbsp; ... &nbsp;&nbsp;
             </Marquee>
           </div>
 
