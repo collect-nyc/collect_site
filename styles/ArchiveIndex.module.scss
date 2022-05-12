@@ -6,42 +6,6 @@
   padding: 0 0 0;
 }
 
-.loader_section {
-  display: flex;
-  flex-wrap: wrap;
-  height: 100vh;
-
-  .left_side,
-  .right_side {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 50%;
-    height: 100%;
-
-    p {
-      color: $white;
-      font-size: 34px;
-      margin: 0;
-      padding: 0;
-      letter-spacing: -0.02em;
-      text-align: center;
-
-      span {
-        display: block;
-      }
-    }
-  }
-
-  .left_side {
-    background-color: lightblue;
-  }
-
-  .right_side {
-    background-color: lightcoral;
-  }
-}
-
 .archive_header {
   display: block;
   padding: 217px $navGutter_desktop 189px;

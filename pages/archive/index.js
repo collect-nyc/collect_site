@@ -14,6 +14,7 @@ import RightArrow from "../../svg/right-arrow.svg";
 import MemoryContext from "../../components/MemoryContext";
 import { isEqual } from "../../lib/helpers";
 import Footer from "../../components/Footer";
+import ArchiveLoader from "../../components/ArchiveLoader";
 import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -96,17 +97,6 @@ export async function getServerSideProps({ query }) {
 const Home = ({ archives, document, tagged, loader }) => {
   // console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
-
-  console.log("Loader", loader.data);
-
-  const {
-    left_text_line_one,
-    left_text_line_two,
-    right_text_line_one,
-    right_text_line_two,
-    left_images,
-    right_images,
-  } = loader.data;
 
   const router = useRouter();
 
@@ -685,20 +675,7 @@ const Home = ({ archives, document, tagged, loader }) => {
         <SharedHead />
       </Head>
 
-      <section className={styles.loader_section}>
-        <div className={styles.left_side}>
-          <p>
-            <span>{left_text_line_one && left_text_line_one}</span>
-            <span>{left_text_line_two && left_text_line_two}</span>
-          </p>
-        </div>
-        <div className={styles.right_side}>
-          <p>
-            <span>{right_text_line_one && right_text_line_one}</span>
-            <span>{right_text_line_two && right_text_line_two}</span>
-          </p>
-        </div>
-      </section>
+      <ArchiveLoader data={loader.data} />
 
       {/*
       <div ref={TitleHolder} className={styles.archive_header}>
