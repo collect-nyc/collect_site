@@ -1,5 +1,5 @@
 import HomeNav from "../components/HomeNav";
-import ArchiveNav from "../components/ArchiveNav";
+import ArchiveNav from "./ArchiveNav";
 import ArchiveItemNav from "../components/ArchiveItemNav";
 import CaseStudyNav from "../components/CaseStudyNav";
 import ProfileNav from "../components/ProfileNav";

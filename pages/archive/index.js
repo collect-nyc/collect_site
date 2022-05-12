@@ -31,6 +31,8 @@ export async function getServerSideProps({ query }) {
   //Page Data
   const document = await Client().getSingle("index_page");
 
+  const loader = await Client().getSingle("archive_loader");
+
   // Loop through all pages of results and build one big array
   let archives;
   const pageSize = 100;
@@ -82,6 +84,7 @@ export async function getServerSideProps({ query }) {
   return {
     props: {
       document,
+      loader,
       archives,
       page,
       everything,
@@ -90,9 +93,21 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-const Home = ({ archives, document, tagged }) => {
-  console.log("Pure Archive from Data", archives);
+const Home = ({ archives, document, tagged, loader }) => {
+  // console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
+
+  console.log("Loader", loader.data);
+
+  const {
+    left_text_line_one,
+    left_text_line_two,
+    right_text_line_one,
+    right_text_line_two,
+    left_images,
+    right_images,
+  } = loader.data;
+
   const router = useRouter();
 
   const {
@@ -112,7 +127,7 @@ const Home = ({ archives, document, tagged }) => {
     setCsColor,
   } = useContext(MemoryContext);
 
-  console.log("First Load", archiveList);
+  // console.log("First Load", archiveList);
 
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
@@ -124,14 +139,15 @@ const Home = ({ archives, document, tagged }) => {
   // const page_content = document.data;
   // const loadedArchives = [...archives];
 
-  const handleResize = () => {
-    // console.log("Resizing");
-    setTitleHeight(TitleHolder.current.offsetHeight);
+  // BRING BACK ARCHIVE LIST
+  // const handleResize = () => {
+  //   // console.log("Resizing");
+  //   setTitleHeight(TitleHolder.current.offsetHeight);
 
-    setTimeout(() => {
-      setTitleHeight(TitleHolder.current.offsetHeight);
-    }, 100);
-  };
+  //   setTimeout(() => {
+  //     setTitleHeight(TitleHolder.current.offsetHeight);
+  //   }, 100);
+  // };
 
   const ShuffeList = (list) => {
     const new_list = _.shuffle(list);
@@ -155,15 +171,18 @@ const Home = ({ archives, document, tagged }) => {
     }
 
     // console.log(TitleHolder.current.offsetHeight);
-    setTitleHeight(TitleHolder.current.offsetHeight);
+    // BRING BACK ARCHIVE LIST
+    // setTitleHeight(TitleHolder.current.offsetHeight);
     // console.log(titleHeight);
 
+    // BRING BACK ARCHIVE LIST
     // Check to see if Index Art has changed size
-    window.addEventListener("resize", handleResize, false);
+    // window.addEventListener("resize", handleResize, false);
 
-    return () => {
-      window.removeEventListener("resize", handleResize, false);
-    };
+    // BRING BACK ARCHIVE LIST
+    // return () => {
+    //   window.removeEventListener("resize", handleResize, false);
+    // };
   }, []);
 
   // ARCHIVES UPDATER: ALL ARCHIVE MUTATION HAPPENS HERE
@@ -665,6 +684,23 @@ const Home = ({ archives, document, tagged }) => {
         />
         <SharedHead />
       </Head>
+
+      <section className={styles.loader_section}>
+        <div className={styles.left_side}>
+          <p>
+            <span>{left_text_line_one && left_text_line_one}</span>
+            <span>{left_text_line_two && left_text_line_two}</span>
+          </p>
+        </div>
+        <div className={styles.right_side}>
+          <p>
+            <span>{right_text_line_one && right_text_line_one}</span>
+            <span>{right_text_line_two && right_text_line_two}</span>
+          </p>
+        </div>
+      </section>
+
+      {/*
       <div ref={TitleHolder} className={styles.archive_header}>
         <p>
           A continuously updated look at our output and interests, from
@@ -686,7 +722,7 @@ const Home = ({ archives, document, tagged }) => {
           {layoutView ? <GridView /> : <ListView />}
         </div>
         <Footer />
-      </main>
+      </main> */}
     </div>
   );
 };
