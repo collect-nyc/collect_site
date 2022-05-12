@@ -4,10 +4,10 @@
 .navigation {
   align-items: flex-start;
   background-color: transparent;
-  color: $alabaster;
+  color: $white;
   display: flex;
   justify-content: space-between;
-  mix-blend-mode: difference;
+  // mix-blend-mode: difference;
   flex-wrap: wrap;
   left: 0;
   top: 0;
@@ -18,7 +18,7 @@
 
   a,
   button {
-    color: $alabaster;
+    color: $white;
   }
 
   .top_left {
@@ -307,6 +307,14 @@
   }
 
   &.profile {
+    color: $black;
+    mix-blend-mode: normal;
+
+    a,
+    button {
+      color: $black;
+    }
+
     .top_left {
     }
 
