@@ -37,6 +37,11 @@
         background-position: center;
         background-repeat: no-repeat;
         text-align: center;
+        opacity: 0;
+
+        &.current {
+          // display: block;
+        }
       }
     }
 
@@ -57,10 +62,10 @@
   }
 
   .left_side {
-    background-color: lightblue;
+    // background-color: lightblue;
   }
 
   .right_side {
-    background-color: lightcoral;
+    // background-color: lightcoral;
   }
 }

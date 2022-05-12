@@ -45,7 +45,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
                 : "/archive"
             }
           >
-            <a className={styles.count_link}>({count ? count : 0})</a>
+            <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
           </Link>
         </div>
       </div>

@@ -1,9 +1,12 @@
-import React, { useContext } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import styles from "../styles/ArchiveLoader.module.scss";
 
 export default function Loader({ data }) {
-  console.log("Loader", data);
+  // console.log("Loader", data);
+
+  const [leftImage, setLeftImage] = useState(0);
+  const [rightImage, setRightImage] = useState(0);
 
   const {
     left_text_line_one,
@@ -18,15 +21,51 @@ export default function Loader({ data }) {
     backgroundImage: `url(${imgSrc})`,
   });
 
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setSeconds((seconds) => seconds + 1);
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    if (seconds % 2 === 0) {
+      if (leftImage < left_images.length - 1) {
+        setLeftImage(leftImage + 1);
+      } else {
+        setLeftImage(0);
+      }
+    } else {
+      if (rightImage < right_images.length - 1) {
+        setRightImage(leftImage + 1);
+      } else {
+        setRightImage(0);
+      }
+    }
+  }, [seconds]);
+
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
   return (
     <section className={styles.loader_section}>
       <div className={styles.left_side}>
         {left_images && left_images.length > 0 ? (
           <ul className={styles.image_array}>
             {left_images.map((image, index) => (
-              <li style={imgStyle(image.image.url)} key={index}>
-                {index}
-              </li>
+              <motion.li
+                className={leftImage === index ? `${styles.current}` : null}
+                style={imgStyle(image.image.url)}
+                key={index}
+                initial="hidden"
+                animate={leftImage === index ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 0.2 }}
+              ></motion.li>
             ))}
           </ul>
         ) : null}
@@ -39,9 +78,15 @@ export default function Loader({ data }) {
         {right_images && right_images.length > 0 ? (
           <ul className={styles.image_array}>
             {right_images.map((image, index) => (
-              <li style={imgStyle(image.image.url)} key={index}>
-                {index}
-              </li>
+              <motion.li
+                className={rightImage === index ? `${styles.current}` : null}
+                style={imgStyle(image.image.url)}
+                key={index}
+                initial="hidden"
+                animate={rightImage === index ? "visible" : "hidden"}
+                variants={variants}
+                transition={{ duration: 0.2 }}
+              ></motion.li>
             ))}
           </ul>
         ) : null}
