@@ -47,8 +47,18 @@ export default function Loader({ data }) {
   }, [seconds]);
 
   const variants = {
-    visible: { opacity: 1 },
-    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.4,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        duration: 0.6,
+      },
+    },
   };
 
   return (
@@ -64,7 +74,6 @@ export default function Loader({ data }) {
                 initial="hidden"
                 animate={leftImage === index ? "visible" : "hidden"}
                 variants={variants}
-                transition={{ duration: 0.4 }}
               ></motion.li>
             ))}
           </ul>
@@ -85,7 +94,6 @@ export default function Loader({ data }) {
                 initial="hidden"
                 animate={rightImage === index ? "visible" : "hidden"}
                 variants={variants}
-                transition={{ duration: 0.4 }}
               ></motion.li>
             ))}
           </ul>
