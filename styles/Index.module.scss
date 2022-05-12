@@ -56,6 +56,21 @@
         }
       }
     }
+
+    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+      h1 {
+        line-height: 0.8;
+
+        padding: 0 5%;
+
+        .untitled {
+          font-size: 34px;
+        }
+        .caslon {
+          font-size: 36px;
+        }
+      }
+    }
   }
 
   .marquee_section {

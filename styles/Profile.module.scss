@@ -136,8 +136,13 @@
           }
         }
       }
+
       @media screen and (max-width: $mq-mobile-max) {
         width: 100%;
+      }
+
+      @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+        width: 75%;
       }
     }
 
