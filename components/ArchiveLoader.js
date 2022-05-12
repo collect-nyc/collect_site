@@ -64,7 +64,7 @@ export default function Loader({ data }) {
                 initial="hidden"
                 animate={leftImage === index ? "visible" : "hidden"}
                 variants={variants}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.4 }}
               ></motion.li>
             ))}
           </ul>
@@ -85,7 +85,7 @@ export default function Loader({ data }) {
                 initial="hidden"
                 animate={rightImage === index ? "visible" : "hidden"}
                 variants={variants}
-                transition={{ duration: 0.2 }}
+                transition={{ duration: 0.4 }}
               ></motion.li>
             ))}
           </ul>
