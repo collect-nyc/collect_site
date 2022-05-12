@@ -14,14 +14,41 @@
     align-items: center;
     width: 50%;
     height: 100%;
+    position: relative;
+
+    .image_array {
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+      z-index: 1;
+      list-style: none;
+
+      li {
+        color: $white;
+        font-size: 50px;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        margin: 0;
+        padding: 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        text-align: center;
+      }
+    }
 
     p {
       color: $white;
       font-size: 34px;
       margin: 0;
       padding: 0;
+      position: relative;
       letter-spacing: -0.02em;
       text-align: center;
+      z-index: 2;
 
       span {
         display: block;
