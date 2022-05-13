@@ -2,10 +2,15 @@
 @import "./helpers";
 @import "./typography";
 
-.loader_section {
+.loader_section,
+.loader_section_mobile {
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
+}
+
+.loader_section {
+  display: none;
 
   .left_side,
   .right_side {
@@ -61,11 +66,79 @@
     }
   }
 
-  .left_side {
-    // background-color: lightblue;
+  @media screen and (min-width: $mq-tablet-min) {
+    display: flex;
+  }
+}
+
+.loader_section_mobile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .image_array {
+    height: 100%;
+    position: absolute;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    z-index: 1;
+    list-style: none;
+
+    li {
+      color: $white;
+      font-size: 50px;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      margin: 0;
+      padding: 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      text-align: center;
+      opacity: 0;
+
+      &.current {
+        // display: block;
+      }
+    }
   }
 
-  .right_side {
-    // background-color: lightcoral;
+  p {
+    color: $white;
+    font-size: 29px;
+    margin: 0;
+    padding: 0 30px;
+    position: relative;
+    letter-spacing: -0.02em;
+    line-height: 1.24;
+    text-align: center;
+    z-index: 2;
+
+    span {
+      display: block;
+      margin-bottom: 80px;
+
+      em {
+        display: block;
+        font-style: normal;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .return_link {
+    color: $white;
+    display: block;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+    bottom: 25px;
+    left: 0;
+    z-index: 3;
   }
 }

@@ -15,6 +15,7 @@ import MemoryContext from "../../components/MemoryContext";
 import { isEqual } from "../../lib/helpers";
 import Footer from "../../components/Footer";
 import ArchiveLoader from "../../components/ArchiveLoader";
+import ArchiveLoaderMobile from "../../components/ArchiveLoaderMobile";
 import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -676,6 +677,7 @@ const Home = ({ archives, document, tagged, loader }) => {
       </Head>
 
       <ArchiveLoader data={loader.data} />
+      <ArchiveLoaderMobile data={loader.data} />
 
       {/*
       <div ref={TitleHolder} className={styles.archive_header}>

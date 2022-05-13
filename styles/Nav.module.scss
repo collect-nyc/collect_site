@@ -173,6 +173,12 @@
     }
   }
 
+  &.archive_loader {
+    @media screen and (max-width: $mq-mobile-max) {
+      display: none;
+    }
+  }
+
   &.archive_index {
     background-color: $alabaster;
     border-bottom: 1px solid $platinum;
