@@ -81,7 +81,6 @@ export default function ArchiveLoaderMobile({ data }) {
         <ul className={styles.image_array}>
           {allImages.map((image, index) => (
             <motion.li
-              className={currentImage === index ? `${styles.current}` : null}
               style={imgStyle(image.image.url)}
               key={index}
               initial="hidden"

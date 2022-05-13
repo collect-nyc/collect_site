@@ -69,7 +69,6 @@ export default function ArchiveLoader({ data }) {
           <ul className={styles.image_array}>
             {left_images.map((image, index) => (
               <motion.li
-                className={leftImage === index ? `${styles.current}` : null}
                 style={imgStyle(image.image.url)}
                 key={index}
                 initial="hidden"
@@ -89,7 +88,6 @@ export default function ArchiveLoader({ data }) {
           <ul className={styles.image_array}>
             {right_images.map((image, index) => (
               <motion.li
-                className={rightImage === index ? `${styles.current}` : null}
                 style={imgStyle(image.image.url)}
                 key={index}
                 initial="hidden"
