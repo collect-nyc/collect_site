@@ -1,21 +1,27 @@
 import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
+import LoaderContext from "./LoaderContext";
 import { motion } from "framer-motion";
 import styles from "../styles/Nav.module.scss";
 
 const HomeNav = ({ page, count, latest, tags }) => {
   const { currentTag } = useContext(MemoryContext);
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
   const [logoHover, setLogoHover] = useState(false);
 
   return (
     <motion.nav
       className={`${styles.navigation} ${styles.home}`}
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: [0, 1],
-      }}
+      initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
+      animate={
+        !loaderDidRun
+          ? {
+              opacity: [0, 1],
+            }
+          : { opacity: 1 }
+      }
       transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
     >
       <div className={styles.top_left}>

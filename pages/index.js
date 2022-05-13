@@ -8,6 +8,7 @@ import Link from "next/link";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
+import LoaderContext from "../components/LoaderContext";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
@@ -60,13 +61,16 @@ const Home = ({ document }) => {
     setHomeScrollPos,
   } = useContext(MemoryContext);
 
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
+
   useEffect(() => {
     // Reset scroll position for Archive Index
     setScrollPos(0);
     setReturnPage(false);
 
     if (homeScrollPos) {
-      window.scrollBy(0, parseInt(homeScrollPos, 10));
+      // turn off scroll position for homepage for now
+      // window.scrollBy(0, parseInt(homeScrollPos, 10));
       setHomeScrollPos(0);
     }
   }, []);
@@ -419,10 +423,14 @@ const Home = ({ document }) => {
       <main className={styles.main}>
         <motion.section
           className={styles.statement}
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: [0, 1],
-          }}
+          initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
+          animate={
+            !loaderDidRun
+              ? {
+                  opacity: [0, 1],
+                }
+              : { opacity: 1 }
+          }
           transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
         >
           <h1>
@@ -435,11 +443,16 @@ const Home = ({ document }) => {
           </h1>
         </motion.section>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{
-            opacity: [0, 1],
-          }}
+          initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
+          animate={
+            !loaderDidRun
+              ? {
+                  opacity: [0, 1],
+                }
+              : { opacity: 1 }
+          }
           transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
+          onAnimationComplete={() => setLoaderDidRun(true)}
         >
           <div className={styles.featured_section}>{featureContent}</div>
 

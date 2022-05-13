@@ -3,13 +3,12 @@ import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
 import LoaderContext from "../components/LoaderContext";
-import Loader from "../components/Loader";
+// import Loader from "../components/Loader";
 import CaseStudyFade from "../components/CaseStudyFade";
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 export default function MyLayout({
-  document,
   page,
   case_study,
   project_title,
@@ -18,13 +17,17 @@ export default function MyLayout({
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
   const [loaderDidRun, setLoaderDidRun] = useState(false);
 
+  useEffect(() => {
+    console.log("Loader Run", loaderDidRun);
+  }, [loaderDidRun]);
+
   // console.log("MYLAYOUT", document, page, "Case Study", case_study, data);
 
   const totalCount = data ? data.count + data.media : null;
 
   const tags = data ? data.tags : null;
 
-  const tagPlus = data ? data.tagplus : null;
+  // const tagPlus = data ? data.tagplus : null;
 
   // console.log(tagPlus);
 
