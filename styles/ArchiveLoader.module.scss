@@ -72,9 +72,13 @@
 }
 
 .loader_section_mobile {
-  display: flex;
+  display: none;
   justify-content: center;
   align-items: center;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    display: flex;
+  }
 
   .image_array {
     height: 100%;

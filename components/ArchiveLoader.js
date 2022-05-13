@@ -3,8 +3,6 @@ import { motion } from "framer-motion";
 import styles from "../styles/ArchiveLoader.module.scss";
 
 export default function ArchiveLoader({ data }) {
-  // console.log("Loader", data);
-
   const [leftImage, setLeftImage] = useState(0);
   const [rightImage, setRightImage] = useState(0);
 
@@ -23,7 +21,10 @@ export default function ArchiveLoader({ data }) {
 
   const [seconds, setSeconds] = useState(0);
 
+  // start the interval for the timer which sets the cadence for image changes
   useEffect(() => {
+    // console.log("Loader", data);
+
     const interval = setInterval(() => {
       setSeconds((seconds) => seconds + 1);
     }, 1000);

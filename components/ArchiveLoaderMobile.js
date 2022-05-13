@@ -8,10 +8,6 @@ export default function ArchiveLoaderMobile({ data }) {
   const [currentImage, setCurrentImage] = useState(0);
 
   const {
-    left_text_line_one,
-    left_text_line_two,
-    right_text_line_one,
-    right_text_line_two,
     left_images,
     right_images,
     mobile_text_one_1,
@@ -29,14 +25,16 @@ export default function ArchiveLoaderMobile({ data }) {
 
   const [seconds, setSeconds] = useState(0);
 
+  // start the interval for the timer which sets the cadence for image changes
   useEffect(() => {
-    console.log("Loader", data);
+    // console.log("Loader", data);
     const interval = setInterval(() => {
       setSeconds((seconds) => seconds + 1);
     }, 1000);
     return () => clearInterval(interval);
   }, []);
 
+  // combine both left and right image arrays into one array alternating between items from each
   useEffect(() => {
     let result = [],
       i,
@@ -47,7 +45,7 @@ export default function ArchiveLoaderMobile({ data }) {
     }
     result.push(...left_images.slice(l), ...right_images.slice(l));
 
-    console.log(result);
+    // console.log(result);
 
     setAllImages(result);
   }, [left_images, right_images]);
