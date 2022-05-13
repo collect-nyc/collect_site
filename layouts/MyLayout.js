@@ -17,9 +17,9 @@ export default function MyLayout({
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
   const [loaderDidRun, setLoaderDidRun] = useState(false);
 
-  useEffect(() => {
-    console.log("Loader Run", loaderDidRun);
-  }, [loaderDidRun]);
+  // useEffect(() => {
+  //   console.log("Loader Run", loaderDidRun);
+  // }, [loaderDidRun]);
 
   // console.log("MYLAYOUT", document, page, "Case Study", case_study, data);
 
