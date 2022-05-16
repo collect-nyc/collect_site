@@ -457,7 +457,7 @@ const Home = ({ document }) => {
           <div className={styles.featured_section}>{featureContent}</div>
 
           <div className={styles.marquee_section}>
-            <Marquee gradient={false}>
+            <Marquee gradient={false} speed={90}>
               COLLECT is an studio for identity centered in design, direction,
               development and the arts. In the realms of culture and commerce we
               enable select collaborators to do more through design. ‘SUDDENLY A
