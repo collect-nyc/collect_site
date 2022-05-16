@@ -10,13 +10,9 @@ export default function ArchiveLoaderMobile({ data }) {
   const {
     left_images,
     right_images,
-    mobile_text_one_1,
-    mobile_text_one_2,
-    mobile_text_two_1,
-    mobile_text_two_2,
-    mobile_text_two_3,
-    mobile_text_three_1,
-    mobile_text_three_2,
+    mobile_text_one,
+    mobile_text_two,
+    mobile_text_three,
   } = data;
 
   const imgStyle = (imgSrc) => ({
@@ -91,19 +87,9 @@ export default function ArchiveLoaderMobile({ data }) {
         </ul>
       ) : null}
       <p>
-        <span>
-          <em>{mobile_text_one_1 && mobile_text_one_1}</em>
-          <em>{mobile_text_one_2 && mobile_text_one_2}</em>
-        </span>
-        <span>
-          <em>{mobile_text_two_1 && mobile_text_two_1}</em>
-          <em>{mobile_text_two_2 && mobile_text_two_2}</em>
-          <em>{mobile_text_two_3 && mobile_text_two_3}</em>
-        </span>
-        <span>
-          <em>{mobile_text_three_1 && mobile_text_three_1}</em>
-          <em>{mobile_text_three_2 && mobile_text_three_2}</em>
-        </span>
+        <span>{mobile_text_one && mobile_text_one}</span>
+        <span>{mobile_text_two && mobile_text_two}</span>
+        <span>{mobile_text_three && mobile_text_three}</span>
       </p>
 
       <Link href={"/"}>
