@@ -75,6 +75,11 @@
       span {
         display: block;
       }
+
+      @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+        line-height: 1.27;
+        font-size: 34px;
+      }
     }
   }
 
@@ -134,7 +139,7 @@
     padding: 0 30px;
     position: relative;
     letter-spacing: -0.02em;
-    line-height: 1.24;
+    line-height: 1.208;
     text-align: center;
     z-index: 2;
 
