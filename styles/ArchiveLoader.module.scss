@@ -85,8 +85,6 @@
 
 .loader_section_mobile {
   display: none;
-  justify-content: center;
-  align-items: center;
 
   @media screen and (max-width: $mq-mobile-max) {
     display: flex;
@@ -119,6 +117,14 @@
         // display: block;
       }
     }
+  }
+
+  .text_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 40px);
+    width: 100%;
   }
 
   p {
