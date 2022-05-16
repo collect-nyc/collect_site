@@ -29,7 +29,7 @@ const ProfileNav = ({ page, count, latest, tags }) => {
           </div>
         </div>
         <div className={`${styles.top_right} ${styles.profile_right}`}>
-          <div className={styles.statement}>PROFILE</div>
+          <div className={styles.statement}>Profile</div>
           <div className={styles.contact}>CONTACT</div>
           <div className={styles.archive_link}>
             {latest ? <span className={styles.latest}>Latest</span> : null}

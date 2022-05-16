@@ -41,7 +41,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
         </div>
       </div>
       <div className={styles.top_right}>
-        <span className={styles.archive}>SELECTED WORKS</span>
+        <span className={styles.archive}>Selected Works</span>
         <div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
           <Link
