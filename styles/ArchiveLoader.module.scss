@@ -14,9 +14,10 @@
 
   .left_side,
   .right_side {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+
     width: 50%;
     height: 100%;
     position: relative;
@@ -50,13 +51,24 @@
       }
     }
 
+    .text_container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0 $gutter_mobile 0;
+      margin-top: 70px;
+      width: 100%;
+      height: calc(100vh - 200px);
+    }
+
     p {
       color: $white;
-      font-size: 34px;
+      font-size: 46px;
       margin: 0;
       padding: 0;
       position: relative;
       letter-spacing: -0.02em;
+      line-height: 1.125;
       text-align: center;
       z-index: 2;
 
