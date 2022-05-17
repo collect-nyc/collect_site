@@ -71,7 +71,8 @@ const Home = ({ document }) => {
   );
 
   useEffect(() => {
-    console.log("Landing Data", document.data);
+    // console.log("Landing Data", document.data);
+
     // Reset scroll position for Archive Index
     setScrollPos(0);
     setReturnPage(false);
