@@ -230,7 +230,10 @@ const Home = ({ document }) => {
           </header>
           {slice.primary.case_study_link.data &&
           slice.primary.case_study_link.data.images.length > 1 ? (
-            <div>
+            <div
+              className={styles.slider_container}
+              onClick={() => nextSlidez(index)}
+            >
               <Slider {...settings} ref={refs[index]}>
                 {slice.primary.case_study_link.data.images.map((image, i) => {
                   return (
@@ -248,12 +251,14 @@ const Home = ({ document }) => {
                   );
                 })}
               </Slider>
-              <button className="button" onClick={() => previousSlidez(index)}>
-                Previous
-              </button>
-              <button className="button" onClick={() => nextSlidez(index)}>
-                Next
-              </button>
+              <button
+                className={`${styles.slide_control} ${styles.prev}`}
+                onClick={() => previousSlidez(index)}
+              />
+              <button
+                className={`${styles.slide_control} ${styles.next}`}
+                onClick={() => nextSlidez(index)}
+              />
             </div>
           ) : slice.primary.case_study_link.data &&
             slice.primary.case_study_link.data.images[0].image &&

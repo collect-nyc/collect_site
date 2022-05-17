@@ -72,6 +72,33 @@
     }
   }
 
+  .featured_section {
+    .slider_container {
+      position: relative;
+
+      .slide_control {
+        display: block;
+        display: none;
+        outline: none;
+        border: none;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        width: 50%;
+        z-index: 2;
+
+        &.prev {
+          background-color: rgba(lightblue, 0.5);
+          left: 0;
+        }
+        &.next {
+          background-color: rgba(lightcoral, 0.5);
+          right: 0;
+        }
+      }
+    }
+  }
+
   .marquee_section {
     border: {
       top: 1px solid $platinum;
