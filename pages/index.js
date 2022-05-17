@@ -12,6 +12,7 @@ import LoaderContext from "../components/LoaderContext";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
+import Slider from "react-slick";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -34,6 +35,7 @@ export async function getServerSideProps({ query }) {
       "archive_item.item_type",
       "archive_item.title",
       "archive_item.description",
+      "archive_item.images",
     ],
   });
 
@@ -64,6 +66,7 @@ const Home = ({ document }) => {
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
   useEffect(() => {
+    console.log("Landing Data", document.data);
     // Reset scroll position for Archive Index
     setScrollPos(0);
     setReturnPage(false);
@@ -92,8 +95,99 @@ const Home = ({ document }) => {
     }, 300);
   };
 
+  const settings = {
+    arrows: false,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+  };
+
+  // With links to Case Studies
+  // if (slice.primary.featured_image?.url) {
+  //   return (
+  //     <section key={index} className={styles.feature}>
+  //       <header>
+  //         <span className={styles.tags}>
+  //           {slice.primary.case_study_link.tags?.map((tag, index, arr) => {
+  //             if (arr.length - 1 === index) {
+  //               return <span key={index}>{tag}</span>;
+  //             } else {
+  //               return <span key={index}>{tag}, </span>;
+  //             }
+  //           })}
+  //         </span>
+  //         <span className={styles.title}>
+  //           {slice.primary.case_study_link.data?.title[0]?.text}
+  //         </span>
+  //       </header>
+  //       {slice.primary.case_study_link &&
+  //       slice.primary.case_study_link.uid ? (
+  //         slice.primary.case_study_link.data?.item_type === "Case Study" &&
+  //         slice.primary.case_study_link.data?.background_color ? (
+  //           <a
+  //             onClick={
+  //               slice.primary.case_study_link.data?.item_type ===
+  //                 "Case Study" &&
+  //               slice.primary.case_study_link.data?.background_color
+  //                 ? () =>
+  //                     EnterCaseStudy(
+  //                       slice.primary.case_study_link.data?.background_color,
+  //                       "/archive/item/" + slice.primary.case_study_link.uid
+  //                     )
+  //                 : null
+  //             }
+  //           >
+  //             <Image
+  //               src={slice.primary.featured_image.url}
+  //               layout={"responsive"}
+  //               height={slice.primary.featured_image.dimensions.height}
+  //               width={slice.primary.featured_image.dimensions.width}
+  //               alt={slice.primary.featured_image.alt}
+  //               priority
+  //               quality={100}
+  //             />
+  //           </a>
+  //         ) : (
+  //           <Link href={"/archive/item/" + slice.primary.case_study_link.uid}>
+  //             <a onClick={() => ScrollTracker()}>
+  //               <Image
+  //                 src={slice.primary.featured_image.url}
+  //                 layout={"responsive"}
+  //                 height={slice.primary.featured_image.dimensions.height}
+  //                 width={slice.primary.featured_image.dimensions.width}
+  //                 alt={slice.primary.featured_image.alt}
+  //                 priority
+  //                 quality={100}
+  //               />
+  //             </a>
+  //           </Link>
+  //         )
+  //       ) : (
+  //         <Image
+  //           src={slice.primary.featured_image.url}
+  //           layout={"responsive"}
+  //           height={slice.primary.featured_image.dimensions.height}
+  //           width={slice.primary.featured_image.dimensions.width}
+  //           alt={slice.primary.featured_image.alt}
+  //           priority
+  //           quality={100}
+  //         />
+  //       )}
+  //     </section>
+  //   );
+  // } else {
+  //   return null;
+  // }
+
   const featureContent = document?.data?.body1?.map((slice, index) => {
-    if (slice.primary.featured_image?.url) {
+    if (
+      slice.primary.case_study_link &&
+      slice.primary.case_study_link.data &&
+      slice.primary.case_study_link.data.images &&
+      slice.primary.case_study_link.data.images.length > 0
+    ) {
       return (
         <section key={index} className={styles.feature}>
           <header>
@@ -110,58 +204,45 @@ const Home = ({ document }) => {
               {slice.primary.case_study_link.data?.title[0]?.text}
             </span>
           </header>
-          {slice.primary.case_study_link &&
-          slice.primary.case_study_link.uid ? (
-            slice.primary.case_study_link.data?.item_type === "Case Study" &&
-            slice.primary.case_study_link.data?.background_color ? (
-              <a
-                onClick={
-                  slice.primary.case_study_link.data?.item_type ===
-                    "Case Study" &&
-                  slice.primary.case_study_link.data?.background_color
-                    ? () =>
-                        EnterCaseStudy(
-                          slice.primary.case_study_link.data?.background_color,
-                          "/archive/item/" + slice.primary.case_study_link.uid
-                        )
-                    : null
-                }
-              >
-                <Image
-                  src={slice.primary.featured_image.url}
-                  layout={"responsive"}
-                  height={slice.primary.featured_image.dimensions.height}
-                  width={slice.primary.featured_image.dimensions.width}
-                  alt={slice.primary.featured_image.alt}
-                  priority
-                  quality={100}
-                />
-              </a>
-            ) : (
-              <Link href={"/archive/item/" + slice.primary.case_study_link.uid}>
-                <a onClick={() => ScrollTracker()}>
-                  <Image
-                    src={slice.primary.featured_image.url}
-                    layout={"responsive"}
-                    height={slice.primary.featured_image.dimensions.height}
-                    width={slice.primary.featured_image.dimensions.width}
-                    alt={slice.primary.featured_image.alt}
-                    priority
-                    quality={100}
-                  />
-                </a>
-              </Link>
-            )
-          ) : (
+          {slice.primary.case_study_link.data &&
+          slice.primary.case_study_link.data.images.length > 1 ? (
+            <Slider {...settings}>
+              {slice.primary.case_study_link.data.images.map((image, index) => {
+                return (
+                  <div key={index}>
+                    <Image
+                      src={image.image.url}
+                      layout={"responsive"}
+                      height={image.image.dimensions.height}
+                      width={image.image.dimensions.width}
+                      alt={image.image.alt}
+                      priority
+                      quality={100}
+                    />
+                  </div>
+                );
+              })}
+            </Slider>
+          ) : slice.primary.case_study_link.data &&
+            slice.primary.case_study_link.data.images[0].image &&
+            slice.primary.case_study_link.data.images[0].image.url ? (
             <Image
-              src={slice.primary.featured_image.url}
+              src={slice.primary.case_study_link.data.images[0].image.url}
+              alt={slice.primary.case_study_link.data.images[0].image.alt}
+              height={
+                slice.primary.case_study_link.data.images[0].image.dimensions
+                  .height
+              }
+              width={
+                slice.primary.case_study_link.data.images[0].image.dimensions
+                  .width
+              }
               layout={"responsive"}
-              height={slice.primary.featured_image.dimensions.height}
-              width={slice.primary.featured_image.dimensions.width}
-              alt={slice.primary.featured_image.alt}
               priority
               quality={100}
             />
+          ) : (
+            <h1>No images in media tab</h1>
           )}
         </section>
       );
