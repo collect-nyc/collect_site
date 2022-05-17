@@ -12,7 +12,7 @@ import LoaderContext from "../components/LoaderContext";
 import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
-import Slider from "react-slick";
+import FeaturedSlider from "../components/FeaturedSlider";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -65,7 +65,6 @@ const Home = ({ document }) => {
 
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
-  // let refs = useRef([React.createRef(), React.createRef()]);
   const refs = useMemo(
     () => document?.data?.body1?.map(() => React.createRef()),
     []
@@ -99,33 +98,6 @@ const Home = ({ document }) => {
       ScrollTracker();
       router.push(url);
     }, 300);
-  };
-
-  const nextSlidez = (index) => {
-    console.log(index);
-
-    console.log(refs);
-
-    if (refs[index]) {
-      refs[index].current.slickNext();
-    }
-  };
-
-  const previousSlidez = (index) => {
-    console.log(index);
-
-    if (refs[index]) {
-      refs[index].current.slickPrev();
-    }
-  };
-
-  const settings = {
-    arrows: false,
-    dots: false,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
   };
 
   // With links to Case Studies
@@ -230,36 +202,11 @@ const Home = ({ document }) => {
           </header>
           {slice.primary.case_study_link.data &&
           slice.primary.case_study_link.data.images.length > 1 ? (
-            <div
-              className={styles.slider_container}
-              onClick={() => nextSlidez(index)}
-            >
-              <Slider {...settings} ref={refs[index]}>
-                {slice.primary.case_study_link.data.images.map((image, i) => {
-                  return (
-                    <div key={i}>
-                      <Image
-                        src={image.image.url}
-                        layout={"responsive"}
-                        height={image.image.dimensions.height}
-                        width={image.image.dimensions.width}
-                        alt={image.image.alt}
-                        priority
-                        quality={100}
-                      />
-                    </div>
-                  );
-                })}
-              </Slider>
-              <button
-                className={`${styles.slide_control} ${styles.prev}`}
-                onClick={() => previousSlidez(index)}
-              />
-              <button
-                className={`${styles.slide_control} ${styles.next}`}
-                onClick={() => nextSlidez(index)}
-              />
-            </div>
+            <FeaturedSlider
+              refs={refs}
+              images={slice.primary.case_study_link.data.images}
+              index={index}
+            />
           ) : slice.primary.case_study_link.data &&
             slice.primary.case_study_link.data.images[0].image &&
             slice.primary.case_study_link.data.images[0].image.url ? (
