@@ -1,4 +1,4 @@
-import { useEffect, useContext } from "react";
+import React, { useEffect, useContext, useRef, useMemo } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -65,6 +65,12 @@ const Home = ({ document }) => {
 
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
+  // let refs = useRef([React.createRef(), React.createRef()]);
+  const refs = useMemo(
+    () => document?.data?.body1?.map(() => React.createRef()),
+    []
+  );
+
   useEffect(() => {
     console.log("Landing Data", document.data);
     // Reset scroll position for Archive Index
@@ -93,6 +99,24 @@ const Home = ({ document }) => {
       ScrollTracker();
       router.push(url);
     }, 300);
+  };
+
+  const nextSlidez = (index) => {
+    console.log(index);
+
+    console.log(refs);
+
+    if (refs[index]) {
+      refs[index].current.slickNext();
+    }
+  };
+
+  const previousSlidez = (index) => {
+    console.log(index);
+
+    if (refs[index]) {
+      refs[index].current.slickPrev();
+    }
   };
 
   const settings = {
@@ -192,11 +216,11 @@ const Home = ({ document }) => {
         <section key={index} className={styles.feature}>
           <header>
             <span className={styles.tags}>
-              {slice.primary.case_study_link.tags?.map((tag, index, arr) => {
-                if (arr.length - 1 === index) {
-                  return <span key={index}>{tag}</span>;
+              {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
+                if (arr.length - 1 === i) {
+                  return <span key={i}>{tag}</span>;
                 } else {
-                  return <span key={index}>{tag}, </span>;
+                  return <span key={i}>{tag}, </span>;
                 }
               })}
             </span>
@@ -206,23 +230,31 @@ const Home = ({ document }) => {
           </header>
           {slice.primary.case_study_link.data &&
           slice.primary.case_study_link.data.images.length > 1 ? (
-            <Slider {...settings}>
-              {slice.primary.case_study_link.data.images.map((image, index) => {
-                return (
-                  <div key={index}>
-                    <Image
-                      src={image.image.url}
-                      layout={"responsive"}
-                      height={image.image.dimensions.height}
-                      width={image.image.dimensions.width}
-                      alt={image.image.alt}
-                      priority
-                      quality={100}
-                    />
-                  </div>
-                );
-              })}
-            </Slider>
+            <div>
+              <Slider {...settings} ref={refs[index]}>
+                {slice.primary.case_study_link.data.images.map((image, i) => {
+                  return (
+                    <div key={i}>
+                      <Image
+                        src={image.image.url}
+                        layout={"responsive"}
+                        height={image.image.dimensions.height}
+                        width={image.image.dimensions.width}
+                        alt={image.image.alt}
+                        priority
+                        quality={100}
+                      />
+                    </div>
+                  );
+                })}
+              </Slider>
+              <button className="button" onClick={() => previousSlidez(index)}>
+                Previous
+              </button>
+              <button className="button" onClick={() => nextSlidez(index)}>
+                Next
+              </button>
+            </div>
           ) : slice.primary.case_study_link.data &&
             slice.primary.case_study_link.data.images[0].image &&
             slice.primary.case_study_link.data.images[0].image.url ? (
