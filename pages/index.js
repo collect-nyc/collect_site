@@ -54,6 +54,8 @@ const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
 
+  console.log("featured data", document.data.body1);
+
   const {
     setScrollPos,
     setReturnPage,
@@ -186,49 +188,62 @@ const Home = ({ document }) => {
       slice.primary.case_study_link.data.images.length > 0
     ) {
       return (
-        <section key={index} className={styles.feature}>
-          <header>
-            <span className={styles.tags}>
-              {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
-                if (arr.length - 1 === i) {
-                  return <span key={i}>{tag}</span>;
-                } else {
-                  return <span key={i}>{tag}, </span>;
-                }
-              })}
-            </span>
-            <span className={styles.title}>
-              {slice.primary.case_study_link.data?.title[0]?.text}
-            </span>
-          </header>
-          {slice.primary.case_study_link.data &&
-          slice.primary.case_study_link.data.images.length > 1 ? (
-            <FeaturedSlider
-              refs={refs}
-              images={slice.primary.case_study_link.data.images}
-              index={index}
-            />
-          ) : slice.primary.case_study_link.data &&
-            slice.primary.case_study_link.data.images[0].image &&
-            slice.primary.case_study_link.data.images[0].image.url ? (
-            <Image
-              src={slice.primary.case_study_link.data.images[0].image.url}
-              alt={slice.primary.case_study_link.data.images[0].image.alt}
-              height={
-                slice.primary.case_study_link.data.images[0].image.dimensions
-                  .height
-              }
-              width={
-                slice.primary.case_study_link.data.images[0].image.dimensions
-                  .width
-              }
-              layout={"responsive"}
-              priority
-              quality={100}
-            />
-          ) : (
-            <h1>No images in media tab</h1>
-          )}
+        <section
+          key={index}
+          className={`${styles.feature} ${
+            slice.primary.position === "Left"
+              ? styles.left
+              : slice.primary.position === "Right"
+              ? styles.right
+              : styles.center
+          }`}
+        >
+          <div className={styles.media_container}>
+            <div className={styles.inner}>
+              {slice.primary.case_study_link.data &&
+              slice.primary.case_study_link.data.images.length > 1 ? (
+                <FeaturedSlider
+                  refs={refs}
+                  images={slice.primary.case_study_link.data.images}
+                  index={index}
+                />
+              ) : slice.primary.case_study_link.data &&
+                slice.primary.case_study_link.data.images[0].image &&
+                slice.primary.case_study_link.data.images[0].image.url ? (
+                <Image
+                  src={slice.primary.case_study_link.data.images[0].image.url}
+                  alt={slice.primary.case_study_link.data.images[0].image.alt}
+                  height={
+                    slice.primary.case_study_link.data.images[0].image
+                      .dimensions.height
+                  }
+                  width={
+                    slice.primary.case_study_link.data.images[0].image
+                      .dimensions.width
+                  }
+                  layout={"responsive"}
+                  priority
+                  quality={100}
+                />
+              ) : (
+                <h1>No images in media tab</h1>
+              )}
+              <header>
+                <span className={styles.tags}>
+                  {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
+                    if (arr.length - 1 === i) {
+                      return <span key={i}>{tag}</span>;
+                    } else {
+                      return <span key={i}>{tag}, </span>;
+                    }
+                  })}
+                </span>
+                <span className={styles.title}>
+                  {slice.primary.case_study_link.data?.title[0]?.text}
+                </span>
+              </header>
+            </div>
+          </div>
         </section>
       );
     } else {
@@ -534,19 +549,26 @@ const Home = ({ document }) => {
 
           <div className={styles.select_section}>
             <header>
-              <div className={styles.left}>
-                <span className={styles.caslon}>Selected Work</span>
-                <span className={styles.untitled}>
-                  <em className={styles.desktop_txt}>
-                    Genre-spanning output from COLLECT Archive
-                  </em>
-                  <em className={styles.mobile_txt}>
-                    mixed media, collect archive
-                  </em>
-                </span>
+              <div className={styles.select_header}>
+                <h2>
+                  <span>Archive SELECTS</span>
+                  <span>1-of-1, Sketches, Études, Process</span>
+                </h2>
               </div>
-              <div className={styles.right}>
-                <span>Reopening Summer 2022</span>
+              <div className={styles.cap_heading}>
+                <div className={styles.left}>
+                  <span className={styles.untitled}>
+                    <em className={styles.desktop_txt}>
+                      Selected works from Collect ARCHIVE
+                    </em>
+                    <em className={styles.mobile_txt}>
+                      mixed media, collect archive
+                    </em>
+                  </span>
+                </div>
+                <div className={styles.right}>
+                  <span>Full ARCHIVE Reopening Fall 2022</span>
+                </div>
               </div>
             </header>
             {pageContent}
