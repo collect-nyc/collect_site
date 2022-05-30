@@ -562,7 +562,7 @@ const Home = ({ document }) => {
                       Selected works from Collect ARCHIVE
                     </em>
                     <em className={styles.mobile_txt}>
-                      mixed media, collect archive
+                      Mixed Media, Collect Archive
                     </em>
                   </span>
                 </div>
