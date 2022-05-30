@@ -90,7 +90,6 @@ export default function ArchiveLoaderMobile({ data }) {
         <p>
           <span>{mobile_text_one && mobile_text_one}</span>
           <span>{mobile_text_two && mobile_text_two}</span>
-          <span>{mobile_text_three && mobile_text_three}</span>
         </p>
       </div>
 

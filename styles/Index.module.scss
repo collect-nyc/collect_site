@@ -21,8 +21,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 0 $gutter_mobile 0;
+    padding: 0 $navGutter_desktop 0;
     height: calc(100vh - 200px);
+
+    @media screen and (max-width: $mq-mobile-max) {
+      padding: 0 $navGutter_mobile;
+    }
+
+    .mobile {
+      display: none;
+    }
 
     h1 {
       font-size: 48px;
@@ -43,16 +51,23 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      .mobile {
+        display: block;
+      }
+      .desktop {
+        display: none;
+      }
       h1 {
-        line-height: 0.8;
-
+        line-height: 32px;
         padding: 0 5%;
 
         .untitled {
-          font-size: 29px;
+          font-size: 30px;
+          letter-spacing: -0.02em;
         }
         .caslon {
-          font-size: 30px;
+          font-size: 32px;
+          letter-spacing: -0.02em;
         }
       }
     }

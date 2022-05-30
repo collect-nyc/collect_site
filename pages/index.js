@@ -515,11 +515,23 @@ const Home = ({ document }) => {
           transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
         >
           <h1>
-            <span className={styles.untitled}>
-              {document?.data?.untitled_sans_headline}{" "}
+            <span className={styles.desktop}>
+              <span className={styles.untitled}>
+                {document?.data?.untitled_sans_headline}{" "}
+              </span>
+              <span className={styles.caslon}>
+                {document?.data?.caslon_headline}
+              </span>
             </span>
-            <span className={styles.caslon}>
-              {document?.data?.caslon_headline}
+
+            <span className={styles.mobile}>
+              <span className={styles.caslon}>
+                {document?.data?.mobile_headline_caslon}
+              </span>
+              <span className={styles.untitled}>
+                {" "}
+                {document?.data?.mobile_headline_untitled}
+              </span>
             </span>
           </h1>
         </motion.section>

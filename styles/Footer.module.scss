@@ -17,18 +17,14 @@
     span {
       display: block;
 
-      &.phone,
-      &.address {
-        margin-bottom: 15px;
-      }
-
       &.company {
         // text-transform: uppercase;
       }
 
-      // &.address {
-      //   margin-bottom: 15px;
-      // }
+      &.phone,
+      &.address {
+        margin-bottom: 15px;
+      }
     }
   }
 
