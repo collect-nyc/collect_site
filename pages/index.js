@@ -527,6 +527,8 @@ const Home = ({ document }) => {
             <span className={styles.mobile}>
               <span className={styles.caslon}>
                 {document?.data?.mobile_headline_caslon}
+                <br />
+                {document?.data?.mobile_headline_caslon_break}
               </span>
               <span className={styles.untitled}>
                 {" "}
