@@ -14,7 +14,7 @@
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 90px 0 0;
+    padding: 0 0 0;
   }
 
   .statement {
@@ -26,6 +26,7 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       padding: 0 $navGutter_mobile;
+      height: calc(100vh - 40px);
     }
 
     .mobile {
@@ -96,7 +97,8 @@
     padding: 8px 0;
 
     @media screen and (max-width: $mq-mobile-max) {
-      margin: 60px 0 80px;
+      margin: 60px 0 40px;
+      padding: 7px 0;
     }
   }
 
