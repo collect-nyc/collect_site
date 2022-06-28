@@ -235,7 +235,10 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          width: 100%;
+          &.eight_col,
+          &.seven_col {
+            width: 100%;
+          }
         }
 
         .inner {
