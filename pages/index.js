@@ -579,10 +579,10 @@ const Home = ({ document }) => {
                 <div className={styles.left}>
                   <span className={styles.untitled}>
                     <em className={styles.desktop_txt}>
-                      Selected works from Collect ARCHIVE
+                      Works from Collect ARCHIVE
                     </em>
                     <em className={styles.mobile_txt}>
-                      Mixed Media, Collect Archive
+                      Works from Collect ARCHIVE
                     </em>
                   </span>
                 </div>

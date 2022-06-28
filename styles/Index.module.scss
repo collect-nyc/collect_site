@@ -145,6 +145,10 @@
         align-items: flex-end;
         justify-content: space-between;
         padding: 0 $navGutter_desktop 15px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding: 0 $navGutter_mobile 10px;
+        }
       }
 
       .left {
