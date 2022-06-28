@@ -134,6 +134,10 @@
               font-size: 29px;
               display: block;
               line-height: 1;
+
+              em {
+                display: none;
+              }
             }
           }
         }

@@ -572,7 +572,9 @@ const Home = ({ document }) => {
               <div className={styles.select_header}>
                 <h2>
                   <span>Archive SELECTS</span>
-                  <span>1-of-1, Sketches, Études, Process</span>
+                  <span>
+                    1-of-1, Sketches, Études<em>, Process</em>
+                  </span>
                 </h2>
               </div>
               <div className={styles.cap_heading}>
