@@ -136,8 +136,14 @@
     position: relative;
     letter-spacing: -0.02em;
     line-height: 1.208;
+
     text-align: center;
     z-index: 2;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      margin-top: 8px;
+      line-height: 36px;
+    }
 
     span {
       display: block;
