@@ -267,8 +267,14 @@
         @media screen and (max-width: $mq-mobile-max) {
           font-size: 13px;
 
+          .tags,
+          .title {
+            display: block;
+            width: 100%;
+          }
+
           .tags {
-            padding-right: 10px;
+            margin-bottom: 5px;
           }
         }
       }
