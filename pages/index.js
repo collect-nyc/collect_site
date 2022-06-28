@@ -200,7 +200,7 @@ const Home = ({ document }) => {
         >
           <div
             className={
-              slice.primary.width === 7
+              slice.primary.width === "7"
                 ? `${styles.media_container} ${styles.seven_col}`
                 : `${styles.media_container}  ${styles.eight_col}`
             }
