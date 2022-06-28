@@ -225,7 +225,14 @@
       .media_container {
         @include aspect-ratio(3, 2);
         position: relative;
-        width: calc($gutter_desktop * 8);
+
+        &.eight_col {
+          width: calc($gutter_desktop * 8);
+        }
+
+        &.seven_col {
+          width: calc($gutter_desktop * 7);
+        }
 
         @media screen and (max-width: $mq-mobile-max) {
           width: 100%;

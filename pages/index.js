@@ -198,7 +198,13 @@ const Home = ({ document }) => {
               : styles.center
           }`}
         >
-          <div className={styles.media_container}>
+          <div
+            className={
+              slice.primary.width === 7
+                ? `${styles.media_container} ${styles.seven_col}`
+                : `${styles.media_container}  ${styles.eight_col}`
+            }
+          >
             <div className={styles.inner}>
               {slice.primary.case_study_link.data &&
               slice.primary.case_study_link.data.images.length > 1 ? (
