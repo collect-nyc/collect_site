@@ -37,7 +37,7 @@ const ProjectViewer = ({
       next = 0;
     }
 
-    if (Object.keys(images[next].image).length > 0 && images[next].image.url) {
+    if (images[prev].image && images[next].image.url) {
       return {
         backgroundImage: `url(${images[next].image.url})`,
       };
@@ -52,7 +52,7 @@ const ProjectViewer = ({
       prev = images.length - 1;
     }
 
-    if (Object.keys(images[prev].image).length > 0 && images[prev].image.url) {
+    if (images[prev].image && images[prev].image.url) {
       return {
         backgroundImage: `url(${images[prev].image.url})`,
       };
