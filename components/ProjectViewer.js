@@ -12,7 +12,7 @@ const ProjectViewer = ({
   previousImage,
   nextImage,
 }) => {
-  // console.log("IMAGES", images);
+  console.log("IMAGES", images);
 
   const HandleSwipe = (swipe) => {
     // console.log("swipe", swipe.direction);
@@ -37,7 +37,7 @@ const ProjectViewer = ({
       next = 0;
     }
 
-    if (images[prev].image && images[next].image.url) {
+    if (images[next].image && images[next].image.url) {
       return {
         backgroundImage: `url(${images[next].image.url})`,
       };
