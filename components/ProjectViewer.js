@@ -42,7 +42,9 @@ const ProjectViewer = ({
         backgroundImage: `url(${images[next].image.url})`,
       };
     } else {
-      return false;
+      return {
+        backgroundImage: `url(https://place-hold.it/1000)`,
+      };
     }
   };
 
@@ -57,7 +59,9 @@ const ProjectViewer = ({
         backgroundImage: `url(${images[prev].image.url})`,
       };
     } else {
-      return null;
+      return {
+        backgroundImage: `url(https://place-hold.it/1000)`,
+      };
     }
   };
 
