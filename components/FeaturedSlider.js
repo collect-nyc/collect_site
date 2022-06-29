@@ -5,6 +5,7 @@ import Cursor from "./Cursor";
 import styles from "../styles/FeaturedSlider.module.scss";
 
 const FeaturedSlider = ({ images, refs, index }) => {
+  console.log(images);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
 
@@ -40,8 +41,21 @@ const FeaturedSlider = ({ images, refs, index }) => {
       >
         <Slider {...settings} ref={refs[index]}>
           {images.map((image, i) => {
+            if (
+              Object.keys(image.image).length === 0 &&
+              Object.keys(image.video).length > 0
+            ) {
+              return (
+                <div className={styles.video_container} key={i}>
+                  <video playsInline loop autoPlay muted>
+                    <source src={image.video.url} type="video/mp4" />
+                  </video>
+                </div>
+              );
+            }
+
             return (
-              <div key={i}>
+              <div className={styles.image_container} key={i}>
                 <Image
                   src={image.image.url}
                   layout={"responsive"}

@@ -9,6 +9,14 @@
   width: 100%;
   overflow: hidden;
 
+  .video_container {
+    display: none;
+  }
+
+  video {
+    object-fit: contain;
+  }
+
   .slide_control {
     display: block;
     display: none;
