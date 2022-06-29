@@ -11,10 +11,14 @@
 
   .video_container {
     display: none;
-  }
+    position: relative;
 
-  video {
-    object-fit: contain;
+    video {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      // object-fit: contain;
+    }
   }
 
   .slide_control {
