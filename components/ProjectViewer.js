@@ -57,7 +57,7 @@ const ProjectViewer = ({
         backgroundImage: `url(${images[prev].image.url})`,
       };
     } else {
-      return false;
+      return null;
     }
   };
 
