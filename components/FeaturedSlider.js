@@ -5,7 +5,7 @@ import Cursor from "./Cursor";
 import styles from "../styles/FeaturedSlider.module.scss";
 
 const FeaturedSlider = ({ images, refs, index }) => {
-  console.log(images);
+  // console.log(images);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
 
