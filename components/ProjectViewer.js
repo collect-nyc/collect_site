@@ -37,16 +37,7 @@ const ProjectViewer = ({
       next = 0;
     }
 
-    if (
-      Object.keys(images[next].image).length === 0 &&
-      Object.keys(images[next].video).length > 0 &&
-      images[next].video.url
-    ) {
-      return false;
-    } else if (
-      Object.keys(images[next].image).length > 0 &&
-      images[next].image.url
-    ) {
+    if (Object.keys(images[next].image).length > 0 && images[next].image.url) {
       return {
         backgroundImage: `url(${images[next].image.url})`,
       };
@@ -61,16 +52,7 @@ const ProjectViewer = ({
       prev = images.length - 1;
     }
 
-    if (
-      Object.keys(images[prev].image).length === 0 &&
-      Object.keys(images[prev].video).length > 0 &&
-      images[prev].video.url
-    ) {
-      return false;
-    } else if (
-      Object.keys(images[prev].image).length > 0 &&
-      images[prev].image.url
-    ) {
+    if (Object.keys(images[prev].image).length > 0 && images[prev].image.url) {
       return {
         backgroundImage: `url(${images[prev].image.url})`,
       };
