@@ -43,7 +43,8 @@ const FeaturedSlider = ({ images, refs, index }) => {
           {images.map((image, i) => {
             if (
               Object.keys(image.image).length === 0 &&
-              Object.keys(image.video).length > 0
+              Object.keys(image.video).length > 0 &&
+              image.video.url
             ) {
               return (
                 <div className={styles.video_container} key={i}>
@@ -52,21 +53,23 @@ const FeaturedSlider = ({ images, refs, index }) => {
                   </video>
                 </div>
               );
+            } else if (Object.keys(image.image).length > 0 && image.image.url) {
+              return (
+                <div className={styles.image_container} key={i}>
+                  <Image
+                    src={image.image.url}
+                    layout={"responsive"}
+                    height={image.image.dimensions.height}
+                    width={image.image.dimensions.width}
+                    alt={image.image.alt}
+                    priority
+                    quality={100}
+                  />
+                </div>
+              );
+            } else {
+              return false;
             }
-
-            return (
-              <div className={styles.image_container} key={i}>
-                <Image
-                  src={image.image.url}
-                  layout={"responsive"}
-                  height={image.image.dimensions.height}
-                  width={image.image.dimensions.width}
-                  alt={image.image.alt}
-                  priority
-                  quality={100}
-                />
-              </div>
-            );
           })}
         </Slider>
         <button
