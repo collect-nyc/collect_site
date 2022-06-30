@@ -211,6 +211,12 @@
   }
 
   .featured_section {
+    @media screen and (max-width: $mq-mobile-max) {
+      @supports (-webkit-touch-callout: none) {
+        margin-top: -88px;
+      }
+    }
+
     section.feature {
       display: flex;
       padding: 0 $navGutter_desktop;
