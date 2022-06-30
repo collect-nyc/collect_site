@@ -233,6 +233,7 @@
       .media_container {
         @include aspect-ratio(3, 2);
         position: relative;
+        overflow: hidden;
 
         &.eight_col {
           width: calc($gutter_desktop * 8);
@@ -250,11 +251,12 @@
         }
 
         .inner {
+          overflow: hidden;
           position: absolute;
           top: 0;
           left: 0;
           height: 100%;
-          width: 100%;
+          width: calc(100% + 1px);
         }
       }
 
