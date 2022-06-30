@@ -73,8 +73,9 @@
       }
 
       @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-        line-height: 1.27;
+        line-height: 36px;
         font-size: 34px;
+        margin-top: 10px;
       }
     }
   }
