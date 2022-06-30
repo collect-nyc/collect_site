@@ -125,6 +125,14 @@
           }
         }
 
+        @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+          h2 {
+            span {
+              font-size: 34px;
+            }
+          }
+        }
+
         @media screen and (max-width: $mq-mobile-max) {
           padding: 0 $navGutter_mobile;
           margin-bottom: 100px;
