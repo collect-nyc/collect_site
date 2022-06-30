@@ -170,6 +170,12 @@
     a,
     button {
       color: $black;
+
+      .hide_mobile {
+        @media screen and (max-width: $mq-mobile-max) {
+          display: none;
+        }
+      }
     }
   }
 
