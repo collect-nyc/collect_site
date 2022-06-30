@@ -552,7 +552,7 @@ const Home = ({ document }) => {
                 }
               : { opacity: 1 }
           }
-          transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
+          transition={{ ease: "easeOut", delay: 1.5, duration: 0.7 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
           <div className={styles.featured_section}>{featureContent}</div>

@@ -22,7 +22,7 @@ const HomeNav = ({ page, count, latest, tags }) => {
             }
           : { opacity: 1 }
       }
-      transition={{ ease: "easeOut", delay: 2, duration: 0.7 }}
+      transition={{ ease: "easeOut", delay: 1.5, duration: 0.7 }}
     >
       <div className={styles.top_left}>
         <div className={styles.link_box}>
