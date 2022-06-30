@@ -61,8 +61,8 @@
   @media screen and (max-width: $mq-mobile-max) {
     padding: {
       top: 100px;
-      left: $gutter_mobile;
-      right: $gutter_mobile;
+      left: $navGutter_mobile;
+      right: $navGutter_mobile;
       bottom: 0;
     }
   }
