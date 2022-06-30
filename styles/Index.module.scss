@@ -213,6 +213,7 @@
   .featured_section {
     @media screen and (max-width: $mq-mobile-max) {
       @supports (-webkit-touch-callout: none) {
+        // pull the features section up over the bottom navigation chrome on iOS mobile
         margin-top: -88px;
       }
     }
