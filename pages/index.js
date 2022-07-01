@@ -282,7 +282,7 @@ const Home = ({ document }) => {
           }`}
         >
           <div className={`${styles.image} ${styles.left}`}>
-            {slice.primary.left_image.url ? (
+            {slice.primary.left_image.url || slice.primary.left_video.url ? (
               slice.primary.archive_link_left &&
               slice.primary.archive_link_left.uid ? (
                 slice.primary.archive_link_left.data?.item_type ===
