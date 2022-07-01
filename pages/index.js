@@ -619,7 +619,7 @@ const Home = ({ document }) => {
 
           <div className={styles.marquee_section}>
             <Marquee gradient={false} speed={90}>
-              COLLECT is an studio for identity centered in design, direction,
+              COLLECT is a studio for identity centered in design, direction,
               development and the arts. In the realms of culture and commerce we
               enable select collaborators to do more through design. ‘SUDDENLY A
               MIST FELL FROM MY EYES, AND I KNEW THE WAY I HAD TO TAKE.’ EDVARD
