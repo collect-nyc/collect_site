@@ -52,7 +52,7 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ document }) => {
   const router = useRouter();
-  // console.log("Landing Data", document.data);
+  console.log("Landing Data", document.data);
 
   // console.log("featured data", document.data.body1);
 
@@ -320,19 +320,28 @@ const Home = ({ document }) => {
                     }
                   >
                     <a onClick={() => ScrollTracker()}>
-                      <Image
-                        src={slice.primary.left_image.url}
-                        layout={"responsive"}
-                        height={slice.primary.left_image.dimensions.height}
-                        width={slice.primary.left_image.dimensions.width}
-                        alt={slice.primary.left_image.alt}
-                        priority
-                        quality={100}
-                      />
+                      {slice.primary?.left_image?.url ? (
+                        <Image
+                          src={slice.primary.left_image.url}
+                          layout={"responsive"}
+                          height={slice.primary.left_image.dimensions.height}
+                          width={slice.primary.left_image.dimensions.width}
+                          alt={slice.primary.left_image.alt}
+                          priority
+                          quality={100}
+                        />
+                      ) : slice.primary.left_video?.url ? (
+                        <video playsInline loop autoPlay muted>
+                          <source
+                            src={slice.primary.left_video.url}
+                            type="video/mp4"
+                          />
+                        </video>
+                      ) : null}
                     </a>
                   </Link>
                 )
-              ) : (
+              ) : slice.primary?.left_image?.url ? (
                 <Image
                   src={slice.primary.left_image.url}
                   layout={"responsive"}
@@ -342,11 +351,15 @@ const Home = ({ document }) => {
                   priority
                   quality={100}
                 />
-              )
+              ) : slice.primary.left_video?.url ? (
+                <video playsInline loop autoPlay muted>
+                  <source src={slice.primary.left_video.url} type="video/mp4" />
+                </video>
+              ) : null
             ) : null}
           </div>
           <div className={`${styles.image} ${styles.right}`}>
-            {slice.primary.right_image.url ? (
+            {slice.primary.right_image.url || slice.primary.right_video.url ? (
               slice.primary.archive_link_right &&
               slice.primary.archive_link_right.uid ? (
                 slice.primary.archive_link_right.data?.item_type ===
@@ -367,23 +380,7 @@ const Home = ({ document }) => {
                         : null
                     }
                   >
-                    <Image
-                      src={slice.primary.right_image.url}
-                      layout={"responsive"}
-                      height={slice.primary.right_image.dimensions.height}
-                      width={slice.primary.right_image.dimensions.width}
-                      alt={slice.primary.right_image.alt}
-                      priority
-                      quality={100}
-                    />
-                  </a>
-                ) : (
-                  <Link
-                    href={
-                      "/archive/item/" + slice.primary.archive_link_right.uid
-                    }
-                  >
-                    <a onClick={() => ScrollTracker()}>
+                    {slice.primary?.right_image?.url ? (
                       <Image
                         src={slice.primary.right_image.url}
                         layout={"responsive"}
@@ -393,10 +390,44 @@ const Home = ({ document }) => {
                         priority
                         quality={100}
                       />
+                    ) : slice.primary.right_video?.url ? (
+                      <video playsInline loop autoPlay muted>
+                        <source
+                          src={slice.primary.right_video.url}
+                          type="video/mp4"
+                        />
+                      </video>
+                    ) : null}
+                  </a>
+                ) : (
+                  <Link
+                    href={
+                      "/archive/item/" + slice.primary.archive_link_right.uid
+                    }
+                  >
+                    <a onClick={() => ScrollTracker()}>
+                      {slice.primary?.right_image?.url ? (
+                        <Image
+                          src={slice.primary.right_image.url}
+                          layout={"responsive"}
+                          height={slice.primary.right_image.dimensions.height}
+                          width={slice.primary.right_image.dimensions.width}
+                          alt={slice.primary.right_image.alt}
+                          priority
+                          quality={100}
+                        />
+                      ) : slice.primary.right_video?.url ? (
+                        <video playsInline loop autoPlay muted>
+                          <source
+                            src={slice.primary.right_video.url}
+                            type="video/mp4"
+                          />
+                        </video>
+                      ) : null}
                     </a>
                   </Link>
                 )
-              ) : (
+              ) : slice.primary?.right_image?.url ? (
                 <Image
                   src={slice.primary.right_image.url}
                   layout={"responsive"}
@@ -406,7 +437,14 @@ const Home = ({ document }) => {
                   priority
                   quality={100}
                 />
-              )
+              ) : slice.primary.right_video?.url ? (
+                <video playsInline loop autoPlay muted>
+                  <source
+                    src={slice.primary.right_video.url}
+                    type="video/mp4"
+                  />
+                </video>
+              ) : null
             ) : null}
           </div>
         </section>
@@ -427,7 +465,7 @@ const Home = ({ document }) => {
               : `${styles.single_image}`
           }
         >
-          {slice.primary.image.url ? (
+          {slice.primary.image.url || slice.primary.video.url ? (
             <figure
               className={
                 slice.primary.gutter == "Gutter" ? null : `${styles.full_bleed}`
@@ -449,21 +487,7 @@ const Home = ({ document }) => {
                         : null
                     }
                   >
-                    <Image
-                      src={slice.primary.image.url}
-                      layout={"responsive"}
-                      height={slice.primary.image.dimensions.height}
-                      width={slice.primary.image.dimensions.width}
-                      alt={slice.primary.image.alt}
-                      priority
-                      quality={100}
-                    />
-                  </a>
-                ) : (
-                  <Link
-                    href={"/archive/item/" + slice.primary.archive_link.uid}
-                  >
-                    <a onClick={() => ScrollTracker()}>
+                    {slice.primary.image?.url ? (
                       <Image
                         src={slice.primary.image.url}
                         layout={"responsive"}
@@ -473,10 +497,42 @@ const Home = ({ document }) => {
                         priority
                         quality={100}
                       />
+                    ) : slice.primary.video?.url ? (
+                      <video playsInline loop autoPlay muted>
+                        <source
+                          src={slice.primary.video.url}
+                          type="video/mp4"
+                        />
+                      </video>
+                    ) : null}
+                  </a>
+                ) : (
+                  <Link
+                    href={"/archive/item/" + slice.primary.archive_link.uid}
+                  >
+                    <a onClick={() => ScrollTracker()}>
+                      {slice.primary.image?.url ? (
+                        <Image
+                          src={slice.primary.image.url}
+                          layout={"responsive"}
+                          height={slice.primary.image.dimensions.height}
+                          width={slice.primary.image.dimensions.width}
+                          alt={slice.primary.image.alt}
+                          priority
+                          quality={100}
+                        />
+                      ) : slice.primary.video?.url ? (
+                        <video playsInline loop autoPlay muted>
+                          <source
+                            src={slice.primary.video.url}
+                            type="video/mp4"
+                          />
+                        </video>
+                      ) : null}
                     </a>
                   </Link>
                 )
-              ) : (
+              ) : slice.primary.image?.url ? (
                 <Image
                   src={slice.primary.image.url}
                   layout={"responsive"}
@@ -486,7 +542,11 @@ const Home = ({ document }) => {
                   priority
                   quality={100}
                 />
-              )}
+              ) : slice.primary.video?.url ? (
+                <video playsInline loop autoPlay muted>
+                  <source src={slice.primary.video.url} type="video/mp4" />
+                </video>
+              ) : null}
             </figure>
           ) : null}
         </section>
