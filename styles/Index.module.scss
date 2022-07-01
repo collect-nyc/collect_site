@@ -94,11 +94,15 @@
       top: 1px solid $platinum;
       bottom: 1px solid $platinum;
     }
-    margin: 120px 0 160px;
-    padding: 8px 0;
+    margin: 120px 0;
+    padding: 4px 0 5px;
+
+    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+      margin: 27px 0 80px;
+    }
 
     @media screen and (max-width: $mq-mobile-max) {
-      margin: 60px 0 40px;
+      margin: 60px 0;
       padding: 7px 0;
     }
   }
@@ -106,7 +110,7 @@
   .select_section {
     header {
       .select_header {
-        margin-bottom: 238px;
+        margin-bottom: 132px;
         padding: 0 50px;
 
         h2 {
@@ -126,6 +130,8 @@
         }
 
         @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+          margin-bottom: 91px;
+
           h2 {
             span {
               font-size: 36px;
@@ -135,13 +141,14 @@
 
         @media screen and (max-width: $mq-mobile-max) {
           padding: 0 $navGutter_mobile;
-          margin-bottom: 100px;
+          margin-bottom: 70px;
+
           h2 {
             span {
               @include kingscaslon_italic;
-              font-size: 29px;
+              font-size: 32px;
               display: block;
-              line-height: 1;
+              line-height: 36px;
 
               em {
                 display: none;
@@ -219,6 +226,12 @@
   }
 
   .featured_section {
+    padding-bottom: 30px;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      padding-bottom: 0;
+    }
+
     @media screen and (max-width: $mq-mobile-max) {
       @supports (-webkit-touch-callout: none) {
         // pull the features section up over the bottom navigation chrome on iOS mobile
@@ -241,7 +254,7 @@
         margin-bottom: 80px;
 
         &:last-of-type {
-          margin-bottom: 80px;
+          margin-bottom: 100px;
         }
       }
 
