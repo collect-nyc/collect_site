@@ -69,30 +69,26 @@ $courier: "Courier Prime";
 .heading_h4,
 .heading_h5,
 .heading_h6 {
-  font-family: $futura;
-  font-size: 48px;
+  font-family: $untitled_sans;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 }
 
 .heading_h1 {
-  font-size: 48px;
-  font-weight: 500;
-  line-height: 1;
+  font-family: $untitled_sans;
+  font-size: 46px;
+  line-height: 1.208;
 
-  &.xtra_bold {
-    font-weight: 700;
+  @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+    font-size: 34px;
+    line-height: 36px;
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    font-size: 32px;
+    font-size: 30px;
+    line-height: 1;
   }
-}
-
-.heading_h2 {
-  font-size: 24px;
-  line-height: 1.33;
 }
 
 .casestudy_title {
