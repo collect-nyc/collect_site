@@ -309,7 +309,7 @@
 
         .tags {
           @include kingscaslon_italic;
-          padding-right: 20px;
+          padding-right: 10px;
         }
 
         @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
@@ -330,6 +330,7 @@
           }
 
           .tags {
+            padding-right: 0;
             margin-bottom: 5px;
           }
         }
