@@ -630,7 +630,7 @@ const Home = ({ document }) => {
                 <h2>
                   <span>Archive SELECTS</span>
                   <span>
-                    1-of-1, Sketches, Études<em>, Process</em>
+                    1-of-1, Research, Études<em>, Process</em>
                   </span>
                 </h2>
               </div>
