@@ -4,7 +4,7 @@
 .navigation {
   align-items: flex-start;
   background-color: transparent;
-  color: $white;
+  color: $black;
   display: flex;
   justify-content: space-between;
   // mix-blend-mode: difference;
@@ -18,7 +18,7 @@
 
   a,
   button {
-    color: $white;
+    color: $black;
   }
 
   .top_left {
@@ -180,6 +180,13 @@
   }
 
   &.archive_loader {
+    color: $white;
+
+    a,
+    button {
+      color: $white;
+    }
+
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
     }

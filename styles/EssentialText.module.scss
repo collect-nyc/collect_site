@@ -8,6 +8,7 @@
 
 .container {
   padding: 108px $navGutter_desktop 0 $navGutter_desktop;
+  min-height: calc(100vh - 168px);
 }
 
 .text {
@@ -53,6 +54,7 @@
   }
 
   .gradient_bottom {
+    display: none;
     position: fixed;
     width: 100%;
     height: 120px;

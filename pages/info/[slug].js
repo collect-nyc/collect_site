@@ -5,6 +5,7 @@ import _ from "lodash";
 import { RichText } from "prismic-reactjs";
 import { gql } from "@apollo/client";
 import SharedHead from "../../components/SharedHead";
+import Footer from "../../components/Footer";
 import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import { apolloClient } from "../../lib/apollo-config";
@@ -74,32 +75,35 @@ const EssentialText = ({ document, uid }) => {
   );
 
   return (
-    <div className={styles.container} ref={ref}>
-      <Head>
-        <title>{_.capitalize(uid)} – Collect NYC</title>
-        {/* TODO: add meta description content */}
-        <meta name="description" content={_.capitalize(uid)} />
+    <>
+      <div className={styles.container} ref={ref}>
+        <Head>
+          <title>{_.capitalize(uid)} – Collect NYC</title>
+          {/* TODO: add meta description content */}
+          <meta name="description" content={_.capitalize(uid)} />
 
-        <SharedHead />
-      </Head>
-      <main>
-        <div className={styles.text}>
-          <motion.div
-            className={styles.gradient_top}
-            style={{ scrollYProgress, opacity: top_gradient }}
-            key={"essential_top"}
-          />
-          <motion.div
-            className={styles.gradient_bottom}
-            style={{ scrollYProgress, opacity: bottom_gradient }}
-            key={"essential_bottom"}
-          />
-          {page_data.essential_text ? (
-            <RichText render={page_data.essential_text.text} />
-          ) : null}
-        </div>
-      </main>
-    </div>
+          <SharedHead />
+        </Head>
+        <main>
+          <div className={styles.text}>
+            <motion.div
+              className={styles.gradient_top}
+              style={{ scrollYProgress, opacity: top_gradient }}
+              key={"essential_top"}
+            />
+            <motion.div
+              className={styles.gradient_bottom}
+              style={{ scrollYProgress, opacity: bottom_gradient }}
+              key={"essential_bottom"}
+            />
+            {page_data.essential_text ? (
+              <RichText render={page_data.essential_text.text} />
+            ) : null}
+          </div>
+        </main>
+      </div>
+      <Footer />
+    </>
   );
 };
 
