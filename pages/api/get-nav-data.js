@@ -36,6 +36,30 @@ export default async function handler(req, res) {
 
   //Page Data
   const document = await Client().getSingle("profile");
+  let cs_count = 0;
+  let cs_images = 0;
+  const cstudies = await Client()
+    .getSingle("home_page", {
+      fetchLinks: [
+        // "archive_item.background_color",
+        // "archive_item.item_type",
+        // "archive_item.title",
+        // "archive_item.description",
+        "archive_item.images",
+      ],
+    })
+    .then((res) => {
+      console.log("CASE STUDIES", res.data.body1.length);
+      cs_count = res.data.body1.length;
+
+      res.data.body1.forEach((item) => {
+        const images = item.primary.case_study_link.data.images
+          ? item.primary.case_study_link.data.images.length
+          : 0;
+        cs_images = cs_images + images;
+        // console.log("CS IMage Count", cs_images);
+      });
+    });
 
   // OLD TAGS PULL
   // const everything = await fetch(
@@ -49,9 +73,9 @@ export default async function handler(req, res) {
 
   // const tags = everything.tags;
 
-  totalCount = data.length + mediaCount;
+  totalCount = data.length + mediaCount + cs_count + cs_images;
 
-  // console.log("Total Count", totalCount);
+  console.log("Total Count", totalCount);
 
   res.status(200).json({
     // data: data,
