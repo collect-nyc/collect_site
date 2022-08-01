@@ -53,8 +53,7 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
-
-  console.log("featured data", document.data.body1);
+  // console.log("featured data", document.data.body1);
 
   const {
     setScrollPos,

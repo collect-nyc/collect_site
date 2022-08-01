@@ -42,13 +42,7 @@ export default async function handler(req, res) {
   // pull case study data from homepage
   const cstudies = await Client()
     .getSingle("home_page", {
-      fetchLinks: [
-        // "archive_item.background_color",
-        // "archive_item.item_type",
-        // "archive_item.title",
-        // "archive_item.description",
-        "archive_item.images",
-      ],
+      fetchLinks: ["archive_item.images"],
     })
     .then((res) => {
       // console.log("CASE STUDIES", res.data.body1.length);
@@ -78,7 +72,7 @@ export default async function handler(req, res) {
 
   totalCount = data.length + mediaCount + cs_count + cs_images;
 
-  console.log("Total Count", totalCount);
+  // console.log("Total Count", totalCount);
 
   res.status(200).json({
     // data: data,
