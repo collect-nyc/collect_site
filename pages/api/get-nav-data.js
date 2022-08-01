@@ -38,6 +38,8 @@ export default async function handler(req, res) {
   const document = await Client().getSingle("profile");
   let cs_count = 0;
   let cs_images = 0;
+
+  // pull case study data from homepage
   const cstudies = await Client()
     .getSingle("home_page", {
       fetchLinks: [
@@ -49,9 +51,10 @@ export default async function handler(req, res) {
       ],
     })
     .then((res) => {
-      console.log("CASE STUDIES", res.data.body1.length);
+      // console.log("CASE STUDIES", res.data.body1.length);
       cs_count = res.data.body1.length;
 
+      // iterate through case studies and count images
       res.data.body1.forEach((item) => {
         const images = item.primary.case_study_link.data.images
           ? item.primary.case_study_link.data.images.length
