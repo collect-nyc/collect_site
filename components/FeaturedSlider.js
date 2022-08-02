@@ -7,7 +7,6 @@ import { is_touch_enabled } from "../lib/helpers";
 import styles from "../styles/FeaturedSlider.module.scss";
 
 const FeaturedSlider = ({ images, refs, index }) => {
-  // console.log(images);
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
   const [sliderInView, setSliderInView] = useState(false);
@@ -54,7 +53,7 @@ const FeaturedSlider = ({ images, refs, index }) => {
   return (
     <div
       className={
-        sliderInView && isTouch
+        sliderInView && isTouch && index === 0
           ? `${styles.slider_container} ${styles.in_view}`
           : styles.slider_container
       }
