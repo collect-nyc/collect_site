@@ -34,8 +34,10 @@ export default async function handler(req, res) {
     // console.log(mediaCount);
   });
 
-  //Page Data
+  //Profile Data
   const document = await Client().getSingle("profile");
+
+  // Set up variables for case studies counting
   let cs_count = 0;
   let cs_images = 0;
 
