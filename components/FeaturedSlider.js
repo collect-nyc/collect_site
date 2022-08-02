@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import Cursor from "./Cursor";
 import { useInView } from "react-intersection-observer";
 // import { motion } from "framer-motion";
+import { is_touch_enabled } from "../lib/helpers";
 import styles from "../styles/FeaturedSlider.module.scss";
 
 const FeaturedSlider = ({ images, refs, index }) => {
@@ -18,31 +19,6 @@ const FeaturedSlider = ({ images, refs, index }) => {
     threshold: 0.5,
     triggerOnce: true,
   });
-
-  const is_touch_enabled = () => {
-    try {
-      let prefixes = " -webkit- -moz- -o- -ms- ".split(" ");
-
-      let mq = function (query) {
-        return window.matchMedia(query).matches;
-      };
-
-      if (
-        "ontouchstart" in window ||
-        (typeof window.DocumentTouch !== "undefined" &&
-          document instanceof window.DocumentTouch)
-      ) {
-        return true;
-      }
-
-      return mq(
-        ["(", prefixes.join("touch-enabled),("), "heartz", ")"].join("")
-      );
-    } catch (e) {
-      console.error("(Touch detect failed)", e);
-      return false;
-    }
-  };
 
   useEffect(() => {
     setIsTouch(is_touch_enabled());

@@ -1,18 +1,16 @@
 import { useState, useEffect } from "react";
+import { is_touch_enabled } from "../lib/helpers";
 import styles from "../styles/Cursor.module.scss";
-
-const isMobile = () => {
-  const ua = navigator.userAgent;
-  return /Android|Mobi/i.test(ua);
-};
 
 const Cursor = ({ children, visible, offsetX, offsetY }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [clicked, setClicked] = useState(false);
   const [linkHovered, setLinkHovered] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const [isTouch, setIsTouch] = useState(false);
 
   useEffect(() => {
+    setIsTouch(is_touch_enabled());
     addEventListeners();
     // handleLinkHoverEvents();
     return () => removeEventListeners();
@@ -67,7 +65,7 @@ const Cursor = ({ children, visible, offsetX, offsetY }) => {
   //   "cursor--link-hovered": linkHovered,
   // });
 
-  if (typeof navigator !== "undefined" && isMobile()) return null;
+  if (typeof navigator !== "undefined" && isTouch) return null;
 
   return (
     <div
