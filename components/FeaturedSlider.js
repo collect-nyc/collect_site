@@ -3,7 +3,6 @@ import Image from "next/image";
 import Slider from "react-slick";
 import Cursor from "./Cursor";
 import { useInView } from "react-intersection-observer";
-// import { motion } from "framer-motion";
 import { is_touch_enabled } from "../lib/helpers";
 import styles from "../styles/FeaturedSlider.module.scss";
 
@@ -15,7 +14,6 @@ const FeaturedSlider = ({ images, refs, index }) => {
   const [isTouch, setIsTouch] = useState(false);
 
   const { ref, inView, entry } = useInView({
-    /* Optional options */
     threshold: 0.5,
     triggerOnce: true,
   });
