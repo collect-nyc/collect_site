@@ -2,12 +2,30 @@
 // @import "./helpers";
 @import "./typography";
 
+@keyframes peek {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: -150px;
+  }
+  100% {
+    left: 0;
+  }
+}
+
 .slider_container {
   cursor: none;
   position: relative;
   height: 100%;
   width: 100%;
   // overflow: hidden;
+
+  &.in_view {
+    > div > div > div {
+      animation: peek 3s ease-in-out;
+    }
+  }
 
   .video_container {
     display: none;
