@@ -1,4 +1,4 @@
-// @import "./colors";
+@import "./colors";
 // @import "./helpers";
 @import "./typography";
 
@@ -20,6 +20,20 @@
   height: 100%;
   width: 100%;
   // overflow: hidden;
+
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    &:after {
+      background-color: $alabaster;
+      content: "";
+      height: 100%;
+      width: 1px;
+      display: block;
+      position: absolute;
+      right: 0;
+      top: 0;
+      z-index: 2;
+    }
+  }
 
   &.in_view {
     > div > div > div {
