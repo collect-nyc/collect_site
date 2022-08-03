@@ -6,7 +6,10 @@
   0% {
     left: 0;
   }
-  50% {
+  38% {
+    left: -100px;
+  }
+  68% {
     left: -100px;
   }
   100% {
@@ -37,7 +40,7 @@
 
   &.in_view {
     > div > div > div {
-      animation: peek 1.5s ease-in-out;
+      animation: peek 1.2s ease-in-out;
     }
   }
 
