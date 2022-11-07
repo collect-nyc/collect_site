@@ -261,6 +261,8 @@ const Home = ({ document }) => {
                   <a
                     className={styles.external_link}
                     href={slice.primary.external_link.url}
+                    target="_blank"
+                    rel="noreferrer"
                   >
                     {slice.primary.external_link_text
                       ? slice.primary.external_link_text
