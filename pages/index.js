@@ -36,6 +36,7 @@ export async function getServerSideProps({ query }) {
       "archive_item.title",
       "archive_item.description",
       "archive_item.images",
+      "archive_item.external_link",
     ],
   });
 
@@ -53,7 +54,7 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
-  // console.log("featured data", document.data.body1);
+  console.log("featured data", document.data.body1);
 
   const {
     setScrollPos,
@@ -201,7 +202,11 @@ const Home = ({ document }) => {
             className={
               slice.primary.width === "7"
                 ? `${styles.media_container} ${styles.seven_col}`
-                : `${styles.media_container}  ${styles.eight_col}`
+                : slice.primary.width === "8"
+                ? `${styles.media_container}  ${styles.eight_col}`
+                : slice.primary.width === "Square"
+                ? `${styles.media_container}  ${styles.square}`
+                : `${styles.media_container}  ${styles.seven_col}`
             }
           >
             <div className={styles.inner}>
@@ -233,19 +238,35 @@ const Home = ({ document }) => {
               ) : (
                 <h1>No images in media tab</h1>
               )}
-              <header>
-                <span className={styles.tags}>
-                  {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
-                    if (arr.length - 1 === i) {
-                      return <span key={i}>{tag}</span>;
-                    } else {
-                      return <span key={i}>{tag}, </span>;
-                    }
-                  })}
-                </span>
-                <span className={styles.title}>
-                  {slice.primary.case_study_link.data?.title[0]?.text}
-                </span>
+              <header
+                className={`${styles.details} ${
+                  slice.primary.external_link.url ? styles.link : null
+                }`}
+              >
+                <div className={styles.text}>
+                  <span className={styles.tags}>
+                    {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
+                      if (arr.length - 1 === i) {
+                        return <span key={i}>{tag}</span>;
+                      } else {
+                        return <span key={i}>{tag}, </span>;
+                      }
+                    })}
+                  </span>
+                  <span className={styles.title}>
+                    {slice.primary.case_study_link.data?.title[0]?.text}
+                  </span>
+                </div>
+                {slice.primary.external_link.url ? (
+                  <a
+                    className={styles.external_link}
+                    href={slice.primary.external_link.url}
+                  >
+                    {slice.primary.external_link_text
+                      ? slice.primary.external_link_text
+                      : "Learn More"}
+                  </a>
+                ) : null}
               </header>
             </div>
           </div>
