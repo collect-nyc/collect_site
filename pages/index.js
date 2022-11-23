@@ -197,6 +197,7 @@ const Home = ({ document }) => {
               ? styles.right
               : styles.center
           }`}
+          id={"feature-" + (index + 1)}
         >
           <div
             className={
