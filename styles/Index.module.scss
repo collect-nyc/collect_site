@@ -356,12 +356,12 @@
           &.link {
             .tags,
             .title {
-              display: block;
-              width: 100%;
+              display: inline-block;
+              // width: 100%;
             }
 
             .text {
-              max-width: 50%;
+              max-width: 70%;
             }
           }
         }
