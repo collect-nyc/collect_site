@@ -47,6 +47,24 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: "Gerstner Programm";
+  src: url("/fonts/GerstnerProgramm-Regular.woff2") format("woff2"),
+    url("/fonts/GerstnerProgramm-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Gerstner Programm";
+  src: url("/fonts/GerstnerProgramm-Italic.woff2") format("woff2"),
+    url("/fonts/GerstnerProgramm-Italic.woff") format("woff");
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
 @mixin kingscaslon_regular {
   font-family: kings-caslon, sans-serif;
   font-weight: 400;
@@ -62,6 +80,7 @@
 $futura: "Futura No2 D";
 $untitled_sans: "Untitled Sans";
 $courier: "Courier Prime";
+$gerstner: "Gerstner Programm", sans-serif;
 
 .heading_h1,
 .heading_h2,

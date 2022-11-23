@@ -208,8 +208,19 @@ const Home = ({ document }) => {
                 ? `${styles.media_container}  ${styles.square}`
                 : `${styles.media_container}  ${styles.seven_col}`
             }
+            onClick={() => {
+              slice.primary.external_link.url
+                ? window.open(slice.primary.external_link.url, "_blank")
+                : () => {
+                    return false;
+                  };
+            }}
           >
-            <div className={styles.inner}>
+            <div
+              className={`${styles.inner} ${
+                slice.primary.external_link.url ? styles.link_style : null
+              }`}
+            >
               {slice.primary.case_study_link.data &&
               slice.primary.case_study_link.data.images.length > 1 ? (
                 <FeaturedSlider
@@ -217,6 +228,15 @@ const Home = ({ document }) => {
                   images={slice.primary.case_study_link.data.images}
                   index={index}
                 />
+              ) : slice.primary.case_study_link.data &&
+                slice.primary.case_study_link.data.images[0].video &&
+                slice.primary.case_study_link.data.images[0].video.url ? (
+                <video className={styles.video} autoPlay muted loop playsInline>
+                  <source
+                    src={slice.primary.case_study_link.data.images[0].video.url}
+                    type="video/mp4"
+                  />
+                </video>
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].image &&
                 slice.primary.case_study_link.data.images[0].image.url ? (

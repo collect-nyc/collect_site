@@ -301,6 +301,15 @@
           left: 0;
           height: 100%;
           width: 100%;
+
+          &.link_style {
+            cursor: pointer;
+          }
+
+          video {
+            object-fit: cover;
+            width: 100%;
+          }
         }
       }
 
