@@ -18,74 +18,45 @@
   }
 
   .statement {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 $navGutter_desktop 0;
-    height: calc(100vh - 200px);
+    margin-bottom: 30px;
+    padding: 95px $navGutter_desktop 0;
+
+    &__copy {
+      margin-bottom: 24px;
+      max-width: 460px;
+    }
+
+    ul {
+      display: flex;
+      justify-content: flex-start;
+      margin: 0;
+      list-style: none;
+      padding: 0;
+
+      li {
+        &:first-of-type {
+          margin-right: 20px;
+        }
+
+        a,
+        button {
+          @extend .obvs_link;
+        }
+      }
+    }
+
+    .divider {
+      border-bottom: 1px solid $black;
+      margin: 100px 0 0;
+      width: 100%;
+    }
 
     @media screen and (max-width: $mq-mobile-max) {
       padding: 0 $navGutter_mobile;
       height: calc(100vh - 66px);
     }
 
-    .mobile {
-      display: none;
-    }
-
-    h1 {
-      font-size: 48px;
-      line-height: 1.208;
-      font-weight: normal;
-      text-align: center;
-      letter-spacing: -0.02em;
-      max-width: 720px;
-
-      .untitled {
-        font-family: $untitled_sans;
-        font-size: 46px;
-      }
-
-      .caslon {
-        @include kingscaslon_regular;
-      }
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      .mobile {
-        display: block;
-      }
-      .desktop {
-        display: none;
-      }
-      h1 {
-        line-height: 32px;
-        padding: 0 5%;
-        margin-top: 26px;
-
-        .untitled {
-          font-size: 30px;
-          letter-spacing: -0.02em;
-        }
-        .caslon {
-          font-size: 32px;
-          letter-spacing: -0.02em;
-        }
-      }
-    }
-
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-      h1 {
-        line-height: 36px;
-        padding: 0 5%;
-
-        .untitled {
-          font-size: 34px;
-        }
-        .caslon {
-          font-size: 36px;
-        }
-      }
     }
   }
 

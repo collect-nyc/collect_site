@@ -35,20 +35,15 @@ const HomeNav = ({ page, count, latest, tags }) => {
                 setLogoHover(false);
               }}
             >
-              {logoHover ? (
-                <span>
-                  Collect <span className={styles.hide_mobile}>STUDIO</span>{" "}
-                  PROFILE
-                </span>
-              ) : (
-                "Collect NEW YORK"
-              )}
+              {logoHover ? <span>Agency PROFILE</span> : "Collect NEW YORK"}
             </a>
           </Link>
         </div>
       </div>
       <div className={styles.top_right}>
-        <span className={styles.archive}>Selected Works</span>
+        <span className={styles.archive}>
+          Independent agency for NEW IDEAS in eCommerce
+        </span>
         <div>
           {latest ? <span className={styles.latest}>Latest</span> : null}
           <Link

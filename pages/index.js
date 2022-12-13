@@ -103,83 +103,6 @@ const Home = ({ document }) => {
     }, 300);
   };
 
-  // With links to Case Studies
-  // if (slice.primary.featured_image?.url) {
-  //   return (
-  //     <section key={index} className={styles.feature}>
-  //       <header>
-  //         <span className={styles.tags}>
-  //           {slice.primary.case_study_link.tags?.map((tag, index, arr) => {
-  //             if (arr.length - 1 === index) {
-  //               return <span key={index}>{tag}</span>;
-  //             } else {
-  //               return <span key={index}>{tag}, </span>;
-  //             }
-  //           })}
-  //         </span>
-  //         <span className={styles.title}>
-  //           {slice.primary.case_study_link.data?.title[0]?.text}
-  //         </span>
-  //       </header>
-  //       {slice.primary.case_study_link &&
-  //       slice.primary.case_study_link.uid ? (
-  //         slice.primary.case_study_link.data?.item_type === "Case Study" &&
-  //         slice.primary.case_study_link.data?.background_color ? (
-  //           <a
-  //             onClick={
-  //               slice.primary.case_study_link.data?.item_type ===
-  //                 "Case Study" &&
-  //               slice.primary.case_study_link.data?.background_color
-  //                 ? () =>
-  //                     EnterCaseStudy(
-  //                       slice.primary.case_study_link.data?.background_color,
-  //                       "/archive/item/" + slice.primary.case_study_link.uid
-  //                     )
-  //                 : null
-  //             }
-  //           >
-  //             <Image
-  //               src={slice.primary.featured_image.url}
-  //               layout={"responsive"}
-  //               height={slice.primary.featured_image.dimensions.height}
-  //               width={slice.primary.featured_image.dimensions.width}
-  //               alt={slice.primary.featured_image.alt}
-  //               priority
-  //               quality={100}
-  //             />
-  //           </a>
-  //         ) : (
-  //           <Link href={"/archive/item/" + slice.primary.case_study_link.uid}>
-  //             <a onClick={() => ScrollTracker()}>
-  //               <Image
-  //                 src={slice.primary.featured_image.url}
-  //                 layout={"responsive"}
-  //                 height={slice.primary.featured_image.dimensions.height}
-  //                 width={slice.primary.featured_image.dimensions.width}
-  //                 alt={slice.primary.featured_image.alt}
-  //                 priority
-  //                 quality={100}
-  //               />
-  //             </a>
-  //           </Link>
-  //         )
-  //       ) : (
-  //         <Image
-  //           src={slice.primary.featured_image.url}
-  //           layout={"responsive"}
-  //           height={slice.primary.featured_image.dimensions.height}
-  //           width={slice.primary.featured_image.dimensions.width}
-  //           alt={slice.primary.featured_image.alt}
-  //           priority
-  //           quality={100}
-  //         />
-  //       )}
-  //     </section>
-  //   );
-  // } else {
-  //   return null;
-  // }
-
   const featureContent = document?.data?.body1?.map((slice, index) => {
     if (
       slice.primary.case_study_link &&
@@ -623,28 +546,27 @@ const Home = ({ document }) => {
           }
           transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
         >
-          <h1>
-            <span className={styles.desktop}>
-              <span className={styles.untitled}>
-                {document?.data?.untitled_sans_headline}{" "}
-              </span>
-              <span className={styles.caslon}>
-                {document?.data?.caslon_headline}
-              </span>
-            </span>
-
-            <span className={styles.mobile}>
-              <span className={styles.caslon}>
-                {document?.data?.mobile_headline_caslon}
-                <br />
-                {document?.data?.mobile_headline_caslon_break}
-              </span>
-              <span className={styles.untitled}>
-                {" "}
-                {document?.data?.mobile_headline_untitled}
-              </span>
-            </span>
-          </h1>
+          <p className={styles.statement__copy}>
+            <span className={styles.statement__caps}>RAISON D&#39;ÊTRE</span>
+            We work with artists, creators, companies and institutions to create
+            lasting identities, compelling websites, beautiful imagery and
+            beyond.
+          </p>
+          <p className={styles.statement__copy}>
+            In the realms of commerce and culture, we enable our collaborators
+            to do more by design. Now available for new commissions in 2023.
+          </p>
+          <ul>
+            <li>
+              <Link href="/profile">
+                <a>Get in Touch</a>
+              </Link>
+            </li>
+            <li>
+              <button>Selected Work</button>
+            </li>
+          </ul>
+          <div className={styles.divider} />
         </motion.section>
         <motion.div
           initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}

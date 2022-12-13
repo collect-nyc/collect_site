@@ -2,23 +2,23 @@
 
 @import url("https://use.typekit.net/byo6woz.css");
 
-@font-face {
-  font-family: "Futura No2 D";
-  src: url("/fonts/FuturaNo2D-ExtBol.woff2") format("woff2"),
-    url("/fonts/FuturaNo2D-ExtBol.woff") format("woff");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
+// @font-face {
+//   font-family: "Futura No2 D";
+//   src: url("/fonts/FuturaNo2D-ExtBol.woff2") format("woff2"),
+//     url("/fonts/FuturaNo2D-ExtBol.woff") format("woff");
+//   font-weight: 700;
+//   font-style: normal;
+//   font-display: swap;
+// }
 
-@font-face {
-  font-family: "Futura No2 D";
-  src: url("/fonts/FuturaNo2D-Bol.woff2") format("woff2"),
-    url("/fonts/FuturaNo2D-Bol.woff") format("woff");
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
+// @font-face {
+//   font-family: "Futura No2 D";
+//   src: url("/fonts/FuturaNo2D-Bol.woff2") format("woff2"),
+//     url("/fonts/FuturaNo2D-Bol.woff") format("woff");
+//   font-weight: 500;
+//   font-style: normal;
+//   font-display: swap;
+// }
 
 @font-face {
   font-family: "Untitled Sans";
@@ -66,12 +66,16 @@
 }
 
 @mixin kingscaslon_regular {
+  font-size: 14px;
+  line-height: 1.286;
   font-family: kings-caslon, sans-serif;
   font-weight: 400;
   font-style: normal;
 }
 
 @mixin kingscaslon_italic {
+  font-size: 14px;
+  line-height: 1.286;
   font-family: kings-caslon, sans-serif;
   font-weight: 400;
   font-style: italic;
@@ -122,15 +126,37 @@ $gerstner: "Gerstner Programm", sans-serif;
 }
 
 .body_text {
-  font-size: 13px;
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.286;
   font-weight: normal;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
 
   @media screen and (max-width: $mq-mobile-max) {
-    line-height: 17px;
+    // line-height: 17px;
   }
+}
+
+.gerstner_cta {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  line-height: 1.286;
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.gerstner_caps {
+  @extend .body_text;
+  text-transform: uppercase;
+}
+
+.kings_italic {
+  @include kingscaslon_italic;
 }
 
 .untitled_caps {
@@ -145,4 +171,12 @@ $gerstner: "Gerstner Programm", sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1.125;
+}
+
+.obvs_link {
+  text-decoration: underline;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
