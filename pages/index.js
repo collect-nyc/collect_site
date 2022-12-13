@@ -590,7 +590,7 @@ const Home = ({ document }) => {
           </div>
 
           <div className={styles.select_section}>
-            <header>
+            {/* <header>
               <div className={styles.select_header}>
                 <h2>
                   <span>Archive SELECTS</span>
@@ -614,7 +614,7 @@ const Home = ({ document }) => {
                   <span>Full ARCHIVE Reopening Fall 2022</span>
                 </div>
               </div>
-            </header>
+            </header> */}
             {pageContent}
           </div>
         </motion.div>

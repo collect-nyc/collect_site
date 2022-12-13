@@ -62,10 +62,10 @@
 
   .marquee_section {
     border: {
-      top: 1px solid $platinum;
-      bottom: 1px solid $platinum;
+      top: 1px solid $black;
+      bottom: 1px solid $black;
     }
-    margin: 120px 0;
+    margin: 0;
     padding: 4px 0 5px;
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
