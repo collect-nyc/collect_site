@@ -53,8 +53,16 @@ export async function getServerSideProps({ query }) {
 
 const Home = ({ document }) => {
   const router = useRouter();
-  // console.log("Landing Data", document.data);
+  console.log("Landing Data", document.data);
   console.log("featured data", document.data.body1);
+
+  const {
+    navigation_services_list,
+    services_descriptor,
+    statement_first_paragraph,
+    statement_second_paragraph,
+    statement_heading,
+  } = document.data;
 
   const {
     setScrollPos,
@@ -182,40 +190,42 @@ const Home = ({ document }) => {
               ) : (
                 <h1>No images in media tab</h1>
               )}
-              <header
-                className={`${styles.details} ${
-                  slice.primary.external_link.url ? styles.link : null
-                }`}
-              >
-                <div className={styles.text}>
-                  <span className={styles.tags}>
-                    {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
-                      if (arr.length - 1 === i) {
-                        return <span key={i}>{tag}</span>;
-                      } else {
-                        return <span key={i}>{tag}, </span>;
-                      }
-                    })}
-                  </span>
-                  <span className={styles.title}>
-                    {slice.primary.case_study_link.data?.title[0]?.text}
-                  </span>
-                </div>
-                {slice.primary.external_link.url ? (
-                  <a
-                    className={styles.external_link}
-                    href={slice.primary.external_link.url}
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    {slice.primary.external_link_text
-                      ? slice.primary.external_link_text
-                      : "Learn More"}
-                  </a>
-                ) : null}
-              </header>
             </div>
           </div>
+          <header
+            className={`${styles.details} ${
+              slice.primary.external_link.url ? styles.link : null
+            }`}
+          >
+            <div className={styles.text}>
+              <span className={styles.title}>
+                {slice.primary.case_study_link.data?.title[0]?.text}
+              </span>
+              <p>{slice.primary.case_study_link.data.description[0].text}</p>
+              <span className={styles.tags}>
+                {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
+                  if (arr.length - 1 === i) {
+                    return <span key={i}>{tag}</span>;
+                  } else {
+                    return <span key={i}>{tag}, </span>;
+                  }
+                })}
+              </span>
+            </div>
+            {slice.primary.external_link.url ? (
+              <a
+                className={styles.external_link}
+                href={slice.primary.external_link.url}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {slice.primary.external_link_text
+                  ? slice.primary.external_link_text
+                  : "Learn More"}
+              </a>
+            ) : null}
+          </header>
+          <div className={styles.divider} />
         </section>
       );
     } else {
@@ -547,14 +557,13 @@ const Home = ({ document }) => {
           transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
         >
           <p className={styles.statement__copy}>
-            <span className={styles.statement__caps}>RAISON D&#39;ÊTRE</span>
-            We work with artists, creators, companies and institutions to create
-            lasting identities, compelling websites, beautiful imagery and
-            beyond.
+            <span className={styles.statement__caps}>
+              {statement_heading[0].text ? statement_heading[0].text : null}
+            </span>
+            {statement_first_paragraph ? statement_first_paragraph : null}
           </p>
           <p className={styles.statement__copy}>
-            In the realms of commerce and culture, we enable our collaborators
-            to do more by design. Now available for new commissions in 2023.
+            {statement_second_paragraph ? statement_second_paragraph : null}
           </p>
           <ul>
             <li>
@@ -589,34 +598,7 @@ const Home = ({ document }) => {
             </Marquee>
           </div>
 
-          <div className={styles.select_section}>
-            {/* <header>
-              <div className={styles.select_header}>
-                <h2>
-                  <span>Archive SELECTS</span>
-                  <span>
-                    1-of-1, Research, Études<em>, Process</em>
-                  </span>
-                </h2>
-              </div>
-              <div className={styles.cap_heading}>
-                <div className={styles.left}>
-                  <span className={styles.untitled}>
-                    <em className={styles.desktop_txt}>
-                      Works from Collect ARCHIVE
-                    </em>
-                    <em className={styles.mobile_txt}>
-                      Works from Collect ARCHIVE
-                    </em>
-                  </span>
-                </div>
-                <div className={styles.right}>
-                  <span>Full ARCHIVE Reopening Fall 2022</span>
-                </div>
-              </div>
-            </header> */}
-            {pageContent}
-          </div>
+          <div className={styles.select_section}>{pageContent}</div>
         </motion.div>
 
         <Footer />
