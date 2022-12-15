@@ -100,6 +100,22 @@
         }
       }
 
+      &.contact {
+        .contact_field {
+          line-height: 1.5;
+
+          span {
+            display: inline-block;
+            padding-right: 20px;
+          }
+
+          p {
+            display: inline-block;
+            margin-bottom: 0;
+          }
+        }
+      }
+
       &.editions {
         p {
           margin-bottom: 20px;

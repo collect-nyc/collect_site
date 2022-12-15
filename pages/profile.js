@@ -154,15 +154,13 @@ const Profile = ({ document }) => {
             </div>
 
             <div className={styles.contact_details}>
-              <div className={styles.phone}>
-                <div>
-                  <span>E</span>
-                  {page_content.email ? page_content.email : null}
-                </div>
-                <div>
-                  <span>T</span>
-                  <RichText render={page_content.phone} />
-                </div>
+              <div className={styles.contact_field}>
+                <span>E</span>
+                {page_content.email ? page_content.email : null}
+              </div>
+              <div className={styles.contact_field}>
+                <span>T</span>
+                <RichText render={page_content.phone} />
               </div>
             </div>
           </div>
