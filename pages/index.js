@@ -13,6 +13,7 @@ import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import FeaturedSlider from "../components/FeaturedSlider";
+import animateScrollTo from "animated-scroll-to";
 import styles from "../styles/Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -99,6 +100,8 @@ const Home = ({ document }) => {
   useEffect(() => {
     console.log("refs", refs);
   }, [refs]);
+
+  const selectedWork = useRef(null);
 
   const ScrollTracker = () => {
     let top =
@@ -606,7 +609,17 @@ const Home = ({ document }) => {
               </Link>
             </li>
             <li>
-              <button>Selected Work</button>
+              <button
+                onClick={() => {
+                  if (selectedWork.current) {
+                    animateScrollTo(selectedWork.current, {
+                      verticalOffset: -49,
+                    });
+                  }
+                }}
+              >
+                Selected Work
+              </button>
             </li>
           </ul>
           <div className={styles.divider} />
@@ -623,7 +636,13 @@ const Home = ({ document }) => {
           transition={{ ease: "easeOut", delay: 1.5, duration: 0.7 }}
           onAnimationComplete={() => setLoaderDidRun(true)}
         >
-          <div className={styles.featured_section}>{featureContent}</div>
+          <div
+            ref={selectedWork}
+            id="selected"
+            className={styles.featured_section}
+          >
+            {featureContent}
+          </div>
 
           <div className={styles.marquee_section}>
             <Marquee gradient={false} speed={90}>
