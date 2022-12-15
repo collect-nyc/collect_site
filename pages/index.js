@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef, useMemo } from "react";
+import React, { useEffect, useContext, useRef, useMemo, useState } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
@@ -57,8 +57,6 @@ const Home = ({ document }) => {
   console.log("featured data", document.data.body1);
 
   const {
-    navigation_services_list,
-    services_descriptor,
     statement_first_paragraph,
     statement_second_paragraph,
     statement_heading,
@@ -80,6 +78,10 @@ const Home = ({ document }) => {
     []
   );
 
+  const [currentIndexes, setCurrentIndexes] = useState(
+    Array(document?.data?.body1.length).fill(1)
+  );
+
   useEffect(() => {
     // console.log("Landing Data", document.data);
 
@@ -93,6 +95,10 @@ const Home = ({ document }) => {
       setHomeScrollPos(0);
     }
   }, []);
+
+  useEffect(() => {
+    console.log("refs", refs);
+  }, [refs]);
 
   const ScrollTracker = () => {
     let top =
@@ -163,6 +169,8 @@ const Home = ({ document }) => {
                   refs={refs}
                   images={slice.primary.case_study_link.data.images}
                   index={index}
+                  currentIndexes={currentIndexes}
+                  setCurrentIndexes={setCurrentIndexes}
                 />
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].video &&
@@ -216,25 +224,34 @@ const Home = ({ document }) => {
                 })}
               </span>
             </div>
-            {slice.items && slice.items.length > 0 ? (
-              <div>
-                {slice.items.map((item, i) => {
-                  return (
-                    <a
-                      className={styles.external_link}
-                      href={item.external_link.url}
-                      target="_blank"
-                      rel="noreferrer"
-                      key={i}
-                    >
-                      {item.external_link_text
-                        ? item.external_link_text
-                        : "Learn More"}
-                    </a>
-                  );
-                })}
-              </div>
-            ) : null}
+            <div className={styles.external_links_group}>
+              {slice.primary.case_study_link &&
+              slice.primary.case_study_link.data &&
+              slice.primary.case_study_link.data.images &&
+              slice.primary.case_study_link.data.images.length > 1
+                ? `${currentIndexes[index]}/${slice.primary.case_study_link.data.images.length}`
+                : null}
+              {/* Add external links if they exist */}
+              {slice.items &&
+              slice.items.length > 0 &&
+              slice.items[0].external_link.url
+                ? slice.items.map((item, i) => {
+                    return (
+                      <a
+                        className={styles.external_link}
+                        href={item.external_link.url}
+                        target="_blank"
+                        rel="noreferrer"
+                        key={i}
+                      >
+                        {item.external_link_text
+                          ? item.external_link_text
+                          : "Learn More"}
+                      </a>
+                    );
+                  })
+                : null}
+            </div>
           </header>
           <div className={styles.divider} />
         </section>

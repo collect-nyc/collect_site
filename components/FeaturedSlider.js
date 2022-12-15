@@ -6,7 +6,13 @@ import { useInView } from "react-intersection-observer";
 import { is_touch_enabled } from "../lib/helpers";
 import styles from "../styles/FeaturedSlider.module.scss";
 
-const FeaturedSlider = ({ images, refs, index }) => {
+const FeaturedSlider = ({
+  images,
+  refs,
+  index,
+  currentIndexes,
+  setCurrentIndexes,
+}) => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
   const [sliderInView, setSliderInView] = useState(false);
@@ -47,7 +53,12 @@ const FeaturedSlider = ({ images, refs, index }) => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    beforeChange: (current, next) => setCurrentSlide(next + 1),
+    beforeChange: (current, next) => {
+      const newCurrentIndexes = [...currentIndexes];
+      newCurrentIndexes[index] = next + 1;
+      setCurrentIndexes(newCurrentIndexes);
+      setCurrentSlide(next + 1);
+    },
   };
 
   return (

@@ -318,10 +318,16 @@
           margin-top: 13px;
         }
 
-        .external_link {
-          flex-shrink: 0;
-          font-size: 13px;
-          text-transform: uppercase;
+        .external_links_group {
+          .external_link {
+            display: inline-block;
+            margin-right: 10px;
+            text-transform: uppercase;
+
+            &:last-of-type {
+              margin-right: 0;
+            }
+          }
         }
 
         @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
