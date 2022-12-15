@@ -20,11 +20,6 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     const interval = setInterval(() => {
       if (globalContent && globalContent.services) {
         setCurrentItem((currentItem + 1) % globalContent.services.length);
-        // console.log(
-        //   "current item",
-        //   currentItem,
-        //   globalContent.services[currentItem].service
-        // );
       }
     }, 1000);
 

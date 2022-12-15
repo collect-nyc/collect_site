@@ -216,17 +216,24 @@ const Home = ({ document }) => {
                 })}
               </span>
             </div>
-            {slice.primary.external_link.url ? (
-              <a
-                className={styles.external_link}
-                href={slice.primary.external_link.url}
-                target="_blank"
-                rel="noreferrer"
-              >
-                {slice.primary.external_link_text
-                  ? slice.primary.external_link_text
-                  : "Learn More"}
-              </a>
+            {slice.items && slice.items.length > 0 ? (
+              <div>
+                {slice.items.map((item, i) => {
+                  return (
+                    <a
+                      className={styles.external_link}
+                      href={item.external_link.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      key={i}
+                    >
+                      {item.external_link_text
+                        ? item.external_link_text
+                        : "Learn More"}
+                    </a>
+                  );
+                })}
+              </div>
             ) : null}
           </header>
           <div className={styles.divider} />
