@@ -21,7 +21,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       if (globalContent && globalContent.services) {
         setCurrentItem((currentItem + 1) % globalContent.services.length);
       }
-    }, 1000);
+    }, 1500);
 
     return () => clearInterval(interval);
   }, [currentItem, globalContent]);
