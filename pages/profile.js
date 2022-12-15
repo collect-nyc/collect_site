@@ -1,6 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
+import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import MemoryContext from "../components/MemoryContext";
@@ -42,13 +43,13 @@ const Profile = ({ document }) => {
   //   });
   // });
 
-  const top_gradient = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.2, 1],
-    [0, 0, 1, 1]
-  );
+  // const top_gradient = useTransform(
+  //   scrollYProgress,
+  //   [0, 0.2, 0.2, 1],
+  //   [0, 0, 1, 1]
+  // );
 
-  const bottom_gradient = useTransform(scrollYProgress, [0, 1, 1], [1, 0.5, 0]);
+  // const bottom_gradient = useTransform(scrollYProgress, [0, 1, 1], [1, 0.5, 0]);
 
   const ChangePage = (page) => {
     setProfilePage(page);
@@ -72,8 +73,7 @@ const Profile = ({ document }) => {
             : styles.main
         }
       >
-        <div className={styles.about}>
-          <motion.div
+        {/* <motion.div
             className={styles.gradient_top}
             style={{ scrollYProgress, opacity: top_gradient }}
             key={"top"}
@@ -82,11 +82,9 @@ const Profile = ({ document }) => {
             className={styles.gradient_bottom}
             style={{ scrollYProgress, opacity: bottom_gradient }}
             key={"bottom"}
-          />
+          /> */}
 
-          <div className={styles.summary}>
-            <RichText render={page_content.summary} />
-
+        {/* <div className={styles.summary}>
             {page_content && page_content.latest
               ? page_content.latest.map((handle, key) => (
                   <div
@@ -101,22 +99,74 @@ const Profile = ({ document }) => {
                   </div>
                 ))
               : null}
+          </div> */}
+
+        <div className={styles.info_bar}>
+          <span>Agency Profile, Services, Updates and More</span>
+        </div>
+
+        <div className={styles.grid}>
+          {/* ABOUT */}
+          <div className={`${styles.column} ${styles.about}`}>
+            <div className={styles.partner}>
+              <span>Andrew J.S.</span>
+              <span>{page_content ? page_content.andrew[0].text : null}</span>
+            </div>
+
+            <div className={styles.partner}>
+              <span>Joshua Tuscan</span>
+              <span>{page_content ? page_content.joshua[0].text : null}</span>
+            </div>
+
+            <div className={styles.insta_group}>
+              <ul className="insta">
+                {page_content
+                  ? page_content.instagrams.map((handle, key) => (
+                      <li key={key}>
+                        <RichText render={handle.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </div>
+
+            <div className={styles.socials_group}>
+              <ul className={styles.socials}>
+                {page_content
+                  ? page_content.socials.map((handle, key) => (
+                      <li key={key}>
+                        <RichText render={handle.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+            </div>
+
+            <div className={styles.contact_details}>
+              <div className={styles.phone}>
+                <h4>Office</h4>
+                <RichText render={page_content.phone} />
+              </div>
+              <div className={styles.address}>
+                <RichText render={page_content.address} />
+              </div>
+            </div>
           </div>
 
-          <div className={styles.clients_collabs}>
-            <h3 className="untitled_caps">Clients, Collaborators</h3>
-            <ul>
-              {page_content
-                ? page_content.clients_and_collaborators.map((client, key) => (
-                    <li key={key}>
-                      <RichText render={client.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
+          {/* CONTACT */}
+          <div className={`${styles.column} ${styles.contact}`}>
+            <h2 className={styles.mobile_heading}>Inquiries</h2>
+            <div className={styles.contact_summary}>
+              {page_content ? (
+                <RichText render={page_content.instruction} />
+              ) : null}
+            </div>
           </div>
 
-          <div className={styles.offerings}>
+          {/* OFFERING */}
+          <div className={`${styles.column} ${styles.offering}`}>
+            <RichText render={page_content.summary} />
+
             <h3 className="untitled_caps">Offerings</h3>
 
             <ul className={styles.visual}>
@@ -148,60 +198,46 @@ const Profile = ({ document }) => {
                   ))
                 : null}
             </ul>
+
+            <div className={styles.clients_collabs}>
+              <h3 className="untitled_caps">Clients, Collaborators</h3>
+              <ul>
+                {page_content
+                  ? page_content.clients_and_collaborators.map(
+                      (client, key) => (
+                        <li key={key}>
+                          <RichText render={client.item} />
+                        </li>
+                      )
+                    )
+                  : null}
+              </ul>
+            </div>
+          </div>
+
+          {/* EDITIONS */}
+          <div className={`${styles.column} ${styles.editions}`}>
+            <h3 className="untitled_caps">Editions</h3>
+            <p>
+              A new retail experience from our studio, Éditions is a carrier of
+              curated books for a lifetime, and independent publishing imprint
+              and more.
+            </p>
+            <a href="" target="_blank" rel="noreferrer">
+              Shop Éditions →
+            </a>
           </div>
         </div>
-        <aside className={styles.contact_info}>
-          <h2 className={styles.mobile_heading}>CONTACT</h2>
-          <div className={styles.contact_summary}>
-            {page_content ? (
-              <RichText render={page_content.instruction} />
-            ) : null}
-          </div>
 
-          <div className={styles.partner}>
-            <span>Andrew J.S.</span>
-            <span>{page_content ? page_content.andrew[0].text : null}</span>
-          </div>
-
-          <div className={styles.partner}>
-            <span>Joshua Tuscan</span>
-            <span>{page_content ? page_content.joshua[0].text : null}</span>
-          </div>
-
-          <div className={styles.insta_group}>
-            <ul className="insta">
-              {page_content
-                ? page_content.instagrams.map((handle, key) => (
-                    <li key={key}>
-                      <RichText render={handle.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-          </div>
-
-          <div className={styles.socials_group}>
-            <ul className={styles.socials}>
-              {page_content
-                ? page_content.socials.map((handle, key) => (
-                    <li key={key}>
-                      <RichText render={handle.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-          </div>
-
-          <div className={styles.contact_details}>
-            <div className={styles.phone}>
-              <h4>Office</h4>
-              <RichText render={page_content.phone} />
-            </div>
-            <div className={styles.address}>
-              <RichText render={page_content.address} />
-            </div>
-          </div>
-        </aside>
+        {/* REDUCED FOOTER */}
+        <div className={styles.footer}>
+          <Link href="/info/privacy">
+            <a>Privacy</a>
+          </Link>
+          <Link href="/info/impressum">
+            <a>Impressum</a>
+          </Link>
+        </div>
       </main>
     </div>
   );

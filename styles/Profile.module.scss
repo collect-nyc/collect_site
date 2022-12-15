@@ -51,21 +51,7 @@
 }
 
 .main {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding: {
-    bottom: 20px;
-  }
-
-  @media screen and (max-width: $mq-mobile-max) {
-    padding: {
-      top: 100px;
-      left: $navGutter_mobile;
-      right: $navGutter_mobile;
-      bottom: 0;
-    }
-  }
+  padding-top: 49px;
 
   ul {
     list-style: none;
@@ -73,236 +59,31 @@
     padding: 0;
   }
 
-  .about {
-    width: 50%;
-    // border-right: 1px solid $platinum;
-    padding-top: 172px;
-    padding-left: $navGutter_desktop;
+  .info_bar {
+    border-bottom: 1px solid $black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+  }
 
-    @media screen and (max-width: $mq-mobile-max) {
-      padding: 45px 0 0;
-      width: 100%;
-      border-right: none;
-    }
+  .grid {
+    display: flex;
+    height: calc(100vh - 99px);
 
-    // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
-    //   width: 45%;
-    // }
+    .column {
+      border-right: 1px solid $black;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 45px $navGutter_desktop;
+      width: 25%;
 
-    .summary {
-      @extend .body_text;
-      margin-bottom: 50px;
-      width: 50%;
-      // width: 340px;
-
-      h1 {
-        display: none;
-        margin-bottom: 45px;
-
-        @media screen and (max-width: $mq-mobile-max) {
-          display: block;
-        }
-      }
-
-      p {
-        margin-bottom: 15px;
-      }
-
-      .latest_info {
-        &.update {
-          @keyframes fadeIn {
-            from {
-              opacity: 0;
-            }
-            to {
-              opacity: 1;
-            }
-          }
-
-          @keyframes colorFade {
-            from {
-              color: $alert;
-            }
-            to {
-              color: $black;
-            }
-          }
-
-          p {
-            color: $alert;
-            opacity: 0;
-            animation: fadeIn 0.7s linear 0.5s forwards,
-              colorFade 0.7s linear 2.2s forwards;
-          }
-        }
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-      }
-
-      @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-        width: 75%;
-      }
-    }
-
-    h2 {
-      margin-bottom: 5px;
-    }
-
-    .clients_collabs {
-      margin-bottom: 15px;
-    }
-
-    .offerings {
-      ul {
-        margin-bottom: 15px;
-      }
-    }
-
-    .gradient_bottom {
-      background: linear-gradient(
-        180deg,
-        rgba(250, 250, 250, 0.8) 0%,
-        rgba(250, 250, 250, 0) 78.12%
-      );
-      bottom: 0;
-      left: 0;
-      position: fixed;
-      height: 120px;
-      transform: rotate(180deg);
-      width: calc(50% - 1px);
-
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-      }
-    }
-
-    .gradient_top {
-      background: linear-gradient(
-        180deg,
-        rgba(250, 250, 250, 0.8) 0%,
-        rgba(250, 250, 250, 0) 78.12%
-      );
-      height: 120px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: calc(50% - 1px);
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: none;
+      &:last-of-type {
+        border-right: none;
       }
     }
   }
 
   .contact_info {
-    @extend .body_text;
-    // padding-left: $navGutter_desktop;
-    padding-right: 25%;
-    position: fixed;
-    right: 0;
-    top: 172px;
-    width: 50%;
-
-    .mobile_heading {
-      display: none;
-      @extend .body_text;
-
-      @media screen and (max-width: $mq-mobile-max) {
-        display: block;
-      }
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      // display: none;
-      padding: 45px 0;
-      position: relative;
-      right: auto;
-      top: 0px;
-      width: 100%;
-
-      h1 {
-        margin-bottom: 45px;
-      }
-    }
-
-    // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-desktop-max) {
-    //   width: 35%;
-    // }
-
-    h3 {
-      margin-bottom: 5px;
-    }
-
-    .contact_summary,
-    .partner {
-      margin-bottom: 15px;
-      width: 340px;
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-      }
-    }
-
-    .partner {
-      span {
-        display: block;
-      }
-    }
-
-    .contact_details {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      width: 340px;
-
-      .phone,
-      .address {
-        width: 50%;
-      }
-
-      h4 {
-        @extend .body_text;
-
-        @media screen and (max-width: $mq-mobile-max) {
-          // display: none;
-        }
-      }
-
-      @media screen and (min-width: $mq-tablet-min) and (max-width: 1015px) {
-        width: 100%;
-        .phone,
-        .address {
-          width: 100%;
-        }
-
-        .phone {
-          margin-bottom: 15px;
-          // width: 45%;
-        }
-
-        .address {
-          // width: 55%;
-        }
-      }
-      @media screen and (max-width: $mq-mobile-max) {
-        width: 100%;
-        flex-direction: column;
-        //mobile spacing after 'Office'
-        div:first-of-type {
-          padding-bottom: 20px;
-        }
-      }
-    }
-  }
-
-  &.contact_page {
-    .about {
-      display: none;
-    }
-
-    .contact_info {
-      display: block;
-    }
   }
 }

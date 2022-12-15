@@ -34,7 +34,7 @@ const SiteNav = ({
             />
           ),
           project: <CaseStudyNav />,
-          profile: <ProfileNav count={count} />,
+          profile: <ProfileNav count={count} globalContent={globalContent} />,
           essential_text: <EssentialTextNav count={count} />,
         }[page]
       }

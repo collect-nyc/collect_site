@@ -1,13 +1,26 @@
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import styles from "../styles/Nav.module.scss";
 
-const ProfileNav = ({ page, count, latest, tags }) => {
+const ProfileNav = ({ page, count, latest, tags, globalContent }) => {
   const { currentTag } = useContext(MemoryContext);
 
   // State
   const [logoHover, setLogoHover] = useState(false);
+
+  // display new item from array every 1.5 second looping
+  const [currentItem, setCurrentItem] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if (globalContent && globalContent.services) {
+        setCurrentItem((currentItem + 1) % globalContent.services.length);
+      }
+    }, 1500);
+
+    return () => clearInterval(interval);
+  }, [currentItem, globalContent]);
 
   return (
     <>
@@ -23,14 +36,20 @@ const ProfileNav = ({ page, count, latest, tags }) => {
                   setLogoHover(false);
                 }}
               >
-                {logoHover ? "Collect HOME" : "Collect NEW YORK"}
+                {logoHover ? "Return to SELECTED WORK" : "Collect NEW YORK"}
               </a>
             </Link>
           </div>
         </div>
         <div className={`${styles.top_right} ${styles.profile_right}`}>
-          <div className={styles.statement}>Profile</div>
-          <div className={styles.contact}>CONTACT</div>
+          <span className={styles.archive}>
+            {globalContent && globalContent.services_descriptor
+              ? globalContent.services_descriptor
+              : "Independent agency for NEW IDEAS in"}{" "}
+            {globalContent && globalContent.services
+              ? globalContent && globalContent.services[currentItem].service
+              : "Design"}
+          </span>
           <div className={styles.archive_link}>
             {latest ? <span className={styles.latest}>Latest</span> : null}
             <Link

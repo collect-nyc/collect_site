@@ -3,12 +3,11 @@
 
 .navigation {
   align-items: flex-start;
-  background-color: transparent;
+  background-color: $white;
   color: $black;
   border-bottom: 1px solid $black;
   display: flex;
   justify-content: space-between;
-  // mix-blend-mode: difference;
   flex-wrap: wrap;
   left: 0;
   top: 0;
@@ -313,8 +312,6 @@
 
   &.profile,
   &.essential_text_nav {
-    border-bottom: none;
-
     @media screen and (max-width: $mq-mobile-max) {
       border-bottom: 1px solid $platinum;
       mix-blend-mode: normal;

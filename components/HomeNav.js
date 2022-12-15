@@ -13,7 +13,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
 
   // console.log("global content", globalContent);
 
-  // display new item from array every 1 second looping
+  // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
 
   useEffect(() => {
