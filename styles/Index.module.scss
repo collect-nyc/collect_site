@@ -319,10 +319,19 @@
         }
 
         .external_links_group {
+          .slide_count {
+            display: inline-block;
+            margin-right: 10px;
+          }
           .external_link {
             display: inline-block;
             margin-right: 10px;
             text-transform: uppercase;
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
+            }
 
             &:last-of-type {
               margin-right: 0;

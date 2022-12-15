@@ -228,9 +228,13 @@ const Home = ({ document }) => {
               {slice.primary.case_study_link &&
               slice.primary.case_study_link.data &&
               slice.primary.case_study_link.data.images &&
-              slice.primary.case_study_link.data.images.length > 1
-                ? `${currentIndexes[index]}/${slice.primary.case_study_link.data.images.length}`
-                : null}
+              slice.primary.case_study_link.data.images.length > 1 ? (
+                <span className={styles.slide_count}>
+                  {currentIndexes[index]}/
+                  {slice.primary.case_study_link.data.images.length}
+                </span>
+              ) : null}
+
               {/* Add external links if they exist */}
               {slice.items &&
               slice.items.length > 0 &&
