@@ -60,6 +60,9 @@ export default async function handler(req, res) {
       });
     });
 
+  // pull services data from Global Content
+  const globalContent = await Client().getSingle("global_content");
+
   // OLD TAGS PULL
   // const everything = await fetch(
   //   "https://collectnyc.cdn.prismic.io/api/v2"
@@ -82,5 +85,6 @@ export default async function handler(req, res) {
     media: totalCount,
     tags: tags,
     profile: document.data?.latest,
+    globalContent: globalContent.data ? globalContent.data : null,
   });
 }

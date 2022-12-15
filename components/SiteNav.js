@@ -6,13 +6,21 @@ import ProfileNav from "../components/ProfileNav";
 import EssentialTextNav from "./EssentialTextNav";
 import EssentialText from "../pages/info/[slug]";
 
-const SiteNav = ({ page, count, latest, tags, case_study, project_title }) => {
+const SiteNav = ({
+  page,
+  count,
+  latest,
+  tags,
+  case_study,
+  project_title,
+  globalContent,
+}) => {
   // console.log("siteNav: ", page);
   return (
     <>
       {
         {
-          index: <HomeNav count={count} />,
+          index: <HomeNav count={count} globalContent={globalContent} />,
           archive_index: (
             <ArchiveNav count={count} latest={latest} tags={tags} />
           ),

@@ -27,6 +27,10 @@ export default function MyLayout({
 
   const tags = data ? data.tags : null;
 
+  const gc = data ? data.globalContent : null;
+
+  // console.log("GLOBAL CONTENT", gc);
+
   // const tagPlus = data ? data.tagplus : null;
 
   // console.log(tagPlus);
@@ -48,6 +52,7 @@ export default function MyLayout({
           tags={data && tags ? tags : null}
           case_study={case_study}
           project_title={project_title}
+          globalContent={gc ? gc : null}
         />
         {children}
       </LoaderContext.Provider>
