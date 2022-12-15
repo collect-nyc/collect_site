@@ -4,9 +4,10 @@ import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import MemoryContext from "../components/MemoryContext";
-import { motion, useViewportScroll, useTransform } from "framer-motion";
+// import MemoryContext from "../components/MemoryContext";
+// import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
+import EditionsLogo from "../svg/editions.svg";
 import styles from "../styles/Profile.module.scss";
 
 export async function getServerSideProps() {
@@ -21,20 +22,20 @@ export async function getServerSideProps() {
 }
 
 const Profile = ({ document }) => {
-  const { setReturnPage, setScrollPos } = useContext(MemoryContext);
+  // const { setReturnPage, setScrollPos } = useContext(MemoryContext);
   // Reset scroll position for Archive Index
-  setScrollPos(0);
+  // setScrollPos(0);
 
-  useEffect(() => {
-    setReturnPage(false);
-  }, []);
+  // useEffect(() => {
+  //   setReturnPage(false);
+  // }, []);
 
-  // console.log("Profile Content", document.data);
+  console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
 
-  const { scrollYProgress } = useViewportScroll();
+  // const { scrollYProgress } = useViewportScroll();
 
   // this prints out number between 0 and 1 for scroll position of the page
   // useEffect(() => {
@@ -51,9 +52,9 @@ const Profile = ({ document }) => {
 
   // const bottom_gradient = useTransform(scrollYProgress, [0, 1, 1], [1, 0.5, 0]);
 
-  const ChangePage = (page) => {
-    setProfilePage(page);
-  };
+  // const ChangePage = (page) => {
+  //   setProfilePage(page);
+  // };
 
   return (
     <div className={styles.container}>
@@ -109,12 +110,12 @@ const Profile = ({ document }) => {
           {/* ABOUT */}
           <div className={`${styles.column} ${styles.about}`}>
             <div className={styles.partner}>
-              <span>Andrew J.S.</span>
+              <span className={styles.name}>Andrew J.S.</span>
               <span>{page_content ? page_content.andrew[0].text : null}</span>
             </div>
 
             <div className={styles.partner}>
-              <span>Joshua Tuscan</span>
+              <span className={styles.name}>Joshua Tuscan</span>
               <span>{page_content ? page_content.joshua[0].text : null}</span>
             </div>
 
@@ -141,33 +142,36 @@ const Profile = ({ document }) => {
                   : null}
               </ul>
             </div>
-
-            <div className={styles.contact_details}>
-              <div className={styles.phone}>
-                <h4>Office</h4>
-                <RichText render={page_content.phone} />
-              </div>
-              <div className={styles.address}>
-                <RichText render={page_content.address} />
-              </div>
-            </div>
           </div>
 
           {/* CONTACT */}
           <div className={`${styles.column} ${styles.contact}`}>
-            <h2 className={styles.mobile_heading}>Inquiries</h2>
+            <h2 className={`heading`}>Inquiries</h2>
             <div className={styles.contact_summary}>
               {page_content ? (
                 <RichText render={page_content.instruction} />
               ) : null}
             </div>
+
+            <div className={styles.contact_details}>
+              <div className={styles.phone}>
+                <div>
+                  <span>E</span>
+                  {page_content.email ? page_content.email : null}
+                </div>
+                <div>
+                  <span>T</span>
+                  <RichText render={page_content.phone} />
+                </div>
+              </div>
+            </div>
           </div>
 
           {/* OFFERING */}
           <div className={`${styles.column} ${styles.offering}`}>
-            <RichText render={page_content.summary} />
+            <h3 className={`heading`}>Offerings</h3>
 
-            <h3 className="untitled_caps">Offerings</h3>
+            <RichText render={page_content.summary} />
 
             <ul className={styles.visual}>
               {page_content
@@ -200,7 +204,7 @@ const Profile = ({ document }) => {
             </ul>
 
             <div className={styles.clients_collabs}>
-              <h3 className="untitled_caps">Clients, Collaborators</h3>
+              <h3 className={`heading`}>Clients, Collaborators</h3>
               <ul>
                 {page_content
                   ? page_content.clients_and_collaborators.map(
@@ -217,7 +221,9 @@ const Profile = ({ document }) => {
 
           {/* EDITIONS */}
           <div className={`${styles.column} ${styles.editions}`}>
-            <h3 className="untitled_caps">Editions</h3>
+            <figure>
+              <EditionsLogo />
+            </figure>
             <p>
               A new retail experience from our studio, Éditions is a carrier of
               curated books for a lifetime, and independent publishing imprint
