@@ -147,9 +147,11 @@ const Home = ({ document }) => {
                 : `${styles.media_container}  ${styles.seven_col}`
             }
             onClick={() => {
-              slice.primary.external_link.url &&
+              slice.items &&
+              slice.items.length > 0 &&
+              slice.items[0].external_link.url &&
               slice.primary.case_study_link.data.images.length < 2
-                ? window.open(slice.primary.external_link.url, "_blank")
+                ? window.open(slice.items[0].external_link.url, "_blank")
                 : () => {
                     return false;
                   };
