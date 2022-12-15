@@ -301,7 +301,7 @@
         flex: 1;
         display: inline-block;
         padding: 0 $navGutter_desktop;
-        max-width: 360px;
+        max-width: 420px;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
@@ -388,9 +388,9 @@
         justify-content: flex-start;
         flex-direction: row;
 
-        .details {
-          max-width: 380px;
-        }
+        // .details {
+        //   max-width: 420px;
+        // }
       }
       &.right {
         flex-direction: row-reverse;
