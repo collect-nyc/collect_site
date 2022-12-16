@@ -78,12 +78,12 @@ export default function ArchiveLoader({ data }) {
             ))}
           </ul>
         ) : null}
-        <div className={styles.text_container}>
+        {/* <div className={styles.text_container}>
           <p>
             <span>{left_text_line_one && left_text_line_one}</span>
             <span>{left_text_line_two && left_text_line_two}</span>
           </p>
-        </div>
+        </div> */}
       </div>
       <div className={styles.right_side}>
         {right_images && right_images.length > 0 ? (
@@ -99,12 +99,12 @@ export default function ArchiveLoader({ data }) {
             ))}
           </ul>
         ) : null}
-        <div className={styles.text_container}>
+        {/* <div className={styles.text_container}>
           <p>
             <span>{right_text_line_one && right_text_line_one}</span>
             <span>{right_text_line_two && right_text_line_two}</span>
           </p>
-        </div>
+        </div> */}
       </div>
     </section>
   );

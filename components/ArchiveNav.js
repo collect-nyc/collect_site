@@ -30,7 +30,21 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
             </Link>
           </div>
         </div>
-        <div className={`${styles.top_right} ${styles.archive_right}`}></div>
+        <div className={styles.centered_text}>
+          Ongoing, 2013 to Present — Reopening SPRING 2023 
+        </div>
+        <div className={styles.archive_link}>
+          {/* {latest ? <span className={styles.latest}>Latest</span> : null} */}
+          <Link
+            href={
+              currentTag && currentTag !== "All Work"
+                ? `/archive?tag=${currentTag}`
+                : "/archive"
+            }
+          >
+            <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+          </Link>
+        </div>
       </nav>
     </>
   );

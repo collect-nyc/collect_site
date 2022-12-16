@@ -51,7 +51,7 @@ const ProfileNav = ({ page, count, latest, tags, globalContent }) => {
               : "Design"}
           </span>
           <div className={styles.archive_link}>
-            {latest ? <span className={styles.latest}>Latest</span> : null}
+            {/* {latest ? <span className={styles.latest}>Latest</span> : null} */}
             <Link
               href={
                 currentTag && currentTag !== "All Work"

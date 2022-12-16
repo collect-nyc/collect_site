@@ -4,6 +4,17 @@
 
 .container {
   padding: 0 0 0;
+
+  .marquee_section {
+    color: $white;
+    margin: 0;
+    padding: 0 0 8px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+  }
 }
 
 .archive_header {

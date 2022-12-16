@@ -16,6 +16,7 @@ import { isEqual } from "../../lib/helpers";
 import Footer from "../../components/Footer";
 import ArchiveLoader from "../../components/ArchiveLoader";
 import ArchiveLoaderMobile from "../../components/ArchiveLoaderMobile";
+import Marquee from "react-fast-marquee";
 import styles from "../../styles/ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -31,7 +32,8 @@ export async function getServerSideProps({ query }) {
   // ).then((res) => res.json());
 
   //Page Data
-  const document = await Client().getSingle("index_page");
+
+  const document = await Client().getSingle("home_page");
 
   const loader = await Client().getSingle("archive_loader");
 
@@ -678,6 +680,13 @@ const Home = ({ archives, document, tagged, loader }) => {
 
       <ArchiveLoader data={loader.data} />
       <ArchiveLoaderMobile data={loader.data} />
+
+      <div className={styles.marquee_section}>
+        <Marquee gradient={false} speed={90}>
+          {document.data.ticker[0].text}&nbsp; &nbsp; &nbsp; ... &nbsp; &nbsp;
+          &nbsp;
+        </Marquee>
+      </div>
 
       {/*
       <div ref={TitleHolder} className={styles.archive_header}>

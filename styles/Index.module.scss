@@ -332,10 +332,11 @@
             display: inline-block;
             margin-right: 10px;
           }
+
           .external_link {
             display: inline-block;
             margin-right: 10px;
-            text-transform: uppercase;
+            text-transform: capitalize;
             text-decoration: underline;
 
             &:hover {

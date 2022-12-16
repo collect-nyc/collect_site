@@ -180,7 +180,9 @@
   }
 
   &.archive_loader {
+    background-color: transparent;
     color: $white;
+    border-bottom: 0;
 
     a,
     button {
@@ -189,6 +191,16 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       display: none;
+    }
+
+    .top_left {
+      width: 25%;
+    }
+
+    .archive_link {
+      padding-right: $navGutter_desktop;
+      text-align: right;
+      width: 25%;
     }
   }
 
