@@ -93,9 +93,9 @@ export default function ArchiveLoaderMobile({ data }) {
         </p>
       </div> */}
 
-      <Link href={"/"}>
+      {/* <Link href={"/"}>
         <a className={styles.return_link}>Return to SELECTED WORK</a>
-      </Link>
+      </Link> */}
     </section>
   );
 }

@@ -182,15 +182,11 @@
   &.archive_loader {
     background-color: transparent;
     color: $white;
-    border-bottom: 0;
+    border: 0;
 
     a,
     button {
       color: $white;
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: none;
     }
 
     .top_left {
@@ -201,6 +197,28 @@
       padding-right: $navGutter_desktop;
       text-align: right;
       width: 25%;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      // display: none;
+
+      .top_left,
+      .archive_link {
+        width: 50%;
+      }
+
+      .archive_link {
+        padding-right: $navGutter_mobile;
+      }
+
+      .centered_text {
+        position: fixed;
+        top: 50%;
+        width: 100%;
+        text-align: center;
+        left: 0;
+        transform: translateY(-50%);
+      }
     }
   }
 

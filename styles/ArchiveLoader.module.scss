@@ -93,13 +93,15 @@
   }
 
   .image_array {
-    height: 100%;
-    position: absolute;
+    height: 100vh;
+    position: fixed;
     width: 100%;
     padding: 0;
     margin: 0;
     z-index: 1;
     list-style: none;
+    top: 0;
+    left: 0;
 
     li {
       color: $white;
