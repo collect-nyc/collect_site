@@ -581,7 +581,7 @@ const Home = ({ document }) => {
       </Head>
 
       <main className={styles.main}>
-        <motion.section
+        <section
           className={styles.statement}
           initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
           animate={
@@ -623,8 +623,8 @@ const Home = ({ document }) => {
             </li>
           </ul>
           <div className={styles.divider} />
-        </motion.section>
-        <motion.div
+        </section>
+        <div
           initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
           animate={
             !loaderDidRun
@@ -652,7 +652,7 @@ const Home = ({ document }) => {
           </div>
 
           <div className={styles.select_section}>{pageContent}</div>
-        </motion.div>
+        </div>
 
         <Footer />
       </main>

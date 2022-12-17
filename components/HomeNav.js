@@ -27,7 +27,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   }, [currentItem, globalContent]);
 
   return (
-    <motion.nav
+    <nav
       className={`${styles.navigation} ${styles.home}`}
       initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
       animate={
@@ -77,7 +77,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           </Link>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 
