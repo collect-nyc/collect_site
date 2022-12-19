@@ -26,18 +26,44 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     return () => clearInterval(interval);
   }, [currentItem, globalContent]);
 
+  const loaderVariants = {
+    animate: {
+      opacity: [0, 1],
+      top: ["46%", "0%"],
+      borderColor: ["#fafafa", "#000"],
+      transition: {
+        opacity: {
+          duration: 0.3,
+          ease: "linear",
+        },
+        top: {
+          duration: 1,
+          delay: 0.8,
+        },
+        borderColor: {
+          delay: 1.8,
+          duration: 0.3,
+        },
+      },
+    },
+    default: {
+      borderColor: "#000",
+      opacity: 1,
+      top: "0%",
+    },
+  };
+
   return (
-    <nav
+    <motion.nav
       className={`${styles.navigation} ${styles.home}`}
-      initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
-      animate={
+      initial={
         !loaderDidRun
-          ? {
-              opacity: [0, 1],
-            }
-          : { opacity: 1 }
+          ? { opacity: 0, borderColor: "#fafafa" }
+          : { opacity: 1, borderColor: "#000" }
       }
-      transition={{ ease: "easeOut", delay: 1.5, duration: 0.7 }}
+      animate={!loaderDidRun ? "animate" : "default"}
+      onAnimationComplete={() => setLoaderDidRun(true)}
+      variants={loaderVariants}
     >
       <div className={styles.top_left}>
         <div className={styles.link_box}>
@@ -77,7 +103,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           </Link>
         </div>
       </div>
-    </nav>
+    </motion.nav>
   );
 };
 

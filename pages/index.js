@@ -569,6 +569,27 @@ const Home = ({ document }) => {
     }
   });
 
+  const loaderVariants = {
+    hide: {
+      opacity: 0,
+      transition: {
+        opacity: {
+          duration: 0,
+          ease: "linear",
+        },
+      },
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        opacity: {
+          duration: 0.3,
+          ease: "linear",
+        },
+      },
+    },
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -580,19 +601,13 @@ const Home = ({ document }) => {
         <SharedHead />
       </Head>
 
-      <main className={styles.main}>
-        <section
-          className={styles.statement}
-          initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
-          animate={
-            !loaderDidRun
-              ? {
-                  opacity: [0, 1],
-                }
-              : { opacity: 1 }
-          }
-          transition={{ ease: "easeOut", delay: 0.3, duration: 0.3 }}
-        >
+      <motion.main
+        initial={"hide"}
+        animate={!loaderDidRun ? "hide" : "show"}
+        variants={loaderVariants}
+        className={styles.main}
+      >
+        <section className={styles.statement}>
           <p className={styles.statement__copy}>
             <span className={styles.statement__caps}>
               {statement_heading[0].text ? statement_heading[0].text : null}
@@ -655,7 +670,7 @@ const Home = ({ document }) => {
         </div>
 
         <Footer />
-      </main>
+      </motion.main>
     </div>
   );
 };
