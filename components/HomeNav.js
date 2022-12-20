@@ -38,10 +38,10 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
         },
         top: {
           duration: 1,
-          delay: 0.8,
+          delay: 2,
         },
         borderColor: {
-          delay: 1.8,
+          delay: 3,
           duration: 0.3,
         },
       },
