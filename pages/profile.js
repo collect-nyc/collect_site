@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useRef } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import Link from "next/link";
@@ -8,6 +8,7 @@ import MyLayout from "../layouts/MyLayout";
 // import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
+import animateScrollTo from "animated-scroll-to";
 import styles from "../styles/Profile.module.scss";
 
 export async function getServerSideProps() {
@@ -30,31 +31,15 @@ const Profile = ({ document }) => {
   //   setReturnPage(false);
   // }, []);
 
+  const inquiryRef = useRef(null);
+  const offeringRef = useRef(null);
+  const clientsRef = useRef(null);
+  const editionsRef = useRef(null);
+
   console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
-
-  // const { scrollYProgress } = useViewportScroll();
-
-  // this prints out number between 0 and 1 for scroll position of the page
-  // useEffect(() => {
-  //   scrollYProgress.onChange((latest) => {
-  //     console.log(latest);
-  //   });
-  // });
-
-  // const top_gradient = useTransform(
-  //   scrollYProgress,
-  //   [0, 0.2, 0.2, 1],
-  //   [0, 0, 1, 1]
-  // );
-
-  // const bottom_gradient = useTransform(scrollYProgress, [0, 1, 1], [1, 0.5, 0]);
-
-  // const ChangePage = (page) => {
-  //   setProfilePage(page);
-  // };
 
   return (
     <div className={styles.container}>
@@ -74,36 +59,63 @@ const Profile = ({ document }) => {
             : styles.main
         }
       >
-        {/* <motion.div
-            className={styles.gradient_top}
-            style={{ scrollYProgress, opacity: top_gradient }}
-            key={"top"}
-          />
-          <motion.div
-            className={styles.gradient_bottom}
-            style={{ scrollYProgress, opacity: bottom_gradient }}
-            key={"bottom"}
-          /> */}
-
-        {/* <div className={styles.summary}>
-            {page_content && page_content.latest
-              ? page_content.latest.map((handle, key) => (
-                  <div
-                    key={key}
-                    className={
-                      handle.update === true
-                        ? `${styles.latest_info} ${styles.update}`
-                        : styles.latest_info
-                    }
-                  >
-                    <RichText render={handle.text} />
-                  </div>
-                ))
-              : null}
-          </div> */}
-
         <div className={styles.info_bar}>
-          <span>Agency Profile, Services, Updates and More</span>
+          <span className={styles.desktop}>
+            Agency Profile, Services, Updates and More
+          </span>
+          <div className={styles.mobile_jump}>
+            <button
+              onClick={() =>
+                animateScrollTo(inquiryRef.current, {
+                  easing: (t) => {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  },
+                  // maxDuration: 0,
+                  // minDuration: 0,
+                  // speed: 1000,
+                  verticalOffset: -99,
+                })
+              }
+            >
+              Inquiries
+            </button>
+            <button
+              onClick={() =>
+                animateScrollTo(offeringRef.current, {
+                  easing: (t) => {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  },
+                  verticalOffset: -99,
+                })
+              }
+            >
+              Offering
+            </button>
+            <button
+              onClick={() =>
+                animateScrollTo(clientsRef.current, {
+                  easing: (t) => {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  },
+                  verticalOffset: -99,
+                })
+              }
+            >
+              Clients
+            </button>
+            <button
+              onClick={() =>
+                animateScrollTo(editionsRef.current, {
+                  easing: (t) => {
+                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+                  },
+                  verticalOffset: -99,
+                })
+              }
+            >
+              Éditions
+            </button>
+          </div>
         </div>
 
         <div className={styles.grid}>
@@ -145,7 +157,10 @@ const Profile = ({ document }) => {
           </div>
 
           {/* CONTACT */}
-          <div className={`${styles.column} ${styles.contact}`}>
+          <div
+            ref={inquiryRef}
+            className={`${styles.column} ${styles.contact}`}
+          >
             <h2 className={`heading`}>Inquiries</h2>
             <div className={styles.contact_summary}>
               {page_content ? (
@@ -166,7 +181,10 @@ const Profile = ({ document }) => {
           </div>
 
           {/* OFFERING */}
-          <div className={`${styles.column} ${styles.offering}`}>
+          <div
+            ref={offeringRef}
+            className={`${styles.column} ${styles.offering}`}
+          >
             <h3 className={`heading`}>Offerings</h3>
 
             <RichText render={page_content.summary} />
@@ -201,7 +219,7 @@ const Profile = ({ document }) => {
                 : null}
             </ul>
 
-            <div className={styles.clients_collabs}>
+            <div ref={clientsRef} className={styles.clients_collabs}>
               <h3 className={`heading`}>Clients, Collaborators</h3>
               <ul>
                 {page_content
@@ -218,7 +236,10 @@ const Profile = ({ document }) => {
           </div>
 
           {/* EDITIONS */}
-          <div className={`${styles.column} ${styles.editions}`}>
+          <div
+            ref={editionsRef}
+            className={`${styles.column} ${styles.editions}`}
+          >
             <figure>
               <EditionsLogo />
             </figure>
