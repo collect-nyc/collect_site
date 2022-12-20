@@ -40,7 +40,7 @@
 
   &.in_view {
     > div > div > div {
-      animation: peek 1.2s ease-in-out;
+      animation: peek 1.2s ease-in-out 3s;
     }
   }
 
