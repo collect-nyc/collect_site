@@ -248,7 +248,11 @@ const Profile = ({ document }) => {
               curated books for a lifetime, and independent publishing imprint
               and more.
             </p>
-            <a href="" target="_blank" rel="noreferrer">
+            <a
+              href="https://www.instagram.com/shop.editions/"
+              target="_blank"
+              rel="noreferrer"
+            >
               Shop Éditions →
             </a>
           </div>
