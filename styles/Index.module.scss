@@ -246,11 +246,11 @@
         // overflow: hidden;
 
         &.eight_col {
-          width: calc($gutter_desktop * 8);
+          width: calc($gutter_desktop * 7.5);
         }
 
         &.seven_col {
-          width: calc($gutter_desktop * 7);
+          width: calc($gutter_desktop * 6);
         }
 
         &.square {
