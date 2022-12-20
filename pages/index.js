@@ -639,18 +639,7 @@ const Home = ({ document }) => {
           </ul>
           <div className={styles.divider} />
         </section>
-        <div
-          initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
-          animate={
-            !loaderDidRun
-              ? {
-                  opacity: [0, 1],
-                }
-              : { opacity: 1 }
-          }
-          transition={{ ease: "easeOut", delay: 1.5, duration: 0.7 }}
-          onAnimationComplete={() => setLoaderDidRun(true)}
-        >
+        <div>
           <div
             ref={selectedWork}
             id="selected"
