@@ -166,10 +166,10 @@
     background-color: $alabaster;
     color: $black;
     mix-blend-mode: normal;
+    background: rgba(250, 250, 250, 0.96);
+    backdrop-filter: blur(5px);
 
     @media screen and (max-width: $mq-mobile-max) {
-      background: rgba(250, 250, 250, 0.96);
-      backdrop-filter: blur(5px);
     }
 
     a,
@@ -347,11 +347,12 @@
 
   &.profile,
   &.essential_text_nav {
+    background: rgba(250, 250, 250, 0.96);
+    backdrop-filter: blur(5px);
+
     @media screen and (max-width: $mq-mobile-max) {
       border-bottom: 1px solid $black;
       mix-blend-mode: normal;
-      background: rgba(250, 250, 250, 0.96);
-      backdrop-filter: blur(5px);
 
       a,
       button {
