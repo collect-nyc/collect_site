@@ -348,23 +348,13 @@
         }
 
         @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-          font-size: 18px;
-
-          .tags {
-            font-size: 18px;
-          }
-
-          &.link {
-            .tags,
-            .title {
-              display: inline-block;
-              // width: 100%;
-            }
-
-            .text {
-              max-width: 70%;
-            }
-          }
+          // &.link {
+          //   .tags,
+          //   .title {
+          //     display: inline-block;
+          //     // width: 100%;
+          //   }
+          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
