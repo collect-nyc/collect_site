@@ -118,7 +118,7 @@
       /* Firefox */
 
       scrollbar-width: thin;
-      scrollbar-color: $darkgray #ffffff;
+      scrollbar-color: $darkgray #fafafa;
 
       /* Chrome, Edge, and Safari */
       &::-webkit-scrollbar {
@@ -126,13 +126,25 @@
       }
 
       &::-webkit-scrollbar-track {
-        background: #ffffff;
+        background: #fafafa;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: $darkgray;
         border-radius: 10px;
-        border: 3px solid #ffffff;
+        border: 3px solid #fafafa;
+      }
+
+      &::-webkit-scrollbar-button:start:increment {
+        height: 45px;
+        display: block;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-button:end:increment {
+        height: 45px;
+        display: block;
+        background: transparent;
       }
 
       &:last-of-type {
