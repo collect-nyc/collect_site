@@ -21,9 +21,24 @@
         // text-transform: uppercase;
       }
 
-      &.phone,
       &.address {
         margin-bottom: 15px;
+      }
+    }
+
+    .reachout {
+      margin-bottom: 15px;
+
+      b {
+        display: inline-block;
+        font-weight: normal;
+        padding-right: 10px;
+      }
+    }
+
+    .social {
+      a {
+        display: block;
       }
     }
   }
@@ -31,7 +46,7 @@
   .links {
     .copyright {
       display: inline-block;
-      margin-right: 20px;
+      margin-left: 20px;
 
       @media screen and (max-width: $mq-mobile-max) {
         margin-top: 20px;

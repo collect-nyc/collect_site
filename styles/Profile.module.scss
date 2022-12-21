@@ -118,8 +118,8 @@
       /* ===== Scrollbar CSS ===== */
       /* Firefox */
 
-      scrollbar-width: thin;
-      scrollbar-color: $darkgray #fafafa;
+      // scrollbar-width: thin;
+      scrollbar-color: transparent #fafafa;
 
       /* Chrome, Edge, and Safari */
       &::-webkit-scrollbar {

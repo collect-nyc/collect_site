@@ -7,26 +7,46 @@ const Footer = ({ page, count, latest, tags, case_study }) => {
     <footer className={styles.footer}>
       <div className={styles.contact}>
         <span className={styles.company}>Collect OFFICE</span>
-        <span className={styles.phone}>+1 206 799 5611</span>
         <span className={styles.address}>
           106B Nassau Ave #330
           <br /> Brooklyn, NY 11222
         </span>
-        <a
-          href="https://www.instagram.com/collect.nyc/"
-          target="_blank"
-          rel="noreferrer"
-          className={styles.insta}
-        >
-          @collect.nyc
-        </a>
+
+        <div className={styles.reachout}>
+          <span className={styles.phone}>
+            <b>E</b>
+            <a href="mailto:info@collect.nyc">info@collect.nyc</a>
+          </span>
+          <span className={styles.phone}>
+            <b>T</b>+1 718 902 4911
+          </span>
+        </div>
+
+        <div className={styles.social}>
+          <a
+            href="https://www.instagram.com/collect.nyc/"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.insta}
+          >
+            @collect.nyc
+          </a>
+          <a
+            href="https://www.instagram.com/shop.editions/"
+            target="_blank"
+            rel="noreferrer"
+            className={styles.insta}
+          >
+            @shop.editions
+          </a>
+        </div>
       </div>
       <div className={styles.links}>
-        <span className={styles.copyright}>
-          ©{new Date().getFullYear()} Collect NYC, All Rights Reserved
-        </span>
         <Link href="/info/privacy">Privacy</Link>
         <Link href="/info/impressum">Impressum</Link>
+        <span className={styles.copyright}>
+          ©{new Date().getFullYear()} Collect NEW YORK
+        </span>
       </div>
     </footer>
   );
