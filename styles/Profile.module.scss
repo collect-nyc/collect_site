@@ -214,10 +214,27 @@
       height: auto;
 
       .column {
-        border-bottom: 1px solid $black;
+        // border-bottom: 1px solid $black;
         border-right: none;
         padding: 12px $navGutter_mobile 80px;
         width: 100%;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          bottom: 0;
+          content: "";
+          left: $navGutter_mobile;
+          width: calc(100% - #{$navGutter_mobile} * 2);
+          height: 1px;
+          background-color: $black;
+        }
+
+        &.about.mobile {
+          &:after {
+            display: none;
+          }
+        }
       }
     }
   }

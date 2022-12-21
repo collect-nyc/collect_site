@@ -628,9 +628,6 @@ const Home = ({ document }) => {
                 onClick={() => {
                   if (selectedWork.current) {
                     animateScrollTo(selectedWork.current, {
-                      // easing: (t) => {
-                      //   return t * (2 - t);
-                      // },
                       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                       verticalOffset: -49,
                       minDuration: 600,
@@ -656,8 +653,7 @@ const Home = ({ document }) => {
 
           <div className={styles.marquee_section}>
             <Marquee gradient={false} speed={90}>
-              {document.data.ticker[0].text}&nbsp; &nbsp; &nbsp; ... &nbsp;
-              &nbsp; &nbsp;
+              {document.data.ticker[0].text}&nbsp; ... &nbsp;
             </Marquee>
           </div>
 
