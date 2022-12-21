@@ -70,7 +70,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -99,
+                  verticalOffset: -97,
                 })
               }
             >
@@ -82,7 +82,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -99,
+                  verticalOffset: -97,
                 })
               }
             >
@@ -94,7 +94,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -99,
+                  verticalOffset: -97,
                 })
               }
             >
@@ -106,7 +106,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -99,
+                  verticalOffset: -97,
                 })
               }
             >

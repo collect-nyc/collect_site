@@ -221,6 +221,10 @@
           }
         }
       }
+
+      .clients_collabs {
+        margin-top: 40px;
+      }
     }
 
     @media screen and (max-width: $mq-mobile-max) {
@@ -248,6 +252,12 @@
           &:after {
             display: none;
           }
+        }
+
+        .clients_collabs {
+          border-top: 1px solid $black;
+          padding-top: 10px;
+          margin-top: 80px;
         }
       }
     }
