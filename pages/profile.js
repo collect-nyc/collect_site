@@ -67,12 +67,9 @@ const Profile = ({ document }) => {
             <button
               onClick={() =>
                 animateScrollTo(inquiryRef.current, {
-                  easing: (t) => {
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                  },
-                  // maxDuration: 0,
-                  // minDuration: 0,
-                  // speed: 1000,
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
                   verticalOffset: -99,
                 })
               }
@@ -82,9 +79,9 @@ const Profile = ({ document }) => {
             <button
               onClick={() =>
                 animateScrollTo(offeringRef.current, {
-                  easing: (t) => {
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                  },
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
                   verticalOffset: -99,
                 })
               }
@@ -94,9 +91,9 @@ const Profile = ({ document }) => {
             <button
               onClick={() =>
                 animateScrollTo(clientsRef.current, {
-                  easing: (t) => {
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                  },
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
                   verticalOffset: -99,
                 })
               }
@@ -106,9 +103,9 @@ const Profile = ({ document }) => {
             <button
               onClick={() =>
                 animateScrollTo(editionsRef.current, {
-                  easing: (t) => {
-                    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-                  },
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
                   verticalOffset: -99,
                 })
               }

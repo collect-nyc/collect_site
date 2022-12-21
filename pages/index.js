@@ -628,7 +628,13 @@ const Home = ({ document }) => {
                 onClick={() => {
                   if (selectedWork.current) {
                     animateScrollTo(selectedWork.current, {
+                      // easing: (t) => {
+                      //   return t * (2 - t);
+                      // },
+                      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                       verticalOffset: -49,
+                      minDuration: 600,
+                      speed: 500,
                     });
                   }
                 }}
