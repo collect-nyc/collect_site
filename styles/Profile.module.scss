@@ -11,7 +11,7 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding-bottom: 55px;
+    // padding-bottom: 55px;
   }
 }
 
@@ -263,7 +263,7 @@
     }
   }
 
-  .footer {
+  .minifooter {
     position: fixed;
     bottom: 20px;
     left: 20px;
@@ -277,11 +277,20 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      display: none;
       position: relative;
       width: 100%;
       bottom: auto;
       left: auto;
       padding: 12px $navGutter_mobile 0;
+    }
+  }
+
+  .mobilefooter {
+    display: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: block;
     }
   }
 }

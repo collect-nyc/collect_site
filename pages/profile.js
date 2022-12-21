@@ -4,6 +4,7 @@ import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
+import Footer from "../components/Footer";
 // import MemoryContext from "../components/MemoryContext";
 // import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
@@ -293,13 +294,16 @@ const Profile = ({ document }) => {
         </div>
 
         {/* REDUCED FOOTER */}
-        <div className={styles.footer}>
+        <div className={styles.minifooter}>
           <Link href="/info/privacy">
             <a>Privacy</a>
           </Link>
           <Link href="/info/impressum">
             <a>Impressum</a>
           </Link>
+        </div>
+        <div className={styles.mobilefooter}>
+          <Footer />
         </div>
       </main>
     </div>
