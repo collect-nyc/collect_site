@@ -10,7 +10,7 @@
   padding: $navGutter_desktop;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 75px $navGutter_desktop 16px $navGutter_desktop;
+    padding: 22px $navGutter_mobile 30px;
   }
 
   .contact {
@@ -44,6 +44,9 @@
   }
 
   .links {
+    .extra {
+      display: inline-block;
+    }
     .copyright {
       display: inline-block;
       margin-left: 20px;
@@ -66,12 +69,25 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    .copyright {
-      margin-bottom: 10px;
-    }
     .links {
       margin-left: 0;
+      margin-top: 15px;
       width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .extra {
+        a {
+          display: block;
+          margin: 0;
+        }
+      }
+
+      .copyright {
+        // margin-bottom: 10px;
+        margin-top: 0;
+      }
     }
   }
 }

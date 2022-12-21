@@ -42,8 +42,11 @@ const Footer = ({ page, count, latest, tags, case_study }) => {
         </div>
       </div>
       <div className={styles.links}>
-        <Link href="/info/privacy">Privacy</Link>
-        <Link href="/info/impressum">Impressum</Link>
+        <div className={styles.extra}>
+          <Link href="/info/privacy">Privacy</Link>
+          <Link href="/info/impressum">Impressum</Link>
+        </div>
+
         <span className={styles.copyright}>
           ©{new Date().getFullYear()} Collect NEW YORK
         </span>
