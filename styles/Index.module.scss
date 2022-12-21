@@ -10,7 +10,7 @@
 }
 
 .main {
-  padding: 70px 0 0;
+  padding: 49px 0 0;
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
@@ -329,7 +329,6 @@
           .external_link {
             display: inline-block;
             margin-right: 10px;
-            text-transform: capitalize;
             text-decoration: underline;
 
             &:hover {
@@ -343,13 +342,6 @@
         }
 
         @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-          // &.link {
-          //   .tags,
-          //   .title {
-          //     display: inline-block;
-          //     // width: 100%;
-          //   }
-          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
