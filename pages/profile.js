@@ -117,7 +117,7 @@ const Profile = ({ document }) => {
 
         <div className={styles.grid}>
           {/* ABOUT */}
-          <div className={`${styles.column} ${styles.about}`}>
+          <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
             <div className={styles.partner}>
               <span className={styles.name}>Andrew J.S.</span>
               <span>{page_content ? page_content.andrew[0].text : null}</span>
@@ -173,6 +173,43 @@ const Profile = ({ document }) => {
               <div className={styles.contact_field}>
                 <span>T</span>
                 <RichText render={page_content.phone} />
+              </div>
+            </div>
+            <div
+              className={`${styles.column} ${styles.about} ${styles.mobile}`}
+            >
+              <div className={styles.partner}>
+                <span className={styles.name}>Andrew J.S.</span>
+                <span>{page_content ? page_content.andrew[0].text : null}</span>
+              </div>
+
+              <div className={styles.partner}>
+                <span className={styles.name}>Joshua Tuscan</span>
+                <span>{page_content ? page_content.joshua[0].text : null}</span>
+              </div>
+
+              <div className={styles.insta_group}>
+                <ul className="insta">
+                  {page_content
+                    ? page_content.instagrams.map((handle, key) => (
+                        <li key={key}>
+                          <RichText render={handle.item} />
+                        </li>
+                      ))
+                    : null}
+                </ul>
+              </div>
+
+              <div className={styles.socials_group}>
+                <ul className={styles.socials}>
+                  {page_content
+                    ? page_content.socials.map((handle, key) => (
+                        <li key={key}>
+                          <RichText render={handle.item} />
+                        </li>
+                      ))
+                    : null}
+                </ul>
               </div>
             </div>
           </div>

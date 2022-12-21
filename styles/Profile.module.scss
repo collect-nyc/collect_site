@@ -155,6 +155,27 @@
             display: block;
           }
         }
+
+        &.mobile {
+          display: none;
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          &.mobile {
+            display: block;
+            padding: {
+              left: 0;
+              right: 0;
+              bottom: 0;
+            }
+
+            border-bottom: none;
+          }
+
+          &.desktop {
+            display: none;
+          }
+        }
       }
 
       &.contact {
