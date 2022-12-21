@@ -132,6 +132,7 @@
 
       &::-webkit-scrollbar-thumb {
         background-color: $darkgray;
+        background-color: transparent;
         border-radius: 10px;
         border: 3px solid #fafafa;
       }
