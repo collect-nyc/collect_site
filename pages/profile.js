@@ -279,16 +279,20 @@ const Profile = ({ document }) => {
               <EditionsLogo />
             </figure>
             <p>
-              A new retail experience from our studio, Éditions is a carrier of
-              curated books for a lifetime, and independent publishing imprint
-              and more.
+              {page_content.editions_copy ? page_content.editions_copy : null}
             </p>
             <a
-              href="https://www.instagram.com/shop.editions/"
+              href={
+                page_content.editions_link.url
+                  ? page_content.editions_link.url
+                  : "https://www.instagram.com/shop.editions/"
+              }
               target="_blank"
               rel="noreferrer"
             >
-              Shop Éditions →
+              {page_content.editions_link_text
+                ? page_content.editions_link_text
+                : null}
             </a>
           </div>
         </div>
@@ -302,6 +306,8 @@ const Profile = ({ document }) => {
             <a>Impressum</a>
           </Link>
         </div>
+
+        {/* FULL FOOTER FOR MOBILE */}
         <div className={styles.mobilefooter}>
           <Footer />
         </div>
