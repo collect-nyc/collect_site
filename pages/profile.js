@@ -278,9 +278,11 @@ const Profile = ({ document }) => {
             <figure>
               <EditionsLogo />
             </figure>
-            <p>
-              {page_content.editions_copy ? page_content.editions_copy : null}
-            </p>
+
+            {page_content.editions_text ? (
+              <RichText render={page_content.editions_text} />
+            ) : null}
+
             <a
               href={
                 page_content.editions_link.url

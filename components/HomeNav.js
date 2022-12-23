@@ -29,7 +29,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const loaderVariants = {
     animate: {
       opacity: [0, 1],
-      top: ["48%", "0%"],
+      top: ["46%", "0%"],
       borderColor: ["#fafafa", "#000"],
       transition: {
         opacity: {

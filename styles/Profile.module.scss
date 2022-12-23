@@ -192,6 +192,18 @@
         }
       }
 
+      &.offering {
+        @media screen and (min-width: $mq-tablet-min) {
+          padding-bottom: 20px;
+
+          .clients_collabs {
+            ul {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
       &.contact {
         .contact_field {
           line-height: 1.5;
