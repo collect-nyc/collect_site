@@ -24,6 +24,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const [viewportHeight, setViewportHeight] = useState(null);
 
   useEffect(() => {
+    // get half the viewport height in pixels
     setViewportHeight(vh(50));
     // console.log("viewport height", vh(50));
   }, []);
