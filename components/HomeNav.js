@@ -5,16 +5,28 @@ import LoaderContext from "./LoaderContext";
 import { motion } from "framer-motion";
 import styles from "../styles/Nav.module.scss";
 
+function vh(percent) {
+  var h = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight || 0
+  );
+  return (percent * h) / 100;
+}
+
 const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const { currentTag } = useContext(MemoryContext);
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
   const [logoHover, setLogoHover] = useState(false);
 
-  // console.log("global content", globalContent);
-
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
+  const [viewportHeight, setViewportHeight] = useState(null);
+
+  useEffect(() => {
+    setViewportHeight(vh(50));
+    // console.log("viewport height", vh(50));
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,7 +41,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const loaderVariants = {
     animate: {
       opacity: [0, 1],
-      top: ["46%", "0%"],
+      top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
       borderColor: ["#fafafa", "#000"],
       transition: {
         opacity: {
@@ -55,7 +67,9 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
 
   return (
     <motion.nav
-      className={`${styles.navigation} ${styles.home}`}
+      className={`${styles.navigation} ${styles.home} ${
+        !loaderDidRun ? styles.loading : null
+      }`}
       initial={
         !loaderDidRun
           ? { opacity: 0, borderColor: "#fafafa" }
