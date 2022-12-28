@@ -162,6 +162,7 @@ const Home = ({ document }) => {
           >
             <div
               className={`${styles.inner} ${
+                slice.primary.external_link &&
                 slice.primary.external_link.url &&
                 slice.primary.case_study_link.data.images.length < 2
                   ? styles.link_style
@@ -211,7 +212,9 @@ const Home = ({ document }) => {
           </div>
           <header
             className={`${styles.details} ${
-              slice.primary.external_link.url ? styles.link : null
+              slice.primary.external_link && slice.primary.external_link.url
+                ? styles.link
+                : null
             }`}
           >
             <div className={styles.text}>
