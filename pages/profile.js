@@ -10,7 +10,7 @@ import Footer from "../components/Footer";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
-import styles from "../styles/Profile.module.scss";
+import styles from "./Profile.module.scss";
 
 export async function getServerSideProps() {
   //Page Data

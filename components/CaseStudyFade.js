@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import MemoryContext from "./MemoryContext";
-import styles from "../styles/CaseStudyFade.module.scss";
+import styles from "./CaseStudyFade.module.scss";
 
 export default function CaseStudyFade() {
   const { csColor, runCSFade } = useContext(MemoryContext);

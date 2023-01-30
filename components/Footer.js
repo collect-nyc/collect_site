@@ -1,5 +1,5 @@
 import Link from "next/link";
-import styles from "../styles/Footer.module.scss";
+import styles from "./Footer.module.scss";
 
 const Footer = ({ page, count, latest, tags, case_study }) => {
   // console.log("siteNav: ", page);

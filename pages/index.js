@@ -14,7 +14,7 @@ import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import FeaturedSlider from "../components/FeaturedSlider";
 import animateScrollTo from "animated-scroll-to";
-import styles from "../styles/Index.module.scss";
+import styles from "./Index.module.scss";
 
 export async function getServerSideProps({ query }) {
   // const tagged = query.tag || null;

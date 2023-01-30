@@ -23,7 +23,7 @@ import { SITE_NAME } from "../../../lib/constants";
 import MemoryContext from "../../../components/MemoryContext";
 import { apolloClient } from "../../../lib/apollo-config";
 import { ImageSlider } from "../../../components/ImageSlider";
-import styles from "../../../styles/Item.module.scss";
+import styles from "./Item.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;

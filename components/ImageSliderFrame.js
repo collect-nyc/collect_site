@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
 import Image from "next/image";
-import styles from "../styles/ImageSliderFrame.module.scss";
+import styles from "./ImageSliderFrame.module.scss";
 
 const variants = {
   enter: (direction) => {

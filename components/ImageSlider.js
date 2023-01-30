@@ -8,7 +8,7 @@ import {
 } from "framer-motion";
 // import { wrap } from "popmotion";
 import Image from "next/image";
-import styles from "../styles/ImageSlider.module.scss";
+import styles from "./ImageSlider.module.scss";
 import LeftArrow from "../svg/left-arrow.svg";
 import RightArrow from "../svg/right-arrow.svg";
 

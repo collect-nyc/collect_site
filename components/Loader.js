@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LoaderContext from "./LoaderContext";
-import styles from "../styles/Loader.module.scss";
+import styles from "./Loader.module.scss";
 
 export default function Loader({ page }) {
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);

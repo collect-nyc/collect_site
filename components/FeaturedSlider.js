@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import Cursor from "./Cursor";
 import { useInView } from "react-intersection-observer";
 import { is_touch_enabled } from "../lib/helpers";
-import styles from "../styles/FeaturedSlider.module.scss";
+import styles from "./FeaturedSlider.module.scss";
 
 const FeaturedSlider = ({
   images,

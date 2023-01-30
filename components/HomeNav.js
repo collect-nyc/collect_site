@@ -3,7 +3,7 @@ import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import LoaderContext from "./LoaderContext";
 import { motion } from "framer-motion";
-import styles from "../styles/Nav.module.scss";
+import styles from "./Nav.module.scss";
 
 function vh(percent) {
   var h = Math.max(

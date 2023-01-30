@@ -10,7 +10,7 @@ import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import { apolloClient } from "../../lib/apollo-config";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
-import styles from "../../styles/EssentialText.module.scss";
+import styles from "./EssentialText.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Link from "next/link";
-import styles from "../styles/Nav.module.scss";
+import styles from "./Nav.module.scss";
 
 const EssentialTextNav = ({ page, count, latest, tags }) => {
   // State

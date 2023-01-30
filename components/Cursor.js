@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { is_touch_enabled } from "../lib/helpers";
-import styles from "../styles/Cursor.module.scss";
+import styles from "./Cursor.module.scss";
 
 const Cursor = ({ children, visible, offsetX, offsetY }) => {
   const [position, setPosition] = useState({ x: 0, y: 0 });

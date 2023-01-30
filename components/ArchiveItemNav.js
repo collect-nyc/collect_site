@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
-import styles from "../styles/Nav.module.scss";
+import styles from "./Nav.module.scss";
 import Carot from "../svg/carot.svg";
 import { useRouter } from "next/router";
 import axios from "axios";

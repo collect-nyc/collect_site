@@ -4,7 +4,7 @@ import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import MemoryContext from "../components/MemoryContext";
 import Link from "next/link";
-import styles from "../styles/404.module.scss";
+import styles from "./404.module.scss";
 
 export async function getStaticProps() {
   const page = "404";

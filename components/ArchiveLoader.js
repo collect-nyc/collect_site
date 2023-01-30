@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import styles from "../styles/ArchiveLoader.module.scss";
+import styles from "./ArchiveLoader.module.scss";
 
 export default function ArchiveLoader({ data }) {
   const [leftImage, setLeftImage] = useState(0);

@@ -17,7 +17,7 @@ import Footer from "../../components/Footer";
 import ArchiveLoader from "../../components/ArchiveLoader";
 import ArchiveLoaderMobile from "../../components/ArchiveLoaderMobile";
 import Marquee from "react-fast-marquee";
-import styles from "../../styles/ArchiveIndex.module.scss";
+import styles from "./ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
   const tagged = query.tag || null;

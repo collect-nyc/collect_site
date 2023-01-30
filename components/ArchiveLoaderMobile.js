@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import styles from "../styles/ArchiveLoader.module.scss";
+import styles from "./ArchiveLoader.module.scss";
 
 export default function ArchiveLoaderMobile({ data }) {
   const [allImages, setAllImages] = useState(null);

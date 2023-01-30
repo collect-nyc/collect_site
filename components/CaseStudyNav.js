@@ -2,7 +2,7 @@ import { useContext, useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import MemoryContext from "./MemoryContext";
-import styles from "../styles/Nav.module.scss";
+import styles from "./Nav.module.scss";
 import animateScrollTo from "animated-scroll-to";
 import LeftArrow from "../svg/left-arrow.svg";
 
