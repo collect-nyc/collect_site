@@ -2,7 +2,7 @@
 @use "~/styles/typography";
 
 .case_study_page {
-  padding: 49px helpers.$navGutter_desktop 30px;
+  padding: 49px 0 30px;
 }
 
 .intro {
@@ -10,7 +10,7 @@
   display: flex;
   justify-content: flex-start;
   flex-wrap: wrap;
-  padding: 95px 0 118px;
+  padding: 95px helpers.$navGutter_desktop 118px;
 
   h1 {
     @include typography.body_text;
@@ -45,12 +45,20 @@
 .section {
   &.fullscreen {
     margin-bottom: 120px;
+    padding: {
+      left: helpers.$navGutter_desktop;
+      right: helpers.$navGutter_desktop;
+    }
   }
 
   &.centered_image {
     display: flex;
     justify-content: center;
     margin-bottom: 120px;
+    padding: {
+      left: helpers.$navGutter_desktop;
+      right: helpers.$navGutter_desktop;
+    }
 
     figure {
       width: calc(helpers.$gutter_desktop * 9);
@@ -62,6 +70,10 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 120px;
+    padding: {
+      left: helpers.$navGutter_desktop;
+      right: helpers.$navGutter_desktop;
+    }
 
     &.left {
       flex-direction: row;
@@ -82,9 +94,109 @@
 
   &.carousel {
     margin-bottom: 110px;
+
+    .carousel_slide {
+      cursor: grab;
+      padding: 0 10px;
+      // height: 600px;
+
+      &:active {
+        cursor: grabbing;
+      }
+    }
+
+    .controls {
+      // background-color: purple;
+      padding: 15px calc(22.4% + 10px) 0;
+
+      .holder {
+        // background-color: lightblue;
+        display: flex;
+        justify-content: space-between;
+
+        .details {
+          .numbers {
+            margin-right: 20px;
+          }
+        }
+
+        .arrows {
+          margin: 0;
+          padding: 0;
+          list-style: none;
+
+          li {
+            display: inline-block;
+            margin-left: 10px;
+          }
+        }
+      }
+    }
   }
 
   &:last-of-type {
     margin-bottom: 0;
+  }
+}
+
+.credits_section {
+  display: flex;
+  padding: {
+    left: helpers.$navGutter_desktop;
+    right: helpers.$navGutter_desktop;
+    top: 25px;
+  }
+
+  a {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+
+  .description {
+    margin-right: calc(helpers.$gutter_desktop * 2);
+    width: calc(helpers.$gutter_desktop * 3.5);
+  }
+
+  .credits {
+    width: calc(helpers.$gutter_desktop * 2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    .img_download {
+      display: inline-block;
+      margin-top: 20px;
+    }
+  }
+
+  .contact {
+    margin-left: auto;
+    width: calc(helpers.$gutter_desktop * 3 - helpers.$navGutter_desktop);
+
+    p {
+      span {
+        display: block;
+      }
+    }
+
+    ul {
+      margin: 30px 0 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        // display: inline-block;
+        // margin-right: 20px;
+
+        span {
+          display: inline-block;
+          padding-right: 10px;
+        }
+      }
+    }
   }
 }
