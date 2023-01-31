@@ -100,6 +100,30 @@ const CaseStudy = ({ document }) => {
               </section>
             );
           } else if (slice.slice_type === "image_with_text") {
+            return (
+              <section
+                className={`${styles.section} ${styles.image_with_text} ${
+                  slice.primary.orientation === "left"
+                    ? styles.left
+                    : styles.right
+                }`}
+              >
+                <div className={styles.text}>
+                  {slice.primary.description && (
+                    <RichText render={slice.primary.description} />
+                  )}
+                </div>
+                <figure className={styles.image_container}>
+                  <Image
+                    src={slice.primary.image.url}
+                    layout={"responsive"}
+                    alt={slice.primary.image.alt}
+                    height={slice.primary.image.dimensions.height}
+                    width={slice.primary.image.dimensions.width}
+                  />
+                </figure>
+              </section>
+            );
           } else if (slice.slice_type === "carousel") {
           } else {
             return null;
@@ -124,9 +148,7 @@ const CaseStudy = ({ document }) => {
 
         <SharedHead />
       </Head>
-      <main>
-        <h1>Hello</h1>
-
+      <main className={styles.case_study_page}>
         <article>{SliceZone}</article>
       </main>
     </>

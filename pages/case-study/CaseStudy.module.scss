@@ -1,0 +1,20 @@
+@use "~/styles/helpers";
+
+.case_study_page {
+  padding: 49px helpers.$navGutter_desktop 30px;
+}
+
+.section {
+  &.image_with_text {
+    display: flex;
+    justify-content: space-between;
+
+    &.left {
+      flex-direction: row;
+    }
+
+    &.right {
+      flex-direction: row-reverse;
+    }
+  }
+}
