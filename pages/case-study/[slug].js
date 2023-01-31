@@ -27,8 +27,10 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;
   const document = await Client().getByUID("case_study", uid);
 
+  const page = "case_study";
+
   return {
-    props: { document, revalidate: 10 },
+    props: { document, page, revalidate: 10 },
   };
 }
 
@@ -54,32 +56,79 @@ export async function getStaticPaths() {
 
 const CaseStudy = ({ document }) => {
   console.log(document);
-  const page_data = document.data;
+
+  const {
+    body,
+    credits,
+    header_description,
+    hi_res_project_images,
+    mobile_images,
+    tagline,
+    title,
+  } = document.data;
+
+  // Slice Rendering
+  const SliceZone =
+    body && body.length > 0
+      ? body.map((slice, index) => {
+          if (slice.slice_type === "full_screen") {
+            return (
+              <section className={`${styles.section} ${styles.fullscreen}`}>
+                <figure className={styles.fullscreen_image_container}>
+                  <Image
+                    src={slice.primary.full_screen_image.url}
+                    layout={"responsive"}
+                    alt={slice.primary.full_screen_image.alt}
+                    height={slice.primary.full_screen_image.dimensions.height}
+                    width={slice.primary.full_screen_image.dimensions.width}
+                  />
+                </figure>
+              </section>
+            );
+          } else if (slice.slice_type === "centered_image") {
+            return (
+              <section className={`${styles.section} ${styles.centered_image}`}>
+                <figure className={styles.centered_image_container}>
+                  <Image
+                    src={slice.primary.centered_image.url}
+                    layout={"responsive"}
+                    alt={slice.primary.centered_image.alt}
+                    height={slice.primary.centered_image.dimensions.height}
+                    width={slice.primary.centered_image.dimensions.width}
+                  />
+                </figure>
+              </section>
+            );
+          } else if (slice.slice_type === "image_with_text") {
+          } else if (slice.slice_type === "carousel") {
+          } else {
+            return null;
+          }
+        })
+      : null;
 
   return (
     <>
       <Head>
         <title>
-          {page_data.title[0].text
-            ? page_data.title[0].text
-            : "Collect NEW YORK Case Study"}{" "}
-          – {SITE_NAME}
+          {title[0].text ? title[0].text : "Case Study"} – {SITE_NAME}
         </title>
         <meta
           name="description"
           content={
-            page_data.header_description &&
-            page_data.header_description.length > 0
-              ? page_data.header_description[0].text
+            header_description && header_description.length > 0
+              ? header_description[0].text
               : "A case study project by Collect NEW YORK."
           }
         />
 
         <SharedHead />
       </Head>
-      <div>
+      <main>
         <h1>Hello</h1>
-      </div>
+
+        <article>{SliceZone}</article>
+      </main>
     </>
   );
 };
