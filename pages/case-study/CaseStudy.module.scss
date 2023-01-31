@@ -1,13 +1,67 @@
 @use "~/styles/helpers";
+@use "~/styles/typography";
 
 .case_study_page {
   padding: 49px helpers.$navGutter_desktop 30px;
 }
 
+.intro {
+  @include typography.body_text;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 95px 0 118px;
+
+  h1 {
+    @include typography.body_text;
+    text-transform: uppercase;
+    width: 50%;
+  }
+
+  .description {
+    width: calc(helpers.$gutter_desktop * 4);
+
+    .ctas {
+      margin: 20px 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+        display: inline-block;
+        margin-right: 20px;
+
+        button {
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+}
+
 .section {
+  &.fullscreen {
+    margin-bottom: 120px;
+  }
+
+  &.centered_image {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 120px;
+
+    figure {
+      width: calc(helpers.$gutter_desktop * 9);
+    }
+  }
+
   &.image_with_text {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 120px;
 
     &.left {
       flex-direction: row;
@@ -16,5 +70,21 @@
     &.right {
       flex-direction: row-reverse;
     }
+
+    .text {
+      width: calc(helpers.$gutter_desktop * 3);
+    }
+
+    figure {
+      width: calc(helpers.$gutter_desktop * 8);
+    }
+  }
+
+  &.carousel {
+    margin-bottom: 110px;
+  }
+
+  &:last-of-type {
+    margin-bottom: 0;
   }
 }

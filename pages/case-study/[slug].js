@@ -10,16 +10,16 @@ import Link from "next/link";
 import Image from "next/image";
 import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
-import { useRouter } from "next/router";
-import { gql } from "@apollo/client";
-import { motion } from "framer-motion";
-// import animateScrollTo from "animated-scroll-to";
+// import { useRouter } from "next/router";
+// import { gql } from "@apollo/client";
+// import { motion } from "framer-motion";
+import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
-import ProjectViewer from "../../components/ProjectViewer";
+// import ProjectViewer from "../../components/ProjectViewer";
 import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
-import MemoryContext from "../../components/MemoryContext";
+// import MemoryContext from "../../components/MemoryContext";
 import { ImageSlider } from "../../components/ImageSlider";
 import styles from "./CaseStudy.module.scss";
 
@@ -56,6 +56,9 @@ export async function getStaticPaths() {
 
 const CaseStudy = ({ document }) => {
   console.log(document);
+
+  const exploreRef = useRef(null);
+  const creditsRef = useRef(null);
 
   const {
     body,
@@ -103,7 +106,7 @@ const CaseStudy = ({ document }) => {
             return (
               <section
                 className={`${styles.section} ${styles.image_with_text} ${
-                  slice.primary.orientation === "left"
+                  slice.primary.orientation === "Left"
                     ? styles.left
                     : styles.right
                 }`}
@@ -149,7 +152,51 @@ const CaseStudy = ({ document }) => {
         <SharedHead />
       </Head>
       <main className={styles.case_study_page}>
-        <article>{SliceZone}</article>
+        <header className={styles.intro}>
+          <h1>{tagline && tagline}</h1>
+          <div className={styles.description}>
+            {header_description && header_description.length > 0 ? (
+              <RichText render={header_description} />
+            ) : null}
+
+            <ul className={styles.ctas}>
+              <li>
+                <button
+                  onClick={() =>
+                    animateScrollTo(exploreRef.current, {
+                      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                      minDuration: 600,
+                      speed: 500,
+                      verticalOffset: -97,
+                    })
+                  }
+                >
+                  Explore
+                </button>
+              </li>
+              <li>
+                <button
+                  onClick={() =>
+                    animateScrollTo(creditsRef.current, {
+                      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                      minDuration: 600,
+                      speed: 500,
+                      verticalOffset: -97,
+                    })
+                  }
+                >
+                  Project Info
+                </button>
+              </li>
+            </ul>
+          </div>
+        </header>
+        <article ref={exploreRef} id="explore">
+          {SliceZone}
+        </article>
+        <footer ref={creditsRef} id="info">
+          <h2>Credits</h2>
+        </footer>
       </main>
     </>
   );
