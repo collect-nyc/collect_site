@@ -419,7 +419,7 @@ const CaseStudy = ({ document, studies }) => {
           }`}
           ref={creditsRef}
           id="info"
-          animate={{ top: showCredits ? "47px" : "calc(100vh - 50px)" }}
+          animate={{ top: showCredits ? "47px" : "calc(100% - 50px)" }}
           transition={{
             duration: 0.6,
             ease: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),

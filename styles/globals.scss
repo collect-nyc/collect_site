@@ -1,6 +1,7 @@
 @import "./reset";
 @import "./colors";
 @import "./typography";
+@import "./helpers";
 
 /* Plugins */
 @import "./slick.scss";
@@ -16,6 +17,17 @@ body {
 
 body {
   @extend .body_text;
+
+  &.case_study {
+    @media screen and (max-width: $mq-mobile-max) {
+      overflow: hidden;
+
+      @supports (-webkit-touch-callout: none) {
+        height: -webkit-fill-available;
+        overflow: hidden;
+      }
+    }
+  }
 }
 
 a,

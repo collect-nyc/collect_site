@@ -7,8 +7,14 @@
 
   @media screen and (max-width: helpers.$mq-mobile-max) {
     overflow: hidden;
+    padding: 0;
     height: 100vh;
     width: 100%;
+
+    @supports (-webkit-touch-callout: none) {
+      height: -webkit-fill-available;
+      overflow: hidden;
+    }
   }
 }
 
@@ -208,13 +214,17 @@
 }
 
 .mobile_slides {
-  height: calc(100vh - 99px);
+  height: 100vh;
   padding: 0 helpers.$navGutter_mobile;
   position: relative;
 
+  @supports (-webkit-touch-callout: none) {
+    height: -webkit-fill-available;
+  }
+
   .holder {
     position: absolute;
-    top: 50%;
+    top: calc(50% - 50px);
     left: helpers.$navGutter_mobile;
     width: calc(100% - helpers.$navGutter_mobile * 2);
     transform: translateY(-50%);
@@ -323,10 +333,14 @@
     overflow: hidden;
     position: fixed;
     left: 0;
-    top: 48px;
     top: calc(100vh - 50px);
     width: 100%;
     height: calc(100vh - 48px);
+    z-index: 5;
+
+    @supports (-webkit-touch-callout: none) {
+      height: -webkit-fill-available;
+    }
 
     .container {
       overflow: hidden;

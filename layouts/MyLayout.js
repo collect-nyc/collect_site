@@ -35,6 +35,14 @@ export default function MyLayout({
 
   // console.log(tagPlus);
 
+  useEffect(() => {
+    if (page === "case_study") {
+      document.body.classList.add("case_study");
+    } else {
+      document.body.classList.remove("case_study");
+    }
+  });
+
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
 
