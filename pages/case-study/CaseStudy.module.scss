@@ -51,6 +51,14 @@
   @media screen and (max-width: helpers.$mq-mobile-max) {
     display: none;
   }
+
+  @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
+    padding: 53px helpers.$navGutter_desktop 80px;
+
+    .description {
+      width: 50%;
+    }
+  }
 }
 
 .main_content {
@@ -80,6 +88,12 @@
       figure {
         width: calc(helpers.$gutter_desktop * 9);
       }
+
+      @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
+        figure {
+          width: 75%;
+        }
+      }
     }
 
     &.image_with_text {
@@ -94,10 +108,18 @@
 
       &.left {
         flex-direction: row;
+
+        .text {
+          padding-left: helpers.$navGutter_desktop;
+        }
       }
 
       &.right {
         flex-direction: row-reverse;
+
+        .text {
+          padding-right: helpers.$navGutter_desktop;
+        }
       }
 
       .text {
@@ -106,6 +128,17 @@
 
       figure {
         width: calc(helpers.$gutter_desktop * 8);
+      }
+
+      @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
+        //tablet styles
+        .text {
+          width: 28%;
+        }
+
+        figure {
+          width: calc(72% - 20px);
+        }
       }
     }
 
@@ -125,6 +158,10 @@
       .controls {
         // background-color: purple;
         padding: 15px calc(22.4% + 10px) 0;
+
+        @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
+          padding: 15px calc(6.55% + 10px) 0;
+        }
 
         .holder {
           // background-color: lightblue;
@@ -153,6 +190,15 @@
 
     &:last-of-type {
       margin-bottom: 0;
+    }
+
+    @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
+      &.carousel,
+      &.fullscreen,
+      &.centered_image,
+      &.image_with_text {
+        margin-bottom: 80px;
+      }
     }
   }
 

@@ -99,6 +99,14 @@ const CaseStudy = ({ document, studies }) => {
     beforeChange: (current, next) => {
       setCurrentSlide(next + 1);
     },
+    responsive: [
+      {
+        breakpoint: 1200,
+        settings: {
+          slidesToShow: 1,
+        },
+      },
+    ],
   };
 
   const mobileSettings = {
