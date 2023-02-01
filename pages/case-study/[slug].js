@@ -30,10 +30,16 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   const uid = params.slug;
   const document = await Client().getByUID("case_study", uid);
 
+  const projects = await Client().query(
+    Prismic.Predicates.at("document.type", "case_study"),
+    { pageSize: 100 }
+  );
+  const studies = projects.results;
+
   const page = "case_study";
 
   return {
-    props: { document, page, revalidate: 10 },
+    props: { document, studies, page, revalidate: 10 },
   };
 }
 
@@ -57,8 +63,8 @@ export async function getStaticPaths() {
   return { paths, fallback: "blocking" };
 }
 
-const CaseStudy = ({ document }) => {
-  console.log(document);
+const CaseStudy = ({ document, studies }) => {
+  console.log("PAGE DATA", document, "ALL STUDIES", studies);
 
   const {
     body,
@@ -75,10 +81,9 @@ const CaseStudy = ({ document }) => {
   const creditsRef = useRef(null);
 
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [nextProject, setNextProject] = useState(null);
 
   const refs = useMemo(() => body?.map(() => React.createRef()), []);
-
-  console.log("REFS", refs);
 
   const settings = {
     arrows: false,
@@ -88,14 +93,31 @@ const CaseStudy = ({ document }) => {
     slidesToShow: 1.665,
     slidesToScroll: 1,
     centerMode: true,
-    // centerPadding: "50px",
     beforeChange: (current, next) => {
-      // const newCurrentIndexes = [...currentIndexes];
-      // newCurrentIndexes[index] = next + 1;
-      // setCurrentIndexes(newCurrentIndexes);
       setCurrentSlide(next + 1);
     },
   };
+
+  // Get the next project URL
+  useEffect(() => {
+    const totalProjects = studies.length;
+    const currentProject = _.findIndex(studies, { uid: document.uid });
+    let calcNextProject;
+
+    if (totalProjects > 1) {
+      if (currentProject >= totalProjects - 1) {
+        calcNextProject = 0;
+      } else {
+        calcNextProject = currentProject + 1;
+      }
+
+      setNextProject(studies[calcNextProject].uid);
+    }
+  }, [nextProject, studies, document.uid]);
+
+  // useEffect(() => {
+  //   console.log("NEXT PROJECT", nextProject);
+  // }, [nextProject]);
 
   const nextSlidez = (index) => {
     if (refs[index]) {
@@ -109,10 +131,6 @@ const CaseStudy = ({ document }) => {
     }
   };
 
-  useEffect(() => {
-    console.log("CURRENT SLIDE", currentSlide - 1);
-  }, [currentSlide]);
-
   // Slice Rendering
   const SliceZone =
     body && body.length > 0
@@ -124,13 +142,28 @@ const CaseStudy = ({ document }) => {
                 className={`${styles.section} ${styles.fullscreen}`}
               >
                 <figure className={styles.fullscreen_image_container}>
-                  <Image
-                    src={slice.primary.full_screen_image.url}
-                    layout={"responsive"}
-                    alt={slice.primary.full_screen_image.alt}
-                    height={slice.primary.full_screen_image.dimensions.height}
-                    width={slice.primary.full_screen_image.dimensions.width}
-                  />
+                  {slice.primary.full_screen_video?.url ? (
+                    <video
+                      className={styles.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source
+                        src={slice.primary.full_screen_video.url}
+                        type="video/mp4"
+                      />
+                    </video>
+                  ) : (
+                    <Image
+                      src={slice.primary.full_screen_image.url}
+                      layout={"responsive"}
+                      alt={slice.primary.full_screen_image.alt}
+                      height={slice.primary.full_screen_image.dimensions.height}
+                      width={slice.primary.full_screen_image.dimensions.width}
+                    />
+                  )}
                 </figure>
               </section>
             );
@@ -141,13 +174,28 @@ const CaseStudy = ({ document }) => {
                 className={`${styles.section} ${styles.centered_image}`}
               >
                 <figure className={styles.centered_image_container}>
-                  <Image
-                    src={slice.primary.centered_image.url}
-                    layout={"responsive"}
-                    alt={slice.primary.centered_image.alt}
-                    height={slice.primary.centered_image.dimensions.height}
-                    width={slice.primary.centered_image.dimensions.width}
-                  />
+                  {slice.primary.centered_video?.url ? (
+                    <video
+                      className={styles.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source
+                        src={slice.primary.centered_video.url}
+                        type="video/mp4"
+                      />
+                    </video>
+                  ) : (
+                    <Image
+                      src={slice.primary.centered_image.url}
+                      layout={"responsive"}
+                      alt={slice.primary.centered_image.alt}
+                      height={slice.primary.centered_image.dimensions.height}
+                      width={slice.primary.centered_image.dimensions.width}
+                    />
+                  )}
                 </figure>
               </section>
             );
@@ -167,13 +215,25 @@ const CaseStudy = ({ document }) => {
                   )}
                 </div>
                 <figure className={styles.image_container}>
-                  <Image
-                    src={slice.primary.image.url}
-                    layout={"responsive"}
-                    alt={slice.primary.image.alt}
-                    height={slice.primary.image.dimensions.height}
-                    width={slice.primary.image.dimensions.width}
-                  />
+                  {slice.primary.video?.url ? (
+                    <video
+                      className={styles.video}
+                      autoPlay
+                      muted
+                      loop
+                      playsInline
+                    >
+                      <source src={slice.primary.video.url} type="video/mp4" />
+                    </video>
+                  ) : (
+                    <Image
+                      src={slice.primary.image.url}
+                      layout={"responsive"}
+                      alt={slice.primary.image.alt}
+                      height={slice.primary.image.dimensions.height}
+                      width={slice.primary.image.dimensions.width}
+                    />
+                  )}
                 </figure>
               </section>
             );
@@ -187,13 +247,25 @@ const CaseStudy = ({ document }) => {
                   {slice.items.map((item, index) => {
                     return (
                       <div key={index} className={styles.carousel_slide}>
-                        <Image
-                          src={item.image.url}
-                          layout={"responsive"}
-                          alt={item.image.alt}
-                          height={item.image.dimensions.height}
-                          width={item.image.dimensions.width}
-                        />
+                        {item.video?.url ? (
+                          <video
+                            className={styles.video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          >
+                            <source src={item.video.url} type="video/mp4" />
+                          </video>
+                        ) : (
+                          <Image
+                            src={item.image.url}
+                            layout={"responsive"}
+                            alt={item.image.alt}
+                            height={item.image.dimensions.height}
+                            width={item.image.dimensions.width}
+                          />
+                        )}
                       </div>
                     );
                   })}
@@ -323,11 +395,16 @@ const CaseStudy = ({ document }) => {
                   <a href="mailto:info@collect.nyc">info@collect.nyc</a>
                 </li>
                 <li>
-                  <span>T</span> +1 718 902 4911
+                  <span>T</span> <a href="tel:7189024911">+1 718 902 4911</a>
                 </li>
               </ul>
             </div>
-            {/* <Link href={}><a>See Next Project →</a></Link> */}
+
+            {nextProject && (
+              <Link href={"/case-study/" + nextProject}>
+                <a className={styles.next_project}>See Next Project →</a>
+              </Link>
+            )}
           </div>
         </footer>
       </main>

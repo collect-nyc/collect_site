@@ -43,6 +43,11 @@
 }
 
 .section {
+  video {
+    object-fit: cover;
+    width: 100%;
+  }
+
   &.fullscreen {
     margin-bottom: 120px;
     padding: {
@@ -174,8 +179,17 @@
   }
 
   .contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-left: auto;
     width: calc(helpers.$gutter_desktop * 3 - helpers.$navGutter_desktop);
+
+    .next_project {
+      display: inline-block;
+      margin-top: 20px;
+    }
 
     p {
       span {
