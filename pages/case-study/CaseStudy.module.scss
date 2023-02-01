@@ -1,8 +1,15 @@
 @use "~/styles/helpers";
 @use "~/styles/typography";
+@use "~/styles/colors";
 
 .case_study_page {
   padding: 49px 0 30px;
+
+  @media screen and (max-width: helpers.$mq-mobile-max) {
+    overflow: hidden;
+    height: 100vh;
+    width: 100%;
+  }
 }
 
 .intro {
@@ -40,116 +47,155 @@
       }
     }
   }
+
+  @media screen and (max-width: helpers.$mq-mobile-max) {
+    display: none;
+  }
 }
 
-.section {
-  video {
-    object-fit: cover;
-    width: 100%;
-  }
-
-  &.fullscreen {
-    margin-bottom: 120px;
-    padding: {
-      left: helpers.$navGutter_desktop;
-      right: helpers.$navGutter_desktop;
-    }
-  }
-
-  &.centered_image {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 120px;
-    padding: {
-      left: helpers.$navGutter_desktop;
-      right: helpers.$navGutter_desktop;
+.main_content {
+  .section {
+    video {
+      object-fit: cover;
+      width: 100%;
     }
 
-    figure {
-      width: calc(helpers.$gutter_desktop * 9);
-    }
-  }
-
-  &.image_with_text {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 120px;
-    padding: {
-      left: helpers.$navGutter_desktop;
-      right: helpers.$navGutter_desktop;
-    }
-
-    &.left {
-      flex-direction: row;
-    }
-
-    &.right {
-      flex-direction: row-reverse;
-    }
-
-    .text {
-      width: calc(helpers.$gutter_desktop * 3);
-    }
-
-    figure {
-      width: calc(helpers.$gutter_desktop * 8);
-    }
-  }
-
-  &.carousel {
-    margin-bottom: 110px;
-
-    .carousel_slide {
-      cursor: grab;
-      padding: 0 10px;
-      // height: 600px;
-
-      &:active {
-        cursor: grabbing;
+    &.fullscreen {
+      margin-bottom: 120px;
+      padding: {
+        left: helpers.$navGutter_desktop;
+        right: helpers.$navGutter_desktop;
       }
     }
 
-    .controls {
-      // background-color: purple;
-      padding: 15px calc(22.4% + 10px) 0;
+    &.centered_image {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 120px;
+      padding: {
+        left: helpers.$navGutter_desktop;
+        right: helpers.$navGutter_desktop;
+      }
 
-      .holder {
-        // background-color: lightblue;
-        display: flex;
-        justify-content: space-between;
+      figure {
+        width: calc(helpers.$gutter_desktop * 9);
+      }
+    }
 
-        .details {
-          .numbers {
-            margin-right: 20px;
-          }
+    &.image_with_text {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 120px;
+      padding: {
+        left: helpers.$navGutter_desktop;
+        right: helpers.$navGutter_desktop;
+      }
+
+      &.left {
+        flex-direction: row;
+      }
+
+      &.right {
+        flex-direction: row-reverse;
+      }
+
+      .text {
+        width: calc(helpers.$gutter_desktop * 3);
+      }
+
+      figure {
+        width: calc(helpers.$gutter_desktop * 8);
+      }
+    }
+
+    &.carousel {
+      margin-bottom: 110px;
+
+      .carousel_slide {
+        cursor: grab;
+        padding: 0 10px;
+        // height: 600px;
+
+        &:active {
+          cursor: grabbing;
         }
+      }
 
-        .arrows {
-          margin: 0;
-          padding: 0;
-          list-style: none;
+      .controls {
+        // background-color: purple;
+        padding: 15px calc(22.4% + 10px) 0;
 
-          li {
-            display: inline-block;
-            margin-left: 10px;
+        .holder {
+          // background-color: lightblue;
+          display: flex;
+          justify-content: space-between;
+
+          .details {
+            .numbers {
+              margin-right: 20px;
+            }
+          }
+
+          .arrows {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+
+            li {
+              display: inline-block;
+              margin-left: 10px;
+            }
           }
         }
       }
     }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
   }
 
-  &:last-of-type {
-    margin-bottom: 0;
+  @media screen and (max-width: helpers.$mq-mobile-max) {
+    display: none;
+  }
+}
+
+.mobile_slides {
+  height: calc(100vh - 99px);
+  padding: 0 helpers.$navGutter_mobile;
+  position: relative;
+
+  .holder {
+    position: absolute;
+    top: 50%;
+    left: helpers.$navGutter_mobile;
+    width: calc(100% - helpers.$navGutter_mobile * 2);
+    transform: translateY(-50%);
+
+    figure {
+      img,
+      video {
+        width: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media screen and (min-width: helpers.$mq-tablet-min) {
+    display: none;
   }
 }
 
 .credits_section {
-  display: flex;
   padding: {
     left: helpers.$navGutter_desktop;
     right: helpers.$navGutter_desktop;
     top: 25px;
+  }
+
+  .mobile_heading {
+    display: none;
   }
 
   a {
@@ -158,6 +204,11 @@
     &:hover {
       text-decoration: none;
     }
+  }
+
+  .container {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .description {
@@ -210,6 +261,90 @@
           display: inline-block;
           padding-right: 10px;
         }
+      }
+    }
+  }
+
+  @media screen and (max-width: helpers.$mq-mobile-max) {
+    background-color: colors.$alabaster;
+    border-top: 1px solid colors.$black;
+    padding: {
+      left: 0;
+      right: 0;
+      top: 50px;
+      bottom: 0;
+    }
+    overflow: hidden;
+    position: fixed;
+    left: 0;
+    top: 48px;
+    top: calc(100vh - 50px);
+    width: 100%;
+    height: calc(100vh - 48px);
+
+    .container {
+      overflow: hidden;
+      padding: {
+        left: helpers.$navGutter_mobile;
+        right: helpers.$navGutter_mobile;
+        bottom: 30px;
+        top: 50px;
+      }
+    }
+
+    &.open {
+      .container {
+        overflow-y: auto;
+        overflow-x: hidden;
+        height: 100%;
+      }
+    }
+
+    .mobile_heading {
+      align-items: center;
+      background-color: colors.$alabaster;
+      display: flex;
+      justify-content: space-between;
+      padding: {
+        left: helpers.$navGutter_mobile;
+        right: helpers.$navGutter_mobile;
+      }
+      height: 50px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+
+      .left {
+        button {
+          margin-left: 10px;
+          text-decoration: underline;
+        }
+      }
+
+      .right {
+        button {
+          text-decoration: underline;
+        }
+      }
+    }
+
+    .description,
+    .credits,
+    .contact {
+      width: 100%;
+    }
+
+    .description,
+    .credits {
+      margin-bottom: 40px;
+    }
+
+    .description {
+      margin-right: 0;
+
+      .title {
+        display: none;
       }
     }
   }

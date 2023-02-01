@@ -14,7 +14,7 @@ import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
 // import { useRouter } from "next/router";
 // import { gql } from "@apollo/client";
-// import { motion } from "framer-motion";
+import { motion } from "framer-motion";
 import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
@@ -81,8 +81,11 @@ const CaseStudy = ({ document, studies }) => {
   const creditsRef = useRef(null);
 
   const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentMobileSlide, setMobileCurrentSlide] = useState(1);
   const [nextProject, setNextProject] = useState(null);
+  const [showCredits, setShowCredits] = useState(false);
 
+  const mobileRef = useRef(null);
   const refs = useMemo(() => body?.map(() => React.createRef()), []);
 
   const settings = {
@@ -95,6 +98,18 @@ const CaseStudy = ({ document, studies }) => {
     centerMode: true,
     beforeChange: (current, next) => {
       setCurrentSlide(next + 1);
+    },
+  };
+
+  const mobileSettings = {
+    arrows: false,
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    beforeChange: (current, next) => {
+      setMobileCurrentSlide(next + 1);
     },
   };
 
@@ -356,57 +371,128 @@ const CaseStudy = ({ document, studies }) => {
         <article className={styles.main_content} ref={exploreRef} id="explore">
           {SliceZone}
         </article>
-        <footer className={styles.credits_section} ref={creditsRef} id="info">
-          <div className={styles.description}>
-            {project_description && project_description.length > 0 ? (
-              <RichText render={project_description} />
-            ) : null}
-          </div>
-          <div className={styles.credits}>
-            <div className={styles.credits_groups}>
-              {credits.length > 0 &&
-                credits.map((credit, index) => {
+        {mobile_images && mobile_images.length > 0 ? (
+          <aside className={styles.mobile_slides}>
+            <div className={styles.holder}>
+              <Slider ref={mobileRef} {...mobileSettings}>
+                {mobile_images.map((slide, index) => {
                   return (
-                    <div key={index}>
-                      <span>{credit.group_title[0].text}</span>
-                      <RichText render={credit.group_content} />
-                    </div>
+                    <figure key={index}>
+                      {slide.mobile_video?.url ? (
+                        <video
+                          className={styles.video}
+                          autoPlay
+                          muted
+                          loop
+                          playsInline
+                        >
+                          <source
+                            src={slide.mobile_video.url}
+                            type="video/mp4"
+                          />
+                        </video>
+                      ) : (
+                        <img
+                          src={slide.mobile_image.url}
+                          alt={slide.mobile_image.alt}
+                        />
+                      )}
+                    </figure>
                   );
                 })}
+              </Slider>
             </div>
-            {hi_res_project_images?.url && (
-              <a
-                className={styles.img_download}
-                href={hi_res_project_images.url}
-              >
-                Download Hi-Res Project Images
-              </a>
-            )}
-          </div>
-          <div className={styles.contact}>
-            <div className={styles.contact_info}>
-              <p>
-                <span>GET IN TOUCH</span> We&apos;d love to hear about your
-                project. Feel free to email or give us a call:
-              </p>
-              <ul>
-                <li>
-                  <span>E</span>{" "}
-                  <a href="mailto:info@collect.nyc">info@collect.nyc</a>
-                </li>
-                <li>
-                  <span>T</span> <a href="tel:7189024911">+1 718 902 4911</a>
-                </li>
-              </ul>
-            </div>
+          </aside>
+        ) : null}
 
-            {nextProject && (
-              <Link href={"/case-study/" + nextProject}>
-                <a className={styles.next_project}>See Next Project →</a>
-              </Link>
-            )}
+        <motion.footer
+          className={`${styles.credits_section} ${
+            showCredits ? styles.open : null
+          }`}
+          ref={creditsRef}
+          id="info"
+          animate={{ top: showCredits ? "47px" : "calc(100vh - 50px)" }}
+          transition={{
+            duration: 0.6,
+            ease: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+          }}
+        >
+          <div className={styles.mobile_heading}>
+            <div className={styles.left}>
+              <span>{title[0].text ? title[0].text : "Case Study"}</span>
+              {showCredits ? null : (
+                <button onClick={() => setShowCredits(!showCredits)}>
+                  Read More
+                </button>
+              )}
+            </div>
+            <span className={styles.right}>
+              {showCredits ? (
+                <button onClick={() => setShowCredits(!showCredits)}>
+                  Close
+                </button>
+              ) : (
+                <>
+                  {currentMobileSlide}/{mobile_images?.length}
+                </>
+              )}
+            </span>
           </div>
-        </footer>
+          <div className={styles.container}>
+            <div className={styles.description}>
+              <span className={styles.title}>
+                {title[0].text ? title[0].text : "Case Study"}
+              </span>
+              {project_description && project_description.length > 0 ? (
+                <RichText render={project_description} />
+              ) : null}
+            </div>
+            <div className={styles.credits}>
+              <div className={styles.credits_groups}>
+                {credits.length > 0 &&
+                  credits.map((credit, index) => {
+                    return (
+                      <div key={index}>
+                        <span>{credit.group_title[0].text}</span>
+                        <RichText render={credit.group_content} />
+                      </div>
+                    );
+                  })}
+              </div>
+              {hi_res_project_images?.url && (
+                <a
+                  className={styles.img_download}
+                  href={hi_res_project_images.url}
+                >
+                  Download Hi-Res Project Images
+                </a>
+              )}
+            </div>
+            <div className={styles.contact}>
+              <div className={styles.contact_info}>
+                <p>
+                  <span>GET IN TOUCH</span> We&apos;d love to hear about your
+                  project. Feel free to email or give us a call:
+                </p>
+                <ul>
+                  <li>
+                    <span>E</span>{" "}
+                    <a href="mailto:info@collect.nyc">info@collect.nyc</a>
+                  </li>
+                  <li>
+                    <span>T</span> <a href="tel:7189024911">+1 718 902 4911</a>
+                  </li>
+                </ul>
+              </div>
+
+              {nextProject && (
+                <Link href={"/case-study/" + nextProject}>
+                  <a className={styles.next_project}>See Next Project →</a>
+                </Link>
+              )}
+            </div>
+          </div>
+        </motion.footer>
       </main>
     </>
   );
