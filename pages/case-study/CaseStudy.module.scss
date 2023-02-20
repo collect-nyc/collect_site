@@ -204,6 +204,10 @@
       &.centered_image,
       &.image_with_text {
         margin-bottom: 80px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
       }
     }
   }
