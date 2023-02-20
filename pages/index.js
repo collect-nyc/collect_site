@@ -55,7 +55,7 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
-  // console.log("featured data", document.data.body1);
+  console.log("featured data", document.data.body1);
 
   const {
     statement_first_paragraph,
@@ -242,6 +242,15 @@ const Home = ({ document }) => {
                   {slice.primary.case_study_link.data.images.length}
                 </span>
               ) : null}
+
+              {/* Add internal full case study link if it exists */}
+              {slice.primary.full_case_study?.slug && (
+                <Link
+                  href={`/case-study/${slice.primary.full_case_study.slug}`}
+                >
+                  <a className={styles.external_link}>View Case Study</a>
+                </Link>
+              )}
 
               {/* Add external links if they exist */}
               {slice.items &&
