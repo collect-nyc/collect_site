@@ -267,9 +267,13 @@ const CaseStudy = ({ document, studies }) => {
                 className={`${styles.section} ${styles.carousel}`}
               >
                 <Slider ref={refs[index]} {...settings}>
-                  {slice.items.map((item, index) => {
+                  {slice.items.map((item, i) => {
                     return (
-                      <div key={index} className={styles.carousel_slide}>
+                      <div
+                        onClick={() => nextSlidez(index)}
+                        key={i}
+                        className={styles.carousel_slide}
+                      >
                         {item.video?.url ? (
                           <video
                             className={styles.video}
@@ -319,6 +323,11 @@ const CaseStudy = ({ document, studies }) => {
         })
       : null;
 
+  // On click
+  // Scroll to: "01 Lead Video";
+  // Animate: Animate;
+  // Spring: { mass: 1, stiffness: 80, damping: 20 };
+
   return (
     <>
       <Head>
@@ -350,8 +359,8 @@ const CaseStudy = ({ document, studies }) => {
                   onClick={() =>
                     animateScrollTo(exploreRef.current, {
                       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                      minDuration: 600,
-                      speed: 500,
+                      minDuration: 1000,
+                      speed: 100,
                       verticalOffset: -97,
                     })
                   }
@@ -365,7 +374,8 @@ const CaseStudy = ({ document, studies }) => {
                     animateScrollTo(creditsRef.current, {
                       easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                       minDuration: 600,
-                      speed: 500,
+                      maxDuration: 1600,
+                      speed: 600,
                       verticalOffset: -97,
                     })
                   }
@@ -400,6 +410,7 @@ const CaseStudy = ({ document, studies }) => {
                           />
                         </video>
                       ) : (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                           src={slide.mobile_image.url}
                           alt={slide.mobile_image.alt}

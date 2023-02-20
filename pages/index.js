@@ -243,15 +243,6 @@ const Home = ({ document }) => {
                 </span>
               ) : null}
 
-              {/* Add internal full case study link if it exists */}
-              {slice.primary.full_case_study?.slug && (
-                <Link
-                  href={`/case-study/${slice.primary.full_case_study.slug}`}
-                >
-                  <a className={styles.external_link}>View Case Study</a>
-                </Link>
-              )}
-
               {/* Add external links if they exist */}
               {slice.items &&
               slice.items.length > 0 &&
@@ -272,6 +263,15 @@ const Home = ({ document }) => {
                     );
                   })
                 : null}
+
+              {/* Add internal full case study link if it exists */}
+              {slice.primary.full_case_study?.slug && (
+                <Link
+                  href={`/case-study/${slice.primary.full_case_study.slug}`}
+                >
+                  <a className={styles.external_link}>View Case Study</a>
+                </Link>
+              )}
             </div>
           </header>
           <div className={styles.divider} />
