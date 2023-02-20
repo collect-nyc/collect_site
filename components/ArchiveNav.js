@@ -31,7 +31,7 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
           </div>
         </div>
         <div className={styles.centered_text}>
-          Ongoing, 2013 to Present — Reopening SPRING 2023 
+          Ongoing, 2013 to Present — Reopening FALL 2023
         </div>
         <div className={styles.archive_link}>
           {/* {latest ? <span className={styles.latest}>Latest</span> : null} */}
