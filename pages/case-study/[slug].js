@@ -101,7 +101,7 @@ const CaseStudy = ({ document, studies }) => {
     },
     responsive: [
       {
-        breakpoint: 1200,
+        breakpoint: 800,
         settings: {
           slidesToShow: 1,
         },
@@ -270,7 +270,9 @@ const CaseStudy = ({ document, studies }) => {
                   {slice.items.map((item, i) => {
                     return (
                       <div
-                        onClick={() => nextSlidez(index)}
+                        onClick={() =>
+                          slice.items.length > 1 && nextSlidez(index)
+                        }
                         key={i}
                         className={styles.carousel_slide}
                       >
@@ -395,7 +397,10 @@ const CaseStudy = ({ document, studies }) => {
               <Slider ref={mobileRef} {...mobileSettings}>
                 {mobile_images.map((slide, index) => {
                   return (
-                    <figure key={index}>
+                    <figure
+                      onClick={() => mobileRef?.current?.slickNext()}
+                      key={index}
+                    >
                       {slide.mobile_video?.url ? (
                         <video
                           className={styles.video}
