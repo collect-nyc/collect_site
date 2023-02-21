@@ -43,7 +43,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     animate: {
       opacity: [0, 1],
       top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
-      borderColor: ["#fafafa", "#000"],
+      borderColor: ["#ffffff", "#000"],
       transition: {
         opacity: {
           duration: 0.3,
@@ -73,7 +73,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       }`}
       initial={
         !loaderDidRun
-          ? { opacity: 0, borderColor: "#fafafa" }
+          ? { opacity: 0, borderColor: "#ffffff" }
           : { opacity: 1, borderColor: "#000" }
       }
       animate={!loaderDidRun ? "animate" : "default"}

@@ -326,7 +326,7 @@
   }
 
   @media screen and (max-width: helpers.$mq-mobile-max) {
-    background-color: colors.$alabaster;
+    background-color: colors.$white;
     border-top: 1px solid colors.$black;
     padding: {
       left: 0;
@@ -366,7 +366,7 @@
 
     .mobile_heading {
       align-items: center;
-      background-color: colors.$alabaster;
+      background-color: colors.$white;
       display: flex;
       justify-content: space-between;
       padding: {

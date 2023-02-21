@@ -18,7 +18,7 @@
   }
 
   .double_hide {
-    background-color: $alabaster;
+    background-color: $white;
     display: block;
     left: 0;
     top: 0;
@@ -143,7 +143,7 @@
       }
 
       .lower_content {
-        background-color: $alabaster;
+        background-color: $white;
 
         &.vertical_default {
           padding-top: 180px;
@@ -438,7 +438,7 @@
   }
 
   .project_footer {
-    background-color: $alabaster;
+    background-color: $white;
     border-top: 1px solid $platinum;
     display: flex;
     flex-wrap: wrap;

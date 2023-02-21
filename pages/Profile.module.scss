@@ -15,41 +15,6 @@
   }
 }
 
-// .mobile_profile_nav {
-//   background-color: $alabaster;
-//   border-bottom: 1px solid $black;
-//   display: none;
-//   padding: 10px $navGutter_mobile 9px;
-//   position: fixed;
-//   top: 50px;
-//   width: 100%;
-//   z-index: 2;
-
-//   @media screen and (max-width: $mq-mobile-max) {
-//     display: block;
-//   }
-
-//   button {
-//     background-color: transparent;
-//     border: none;
-//     display: inline;
-//     cursor: pointer;
-//     line-height: 2;
-//     margin: 0 15px 0 0;
-//     padding: 0;
-//     text-align: left;
-
-//     &:active {
-//       color: $black;
-//     }
-
-//     &.active,
-//     &:hover {
-//       text-decoration: underline;
-//     }
-//   }
-// }
-
 .main {
   padding-top: 49px;
 
@@ -119,7 +84,7 @@
       /* Firefox */
 
       // scrollbar-width: thin;
-      scrollbar-color: transparent #fafafa;
+      scrollbar-color: transparent #ffffff;
 
       /* Chrome, Edge, and Safari */
       &::-webkit-scrollbar {
@@ -127,14 +92,14 @@
       }
 
       &::-webkit-scrollbar-track {
-        background: #fafafa;
+        background: #ffffff;
       }
 
       &::-webkit-scrollbar-thumb {
         background-color: $darkgray;
         background-color: transparent;
         border-radius: 10px;
-        border: 3px solid #fafafa;
+        border: 3px solid #ffffff;
       }
 
       &::-webkit-scrollbar-button:start:increment {

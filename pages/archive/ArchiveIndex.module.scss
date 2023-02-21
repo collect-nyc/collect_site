@@ -49,7 +49,7 @@
   }
 
   .interior {
-    background-color: $alabaster;
+    background-color: $white;
     padding-bottom: 40px;
 
     @media screen and (max-width: $mq-mobile-min) {
@@ -254,7 +254,7 @@
 }
 
 .filter_bar {
-  background-color: $alabaster;
+  background-color: $white;
   border-bottom: 1px solid $black;
   display: flex;
   left: 0;

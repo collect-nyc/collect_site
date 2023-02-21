@@ -13,7 +13,7 @@ export default function CaseStudyFade() {
           className={styles.case_study_fade}
           animate={{
             opacity: [0, 1],
-            backgroundColor: ["#fafafa", csColor ? csColor : "#fafafa"],
+            backgroundColor: ["#ffffff", csColor ? csColor : "#ffffff"],
           }}
           transition={{ ease: "easeOut", duration: 0.2 }}
           exit={{
@@ -25,7 +25,7 @@ export default function CaseStudyFade() {
           <h1>.</h1>
           <motion.div
             animate={{
-              backgroundColor: ["#fafafa", csColor ? csColor : "#fafafa"],
+              backgroundColor: ["#ffffff", csColor ? csColor : "#ffffff"],
             }}
             transition={{ ease: "easeOut", delay: 0, duration: 0.4 }}
             className={styles.double_hide}

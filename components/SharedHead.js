@@ -21,8 +21,8 @@ const SharedHead = () => {
         href="/favicon-16x16.png"
       />
       <link rel="manifest" href="/site.webmanifest" />
-      <meta name="msapplication-TileColor" content="#fafafa" />
-      <meta name="theme-color" content="#fafafa" />
+      <meta name="msapplication-TileColor" content="#ffffff" />
+      <meta name="theme-color" content="#ffffff" />
 
       <script
         async

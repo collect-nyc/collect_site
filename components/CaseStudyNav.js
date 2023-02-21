@@ -56,7 +56,7 @@ const CaseStudyNav = () => {
             }
 
             .nav_color_svg path {
-              fill: #fafafa;
+              fill: #ffffff;
             }
           `}</style>
           <div className={styles.top_left}>
