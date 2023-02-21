@@ -250,11 +250,11 @@ const CaseStudy = ({ document, studies }) => {
                     </video>
                   ) : (
                     <Image
-                      src={slice.primary.image.url}
+                      src={slice.primary?.image?.url}
                       layout={"responsive"}
-                      alt={slice.primary.image.alt}
-                      height={slice.primary.image.dimensions.height}
-                      width={slice.primary.image.dimensions.width}
+                      alt={slice.primary?.image?.alt}
+                      height={slice.primary?.image?.dimensions?.height}
+                      width={slice.primary?.image?.dimensions?.width}
                     />
                   )}
                 </figure>
