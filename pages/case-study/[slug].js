@@ -179,13 +179,17 @@ const CaseStudy = ({ document, studies }) => {
                       />
                     </video>
                   ) : (
-                    <Image
-                      src={slice.primary.full_screen_image.url}
-                      layout={"responsive"}
-                      alt={slice.primary.full_screen_image.alt}
-                      height={slice.primary.full_screen_image.dimensions.height}
-                      width={slice.primary.full_screen_image.dimensions.width}
-                    />
+                    slice.primary.full_screen_image && (
+                      <Image
+                        src={slice.primary.full_screen_image.url}
+                        layout={"responsive"}
+                        alt={slice.primary.full_screen_image.alt}
+                        height={
+                          slice.primary.full_screen_image.dimensions.height
+                        }
+                        width={slice.primary.full_screen_image.dimensions.width}
+                      />
+                    )
                   )}
                 </figure>
               </section>
@@ -211,13 +215,15 @@ const CaseStudy = ({ document, studies }) => {
                       />
                     </video>
                   ) : (
-                    <Image
-                      src={slice.primary.centered_image.url}
-                      layout={"responsive"}
-                      alt={slice.primary.centered_image.alt}
-                      height={slice.primary.centered_image.dimensions.height}
-                      width={slice.primary.centered_image.dimensions.width}
-                    />
+                    slice.primary.centered_image && (
+                      <Image
+                        src={slice.primary.centered_image.url}
+                        layout={"responsive"}
+                        alt={slice.primary.centered_image.alt}
+                        height={slice.primary.centered_image.dimensions.height}
+                        width={slice.primary.centered_image.dimensions.width}
+                      />
+                    )
                   )}
                 </figure>
               </section>
@@ -289,13 +295,15 @@ const CaseStudy = ({ document, studies }) => {
                             <source src={item.video.url} type="video/mp4" />
                           </video>
                         ) : (
-                          <Image
-                            src={item.image.url}
-                            layout={"responsive"}
-                            alt={item.image.alt}
-                            height={item.image.dimensions.height}
-                            width={item.image.dimensions.width}
-                          />
+                          item.image && (
+                            <Image
+                              src={item.image.url}
+                              layout={"responsive"}
+                              alt={item.image.alt}
+                              height={item.image.dimensions.height}
+                              width={item.image.dimensions.width}
+                            />
+                          )
                         )}
                       </div>
                     );
