@@ -249,13 +249,15 @@ const CaseStudy = ({ document, studies }) => {
                       <source src={slice.primary.video.url} type="video/mp4" />
                     </video>
                   ) : (
-                    <Image
-                      src={slice.primary?.image?.url}
-                      layout={"responsive"}
-                      alt={slice.primary?.image?.alt}
-                      height={slice.primary?.image?.dimensions?.height}
-                      width={slice.primary?.image?.dimensions?.width}
-                    />
+                    slice.primary.image && (
+                      <Image
+                        src={slice.primary?.image?.url}
+                        layout={"responsive"}
+                        alt={slice.primary?.image?.alt}
+                        height={slice.primary?.image?.dimensions?.height}
+                        width={slice.primary?.image?.dimensions?.width}
+                      />
+                    )
                   )}
                 </figure>
               </section>
