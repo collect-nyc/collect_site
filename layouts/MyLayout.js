@@ -39,7 +39,7 @@ export default function MyLayout({
     } else {
       document.body.classList.remove("case_study");
     }
-  }, []);
+  }, [page]);
 
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
