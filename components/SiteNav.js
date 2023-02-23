@@ -15,7 +15,6 @@ const SiteNav = ({
   project_title,
   globalContent,
 }) => {
-  // console.log("siteNav: ", page);
   return (
     <>
       {

@@ -55,7 +55,7 @@ export async function getServerSideProps({ query }) {
 const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
-  console.log("featured data", document.data.body1);
+  // console.log("featured data", document.data.body1);
 
   const {
     statement_first_paragraph,
@@ -97,9 +97,9 @@ const Home = ({ document }) => {
     }
   }, []);
 
-  useEffect(() => {
-    console.log("refs", refs);
-  }, [refs]);
+  // useEffect(() => {
+  //   console.log("refs", refs);
+  // }, [refs]);
 
   const selectedWork = useRef(null);
 

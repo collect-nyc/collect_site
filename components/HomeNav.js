@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
 import MemoryContext from "./MemoryContext";
 import LoaderContext from "./LoaderContext";
+import _ from "lodash";
 import { motion } from "framer-motion";
 import styles from "./Nav.module.scss";
 
@@ -15,6 +16,7 @@ function vh(percent) {
 
 const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const { currentTag } = useContext(MemoryContext);
+  const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
   const [logoHover, setLogoHover] = useState(false);
@@ -22,6 +24,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
   const [viewportHeight, setViewportHeight] = useState(null);
+  const [newCount, setNewCount] = useState(0);
 
   useEffect(() => {
     // get half the viewport height in pixels
@@ -65,6 +68,42 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       top: "0%",
     },
   };
+
+  function getRandomTime() {
+    return Math.floor(Math.random() * 201) + 100;
+  }
+
+  const countUpTotal = (target) => {
+    // console.log("Counting up to: " + target);
+    // Set the starting count to 0
+    let numCount = 0;
+
+    // Use setInterval to increment the count every 50 milliseconds
+    const intervalId = setInterval(() => {
+      // Increment the count by a random number between 1 and 5
+      numCount += Math.floor(Math.random() * 125) + 1;
+
+      // If the count is greater than or equal to the total, stop the interval and log the final count
+      if (numCount > target) {
+        setNewCount(target);
+        setArchiveCounted(true);
+      } else if (numCount >= target) {
+        clearInterval(intervalId);
+        // console.log(`Final count: ${numCount}`);
+        setNewCount(numCount);
+        setArchiveCounted(true);
+      } else {
+        // console.log(`Counting up: ${numCount}`);
+        setNewCount(numCount);
+      }
+    }, getRandomTime());
+  };
+
+  useEffect(() => {
+    if (count) {
+      countUpTotal(count);
+    }
+  }, [count]);
 
   return (
     <motion.nav
@@ -114,7 +153,15 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
                 : "/archive"
             }
           >
-            <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+            <a className={styles.count_link}>
+              ARCHIVE (
+              {count && !archiveCounted
+                ? newCount
+                : count && archiveCounted
+                ? count
+                : 0}
+              )
+            </a>
           </Link>
         </div>
       </div>

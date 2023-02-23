@@ -29,8 +29,6 @@ export default function MyLayout({
 
   const gc = data ? data.globalContent : null;
 
-  // console.log("GLOBAL CONTENT", gc);
-
   // const tagPlus = data ? data.tagplus : null;
 
   // console.log(tagPlus);
@@ -41,7 +39,7 @@ export default function MyLayout({
     } else {
       document.body.classList.remove("case_study");
     }
-  });
+  }, []);
 
   const latest_active =
     data && _.find(data.profile, { update: true }) ? true : false;
@@ -55,7 +53,7 @@ export default function MyLayout({
 
         <SiteNav
           page={page}
-          count={data ? totalCount : null}
+          count={totalCount ? totalCount : 0}
           latest={latest_active}
           tags={data && tags ? tags : null}
           case_study={case_study}
