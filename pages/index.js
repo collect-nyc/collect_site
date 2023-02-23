@@ -269,7 +269,7 @@ const Home = ({ document }) => {
                 <Link
                   href={`/case-study/${slice.primary.full_case_study.slug}`}
                 >
-                  <a className={styles.external_link}>View Case Study</a>
+                  <a className={styles.external_link}>View Case Study→</a>
                 </Link>
               )}
             </div>
