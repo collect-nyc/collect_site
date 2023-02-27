@@ -315,7 +315,9 @@ const CaseStudy = ({ document, studies }) => {
                       <span className={styles.numbers}>
                         {currentSlide}/{slice.items.length}
                       </span>
-                      <span>{slice.items[currentSlide - 1]?.caption}</span>
+                      <span className={styles.caption}>
+                        {slice.items[currentSlide]?.caption}
+                      </span>
                     </div>
                     <ul className={styles.arrows}>
                       <li>

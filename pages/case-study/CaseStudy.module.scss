@@ -165,8 +165,18 @@
         // background-color: purple;
         padding: 15px calc(22.4% + 10px) 0;
 
-        @media screen and (min-width: helpers.$mq-tablet-min) and (max-width: helpers.$mq-tablet-max) {
-          padding: 15px calc(24.4% + 10px) 0;
+        @media screen and (min-width: helpers.$mq-mobile-max) and (max-width: 900px) {
+          .caption {
+            display: none;
+          }
+        }
+
+        @media screen and (min-width: helpers.$mq-mobile-max) and (max-width: 999px) {
+          padding: 15px calc(23.5% + 10px) 0;
+        }
+
+        @media screen and (min-width: 1000px) and (max-width: helpers.$mq-tablet-max) {
+          padding: 15px calc(23% + 10px) 0;
         }
 
         .holder {
