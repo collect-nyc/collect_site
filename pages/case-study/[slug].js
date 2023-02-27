@@ -283,6 +283,7 @@ const CaseStudy = ({ document, studies }) => {
                         }
                         key={i}
                         className={styles.carousel_slide}
+                        index={i}
                       >
                         {item.video?.url ? (
                           <video
@@ -316,7 +317,9 @@ const CaseStudy = ({ document, studies }) => {
                         {currentSlide}/{slice.items.length}
                       </span>
                       <span className={styles.caption}>
-                        {slice.items[currentSlide]?.caption}
+                        {currentSlide === slice.items.length
+                          ? slice.items[0]?.caption
+                          : slice.items[currentSlide]?.caption}
                       </span>
                     </div>
                     <ul className={styles.arrows}>
