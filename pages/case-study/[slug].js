@@ -278,9 +278,16 @@ const CaseStudy = ({ document, studies }) => {
                   {slice.items.map((item, i) => {
                     return (
                       <div
-                        onClick={() =>
-                          slice.items.length > 1 && nextSlidez(index)
-                        }
+                        onClick={(event) => {
+                          const hasAncestorWithClassname =
+                            event.target.closest(".slick-current") !== null;
+
+                          if (hasAncestorWithClassname) {
+                            slice.items.length > 1 && previousSlidez(index);
+                          } else {
+                            slice.items.length > 1 && nextSlidez(index);
+                          }
+                        }}
                         key={i}
                         className={styles.carousel_slide}
                         index={i}
