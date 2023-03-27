@@ -209,6 +209,15 @@ const Home = ({ document }) => {
                 <h1>No images in media tab</h1>
               )}
             </div>
+            {slice.primary.case_study_link &&
+            slice.primary.case_study_link.data &&
+            slice.primary.case_study_link.data.images &&
+            slice.primary.case_study_link.data.images.length > 1 ? (
+              <span className={styles.slide_count}>
+                {currentIndexes[index]}&nbsp;/&nbsp;
+                {slice.primary.case_study_link.data.images.length}
+              </span>
+            ) : null}
           </div>
           <header
             className={`${styles.details} ${
@@ -222,6 +231,40 @@ const Home = ({ document }) => {
                 {slice.primary.case_study_link.data?.title[0]?.text}
               </span>
               <p>{slice.primary.case_study_link.data.description[0].text}</p>
+
+              <div className={styles.links}>
+                {/* Add external links if they exist */}
+                {slice.items &&
+                slice.items.length > 0 &&
+                slice.items[0].external_link.url
+                  ? slice.items.map((item, i) => {
+                      return (
+                        <a
+                          className={styles.external_link}
+                          href={item.external_link.url}
+                          target="_blank"
+                          rel="noreferrer"
+                          key={i}
+                        >
+                          {item.external_link_text
+                            ? item.external_link_text
+                            : "Learn More"}
+                        </a>
+                      );
+                    })
+                  : null}
+
+                {/* Add internal full case study link if it exists */}
+                {slice.primary.full_case_study?.slug && (
+                  <Link
+                    href={`/case-study/${slice.primary.full_case_study.slug}`}
+                  >
+                    <a className={styles.external_link}>View Case Study→</a>
+                  </Link>
+                )}
+              </div>
+            </div>
+            <div className={styles.external_links_group}>
               <span className={styles.tags}>
                 {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
                   if (arr.length - 1 === i) {
@@ -231,47 +274,6 @@ const Home = ({ document }) => {
                   }
                 })}
               </span>
-            </div>
-            <div className={styles.external_links_group}>
-              {slice.primary.case_study_link &&
-              slice.primary.case_study_link.data &&
-              slice.primary.case_study_link.data.images &&
-              slice.primary.case_study_link.data.images.length > 1 ? (
-                <span className={styles.slide_count}>
-                  {currentIndexes[index]}/
-                  {slice.primary.case_study_link.data.images.length}
-                </span>
-              ) : null}
-
-              {/* Add external links if they exist */}
-              {slice.items &&
-              slice.items.length > 0 &&
-              slice.items[0].external_link.url
-                ? slice.items.map((item, i) => {
-                    return (
-                      <a
-                        className={styles.external_link}
-                        href={item.external_link.url}
-                        target="_blank"
-                        rel="noreferrer"
-                        key={i}
-                      >
-                        {item.external_link_text
-                          ? item.external_link_text
-                          : "Learn More"}
-                      </a>
-                    );
-                  })
-                : null}
-
-              {/* Add internal full case study link if it exists */}
-              {slice.primary.full_case_study?.slug && (
-                <Link
-                  href={`/case-study/${slice.primary.full_case_study.slug}`}
-                >
-                  <a className={styles.external_link}>View Case Study→</a>
-                </Link>
-              )}
             </div>
           </header>
           <div className={styles.divider} />

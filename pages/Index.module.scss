@@ -257,6 +257,25 @@
           }
         }
 
+        .slide_count {
+          background-color: rgba($black, 0.3);
+          border-radius: 20px;
+          color: $white;
+          padding: 0px 8px;
+          font-size: 10px;
+          line-height: 1.8;
+          position: absolute;
+          top: 10px;
+        }
+
+        @media (hover: hover) {
+          &:hover {
+            .slide_count {
+              display: none;
+            }
+          }
+        }
+
         @media screen and (max-width: $mq-mobile-max) {
           &.eight_col,
           &.seven_col,
@@ -309,11 +328,22 @@
             position: relative;
           }
 
-          .tags {
-            @include kingscaslon_italic;
-            display: block;
-            padding-right: 10px;
-            margin-top: 5px;
+          .links {
+            margin-top: 15px;
+
+            .external_link {
+              display: inline-block;
+              margin-right: 10px;
+              text-decoration: underline;
+
+              &:hover {
+                text-decoration: none;
+              }
+
+              &:last-of-type {
+                margin-right: 0;
+              }
+            }
           }
         }
 
@@ -321,23 +351,11 @@
           position: relative;
           bottom: -3px;
 
-          .slide_count {
-            display: inline-block;
-            margin-right: 10px;
-          }
-
-          .external_link {
-            display: inline-block;
-            margin-right: 10px;
-            text-decoration: underline;
-
-            &:hover {
-              text-decoration: none;
-            }
-
-            &:last-of-type {
-              margin-right: 0;
-            }
+          .tags {
+            @include kingscaslon_italic;
+            display: block;
+            padding-right: 10px;
+            margin-top: 5px;
           }
         }
 
@@ -386,10 +404,29 @@
         // .details {
         //   max-width: 420px;
         // }
+
+        .media_container {
+          .slide_count {
+            left: 10px;
+          }
+        }
       }
+
       &.right {
         flex-direction: row-reverse;
+
+        .media_container {
+          .slide_count {
+            right: 10px;
+
+            @media screen and (max-width: $mq-mobile-max) {
+              right: auto;
+              left: 10px;
+            }
+          }
+        }
       }
+
       &.center {
         justify-content: flex-start;
         flex-direction: row;
