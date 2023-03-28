@@ -116,7 +116,7 @@ const FeaturedSlider = ({
       />
       <Cursor visible={isMouseTooltipVisible} offsetX={15} offsetY={10}>
         <span>
-          {currentSlide}/{images.length}
+          {currentSlide} / {images.length}
         </span>
       </Cursor>
     </div>

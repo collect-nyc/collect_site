@@ -258,7 +258,7 @@
         }
 
         .slide_count {
-          background-color: rgba($black, 0.3);
+          background-color: rgba(#505050, 0.5);
           border-radius: 20px;
           color: $white;
           padding: 0px 8px;
@@ -408,6 +408,11 @@
         .media_container {
           .slide_count {
             left: 10px;
+
+            @media screen and (max-width: $mq-mobile-max) {
+              right: 10px;
+              left: auto;
+            }
           }
         }
       }
@@ -420,8 +425,8 @@
             right: 10px;
 
             @media screen and (max-width: $mq-mobile-max) {
-              right: auto;
-              left: 10px;
+              right: 10px;
+              left: auto;
             }
           }
         }
