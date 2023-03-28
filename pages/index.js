@@ -83,6 +83,8 @@ const Home = ({ document }) => {
     Array(document?.data?.body1.length).fill(1)
   );
 
+  const [isScrolling, setIsScrolling] = useState(false);
+
   useEffect(() => {
     // console.log("Landing Data", document.data);
 
@@ -90,11 +92,29 @@ const Home = ({ document }) => {
     setScrollPos(0);
     setReturnPage(false);
 
+    let timerId;
+
+    function handleScroll() {
+      setIsScrolling(true);
+      clearTimeout(timerId);
+
+      timerId = setTimeout(() => {
+        console.log("Scrolling has stopped!");
+        setIsScrolling(false);
+      }, 3000);
+    }
+
     if (homeScrollPos) {
       // turn off scroll position for homepage for now
       // window.scrollBy(0, parseInt(homeScrollPos, 10));
       setHomeScrollPos(0);
     }
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   // useEffect(() => {
@@ -213,7 +233,11 @@ const Home = ({ document }) => {
             slice.primary.case_study_link.data &&
             slice.primary.case_study_link.data.images &&
             slice.primary.case_study_link.data.images.length > 1 ? (
-              <span className={styles.slide_count}>
+              <span
+                className={`${styles.slide_count} ${
+                  !isScrolling && styles.hide
+                }`}
+              >
                 {currentIndexes[index]}&nbsp;/&nbsp;
                 {slice.primary.case_study_link.data.images.length}
               </span>

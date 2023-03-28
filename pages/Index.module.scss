@@ -266,6 +266,14 @@
           line-height: 1.8;
           position: absolute;
           top: 10px;
+
+          @media (hover: none) {
+            transition: opacity 0.2s ease-in-out;
+
+            &.hide {
+              opacity: 0;
+            }
+          }
         }
 
         @media (hover: hover) {
