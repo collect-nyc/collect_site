@@ -72,7 +72,7 @@ const Home = ({ document }) => {
     setHomeScrollPos,
   } = useContext(MemoryContext);
 
-  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
+  const { loaderDidRun } = useContext(LoaderContext);
 
   const refs = useMemo(
     () => document?.data?.body1?.map(() => React.createRef()),
@@ -99,7 +99,7 @@ const Home = ({ document }) => {
       clearTimeout(timerId);
 
       timerId = setTimeout(() => {
-        console.log("Scrolling has stopped!");
+        // console.log("Scrolling has stopped!");
         setIsScrolling(false);
       }, 3000);
     }
@@ -116,10 +116,6 @@ const Home = ({ document }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  // useEffect(() => {
-  //   console.log("refs", refs);
-  // }, [refs]);
 
   const selectedWork = useRef(null);
 
@@ -643,7 +639,9 @@ const Home = ({ document }) => {
         initial={"hide"}
         animate={!loaderDidRun ? "hide" : "show"}
         variants={loaderVariants}
-        className={styles.main}
+        className={`${styles.main} ${
+          !loaderDidRun ? styles.loading : styles.loading
+        }`}
       >
         <section className={styles.statement}>
           <p className={styles.statement__copy}>

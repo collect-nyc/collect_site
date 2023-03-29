@@ -29,7 +29,7 @@ const FeaturedSlider = ({
 
   useEffect(() => {
     if (inView) {
-      console.log("Its in View", inView);
+      // console.log("Its in View", inView);
       setSliderInView(true);
     }
   }, [inView]);

@@ -45,27 +45,27 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const loaderVariants = {
     animate: {
       opacity: [0, 1],
-      top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
-      borderColor: ["#ffffff", "#000"],
+      // top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
+      // borderColor: ["#ffffff", "#000"],
       transition: {
         opacity: {
           duration: 0.3,
           ease: "linear",
         },
-        top: {
-          duration: 1,
-          delay: 2,
-        },
-        borderColor: {
-          delay: 3,
-          duration: 0.3,
-        },
+        // top: {
+        //   duration: 1,
+        //   delay: 2,
+        // },
+        // borderColor: {
+        //   delay: 3,
+        //   duration: 0.3,
+        // },
       },
     },
     default: {
       borderColor: "#000",
       opacity: 1,
-      top: "0%",
+      // top: "0%",
     },
   };
 
@@ -78,6 +78,8 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     // Set the starting count to 0
     let numCount = 0;
 
+    let countUpTime = getRandomTime();
+
     // Use setInterval to increment the count every 50 milliseconds
     const intervalId = setInterval(() => {
       // Increment the count by a random number between 1 and 5
@@ -87,6 +89,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       if (numCount > target) {
         setNewCount(target);
         setArchiveCounted(true);
+        setLoaderDidRun(true);
       } else if (numCount >= target) {
         clearInterval(intervalId);
         // console.log(`Final count: ${numCount}`);
@@ -96,7 +99,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
         // console.log(`Counting up: ${numCount}`);
         setNewCount(numCount);
       }
-    }, getRandomTime());
+    }, countUpTime);
   };
 
   useEffect(() => {
@@ -108,7 +111,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   return (
     <motion.nav
       className={`${styles.navigation} ${styles.home} ${
-        !loaderDidRun ? styles.loading : null
+        !loaderDidRun ? styles.loading : styles.loading
       }`}
       initial={
         !loaderDidRun
@@ -116,7 +119,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           : { opacity: 1, borderColor: "#000" }
       }
       animate={!loaderDidRun ? "animate" : "default"}
-      onAnimationComplete={() => setLoaderDidRun(true)}
+      // onAnimationComplete={() => setLoaderDidRun(true)}
       variants={loaderVariants}
     >
       <div className={styles.top_left}>
