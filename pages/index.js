@@ -611,13 +611,13 @@ const Home = ({ document }) => {
   const loaderVariants = {
     hide: {
       opacity: 0,
-      transform: viewportHeight && `translateY(${viewportHeight - 49} + "px")`,
+      top: viewportHeight && `${viewportHeight - 49} + "px"`,
       transition: {
         opacity: {
           duration: 0,
           ease: "linear",
         },
-        paddingTop: {
+        top: {
           duration: 0,
           ease: "linear",
         },
@@ -625,29 +625,29 @@ const Home = ({ document }) => {
     },
     show: {
       opacity: 1,
-      transform: "translateY(0px)",
+      top: "0px",
       transition: {
         opacity: {
           duration: 0.3,
           ease: "linear",
           delay: 0.5,
         },
-        transform: {
+        top: {
           duration: 1,
-          delay: 2,
+          delay: 0.5,
         },
       },
     },
     normal: {
       opacity: 1,
-      transform: "translateY(0px)",
+      top: "0px",
       transition: {
         opacity: {
           duration: 0,
           ease: "linear",
           delay: 0,
         },
-        transform: {
+        top: {
           duration: 0,
           delay: 0,
         },

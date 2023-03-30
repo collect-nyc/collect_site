@@ -44,7 +44,13 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   }, [currentItem, globalContent]);
 
   function getRandomTime() {
-    return Math.floor(Math.random() * 201) + 100;
+    // console.log("Random time", Math.floor(Math.random() * 201) + 100);
+    // return Math.floor(Math.random() * 201) + 100;
+
+    const minNumber = 700;
+    const maxNumber = 1000;
+
+    return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
   }
 
   const countUpTotal = (target) => {
@@ -54,10 +60,13 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
 
     let countUpTime = getRandomTime();
 
-    // Use setInterval to increment the count every 50 milliseconds
     const intervalId = setInterval(() => {
-      // Increment the count by a random number between 1 and 5
-      numCount += Math.floor(Math.random() * 125) + 1;
+      const minIncrement = 75;
+      const maxIncrement = 150;
+
+      numCount += Math.floor(
+        Math.random() * (maxIncrement - minIncrement + 1) + minIncrement
+      );
 
       // If the count is greater than or equal to the total, stop the interval and log the final count
       if (numCount > target) {
@@ -106,7 +115,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
         },
         top: {
           duration: 1,
-          delay: 2,
+          delay: 0.5,
         },
       },
     },
