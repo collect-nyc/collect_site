@@ -52,6 +52,14 @@ export async function getServerSideProps({ query }) {
   };
 }
 
+function vh(percent) {
+  var h = Math.max(
+    document.documentElement.clientHeight,
+    window.innerHeight || 0
+  );
+  return (percent * h) / 100;
+}
+
 const Home = ({ document }) => {
   const router = useRouter();
   // console.log("Landing Data", document.data);
@@ -63,14 +71,7 @@ const Home = ({ document }) => {
     statement_heading,
   } = document.data;
 
-  const {
-    setScrollPos,
-    setReturnPage,
-    setRunCSFade,
-    setCsColor,
-    homeScrollPos,
-    setHomeScrollPos,
-  } = useContext(MemoryContext);
+  const { setRunCSFade, setCsColor } = useContext(MemoryContext);
 
   const { loaderDidRun } = useContext(LoaderContext);
 
@@ -84,13 +85,24 @@ const Home = ({ document }) => {
   );
 
   const [isScrolling, setIsScrolling] = useState(false);
+  const [viewportHeight, setViewportHeight] = useState(null);
 
   useEffect(() => {
     // console.log("Landing Data", document.data);
 
-    // Reset scroll position for Archive Index
-    setScrollPos(0);
-    setReturnPage(false);
+    if (!loaderDidRun) {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
+
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 500);
+    }
+
+    // get half the viewport height in pixels
+    setViewportHeight(vh(50));
+    // console.log("viewport height", vh(50));
 
     let timerId;
 
@@ -104,12 +116,6 @@ const Home = ({ document }) => {
       }, 3000);
     }
 
-    if (homeScrollPos) {
-      // turn off scroll position for homepage for now
-      // window.scrollBy(0, parseInt(homeScrollPos, 10));
-      setHomeScrollPos(0);
-    }
-
     window.addEventListener("scroll", handleScroll);
 
     return () => {
@@ -119,19 +125,11 @@ const Home = ({ document }) => {
 
   const selectedWork = useRef(null);
 
-  const ScrollTracker = () => {
-    let top =
-      (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
-    // console.log("Scroll Pos", top);
-    setHomeScrollPos(top);
-  };
-
   const EnterCaseStudy = (color, url) => {
     setCsColor(color);
     setRunCSFade(true);
 
     setTimeout(() => {
-      ScrollTracker();
       router.push(url);
     }, 300);
   };
@@ -366,7 +364,7 @@ const Home = ({ document }) => {
                       "/archive/item/" + slice.primary.archive_link_left.uid
                     }
                   >
-                    <a onClick={() => ScrollTracker()}>
+                    <a>
                       {slice.primary?.left_image?.url ? (
                         <Image
                           src={slice.primary.left_image.url}
@@ -452,7 +450,7 @@ const Home = ({ document }) => {
                       "/archive/item/" + slice.primary.archive_link_right.uid
                     }
                   >
-                    <a onClick={() => ScrollTracker()}>
+                    <a>
                       {slice.primary?.right_image?.url ? (
                         <Image
                           src={slice.primary.right_image.url}
@@ -557,7 +555,7 @@ const Home = ({ document }) => {
                   <Link
                     href={"/archive/item/" + slice.primary.archive_link.uid}
                   >
-                    <a onClick={() => ScrollTracker()}>
+                    <a>
                       {slice.primary.image?.url ? (
                         <Image
                           src={slice.primary.image.url}
@@ -606,8 +604,13 @@ const Home = ({ document }) => {
   const loaderVariants = {
     hide: {
       opacity: 0,
+      transform: viewportHeight && `translateY(${viewportHeight - 49} + "px")`,
       transition: {
         opacity: {
+          duration: 0,
+          ease: "linear",
+        },
+        paddingTop: {
           duration: 0,
           ease: "linear",
         },
@@ -615,10 +618,16 @@ const Home = ({ document }) => {
     },
     show: {
       opacity: 1,
+      transform: "translateY(0px)",
       transition: {
         opacity: {
           duration: 0.3,
           ease: "linear",
+          delay: 0.5,
+        },
+        transform: {
+          duration: 1,
+          delay: 2,
         },
       },
     },

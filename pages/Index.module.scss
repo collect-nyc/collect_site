@@ -14,7 +14,7 @@
   position: relative;
 
   &.loading {
-    top: calc(50vh - 49px);
+    transform: translateY(calc(50vh - 49px));
   }
 
   @media screen and (max-width: $mq-mobile-max) {

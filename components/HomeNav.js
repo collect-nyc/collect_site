@@ -42,33 +42,6 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     return () => clearInterval(interval);
   }, [currentItem, globalContent]);
 
-  const loaderVariants = {
-    animate: {
-      opacity: [0, 1],
-      // top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
-      // borderColor: ["#ffffff", "#000"],
-      transition: {
-        opacity: {
-          duration: 0.3,
-          ease: "linear",
-        },
-        // top: {
-        //   duration: 1,
-        //   delay: 2,
-        // },
-        // borderColor: {
-        //   delay: 3,
-        //   duration: 0.3,
-        // },
-      },
-    },
-    default: {
-      borderColor: "#000",
-      opacity: 1,
-      // top: "0%",
-    },
-  };
-
   function getRandomTime() {
     return Math.floor(Math.random() * 201) + 100;
   }
@@ -108,6 +81,47 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
     }
   }, [count]);
 
+  const loaderVariants = {
+    animate: {
+      opacity: [0, 1],
+      // top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
+      // borderColor: ["#ffffff", "#000"],
+      transition: {
+        opacity: {
+          duration: 0.3,
+          ease: "linear",
+        },
+        // top: {
+        //   duration: 1,
+        //   delay: 2,
+        // },
+        // borderColor: {
+        //   delay: 3,
+        //   duration: 0.3,
+        // },
+      },
+    },
+    default: {
+      // borderColor: "#000",
+      opacity: 1,
+      top: "0%",
+      transition: {
+        opacity: {
+          duration: 0,
+          ease: "linear",
+        },
+        top: {
+          duration: 1,
+          delay: 2,
+        },
+        // borderColor: {
+        //   delay: 3,
+        //   duration: 0.3,
+        // },
+      },
+    },
+  };
+
   return (
     <motion.nav
       className={`${styles.navigation} ${styles.home} ${
@@ -122,6 +136,10 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       // onAnimationComplete={() => setLoaderDidRun(true)}
       variants={loaderVariants}
     >
+      <div
+        className={styles.loading_bar}
+        style={{ width: `${count ? (newCount / count) * 100 : 0}%` }}
+      />
       <div className={styles.top_left}>
         <div className={styles.link_box}>
           <Link href={"/profile"}>

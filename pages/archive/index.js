@@ -13,7 +13,6 @@ import { Client } from "../../lib/prismic-config";
 import RightArrow from "../../svg/right-arrow.svg";
 import MemoryContext from "../../components/MemoryContext";
 import { isEqual } from "../../lib/helpers";
-import Footer from "../../components/Footer";
 import ArchiveLoader from "../../components/ArchiveLoader";
 import ArchiveLoaderMobile from "../../components/ArchiveLoaderMobile";
 import Marquee from "react-fast-marquee";
@@ -111,9 +110,9 @@ const Home = ({ archives, document, tagged, loader }) => {
     timeSort,
     currentTag,
     setCurrentTag,
-    scrollPos,
-    setScrollPos,
-    setHomeScrollPos,
+    // scrollPos,
+    // setScrollPos,
+    // setHomeScrollPos,
     returnPage,
     setReturnPage,
     setRunCSFade,
@@ -124,9 +123,9 @@ const Home = ({ archives, document, tagged, loader }) => {
 
   const initialAzSort = useRef(true);
   const initialTimeSort = useRef(true);
-  const TitleHolder = useRef();
+  // const TitleHolder = useRef();
 
-  const [titleHeight, setTitleHeight] = useState(null);
+  // const [titleHeight, setTitleHeight] = useState(null);
 
   // data
   // const page_content = document.data;
@@ -149,18 +148,8 @@ const Home = ({ archives, document, tagged, loader }) => {
 
   // ComponentDidMount
   useEffect(() => {
-    // console.log("SCROLL POS", scrollPos);
-
     if (tagged) {
       setCurrentTag(tagged);
-    }
-
-    // reset home scroll
-    setHomeScrollPos(0);
-    // check if archive scroll has been stored
-    if (scrollPos) {
-      window.scrollBy(0, parseInt(scrollPos, 10));
-      setScrollPos(0);
     }
 
     // console.log(TitleHolder.current.offsetHeight);
@@ -228,13 +217,6 @@ const Home = ({ archives, document, tagged, loader }) => {
   useEffect(() => {
     window.scrollBy(0, 0);
   }, [currentTag]);
-
-  const ScrollTracker = () => {
-    let top =
-      (window.pageYOffset || document.scrollTop) - (document.clientTop || 0);
-    // console.log("Scroll Pos", top);
-    setScrollPos(top);
-  };
 
   // Sort by title alphabetically
   const AlphabetSort = () => {

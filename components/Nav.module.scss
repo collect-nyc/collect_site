@@ -173,6 +173,15 @@
       top: calc(50vh - 49px);
     }
 
+    .loading_bar {
+      background-color: $black;
+      height: 1px;
+      width: 0%;
+      position: absolute;
+      bottom: -1px;
+      left: 0;
+    }
+
     // &.loaded {
     //   transform: translateY(0);
     // }

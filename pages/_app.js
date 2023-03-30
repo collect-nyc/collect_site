@@ -12,8 +12,8 @@ function MyApp({ Component, pageProps }) {
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
-  const [homeScrollPos, setHomeScrollPos] = useState(null);
-  const [scrollPos, setScrollPos] = useState(null);
+  // const [homeScrollPos, setHomeScrollPos] = useState(null);
+  // const [scrollPos, setScrollPos] = useState(null);
   // returnPage = true if you are coming from a page where it's ok to shuffle the archive list
   const [returnPage, setReturnPage] = useState(false);
   const [navTextColor, setNavTextColor] = useState(null);
@@ -62,8 +62,8 @@ function MyApp({ Component, pageProps }) {
         setCurrentTag: setCurrentTag,
         archiveList: archiveList,
         setArchiveList: setArchiveList,
-        scrollPos: scrollPos,
-        setScrollPos: setScrollPos,
+        // scrollPos: scrollPos,
+        // setScrollPos: setScrollPos,
         returnPage: returnPage,
         setReturnPage: setReturnPage,
         navTextColor: navTextColor,
@@ -76,8 +76,8 @@ function MyApp({ Component, pageProps }) {
         setRunCSFade: setRunCSFade,
         csColor: csColor,
         setCsColor: setCsColor,
-        homeScrollPos: homeScrollPos,
-        setHomeScrollPos: setHomeScrollPos,
+        // homeScrollPos: homeScrollPos,
+        // setHomeScrollPos: setHomeScrollPos,
         imageTotal: imageTotal,
         setImageTotal: setImageTotal,
         archiveCounted: archiveCounted,
