@@ -114,7 +114,12 @@ const FeaturedSlider = ({
         className={`${styles.slide_control} ${styles.next}`}
         onClick={() => nextSlidez(index)}
       />
-      <Cursor visible={isMouseTooltipVisible} offsetX={15} offsetY={10}>
+      <Cursor
+        key={index}
+        visible={isMouseTooltipVisible}
+        offsetX={15}
+        offsetY={10}
+      >
         <span>
           {currentSlide} / {images.length}
         </span>

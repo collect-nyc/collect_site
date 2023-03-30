@@ -46,7 +46,7 @@ const Profile = ({ document }) => {
         <title>Collect NYC Profile</title>
         <meta
           name="description"
-          content="Collect NYC is a full-spectrum interdisciplinary creative practice centered in direction and development."
+          content="Agency Profile, Services, Updates and More"
         />
         <SharedHead />
       </Head>
