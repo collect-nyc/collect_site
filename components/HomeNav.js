@@ -157,6 +157,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       }
       variants={loaderVariants}
     >
+      <div className={styles.animscreen} />
       <div
         className={styles.loading_bar}
         style={{ width: `${count ? (newCount / count) * 100 : 0}%` }}

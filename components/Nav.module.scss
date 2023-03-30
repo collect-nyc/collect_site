@@ -173,6 +173,15 @@
       top: calc(50vh - 49px);
     }
 
+    .animscreen {
+      background: rgba($white, 0.96);
+      backdrop-filter: blur(5px);
+      height: 50vh;
+      position: absolute;
+      bottom: 100%;
+      width: 100%;
+    }
+
     .loading_bar {
       background-color: $black;
       height: 1px;
