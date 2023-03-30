@@ -71,9 +71,12 @@ const Home = ({ document }) => {
     statement_heading,
   } = document.data;
 
-  const { setRunCSFade, setCsColor } = useContext(MemoryContext);
+  const { setRunCSFade, setCsColor, archiveCounted } =
+    useContext(MemoryContext);
 
-  const { loaderDidRun } = useContext(LoaderContext);
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
+
+  console.log("loader did run", loaderDidRun);
 
   const refs = useMemo(
     () => document?.data?.body1?.map(() => React.createRef()),
@@ -98,6 +101,10 @@ const Home = ({ document }) => {
       setTimeout(() => {
         window.scrollTo(0, 0);
       }, 500);
+    } else {
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 300);
     }
 
     // get half the viewport height in pixels
@@ -631,6 +638,21 @@ const Home = ({ document }) => {
         },
       },
     },
+    normal: {
+      opacity: 1,
+      transform: "translateY(0px)",
+      transition: {
+        opacity: {
+          duration: 0,
+          ease: "linear",
+          delay: 0,
+        },
+        transform: {
+          duration: 0,
+          delay: 0,
+        },
+      },
+    },
   };
 
   return (
@@ -645,8 +667,14 @@ const Home = ({ document }) => {
       </Head>
 
       <motion.main
-        initial={"hide"}
-        animate={!loaderDidRun ? "hide" : "show"}
+        initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
+        animate={
+          !archiveCounted && !loaderDidRun
+            ? "hide"
+            : archiveCounted && !loaderDidRun
+            ? "show"
+            : "normal"
+        }
         variants={loaderVariants}
         className={`${styles.main} ${
           !loaderDidRun ? styles.loading : styles.loading

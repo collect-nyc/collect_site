@@ -17,7 +17,8 @@ function vh(percent) {
 const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const { currentTag } = useContext(MemoryContext);
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
-  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
+  const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
+    useContext(LoaderContext);
 
   const [logoHover, setLogoHover] = useState(false);
 
@@ -62,7 +63,9 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       if (numCount > target) {
         setNewCount(target);
         setArchiveCounted(true);
-        setLoaderDidRun(true);
+        setTimeout(() => {
+          setLoaderDidRun(true);
+        }, 3000);
       } else if (numCount >= target) {
         clearInterval(intervalId);
         // console.log(`Final count: ${numCount}`);
@@ -82,7 +85,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   }, [count]);
 
   const loaderVariants = {
-    animate: {
+    fadeIn: {
       opacity: [0, 1],
       // top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
       // borderColor: ["#ffffff", "#000"],
@@ -91,18 +94,9 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           duration: 0.3,
           ease: "linear",
         },
-        // top: {
-        //   duration: 1,
-        //   delay: 2,
-        // },
-        // borderColor: {
-        //   delay: 3,
-        //   duration: 0.3,
-        // },
       },
     },
-    default: {
-      // borderColor: "#000",
+    slideUp: {
       opacity: 1,
       top: "0%",
       transition: {
@@ -114,10 +108,20 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           duration: 1,
           delay: 2,
         },
-        // borderColor: {
-        //   delay: 3,
-        //   duration: 0.3,
-        // },
+      },
+    },
+    normal: {
+      opacity: 1,
+      top: "0%",
+      transition: {
+        opacity: {
+          duration: 0,
+          ease: "linear",
+        },
+        top: {
+          duration: 0,
+          delay: 0,
+        },
       },
     },
   };
@@ -132,8 +136,13 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
           ? { opacity: 0, borderColor: "#ffffff" }
           : { opacity: 1, borderColor: "#000" }
       }
-      animate={!loaderDidRun ? "animate" : "default"}
-      // onAnimationComplete={() => setLoaderDidRun(true)}
+      animate={
+        !archiveCounted && !loaderDidRun
+          ? "fadeIn"
+          : archiveCounted && !loaderDidRun
+          ? "slideUp"
+          : "normal"
+      }
       variants={loaderVariants}
     >
       <div

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import SiteNav from "../components/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
@@ -15,7 +16,12 @@ export default function MyLayout({
   children,
 }) {
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
-  const [loaderDidRun, setLoaderDidRun] = useState(false);
+
+  const router = useRouter();
+
+  const [loaderDidRun, setLoaderDidRun] = useState(
+    router.pathname === "/" ? false : true
+  );
 
   // useEffect(() => {
   //   console.log("Loader Run", loaderDidRun);

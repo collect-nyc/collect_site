@@ -5,8 +5,6 @@ import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
-// import MemoryContext from "../components/MemoryContext";
-// import { motion, useViewportScroll, useTransform } from "framer-motion";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
@@ -37,7 +35,7 @@ const Profile = ({ document }) => {
   const clientsRef = useRef(null);
   const editionsRef = useRef(null);
 
-  console.log("Profile Content", document.data);
+  // console.log("Profile Content", document.data);
   const page_content = document.data;
 
   const [profilePage, setProfilePage] = useState("info");
