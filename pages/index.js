@@ -94,6 +94,8 @@ const Home = ({ document }) => {
     // console.log("Landing Data", document.data);
 
     if (!loaderDidRun) {
+      // window.document.body.className = "noscroll";
+
       setTimeout(() => {
         // document.body.classList.add("noscroll");
         window.scrollTo(0, 0);

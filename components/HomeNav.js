@@ -75,8 +75,9 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
         setNewCount(target);
         setArchiveCounted(true);
         setTimeout(() => {
+          // window.document.body.classList.remove("noscroll");
           setLoaderDidRun(true);
-        }, 3000);
+        }, 2400);
       } else if (numCount >= target) {
         clearInterval(intervalId);
         // console.log(`Final count: ${numCount}`);

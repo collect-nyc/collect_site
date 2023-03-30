@@ -28,6 +28,10 @@ body {
       }
     }
   }
+
+  &.noscroll {
+    overflow: hidden;
+  }
 }
 
 a,
