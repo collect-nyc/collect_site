@@ -70,6 +70,8 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
 
       // If the count is greater than or equal to the total, stop the interval and log the final count
       if (numCount > target) {
+        clearInterval(intervalId);
+        window.scrollTo(0, 0);
         setNewCount(target);
         setArchiveCounted(true);
         setTimeout(() => {
@@ -115,7 +117,7 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
         },
         top: {
           duration: 1,
-          delay: 0.5,
+          delay: 1,
         },
       },
     },

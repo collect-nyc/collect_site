@@ -95,16 +95,9 @@ const Home = ({ document }) => {
 
     if (!loaderDidRun) {
       setTimeout(() => {
+        // document.body.classList.add("noscroll");
         window.scrollTo(0, 0);
-      }, 300);
-
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 500);
-    } else {
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-      }, 300);
+      }, 100);
     }
 
     // get half the viewport height in pixels
@@ -634,7 +627,7 @@ const Home = ({ document }) => {
         },
         top: {
           duration: 1,
-          delay: 0.5,
+          delay: 1,
         },
       },
     },
