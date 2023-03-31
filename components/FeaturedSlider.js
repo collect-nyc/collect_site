@@ -3,6 +3,7 @@ import Image from "next/image";
 import Slider from "react-slick";
 import Cursor from "./Cursor";
 import { useInView } from "react-intersection-observer";
+import ImageLoader from "./ImageLoader";
 import { is_touch_enabled } from "../lib/helpers";
 import styles from "./FeaturedSlider.module.scss";
 
@@ -90,15 +91,29 @@ const FeaturedSlider = ({
           } else if (Object.keys(image.image).length > 0 && image.image.url) {
             return (
               <div className={styles.image_container} key={i}>
-                <Image
-                  src={image.image.url}
-                  layout={"responsive"}
-                  height={image.image.dimensions.height}
-                  width={image.image.dimensions.width}
-                  alt={image.image.alt}
-                  priority
-                  quality={100}
-                />
+                {i === 0 ? (
+                  <ImageLoader>
+                    <Image
+                      src={image.image.url}
+                      layout={"responsive"}
+                      height={image.image.dimensions.height}
+                      width={image.image.dimensions.width}
+                      alt={image.image.alt}
+                      priority
+                      quality={100}
+                    />
+                  </ImageLoader>
+                ) : (
+                  <Image
+                    src={image.image.url}
+                    layout={"responsive"}
+                    height={image.image.dimensions.height}
+                    width={image.image.dimensions.width}
+                    alt={image.image.alt}
+                    priority
+                    quality={100}
+                  />
+                )}
               </div>
             );
           } else {

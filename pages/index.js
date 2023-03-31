@@ -14,6 +14,7 @@ import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import FeaturedSlider from "../components/FeaturedSlider";
 import animateScrollTo from "animated-scroll-to";
+import ImageLoader from "../components/ImageLoader";
 import styles from "./Index.module.scss";
 
 export async function getServerSideProps({ query }) {
@@ -197,30 +198,42 @@ const Home = ({ document }) => {
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].video &&
                 slice.primary.case_study_link.data.images[0].video.url ? (
-                <video className={styles.video} autoPlay muted loop playsInline>
-                  <source
-                    src={slice.primary.case_study_link.data.images[0].video.url}
-                    type="video/mp4"
-                  />
-                </video>
+                <ImageLoader>
+                  <video
+                    className={styles.video}
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                  >
+                    <source
+                      src={
+                        slice.primary.case_study_link.data.images[0].video.url
+                      }
+                      type="video/mp4"
+                    />
+                  </video>
+                </ImageLoader>
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].image &&
                 slice.primary.case_study_link.data.images[0].image.url ? (
-                <Image
-                  src={slice.primary.case_study_link.data.images[0].image.url}
-                  alt={slice.primary.case_study_link.data.images[0].image.alt}
-                  height={
-                    slice.primary.case_study_link.data.images[0].image
-                      .dimensions.height
-                  }
-                  width={
-                    slice.primary.case_study_link.data.images[0].image
-                      .dimensions.width
-                  }
-                  layout={"responsive"}
-                  priority
-                  quality={100}
-                />
+                <ImageLoader>
+                  <Image
+                    src={slice.primary.case_study_link.data.images[0].image.url}
+                    alt={slice.primary.case_study_link.data.images[0].image.alt}
+                    height={
+                      slice.primary.case_study_link.data.images[0].image
+                        .dimensions.height
+                    }
+                    width={
+                      slice.primary.case_study_link.data.images[0].image
+                        .dimensions.width
+                    }
+                    layout={"responsive"}
+                    priority
+                    quality={100}
+                  />
+                </ImageLoader>
               ) : (
                 <h1>No images in media tab</h1>
               )}
