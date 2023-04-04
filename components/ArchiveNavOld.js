@@ -72,17 +72,16 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
       <nav className={`${styles.navigation} ${styles.archive_index}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
-            <Link href={"/"}>
-              <a
-                onMouseEnter={() => {
-                  setLogoHover(true);
-                }}
-                onMouseLeave={() => {
-                  setLogoHover(false);
-                }}
-              >
-                {logoHover ? "Collect HOME" : "Collect ARCHIVE"}
-              </a>
+            <Link
+              onMouseEnter={() => {
+                setLogoHover(true);
+              }}
+              onMouseLeave={() => {
+                setLogoHover(false);
+              }}
+              href={"/"}
+            >
+              {logoHover ? "Collect HOME" : "Collect ARCHIVE"}
             </Link>
           </div>
           {tags && tags.length > 0 ? (
@@ -147,8 +146,9 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
                 ? `/archive?tag=${currentTag}`
                 : "/archive"
             }
+            className={styles.count_link}
           >
-            <a className={styles.count_link}>({count ? count : 0})</a>
+            ({count ? count : 0})
           </Link>
         </div>
         <div className={styles.filter_container}>

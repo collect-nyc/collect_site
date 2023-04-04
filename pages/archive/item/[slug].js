@@ -920,10 +920,8 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
 
               {case_study ? (
                 <nav className={styles.back_nav}>
-                  <Link href={"/"}>
-                    <a className={"color_link"}>
-                      <LeftArrow className={"color_svg"} /> Back to Home
-                    </a>
+                  <Link href={"/"} className={"color_link"}>
+                    <LeftArrow className={"color_svg"} /> Back to Home
                   </Link>
                   <Link
                     href={
@@ -931,10 +929,9 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
                         ? `/archive?tag=${currentTag}`
                         : "/archive"
                     }
+                    className={"color_link"}
                   >
-                    <a className={"color_link"}>
-                      <LeftArrow className={"color_svg"} /> Back to Archive
-                    </a>
+                    <LeftArrow className={"color_svg"} /> Back to Archive
                   </Link>
                   <style global jsx>{`
                     .color_svg path {

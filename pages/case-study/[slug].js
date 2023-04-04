@@ -532,8 +532,11 @@ const CaseStudy = ({ document, studies }) => {
               </div>
 
               {nextProject && (
-                <Link href={"/case-study/" + nextProject}>
-                  <a className={styles.next_project}>See Next Project →</a>
+                <Link
+                  className={styles.next_project}
+                  href={"/case-study/" + nextProject}
+                >
+                  See Next Project →
                 </Link>
               )}
             </div>

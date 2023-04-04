@@ -8,7 +8,7 @@ export default function Loader({ page }) {
 
   return !loaderDidRun && page == "index" ? (
     <div className={styles.site_loader}>
-      <AnimatePresence exitBeforeEnter>
+      <AnimatePresence mode="wait">
         <motion.section
           className={styles.statement}
           // initial={{ opacity: 1, backgroundColor: "#f3f3f3" }}

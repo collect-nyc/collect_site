@@ -299,12 +299,8 @@ const Profile = ({ document }) => {
 
         {/* REDUCED FOOTER */}
         <div className={styles.minifooter}>
-          <Link href="/info/privacy">
-            <a>Privacy</a>
-          </Link>
-          <Link href="/info/impressum">
-            <a>Impressum</a>
-          </Link>
+          <Link href="/info/privacy">Privacy</Link>
+          <Link href="/info/impressum">Impressum</Link>
         </div>
 
         {/* FULL FOOTER FOR MOBILE */}

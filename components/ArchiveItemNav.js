@@ -76,9 +76,7 @@ const ArchiveItemNav = ({
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
             {pageHistory === "/" ? (
-              <Link href={"/"}>
-                <a>Back to Home</a>
-              </Link>
+              <Link href={"/"}>Back to Home</Link>
             ) : (
               <Link
                 href={
@@ -87,7 +85,7 @@ const ArchiveItemNav = ({
                     : "/archive"
                 }
               >
-                <a>Back to Archive</a>
+                Back to Archive
               </Link>
             )}
           </div>
@@ -109,8 +107,9 @@ const ArchiveItemNav = ({
                 ? `/archive?tag=${currentTag}`
                 : "/archive"
             }
+            className={styles.count_link}
           >
-            <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+            ARCHIVE ({count ? count : 0})
           </Link>
         </div>
         <div className={styles.filter_container}>

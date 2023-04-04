@@ -7,7 +7,7 @@ export default function CaseStudyFade() {
   const { csColor, runCSFade } = useContext(MemoryContext);
 
   return (
-    <AnimatePresence exitBeforeEnter>
+    <AnimatePresence mode="wait">
       {runCSFade ? (
         <motion.div
           className={styles.case_study_fade}

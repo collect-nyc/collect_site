@@ -76,7 +76,7 @@ const Home = ({ document }) => {
 
   const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
 
-  console.log("loader did run", loaderDidRun);
+  // console.log("loader did run", loaderDidRun);
 
   const refs = useMemo(
     () => document?.data?.body1?.map(() => React.createRef()),
@@ -287,8 +287,9 @@ const Home = ({ document }) => {
                 {slice.primary.full_case_study?.slug && (
                   <Link
                     href={`/case-study/${slice.primary.full_case_study.slug}`}
+                    className={styles.external_link}
                   >
-                    <a className={styles.external_link}>View Case Study→</a>
+                    View Case Study→
                   </Link>
                 )}
               </div>
@@ -367,26 +368,24 @@ const Home = ({ document }) => {
                       "/archive/item/" + slice.primary.archive_link_left.uid
                     }
                   >
-                    <a>
-                      {slice.primary?.left_image?.url ? (
-                        <Image
-                          src={slice.primary.left_image.url}
-                          layout={"responsive"}
-                          height={slice.primary.left_image.dimensions.height}
-                          width={slice.primary.left_image.dimensions.width}
-                          alt={slice.primary.left_image.alt}
-                          priority
-                          quality={100}
+                    {slice.primary?.left_image?.url ? (
+                      <Image
+                        src={slice.primary.left_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.left_image.dimensions.height}
+                        width={slice.primary.left_image.dimensions.width}
+                        alt={slice.primary.left_image.alt}
+                        priority
+                        quality={100}
+                      />
+                    ) : slice.primary.left_video?.url ? (
+                      <video playsInline loop autoPlay muted>
+                        <source
+                          src={slice.primary.left_video.url}
+                          type="video/mp4"
                         />
-                      ) : slice.primary.left_video?.url ? (
-                        <video playsInline loop autoPlay muted>
-                          <source
-                            src={slice.primary.left_video.url}
-                            type="video/mp4"
-                          />
-                        </video>
-                      ) : null}
-                    </a>
+                      </video>
+                    ) : null}
                   </Link>
                 )
               ) : slice.primary?.left_image?.url ? (
@@ -453,26 +452,24 @@ const Home = ({ document }) => {
                       "/archive/item/" + slice.primary.archive_link_right.uid
                     }
                   >
-                    <a>
-                      {slice.primary?.right_image?.url ? (
-                        <Image
-                          src={slice.primary.right_image.url}
-                          layout={"responsive"}
-                          height={slice.primary.right_image.dimensions.height}
-                          width={slice.primary.right_image.dimensions.width}
-                          alt={slice.primary.right_image.alt}
-                          priority
-                          quality={100}
+                    {slice.primary?.right_image?.url ? (
+                      <Image
+                        src={slice.primary.right_image.url}
+                        layout={"responsive"}
+                        height={slice.primary.right_image.dimensions.height}
+                        width={slice.primary.right_image.dimensions.width}
+                        alt={slice.primary.right_image.alt}
+                        priority
+                        quality={100}
+                      />
+                    ) : slice.primary.right_video?.url ? (
+                      <video playsInline loop autoPlay muted>
+                        <source
+                          src={slice.primary.right_video.url}
+                          type="video/mp4"
                         />
-                      ) : slice.primary.right_video?.url ? (
-                        <video playsInline loop autoPlay muted>
-                          <source
-                            src={slice.primary.right_video.url}
-                            type="video/mp4"
-                          />
-                        </video>
-                      ) : null}
-                    </a>
+                      </video>
+                    ) : null}
                   </Link>
                 )
               ) : slice.primary?.right_image?.url ? (
@@ -558,26 +555,24 @@ const Home = ({ document }) => {
                   <Link
                     href={"/archive/item/" + slice.primary.archive_link.uid}
                   >
-                    <a>
-                      {slice.primary.image?.url ? (
-                        <Image
-                          src={slice.primary.image.url}
-                          layout={"responsive"}
-                          height={slice.primary.image.dimensions.height}
-                          width={slice.primary.image.dimensions.width}
-                          alt={slice.primary.image.alt}
-                          priority
-                          quality={100}
+                    {slice.primary.image?.url ? (
+                      <Image
+                        src={slice.primary.image.url}
+                        layout={"responsive"}
+                        height={slice.primary.image.dimensions.height}
+                        width={slice.primary.image.dimensions.width}
+                        alt={slice.primary.image.alt}
+                        priority
+                        quality={100}
+                      />
+                    ) : slice.primary.video?.url ? (
+                      <video playsInline loop autoPlay muted>
+                        <source
+                          src={slice.primary.video.url}
+                          type="video/mp4"
                         />
-                      ) : slice.primary.video?.url ? (
-                        <video playsInline loop autoPlay muted>
-                          <source
-                            src={slice.primary.video.url}
-                            type="video/mp4"
-                          />
-                        </video>
-                      ) : null}
-                    </a>
+                      </video>
+                    ) : null}
                   </Link>
                 )
               ) : slice.primary.image?.url ? (
@@ -688,9 +683,7 @@ const Home = ({ document }) => {
           </p>
           <ul>
             <li>
-              <Link href="/profile">
-                <a>Get in Touch</a>
-              </Link>
+              <Link href="/profile">Get in Touch</Link>
             </li>
             <li>
               <button

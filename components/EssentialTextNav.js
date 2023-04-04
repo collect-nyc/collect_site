@@ -11,25 +11,24 @@ const EssentialTextNav = ({ page, count, latest, tags }) => {
       <nav className={`${styles.navigation} ${styles.essential_text_nav}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
-            <Link href={"/"}>
-              <a
-                onMouseEnter={() => {
-                  setLogoHover(true);
-                }}
-                onMouseLeave={() => {
-                  setLogoHover(false);
-                }}
-              >
-                {logoHover ? "Collect HOME" : "Collect NEW YORK"}
-              </a>
+            <Link
+              onMouseEnter={() => {
+                setLogoHover(true);
+              }}
+              onMouseLeave={() => {
+                setLogoHover(false);
+              }}
+              href={"/"}
+            >
+              {logoHover ? "Collect HOME" : "Collect NEW YORK"}
             </Link>
           </div>
         </div>
         <div className={styles.top_right}>
           <div>
             {latest ? <span className={styles.latest}>Latest</span> : null}
-            <Link href="/archive">
-              <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+            <Link className={styles.count_link} href="/archive">
+              ARCHIVE ({count ? count : 0})
             </Link>
           </div>
         </div>
