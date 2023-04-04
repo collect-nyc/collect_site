@@ -255,10 +255,6 @@
         &.square {
           @include aspect-ratio(1, 1);
           width: 42%;
-
-          .inner {
-            // padding-right: $navGutter_desktop * 2;
-          }
         }
 
         .slide_count {
@@ -311,7 +307,7 @@
           width: 100%;
 
           &.link_style {
-            cursor: pointer;
+            cursor: pointer !important;
           }
 
           video {

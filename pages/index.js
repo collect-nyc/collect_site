@@ -178,8 +178,9 @@ const Home = ({ document }) => {
           >
             <div
               className={`${styles.inner} ${
-                slice.primary.external_link &&
-                slice.primary.external_link.url &&
+                slice.items &&
+                slice.items.length > 0 &&
+                slice.items[0].external_link.url &&
                 slice.primary.case_study_link.data.images.length < 2
                   ? styles.link_style
                   : null
