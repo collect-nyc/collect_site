@@ -99,8 +99,6 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
   const loaderVariants = {
     fadeIn: {
       opacity: [0, 1],
-      // top: viewportHeight ? [viewportHeight - 49 + "px", "0px"] : null,
-      // borderColor: ["#ffffff", "#000"],
       transition: {
         opacity: {
           duration: 0.3,
