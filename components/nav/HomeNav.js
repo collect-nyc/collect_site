@@ -1,7 +1,7 @@
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
-import MemoryContext from "./MemoryContext";
-import LoaderContext from "./LoaderContext";
+import MemoryContext from "../MemoryContext";
+import LoaderContext from "../LoaderContext";
 import _ from "lodash";
 import { motion } from "framer-motion";
 import styles from "./Nav.module.scss";

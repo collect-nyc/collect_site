@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import SiteNav from "../components/SiteNav";
+import SiteNav from "../components/nav/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
 import LoaderContext from "../components/LoaderContext";

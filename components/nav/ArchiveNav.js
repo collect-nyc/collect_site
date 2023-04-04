@@ -1,6 +1,6 @@
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
-import MemoryContext from "./MemoryContext";
+import MemoryContext from "../MemoryContext";
 import styles from "./Nav.module.scss";
 import { useRouter } from "next/router";
 

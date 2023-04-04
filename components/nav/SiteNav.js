@@ -1,10 +1,9 @@
-import HomeNav from "../components/HomeNav";
+import HomeNav from "./HomeNav";
 import ArchiveNav from "./ArchiveNav";
-import ArchiveItemNav from "../components/ArchiveItemNav";
-import CaseStudyNav from "../components/CaseStudyNav";
-import ProfileNav from "../components/ProfileNav";
+import ArchiveItemNav from "./ArchiveItemNav";
+import CaseStudyNav from "./CaseStudyNav";
+import ProfileNav from "./ProfileNav";
 import EssentialTextNav from "./EssentialTextNav";
-import EssentialText from "../pages/info/[slug]";
 
 const SiteNav = ({
   page,
