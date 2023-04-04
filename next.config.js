@@ -7,6 +7,7 @@ module.exports = withSvgr({
     formats: ["image/avif", "image/webp"],
   },
   sassOptions: {
+    fiber: false,
     includePaths: [path.join(__dirname, "styles")],
   },
   reactStrictMode: true,
