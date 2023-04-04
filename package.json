@@ -33,11 +33,11 @@
     "react-intersection-observer": "^9.4.3",
     "react-masonry-css": "^1.0.16",
     "react-slick": "^0.29.0",
-    "sass": "^1.60.0",
     "swr": "^2.1.2"
   },
   "devDependencies": {
     "eslint": "8.37.0",
-    "eslint-config-next": "13.2.4"
+    "eslint-config-next": "13.2.4",
+    "sass": "^1.60.0"
   }
 }
