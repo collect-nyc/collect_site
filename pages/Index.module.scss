@@ -220,8 +220,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      padding: 30px $navGutter_desktop 0;
-      // margin-bottom: 50px;
+      padding: 20px $navGutter_desktop 0;
       position: relative;
 
       &:last-of-type {
@@ -236,7 +235,7 @@
 
       .divider {
         border-bottom: 1px solid $black;
-        margin: 50px 0 0;
+        margin: 140px 0 0;
         width: 100%;
       }
 
@@ -333,12 +332,18 @@
 
         .text {
           position: relative;
-          top: -4.5px;
+          top: -2.5px;
 
           .title {
+            display: block;
             line-height: 1;
             text-transform: uppercase;
             position: relative;
+          }
+
+          .tags {
+            color: $darkgray;
+            display: block;
           }
 
           .links {
@@ -432,6 +437,7 @@
 
       &.right {
         flex-direction: row-reverse;
+        padding-left: 0;
 
         .media_container {
           .slide_count {

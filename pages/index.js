@@ -250,6 +250,15 @@ const Home = ({ document }) => {
               <span className={styles.title}>
                 {slice.primary.case_study_link.data?.title[0]?.text}
               </span>
+              <span className={styles.tags}>
+                {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
+                  if (arr.length - 1 === i) {
+                    return <span key={i}>{tag}</span>;
+                  } else {
+                    return <span key={i}>{tag}, </span>;
+                  }
+                })}
+              </span>
               <p>{slice.primary.case_study_link.data.description[0].text}</p>
 
               <div className={styles.links}>
@@ -285,15 +294,7 @@ const Home = ({ document }) => {
               </div>
             </div>
             <div className={styles.external_links_group}>
-              <span className={styles.tags}>
-                {slice.primary.case_study_link.tags?.map((tag, i, arr) => {
-                  if (arr.length - 1 === i) {
-                    return <span key={i}>{tag}</span>;
-                  } else {
-                    return <span key={i}>{tag}, </span>;
-                  }
-                })}
-              </span>
+              {/* bottom of text area */}
             </div>
           </header>
           <div className={styles.divider} />
