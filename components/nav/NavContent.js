@@ -4,7 +4,7 @@ import LoaderContext from "../LoaderContext";
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 
-const NavContent = ({ page, count, newCount, globalContent }) => {
+const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
   const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
     useContext(LoaderContext);
@@ -38,16 +38,28 @@ const NavContent = ({ page, count, newCount, globalContent }) => {
             : "Design"}
         </span>
         <div className={styles.archive_link}>
-          <Link className={page === "index" && styles.current} href={"/"}>
+          <Link
+            className={`${page === "index" && styles.current} ${
+              !showNav ? styles.hide : styles.show
+            }`}
+            href={"/"}
+          >
             Selected Projects
           </Link>
           <Link
-            className={page === "services" && styles.current}
+            className={`${page === "services" && styles.current} ${
+              !showNav ? styles.hide : styles.show
+            }`}
             href={"/services"}
           >
             Agency Services
           </Link>
-          <Link className={page === "about" && styles.current} href={"/about"}>
+          <Link
+            className={`${page === "about" && styles.current} ${
+              !showNav ? styles.hide : styles.show
+            }`}
+            href={"/about"}
+          >
             About
           </Link>
           <Link
@@ -56,7 +68,10 @@ const NavContent = ({ page, count, newCount, globalContent }) => {
               page === "work" && styles.current
             }`}
           >
-            All Work (
+            <span className={!showNav ? styles.hide : styles.show}>
+              All Work
+            </span>{" "}
+            (
             {count && !archiveCounted
               ? newCount
               : count && archiveCounted

@@ -15,7 +15,7 @@ function vh(percent) {
   return (percent * h) / 100;
 }
 
-const HomeNav = ({ page, newCount, count, globalContent }) => {
+const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
   // const { currentTag } = useContext(MemoryContext);
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
   const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
@@ -97,6 +97,7 @@ const HomeNav = ({ page, newCount, count, globalContent }) => {
         count={count}
         globalContent={globalContent}
         page={page}
+        showNav={showNav}
       />
     </motion.nav>
   );

@@ -14,6 +14,7 @@ const SiteNav = ({ page, count, globalContent }) => {
   const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
     useContext(LoaderContext);
   const [newCount, setNewCount] = useState(0);
+  const [showNav, setShowNav] = useState(loaderDidRun ? true : false);
 
   function getRandomTime() {
     // console.log("Random time", Math.floor(Math.random() * 201) + 100);
@@ -49,7 +50,8 @@ const SiteNav = ({ page, count, globalContent }) => {
         setTimeout(() => {
           // window.document.body.classList.remove("noscroll");
           setLoaderDidRun(true);
-        }, 2400);
+          setShowNav(true);
+        }, 2000);
       } else if (numCount >= target) {
         clearInterval(intervalId);
         // console.log(`Final count: ${numCount}`);
@@ -80,6 +82,7 @@ const SiteNav = ({ page, count, globalContent }) => {
                 count={count}
                 newCount={newCount}
                 globalContent={globalContent}
+                showNav={showNav}
               />
             );
           default:
@@ -89,6 +92,7 @@ const SiteNav = ({ page, count, globalContent }) => {
                 newCount={newCount}
                 count={count}
                 globalContent={globalContent}
+                showNav={true}
               />
             );
         }
