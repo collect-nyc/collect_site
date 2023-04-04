@@ -2,7 +2,7 @@ import { useEffect, useContext, useRef, useState } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import { DateTime } from "luxon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 import _ from "lodash";

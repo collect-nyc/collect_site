@@ -3,7 +3,7 @@ import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import { Client } from "../lib/prismic-config";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import _ from "lodash";
 import { useRouter } from "next/router";

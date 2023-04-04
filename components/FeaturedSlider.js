@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Slider from "react-slick";
 import Cursor from "./Cursor";
 import { useInView } from "react-intersection-observer";

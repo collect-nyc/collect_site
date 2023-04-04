@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
