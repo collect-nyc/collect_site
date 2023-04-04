@@ -1,44 +1,98 @@
+import React, { useState, useEffect, useContext } from "react";
+import MemoryContext from "../MemoryContext";
+import LoaderContext from "../LoaderContext";
 import HomeNav from "./HomeNav";
-import ArchiveNav from "./ArchiveNav";
-import ArchiveItemNav from "./ArchiveItemNav";
-import CaseStudyNav from "./CaseStudyNav";
-import ProfileNav from "./ProfileNav";
-import EssentialTextNav from "./EssentialTextNav";
+import DefaultNav from "./DefaultNav";
+// import ArchiveNav from "./ArchiveNav";
+// import ArchiveItemNav from "./ArchiveItemNav";
+// import CaseStudyNav from "./CaseStudyNav";
 
-const SiteNav = ({
-  page,
-  count,
-  latest,
-  tags,
-  case_study,
-  project_title,
-  globalContent,
-}) => {
+// import EssentialTextNav from "./EssentialTextNav";
+
+const SiteNav = ({ page, count, globalContent }) => {
+  const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
+  const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
+    useContext(LoaderContext);
+  const [newCount, setNewCount] = useState(0);
+
+  function getRandomTime() {
+    // console.log("Random time", Math.floor(Math.random() * 201) + 100);
+    // return Math.floor(Math.random() * 201) + 100;
+
+    const minNumber = 700;
+    const maxNumber = 1000;
+
+    return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+  }
+
+  const countUpTotal = (target) => {
+    // console.log("Counting up to: " + target);
+    // Set the starting count to 0
+    let numCount = 0;
+
+    let countUpTime = getRandomTime();
+
+    const intervalId = setInterval(() => {
+      const minIncrement = 75;
+      const maxIncrement = 150;
+
+      numCount += Math.floor(
+        Math.random() * (maxIncrement - minIncrement + 1) + minIncrement
+      );
+
+      // If the count is greater than or equal to the total, stop the interval and log the final count
+      if (numCount > target) {
+        clearInterval(intervalId);
+        window.scrollTo(0, 0);
+        setNewCount(target);
+        setArchiveCounted(true);
+        setTimeout(() => {
+          // window.document.body.classList.remove("noscroll");
+          setLoaderDidRun(true);
+        }, 2400);
+      } else if (numCount >= target) {
+        clearInterval(intervalId);
+        // console.log(`Final count: ${numCount}`);
+        setNewCount(numCount);
+        setArchiveCounted(true);
+      } else {
+        // console.log(`Counting up: ${numCount}`);
+        setNewCount(numCount);
+      }
+    }, countUpTime);
+  };
+
+  useEffect(() => {
+    if (count) {
+      console.log("Count: " + count);
+      countUpTotal(count);
+    }
+  }, [count]);
+
   return (
     <>
-      {
-        {
-          index: <HomeNav count={count} globalContent={globalContent} />,
-          archive_index: (
-            <ArchiveNav count={count} latest={latest} tags={tags} />
-          ),
-          archive_item: (
-            <ArchiveItemNav
-              count={count}
-              latest={latest}
-              tags={tags}
-              case_study={case_study}
-              project_title={project_title}
-            />
-          ),
-          case_study: (
-            <ProfileNav count={count} globalContent={globalContent} />
-          ),
-          project: <CaseStudyNav />,
-          profile: <ProfileNav count={count} globalContent={globalContent} />,
-          essential_text: <EssentialTextNav count={count} />,
-        }[page]
-      }
+      {(() => {
+        switch (page) {
+          case "index":
+            return (
+              <HomeNav
+                page={page}
+                count={count}
+                newCount={newCount}
+                globalContent={globalContent}
+              />
+            );
+          default:
+            return (
+              <DefaultNav
+                page={page}
+                newCount={newCount}
+                count={count}
+                globalContent={globalContent}
+              />
+            );
+        }
+      })()}
     </>
   );
 };

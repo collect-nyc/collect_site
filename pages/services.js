@@ -8,28 +8,20 @@ import Footer from "../components/Footer";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
-import styles from "./Profile.module.scss";
+import styles from "./About.module.scss";
 
 export async function getServerSideProps() {
   //Page Data
   const document = await Client().getSingle("profile");
 
-  const page = "profile";
+  const page = "services";
 
   return {
     props: { page, document },
   };
 }
 
-const Profile = ({ document }) => {
-  // const { setReturnPage, setScrollPos } = useContext(MemoryContext);
-  // Reset scroll position for Archive Index
-  // setScrollPos(0);
-
-  // useEffect(() => {
-  //   setReturnPage(false);
-  // }, []);
-
+const About = ({ document }) => {
   const inquiryRef = useRef(null);
   const offeringRef = useRef(null);
   const clientsRef = useRef(null);
@@ -38,29 +30,21 @@ const Profile = ({ document }) => {
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
-  const [profilePage, setProfilePage] = useState("info");
-
   return (
     <div className={styles.container}>
       <Head>
-        <title>Collect NYC Profile</title>
+        <title>Agency Services - Collect NEW YORK</title>
         <meta
           name="description"
-          content="Agency Profile, Services, Updates and More"
+          content="Collect New York draws on expertise across a range of disciplines, shaping each project along lines of design and technology in the service of expression and function with teams, skills and scopes tailored to each project."
         />
         <SharedHead />
       </Head>
 
-      <main
-        className={
-          profilePage === "contact"
-            ? `${styles.main} ${styles.contact_page}`
-            : styles.main
-        }
-      >
+      <main className={styles.main}>
         <div className={styles.info_bar}>
           <span className={styles.desktop}>
-            Agency Profile, Services, Updates and More
+            Approach, Services, In Practice
           </span>
           <div className={styles.mobile_jump}>
             <button
@@ -312,5 +296,5 @@ const Profile = ({ document }) => {
   );
 };
 
-Profile.Layout = MyLayout;
-export default Profile;
+About.Layout = MyLayout;
+export default About;

@@ -1,0 +1,273 @@
+@import "~/styles/colors";
+@import "~/styles/helpers";
+@import "~/styles/typography";
+
+.container {
+  padding: 0;
+
+  a,
+  button {
+    color: $black;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    // padding-bottom: 55px;
+  }
+}
+
+.main {
+  padding-top: 49px;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding-top: 180px;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0 0 15px 0;
+    padding: 0;
+  }
+
+  .info_bar {
+    border-bottom: 1px solid $black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    z-index: 5;
+
+    .desktop {
+    }
+
+    .mobile_jump {
+      display: none;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      background: rgba(250, 250, 250, 0.96);
+      backdrop-filter: blur(5px);
+      position: fixed;
+      top: 48px;
+      width: 100%;
+
+      .desktop {
+        display: none;
+      }
+
+      .mobile_jump {
+        display: block;
+
+        button {
+          display: inline-block;
+          margin-right: 15px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .grid {
+    display: flex;
+    height: calc(100vh - 99px);
+
+    .column {
+      border-right: 1px solid $black;
+      overflow-y: auto;
+      overflow-x: hidden;
+      padding: 45px $navGutter_desktop;
+      width: 25%;
+
+      /* ===== Scrollbar CSS ===== */
+      /* Firefox */
+
+      // scrollbar-width: thin;
+      scrollbar-color: transparent #ffffff;
+
+      /* Chrome, Edge, and Safari */
+      &::-webkit-scrollbar {
+        width: 10px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: #ffffff;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background-color: $darkgray;
+        background-color: transparent;
+        border-radius: 10px;
+        border: 3px solid #ffffff;
+      }
+
+      &::-webkit-scrollbar-button:start:increment {
+        height: 45px;
+        display: block;
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-button:end:increment {
+        height: 45px;
+        display: block;
+        background: transparent;
+      }
+
+      &:last-of-type {
+        border-right: none;
+      }
+
+      p {
+        margin-bottom: 20px;
+      }
+
+      li p {
+        margin-bottom: 0;
+      }
+
+      &.about {
+        .partner {
+          margin-bottom: 20px;
+
+          .name {
+            display: block;
+          }
+        }
+
+        &.mobile {
+          display: none;
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          &.mobile {
+            display: block;
+            padding: {
+              left: 0;
+              right: 0;
+              bottom: 0;
+            }
+
+            border-bottom: none;
+          }
+
+          &.desktop {
+            display: none;
+          }
+        }
+      }
+
+      &.offering {
+        @media screen and (min-width: $mq-tablet-min) {
+          padding-bottom: 20px;
+
+          .clients_collabs {
+            ul {
+              margin-bottom: 0;
+            }
+          }
+        }
+      }
+
+      &.contact {
+        .contact_field {
+          line-height: 1.5;
+
+          span {
+            display: inline-block;
+            padding-right: 20px;
+          }
+
+          p {
+            display: inline-block;
+            margin-bottom: 0;
+          }
+        }
+      }
+
+      &.editions {
+        p {
+          margin-bottom: 20px;
+        }
+
+        a {
+          text-decoration: underline;
+
+          &:hover {
+            text-decoration: none;
+          }
+        }
+      }
+
+      .clients_collabs {
+        margin-top: 40px;
+      }
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: block;
+      height: auto;
+
+      .column {
+        // border-bottom: 1px solid $black;
+        border-right: none;
+        padding: 12px $navGutter_mobile 80px;
+        width: 100%;
+        position: relative;
+
+        &:after {
+          position: absolute;
+          bottom: 0;
+          content: "";
+          left: $navGutter_mobile;
+          width: calc(100% - #{$navGutter_mobile} * 2);
+          height: 1px;
+          background-color: $black;
+        }
+
+        &.about.mobile {
+          &:after {
+            display: none;
+          }
+        }
+
+        .clients_collabs {
+          border-top: 1px solid $black;
+          padding-top: 10px;
+          margin-top: 80px;
+        }
+      }
+    }
+  }
+
+  .minifooter {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+    a {
+      display: inline-block;
+
+      &:first-of-type {
+        margin-right: 20px;
+      }
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: none;
+      position: relative;
+      width: 100%;
+      bottom: auto;
+      left: auto;
+      padding: 12px $navGutter_mobile 0;
+    }
+  }
+
+  .mobilefooter {
+    display: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: block;
+    }
+  }
+}

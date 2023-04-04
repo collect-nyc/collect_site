@@ -112,6 +112,16 @@
     padding-right: $navGutter_desktop;
     width: calc($gutter_desktop * 9);
 
+    .archive_link {
+      a {
+        display: inline-block;
+        margin-left: 20px;
+      }
+      .current {
+        text-decoration: underline;
+      }
+    }
+
     .controls {
       display: flex;
 
@@ -192,13 +202,6 @@
       transition: width 0.8s ease-out;
     }
 
-    // &.loaded {
-    //   transform: translateY(0);
-    // }
-
-    @media screen and (max-width: $mq-mobile-max) {
-    }
-
     a,
     button {
       color: $black;
@@ -212,6 +215,16 @@
 
     .top_right {
       text-align: right;
+    }
+  }
+
+  &.archive {
+    background-color: transparent;
+    color: $white;
+    border-bottom: transparent solid 1px;
+
+    a {
+      color: $white;
     }
   }
 
