@@ -1,8 +1,7 @@
 import Link from "next/link";
 import styles from "./Footer.module.scss";
 
-const Footer = ({ page, count, latest, tags, case_study }) => {
-  // console.log("siteNav: ", page);
+const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.contact}>

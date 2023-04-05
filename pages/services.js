@@ -8,7 +8,7 @@ import Footer from "../components/Footer";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
-import styles from "./About.module.scss";
+import styles from "./Services.module.scss";
 
 export async function getServerSideProps() {
   //Page Data
@@ -21,7 +21,7 @@ export async function getServerSideProps() {
   };
 }
 
-const About = ({ document }) => {
+const Services = ({ document }) => {
   const inquiryRef = useRef(null);
   const offeringRef = useRef(null);
   const clientsRef = useRef(null);
@@ -57,7 +57,7 @@ const About = ({ document }) => {
                 })
               }
             >
-              Inquiries
+              Approach
             </button>
             <button
               onClick={() =>
@@ -69,7 +69,7 @@ const About = ({ document }) => {
                 })
               }
             >
-              Offering
+              Services
             </button>
             <button
               onClick={() =>
@@ -81,19 +81,7 @@ const About = ({ document }) => {
                 })
               }
             >
-              Clients
-            </button>
-            <button
-              onClick={() =>
-                animateScrollTo(editionsRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -97,
-                })
-              }
-            >
-              Éditions
+              In Practice
             </button>
           </div>
         </div>
@@ -206,36 +194,6 @@ const About = ({ document }) => {
 
             <RichText render={page_content.summary} />
 
-            <ul className={styles.visual}>
-              {page_content
-                ? page_content.visual_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
-            <ul className={styles.technical}>
-              {page_content
-                ? page_content.technical_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
-            <ul className={styles.leadership}>
-              {page_content
-                ? page_content.leadership_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
             <div ref={clientsRef} className={styles.clients_collabs}>
               <h3 className={`heading`}>Clients, Collaborators</h3>
               <ul>
@@ -296,5 +254,5 @@ const About = ({ document }) => {
   );
 };
 
-About.Layout = MyLayout;
-export default About;
+Services.Layout = MyLayout;
+export default Services;

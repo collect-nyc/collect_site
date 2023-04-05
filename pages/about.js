@@ -68,18 +68,6 @@ const About = ({ document }) => {
                 })
               }
             >
-              Offering
-            </button>
-            <button
-              onClick={() =>
-                animateScrollTo(clientsRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -97,
-                })
-              }
-            >
               Clients
             </button>
             <button
@@ -242,7 +230,7 @@ const About = ({ document }) => {
             ref={offeringRef}
             className={`${styles.column} ${styles.offering}`}
           >
-            <h3 className={`heading`}>Offerings</h3>
+            <h3 className={`heading`}>CLIENTS, COLLABORATORS</h3>
             <span className={styles.subtitle}>Culture and Commerce</span>
 
             <RichText render={page_content.summary} />
