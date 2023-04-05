@@ -36,17 +36,14 @@ const About = ({ document }) => {
     <div className={styles.container}>
       <Head>
         <title>About Collect NEW YORK</title>
-        <meta
-          name="description"
-          content="Agency Profile, Services, Updates and More"
-        />
+        <meta name="description" content="Contact, Clients, Updates and More" />
         <SharedHead />
       </Head>
 
       <main className={styles.main}>
         <div className={styles.info_bar}>
           <span className={styles.desktop}>
-            Agency Profile, Services, Updates and More
+            Contact, Clients, Updates and More
           </span>
           <div className={styles.mobile_jump}>
             <button
@@ -103,6 +100,8 @@ const About = ({ document }) => {
         <div className={styles.grid}>
           {/* ABOUT */}
           <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
+            <h3 className={`heading`}>Our Team</h3>
+            <span className={styles.subtitle}>New York, Paris, Chicago</span>
             <div className={styles.partner}>
               <span className={styles.name}>Andrew J.S.</span>
               <span>{page_content ? page_content.andrew[0].text : null}</span>
@@ -111,6 +110,15 @@ const About = ({ document }) => {
             <div className={styles.partner}>
               <span className={styles.name}>Joshua Tuscan</span>
               <span>{page_content ? page_content.joshua[0].text : null}</span>
+            </div>
+
+            <div className={styles.partner}>
+              <span className={styles.name}>Luke Robertson</span>
+              <span>
+                <a href="https://luke-robertson.com" target="_blank">
+                  Independent Art Director ↗
+                </a>
+              </span>
             </div>
 
             <div className={styles.insta_group}>
@@ -144,6 +152,7 @@ const About = ({ document }) => {
             className={`${styles.column} ${styles.contact}`}
           >
             <h2 className={`heading`}>Inquiries</h2>
+            <span className={styles.subtitle}>New Business</span>
             <div className={styles.contact_summary}>
               {page_content ? (
                 <RichText render={page_content.instruction} />
@@ -152,14 +161,34 @@ const About = ({ document }) => {
 
             <div className={styles.contact_details}>
               <div className={styles.contact_field}>
-                <span>E</span>
                 {page_content.email ? page_content.email : null}
               </div>
               <div className={styles.contact_field}>
-                <span>T</span>
                 <RichText render={page_content.phone} />
               </div>
             </div>
+
+            <div className={styles.contact_collab}>
+              <h2 className={`heading`}>Opportunities</h2>
+              <span className={styles.subtitle}>Work with Us</span>
+
+              <p>For freelance opportunities send your work or DM:</p>
+
+              <ul>
+                <li>
+                  <a href="mailto:new@collect.nyc">new@collect.nyc</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/collect.nyc/"
+                    target="_blank"
+                  >
+                    @collect.nyc
+                  </a>
+                </li>
+              </ul>
+            </div>
+
             <div
               className={`${styles.column} ${styles.about} ${styles.mobile}`}
             >
@@ -171,6 +200,15 @@ const About = ({ document }) => {
               <div className={styles.partner}>
                 <span className={styles.name}>Joshua Tuscan</span>
                 <span>{page_content ? page_content.joshua[0].text : null}</span>
+              </div>
+
+              <div className={styles.partner}>
+                <span className={styles.name}>Luke Robertson</span>
+                <span>
+                  <a href="https://luke-robertson.com" target="_blank">
+                    Independent Art Director ↗
+                  </a>
+                </span>
               </div>
 
               <div className={styles.insta_group}>
@@ -205,10 +243,11 @@ const About = ({ document }) => {
             className={`${styles.column} ${styles.offering}`}
           >
             <h3 className={`heading`}>Offerings</h3>
+            <span className={styles.subtitle}>Culture and Commerce</span>
 
             <RichText render={page_content.summary} />
 
-            <ul className={styles.visual}>
+            {/* <ul className={styles.visual}>
               {page_content
                 ? page_content.visual_offerings.map((offering, key) => (
                     <li key={key}>
@@ -226,7 +265,7 @@ const About = ({ document }) => {
                     </li>
                   ))
                 : null}
-            </ul>
+            </ul> 
 
             <ul className={styles.leadership}>
               {page_content
@@ -236,10 +275,9 @@ const About = ({ document }) => {
                     </li>
                   ))
                 : null}
-            </ul>
+            </ul>*/}
 
             <div ref={clientsRef} className={styles.clients_collabs}>
-              <h3 className={`heading`}>Clients, Collaborators</h3>
               <ul>
                 {page_content
                   ? page_content.clients_and_collaborators.map(
@@ -259,9 +297,8 @@ const About = ({ document }) => {
             ref={editionsRef}
             className={`${styles.column} ${styles.editions}`}
           >
-            <figure>
-              <EditionsLogo />
-            </figure>
+            <h3 className={`heading`}>Éditions</h3>
+            <span className={styles.subtitle}>Fall 2023</span>
 
             {page_content.editions_text ? (
               <RichText render={page_content.editions_text} />

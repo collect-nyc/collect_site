@@ -307,298 +307,298 @@ const Home = ({ document }) => {
     }
   });
 
-  const pageContent = document?.data?.body.map((slice, index) => {
-    // Render the right markup for the given slice type
+  // const pageContent = document?.data?.body.map((slice, index) => {
+  //   // Render the right markup for the given slice type
 
-    // 2up Images Slice
-    if (slice.slice_type === "2up_row") {
-      return (
-        <section
-          key={index}
-          className={`${styles.double_image} ${
-            slice.primary.alignment === "Top" ? styles.top : styles.bottom
-          } ${
-            slice.primary.gutter === "None" ? styles.no_gutter : styles.gutter
-          } ${
-            slice.primary.size === "Even"
-              ? styles.even
-              : slice.primary.size === "7/5"
-              ? styles.seven_five
-              : slice.primary.size === "5/7"
-              ? styles.five_seven
-              : slice.primary.size === "8/4"
-              ? styles.eight_four
-              : styles.four_eight
-          }`}
-        >
-          <div className={`${styles.image} ${styles.left}`}>
-            {slice.primary.left_image.url || slice.primary.left_video.url ? (
-              slice.primary.archive_link_left &&
-              slice.primary.archive_link_left.uid ? (
-                slice.primary.archive_link_left.data?.item_type ===
-                  "Case Study" &&
-                slice.primary.archive_link_left.data?.background_color ? (
-                  <a
-                    onClick={
-                      slice.primary.archive_link_left.data?.item_type ===
-                        "Case Study" &&
-                      slice.primary.archive_link_left.data?.background_color
-                        ? () =>
-                            EnterCaseStudy(
-                              slice.primary.archive_link_left.data
-                                ?.background_color,
-                              "/archive/item/" +
-                                slice.primary.archive_link_left.uid
-                            )
-                        : null
-                    }
-                  >
-                    <Image
-                      src={slice.primary.left_image.url}
-                      layout={"responsive"}
-                      height={slice.primary.left_image.dimensions.height}
-                      width={slice.primary.left_image.dimensions.width}
-                      alt={slice.primary.left_image.alt}
-                      priority
-                      quality={100}
-                    />
-                  </a>
-                ) : (
-                  <Link
-                    href={
-                      "/archive/item/" + slice.primary.archive_link_left.uid
-                    }
-                  >
-                    {slice.primary?.left_image?.url ? (
-                      <Image
-                        src={slice.primary.left_image.url}
-                        layout={"responsive"}
-                        height={slice.primary.left_image.dimensions.height}
-                        width={slice.primary.left_image.dimensions.width}
-                        alt={slice.primary.left_image.alt}
-                        priority
-                        quality={100}
-                      />
-                    ) : slice.primary.left_video?.url ? (
-                      <video playsInline loop autoPlay muted>
-                        <source
-                          src={slice.primary.left_video.url}
-                          type="video/mp4"
-                        />
-                      </video>
-                    ) : null}
-                  </Link>
-                )
-              ) : slice.primary?.left_image?.url ? (
-                <Image
-                  src={slice.primary.left_image.url}
-                  layout={"responsive"}
-                  height={slice.primary.left_image.dimensions.height}
-                  width={slice.primary.left_image.dimensions.width}
-                  alt={slice.primary.left_image.alt}
-                  priority
-                  quality={100}
-                />
-              ) : slice.primary.left_video?.url ? (
-                <video playsInline loop autoPlay muted>
-                  <source src={slice.primary.left_video.url} type="video/mp4" />
-                </video>
-              ) : null
-            ) : null}
-          </div>
-          <div className={`${styles.image} ${styles.right}`}>
-            {slice.primary.right_image.url || slice.primary.right_video.url ? (
-              slice.primary.archive_link_right &&
-              slice.primary.archive_link_right.uid ? (
-                slice.primary.archive_link_right.data?.item_type ===
-                  "Case Study" &&
-                slice.primary.archive_link_right.data?.background_color ? (
-                  <a
-                    onClick={
-                      slice.primary.archive_link_right.data?.item_type ===
-                        "Case Study" &&
-                      slice.primary.archive_link_right.data?.background_color
-                        ? () =>
-                            EnterCaseStudy(
-                              slice.primary.archive_link_right.data
-                                ?.background_color,
-                              "/archive/item/" +
-                                slice.primary.archive_link_right.uid
-                            )
-                        : null
-                    }
-                  >
-                    {slice.primary?.right_image?.url ? (
-                      <Image
-                        src={slice.primary.right_image.url}
-                        layout={"responsive"}
-                        height={slice.primary.right_image.dimensions.height}
-                        width={slice.primary.right_image.dimensions.width}
-                        alt={slice.primary.right_image.alt}
-                        priority
-                        quality={100}
-                      />
-                    ) : slice.primary.right_video?.url ? (
-                      <video playsInline loop autoPlay muted>
-                        <source
-                          src={slice.primary.right_video.url}
-                          type="video/mp4"
-                        />
-                      </video>
-                    ) : null}
-                  </a>
-                ) : (
-                  <Link
-                    href={
-                      "/archive/item/" + slice.primary.archive_link_right.uid
-                    }
-                  >
-                    {slice.primary?.right_image?.url ? (
-                      <Image
-                        src={slice.primary.right_image.url}
-                        layout={"responsive"}
-                        height={slice.primary.right_image.dimensions.height}
-                        width={slice.primary.right_image.dimensions.width}
-                        alt={slice.primary.right_image.alt}
-                        priority
-                        quality={100}
-                      />
-                    ) : slice.primary.right_video?.url ? (
-                      <video playsInline loop autoPlay muted>
-                        <source
-                          src={slice.primary.right_video.url}
-                          type="video/mp4"
-                        />
-                      </video>
-                    ) : null}
-                  </Link>
-                )
-              ) : slice.primary?.right_image?.url ? (
-                <Image
-                  src={slice.primary.right_image.url}
-                  layout={"responsive"}
-                  height={slice.primary.right_image.dimensions.height}
-                  width={slice.primary.right_image.dimensions.width}
-                  alt={slice.primary.right_image.alt}
-                  priority
-                  quality={100}
-                />
-              ) : slice.primary.right_video?.url ? (
-                <video playsInline loop autoPlay muted>
-                  <source
-                    src={slice.primary.right_video.url}
-                    type="video/mp4"
-                  />
-                </video>
-              ) : null
-            ) : null}
-          </div>
-        </section>
-      );
+  //   // 2up Images Slice
+  //   if (slice.slice_type === "2up_row") {
+  //     return (
+  //       <section
+  //         key={index}
+  //         className={`${styles.double_image} ${
+  //           slice.primary.alignment === "Top" ? styles.top : styles.bottom
+  //         } ${
+  //           slice.primary.gutter === "None" ? styles.no_gutter : styles.gutter
+  //         } ${
+  //           slice.primary.size === "Even"
+  //             ? styles.even
+  //             : slice.primary.size === "7/5"
+  //             ? styles.seven_five
+  //             : slice.primary.size === "5/7"
+  //             ? styles.five_seven
+  //             : slice.primary.size === "8/4"
+  //             ? styles.eight_four
+  //             : styles.four_eight
+  //         }`}
+  //       >
+  //         <div className={`${styles.image} ${styles.left}`}>
+  //           {slice.primary.left_image.url || slice.primary.left_video.url ? (
+  //             slice.primary.archive_link_left &&
+  //             slice.primary.archive_link_left.uid ? (
+  //               slice.primary.archive_link_left.data?.item_type ===
+  //                 "Case Study" &&
+  //               slice.primary.archive_link_left.data?.background_color ? (
+  //                 <a
+  //                   onClick={
+  //                     slice.primary.archive_link_left.data?.item_type ===
+  //                       "Case Study" &&
+  //                     slice.primary.archive_link_left.data?.background_color
+  //                       ? () =>
+  //                           EnterCaseStudy(
+  //                             slice.primary.archive_link_left.data
+  //                               ?.background_color,
+  //                             "/archive/item/" +
+  //                               slice.primary.archive_link_left.uid
+  //                           )
+  //                       : null
+  //                   }
+  //                 >
+  //                   <Image
+  //                     src={slice.primary.left_image.url}
+  //                     layout={"responsive"}
+  //                     height={slice.primary.left_image.dimensions.height}
+  //                     width={slice.primary.left_image.dimensions.width}
+  //                     alt={slice.primary.left_image.alt}
+  //                     priority
+  //                     quality={100}
+  //                   />
+  //                 </a>
+  //               ) : (
+  //                 <Link
+  //                   href={
+  //                     "/archive/item/" + slice.primary.archive_link_left.uid
+  //                   }
+  //                 >
+  //                   {slice.primary?.left_image?.url ? (
+  //                     <Image
+  //                       src={slice.primary.left_image.url}
+  //                       layout={"responsive"}
+  //                       height={slice.primary.left_image.dimensions.height}
+  //                       width={slice.primary.left_image.dimensions.width}
+  //                       alt={slice.primary.left_image.alt}
+  //                       priority
+  //                       quality={100}
+  //                     />
+  //                   ) : slice.primary.left_video?.url ? (
+  //                     <video playsInline loop autoPlay muted>
+  //                       <source
+  //                         src={slice.primary.left_video.url}
+  //                         type="video/mp4"
+  //                       />
+  //                     </video>
+  //                   ) : null}
+  //                 </Link>
+  //               )
+  //             ) : slice.primary?.left_image?.url ? (
+  //               <Image
+  //                 src={slice.primary.left_image.url}
+  //                 layout={"responsive"}
+  //                 height={slice.primary.left_image.dimensions.height}
+  //                 width={slice.primary.left_image.dimensions.width}
+  //                 alt={slice.primary.left_image.alt}
+  //                 priority
+  //                 quality={100}
+  //               />
+  //             ) : slice.primary.left_video?.url ? (
+  //               <video playsInline loop autoPlay muted>
+  //                 <source src={slice.primary.left_video.url} type="video/mp4" />
+  //               </video>
+  //             ) : null
+  //           ) : null}
+  //         </div>
+  //         <div className={`${styles.image} ${styles.right}`}>
+  //           {slice.primary.right_image.url || slice.primary.right_video.url ? (
+  //             slice.primary.archive_link_right &&
+  //             slice.primary.archive_link_right.uid ? (
+  //               slice.primary.archive_link_right.data?.item_type ===
+  //                 "Case Study" &&
+  //               slice.primary.archive_link_right.data?.background_color ? (
+  //                 <a
+  //                   onClick={
+  //                     slice.primary.archive_link_right.data?.item_type ===
+  //                       "Case Study" &&
+  //                     slice.primary.archive_link_right.data?.background_color
+  //                       ? () =>
+  //                           EnterCaseStudy(
+  //                             slice.primary.archive_link_right.data
+  //                               ?.background_color,
+  //                             "/archive/item/" +
+  //                               slice.primary.archive_link_right.uid
+  //                           )
+  //                       : null
+  //                   }
+  //                 >
+  //                   {slice.primary?.right_image?.url ? (
+  //                     <Image
+  //                       src={slice.primary.right_image.url}
+  //                       layout={"responsive"}
+  //                       height={slice.primary.right_image.dimensions.height}
+  //                       width={slice.primary.right_image.dimensions.width}
+  //                       alt={slice.primary.right_image.alt}
+  //                       priority
+  //                       quality={100}
+  //                     />
+  //                   ) : slice.primary.right_video?.url ? (
+  //                     <video playsInline loop autoPlay muted>
+  //                       <source
+  //                         src={slice.primary.right_video.url}
+  //                         type="video/mp4"
+  //                       />
+  //                     </video>
+  //                   ) : null}
+  //                 </a>
+  //               ) : (
+  //                 <Link
+  //                   href={
+  //                     "/archive/item/" + slice.primary.archive_link_right.uid
+  //                   }
+  //                 >
+  //                   {slice.primary?.right_image?.url ? (
+  //                     <Image
+  //                       src={slice.primary.right_image.url}
+  //                       layout={"responsive"}
+  //                       height={slice.primary.right_image.dimensions.height}
+  //                       width={slice.primary.right_image.dimensions.width}
+  //                       alt={slice.primary.right_image.alt}
+  //                       priority
+  //                       quality={100}
+  //                     />
+  //                   ) : slice.primary.right_video?.url ? (
+  //                     <video playsInline loop autoPlay muted>
+  //                       <source
+  //                         src={slice.primary.right_video.url}
+  //                         type="video/mp4"
+  //                       />
+  //                     </video>
+  //                   ) : null}
+  //                 </Link>
+  //               )
+  //             ) : slice.primary?.right_image?.url ? (
+  //               <Image
+  //                 src={slice.primary.right_image.url}
+  //                 layout={"responsive"}
+  //                 height={slice.primary.right_image.dimensions.height}
+  //                 width={slice.primary.right_image.dimensions.width}
+  //                 alt={slice.primary.right_image.alt}
+  //                 priority
+  //                 quality={100}
+  //               />
+  //             ) : slice.primary.right_video?.url ? (
+  //               <video playsInline loop autoPlay muted>
+  //                 <source
+  //                   src={slice.primary.right_video.url}
+  //                   type="video/mp4"
+  //                 />
+  //               </video>
+  //             ) : null
+  //           ) : null}
+  //         </div>
+  //       </section>
+  //     );
 
-      // Full Image Slice
-    } else if (slice.slice_type === "full") {
-      return (
-        <section
-          key={index}
-          className={
-            slice.primary.vertical_padding === "Default"
-              ? `${styles.single_image} ${styles.default}`
-              : slice.primary.vertical_padding === "Half"
-              ? `${styles.single_image} ${styles.half}`
-              : slice.primary.vertical_padding === "Extra"
-              ? `${styles.single_image} ${styles.extra}`
-              : `${styles.single_image}`
-          }
-        >
-          {slice.primary.image.url || slice.primary.video.url ? (
-            <figure
-              className={
-                slice.primary.gutter == "Gutter" ? null : `${styles.full_bleed}`
-              }
-            >
-              {slice.primary.archive_link && slice.primary.archive_link.uid ? (
-                slice.primary.archive_link.data?.item_type === "Case Study" &&
-                slice.primary.archive_link.data?.background_color ? (
-                  <a
-                    onClick={
-                      slice.primary.archive_link.data?.item_type ===
-                        "Case Study" &&
-                      slice.primary.archive_link.data?.background_color
-                        ? () =>
-                            EnterCaseStudy(
-                              slice.primary.archive_link.data?.background_color,
-                              "/archive/item/" + slice.primary.archive_link.uid
-                            )
-                        : null
-                    }
-                  >
-                    {slice.primary.image?.url ? (
-                      <Image
-                        src={slice.primary.image.url}
-                        layout={"responsive"}
-                        height={slice.primary.image.dimensions.height}
-                        width={slice.primary.image.dimensions.width}
-                        alt={slice.primary.image.alt}
-                        priority
-                        quality={100}
-                      />
-                    ) : slice.primary.video?.url ? (
-                      <video playsInline loop autoPlay muted>
-                        <source
-                          src={slice.primary.video.url}
-                          type="video/mp4"
-                        />
-                      </video>
-                    ) : null}
-                  </a>
-                ) : (
-                  <Link
-                    href={"/archive/item/" + slice.primary.archive_link.uid}
-                  >
-                    {slice.primary.image?.url ? (
-                      <Image
-                        src={slice.primary.image.url}
-                        layout={"responsive"}
-                        height={slice.primary.image.dimensions.height}
-                        width={slice.primary.image.dimensions.width}
-                        alt={slice.primary.image.alt}
-                        priority
-                        quality={100}
-                      />
-                    ) : slice.primary.video?.url ? (
-                      <video playsInline loop autoPlay muted>
-                        <source
-                          src={slice.primary.video.url}
-                          type="video/mp4"
-                        />
-                      </video>
-                    ) : null}
-                  </Link>
-                )
-              ) : slice.primary.image?.url ? (
-                <Image
-                  src={slice.primary.image.url}
-                  layout={"responsive"}
-                  height={slice.primary.image.dimensions.height}
-                  width={slice.primary.image.dimensions.width}
-                  alt={slice.primary.image.alt}
-                  priority
-                  quality={100}
-                />
-              ) : slice.primary.video?.url ? (
-                <video playsInline loop autoPlay muted>
-                  <source src={slice.primary.video.url} type="video/mp4" />
-                </video>
-              ) : null}
-            </figure>
-          ) : null}
-        </section>
-      );
-    } else {
-      return null;
-    }
-  });
+  //     // Full Image Slice
+  //   } else if (slice.slice_type === "full") {
+  //     return (
+  //       <section
+  //         key={index}
+  //         className={
+  //           slice.primary.vertical_padding === "Default"
+  //             ? `${styles.single_image} ${styles.default}`
+  //             : slice.primary.vertical_padding === "Half"
+  //             ? `${styles.single_image} ${styles.half}`
+  //             : slice.primary.vertical_padding === "Extra"
+  //             ? `${styles.single_image} ${styles.extra}`
+  //             : `${styles.single_image}`
+  //         }
+  //       >
+  //         {slice.primary.image.url || slice.primary.video.url ? (
+  //           <figure
+  //             className={
+  //               slice.primary.gutter == "Gutter" ? null : `${styles.full_bleed}`
+  //             }
+  //           >
+  //             {slice.primary.archive_link && slice.primary.archive_link.uid ? (
+  //               slice.primary.archive_link.data?.item_type === "Case Study" &&
+  //               slice.primary.archive_link.data?.background_color ? (
+  //                 <a
+  //                   onClick={
+  //                     slice.primary.archive_link.data?.item_type ===
+  //                       "Case Study" &&
+  //                     slice.primary.archive_link.data?.background_color
+  //                       ? () =>
+  //                           EnterCaseStudy(
+  //                             slice.primary.archive_link.data?.background_color,
+  //                             "/archive/item/" + slice.primary.archive_link.uid
+  //                           )
+  //                       : null
+  //                   }
+  //                 >
+  //                   {slice.primary.image?.url ? (
+  //                     <Image
+  //                       src={slice.primary.image.url}
+  //                       layout={"responsive"}
+  //                       height={slice.primary.image.dimensions.height}
+  //                       width={slice.primary.image.dimensions.width}
+  //                       alt={slice.primary.image.alt}
+  //                       priority
+  //                       quality={100}
+  //                     />
+  //                   ) : slice.primary.video?.url ? (
+  //                     <video playsInline loop autoPlay muted>
+  //                       <source
+  //                         src={slice.primary.video.url}
+  //                         type="video/mp4"
+  //                       />
+  //                     </video>
+  //                   ) : null}
+  //                 </a>
+  //               ) : (
+  //                 <Link
+  //                   href={"/archive/item/" + slice.primary.archive_link.uid}
+  //                 >
+  //                   {slice.primary.image?.url ? (
+  //                     <Image
+  //                       src={slice.primary.image.url}
+  //                       layout={"responsive"}
+  //                       height={slice.primary.image.dimensions.height}
+  //                       width={slice.primary.image.dimensions.width}
+  //                       alt={slice.primary.image.alt}
+  //                       priority
+  //                       quality={100}
+  //                     />
+  //                   ) : slice.primary.video?.url ? (
+  //                     <video playsInline loop autoPlay muted>
+  //                       <source
+  //                         src={slice.primary.video.url}
+  //                         type="video/mp4"
+  //                       />
+  //                     </video>
+  //                   ) : null}
+  //                 </Link>
+  //               )
+  //             ) : slice.primary.image?.url ? (
+  //               <Image
+  //                 src={slice.primary.image.url}
+  //                 layout={"responsive"}
+  //                 height={slice.primary.image.dimensions.height}
+  //                 width={slice.primary.image.dimensions.width}
+  //                 alt={slice.primary.image.alt}
+  //                 priority
+  //                 quality={100}
+  //               />
+  //             ) : slice.primary.video?.url ? (
+  //               <video playsInline loop autoPlay muted>
+  //                 <source src={slice.primary.video.url} type="video/mp4" />
+  //               </video>
+  //             ) : null}
+  //           </figure>
+  //         ) : null}
+  //       </section>
+  //     );
+  //   } else {
+  //     return null;
+  //   }
+  // });
 
   const loaderVariants = {
     hide: {
@@ -714,13 +714,13 @@ const Home = ({ document }) => {
             {featureContent}
           </div>
 
-          <div className={styles.marquee_section}>
+          {/* <div className={styles.marquee_section}>
             <Marquee gradient={false} speed={90}>
               {document.data.ticker[0].text}&nbsp; ... &nbsp;
             </Marquee>
           </div>
 
-          <div className={styles.select_section}>{pageContent}</div>
+          <div className={styles.select_section}>{pageContent}</div> */}
         </div>
 
         <Footer />

@@ -10,6 +10,12 @@
     color: $black;
   }
 
+  .subtitle {
+    @extend .subheading;
+    display: block;
+    margin-bottom: 20px;
+  }
+
   @media screen and (max-width: $mq-mobile-max) {
     // padding-bottom: 55px;
   }
@@ -133,6 +139,14 @@
           .name {
             display: block;
           }
+
+          a {
+            text-decoration: underline;
+
+            &:hover {
+              text-decoration: none;
+            }
+          }
         }
 
         &.mobile {
@@ -183,6 +197,10 @@
             margin-bottom: 0;
           }
         }
+
+        .contact_collab {
+          margin-top: 40px;
+        }
       }
 
       &.editions {
@@ -200,7 +218,7 @@
       }
 
       .clients_collabs {
-        margin-top: 40px;
+        // margin-top: 40px;
       }
     }
 

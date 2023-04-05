@@ -1,4 +1,5 @@
 @import "./helpers";
+@import "./colors";
 
 @import url("https://use.typekit.net/byo6woz.css");
 
@@ -86,6 +87,10 @@ $gerstner: "Gerstner Programm", sans-serif;
   line-height: 1.286;
   font-weight: normal;
   text-transform: uppercase;
+}
+
+.subheading {
+  color: $darkgray;
 }
 
 .casestudy_title {

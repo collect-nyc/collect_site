@@ -66,7 +66,6 @@ const SiteNav = ({ page, count, globalContent }) => {
 
   useEffect(() => {
     if (count) {
-      console.log("Count: " + count);
       countUpTotal(count);
     }
   }, [count]);
