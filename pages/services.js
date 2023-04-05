@@ -197,23 +197,11 @@ const Services = ({ document }) => {
             <h3 className={`heading`}>In Practice</h3>
             <span className={styles.subtitle}>Outcomes</span>
 
-            {page_content.editions_text ? (
-              <RichText render={page_content.editions_text} />
-            ) : null}
-
-            <a
-              href={
-                page_content.editions_link.url
-                  ? page_content.editions_link.url
-                  : "https://www.instagram.com/shop.editions/"
-              }
-              target="_blank"
-              rel="noreferrer"
-            >
-              {page_content.editions_link_text
-                ? page_content.editions_link_text
-                : null}
-            </a>
+            <p>
+              From one-off capsule projects to ongoing retainer relationships,
+              case studies demonstrates the craft and consideration that goes
+              into every project, regardless of format or scale:
+            </p>
           </div>
         </div>
 
