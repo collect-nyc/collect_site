@@ -22,10 +22,9 @@ export async function getServerSideProps() {
 }
 
 const Services = ({ document }) => {
-  const inquiryRef = useRef(null);
-  const offeringRef = useRef(null);
-  const clientsRef = useRef(null);
-  const editionsRef = useRef(null);
+  const approachRef = useRef(null);
+  const servicesRef = useRef(null);
+  const practiceRef = useRef(null);
 
   // console.log("Profile Content", document.data);
   const page_content = document.data;
@@ -49,7 +48,7 @@ const Services = ({ document }) => {
           <div className={styles.mobile_jump}>
             <button
               onClick={() =>
-                animateScrollTo(inquiryRef.current, {
+                animateScrollTo(approachRef.current, {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
@@ -61,7 +60,7 @@ const Services = ({ document }) => {
             </button>
             <button
               onClick={() =>
-                animateScrollTo(offeringRef.current, {
+                animateScrollTo(servicesRef.current, {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
@@ -73,7 +72,7 @@ const Services = ({ document }) => {
             </button>
             <button
               onClick={() =>
-                animateScrollTo(clientsRef.current, {
+                animateScrollTo(practiceRef.current, {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
@@ -87,137 +86,116 @@ const Services = ({ document }) => {
         </div>
 
         <div className={styles.grid}>
-          {/* ABOUT */}
-          <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
-            <div className={styles.partner}>
-              <span className={styles.name}>Andrew J.S.</span>
-              <span>{page_content ? page_content.andrew[0].text : null}</span>
-            </div>
+          {/* APPROACH */}
+          <div
+            ref={approachRef}
+            className={`${styles.column} ${styles.approach}`}
+          >
+            <h2 className={`heading`}>Our Approach</h2>
+            <span className={styles.subtitle}>New York, Paris, Chicago</span>
+            <p>
+              We work with company leaders, business owners and
+              singularly-talented artists in the realms of commerce and culture
+              to transform ideas in realities.
+            </p>
+            <p>
+              Enterprise clients engage with our studio to solve key issues in
+              design and technology, working alongside leadership establish
+              brand vision and systems, lorem ipsum dolor sit amet.
+            </p>
+            <p>
+              We partner with artists and creators to create gorgeous objects
+              and experiences that resonate with their audiences, from limited
+              edition vinyl pressings to art books, printed matter and merch.
+            </p>
+          </div>
 
-            <div className={styles.partner}>
-              <span className={styles.name}>Joshua Tuscan</span>
-              <span>{page_content ? page_content.joshua[0].text : null}</span>
-            </div>
+          {/* SERVICES */}
+          <div
+            ref={servicesRef}
+            className={`${styles.column} ${styles.services}`}
+          >
+            <h3 className={`heading`}>COLLECTED SERVICES</h3>
+            <span className={styles.subtitle}>What We Do</span>
 
-            <div className={styles.insta_group}>
-              <ul className="insta">
+            <p>
+              We draw on expertise across a range of disciplines, shaping each
+              project along lines of design and technology in the service of
+              expression and function with teams, skills and scopes tailored to
+              each project:
+            </p>
+
+            <div className={styles.clients_collabs}>
+              <h4 className={`heading`}>Creative Direction</h4>
+              <p>
+                Working alongside our clients to establish vision, visual
+                identity, voice and tone, positioning, differentiators and more:
+              </p>
+              <ul className={styles.visual}>
                 {page_content
-                  ? page_content.instagrams.map((handle, key) => (
+                  ? page_content.visual_offerings.map((offering, key) => (
                       <li key={key}>
-                        <RichText render={handle.item} />
+                        <RichText render={offering.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+              <h4 className={`heading ${styles.group}`}>Design</h4>
+              <p>
+                The work that brings direction to life, cataloguing visual
+                styles and bringing projects to life as
+              </p>
+              <ul className={styles.technical}>
+                {page_content
+                  ? page_content.technical_offerings.map((offering, key) => (
+                      <li key={key}>
+                        <RichText render={offering.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+
+              <h4 className={`heading ${styles.group}`}>Technical Direction</h4>
+              <p>
+                Our approach to technical craft is rooted in design and
+                creativity partnered with first class engineering rigor allows
+                us to plan, prototype and build digital experiences that live up
+                to the highest of expectations.
+              </p>
+              <ul className={styles.technical}>
+                {page_content
+                  ? page_content.technical_offerings.map((offering, key) => (
+                      <li key={key}>
+                        <RichText render={offering.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+
+              <h4 className={`heading ${styles.group}`}>Leadership</h4>
+              <p>
+                Cum sociis natoque penatibus et magnis dis parturient montes,
+                nascetur ridiculus mus.
+              </p>
+              <ul className={styles.leadership}>
+                {page_content
+                  ? page_content.leadership_offerings.map((offering, key) => (
+                      <li key={key}>
+                        <RichText render={offering.item} />
                       </li>
                     ))
                   : null}
               </ul>
             </div>
-
-            <div className={styles.socials_group}>
-              <ul className={styles.socials}>
-                {page_content
-                  ? page_content.socials.map((handle, key) => (
-                      <li key={key}>
-                        <RichText render={handle.item} />
-                      </li>
-                    ))
-                  : null}
-              </ul>
-            </div>
           </div>
 
-          {/* CONTACT */}
+          {/* IN PRACTICE */}
           <div
-            ref={inquiryRef}
-            className={`${styles.column} ${styles.contact}`}
+            ref={practiceRef}
+            className={`${styles.column} ${styles.practice}`}
           >
-            <h2 className={`heading`}>Inquiries</h2>
-            <div className={styles.contact_summary}>
-              {page_content ? (
-                <RichText render={page_content.instruction} />
-              ) : null}
-            </div>
-
-            <div className={styles.contact_details}>
-              <div className={styles.contact_field}>
-                <span>E</span>
-                {page_content.email ? page_content.email : null}
-              </div>
-              <div className={styles.contact_field}>
-                <span>T</span>
-                <RichText render={page_content.phone} />
-              </div>
-            </div>
-            <div
-              className={`${styles.column} ${styles.about} ${styles.mobile}`}
-            >
-              <div className={styles.partner}>
-                <span className={styles.name}>Andrew J.S.</span>
-                <span>{page_content ? page_content.andrew[0].text : null}</span>
-              </div>
-
-              <div className={styles.partner}>
-                <span className={styles.name}>Joshua Tuscan</span>
-                <span>{page_content ? page_content.joshua[0].text : null}</span>
-              </div>
-
-              <div className={styles.insta_group}>
-                <ul className="insta">
-                  {page_content
-                    ? page_content.instagrams.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-
-              <div className={styles.socials_group}>
-                <ul className={styles.socials}>
-                  {page_content
-                    ? page_content.socials.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* OFFERING */}
-          <div
-            ref={offeringRef}
-            className={`${styles.column} ${styles.offering}`}
-          >
-            <h3 className={`heading`}>Offerings</h3>
-
-            <RichText render={page_content.summary} />
-
-            <div ref={clientsRef} className={styles.clients_collabs}>
-              <h3 className={`heading`}>Clients, Collaborators</h3>
-              <ul>
-                {page_content
-                  ? page_content.clients_and_collaborators.map(
-                      (client, key) => (
-                        <li key={key}>
-                          <RichText render={client.item} />
-                        </li>
-                      )
-                    )
-                  : null}
-              </ul>
-            </div>
-          </div>
-
-          {/* EDITIONS */}
-          <div
-            ref={editionsRef}
-            className={`${styles.column} ${styles.editions}`}
-          >
-            <figure>
-              <EditionsLogo />
-            </figure>
+            <h3 className={`heading`}>In Practice</h3>
+            <span className={styles.subtitle}>Outcomes</span>
 
             {page_content.editions_text ? (
               <RichText render={page_content.editions_text} />

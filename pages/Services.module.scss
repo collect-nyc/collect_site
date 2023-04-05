@@ -10,6 +10,12 @@
     color: $black;
   }
 
+  .subtitle {
+    @extend .subheading;
+    display: block;
+    margin-bottom: 20px;
+  }
+
   @media screen and (max-width: $mq-mobile-max) {
     // padding-bottom: 55px;
   }
@@ -78,7 +84,7 @@
       overflow-y: auto;
       overflow-x: hidden;
       padding: 45px $navGutter_desktop;
-      width: 25%;
+      width: 33.3333333333%;
 
       /* ===== Scrollbar CSS ===== */
       /* Firefox */
@@ -126,38 +132,18 @@
         margin-bottom: 0;
       }
 
-      &.about {
-        .partner {
-          margin-bottom: 20px;
-
-          .name {
-            display: block;
-          }
-        }
-
-        &.mobile {
-          display: none;
-        }
-
-        @media screen and (max-width: $mq-mobile-max) {
-          &.mobile {
-            display: block;
-            padding: {
-              left: 0;
-              right: 0;
-              bottom: 0;
-            }
-
-            border-bottom: none;
-          }
-
-          &.desktop {
-            display: none;
-          }
-        }
+      &.approach {
       }
 
-      &.offering {
+      &.services {
+        .group {
+          margin-top: 20px;
+
+          ul {
+            padding-left: 20px;
+          }
+        }
+
         @media screen and (min-width: $mq-tablet-min) {
           padding-bottom: 20px;
 
@@ -169,23 +155,7 @@
         }
       }
 
-      &.contact {
-        .contact_field {
-          line-height: 1.5;
-
-          span {
-            display: inline-block;
-            padding-right: 20px;
-          }
-
-          p {
-            display: inline-block;
-            margin-bottom: 0;
-          }
-        }
-      }
-
-      &.editions {
+      &.practice {
         p {
           margin-bottom: 20px;
         }
@@ -200,7 +170,10 @@
       }
 
       .clients_collabs {
-        margin-top: 40px;
+        ul {
+          padding-left: 20px;
+        }
+        // margin-top: 40px;
       }
     }
 
