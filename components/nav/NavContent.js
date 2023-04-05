@@ -69,7 +69,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             }`}
           >
             <span className={!showNav ? styles.hide : styles.show}>
-              All Work
+              Archive
             </span>{" "}
             (
             {count && !archiveCounted
