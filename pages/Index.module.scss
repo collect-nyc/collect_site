@@ -445,6 +445,10 @@
             }
           }
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: $navGutter_mobile;
+        }
       }
 
       &.center {
