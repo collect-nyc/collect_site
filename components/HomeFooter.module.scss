@@ -12,7 +12,7 @@
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 22px $navGutter_mobile 30px;
+    padding: 20px $navGutter_mobile $navGutter_mobile;
   }
 
   .contact {
@@ -23,8 +23,22 @@
     left: $navGutter_desktop;
     width: calc($gutter_desktop * 3.5);
 
+    @media screen and (max-width: $mq-mobile-max) {
+      position: relative;
+      top: auto;
+      left: auto;
+      // margin-bottom: 10px;
+      width: 100%;
+    }
+
     .col {
       width: 50%;
+
+      &:last-of-type {
+        @media screen and (max-width: $mq-mobile-max) {
+          text-align: right;
+        }
+      }
     }
 
     span {
@@ -36,7 +50,7 @@
     }
 
     .reachout {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       b {
         display: inline-block;
@@ -46,7 +60,7 @@
     }
 
     .social {
-      margin-bottom: 20px;
+      margin-bottom: 15px;
 
       a {
         display: block;
@@ -69,25 +83,5 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    .links {
-      margin-left: 0;
-      margin-top: 15px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-
-      .extra {
-        a {
-          display: block;
-          margin: 0;
-        }
-      }
-
-      .copyright {
-        // margin-bottom: 10px;
-        margin-top: 0;
-      }
-    }
   }
 }
