@@ -684,9 +684,6 @@ const Home = ({ document }) => {
           </p>
           <ul>
             <li>
-              <Link href="/profile">Get in Touch</Link>
-            </li>
-            <li>
               <button
                 onClick={() => {
                   if (selectedWork.current) {
@@ -699,8 +696,11 @@ const Home = ({ document }) => {
                   }
                 }}
               >
-                Selected Work
+                Explore ↓
               </button>
+            </li>
+            <li>
+              <Link href="/services">Our Approach →</Link>
             </li>
           </ul>
           <div className={styles.divider} />
