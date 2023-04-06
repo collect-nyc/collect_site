@@ -167,6 +167,40 @@
             text-decoration: none;
           }
         }
+
+        .case_studies {
+          padding-top: 10px;
+
+          .case_study {
+            border-top: 1px solid $black;
+            padding-top: 10px;
+            margin-bottom: 30px;
+
+            &:last-of-type {
+              margin-bottom: 0;
+            }
+
+            .title {
+              @extend .subheading;
+            }
+
+            .description {
+              margin-bottom: 10px;
+            }
+
+            .text_link {
+              display: inline-block;
+              margin-bottom: 20px;
+            }
+
+            .image_link {
+              .thumbnail {
+                height: auto;
+                width: 100%;
+              }
+            }
+          }
+        }
       }
 
       .clients_collabs {

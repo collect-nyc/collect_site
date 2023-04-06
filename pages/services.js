@@ -6,7 +6,7 @@ import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
 import { RichText } from "prismic-reactjs";
-import EditionsLogo from "../svg/editions.svg";
+import Image from "next/image";
 import animateScrollTo from "animated-scroll-to";
 import styles from "./Services.module.scss";
 
@@ -14,20 +14,25 @@ export async function getServerSideProps() {
   //Page Data
   const document = await Client().getSingle("profile");
 
+  const projects = await Client().getAllByType("case_study");
+
   const page = "services";
 
   return {
-    props: { page, document },
+    props: { page, document, projects },
   };
 }
 
-const Services = ({ document }) => {
+const Services = ({ document, projects }) => {
   const approachRef = useRef(null);
   const servicesRef = useRef(null);
   const practiceRef = useRef(null);
 
   // console.log("Profile Content", document.data);
   const page_content = document.data;
+  const caseStudies = projects;
+
+  console.log("Case Studies", caseStudies);
 
   return (
     <div className={styles.container}>
@@ -202,6 +207,56 @@ const Services = ({ document }) => {
               case studies demonstrates the craft and consideration that goes
               into every project, regardless of format or scale:
             </p>
+
+            <div className={styles.case_studies}>
+              {caseStudies && caseStudies.length > 0
+                ? caseStudies.map((caseStudy, key) => (
+                    <div key={key} className={styles.case_study}>
+                      <h4 className={`heading`}>
+                        {caseStudy.data.title[0].text}
+                      </h4>
+                      <span className={styles.subtitle}>
+                        {caseStudy.tags?.map((tag, i, arr) => {
+                          if (arr.length - 1 === i) {
+                            return <span key={i}>{tag}</span>;
+                          } else {
+                            return <span key={i}>{tag}, </span>;
+                          }
+                        })}
+                      </span>
+                      <p>{caseStudy.data.header_description[0].text}</p>
+                      <Link
+                        className={styles.text_link}
+                        href={`/case-study/${caseStudy.uid}`}
+                      >
+                        See Case Study →
+                      </Link>
+                      {caseStudy?.data?.index_thumbnail?.url && (
+                        <Link
+                          className={styles.image_link}
+                          href={`/case-study/${caseStudy.uid}`}
+                        >
+                          <Image
+                            className={styles.thumbnail}
+                            src={caseStudy.data.index_thumbnail.url}
+                            alt={
+                              caseStudy?.data?.index_thumbnail?.alt
+                                ? caseStudy.data.index_thumbnail.alt
+                                : "image from case study"
+                            }
+                            height={
+                              caseStudy.data.index_thumbnail.dimensions.height
+                            }
+                            width={
+                              caseStudy.data.index_thumbnail.dimensions.width
+                            }
+                          />
+                        </Link>
+                      )}
+                    </div>
+                  ))
+                : null}
+            </div>
           </div>
         </div>
 
