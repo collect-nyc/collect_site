@@ -1,0 +1,93 @@
+@import "~/styles/colors";
+@import "~/styles/typography";
+
+.footer {
+  background-color: $white;
+  border-top: 1px solid $black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  padding: 30px $navGutter_desktop 18px;
+  position: relative;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 22px $navGutter_mobile 30px;
+  }
+
+  .contact {
+    display: flex;
+    justify-content: space-between;
+    position: absolute;
+    top: 30px;
+    left: $navGutter_desktop;
+    width: calc($gutter_desktop * 3.5);
+
+    .col {
+      width: 50%;
+    }
+
+    span {
+      display: block;
+
+      &.address {
+        margin-bottom: 15px;
+      }
+    }
+
+    .reachout {
+      margin-bottom: 20px;
+
+      b {
+        display: inline-block;
+        font-weight: normal;
+        padding-right: 10px;
+      }
+    }
+
+    .social {
+      margin-bottom: 20px;
+
+      a {
+        display: block;
+      }
+    }
+
+    .extra {
+      a {
+        display: block;
+      }
+    }
+  }
+
+  .collect {
+    width: 100%;
+
+    svg {
+      width: 100%;
+    }
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    .links {
+      margin-left: 0;
+      margin-top: 15px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+
+      .extra {
+        a {
+          display: block;
+          margin: 0;
+        }
+      }
+
+      .copyright {
+        // margin-bottom: 10px;
+        margin-top: 0;
+      }
+    }
+  }
+}

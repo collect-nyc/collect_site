@@ -101,7 +101,9 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      padding-left: 0;
+      height: 49px;
+      padding: 0;
+      width: 100%;
     }
   }
 
@@ -148,11 +150,6 @@
       }
     }
 
-    .latest {
-      color: $alert;
-      margin-right: 5px;
-    }
-
     .count_link {
       display: flex;
       position: relative;
@@ -173,8 +170,12 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      justify-content: flex-end;
-      padding-right: 0;
+      align-items: center;
+      border-top: 1px solid $black;
+      justify-content: center;
+      height: 49px;
+      padding: 0;
+      width: 100%;
 
       .archive {
         display: none;

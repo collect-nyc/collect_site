@@ -9,7 +9,7 @@ import _ from "lodash";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
 import LoaderContext from "../components/LoaderContext";
-import Footer from "../components/Footer";
+import HomeFooter from "../components/HomeFooter";
 import { motion } from "framer-motion";
 import Marquee from "react-fast-marquee";
 import FeaturedSlider from "../components/FeaturedSlider";
@@ -723,7 +723,7 @@ const Home = ({ document }) => {
           <div className={styles.select_section}>{pageContent}</div> */}
         </div>
 
-        <Footer />
+        <HomeFooter />
       </motion.main>
     </div>
   );
