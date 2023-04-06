@@ -12,7 +12,7 @@
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 20px $navGutter_mobile $navGutter_mobile;
+    padding: 10px $navGutter_mobile $navGutter_mobile;
   }
 
   .contact {
