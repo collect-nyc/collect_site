@@ -3,16 +3,26 @@
 
 .footer {
   background-color: $white;
-  border-top: 1px solid $black;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  padding: 30px $navGutter_desktop 18px;
+  padding: 0 $navGutter_desktop 18px;
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 10px $navGutter_mobile $navGutter_mobile;
+    padding: 0 $navGutter_mobile $navGutter_mobile;
+  }
+
+  .top_border {
+    border-top: 1px solid $black;
+    height: 1px;
+    margin-bottom: 30px;
+    width: 100%;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      margin-bottom: 10px;
+    }
   }
 
   .contact {
