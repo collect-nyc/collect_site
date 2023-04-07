@@ -20,8 +20,8 @@ const SiteNav = ({ page, count, globalContent }) => {
     // console.log("Random time", Math.floor(Math.random() * 201) + 100);
     // return Math.floor(Math.random() * 201) + 100;
 
-    const minNumber = 700;
-    const maxNumber = 1000;
+    const minNumber = 500;
+    const maxNumber = 750;
 
     return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
   }
@@ -35,7 +35,7 @@ const SiteNav = ({ page, count, globalContent }) => {
 
     const intervalId = setInterval(() => {
       const minIncrement = 75;
-      const maxIncrement = 150;
+      const maxIncrement = 175;
 
       numCount += Math.floor(
         Math.random() * (maxIncrement - minIncrement + 1) + minIncrement
