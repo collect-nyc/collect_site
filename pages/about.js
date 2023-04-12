@@ -27,7 +27,7 @@ const About = ({ document }) => {
   const clientsRef = useRef(null);
   const editionsRef = useRef(null);
 
-  // console.log("Profile Content", document.data);
+  console.log("Profile Content", document.data);
   const page_content = document.data;
 
   // const [profilePage, setProfilePage] = useState("info");
@@ -235,36 +235,6 @@ const About = ({ document }) => {
 
             <RichText render={page_content.summary} />
 
-            {/* <ul className={styles.visual}>
-              {page_content
-                ? page_content.visual_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
-            <ul className={styles.technical}>
-              {page_content
-                ? page_content.technical_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul> 
-
-            <ul className={styles.leadership}>
-              {page_content
-                ? page_content.leadership_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>*/}
-
             <div ref={clientsRef} className={styles.clients_collabs}>
               <ul>
                 {page_content
@@ -278,6 +248,26 @@ const About = ({ document }) => {
                   : null}
               </ul>
             </div>
+            {page_content.client_case_studies?.length > 0 && (
+              <div className={styles.clients_cases}>
+                <h3 className={`heading`}>RECENT WORK</h3>
+                <span className={styles.subtitle}>New Projects</span>
+
+                {page_content.client_case_studies.map((case_study, key) => (
+                  <div key={key} className={styles.case_study}>
+                    <h4 className={`heading`}>{case_study.title[0].text}</h4>
+                    <p>{case_study.description}</p>
+                    {case_study.link && case_study.link.link_type === "Web" ? (
+                      <a href={case_study.link.url}>See Project→</a>
+                    ) : (
+                      <Link href={"/case-study/" + case_study.link.uid}>
+                        See Project→
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* EDITIONS */}

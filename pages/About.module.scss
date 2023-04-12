@@ -180,6 +180,20 @@
               margin-bottom: 0;
             }
           }
+
+          .clients_cases {
+            margin-top: 45px;
+
+            .case_study {
+              a {
+                text-decoration: underline;
+
+                &:hover {
+                  text-decoration: none;
+                }
+              }
+            }
+          }
         }
       }
 
