@@ -45,7 +45,10 @@ const About = ({ document }) => {
           <span className={styles.desktop}>
             Contact, Clients, Updates and More
           </span>
-          <div className={styles.mobile_jump}>
+        </div>
+
+        <div className={styles.mobile_jump}>
+          <div className={styles.holder}>
             <button
               onClick={() =>
                 animateScrollTo(inquiryRef.current, {
