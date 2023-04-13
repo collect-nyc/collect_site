@@ -37,9 +37,7 @@ const Custom404 = () => {
         <p>
           You have arrived on a page that does not exist.
           <br /> Find your way back to something real on the{" "}
-          <Link href="/">
-            <a>index page.</a>
-          </Link>
+          <Link href="/">index page.</Link>
         </p>
       </main>
     </div>

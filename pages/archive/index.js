@@ -2,7 +2,7 @@ import { useEffect, useContext, useRef, useState } from "react";
 import Head from "next/head";
 import Prismic from "prismic-javascript";
 import { DateTime } from "luxon";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Link from "next/link";
 import Masonry from "react-masonry-css";
 import _ from "lodash";
@@ -462,57 +462,63 @@ const Home = ({ archives, document, tagged, loader }) => {
                     onClick={() => ScrollTracker()}
                     href={"/archive/item/" + archive.uid}
                   >
-                    <span className={styles.name}>
-                      {archive.data?.title[0]?.text ? (
-                        <span>{archive.data.title[0].text}</span>
-                      ) : null}
-                    </span>
-
-                    <span className={styles.tags}>
-                      {ModifyTags(archive.tags)}
-                    </span>
-
-                    <span className={styles.date}>
-                      <span>
-                        {archive.data.creation_date
-                          ? DateTime.fromISO(
-                              archive.data.creation_date
-                            ).toFormat("yyyy")
-                          : "TBD"}
+                    <>
+                      <span className={styles.name}>
+                        {archive.data?.title[0]?.text ? (
+                          <span>{archive.data.title[0].text}</span>
+                        ) : null}
                       </span>
-                    </span>
 
-                    <span className={styles.thumbnail}>
-                      {archive.data.index_thumbnail?.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.index_thumbnail.alt}
-                          src={archive.data.index_thumbnail.url}
-                          height={
-                            archive.data.index_thumbnail.dimensions.height
-                          }
-                          width={archive.data.index_thumbnail.dimensions.width}
-                          quality={75}
-                          priority
-                        />
-                      ) : archive.data.images[0].image.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.images[0].image.alt}
-                          src={archive.data.images[0].image.url}
-                          height={
-                            archive.data.images[0].image.dimensions.height
-                          }
-                          width={archive.data.images[0].image.dimensions.width}
-                          quality={75}
-                          priority
-                        />
-                      ) : null}
-                    </span>
+                      <span className={styles.tags}>
+                        {ModifyTags(archive.tags)}
+                      </span>
 
-                    <span className={styles.view_project}>
-                      View Project <RightArrow />
-                    </span>
+                      <span className={styles.date}>
+                        <span>
+                          {archive.data.creation_date
+                            ? DateTime.fromISO(
+                                archive.data.creation_date
+                              ).toFormat("yyyy")
+                            : "TBD"}
+                        </span>
+                      </span>
+
+                      <span className={styles.thumbnail}>
+                        {archive.data.index_thumbnail?.url ? (
+                          <Image
+                            className={styles.lazyloaded}
+                            alt={archive.data.index_thumbnail.alt}
+                            src={archive.data.index_thumbnail.url}
+                            height={
+                              archive.data.index_thumbnail.dimensions.height
+                            }
+                            width={
+                              archive.data.index_thumbnail.dimensions.width
+                            }
+                            quality={75}
+                            priority
+                          />
+                        ) : archive.data.images[0].image.url ? (
+                          <Image
+                            className={styles.lazyloaded}
+                            alt={archive.data.images[0].image.alt}
+                            src={archive.data.images[0].image.url}
+                            height={
+                              archive.data.images[0].image.dimensions.height
+                            }
+                            width={
+                              archive.data.images[0].image.dimensions.width
+                            }
+                            quality={75}
+                            priority
+                          />
+                        ) : null}
+                      </span>
+
+                      <span className={styles.view_project}>
+                        View Project <RightArrow />
+                      </span>
+                    </>
                   </Link>
                 )}
               </li>

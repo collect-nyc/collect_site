@@ -8,28 +8,20 @@ import Footer from "../components/Footer";
 import { RichText } from "prismic-reactjs";
 import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
-import styles from "./Profile.module.scss";
+import styles from "./About.module.scss";
 
 export async function getServerSideProps() {
   //Page Data
   const document = await Client().getSingle("profile");
 
-  const page = "profile";
+  const page = "about";
 
   return {
     props: { page, document },
   };
 }
 
-const Profile = ({ document }) => {
-  // const { setReturnPage, setScrollPos } = useContext(MemoryContext);
-  // Reset scroll position for Archive Index
-  // setScrollPos(0);
-
-  // useEffect(() => {
-  //   setReturnPage(false);
-  // }, []);
-
+const About = ({ document }) => {
   const inquiryRef = useRef(null);
   const offeringRef = useRef(null);
   const clientsRef = useRef(null);
@@ -38,38 +30,34 @@ const Profile = ({ document }) => {
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
-  const [profilePage, setProfilePage] = useState("info");
-
   return (
     <div className={styles.container}>
       <Head>
-        <title>Collect NYC Profile</title>
-        <meta
-          name="description"
-          content="Agency Profile, Services, Updates and More"
-        />
+        <title>About Collect NEW YORK</title>
+        <meta name="description" content="Contact, Clients, Updates and More" />
         <SharedHead />
       </Head>
 
-      <main
-        className={
-          profilePage === "contact"
-            ? `${styles.main} ${styles.contact_page}`
-            : styles.main
-        }
-      >
+      <main className={styles.main}>
         <div className={styles.info_bar}>
           <span className={styles.desktop}>
-            Agency Profile, Services, Updates and More
+            <span className={styles.heading}>Information</span>
+            <span className={styles.subtitle}>
+              Contact, Clients, Updates and More
+            </span>
           </span>
-          <div className={styles.mobile_jump}>
+          <span className={styles.mobile_border} />
+        </div>
+
+        <div className={styles.mobile_jump}>
+          <div className={styles.holder}>
             <button
               onClick={() =>
                 animateScrollTo(inquiryRef.current, {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -81,19 +69,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
-                })
-              }
-            >
-              Offering
-            </button>
-            <button
-              onClick={() =>
-                animateScrollTo(clientsRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -105,7 +81,7 @@ const Profile = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -117,6 +93,8 @@ const Profile = ({ document }) => {
         <div className={styles.grid}>
           {/* ABOUT */}
           <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
+            <h3 className={`heading`}>Our Team</h3>
+            <span className={styles.subtitle}>New York, Paris, Chicago</span>
             <div className={styles.partner}>
               <span className={styles.name}>Andrew J.S.</span>
               <span>{page_content ? page_content.andrew[0].text : null}</span>
@@ -125,6 +103,15 @@ const Profile = ({ document }) => {
             <div className={styles.partner}>
               <span className={styles.name}>Joshua Tuscan</span>
               <span>{page_content ? page_content.joshua[0].text : null}</span>
+            </div>
+
+            <div className={styles.partner}>
+              <span className={styles.name}>Luke Robertson</span>
+              <span>
+                <a href="https://luke-robertson.com" target="_blank">
+                  Independent Art Director ↗
+                </a>
+              </span>
             </div>
 
             <div className={styles.insta_group}>
@@ -158,6 +145,7 @@ const Profile = ({ document }) => {
             className={`${styles.column} ${styles.contact}`}
           >
             <h2 className={`heading`}>Inquiries</h2>
+            <span className={styles.subtitle}>New Business</span>
             <div className={styles.contact_summary}>
               {page_content ? (
                 <RichText render={page_content.instruction} />
@@ -166,14 +154,34 @@ const Profile = ({ document }) => {
 
             <div className={styles.contact_details}>
               <div className={styles.contact_field}>
-                <span>E</span>
                 {page_content.email ? page_content.email : null}
               </div>
               <div className={styles.contact_field}>
-                <span>T</span>
                 <RichText render={page_content.phone} />
               </div>
             </div>
+
+            <div className={styles.contact_collab}>
+              <h2 className={`heading`}>Opportunities</h2>
+              <span className={styles.subtitle}>Work with Us</span>
+
+              <p>For freelance opportunities send your work or DM:</p>
+
+              <ul>
+                <li>
+                  <a href="mailto:new@collect.nyc">new@collect.nyc</a>
+                </li>
+                <li>
+                  <a
+                    href="https://www.instagram.com/collect.nyc/"
+                    target="_blank"
+                  >
+                    @collect.nyc
+                  </a>
+                </li>
+              </ul>
+            </div>
+
             <div
               className={`${styles.column} ${styles.about} ${styles.mobile}`}
             >
@@ -185,6 +193,15 @@ const Profile = ({ document }) => {
               <div className={styles.partner}>
                 <span className={styles.name}>Joshua Tuscan</span>
                 <span>{page_content ? page_content.joshua[0].text : null}</span>
+              </div>
+
+              <div className={styles.partner}>
+                <span className={styles.name}>Luke Robertson</span>
+                <span>
+                  <a href="https://luke-robertson.com" target="_blank">
+                    Independent Art Director ↗
+                  </a>
+                </span>
               </div>
 
               <div className={styles.insta_group}>
@@ -218,42 +235,12 @@ const Profile = ({ document }) => {
             ref={offeringRef}
             className={`${styles.column} ${styles.offering}`}
           >
-            <h3 className={`heading`}>Offerings</h3>
+            <h3 className={`heading`}>CLIENTS, COLLABORATORS</h3>
+            <span className={styles.subtitle}>Culture and Commerce</span>
 
             <RichText render={page_content.summary} />
 
-            <ul className={styles.visual}>
-              {page_content
-                ? page_content.visual_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
-            <ul className={styles.technical}>
-              {page_content
-                ? page_content.technical_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
-            <ul className={styles.leadership}>
-              {page_content
-                ? page_content.leadership_offerings.map((offering, key) => (
-                    <li key={key}>
-                      <RichText render={offering.item} />
-                    </li>
-                  ))
-                : null}
-            </ul>
-
             <div ref={clientsRef} className={styles.clients_collabs}>
-              <h3 className={`heading`}>Clients, Collaborators</h3>
               <ul>
                 {page_content
                   ? page_content.clients_and_collaborators.map(
@@ -266,6 +253,26 @@ const Profile = ({ document }) => {
                   : null}
               </ul>
             </div>
+            {page_content.client_case_studies?.length > 0 && (
+              <div className={styles.clients_cases}>
+                <h3 className={`heading`}>RECENT WORK</h3>
+                <span className={styles.subtitle}>New Projects</span>
+
+                {page_content.client_case_studies.map((case_study, key) => (
+                  <div key={key} className={styles.case_study}>
+                    <h4 className={`heading`}>{case_study.title[0].text}</h4>
+                    <p>{case_study.description}</p>
+                    {case_study.link && case_study.link.link_type === "Web" ? (
+                      <a href={case_study.link.url}>See Project→</a>
+                    ) : (
+                      <Link href={"/case-study/" + case_study.link.uid}>
+                        See Project→
+                      </Link>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* EDITIONS */}
@@ -273,9 +280,8 @@ const Profile = ({ document }) => {
             ref={editionsRef}
             className={`${styles.column} ${styles.editions}`}
           >
-            <figure>
-              <EditionsLogo />
-            </figure>
+            <h3 className={`heading`}>Éditions</h3>
+            <span className={styles.subtitle}>Fall 2023</span>
 
             {page_content.editions_text ? (
               <RichText render={page_content.editions_text} />
@@ -299,12 +305,8 @@ const Profile = ({ document }) => {
 
         {/* REDUCED FOOTER */}
         <div className={styles.minifooter}>
-          <Link href="/info/privacy">
-            <a>Privacy</a>
-          </Link>
-          <Link href="/info/impressum">
-            <a>Impressum</a>
-          </Link>
+          <Link href="/info/privacy">Privacy</Link>
+          <Link href="/info/impressum">Impressum</Link>
         </div>
 
         {/* FULL FOOTER FOR MOBILE */}
@@ -316,5 +318,5 @@ const Profile = ({ document }) => {
   );
 };
 
-Profile.Layout = MyLayout;
-export default Profile;
+About.Layout = MyLayout;
+export default About;

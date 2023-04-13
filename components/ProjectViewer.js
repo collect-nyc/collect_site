@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Hammer from "react-hammerjs";
 // import { motion } from "framer-motion";
 import styles from "./ProjectViewer.module.scss";

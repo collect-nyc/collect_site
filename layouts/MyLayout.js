@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import SiteNav from "../components/SiteNav";
+import SiteNav from "../components/nav/SiteNav";
 import useSWR from "swr";
 import _ from "lodash";
 import LoaderContext from "../components/LoaderContext";
@@ -47,8 +47,8 @@ export default function MyLayout({
     }
   }, [page]);
 
-  const latest_active =
-    data && _.find(data.profile, { update: true }) ? true : false;
+  // const latest_active =
+  //   data && _.find(data.profile, { update: true }) ? true : false;
 
   return (
     <React.Fragment>
@@ -60,7 +60,6 @@ export default function MyLayout({
         <SiteNav
           page={page}
           count={totalCount ? totalCount : 0}
-          latest={latest_active}
           tags={data && tags ? tags : null}
           case_study={case_study}
           project_title={project_title}

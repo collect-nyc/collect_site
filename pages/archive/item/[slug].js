@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import Head from "next/head";
 import Link from "next/link";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
 import { useRouter } from "next/router";
@@ -920,7 +920,7 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
 
               {case_study ? (
                 <nav className={styles.back_nav}>
-                  <Link className={"color_link"} href={"/"}>
+                  <Link href={"/"} className={"color_link"}>
                     <LeftArrow className={"color_svg"} /> Back to Home
                   </Link>
                   <Link

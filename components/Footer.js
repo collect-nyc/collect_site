@@ -1,15 +1,14 @@
 import Link from "next/link";
 import styles from "./Footer.module.scss";
 
-const Footer = ({ page, count, latest, tags, case_study }) => {
-  // console.log("siteNav: ", page);
+const Footer = () => {
   return (
     <footer className={styles.footer}>
       <div className={styles.contact}>
         <span className={styles.company}>Collect OFFICE</span>
         <span className={styles.address}>
-          106B Nassau Ave #330
-          <br /> Brooklyn, NY 11222
+          100A Broadway #377
+          <br /> Brooklyn, NY 11249
         </span>
 
         <div className={styles.reachout}>

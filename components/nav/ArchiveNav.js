@@ -1,10 +1,10 @@
 import { useState, useContext, useEffect } from "react";
 import Link from "next/link";
-import MemoryContext from "./MemoryContext";
+import MemoryContext from "../MemoryContext";
 import styles from "./Nav.module.scss";
 import { useRouter } from "next/router";
 
-const ArchiveNav = ({ page, count, latest, tags }) => {
+const ArchiveNav = ({ page, count, tags }) => {
   const router = useRouter();
   const {
     layoutView,
@@ -32,7 +32,6 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
           Ongoing, 2013 to Present — Reopening FALL 2023
         </div>
         <div className={styles.archive_link}>
-          {/* {latest ? <span className={styles.latest}>Latest</span> : null} */}
           <Link
             href={
               currentTag && currentTag !== "All Work"

@@ -1,6 +1,6 @@
-@import "./colors";
-@import "./helpers";
-@import "./typography";
+@import "~/styles/colors";
+@import "~/styles/helpers";
+@import "~/styles/typography";
 
 .loader_section,
 .loader_section_mobile {
@@ -129,6 +129,10 @@
     align-items: center;
     height: calc(100vh - 40px);
     width: 100%;
+
+    p {
+      @extend .body_text;
+    }
   }
 
   p {

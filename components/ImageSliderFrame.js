@@ -2,7 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { wrap } from "popmotion";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import styles from "./ImageSliderFrame.module.scss";
 
 const variants = {

@@ -17,6 +17,7 @@ body {
 
 body {
   @extend .body_text;
+  overflow-x: hidden;
 
   &.case_study {
     @media screen and (max-width: $mq-mobile-max) {

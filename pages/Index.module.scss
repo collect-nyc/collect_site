@@ -1,6 +1,6 @@
-@import "./colors";
-@import "./helpers";
-@import "./typography";
+@import "~/styles/colors";
+@import "~/styles/helpers";
+@import "~/styles/typography";
 
 .container {
   a,
@@ -44,7 +44,7 @@
 
       li {
         &:first-of-type {
-          margin-right: 20px;
+          margin-right: 15px;
         }
 
         a,
@@ -61,11 +61,11 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      // margin-bottom: 100px;
+      margin-bottom: 180px;
       padding: 110px $navGutter_mobile 0;
 
       .divider {
-        margin: 80px 0 0;
+        display: none;
       }
     }
 
@@ -220,8 +220,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
-      padding: 30px $navGutter_desktop 0;
-      // margin-bottom: 50px;
+      padding: 20px $navGutter_desktop 0;
       position: relative;
 
       &:last-of-type {
@@ -230,13 +229,9 @@
         }
       }
 
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 10px $navGutter_mobile 0;
-      }
-
       .divider {
         border-bottom: 1px solid $black;
-        margin: 50px 0 0;
+        margin: 140px 0 0;
         width: 100%;
       }
 
@@ -256,10 +251,6 @@
         &.square {
           @include aspect-ratio(1, 1);
           width: 42%;
-
-          .inner {
-            // padding-right: $navGutter_desktop * 2;
-          }
         }
 
         .slide_count {
@@ -312,7 +303,7 @@
           width: 100%;
 
           &.link_style {
-            cursor: pointer;
+            cursor: pointer !important;
           }
 
           video {
@@ -333,12 +324,18 @@
 
         .text {
           position: relative;
-          top: -4.5px;
+          top: -2.5px;
 
           .title {
+            display: block;
             line-height: 1;
             text-transform: uppercase;
             position: relative;
+          }
+
+          .tags {
+            color: $darkgray;
+            display: block;
           }
 
           .links {
@@ -388,12 +385,6 @@
             margin-bottom: 4px;
           }
 
-          .tags {
-            display: none !important;
-            padding-right: 0;
-            margin-bottom: 5px;
-          }
-
           .text {
             top: auto;
             margin-top: 10px;
@@ -432,6 +423,7 @@
 
       &.right {
         flex-direction: row-reverse;
+        padding-left: 0;
 
         .media_container {
           .slide_count {
@@ -443,11 +435,23 @@
             }
           }
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          padding-left: $navGutter_mobile;
+        }
       }
 
       &.center {
         justify-content: flex-start;
         flex-direction: row;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 10px $navGutter_mobile 0;
+
+        .divider {
+          border-bottom: none;
+        }
       }
     }
   }
