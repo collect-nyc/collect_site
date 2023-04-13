@@ -27,10 +27,8 @@ const About = ({ document }) => {
   const clientsRef = useRef(null);
   const editionsRef = useRef(null);
 
-  console.log("Profile Content", document.data);
+  // console.log("Profile Content", document.data);
   const page_content = document.data;
-
-  // const [profilePage, setProfilePage] = useState("info");
 
   return (
     <div className={styles.container}>
@@ -43,7 +41,10 @@ const About = ({ document }) => {
       <main className={styles.main}>
         <div className={styles.info_bar}>
           <span className={styles.desktop}>
-            Contact, Clients, Updates and More
+            <span className={styles.heading}>Information</span>
+            <span className={styles.subtitle}>
+              Contact, Clients, Updates and More
+            </span>
           </span>
         </div>
 

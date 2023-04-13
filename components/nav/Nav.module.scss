@@ -99,12 +99,6 @@
         display: none;
       }
     }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      height: 49px;
-      padding: 0;
-      width: 100%;
-    }
   }
 
   .top_right {
@@ -150,6 +144,12 @@
       }
     }
 
+    .desktop_nav {
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none;
+      }
+    }
+
     .count_link {
       display: flex;
       position: relative;
@@ -170,16 +170,15 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      align-items: center;
-      border-top: 1px solid $black;
-      justify-content: center;
-      height: 49px;
-      padding: 0;
-      width: 100%;
-
       .archive {
         display: none;
       }
+    }
+  }
+
+  .mobile_nav {
+    @media screen and (min-width: $mq-tablet-min) {
+      display: none;
     }
   }
 

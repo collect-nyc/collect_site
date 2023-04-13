@@ -38,19 +38,33 @@
     height: 50px;
     z-index: 5;
 
-    .desktop {
+    .heading {
+      display: none;
     }
 
-    .mobile_jump {
-      display: none;
+    .subtitle {
+      margin: 0;
+
+      @media screen and (min-width: $mq-tablet-min) {
+        color: $black;
+      }
     }
   }
 
+  .mobile_jump {
+    display: none;
+  }
+
   @media screen and (max-width: $mq-mobile-max) {
-    padding-top: 180px;
+    // padding-top: 180px;
 
     .info_bar {
       height: auto;
+
+      .heading {
+        display: block;
+        text-align: center;
+      }
 
       .desktop {
         padding: 104px 0 111px;
@@ -68,7 +82,7 @@
       .holder {
         display: flex;
         justify-content: center;
-        background-color: $yellow;
+        background-color: rgba($yellow, 0.9);
         backdrop-filter: blur(5px);
         box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
         backdrop-filter: blur(5px);
