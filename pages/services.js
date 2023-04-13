@@ -12,7 +12,6 @@ import styles from "./Services.module.scss";
 
 export async function getServerSideProps() {
   //Page Data
-  const document = await Client().getSingle("profile");
 
   const data = await Client().getSingle("services");
 
@@ -21,19 +20,15 @@ export async function getServerSideProps() {
   const page = "services";
 
   return {
-    props: { page, data, document, projects },
+    props: { page, data, projects },
   };
 }
 
-const Services = ({ document, data, projects }) => {
+const Services = ({ data, projects }) => {
   const approachRef = useRef(null);
   const servicesRef = useRef(null);
   const practiceRef = useRef(null);
 
-  console.log("Profile Content", document.data);
-  console.log("Services Content", data.data);
-
-  const page_content = document.data;
   const page_data = data.data;
   const caseStudies = projects;
 
