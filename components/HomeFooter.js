@@ -13,15 +13,6 @@ const Footer = () => {
             100A Broadway #377
             <br /> Brooklyn, NY 11249
           </span>
-          <div className={styles.reachout}>
-            <span className={styles.phone}>
-              <a href="mailto:info@collect.nyc">info@collect.nyc</a>
-            </span>
-            <span className={styles.phone}>+1 718 902 4911</span>
-          </div>
-        </div>
-
-        <div className={styles.col}>
           <div className={styles.social}>
             <a
               href="https://www.instagram.com/collect.nyc/"
@@ -39,6 +30,15 @@ const Footer = () => {
             >
               @shop.editions
             </a>
+          </div>
+        </div>
+
+        <div className={styles.col}>
+          <div className={styles.reachout}>
+            <span className={styles.phone}>
+              <a href="mailto:info@collect.nyc">info@collect.nyc</a>
+            </span>
+            <span className={styles.phone}>+1 718 902 4911</span>
           </div>
           <div className={styles.extra}>
             <Link href="/info/privacy">Privacy</Link>

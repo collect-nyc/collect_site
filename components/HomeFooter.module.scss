@@ -37,7 +37,7 @@
       position: relative;
       top: auto;
       left: auto;
-      // margin-bottom: 10px;
+      margin-bottom: 70px;
       width: 100%;
     }
 
@@ -46,7 +46,7 @@
 
       &:last-of-type {
         @media screen and (max-width: $mq-mobile-max) {
-          text-align: right;
+          // text-align: right;
         }
       }
     }
@@ -90,8 +90,5 @@
     svg {
       width: 100%;
     }
-  }
-
-  @media screen and (max-width: $mq-mobile-max) {
   }
 }
