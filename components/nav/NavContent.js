@@ -5,7 +5,6 @@ import Link from "next/link";
 import styles from "./Nav.module.scss";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
-  console.log("PAGE", page);
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
 
   // display new item from array every 1.5 second looping
