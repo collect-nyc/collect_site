@@ -56,7 +56,7 @@ const About = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -68,7 +68,7 @@ const About = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -80,7 +80,7 @@ const About = ({ document }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >

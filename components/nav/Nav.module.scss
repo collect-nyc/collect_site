@@ -99,6 +99,11 @@
         display: none;
       }
     }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      padding-left: 0;
+      width: 50%;
+    }
   }
 
   .top_right {
@@ -150,6 +155,18 @@
       }
     }
 
+    .desktop_link {
+      @media screen and (max-width: $mq-mobile-max) {
+        display: none !important;
+      }
+    }
+
+    .mobile_btn {
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
     .count_link {
       display: flex;
       position: relative;
@@ -170,6 +187,9 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      padding-right: 0;
+      width: 50%;
+
       .archive {
         display: none;
       }
@@ -177,6 +197,33 @@
   }
 
   .mobile_nav {
+    display: none;
+    justify-content: flex-end;
+    width: 100%;
+
+    &.open {
+      display: flex;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      text-align: right;
+
+      li {
+        margin-bottom: 13px;
+        text-align: right;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+
+        a.current {
+          text-decoration: underline;
+        }
+      }
+    }
+
     @media screen and (min-width: $mq-tablet-min) {
       display: none;
     }

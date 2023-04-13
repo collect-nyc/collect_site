@@ -6,10 +6,10 @@ import styles from "./Nav.module.scss";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
-  const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
-    useContext(LoaderContext);
+
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
+  const [navOpen, setNavOpen] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -64,9 +64,30 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               About
             </Link>
           </span>
+          {navOpen ? (
+            <button
+              className={styles.mobile_btn}
+              onClick={() => setNavOpen(false)}
+            >
+              Close X
+            </button>
+          ) : (
+            <button
+              className={styles.mobile_btn}
+              onClick={() => setNavOpen(true)}
+            >
+              <span className={styles.mobile_link}>Menu</span> (
+              {count && !archiveCounted
+                ? newCount
+                : count && archiveCounted
+                ? count
+                : 0}
+              )
+            </button>
+          )}
           <Link
             href={"/archive"}
-            className={`${styles.count_link} ${
+            className={`${styles.count_link} ${styles.desktop_link} ${
               page === "work" && styles.current
             }`}
           >
@@ -83,16 +104,14 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           </Link>
         </div>
       </div>
-      <div className={styles.mobile_nav}>
+      <div className={`${styles.mobile_nav} ${navOpen && styles.open}`}>
         <ul>
-          <li>
-            <button>Close X</button>
-          </li>
           <li>
             <Link
               className={`${page === "index" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
+              onClick={() => setNavOpen(false)}
               href={"/"}
             >
               Selected Projects
@@ -104,6 +123,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${page === "services" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
+              onClick={() => setNavOpen(false)}
               href={"/services"}
             >
               Agency Services
@@ -115,6 +135,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/about"}
+              onClick={() => setNavOpen(false)}
             >
               About
             </Link>
@@ -125,6 +146,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${styles.count_link} ${
                 page === "work" && styles.current
               }`}
+              onClick={() => setNavOpen(false)}
             >
               <span className={!showNav ? styles.hide : styles.show}>
                 Archive
