@@ -5,6 +5,7 @@ import Link from "next/link";
 import styles from "./Nav.module.scss";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
+  console.log("PAGE", page);
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
 
   // display new item from array every 1.5 second looping
@@ -30,12 +31,18 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       </div>
       <div className={`${styles.top_right} ${styles.profile_right}`}>
         <span className={styles.archive}>
-          {globalContent && globalContent.services_descriptor
-            ? globalContent.services_descriptor
-            : "Independent agency for NEW IDEAS in"}{" "}
-          {globalContent && globalContent.services
-            ? globalContent && globalContent.services[currentItem].service
-            : "Design"}
+          {page === "archive_index" ? (
+            "Collect ARCHIVE, Ongoing — Reopening Fall 2023"
+          ) : (
+            <>
+              {globalContent && globalContent.services_descriptor
+                ? globalContent.services_descriptor
+                : "Independent agency for NEW IDEAS in"}{" "}
+              {globalContent && globalContent.services
+                ? globalContent && globalContent.services[currentItem].service
+                : "Design"}
+            </>
+          )}
         </span>
         <div className={styles.archive_link}>
           <span className={styles.desktop_nav}>

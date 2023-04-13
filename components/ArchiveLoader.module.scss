@@ -129,6 +129,10 @@
     align-items: center;
     height: calc(100vh - 40px);
     width: 100%;
+
+    p {
+      @extend .body_text;
+    }
   }
 
   p {

@@ -289,6 +289,25 @@
     a {
       color: $white;
     }
+
+    .top_right {
+      button {
+        color: $white;
+      }
+    }
+
+    .mobile_nav {
+      color: $white;
+
+      .top_right {
+        color: $white;
+
+        .mobile_link,
+        button {
+          color: $white;
+        }
+      }
+    }
   }
 
   &.archive_loader {

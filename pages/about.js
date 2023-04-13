@@ -46,6 +46,7 @@ const About = ({ document }) => {
               Contact, Clients, Updates and More
             </span>
           </span>
+          <span className={styles.mobile_border} />
         </div>
 
         <div className={styles.mobile_jump}>

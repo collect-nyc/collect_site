@@ -37,6 +37,7 @@
     align-items: center;
     height: 50px;
     z-index: 5;
+    position: relative;
 
     .heading {
       display: none;
@@ -49,6 +50,10 @@
         color: $black;
       }
     }
+
+    .mobile_border {
+      display: none;
+    }
   }
 
   .mobile_jump {
@@ -57,7 +62,9 @@
 
   @media screen and (max-width: $mq-mobile-max) {
     .info_bar {
+      border-bottom: none;
       height: auto;
+      z-index: 1;
 
       .heading {
         display: block;
@@ -66,6 +73,16 @@
 
       .desktop {
         padding: 104px 0 111px;
+      }
+
+      .mobile_border {
+        display: block;
+        position: absolute;
+        border-bottom: 1px solid $black;
+        bottom: 0;
+        left: $navGutter_mobile;
+        width: calc(100% - $navGutter_mobile * 2);
+        height: 1px;
       }
     }
 

@@ -58,6 +58,7 @@ const Services = ({ document, data, projects }) => {
               Approach, Services, In Practice
             </span>
           </span>
+          <span className={styles.mobile_border} />
         </div>
 
         <div className={styles.mobile_jump}>
