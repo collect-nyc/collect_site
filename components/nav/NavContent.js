@@ -73,10 +73,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             </button>
           ) : (
             <button
-              className={styles.mobile_btn}
+              className={`${styles.mobile_btn} ${styles.mobile_link}`}
               onClick={() => setNavOpen(true)}
             >
-              <span className={styles.mobile_link}>Menu</span> (
+              <span>Menu</span> (
               {count && !archiveCounted
                 ? newCount
                 : count && archiveCounted

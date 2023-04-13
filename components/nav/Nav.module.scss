@@ -13,8 +13,9 @@
   top: 0;
   padding: 16px 0 14px;
   position: fixed;
-  width: 100%;
+  width: 100vw;
   z-index: 4;
+  overflow: hidden;
 
   a,
   button {
@@ -28,6 +29,7 @@
     justify-content: flex-start;
     padding-left: $navGutter_desktop;
     width: calc($gutter_desktop * 3);
+    background-color: green;
 
     .link_box {
       display: flex;
@@ -112,6 +114,7 @@
     justify-content: space-between;
     padding-right: $navGutter_desktop;
     width: calc($gutter_desktop * 9);
+    background-color: purple;
 
     .archive_link {
       a {
@@ -161,6 +164,12 @@
       }
     }
 
+    .mobile_link {
+      @media screen and (min-width: $mq-tablet-min) {
+        display: none !important;
+      }
+    }
+
     .mobile_btn {
       &:hover {
         text-decoration: none;
@@ -197,6 +206,7 @@
   }
 
   .mobile_nav {
+    background-color: pink;
     display: none;
     justify-content: flex-end;
     width: 100%;
@@ -270,9 +280,9 @@
       }
     }
 
-    .top_right {
-      text-align: right;
-    }
+    // .top_right {
+    //   text-align: right;
+    // }
   }
 
   &.archive {
@@ -570,7 +580,6 @@
   @media screen and (max-width: $mq-mobile-max) {
     align-items: center;
     padding: 15px $navGutter_mobile 14px;
-    // border-top: 1px solid $platinum;
     border-bottom: 1px solid $black;
     background-color: $white;
   }
