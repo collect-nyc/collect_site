@@ -13,9 +13,8 @@
   top: 0;
   padding: 16px 0 14px;
   position: fixed;
-  width: 100vw;
+  width: 100%;
   z-index: 4;
-  overflow: hidden;
 
   a,
   button {
@@ -29,7 +28,6 @@
     justify-content: flex-start;
     padding-left: $navGutter_desktop;
     width: calc($gutter_desktop * 3);
-    background-color: green;
 
     .link_box {
       display: flex;
@@ -114,7 +112,6 @@
     justify-content: space-between;
     padding-right: $navGutter_desktop;
     width: calc($gutter_desktop * 9);
-    background-color: purple;
 
     .archive_link {
       a {
@@ -206,7 +203,6 @@
   }
 
   .mobile_nav {
-    background-color: pink;
     display: none;
     justify-content: flex-end;
     width: 100%;

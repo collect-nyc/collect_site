@@ -24,10 +24,6 @@
 .main {
   padding-top: 49px;
 
-  @media screen and (max-width: $mq-mobile-max) {
-    padding-top: 180px;
-  }
-
   ul {
     list-style: none;
     margin: 0 0 15px 0;
@@ -42,34 +38,62 @@
     height: 50px;
     z-index: 5;
 
-    .desktop {
-    }
-
-    .mobile_jump {
+    .heading {
       display: none;
     }
 
-    @media screen and (max-width: $mq-mobile-max) {
-      background: rgba(250, 250, 250, 0.96);
-      backdrop-filter: blur(5px);
-      position: fixed;
-      top: 97px;
-      width: 100%;
+    .subtitle {
+      margin: 0;
 
-      .desktop {
-        display: none;
+      @media screen and (min-width: $mq-tablet-min) {
+        color: $black;
+      }
+    }
+  }
+
+  .mobile_jump {
+    display: none;
+  }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    .info_bar {
+      height: auto;
+
+      .heading {
+        display: block;
+        text-align: center;
       }
 
-      .mobile_jump {
-        display: block;
+      .desktop {
+        padding: 104px 0 111px;
+      }
+    }
 
-        button {
-          display: inline-block;
-          margin-right: 15px;
+    .mobile_jump {
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      bottom: 25px;
+      width: 100%;
+      z-index: 5;
 
-          &:last-of-type {
-            margin-right: 0;
-          }
+      .holder {
+        display: flex;
+        justify-content: center;
+        background-color: rgba($yellow, 0.9);
+        backdrop-filter: blur(5px);
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(5px);
+        border-radius: 25px;
+        padding: 17px 30px 19px;
+      }
+
+      button {
+        display: inline-block;
+        margin-right: 15px;
+
+        &:last-of-type {
+          margin-right: 0;
         }
       }
     }

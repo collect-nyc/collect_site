@@ -48,16 +48,22 @@ const Services = ({ document, projects }) => {
       <main className={styles.main}>
         <div className={styles.info_bar}>
           <span className={styles.desktop}>
-            Approach, Services, In Practice
+            <span className={styles.heading}>Core Capabilities</span>
+            <span className={styles.subtitle}>
+              Approach, Services, In Practice
+            </span>
           </span>
-          <div className={styles.mobile_jump}>
+        </div>
+
+        <div className={styles.mobile_jump}>
+          <div className={styles.holder}>
             <button
               onClick={() =>
                 animateScrollTo(approachRef.current, {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -69,7 +75,7 @@ const Services = ({ document, projects }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
@@ -81,7 +87,7 @@ const Services = ({ document, projects }) => {
                   easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
                   minDuration: 600,
                   speed: 500,
-                  verticalOffset: -97,
+                  verticalOffset: -48,
                 })
               }
             >
