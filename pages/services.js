@@ -14,22 +14,27 @@ export async function getServerSideProps() {
   //Page Data
   const document = await Client().getSingle("profile");
 
+  const data = await Client().getSingle("services");
+
   const projects = await Client().getAllByType("case_study");
 
   const page = "services";
 
   return {
-    props: { page, document, projects },
+    props: { page, data, document, projects },
   };
 }
 
-const Services = ({ document, projects }) => {
+const Services = ({ document, data, projects }) => {
   const approachRef = useRef(null);
   const servicesRef = useRef(null);
   const practiceRef = useRef(null);
 
-  // console.log("Profile Content", document.data);
+  console.log("Profile Content", document.data);
+  console.log("Services Content", data.data);
+
   const page_content = document.data;
+  const page_data = data.data;
   const caseStudies = projects;
 
   console.log("Case Studies", caseStudies);
@@ -138,13 +143,10 @@ const Services = ({ document, projects }) => {
 
             <div className={styles.clients_collabs}>
               <h4 className={`heading`}>Creative Direction</h4>
-              <p>
-                Working alongside our clients to establish vision, visual
-                identity, voice and tone, positioning, differentiators and more:
-              </p>
+              <p>{page_data.creative_direction_description[0].text}</p>
               <ul className={styles.visual}>
-                {page_content
-                  ? page_content.visual_offerings.map((offering, key) => (
+                {page_data?.creative_direction
+                  ? page_data.creative_direction.map((offering, key) => (
                       <li key={key}>
                         <RichText render={offering.item} />
                       </li>
@@ -152,13 +154,10 @@ const Services = ({ document, projects }) => {
                   : null}
               </ul>
               <h4 className={`heading ${styles.group}`}>Design</h4>
-              <p>
-                The work that brings direction to life, cataloguing visual
-                styles and bringing projects to life as
-              </p>
+              <p>{page_data.design_description[0].text}</p>
               <ul className={styles.technical}>
-                {page_content
-                  ? page_content.technical_offerings.map((offering, key) => (
+                {page_data?.design
+                  ? page_data.design.map((offering, key) => (
                       <li key={key}>
                         <RichText render={offering.item} />
                       </li>
@@ -167,15 +166,22 @@ const Services = ({ document, projects }) => {
               </ul>
 
               <h4 className={`heading ${styles.group}`}>Technical Direction</h4>
-              <p>
-                Our approach to technical craft is rooted in design and
-                creativity partnered with first class engineering rigor allows
-                us to plan, prototype and build digital experiences that live up
-                to the highest of expectations.
-              </p>
+              <p>{page_data.technical_description[0].text}</p>
               <ul className={styles.technical}>
-                {page_content
-                  ? page_content.technical_offerings.map((offering, key) => (
+                {page_data?.technical_direction
+                  ? page_data.technical_direction.map((offering, key) => (
+                      <li key={key}>
+                        <RichText render={offering.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+
+              <h4 className={`heading ${styles.group}`}>Web Development</h4>
+              <p>{page_data.web_description[0].text}</p>
+              <ul className={styles.technical}>
+                {page_data?.web_development
+                  ? page_data.web_development.map((offering, key) => (
                       <li key={key}>
                         <RichText render={offering.item} />
                       </li>
@@ -184,13 +190,10 @@ const Services = ({ document, projects }) => {
               </ul>
 
               <h4 className={`heading ${styles.group}`}>Leadership</h4>
-              <p>
-                Cum sociis natoque penatibus et magnis dis parturient montes,
-                nascetur ridiculus mus.
-              </p>
+              <p>{page_data.transformation_description[0].text}</p>
               <ul className={styles.leadership}>
-                {page_content
-                  ? page_content.leadership_offerings.map((offering, key) => (
+                {page_data?.transformation_offerings
+                  ? page_data.transformation_offerings.map((offering, key) => (
                       <li key={key}>
                         <RichText render={offering.item} />
                       </li>
@@ -208,7 +211,7 @@ const Services = ({ document, projects }) => {
             <h3 className={`heading`}>In Practice</h3>
             <span className={styles.subtitle}>Outcomes</span>
 
-            <p>
+            <p className={styles.practice_intro}>
               From one-off capsule projects to ongoing retainer relationships,
               case studies demonstrates the craft and consideration that goes
               into every project, regardless of format or scale:
@@ -218,25 +221,6 @@ const Services = ({ document, projects }) => {
               {caseStudies && caseStudies.length > 0
                 ? caseStudies.map((caseStudy, key) => (
                     <div key={key} className={styles.case_study}>
-                      <h4 className={`heading`}>
-                        {caseStudy.data.title[0].text}
-                      </h4>
-                      <span className={styles.subtitle}>
-                        {caseStudy.tags?.map((tag, i, arr) => {
-                          if (arr.length - 1 === i) {
-                            return <span key={i}>{tag}</span>;
-                          } else {
-                            return <span key={i}>{tag}, </span>;
-                          }
-                        })}
-                      </span>
-                      <p>{caseStudy.data.header_description[0].text}</p>
-                      <Link
-                        className={styles.text_link}
-                        href={`/case-study/${caseStudy.uid}`}
-                      >
-                        See Case Study →
-                      </Link>
                       {caseStudy?.data?.index_thumbnail?.url && (
                         <Link
                           className={styles.image_link}
@@ -259,6 +243,25 @@ const Services = ({ document, projects }) => {
                           />
                         </Link>
                       )}
+                      <h4 className={`heading`}>
+                        {caseStudy.data.title[0].text}
+                      </h4>
+                      <span className={styles.subtitle}>
+                        {caseStudy.tags?.map((tag, i, arr) => {
+                          if (arr.length - 1 === i) {
+                            return <span key={i}>{tag}</span>;
+                          } else {
+                            return <span key={i}>{tag}, </span>;
+                          }
+                        })}
+                      </span>
+                      <p>{caseStudy.data.header_description[0].text}</p>
+                      <Link
+                        className={styles.text_link}
+                        href={`/case-study/${caseStudy.uid}`}
+                      >
+                        See Case Study →
+                      </Link>
                     </div>
                   ))
                 : null}

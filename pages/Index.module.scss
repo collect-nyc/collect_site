@@ -61,11 +61,11 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      // margin-bottom: 100px;
+      margin-bottom: 180px;
       padding: 110px $navGutter_mobile 0;
 
       .divider {
-        margin: 80px 0 0;
+        display: none;
       }
     }
 
@@ -227,10 +227,6 @@
         .divider {
           display: none;
         }
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 10px $navGutter_mobile 0;
       }
 
       .divider {
@@ -454,6 +450,14 @@
       &.center {
         justify-content: flex-start;
         flex-direction: row;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 10px $navGutter_mobile 0;
+
+        .divider {
+          border-bottom: none;
+        }
       }
     }
   }

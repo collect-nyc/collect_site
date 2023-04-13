@@ -161,7 +161,11 @@
 
       &.services {
         .group {
-          margin-top: 20px;
+          margin-top: 30px;
+
+          // @media screen and (max-width: $mq-mobile-max) {
+          //   margin-top: 30px;
+          // }
 
           ul {
             padding-left: 20px;
@@ -182,6 +186,10 @@
       &.practice {
         p {
           margin-bottom: 20px;
+
+          &.practice_intro {
+            margin-bottom: 37px;
+          }
         }
 
         a {
@@ -196,9 +204,9 @@
           padding-top: 10px;
 
           .case_study {
-            border-top: 1px solid $black;
-            padding-top: 10px;
-            margin-bottom: 30px;
+            // border-top: 1px solid $black;
+            // padding-top: 10px;
+            margin-bottom: 60px;
 
             &:last-of-type {
               margin-bottom: 0;
@@ -214,10 +222,12 @@
 
             .text_link {
               display: inline-block;
-              margin-bottom: 20px;
             }
 
             .image_link {
+              display: block;
+              margin-bottom: 15px;
+
               .thumbnail {
                 height: auto;
                 width: 100%;
