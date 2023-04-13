@@ -185,7 +185,7 @@ const Services = ({ data, projects }) => {
                   : null}
               </ul>
 
-              <h4 className={`heading ${styles.group}`}>Leadership</h4>
+              <h4 className={`heading ${styles.group}`}>Transformation</h4>
               <p>{page_data.transformation_description[0].text}</p>
               <ul className={styles.leadership}>
                 {page_data?.transformation_offerings
