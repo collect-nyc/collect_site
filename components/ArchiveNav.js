@@ -25,9 +25,7 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
       <nav className={`${styles.navigation} ${styles.archive_loader}`}>
         <div className={styles.top_left}>
           <div className={`${styles.link_box} ${styles.archive}`}>
-            <Link href={"/"}>
-              <a>Return to SELECTED WORK</a>
-            </Link>
+            <Link href={"/"}>Return to SELECTED WORK</Link>
           </div>
         </div>
         <div className={styles.centered_text}>
@@ -41,8 +39,9 @@ const ArchiveNav = ({ page, count, latest, tags }) => {
                 ? `/archive?tag=${currentTag}`
                 : "/archive"
             }
+            className={styles.count_link}
           >
-            <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+            ARCHIVE ({count ? count : 0})
           </Link>
         </div>
       </nav>

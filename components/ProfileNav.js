@@ -27,17 +27,16 @@ const ProfileNav = ({ page, count, latest, tags, globalContent }) => {
       <nav className={`${styles.navigation} ${styles.profile}`}>
         <div className={styles.top_left}>
           <div className={styles.link_box}>
-            <Link href={"/"}>
-              <a
-                onMouseEnter={() => {
-                  setLogoHover(true);
-                }}
-                onMouseLeave={() => {
-                  setLogoHover(false);
-                }}
-              >
-                {logoHover ? "Return to SELECTED WORK" : "Collect NEW YORK"}
-              </a>
+            <Link
+              onMouseEnter={() => {
+                setLogoHover(true);
+              }}
+              onMouseLeave={() => {
+                setLogoHover(false);
+              }}
+              href={"/"}
+            >
+              {logoHover ? "Return to SELECTED WORK" : "Collect NEW YORK"}
             </Link>
           </div>
         </div>
@@ -58,8 +57,9 @@ const ProfileNav = ({ page, count, latest, tags, globalContent }) => {
                   ? `/archive?tag=${currentTag}`
                   : "/archive"
               }
+              className={styles.count_link}
             >
-              <a className={styles.count_link}>ARCHIVE ({count ? count : 0})</a>
+              ARCHIVE ({count ? count : 0})
             </Link>
           </div>
         </div>

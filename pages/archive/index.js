@@ -458,64 +458,61 @@ const Home = ({ archives, document, tagged, loader }) => {
                     </span>
                   </a>
                 ) : (
-                  <Link href={"/archive/item/" + archive.uid}>
-                    <a onClick={() => ScrollTracker()}>
-                      <span className={styles.name}>
-                        {archive.data?.title[0]?.text ? (
-                          <span>{archive.data.title[0].text}</span>
-                        ) : null}
-                      </span>
+                  <Link
+                    onClick={() => ScrollTracker()}
+                    href={"/archive/item/" + archive.uid}
+                  >
+                    <span className={styles.name}>
+                      {archive.data?.title[0]?.text ? (
+                        <span>{archive.data.title[0].text}</span>
+                      ) : null}
+                    </span>
 
-                      <span className={styles.tags}>
-                        {ModifyTags(archive.tags)}
-                      </span>
+                    <span className={styles.tags}>
+                      {ModifyTags(archive.tags)}
+                    </span>
 
-                      <span className={styles.date}>
-                        <span>
-                          {archive.data.creation_date
-                            ? DateTime.fromISO(
-                                archive.data.creation_date
-                              ).toFormat("yyyy")
-                            : "TBD"}
-                        </span>
+                    <span className={styles.date}>
+                      <span>
+                        {archive.data.creation_date
+                          ? DateTime.fromISO(
+                              archive.data.creation_date
+                            ).toFormat("yyyy")
+                          : "TBD"}
                       </span>
+                    </span>
 
-                      <span className={styles.thumbnail}>
-                        {archive.data.index_thumbnail?.url ? (
-                          <Image
-                            className={styles.lazyloaded}
-                            alt={archive.data.index_thumbnail.alt}
-                            src={archive.data.index_thumbnail.url}
-                            height={
-                              archive.data.index_thumbnail.dimensions.height
-                            }
-                            width={
-                              archive.data.index_thumbnail.dimensions.width
-                            }
-                            quality={75}
-                            priority
-                          />
-                        ) : archive.data.images[0].image.url ? (
-                          <Image
-                            className={styles.lazyloaded}
-                            alt={archive.data.images[0].image.alt}
-                            src={archive.data.images[0].image.url}
-                            height={
-                              archive.data.images[0].image.dimensions.height
-                            }
-                            width={
-                              archive.data.images[0].image.dimensions.width
-                            }
-                            quality={75}
-                            priority
-                          />
-                        ) : null}
-                      </span>
+                    <span className={styles.thumbnail}>
+                      {archive.data.index_thumbnail?.url ? (
+                        <Image
+                          className={styles.lazyloaded}
+                          alt={archive.data.index_thumbnail.alt}
+                          src={archive.data.index_thumbnail.url}
+                          height={
+                            archive.data.index_thumbnail.dimensions.height
+                          }
+                          width={archive.data.index_thumbnail.dimensions.width}
+                          quality={75}
+                          priority
+                        />
+                      ) : archive.data.images[0].image.url ? (
+                        <Image
+                          className={styles.lazyloaded}
+                          alt={archive.data.images[0].image.alt}
+                          src={archive.data.images[0].image.url}
+                          height={
+                            archive.data.images[0].image.dimensions.height
+                          }
+                          width={archive.data.images[0].image.dimensions.width}
+                          quality={75}
+                          priority
+                        />
+                      ) : null}
+                    </span>
 
-                      <span className={styles.view_project}>
-                        View Project <RightArrow />
-                      </span>
-                    </a>
+                    <span className={styles.view_project}>
+                      View Project <RightArrow />
+                    </span>
                   </Link>
                 )}
               </li>
@@ -606,35 +603,30 @@ const Home = ({ archives, document, tagged, loader }) => {
                     ) : null}
                   </a>
                 ) : (
-                  <Link href={"/archive/item/" + archive.uid}>
-                    <a
-                      className={styles.thumbnail}
-                      onClick={() => ScrollTracker()}
-                    >
-                      {archive.data.index_thumbnail?.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.index_thumbnail.alt}
-                          src={archive.data.index_thumbnail.url}
-                          height={
-                            archive.data.index_thumbnail.dimensions.height
-                          }
-                          width={archive.data.index_thumbnail.dimensions.width}
-                          quality={75}
-                        />
-                      ) : archive.data.images[0].image.url ? (
-                        <Image
-                          className={styles.lazyloaded}
-                          alt={archive.data.images[0].image.alt}
-                          src={archive.data.images[0].image.url}
-                          height={
-                            archive.data.images[0].image.dimensions.height
-                          }
-                          width={archive.data.images[0].image.dimensions.width}
-                          quality={75}
-                        />
-                      ) : null}
-                    </a>
+                  <Link
+                    className={styles.thumbnail}
+                    onClick={() => ScrollTracker()}
+                    href={"/archive/item/" + archive.uid}
+                  >
+                    {archive.data.index_thumbnail?.url ? (
+                      <Image
+                        className={styles.lazyloaded}
+                        alt={archive.data.index_thumbnail.alt}
+                        src={archive.data.index_thumbnail.url}
+                        height={archive.data.index_thumbnail.dimensions.height}
+                        width={archive.data.index_thumbnail.dimensions.width}
+                        quality={75}
+                      />
+                    ) : archive.data.images[0].image.url ? (
+                      <Image
+                        className={styles.lazyloaded}
+                        alt={archive.data.images[0].image.alt}
+                        src={archive.data.images[0].image.url}
+                        height={archive.data.images[0].image.dimensions.height}
+                        width={archive.data.images[0].image.dimensions.width}
+                        quality={75}
+                      />
+                    ) : null}
                   </Link>
                 )}
               </article>

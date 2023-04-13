@@ -61,18 +61,17 @@ const CaseStudyNav = () => {
           `}</style>
           <div className={styles.top_left}>
             <div className={styles.link_box}>
-              <Link href={"/"}>
-                <a
-                  className="color_link"
-                  onMouseEnter={() => {
-                    setLogoHover(true);
-                  }}
-                  onMouseLeave={() => {
-                    setLogoHover(false);
-                  }}
-                >
-                  {logoHover ? "Collect HOME" : "Collect NEW YORK"}
-                </a>
+              <Link
+                className="color_link"
+                onMouseEnter={() => {
+                  setLogoHover(true);
+                }}
+                onMouseLeave={() => {
+                  setLogoHover(false);
+                }}
+                href={"/"}
+              >
+                {logoHover ? "Collect HOME" : "Collect NEW YORK"}
               </Link>
             </div>
             <div className={styles.mobile_back}>
@@ -82,10 +81,9 @@ const CaseStudyNav = () => {
                     ? `/archive?tag=${currentTag}`
                     : "/archive"
                 }
+                className="color_link"
               >
-                <a className="color_link">
-                  <LeftArrow className="nav_color_svg" /> Archive
-                </a>
+                <LeftArrow className="nav_color_svg" /> Archive
               </Link>
             </div>
           </div>

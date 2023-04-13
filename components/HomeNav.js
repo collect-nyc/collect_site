@@ -164,17 +164,16 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
       />
       <div className={styles.top_left}>
         <div className={styles.link_box}>
-          <Link href={"/profile"}>
-            <a
-              onMouseEnter={() => {
-                setLogoHover(true);
-              }}
-              onMouseLeave={() => {
-                setLogoHover(false);
-              }}
-            >
-              {logoHover ? <span>Agency PROFILE</span> : "Collect NEW YORK"}
-            </a>
+          <Link
+            onMouseEnter={() => {
+              setLogoHover(true);
+            }}
+            onMouseLeave={() => {
+              setLogoHover(false);
+            }}
+            href={"/profile"}
+          >
+            {logoHover ? <span>Agency PROFILE</span> : "Collect NEW YORK"}
           </Link>
         </div>
       </div>
@@ -195,16 +194,15 @@ const HomeNav = ({ page, count, latest, tags, globalContent }) => {
                 ? `/archive?tag=${currentTag}`
                 : "/archive"
             }
+            className={styles.count_link}
           >
-            <a className={styles.count_link}>
-              ARCHIVE (
-              {count && !archiveCounted
-                ? newCount
-                : count && archiveCounted
-                ? count
-                : 0}
-              )
-            </a>
+            ARCHIVE (
+            {count && !archiveCounted
+              ? newCount
+              : count && archiveCounted
+              ? count
+              : 0}
+            )
           </Link>
         </div>
       </div>
