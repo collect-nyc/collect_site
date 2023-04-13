@@ -9,6 +9,10 @@
 .container {
   padding: 108px $navGutter_desktop 0 $navGutter_desktop;
   min-height: calc(100vh - 168px);
+
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 108px $navGutter_mobile 0 $navGutter_mobile;
+  }
 }
 
 .text {
