@@ -15,10 +15,6 @@
     display: block;
     margin-bottom: 20px;
   }
-
-  @media screen and (max-width: $mq-mobile-max) {
-    // padding-bottom: 55px;
-  }
 }
 
 .main {
@@ -258,7 +254,6 @@
         ul {
           padding-left: 20px;
         }
-        // margin-top: 40px;
       }
     }
 
@@ -267,7 +262,6 @@
       height: auto;
 
       .column {
-        // border-bottom: 1px solid $black;
         border-right: none;
         padding: 12px $navGutter_mobile 80px;
         width: 100%;
@@ -283,7 +277,8 @@
           background-color: $black;
         }
 
-        &.about.mobile {
+        &.about.mobile,
+        &:last-of-type {
           &:after {
             display: none;
           }

@@ -1,13 +1,13 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import Footer from "../components/Footer";
+import HomeFooter from "../components/HomeFooter";
 import { RichText } from "prismic-reactjs";
-import EditionsLogo from "../svg/editions.svg";
 import animateScrollTo from "animated-scroll-to";
+import { useInView, motion } from "framer-motion";
 import styles from "./About.module.scss";
 
 export async function getServerSideProps() {
@@ -27,8 +27,17 @@ const About = ({ document }) => {
   const clientsRef = useRef(null);
   const editionsRef = useRef(null);
 
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef);
+
   // console.log("Profile Content", document.data);
   const page_content = document.data;
+
+  // framer motion variants
+  const mobileNavVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
 
   return (
     <div className={styles.container}>
@@ -49,7 +58,13 @@ const About = ({ document }) => {
           <span className={styles.mobile_border} />
         </div>
 
-        <div className={styles.mobile_jump}>
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={isInView ? "hidden" : "visible"}
+          transition={{ duration: 0.2 }}
+          variants={mobileNavVariants}
+          className={styles.mobile_jump}
+        >
           <div className={styles.holder}>
             <button
               onClick={() =>
@@ -88,7 +103,7 @@ const About = ({ document }) => {
               Éditions
             </button>
           </div>
-        </div>
+        </motion.div>
 
         <div className={styles.grid}>
           {/* ABOUT */}
@@ -310,8 +325,8 @@ const About = ({ document }) => {
         </div>
 
         {/* FULL FOOTER FOR MOBILE */}
-        <div className={styles.mobilefooter}>
-          <Footer />
+        <div ref={footerRef} className={styles.mobilefooter}>
+          <HomeFooter />
         </div>
       </main>
     </div>

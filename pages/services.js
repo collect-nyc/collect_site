@@ -1,13 +1,14 @@
-import { useState, useRef } from "react";
+import { useRef, useEffect } from "react";
 import { Client } from "../lib/prismic-config";
 import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import Footer from "../components/Footer";
+import HomeFooter from "../components/HomeFooter";
 import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import animateScrollTo from "animated-scroll-to";
+import { useInView, motion } from "framer-motion";
 import styles from "./Services.module.scss";
 
 export async function getServerSideProps() {
@@ -32,8 +33,25 @@ const Services = ({ data, projects }) => {
   const page_data = data.data;
   const caseStudies = projects;
 
-  console.log("Page Data", page_data);
-  console.log("Case Studies", caseStudies);
+  const footerRef = useRef(null);
+  const isInView = useInView(footerRef);
+
+  // useEffect(() => {
+  //   if (isInView) {
+  //     console.log("Its in View", isInView);
+  //   } else {
+  //     console.log("Its not in View", isInView);
+  //   }
+  // }, [isInView]);
+
+  // console.log("Page Data", page_data);
+  // console.log("Case Studies", caseStudies);
+
+  // framer motion variants
+  const mobileNavVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
 
   return (
     <div className={styles.container}>
@@ -57,7 +75,13 @@ const Services = ({ data, projects }) => {
           <span className={styles.mobile_border} />
         </div>
 
-        <div className={styles.mobile_jump}>
+        <motion.div
+          initial={{ opacity: 1 }}
+          animate={isInView ? "hidden" : "visible"}
+          transition={{ duration: 0.2 }}
+          variants={mobileNavVariants}
+          className={styles.mobile_jump}
+        >
           <div className={styles.holder}>
             <button
               onClick={() =>
@@ -96,7 +120,7 @@ const Services = ({ data, projects }) => {
               In Practice
             </button>
           </div>
-        </div>
+        </motion.div>
 
         <div className={styles.grid}>
           {/* APPROACH */}
@@ -252,8 +276,8 @@ const Services = ({ data, projects }) => {
         </div>
 
         {/* FULL FOOTER FOR MOBILE */}
-        <div className={styles.mobilefooter}>
-          <Footer />
+        <div ref={footerRef} className={styles.mobilefooter}>
+          <HomeFooter />
         </div>
       </main>
     </div>

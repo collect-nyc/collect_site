@@ -15,10 +15,6 @@
     display: block;
     margin-bottom: 20px;
   }
-
-  @media screen and (max-width: $mq-mobile-max) {
-    // padding-bottom: 55px;
-  }
 }
 
 .main {
@@ -271,10 +267,6 @@
           }
         }
       }
-
-      .clients_collabs {
-        // margin-top: 40px;
-      }
     }
 
     @media screen and (max-width: $mq-mobile-max) {
@@ -298,16 +290,11 @@
           background-color: $black;
         }
 
-        &.about.mobile {
+        &.about.mobile,
+        &:last-of-type {
           &:after {
             display: none;
           }
-        }
-
-        .clients_collabs {
-          // border-top: 1px solid $black;
-          // padding-top: 10px;
-          // margin-top: 80px;
         }
       }
     }
