@@ -32,6 +32,7 @@ const Services = ({ data, projects }) => {
   const page_data = data.data;
   const caseStudies = projects;
 
+  console.log("Page Data", page_data);
   console.log("Case Studies", caseStudies);
 
   return (
@@ -103,23 +104,9 @@ const Services = ({ data, projects }) => {
             ref={approachRef}
             className={`${styles.column} ${styles.approach}`}
           >
-            <h2 className={`heading`}>Our Approach</h2>
-            <span className={styles.subtitle}>New York, Paris, Chicago</span>
-            <p>
-              We work with company leaders, business owners and
-              singularly-talented artists in the realms of commerce and culture
-              to transform ideas in realities.
-            </p>
-            <p>
-              Enterprise clients engage with our studio to solve key issues in
-              design and technology, working alongside leadership establish
-              brand vision and systems, lorem ipsum dolor sit amet.
-            </p>
-            <p>
-              We partner with artists and creators to create gorgeous objects
-              and experiences that resonate with their audiences, from limited
-              edition vinyl pressings to art books, printed matter and merch.
-            </p>
+            <h2 className={`heading`}>{page_data.title[0].text}</h2>
+            <span className={styles.subtitle}>{page_data.subtitle}</span>
+            <RichText render={page_data.description} />
           </div>
 
           {/* SERVICES */}
@@ -127,15 +114,10 @@ const Services = ({ data, projects }) => {
             ref={servicesRef}
             className={`${styles.column} ${styles.services}`}
           >
-            <h3 className={`heading`}>COLLECTED SERVICES</h3>
-            <span className={styles.subtitle}>What We Do</span>
+            <h3 className={`heading`}>{page_data.title2[0].text}</h3>
+            <span className={styles.subtitle}>{page_data.subtitle2}</span>
 
-            <p>
-              We draw on expertise across a range of disciplines, shaping each
-              project along lines of design and technology in the service of
-              expression and function with teams, skills and scopes tailored to
-              each project:
-            </p>
+            <RichText render={page_data.description2} />
 
             <div className={styles.clients_collabs}>
               <h4 className={`heading`}>Creative Direction</h4>
@@ -204,14 +186,12 @@ const Services = ({ data, projects }) => {
             ref={practiceRef}
             className={`${styles.column} ${styles.practice}`}
           >
-            <h3 className={`heading`}>In Practice</h3>
-            <span className={styles.subtitle}>Outcomes</span>
+            <h3 className={`heading`}>{page_data.title1[0].text}</h3>
+            <span className={styles.subtitle}>{page_data.subtitle1}</span>
 
-            <p className={styles.practice_intro}>
-              From one-off capsule projects to ongoing retainer relationships,
-              case studies demonstrates the craft and consideration that goes
-              into every project, regardless of format or scale:
-            </p>
+            <div className={styles.practice_intro}>
+              <RichText render={page_data.description1} />
+            </div>
 
             <div className={styles.case_studies}>
               {caseStudies && caseStudies.length > 0

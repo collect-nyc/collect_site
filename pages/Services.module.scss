@@ -203,9 +203,13 @@
       &.practice {
         p {
           margin-bottom: 20px;
+        }
 
-          &.practice_intro {
-            margin-bottom: 27px;
+        .practice_intro {
+          margin-bottom: 27px;
+
+          p:last-of-type {
+            margin-bottom: 0;
           }
         }
 
