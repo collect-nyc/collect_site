@@ -44,7 +44,7 @@ const Services = ({ data, projects }) => {
   //   }
   // }, [isInView]);
 
-  // console.log("Page Data", page_data);
+  console.log("Page Data", page_data);
   // console.log("Case Studies", caseStudies);
 
   // framer motion variants
@@ -184,6 +184,18 @@ const Services = ({ data, projects }) => {
               <ul className={styles.technical}>
                 {page_data?.web_development
                   ? page_data.web_development.map((offering, key) => (
+                      <li key={key}>
+                        <RichText render={offering.item} />
+                      </li>
+                    ))
+                  : null}
+              </ul>
+
+              <h4 className={`heading ${styles.group}`}>Photography</h4>
+              <p>{page_data.photography_description[0].text}</p>
+              <ul className={styles.technical}>
+                {page_data?.photography_offerings
+                  ? page_data.photography_offerings.map((offering, key) => (
                       <li key={key}>
                         <RichText render={offering.item} />
                       </li>
