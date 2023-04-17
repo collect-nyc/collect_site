@@ -237,7 +237,9 @@ const About = ({ document }) => {
             </div>
             {page_content.client_case_studies?.length > 0 && (
               <div className={styles.clients_cases}>
-                <h3 className={`heading`}>RECENT WORK</h3>
+                <h3 className={`heading`}>
+                  {page_content.recent_work_title[0].text}
+                </h3>
                 <span className={styles.subtitle}>
                   {page_content.recent_work_subtitle}
                 </span>
