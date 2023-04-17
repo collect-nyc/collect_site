@@ -87,7 +87,7 @@ export default function ArchiveLoaderMobile({ data }) {
         </ul>
       ) : null}
       <div className={styles.text_container}>
-        <p>Collect ARCHIVE, Ongoing — Reopening Fall 2023</p>
+        <p>Collect ARCHIVE, Reopening Fall 2023</p>
       </div>
 
       {/* <Link href={"/"} className={styles.return_link}>

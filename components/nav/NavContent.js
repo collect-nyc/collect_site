@@ -31,7 +31,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       <div className={`${styles.top_right} ${styles.profile_right}`}>
         <span className={styles.archive}>
           {page === "archive_index" ? (
-            "Collect ARCHIVE, Ongoing — Reopening Fall 2023"
+            "Collect ARCHIVE, Reopening Fall 2023"
           ) : (
             <>
               {globalContent && globalContent.services_descriptor
