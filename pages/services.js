@@ -44,7 +44,7 @@ const Services = ({ data, projects }) => {
   //   }
   // }, [isInView]);
 
-  console.log("Page Data", page_data);
+  // console.log("Page Data", page_data);
   // console.log("Case Studies", caseStudies);
 
   // framer motion variants

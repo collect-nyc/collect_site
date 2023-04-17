@@ -18,10 +18,15 @@
 }
 
 .slider_container {
-  cursor: none;
+  // cursor: none;
+  cursor: pointer;
   position: relative;
   height: 100%;
   width: 100%;
+
+  &:active {
+    cursor: grabbing;
+  }
   // overflow: hidden;
 
   @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {

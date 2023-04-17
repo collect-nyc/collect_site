@@ -260,8 +260,10 @@
           padding: 0px 8px;
           font-size: 10px;
           line-height: 1.8;
+          opacity: 1;
           position: absolute;
           top: 10px;
+          transition: opacity 0.2s ease-in-out;
 
           @media (hover: none) {
             transition: opacity 0.2s ease-in-out;
@@ -275,7 +277,7 @@
         @media (hover: hover) {
           &:hover {
             .slide_count {
-              display: none;
+              opacity: 0;
             }
           }
         }
