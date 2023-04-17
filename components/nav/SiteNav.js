@@ -34,8 +34,8 @@ const SiteNav = ({ page, count, globalContent }) => {
     let countUpTime = getRandomTime();
 
     const intervalId = setInterval(() => {
-      const minIncrement = 75;
-      const maxIncrement = 175;
+      const minIncrement = 150;
+      const maxIncrement = 250;
 
       numCount += Math.floor(
         Math.random() * (maxIncrement - minIncrement + 1) + minIncrement
