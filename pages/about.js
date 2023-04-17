@@ -30,7 +30,7 @@ const About = ({ document }) => {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef);
 
-  console.log("Profile Content", document.data);
+  // console.log("Profile Content", document.data);
   const page_content = document.data;
 
   // framer motion variants
