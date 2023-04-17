@@ -108,7 +108,7 @@ const About = ({ document }) => {
         <div className={styles.grid}>
           {/* ABOUT */}
           <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
-            <h3 className={`heading`}>Our Team</h3>
+            <h3 className={`heading`}>{page_content.team_title[0].text}</h3>
             <span className={styles.subtitle}>
               {page_content.our_team_subtitle}
             </span>
@@ -163,7 +163,9 @@ const About = ({ document }) => {
             ref={inquiryRef}
             className={`${styles.column} ${styles.contact}`}
           >
-            <h2 className={`heading`}>Inquiries</h2>
+            <h2 className={`heading`}>
+              {page_content.inquiries_title[0].text}
+            </h2>
             <span className={styles.subtitle}>
               {page_content.inquiries_subtitle}
             </span>
@@ -183,10 +185,14 @@ const About = ({ document }) => {
             </div>
 
             <div className={styles.contact_collab}>
-              <h2 className={`heading`}>Opportunities</h2>
-              <span className={styles.subtitle}>Work with Us</span>
+              <h2 className={`heading`}>
+                {page_content.opportunities_title[0].text}
+              </h2>
+              <span className={styles.subtitle}>
+                {page_content.opportunities_subtitle}
+              </span>
 
-              <p>For freelance opportunities send your work or DM:</p>
+              <RichText render={page_content.opportunities_description} />
 
               <ul>
                 <li>
@@ -202,53 +208,6 @@ const About = ({ document }) => {
                 </li>
               </ul>
             </div>
-
-            <div
-              className={`${styles.column} ${styles.about} ${styles.mobile}`}
-            >
-              <div className={styles.partner}>
-                <span className={styles.name}>Andrew J.S.</span>
-                <span>{page_content ? page_content.andrew[0].text : null}</span>
-              </div>
-
-              <div className={styles.partner}>
-                <span className={styles.name}>Joshua Tuscan</span>
-                <span>{page_content ? page_content.joshua[0].text : null}</span>
-              </div>
-
-              <div className={styles.partner}>
-                <span className={styles.name}>Luke Robertson</span>
-                <span>
-                  <a href="https://luke-robertson.com" target="_blank">
-                    Independent Art Director ↗
-                  </a>
-                </span>
-              </div>
-
-              <div className={styles.insta_group}>
-                <ul className="insta">
-                  {page_content
-                    ? page_content.instagrams.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-
-              <div className={styles.socials_group}>
-                <ul className={styles.socials}>
-                  {page_content
-                    ? page_content.socials.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-            </div>
           </div>
 
           {/* OFFERING */}
@@ -256,7 +215,7 @@ const About = ({ document }) => {
             ref={offeringRef}
             className={`${styles.column} ${styles.offering}`}
           >
-            <h3 className={`heading`}>CLIENTS, COLLABORATORS</h3>
+            <h3 className={`heading`}>{page_content.clients_title[0].text}</h3>
             <span className={styles.subtitle}>
               {page_content.clients_subtitle}
             </span>
@@ -305,7 +264,7 @@ const About = ({ document }) => {
             ref={editionsRef}
             className={`${styles.column} ${styles.editions}`}
           >
-            <h3 className={`heading`}>Éditions</h3>
+            <h3 className={`heading`}>{page_content.editions_title[0].text}</h3>
             <span className={styles.subtitle}>
               {page_content.editions_subtitle}
             </span>
