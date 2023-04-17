@@ -30,7 +30,7 @@ const About = ({ document }) => {
   const footerRef = useRef(null);
   const isInView = useInView(footerRef);
 
-  // console.log("Profile Content", document.data);
+  console.log("Profile Content", document.data);
   const page_content = document.data;
 
   // framer motion variants
@@ -109,7 +109,9 @@ const About = ({ document }) => {
           {/* ABOUT */}
           <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
             <h3 className={`heading`}>Our Team</h3>
-            <span className={styles.subtitle}>New York, Paris, Chicago</span>
+            <span className={styles.subtitle}>
+              {page_content.our_team_subtitle}
+            </span>
             <div className={styles.partner}>
               <span className={styles.name}>Andrew J.S.</span>
               <span>{page_content ? page_content.andrew[0].text : null}</span>
@@ -124,7 +126,9 @@ const About = ({ document }) => {
               <span className={styles.name}>Luke Robertson</span>
               <span>
                 <a href="https://luke-robertson.com" target="_blank">
-                  Independent Art Director ↗
+                  {page_content
+                    ? page_content.luke[0].text
+                    : "Independent Art Director ↗"}
                 </a>
               </span>
             </div>
@@ -160,7 +164,9 @@ const About = ({ document }) => {
             className={`${styles.column} ${styles.contact}`}
           >
             <h2 className={`heading`}>Inquiries</h2>
-            <span className={styles.subtitle}>New Business</span>
+            <span className={styles.subtitle}>
+              {page_content.inquiries_subtitle}
+            </span>
             <div className={styles.contact_summary}>
               {page_content ? (
                 <RichText render={page_content.instruction} />
@@ -251,9 +257,11 @@ const About = ({ document }) => {
             className={`${styles.column} ${styles.offering}`}
           >
             <h3 className={`heading`}>CLIENTS, COLLABORATORS</h3>
-            <span className={styles.subtitle}>Culture and Commerce</span>
+            <span className={styles.subtitle}>
+              {page_content.clients_subtitle}
+            </span>
 
-            <RichText render={page_content.summary} />
+            <RichText render={page_content.clients_description} />
 
             <div ref={clientsRef} className={styles.clients_collabs}>
               <ul>
@@ -271,7 +279,9 @@ const About = ({ document }) => {
             {page_content.client_case_studies?.length > 0 && (
               <div className={styles.clients_cases}>
                 <h3 className={`heading`}>RECENT WORK</h3>
-                <span className={styles.subtitle}>New Projects</span>
+                <span className={styles.subtitle}>
+                  {page_content.recent_work_subtitle}
+                </span>
 
                 {page_content.client_case_studies.map((case_study, key) => (
                   <div key={key} className={styles.case_study}>
@@ -296,7 +306,9 @@ const About = ({ document }) => {
             className={`${styles.column} ${styles.editions}`}
           >
             <h3 className={`heading`}>Éditions</h3>
-            <span className={styles.subtitle}>Fall 2023</span>
+            <span className={styles.subtitle}>
+              {page_content.editions_subtitle}
+            </span>
 
             {page_content.editions_text ? (
               <RichText render={page_content.editions_text} />
