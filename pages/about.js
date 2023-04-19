@@ -122,39 +122,24 @@ const About = ({ document }) => {
               <span>{page_content ? page_content.joshua[0].text : null}</span>
             </div>
 
-            <div className={styles.partner}>
-              <span className={styles.name}>Luke Robertson</span>
-              <span>
-                <a href="https://luke-robertson.com" target="_blank">
-                  {page_content
-                    ? page_content.luke[0].text
-                    : "Independent Art Director ↗"}
-                </a>
+            <div className={styles.partners_section}>
+              <h3 className={`heading`}>
+                {page_content.partners_title[0].text}
+              </h3>
+              <span className={styles.subtitle}>
+                {page_content.partners_subtitle}
               </span>
-            </div>
 
-            <div className={styles.insta_group}>
-              <ul className="insta">
-                {page_content
-                  ? page_content.instagrams.map((handle, key) => (
-                      <li key={key}>
-                        <RichText render={handle.item} />
-                      </li>
-                    ))
-                  : null}
-              </ul>
-            </div>
-
-            <div className={styles.socials_group}>
-              <ul className={styles.socials}>
-                {page_content
-                  ? page_content.socials.map((handle, key) => (
-                      <li key={key}>
-                        <RichText render={handle.item} />
-                      </li>
-                    ))
-                  : null}
-              </ul>
+              <div className={styles.partner}>
+                <span className={styles.name}>Luke Robertson</span>
+                <span>
+                  <a href="https://luke-robertson.com" target="_blank">
+                    {page_content
+                      ? page_content.luke[0].text
+                      : "Independent Art Director ↗"}
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
 
@@ -207,6 +192,36 @@ const About = ({ document }) => {
                   </a>
                 </li>
               </ul>
+            </div>
+
+            <div className={styles.follow_section}>
+              <h2 className={`heading`}>{page_content.follow_title[0].text}</h2>
+              <span className={styles.subtitle}>
+                {page_content.follow_subtitle}
+              </span>
+              <div className={styles.insta_group}>
+                <ul className="insta">
+                  {page_content
+                    ? page_content.instagrams.map((handle, key) => (
+                        <li key={key}>
+                          <RichText render={handle.item} />
+                        </li>
+                      ))
+                    : null}
+                </ul>
+              </div>
+
+              <div className={styles.socials_group}>
+                <ul className={styles.socials}>
+                  {page_content
+                    ? page_content.socials.map((handle, key) => (
+                        <li key={key}>
+                          <RichText render={handle.item} />
+                        </li>
+                      ))
+                    : null}
+                </ul>
+              </div>
             </div>
           </div>
 
