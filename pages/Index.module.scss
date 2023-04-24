@@ -265,21 +265,21 @@
           top: 10px;
           transition: opacity 0.2s ease-in-out;
 
-          @media (hover: none) {
-            transition: opacity 0.2s ease-in-out;
-
-            &.hide {
-              opacity: 0;
-            }
+          &.hide {
+            opacity: 0;
           }
+
+          // @media (hover: none) {
+          //   transition: opacity 0.2s ease-in-out;
+          // }
         }
 
         @media (hover: hover) {
-          &:hover {
-            .slide_count {
-              opacity: 0;
-            }
-          }
+          // &:hover {
+          //   .slide_count {
+          //     opacity: 0;
+          //   }
+          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
