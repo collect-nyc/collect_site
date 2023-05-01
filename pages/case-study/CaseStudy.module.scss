@@ -239,15 +239,34 @@
   .holder {
     position: absolute;
     top: calc(50% - 50px);
-    left: helpers.$navGutter_mobile;
-    width: calc(100% - helpers.$navGutter_mobile * 2);
+    top: 50%;
+    left: 0;
+    width: 100%;
     transform: translateY(-50%);
 
+    div > div > div > div {
+      height: 100%;
+    }
+
     figure {
+      @include helpers.aspect-ratio(4, 5);
+      height: 100%;
+      margin-right: 10px;
+
+      .content {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        padding: {
+          left: helpers.$navGutter_mobile;
+          right: helpers.$navGutter_mobile;
+        }
+      }
+
       img,
       video {
+        height: auto;
         width: 100%;
-        object-fit: cover;
       }
     }
   }

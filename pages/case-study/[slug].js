@@ -423,26 +423,28 @@ const CaseStudy = ({ document, studies }) => {
                       onClick={() => mobileRef?.current?.slickNext()}
                       key={index}
                     >
-                      {slide.mobile_video?.url ? (
-                        <video
-                          className={styles.video}
-                          autoPlay
-                          muted
-                          loop
-                          playsInline
-                        >
-                          <source
-                            src={slide.mobile_video.url}
-                            type="video/mp4"
+                      <div className={styles.content}>
+                        {slide.mobile_video?.url ? (
+                          <video
+                            className={styles.video}
+                            autoPlay
+                            muted
+                            loop
+                            playsInline
+                          >
+                            <source
+                              src={slide.mobile_video.url}
+                              type="video/mp4"
+                            />
+                          </video>
+                        ) : (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img
+                            src={slide.mobile_image.url}
+                            alt={slide.mobile_image.alt}
                           />
-                        </video>
-                      ) : (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                          src={slide.mobile_image.url}
-                          alt={slide.mobile_image.alt}
-                        />
-                      )}
+                        )}
+                      </div>
                     </figure>
                   );
                 })}
