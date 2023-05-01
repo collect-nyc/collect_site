@@ -179,7 +179,8 @@ const CaseStudy = ({ document, studies }) => {
                       />
                     </video>
                   ) : (
-                    slice.primary.full_screen_image && (
+                    slice.primary.full_screen_image &&
+                    slice.primary.full_screen_image.url && (
                       <Image
                         src={slice.primary.full_screen_image.url}
                         layout={"responsive"}
