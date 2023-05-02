@@ -84,10 +84,11 @@ const CaseStudy = ({ document, studies }) => {
     arrows: false,
     dots: false,
     infinite: true,
-    speed: 500,
+    // speed: 500,
     slidesToShow: 1.665,
     slidesToScroll: 1,
     centerMode: true,
+    cssEase: "ease-in-out",
     beforeChange: (current, next) => {
       setCurrentSlide(next);
     },
@@ -154,6 +155,17 @@ const CaseStudy = ({ document, studies }) => {
       return newArray;
     } else {
       return theArray;
+    }
+  };
+
+  // useEffect(() => {
+
+  // }, []);
+
+  const InitSliderz = (index) => {
+    if (refs[index]) {
+      previousSlidez(index);
+      nextSlidez(index);
     }
   };
 
