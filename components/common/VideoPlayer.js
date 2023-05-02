@@ -1,7 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const VideoPlayer = ({ source }) => {
   const videoRef = useRef(null);
+  // const [isLoaded, setIsLoaded] = useState(false);
+
+  // const handleLoadedData = () => {
+  //   setIsLoaded(true);
+  // };
+
+  // useEffect(() => {
+  //   if (isLoaded) {
+  //     console.log("Video is loaded", source);
+  //     // videoRef.current.play();
+  //   }
+  // }, [isLoaded]);
 
   useEffect(() => {
     if (videoRef.current && videoRef.current.paused) {
@@ -13,6 +25,7 @@ const VideoPlayer = ({ source }) => {
   return (
     <video
       className="component_video"
+      // onLoadedData={handleLoadedData}
       ref={videoRef}
       autoPlay
       muted
