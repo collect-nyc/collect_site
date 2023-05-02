@@ -44,7 +44,11 @@ const SiteNav = ({ page, count, globalContent }) => {
       // If the count is greater than or equal to the total, stop the interval and log the final count
       if (numCount > target) {
         clearInterval(intervalId);
-        window.scrollTo(0, 0);
+
+        if (page === "index") {
+          window.scrollTo(0, 0);
+        }
+
         setNewCount(target);
         setArchiveCounted(true);
         setTimeout(() => {
