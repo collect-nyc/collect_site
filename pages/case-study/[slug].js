@@ -23,6 +23,7 @@ import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
 // import MemoryContext from "../../components/MemoryContext";
 import { ImageSlider } from "../../components/ImageSlider";
+import VideoPlayer from "../../components/common/VideoPlayer";
 import Slider from "react-slick";
 import styles from "./CaseStudy.module.scss";
 
@@ -168,18 +169,7 @@ const CaseStudy = ({ document, studies }) => {
               >
                 <figure className={styles.fullscreen_image_container}>
                   {slice.primary.full_screen_video?.url ? (
-                    <video
-                      className={styles.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    >
-                      <source
-                        src={slice.primary.full_screen_video.url}
-                        type="video/mp4"
-                      />
-                    </video>
+                    <VideoPlayer source={slice.primary.full_screen_video.url} />
                   ) : (
                     slice.primary.full_screen_image &&
                     slice.primary.full_screen_image.url && (
@@ -205,18 +195,7 @@ const CaseStudy = ({ document, studies }) => {
               >
                 <figure className={styles.centered_image_container}>
                   {slice.primary.centered_video?.url ? (
-                    <video
-                      className={styles.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    >
-                      <source
-                        src={slice.primary.centered_video.url}
-                        type="video/mp4"
-                      />
-                    </video>
+                    <VideoPlayer source={slice.primary.centered_video.url} />
                   ) : (
                     slice.primary.centered_image && (
                       <Image
@@ -248,15 +227,7 @@ const CaseStudy = ({ document, studies }) => {
                 </div>
                 <figure className={styles.image_container}>
                   {slice.primary.video?.url ? (
-                    <video
-                      className={styles.video}
-                      autoPlay
-                      muted
-                      loop
-                      playsInline
-                    >
-                      <source src={slice.primary.video.url} type="video/mp4" />
-                    </video>
+                    <VideoPlayer source={slice.primary.video.url} />
                   ) : (
                     slice.primary.image && (
                       <Image
@@ -296,15 +267,7 @@ const CaseStudy = ({ document, studies }) => {
                         index={i}
                       >
                         {item.video?.url ? (
-                          <video
-                            className={styles.video}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                          >
-                            <source src={item.video.url} type="video/mp4" />
-                          </video>
+                          <VideoPlayer source={item.video.url} />
                         ) : (
                           item.image && (
                             <Image
@@ -428,18 +391,7 @@ const CaseStudy = ({ document, studies }) => {
                     >
                       <div className={styles.content}>
                         {slide.mobile_video?.url ? (
-                          <video
-                            className={styles.video}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                          >
-                            <source
-                              src={slide.mobile_video.url}
-                              type="video/mp4"
-                            />
-                          </video>
+                          <VideoPlayer source={slide.mobile_video.url} />
                         ) : (
                           // eslint-disable-next-line @next/next/no-img-element
                           <img
