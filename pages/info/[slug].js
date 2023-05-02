@@ -78,9 +78,8 @@ const EssentialText = ({ document, uid }) => {
     <>
       <div className={styles.container} ref={ref}>
         <Head>
-          <title>{_.capitalize(uid)} – Collect NYC</title>
+          <title>{_.capitalize(uid)} &ndash; Collect NYC</title>
           {/* TODO: add meta description content */}
-          <meta name="description" content={_.capitalize(uid)} />
 
           <SharedHead />
         </Head>

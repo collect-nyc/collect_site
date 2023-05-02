@@ -604,6 +604,10 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
     return null;
   }
 
+  const PageTitle = page_data.title[0].text
+    ? page_data.title[0].text
+    : "Collect NYC Project";
+
   return (
     <>
       <div
@@ -621,10 +625,8 @@ const ArchiveItem = ({ document, uid, case_study, project_title }) => {
       >
         <Head>
           <title>
-            {page_data.title[0].text
-              ? page_data.title[0].text
-              : "Collect NYC Project"}{" "}
-            – {SITE_NAME}
+            {PageTitle}
+            &ndash; {SITE_NAME}
           </title>
           <meta
             name="description"

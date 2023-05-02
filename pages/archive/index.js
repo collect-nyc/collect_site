@@ -650,7 +650,7 @@ const Home = ({ archives, document, tagged, loader }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Collect Archive</title>
+        <title>Archive - Collect NEW YORK</title>
         <meta
           name="description"
           content="Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."

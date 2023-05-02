@@ -64,7 +64,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  console.log("PAGE DATA", document, "ALL STUDIES", studies);
+  console.log("PAGE DATA", document);
 
   const {
     body,
@@ -76,6 +76,8 @@ const CaseStudy = ({ document, studies }) => {
     tagline,
     title,
   } = document.data;
+
+  const PageTitle = title[0].text ? title[0].text : "Case Study";
 
   const exploreRef = useRef(null);
   const creditsRef = useRef(null);
@@ -357,7 +359,7 @@ const CaseStudy = ({ document, studies }) => {
     <>
       <Head>
         <title>
-          {title[0].text ? title[0].text : "Case Study"} – {SITE_NAME}
+          {PageTitle} &ndash; {SITE_NAME}
         </title>
         <meta
           name="description"

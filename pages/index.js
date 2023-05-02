@@ -650,7 +650,7 @@ const Home = ({ document }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Collect NYC</title>
+        <title>Collect NEW YORK</title>
         <meta
           name="description"
           content="Independent agency for NEW IDEAS in direction, design, technology and development."

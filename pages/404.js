@@ -24,7 +24,7 @@ const Custom404 = () => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>404 Not Found – Collect NYC</title>
+        <title>404 Not Found &ndash; Collect NYC</title>
         <meta
           name="description"
           content="You have reached a page that does not exist. Head back to the COLLECT index."
