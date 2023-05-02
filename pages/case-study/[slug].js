@@ -72,7 +72,7 @@ const CaseStudy = ({ document, studies }) => {
   const exploreRef = useRef(null);
   const creditsRef = useRef(null);
 
-  const [currentSlide, setCurrentSlide] = useState(1);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [currentMobileSlide, setMobileCurrentSlide] = useState(1);
   const [nextProject, setNextProject] = useState(null);
   const [showCredits, setShowCredits] = useState(false);
@@ -89,7 +89,7 @@ const CaseStudy = ({ document, studies }) => {
     slidesToScroll: 1,
     centerMode: true,
     beforeChange: (current, next) => {
-      setCurrentSlide(next + 1);
+      setCurrentSlide(next);
     },
     responsive: [
       {
@@ -143,6 +143,17 @@ const CaseStudy = ({ document, studies }) => {
   const previousSlidez = (index) => {
     if (refs[index]) {
       refs[index].current.slickPrev();
+    }
+  };
+
+  const moveLastToFirst = (theArray) => {
+    if (theArray.length > 1) {
+      const lastElement = theArray[theArray.length - 1];
+      const newArray = [lastElement, ...theArray.slice(0, -1)];
+      console.log("New Array", newArray);
+      return newArray;
+    } else {
+      return theArray;
     }
   };
 
@@ -238,7 +249,7 @@ const CaseStudy = ({ document, studies }) => {
                 className={`${styles.section} ${styles.carousel}`}
               >
                 <Slider ref={refs[index]} {...settings}>
-                  {slice.items.map((item, i) => {
+                  {moveLastToFirst(slice.items).map((item, i) => {
                     return (
                       <div
                         onClick={(event) => {
@@ -276,12 +287,13 @@ const CaseStudy = ({ document, studies }) => {
                   <div className={styles.holder}>
                     <div className={styles.details}>
                       <span className={styles.numbers}>
-                        {currentSlide}/{slice.items.length}
+                        {currentSlide + 1}/{slice.items.length}
                       </span>
                       <span className={styles.caption}>
-                        {currentSlide === slice.items.length
+                        {/* {currentSlide === slice.items.length
                           ? slice.items[0]?.caption
-                          : slice.items[currentSlide]?.caption}
+                          : slice.items[currentSlide]?.caption} */}
+                        {slice.items[currentSlide]?.caption}
                       </span>
                     </div>
                     <ul className={styles.arrows}>
@@ -301,11 +313,6 @@ const CaseStudy = ({ document, studies }) => {
           }
         })
       : null;
-
-  // On click
-  // Scroll to: "01 Lead Video";
-  // Animate: Animate;
-  // Spring: { mass: 1, stiffness: 80, damping: 20 };
 
   return (
     <>
