@@ -11,7 +11,8 @@ import MemoryContext from "../components/MemoryContext";
 import LoaderContext from "../components/LoaderContext";
 import HomeFooter from "../components/HomeFooter";
 import { motion } from "framer-motion";
-import Marquee from "react-fast-marquee";
+// import Marquee from "react-fast-marquee";
+import VideoPlayer from "../components/common/VideoPlayer";
 import FeaturedSlider from "../components/FeaturedSlider";
 import animateScrollTo from "animated-scroll-to";
 import styles from "./Index.module.scss";
@@ -198,12 +199,11 @@ const Home = ({ document }) => {
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].video &&
                 slice.primary.case_study_link.data.images[0].video.url ? (
-                <video className={styles.video} autoPlay muted loop playsInline>
-                  <source
-                    src={slice.primary.case_study_link.data.images[0].video.url}
-                    type="video/mp4"
-                  />
-                </video>
+                <VideoPlayer
+                  source={
+                    slice.primary.case_study_link.data.images[0].video.url
+                  }
+                />
               ) : slice.primary.case_study_link.data &&
                 slice.primary.case_study_link.data.images[0].image &&
                 slice.primary.case_study_link.data.images[0].image.url ? (

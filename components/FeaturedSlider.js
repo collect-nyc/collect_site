@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/legacy/image";
 import Slider from "react-slick";
-import Cursor from "./Cursor";
+// import Cursor from "./Cursor";
+import VideoPlayer from "./common/VideoPlayer";
 import { useInView } from "react-intersection-observer";
 import { is_touch_enabled } from "../lib/helpers";
 import styles from "./FeaturedSlider.module.scss";
@@ -82,9 +83,7 @@ const FeaturedSlider = ({
           ) {
             return (
               <div className={styles.video_container} key={i}>
-                <video playsInline loop autoPlay muted>
-                  <source src={image.video.url} type="video/mp4" />
-                </video>
+                <VideoPlayer source={image.video.url} />
               </div>
             );
           } else if (Object.keys(image.image).length > 0 && image.image.url) {
