@@ -11,7 +11,7 @@ import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import { SITE_NAME } from "../../lib/constants";
 // import MemoryContext from "../../components/MemoryContext";
-import { ImageSlider } from "../../components/ImageSlider";
+// import { ImageSlider } from "../../components/ImageSlider";
 import VideoPlayer from "../../components/common/VideoPlayer";
 import Slider from "react-slick";
 import styles from "./CaseStudy.module.scss";
@@ -54,7 +54,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  console.log("PAGE DATA", document);
+  // console.log("PAGE DATA", document);
 
   const {
     body,
@@ -79,16 +79,40 @@ const CaseStudy = ({ document, studies }) => {
 
   const mobileRef = useRef(null);
   const refs = useMemo(() => body?.map(() => React.createRef()), []);
+  const [clickedArray, setClickedArray] = useState([]);
+
+  useEffect(() => {
+    console.log("REFS", refs);
+
+    if (refs.length > 0) {
+      const newArray = refs.map((item) => {
+        return (item = false);
+      });
+      setClickedArray(newArray);
+    }
+  }, []);
+
+  // useEffect(() => {
+  //   if (clickedArray.length > 0) {
+  //     console.log("clicked array", clickedArray);
+  //   }
+  // }, [clickedArray]);
+
+  function handleUpdateItem(index) {
+    const updatedItems = [...clickedArray]; // Make a copy of the original array
+    updatedItems[index] = true; // Update the value at the specified index
+    setClickedArray(updatedItems); // Set the state variable to the new array
+  }
 
   const settings = {
     arrows: false,
     dots: false,
     infinite: true,
-    // speed: 500,
     slidesToShow: 1.665,
     slidesToScroll: 1,
     centerMode: true,
     cssEase: "ease-in-out",
+    useTransform: true,
     beforeChange: (current, next) => {
       setCurrentSlide(next);
     },
@@ -106,7 +130,6 @@ const CaseStudy = ({ document, studies }) => {
     arrows: false,
     dots: false,
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
     beforeChange: (current, next) => {
@@ -151,21 +174,10 @@ const CaseStudy = ({ document, studies }) => {
     if (theArray.length > 1) {
       const lastElement = theArray[theArray.length - 1];
       const newArray = [lastElement, ...theArray.slice(0, -1)];
-      console.log("New Array", newArray);
+      // console.log("New Array", newArray);
       return newArray;
     } else {
       return theArray;
-    }
-  };
-
-  // useEffect(() => {
-
-  // }, []);
-
-  const InitSliderz = (index) => {
-    if (refs[index]) {
-      previousSlidez(index);
-      nextSlidez(index);
     }
   };
 
@@ -260,11 +272,34 @@ const CaseStudy = ({ document, studies }) => {
                 key={index}
                 className={`${styles.section} ${styles.carousel}`}
               >
-                <Slider ref={refs[index]} {...settings}>
+                <Slider
+                  className={`${"carousel_slider"} ${
+                    "carousel_slider_" + index
+                  }`}
+                  ref={refs[index]}
+                  {...settings}
+                >
                   {moveLastToFirst(slice.items).map((item, i) => {
                     return (
                       <div
                         onClick={(event) => {
+                          handleUpdateItem(index);
+
+                          // console.log(
+                          //   "Clicked Array Value",
+                          //   clickedArray[index]
+                          // );
+
+                          if (clickedArray[index] === true) {
+                            if (
+                              event.target.closest(".carousel_slider") !== null
+                            ) {
+                              event.target
+                                .closest(".carousel_slider")
+                                .classList.remove("carousel_slider");
+                            }
+                          }
+
                           const hasAncestorWithClassname =
                             event.target.closest(".slick-current") !== null;
 
@@ -310,10 +345,44 @@ const CaseStudy = ({ document, studies }) => {
                     </div>
                     <ul className={styles.arrows}>
                       <li>
-                        <button onClick={() => previousSlidez(index)}>←</button>
+                        <button
+                          onClick={() => {
+                            handleUpdateItem(index);
+
+                            if (clickedArray[index] === true) {
+                              const element = window.document.querySelector(
+                                ".carousel_slider_" + index
+                              );
+                              if (element) {
+                                element.classList.remove("carousel_slider");
+                              }
+                            }
+
+                            previousSlidez(index);
+                          }}
+                        >
+                          ←
+                        </button>
                       </li>
                       <li>
-                        <button onClick={() => nextSlidez(index)}>→</button>
+                        <button
+                          onClick={() => {
+                            handleUpdateItem(index);
+
+                            if (clickedArray[index] === true) {
+                              const element = window.document.querySelector(
+                                ".carousel_slider_" + index
+                              );
+                              if (element) {
+                                element.classList.remove("carousel_slider");
+                              }
+                            }
+
+                            nextSlidez(index);
+                          }}
+                        >
+                          →
+                        </button>
                       </li>
                     </ul>
                   </div>
