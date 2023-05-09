@@ -278,7 +278,7 @@ const CaseStudy = ({ document, studies }) => {
                 <Slider
                   className={`${"carousel_slider"} ${
                     "carousel_slider_" + index
-                  }`}
+                  } ${styles.slider}`}
                   ref={refs[index]}
                   {...settings}
                 >
@@ -389,6 +389,33 @@ const CaseStudy = ({ document, studies }) => {
                       </li>
                     </ul>
                   </div>
+                </div>
+
+                <div className={styles.mobile_stack}>
+                  {slice.items.map((item, i) => {
+                    return (
+                      <div
+                        key={i}
+                        className={`${styles.mobile_stack_item} ${
+                          currentSlide === i ? styles.active : ""
+                        }`}
+                      >
+                        {item.video?.url ? (
+                          <VideoPlayer source={item.video.url} />
+                        ) : (
+                          item.image && (
+                            <Image
+                              src={item.image.url}
+                              layout={"responsive"}
+                              alt={item.image.alt}
+                              height={item.image.dimensions.height}
+                              width={item.image.dimensions.width}
+                            />
+                          )
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               </section>
             );

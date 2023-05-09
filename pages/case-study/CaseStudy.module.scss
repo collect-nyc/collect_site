@@ -214,10 +214,6 @@
     &.carousel {
       margin-bottom: 110px;
 
-      @media screen and (max-width: helpers.$mq-mobile-max) {
-        margin-bottom: helpers.$navGutter_mobile;
-      }
-
       .carousel_slide {
         cursor: grab;
         padding: 0 10px;
@@ -270,6 +266,30 @@
               display: inline-block;
               margin-left: 10px;
             }
+          }
+        }
+      }
+
+      .mobile_stack {
+        display: none;
+      }
+
+      @media screen and (max-width: helpers.$mq-mobile-max) {
+        margin-bottom: helpers.$navGutter_mobile;
+        padding: {
+          left: helpers.$navGutter_mobile;
+          right: helpers.$navGutter_mobile;
+        }
+
+        .slider {
+          display: none;
+        }
+
+        .mobile_stack {
+          display: block;
+
+          .mobile_stack_item {
+            margin-bottom: helpers.$navGutter_mobile;
           }
         }
       }
