@@ -22,6 +22,34 @@
   }
 }
 
+.mobile_jump {
+  display: none;
+
+  &:hover {
+    text-decoration: none;
+  }
+
+  @media screen and (max-width: helpers.$mq-mobile-max) {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 25px;
+    width: 100%;
+    z-index: 5;
+
+    .holder {
+      display: flex;
+      justify-content: center;
+      background-color: colors.$white;
+      backdrop-filter: blur(5px);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      border-radius: 25px;
+      padding: 17px 30px 19px;
+    }
+  }
+}
+
 .intro {
   @include typography.body_text;
   display: flex;

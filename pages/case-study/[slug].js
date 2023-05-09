@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/legacy/image";
 import Prismic from "prismic-javascript";
 import { RichText } from "prismic-reactjs";
-import { motion } from "framer-motion";
+import { useInView, motion } from "framer-motion";
 import animateScrollTo from "animated-scroll-to";
 import SharedHead from "../../components/SharedHead";
 import MyLayout from "../../layouts/MyLayout";
@@ -81,6 +81,7 @@ const CaseStudy = ({ document, studies }) => {
   const [showCredits, setShowCredits] = useState(false);
 
   const mobileRef = useRef(null);
+  const isInView = useInView(creditsRef);
   const refs = useMemo(() => body?.map(() => React.createRef()), []);
   const [clickedArray, setClickedArray] = useState([]);
 
@@ -425,6 +426,12 @@ const CaseStudy = ({ document, studies }) => {
         })
       : null;
 
+  // framer motion variants
+  const mobileNavVariants = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
+  };
+
   return (
     <>
       <Head>
@@ -648,6 +655,25 @@ const CaseStudy = ({ document, studies }) => {
             </div>
           </div>
         </motion.footer>
+        <motion.button
+          initial={{ opacity: 1 }}
+          animate={isInView ? "hidden" : "visible"}
+          transition={{ duration: 0.2 }}
+          variants={mobileNavVariants}
+          className={styles.mobile_jump}
+          onClick={() =>
+            animateScrollTo(creditsRef.current, {
+              easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+              minDuration: 600,
+              speed: 500,
+              verticalOffset: -48,
+            })
+          }
+        >
+          <div className={styles.holder}>
+            <span>View Full Project Info</span>
+          </div>
+        </motion.button>
       </main>
     </>
   );
