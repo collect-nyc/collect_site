@@ -19,7 +19,7 @@ body {
   @extend .body_text;
   overflow-x: hidden;
 
-  &.case_study {
+  &.case_study_carousel {
     @media screen and (max-width: $mq-mobile-max) {
       overflow: hidden;
 

@@ -26,7 +26,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
   );
   const studies = projects.results;
 
-  const page = "case_study";
+  const page = document.data.use_carousel
+    ? "case_study_carousel"
+    : "case_study";
 
   return {
     props: { document, studies, page, revalidate: 10 },
@@ -54,7 +56,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  // console.log("PAGE DATA", document);
+  console.log("PAGE DATA", document);
 
   const {
     body,
@@ -65,6 +67,7 @@ const CaseStudy = ({ document, studies }) => {
     mobile_images,
     tagline,
     title,
+    use_carousel,
   } = document.data;
 
   const PageTitle = title[0].text ? title[0].text : "Case Study";
@@ -82,7 +85,7 @@ const CaseStudy = ({ document, studies }) => {
   const [clickedArray, setClickedArray] = useState([]);
 
   useEffect(() => {
-    console.log("REFS", refs);
+    // console.log("REFS", refs);
 
     if (refs.length > 0) {
       const newArray = refs.map((item) => {
@@ -412,7 +415,11 @@ const CaseStudy = ({ document, studies }) => {
 
         <SharedHead />
       </Head>
-      <main className={styles.case_study_page}>
+      <main
+        className={`${styles.case_study_page} ${
+          use_carousel && styles.carousel
+        }`}
+      >
         <header className={styles.intro}>
           <h1>{tagline && tagline}</h1>
           <div className={styles.description}>
@@ -453,11 +460,40 @@ const CaseStudy = ({ document, studies }) => {
             </ul>
           </div>
         </header>
-        <article className={styles.main_content} ref={exploreRef} id="explore">
+
+        <header
+          className={`${styles.mobile_intro} ${
+            use_carousel && styles.carousel
+          }`}
+        >
+          <span className={styles.heading}>
+            {title[0].text && title[0].text}
+          </span>
+          <span className={styles.subtitle}>
+            {document.tags?.map((tag, i, arr) => {
+              if (arr.length - 1 === i) {
+                return <span key={i}>{tag}</span>;
+              } else {
+                return <span key={i}>{tag}, </span>;
+              }
+            })}
+          </span>
+        </header>
+        <article
+          className={`${styles.main_content} ${
+            use_carousel && styles.carousel
+          }`}
+          ref={exploreRef}
+          id="explore"
+        >
           {SliceZone}
         </article>
         {mobile_images && mobile_images.length > 0 ? (
-          <aside className={styles.mobile_slides}>
+          <aside
+            className={`${styles.mobile_slides} ${
+              use_carousel && styles.carousel
+            }`}
+          >
             <div className={styles.holder}>
               <Slider ref={mobileRef} {...mobileSettings}>
                 {mobile_images.map((slide, index) => {
@@ -486,8 +522,8 @@ const CaseStudy = ({ document, studies }) => {
         ) : null}
 
         <motion.footer
-          className={`${styles.credits_section} ${
-            showCredits ? styles.open : null
+          className={`${styles.credits_section} ${showCredits && styles.open} ${
+            use_carousel ? styles.carousel : styles.full
           }`}
           ref={creditsRef}
           id="info"
@@ -522,6 +558,15 @@ const CaseStudy = ({ document, studies }) => {
             <div className={styles.description}>
               <span className={styles.title}>
                 {title[0].text ? title[0].text : "Case Study"}
+              </span>
+              <span className={styles.subtitle}>
+                {document.tags?.map((tag, i, arr) => {
+                  if (arr.length - 1 === i) {
+                    return <span key={i}>{tag}</span>;
+                  } else {
+                    return <span key={i}>{tag}, </span>;
+                  }
+                })}
               </span>
               {project_description && project_description.length > 0 ? (
                 <RichText render={project_description} />

@@ -42,8 +42,11 @@ export default function MyLayout({
   useEffect(() => {
     if (page === "case_study") {
       document.body.classList.add("case_study");
+    } else if (page === "case_study_carousel") {
+      document.body.classList.add("case_study_carousel");
     } else {
       document.body.classList.remove("case_study");
+      document.body.classList.remove("case_study_carousel");
     }
   }, [page]);
 
