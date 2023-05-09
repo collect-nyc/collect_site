@@ -4,6 +4,8 @@
 
 .case_study_page {
   padding: 49px 0 30px;
+  position: relative;
+  z-index: 1;
 
   @media screen and (max-width: helpers.$mq-mobile-max) {
     &.carousel {
