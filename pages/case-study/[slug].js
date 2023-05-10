@@ -666,7 +666,7 @@ const CaseStudy = ({ document, studies }) => {
               easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
               minDuration: 600,
               speed: 500,
-              verticalOffset: -47,
+              verticalOffset: -46,
             })
           }
         >
