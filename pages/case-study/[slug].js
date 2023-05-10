@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  console.log("PAGE DATA", document);
+  // console.log("PAGE DATA", document);
 
   const {
     body,
@@ -666,7 +666,7 @@ const CaseStudy = ({ document, studies }) => {
               easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
               minDuration: 600,
               speed: 500,
-              verticalOffset: -48,
+              verticalOffset: -47,
             })
           }
         >
