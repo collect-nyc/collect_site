@@ -112,6 +112,7 @@ $gerstner: "Gerstner Programm", sans-serif;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  font-feature-settings: "case" on;
 
   @media screen and (max-width: $mq-mobile-max) {
     // line-height: 17px;
