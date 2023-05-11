@@ -9,6 +9,15 @@ const VideoPlayer = ({ source }) => {
   };
 
   useEffect(() => {
+    setTimeout(() => {
+      if (videoRef.current && videoRef.current.paused) {
+        console.log("Video is paused", source);
+        videoRef.current.play();
+      }
+    }, 50);
+  }, []);
+
+  useEffect(() => {
     if (isLoaded) {
       console.log("Video is loaded", source);
       videoRef.current.play();
@@ -19,17 +28,10 @@ const VideoPlayer = ({ source }) => {
     };
   }, [isLoaded]);
 
-  useEffect(() => {
-    if (videoRef.current && videoRef.current.paused) {
-      console.log("Video is paused", source);
-      videoRef.current.play();
-    }
-  }, []);
-
   return (
     <video
       className="component_video"
-      // onLoadedData={handleLoadedData}
+      onLoadedData={handleLoadedData}
       ref={videoRef}
       autoPlay
       muted
