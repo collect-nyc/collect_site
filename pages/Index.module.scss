@@ -425,7 +425,12 @@
 
       &.right {
         flex-direction: row-reverse;
-        padding-left: 0;
+        // padding-left: 0;
+
+        .details {
+          padding-left: 0;
+          padding-right: 5%;
+        }
 
         .media_container {
           .slide_count {
