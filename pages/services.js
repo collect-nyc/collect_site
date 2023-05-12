@@ -9,6 +9,7 @@ import { RichText } from "prismic-reactjs";
 import Image from "next/image";
 import animateScrollTo from "animated-scroll-to";
 import { useInView, motion } from "framer-motion";
+import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 
 export async function getServerSideProps() {

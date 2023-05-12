@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import VideoPlayer from "../components/common/VideoPlayer";
 import FeaturedSlider from "../components/FeaturedSlider";
 import animateScrollTo from "animated-scroll-to";
+import { SITE_NAME } from "../lib/constants";
 import styles from "./Index.module.scss";
 
 export async function getServerSideProps({ query }) {

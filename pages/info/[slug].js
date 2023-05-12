@@ -10,6 +10,7 @@ import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import { apolloClient } from "../../lib/apollo-config";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { SITE_NAME } from "../../lib/constants";
 import styles from "./EssentialText.module.scss";
 
 export async function getStaticProps({ params, preview = false, previewData }) {
@@ -19,6 +20,9 @@ export async function getStaticProps({ params, preview = false, previewData }) {
       query essential_text($uid: String!) {
         essential_text(lang: "en-us", uid: $uid) {
           text
+          meta_title
+          meta_description
+          meta_image
         }
       }
     `,
@@ -55,9 +59,10 @@ export async function getStaticPaths() {
 }
 
 const EssentialText = ({ document, uid }) => {
-  const page_data = document;
+  const { meta_title, meta_description, meta_image, text } =
+    document.essential_text;
 
-  // console.log("Project Data", page_data);
+  console.log("Project Data", document.essential_text);
 
   const ref = useRef();
   const { scrollYProgress } = useViewportScroll(ref);
@@ -78,8 +83,36 @@ const EssentialText = ({ document, uid }) => {
     <>
       <div className={styles.container} ref={ref}>
         <Head>
-          <title>{_.capitalize(uid)} &ndash; Collect NYC</title>
-          {/* TODO: add meta description content */}
+          <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
+          <meta
+            name="description"
+            content={
+              meta_description
+                ? meta_description
+                : "Independent agency for NEW IDEAS in direction, design, technology and development."
+            }
+          />
+
+          <meta
+            property="og:title"
+            content={meta_title ? meta_title : `${SITE_NAME}`}
+          />
+          <meta
+            property="og:description"
+            content={
+              meta_description
+                ? meta_description
+                : "Independent agency for NEW IDEAS in direction, design, technology and development."
+            }
+          />
+          <meta
+            property="og:image"
+            content={
+              meta_image?.url
+                ? meta_image.url
+                : "https://collect.nyc/images/collect-new-york-og.jpg"
+            }
+          />
 
           <SharedHead />
         </Head>
@@ -95,9 +128,7 @@ const EssentialText = ({ document, uid }) => {
               style={{ scrollYProgress, opacity: bottom_gradient }}
               key={"essential_bottom"}
             />
-            {page_data.essential_text ? (
-              <RichText render={page_data.essential_text.text} />
-            ) : null}
+            {text ? <RichText render={text} /> : null}
           </div>
         </main>
       </div>

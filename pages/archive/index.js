@@ -16,6 +16,7 @@ import { isEqual } from "../../lib/helpers";
 import ArchiveLoader from "../../components/ArchiveLoader";
 import ArchiveLoaderMobile from "../../components/ArchiveLoaderMobile";
 import Marquee from "react-fast-marquee";
+import { SITE_NAME } from "../../lib/constants";
 import styles from "./ArchiveIndex.module.scss";
 
 export async function getServerSideProps({ query }) {
