@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  console.log("PAGE DATA", document);
+  // console.log("PAGE DATA", document);
 
   const {
     body,
