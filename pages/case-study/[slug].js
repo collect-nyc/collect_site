@@ -56,7 +56,7 @@ export async function getStaticPaths() {
 }
 
 const CaseStudy = ({ document, studies }) => {
-  // console.log("PAGE DATA", document);
+  console.log("PAGE DATA", document);
 
   const {
     body,
@@ -68,6 +68,7 @@ const CaseStudy = ({ document, studies }) => {
     tagline,
     title,
     use_carousel,
+    index_thumbnail,
   } = document.data;
 
   const PageTitle = title[0].text ? title[0].text : "Case Study";
@@ -446,6 +447,19 @@ const CaseStudy = ({ document, studies }) => {
               : "A case study project by Collect NEW YORK."
           }
         />
+
+        <meta property="og:title" content={`${PageTitle} – ${SITE_NAME}`} />
+        <meta
+          property="og:description"
+          content={
+            header_description && header_description.length > 0
+              ? header_description[0].text
+              : "A case study project by Collect NEW YORK."
+          }
+        />
+        {index_thumbnail?.url && (
+          <meta property="og:image" content={index_thumbnail.url} />
+        )}
 
         <SharedHead />
       </Head>

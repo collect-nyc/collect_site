@@ -1,6 +1,6 @@
 import React from "react";
 
-const SharedHead = () => {
+const SharedHead = ({ title, desc }) => {
   return (
     <React.Fragment>
       <link
