@@ -103,8 +103,7 @@ export async function getServerSideProps({ query }) {
 const Home = ({ archives, document, tagged, loader, archive_page }) => {
   // console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
-
-  console.log("Archive Page", archive_page);
+  // console.log("Archive Page", archive_page);
 
   const router = useRouter();
 
