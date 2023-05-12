@@ -62,7 +62,7 @@ const EssentialText = ({ document, uid }) => {
   const { meta_title, meta_description, meta_image, text } =
     document.essential_text;
 
-  console.log("Project Data", document.essential_text);
+  // console.log("Project Data", document.essential_text);
 
   const ref = useRef();
   const { scrollYProgress } = useViewportScroll(ref);
