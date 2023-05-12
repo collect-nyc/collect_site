@@ -44,6 +44,17 @@ const About = ({ document }) => {
       <Head>
         <title>About Collect NEW YORK</title>
         <meta name="description" content="Contact, Clients, Updates and More" />
+
+        <meta property="og:title" content={`About Collect NEW YORK`} />
+        <meta
+          property="og:description"
+          content={"Contact, Clients, Updates and More"}
+        />
+        <meta
+          property="og:image"
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+        />
+
         <SharedHead />
       </Head>
 

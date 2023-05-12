@@ -655,6 +655,19 @@ const Home = ({ archives, document, tagged, loader }) => {
           name="description"
           content="Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
         />
+
+        <meta property="og:title" content={`Archive - Collect NEW YORK`} />
+        <meta
+          property="og:description"
+          content={
+            "Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
+          }
+        />
+        <meta
+          property="og:image"
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+        />
+
         <SharedHead />
       </Head>
 

@@ -61,6 +61,22 @@ const Services = ({ data, projects }) => {
           name="description"
           content="Collect New York draws on expertise across a range of disciplines, shaping each project along lines of design and technology in the service of expression and function with teams, skills and scopes tailored to each project."
         />
+
+        <meta
+          property="og:title"
+          content={`Agency Services - Collect NEW YORK`}
+        />
+        <meta
+          property="og:description"
+          content={
+            "Collect New York draws on expertise across a range of disciplines, shaping each project along lines of design and technology in the service of expression and function with teams, skills and scopes tailored to each project."
+          }
+        />
+        <meta
+          property="og:image"
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+        />
+
         <SharedHead />
       </Head>
 
