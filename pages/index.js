@@ -655,6 +655,20 @@ const Home = ({ document }) => {
           name="description"
           content="Independent agency for NEW IDEAS in direction, design, technology and development."
         />
+
+        <meta property="og:title" content={`Collect NEW YORK`} />
+        <meta
+          property="og:description"
+          content={
+            "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
+        />
+
+        <meta
+          property="og:image"
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+        />
+
         <SharedHead />
       </Head>
 
