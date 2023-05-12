@@ -439,7 +439,11 @@ const CaseStudy = ({ document, studies }) => {
   return (
     <>
       <Head>
-        <title>{meta_title ? meta_title : `${PageTitle} – ${SITE_NAME}`}</title>
+        <title>
+          {meta_title
+            ? meta_title + ", a project by Collect NEW YORK"
+            : `${PageTitle} – ${SITE_NAME}`}
+        </title>
         <meta
           name="description"
           content={
