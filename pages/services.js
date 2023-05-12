@@ -33,6 +33,8 @@ const Services = ({ data, projects }) => {
   const page_data = data.data;
   const caseStudies = projects;
 
+  const { meta_title, meta_description, meta_image } = page_data;
+
   const footerRef = useRef(null);
   const isInView = useInView(footerRef);
 
@@ -56,25 +58,35 @@ const Services = ({ data, projects }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Agency Services - Collect NEW YORK</title>
+        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
         <meta
           name="description"
-          content="Collect New York draws on expertise across a range of disciplines, shaping each project along lines of design and technology in the service of expression and function with teams, skills and scopes tailored to each project."
+          content={
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
         />
 
         <meta
           property="og:title"
-          content={`Agency Services - Collect NEW YORK`}
+          content={meta_title ? meta_title : `${SITE_NAME}`}
         />
         <meta
           property="og:description"
           content={
-            "Collect New York draws on expertise across a range of disciplines, shaping each project along lines of design and technology in the service of expression and function with teams, skills and scopes tailored to each project."
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
         <meta
           property="og:image"
-          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+          content={
+            meta_image?.url
+              ? meta_image.url
+              : "https://collect.nyc/images/collect-new-york-og.jpg"
+          }
         />
 
         <SharedHead />

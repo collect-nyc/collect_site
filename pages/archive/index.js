@@ -34,6 +34,8 @@ export async function getServerSideProps({ query }) {
 
   const document = await Client().getSingle("home_page");
 
+  const archive_page = await Client().getSingle("index_page");
+
   const loader = await Client().getSingle("archive_loader");
 
   // Loop through all pages of results and build one big array
@@ -87,6 +89,7 @@ export async function getServerSideProps({ query }) {
   return {
     props: {
       document,
+      archive_page,
       loader,
       archives,
       page,
@@ -96,11 +99,15 @@ export async function getServerSideProps({ query }) {
   };
 }
 
-const Home = ({ archives, document, tagged, loader }) => {
+const Home = ({ archives, document, tagged, loader, archive_page }) => {
   // console.log("Pure Archive from Data", archives);
   // console.log("Page Data", document);
 
+  console.log("Archive Page", archive_page);
+
   const router = useRouter();
+
+  const { meta_title, meta_description, meta_image } = archive_page.data;
 
   const {
     archiveList,
@@ -650,22 +657,35 @@ const Home = ({ archives, document, tagged, loader }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Archive - Collect NEW YORK</title>
+        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
         <meta
           name="description"
-          content="Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
+          content={
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
         />
 
-        <meta property="og:title" content={`Archive - Collect NEW YORK`} />
+        <meta
+          property="og:title"
+          content={meta_title ? meta_title : `${SITE_NAME}`}
+        />
         <meta
           property="og:description"
           content={
-            "Collect Archive is an evolving space for sharing work, information, resources, and open-source tools of all kinds."
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
         <meta
           property="og:image"
-          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+          content={
+            meta_image?.url
+              ? meta_image.url
+              : "https://collect.nyc/images/collect-new-york-og.jpg"
+          }
         />
 
         <SharedHead />

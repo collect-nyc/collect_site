@@ -33,6 +33,8 @@ const About = ({ document }) => {
   // console.log("Profile Content", document.data);
   const page_content = document.data;
 
+  const { meta_title, meta_description, meta_image } = page_content;
+
   // framer motion variants
   const mobileNavVariants = {
     hidden: { opacity: 0 },
@@ -42,17 +44,35 @@ const About = ({ document }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>About Collect NEW YORK</title>
-        <meta name="description" content="Contact, Clients, Updates and More" />
+        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
+        <meta
+          name="description"
+          content={
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
+        />
 
-        <meta property="og:title" content={`About Collect NEW YORK`} />
+        <meta
+          property="og:title"
+          content={meta_title ? meta_title : `${SITE_NAME}`}
+        />
         <meta
           property="og:description"
-          content={"Contact, Clients, Updates and More"}
+          content={
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
         />
         <meta
           property="og:image"
-          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+          content={
+            meta_image?.url
+              ? meta_image.url
+              : "https://collect.nyc/images/collect-new-york-og.jpg"
+          }
         />
 
         <SharedHead />

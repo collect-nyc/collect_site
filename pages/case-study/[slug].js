@@ -69,6 +69,9 @@ const CaseStudy = ({ document, studies }) => {
     title,
     use_carousel,
     index_thumbnail,
+    meta_title,
+    meta_description,
+    meta_image,
   } = document.data;
 
   const PageTitle = title[0].text ? title[0].text : "Case Study";
@@ -436,30 +439,38 @@ const CaseStudy = ({ document, studies }) => {
   return (
     <>
       <Head>
-        <title>
-          {PageTitle} &ndash; {SITE_NAME}
-        </title>
+        <title>{meta_title ? meta_title : `${PageTitle} – ${SITE_NAME}`}</title>
         <meta
           name="description"
           content={
-            header_description && header_description.length > 0
-              ? header_description[0].text
+            meta_description
+              ? meta_description
               : "A case study project by Collect NEW YORK."
           }
         />
 
-        <meta property="og:title" content={`${PageTitle} – ${SITE_NAME}`} />
+        <meta
+          property="og:title"
+          content={meta_title ? meta_title : `${PageTitle} – ${SITE_NAME}`}
+        />
         <meta
           property="og:description"
           content={
-            header_description && header_description.length > 0
-              ? header_description[0].text
+            meta_description
+              ? meta_description
               : "A case study project by Collect NEW YORK."
           }
         />
-        {index_thumbnail?.url && (
-          <meta property="og:image" content={index_thumbnail.url} />
-        )}
+        <meta
+          property="og:image"
+          content={
+            meta_image?.url
+              ? meta_image.url
+              : index_thumbnail?.url
+              ? index_thumbnail.url
+              : "https://collect.nyc/images/collect-new-york-og.jpg"
+          }
+        />
 
         <SharedHead />
       </Head>

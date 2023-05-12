@@ -70,6 +70,9 @@ const Home = ({ document }) => {
     statement_first_paragraph,
     statement_second_paragraph,
     statement_heading,
+    meta_title,
+    meta_description,
+    meta_image,
   } = document.data;
 
   const { setRunCSFade, setCsColor, archiveCounted } =
@@ -650,23 +653,35 @@ const Home = ({ document }) => {
   return (
     <div className={styles.container}>
       <Head>
-        <title>Collect NEW YORK</title>
+        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
         <meta
           name="description"
-          content="Independent agency for NEW IDEAS in direction, design, technology and development."
-        />
-
-        <meta property="og:title" content={`Collect NEW YORK`} />
-        <meta
-          property="og:description"
           content={
-            "Independent agency for NEW IDEAS in direction, design, technology and development."
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
 
         <meta
+          property="og:title"
+          content={meta_title ? meta_title : `${SITE_NAME}`}
+        />
+        <meta
+          property="og:description"
+          content={
+            meta_description
+              ? meta_description
+              : "Independent agency for NEW IDEAS in direction, design, technology and development."
+          }
+        />
+        <meta
           property="og:image"
-          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
+          content={
+            meta_image?.url
+              ? meta_image.url
+              : "https://collect.nyc/images/collect-new-york-og.jpg"
+          }
         />
 
         <SharedHead />
