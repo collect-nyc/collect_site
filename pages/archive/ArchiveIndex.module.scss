@@ -97,7 +97,6 @@
             position: absolute;
             left: 20px;
             top: 22px;
-            font-family: $futura;
             font-size: 14px;
             font-weight: 700;
             line-height: 1;
@@ -126,7 +125,6 @@
           }
 
           .date {
-            @extend .courier_label;
             display: flex;
             justify-content: space-between;
             width: calc($gutter_desktop * 2);
@@ -178,7 +176,6 @@
 
         a {
           .view_project {
-            font-family: $untitled_sans;
             font-size: 12px;
             opacity: 0;
             padding-right: $navGutter_desktop;
@@ -311,7 +308,6 @@
     }
 
     button {
-      @extend .untitled_caps;
       background-color: transparent;
       border: none;
       cursor: pointer;

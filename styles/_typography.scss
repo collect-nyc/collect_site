@@ -1,72 +1,24 @@
 @import "./helpers";
 @import "./colors";
 
-@import url("https://use.typekit.net/byo6woz.css");
-
 @font-face {
-  font-family: "Untitled Sans";
-  src: url("/fonts/UntitledSans-Regular.woff2") format("woff2"),
-    url("/fonts/UntitledSans-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Untitled Sans";
-  src: url("/fonts/UntitledSans-RegularItalic.woff2") format("woff2"),
-    url("/fonts/UntitledSans-RegularItalic.woff") format("woff");
-  font-weight: normal;
+  font-family: "Gerstner Programm";
+  src: url("/fonts/GerstnerProgramm-BoldItalic.woff2") format("woff2"),
+    url("/fonts/GerstnerProgramm-BoldItalic.woff") format("woff");
+  font-weight: bold;
   font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Courier Prime";
-  src: url("/fonts/CourierPrime-Regular.woff2") format("woff2"),
-    url("/fonts/CourierPrime-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
   font-display: swap;
 }
 
 @font-face {
   font-family: "Gerstner Programm";
-  src: url("/fonts/GerstnerProgramm-Regular.woff2") format("woff2"),
-    url("/fonts/GerstnerProgramm-Regular.woff") format("woff");
-  font-weight: normal;
+  src: url("/fonts/GerstnerProgramm-Bold.woff2") format("woff2"),
+    url("/fonts/GerstnerProgramm-Bold.woff") format("woff");
+  font-weight: bold;
   font-style: normal;
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Gerstner Programm";
-  src: url("/fonts/GerstnerProgramm-Italic.woff2") format("woff2"),
-    url("/fonts/GerstnerProgramm-Italic.woff") format("woff");
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@mixin kingscaslon_regular {
-  font-size: 14px;
-  line-height: 1.286;
-  font-family: kings-caslon, sans-serif;
-  font-weight: 400;
-  font-style: normal;
-}
-
-@mixin kingscaslon_italic {
-  font-size: 14px;
-  line-height: 1.286;
-  font-family: kings-caslon, sans-serif;
-  font-weight: 400;
-  font-style: italic;
-}
-
-$futura: "Futura No2 D";
-$untitled_sans: "Untitled Sans";
-$courier: "Courier Prime";
 $gerstner: "Gerstner Programm", sans-serif;
 
 .heading_h1,
@@ -82,33 +34,32 @@ $gerstner: "Gerstner Programm", sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-.heading {
-  font-size: 14px;
-  line-height: 1.286;
-  font-weight: normal;
-  text-transform: uppercase;
-}
-
-.subheading {
-  color: $darkgray;
-}
-
-.casestudy_title {
-  font-family: $futura;
-  font-size: 96px;
-  font-weight: 700;
+.xl_type {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 36px;
   line-height: 1;
+}
 
-  @media screen and (max-width: $mq-mobile-max) {
-    font-size: 65px;
-  }
+.l_type {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.m_type {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 13px;
+  line-height: 1.307;
+}
+
+.s_type {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1.2;
 }
 
 .body_text {
-  font-family: $gerstner, Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.286;
-  font-weight: normal;
+  @extend .m_type;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
@@ -130,47 +81,5 @@ $gerstner: "Gerstner Programm", sans-serif;
 
   @media screen and (max-width: $mq-mobile-max) {
     // line-height: 17px;
-  }
-}
-
-.gerstner_cta {
-  font-family: $gerstner, Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.286;
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-.gerstner_caps {
-  @extend .body_text;
-  text-transform: uppercase;
-}
-
-.kings_italic {
-  @include kingscaslon_italic;
-}
-
-.untitled_caps {
-  @extend .body_text;
-  font-family: $untitled_sans;
-  font-weight: normal;
-  text-transform: uppercase;
-}
-
-.courier_label {
-  font-family: $courier;
-  font-size: 13px;
-  font-weight: normal;
-  line-height: 1.125;
-}
-
-.obvs_link {
-  text-decoration: underline;
-
-  &:hover {
-    text-decoration: none;
   }
 }

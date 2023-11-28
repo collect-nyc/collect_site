@@ -49,7 +49,6 @@
 
         a,
         button {
-          @extend .obvs_link;
         }
       }
     }
@@ -99,7 +98,6 @@
 
         h2 {
           span {
-            @include kingscaslon_italic;
             font-size: 46px;
             display: block;
             line-height: 1.26;
@@ -129,7 +127,6 @@
 
           h2 {
             span {
-              @include kingscaslon_italic;
               font-size: 32px;
               display: block;
               line-height: 36px;
@@ -176,12 +173,7 @@
         }
 
         .caslon {
-          @include kingscaslon_italic;
           margin-right: 17px;
-        }
-
-        .untitled {
-          font-family: $untitled_sans;
         }
       }
     }
@@ -364,7 +356,6 @@
           bottom: -3px;
 
           .tags {
-            @include kingscaslon_italic;
             display: block;
             padding-right: 10px;
             margin-top: 5px;
