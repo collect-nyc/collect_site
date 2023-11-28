@@ -365,7 +365,7 @@
 
   &.archive_index {
     background-color: $white;
-    border-bottom: 1px solid $platinum;
+    border-bottom: 1px solid $black;
     mix-blend-mode: normal;
 
     a,
@@ -537,7 +537,7 @@
     }
 
     .latest {
-      color: $alert;
+      color: $red;
       margin-right: 5px;
     }
   }
