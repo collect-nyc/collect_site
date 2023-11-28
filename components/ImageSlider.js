@@ -7,10 +7,10 @@ import {
   useDragControls,
 } from "framer-motion";
 // import { wrap } from "popmotion";
-import Image from "next/legacy/image";
 import styles from "./ImageSlider.module.scss";
 import LeftArrow from "../svg/left-arrow.svg";
 import RightArrow from "../svg/right-arrow.svg";
+import Image from "next/legacy/image";
 
 // const variants = {
 //   enter: (direction) => {
