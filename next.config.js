@@ -9,10 +9,6 @@ const nextConfig = {
       },
     ];
   },
-  // images: {
-  //   domains: ["images.prismic.io", "collectnyc.cdn.prismic.io"],
-  //   formats: ["image/avif", "image/webp"],
-  // },
   images: {
     remotePatterns: [
       {
