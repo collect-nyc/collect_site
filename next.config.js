@@ -23,7 +23,7 @@ const nextConfig = {
   },
   reactStrictMode: true,
   env: {
-    projectID: "w96ud7kz",
+    projectID: "b1xh2fd9",
     dataset: "production",
   },
   webpack: (config, { dev }) => {

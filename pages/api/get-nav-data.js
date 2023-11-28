@@ -11,7 +11,7 @@ export default async function handler(req, res) {
 
   lastResult = resp;
 
-  console.log("Archive Items", lastResult.length);
+  // console.log("Archive Items", lastResult.length);
 
   data.push(...resp);
 
