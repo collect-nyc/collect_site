@@ -1,32 +1,21 @@
-import * as prismic from "@prismicio/client";
 import { Client } from "../../lib/prismic-config";
 
 export default async function handler(req, res) {
-  // const newarchives = await Client().query(
-  //   Prismic.Predicates.at("document.type", "archive_item"),
-  //   { pageSize: 100, page: 1 }
-  // );
-
   const data = [];
-  let pageNum = 1;
+  // let pageNum = 1;
   let lastResult = [];
   let mediaCount = 0;
   let totalCount;
 
-  // Loop through pages of results and add those results to a storage array
-  do {
-    const resp = await Client().query(
-      prismic.Predicates.at("document.type", "archive_item"),
-      { pageSize: 100, page: pageNum }
-    );
+  const resp = await Client().getAllByType("archive_item");
 
-    lastResult = resp;
+  lastResult = resp;
 
-    data.push(...resp.results);
+  console.log("Archive Items", lastResult.length);
 
-    pageNum++;
-    // console.log("Page Num", pageNum);
-  } while (lastResult.next_page !== null);
+  data.push(...resp);
+
+  // pageNum++;
 
   data.forEach((item) => {
     const images = item.data.images ? item.data.images.length : 0;
