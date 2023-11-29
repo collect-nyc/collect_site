@@ -36,7 +36,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             <>
               {globalContent && globalContent.services_descriptor
                 ? globalContent.services_descriptor
-                : "Independent agency for NEW IDEAS in"}{" "}
+                : "Independent agency for"}{" "}
               {globalContent && globalContent.services
                 ? globalContent && globalContent.services[currentItem].service
                 : "Design"}

@@ -3,11 +3,6 @@ import MemoryContext from "../MemoryContext";
 import LoaderContext from "../LoaderContext";
 import HomeNav from "./HomeNav";
 import DefaultNav from "./DefaultNav";
-// import ArchiveNav from "./ArchiveNav";
-// import ArchiveItemNav from "./ArchiveItemNav";
-// import CaseStudyNav from "./CaseStudyNav";
-
-// import EssentialTextNav from "./EssentialTextNav";
 
 const SiteNav = ({ page, count, globalContent }) => {
   const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
@@ -17,9 +12,6 @@ const SiteNav = ({ page, count, globalContent }) => {
   const [showNav, setShowNav] = useState(loaderDidRun ? true : false);
 
   function getRandomTime() {
-    // console.log("Random time", Math.floor(Math.random() * 201) + 100);
-    // return Math.floor(Math.random() * 201) + 100;
-
     const minNumber = 500;
     const maxNumber = 750;
 
@@ -27,8 +19,6 @@ const SiteNav = ({ page, count, globalContent }) => {
   }
 
   const countUpTotal = (target) => {
-    // console.log("Counting up to: " + target);
-    // Set the starting count to 0
     let numCount = 0;
 
     let countUpTime = getRandomTime();

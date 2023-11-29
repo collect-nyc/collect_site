@@ -82,14 +82,18 @@ const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
         !archiveCounted && !loaderDidRun
           ? "fadeIn"
           : archiveCounted && !loaderDidRun
-          ? "slideUp"
+          ? "normal"
           : "normal"
       }
       variants={loaderVariants}
     >
       <div className={styles.animscreen} />
       <div
-        className={styles.loading_bar}
+        className={
+          loaderDidRun
+            ? `${styles.loading_bar} ${styles.finished}`
+            : styles.loading_bar
+        }
         style={{ width: `${count ? (newCount / count) * 100 : 0}%` }}
       />
       <NavContent

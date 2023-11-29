@@ -10,13 +10,13 @@
 }
 
 .main {
-  padding: 49px 0 0;
+  padding: 175px 0 0;
   position: relative;
 
-  &.loading {
-    // transform: translateY(calc(50vh - 49px));
-    top: calc(50vh - 49px);
-  }
+  // &.loading {
+  //   // transform: translateY(calc(50vh - 49px));
+  //   top: calc(50vh - 49px);
+  // }
 
   @media screen and (max-width: $mq-mobile-max) {
     padding: 0 0 0;
@@ -24,7 +24,7 @@
 
   .statement {
     height: auto;
-    padding: 95px $navGutter_desktop 0;
+    padding: 0 $navGutter_desktop;
 
     &__copy {
       margin-bottom: 24px;
