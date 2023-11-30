@@ -1,23 +1,29 @@
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  name: 'images',
+  name: 'featured',
   type: 'document',
-	title: 'Select Images',
+	title: 'Featured Projects',
   fields: [
     {
       name: 'title',
       type: 'string',
       title: 'Title',
+      validation: Rule => Rule.required()
     },
     {
       name: 'description',
-      type: 'string',
       title: 'Description',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
     },
     {
       type: 'array',
       name: 'images',
-      title: 'Select Images',
+      title: 'Featured Images',
       of: [
         {
           type: 'image',
@@ -32,6 +38,23 @@ export default {
           ],
         }
       ]
+    },
+    {
+      title: "Tags",
+      name: "tags",
+      type: "array",
+      of: [{type: "string"}],
+      options: {
+        layout: "tags"
+      }
+    },
+    {
+      title: 'Link',
+      name: 'href',
+      type: 'url',
+      validation: Rule => Rule.uri({
+        scheme: ['http', 'https', 'mailto', 'tel']
+      })
     },
   ]
 }
