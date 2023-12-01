@@ -67,7 +67,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               }`}
               href={"/about"}
             >
-              About
+              Get in Touch
             </Link>
           </span>
           {navOpen ? (
@@ -99,7 +99,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             }`}
           >
             <span className={!showNav ? styles.hide : styles.show}>
-              Archive
+              All Work
             </span>{" "}
             (
             {count && !archiveCounted
@@ -144,7 +144,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               href={"/about"}
               onClick={() => setNavOpen(false)}
             >
-              About
+              Get in Touch
             </Link>
           </li>
           <li>
@@ -156,7 +156,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               onClick={() => setNavOpen(false)}
             >
               <span className={!showNav ? styles.hide : styles.show}>
-                Archive
+                All Work
               </span>{" "}
               (
               {count && !archiveCounted

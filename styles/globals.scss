@@ -26,6 +26,20 @@ body {
     }
   }
 
+  &.services {
+    nav,
+    footer {
+      background-color: $folder;
+    }
+  }
+
+  &.about {
+    nav,
+    footer {
+      background-color: $blue;
+    }
+  }
+
   &.case_study_carousel {
     @media screen and (max-width: $mq-mobile-max) {
       overflow: hidden;
