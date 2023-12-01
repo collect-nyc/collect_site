@@ -25,6 +25,7 @@ export default {
           type: 'block',
         },
       ],
+      validation: Rule => Rule.required()
     },
     {
       title: 'Projects',
