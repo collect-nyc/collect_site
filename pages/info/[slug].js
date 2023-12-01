@@ -5,31 +5,17 @@ import { RichText } from "prismic-reactjs";
 import SharedHead from "../../components/SharedHead";
 import Footer from "../../components/Footer";
 import MyLayout from "../../layouts/MyLayout";
-import { Client } from "../../lib/prismic-config";
+import { client } from "../../sanity.config";
+import { PortableText } from "@portabletext/react";
+// import { Client } from "../../lib/prismic-config";
 import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SITE_NAME } from "../../lib/constants";
 import styles from "./EssentialText.module.scss";
 
-export async function getServerSideProps({
-  params,
-  preview = false,
-  previewData,
-}) {
-  const uid = params.slug;
-  const data = await Client().getByUID("essential_text", uid);
+const EssentialText = ({ document }) => {
+  const { title, metadesc, slug, bodycopy } = document;
 
-  // console.log(data);
-
-  const document = data;
-  const page = "essential_text";
-
-  return { props: { document, page, uid, revalidate: 60 } };
-}
-
-const EssentialText = ({ document, uid }) => {
-  const { meta_title, meta_description, meta_image, text } = document.data;
-
-  console.log("Project Data", document);
+  // console.log("Project Data", document);
 
   const ref = useRef();
   const { scrollYProgress } = useViewportScroll(ref);
@@ -50,35 +36,28 @@ const EssentialText = ({ document, uid }) => {
     <>
       <div className={styles.container} ref={ref}>
         <Head>
-          <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
+          <title>{title ? title : `${SITE_NAME}`}</title>
           <meta
             name="description"
             content={
-              meta_description
-                ? meta_description
+              metadesc
+                ? metadesc
                 : "Independent agency for NEW IDEAS in direction, design, technology and development."
             }
           />
 
-          <meta
-            property="og:title"
-            content={meta_title ? meta_title : `${SITE_NAME}`}
-          />
+          <meta property="og:title" content={title ? title : `${SITE_NAME}`} />
           <meta
             property="og:description"
             content={
-              meta_description
-                ? meta_description
+              metadesc
+                ? metadesc
                 : "Independent agency for NEW IDEAS in direction, design, technology and development."
             }
           />
           <meta
             property="og:image"
-            content={
-              meta_image?.url
-                ? meta_image.url
-                : "https://collect.nyc/images/collect-new-york-og.jpg"
-            }
+            content={"https://collect.nyc/images/collect-new-york-og.jpg"}
           />
 
           <SharedHead />
@@ -95,7 +74,7 @@ const EssentialText = ({ document, uid }) => {
               style={{ scrollYProgress, opacity: bottom_gradient }}
               key={"essential_bottom"}
             />
-            {text ? <RichText render={text} /> : null}
+            {bodycopy ? <PortableText value={bodycopy} /> : null}
           </div>
         </main>
       </div>
@@ -103,6 +82,27 @@ const EssentialText = ({ document, uid }) => {
     </>
   );
 };
+
+export async function getServerSideProps({ params }) {
+  const slug = params.slug;
+  const document = await client.fetch(
+    `
+    *[_type == "essential" && slug.current == $slug][0]{
+      title,
+      metadesc,
+      slug,
+      bodycopy
+    }
+  `,
+    { slug: slug }
+  );
+
+  return {
+    props: {
+      document,
+    },
+  };
+}
 
 EssentialText.Layout = MyLayout;
 export default EssentialText;
