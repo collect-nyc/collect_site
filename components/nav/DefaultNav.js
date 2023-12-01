@@ -9,7 +9,14 @@ const DefaultNav = ({ page, newCount, count, globalContent, showNav }) => {
     <>
       <nav
         className={`${styles.navigation} ${
-          page === "archive_index" && styles.archive
+          page === "essential"
+            ? styles.essential
+            : page === "about"
+            ? styles.about
+            : page === "services"
+            ? styles.services
+            : null
+        }
         }`}
       >
         <NavContent

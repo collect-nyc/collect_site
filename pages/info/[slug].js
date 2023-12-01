@@ -7,8 +7,6 @@ import Footer from "../../components/Footer";
 import MyLayout from "../../layouts/MyLayout";
 import { client } from "../../sanity.config";
 import { PortableText } from "@portabletext/react";
-// import { Client } from "../../lib/prismic-config";
-import { motion, useTransform, useViewportScroll } from "framer-motion";
 import { SITE_NAME } from "../../lib/constants";
 import styles from "./EssentialText.module.scss";
 

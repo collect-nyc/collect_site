@@ -41,12 +41,17 @@ export default function MyLayout({
 
   useEffect(() => {
     if (page === "essential") {
-      document.body.classList.add("essential");
+      document.body.className = "essential";
     } else if (page === "index") {
-      document.body.classList.add("homepage");
+      document.body.className = "homepage";
+    } else if (page === "about") {
+      document.body.className = "about";
+    } else if (page === "services") {
+      document.body.className = "services";
+    } else if (page === "archive_index") {
+      document.body.className = "archive_index";
     } else {
-      document.body.classList.remove("essential");
-      document.body.classList.remove("homepage");
+      document.body.className = "";
     }
   }, [page]);
 
