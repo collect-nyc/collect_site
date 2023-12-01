@@ -83,7 +83,7 @@ button {
 /* Set Up Masonry Grid for Index */
 .my-masonry-grid {
   display: flex;
-  margin-left: -#{$navGutter_desktop}; /* gutter size offset */
+  margin-left: -#{$gutter_desktop}; /* gutter size offset */
   width: auto;
 
   @media screen and (max-width: $mq-mobile-max) {
@@ -91,7 +91,7 @@ button {
   }
 }
 .my-masonry-grid_column {
-  padding-left: $navGutter_desktop; /* gutter size */
+  padding-left: $gutter_desktop; /* gutter size */
   background-clip: padding-box;
 
   @media screen and (max-width: $mq-mobile-max) {

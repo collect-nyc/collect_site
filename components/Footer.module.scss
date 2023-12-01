@@ -7,10 +7,10 @@
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: flex-end;
-  padding: $navGutter_desktop;
+  padding: $gutter_desktop;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 22px $navGutter_mobile 30px;
+    padding: 22px $gutter_mobile 30px;
   }
 
   .contact {

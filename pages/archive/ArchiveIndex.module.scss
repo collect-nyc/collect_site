@@ -20,7 +20,7 @@
 
 .archive_header {
   display: block;
-  padding: 217px $navGutter_desktop 189px;
+  padding: 217px $gutter_desktop 189px;
   position: fixed;
   top: 0;
   width: 100%;
@@ -32,7 +32,7 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 180px $navGutter_mobile 100px;
+    padding: 180px $gutter_mobile 100px;
 
     p {
       max-width: none;
@@ -105,11 +105,11 @@
 
           .name {
             padding: {
-              left: $navGutter_desktop;
-              right: $navGutter_desktop;
+              left: $gutter_desktop;
+              right: $gutter_desktop;
             }
             text-transform: uppercase;
-            width: calc($gutter_desktop * 3);
+            width: calc($column_desktop * 3);
 
             @media screen and (max-width: $mq-mobile-max) {
               width: calc(100% - 40px);
@@ -117,7 +117,7 @@
           }
 
           .tags {
-            width: calc($gutter_desktop * 3);
+            width: calc($column_desktop * 3);
 
             @media screen and (max-width: $mq-mobile-max) {
               display: none;
@@ -127,24 +127,24 @@
           .date {
             display: flex;
             justify-content: space-between;
-            width: calc($gutter_desktop * 2);
+            width: calc($column_desktop * 2);
 
             @media screen and (max-width: $mq-mobile-max) {
               justify-content: flex-end;
               padding: {
-                right: $gutter_mobile;
+                right: $column_mobile;
               }
             }
           }
 
           .thumbnail {
-            width: calc($gutter_desktop * 2);
+            width: calc($column_desktop * 2);
             padding: 0 40px;
           }
 
           @media screen and (max-width: $mq-mobile-max) {
             padding: {
-              left: $gutter_mobile;
+              left: $column_mobile;
             }
           }
         }
@@ -169,7 +169,7 @@
         .coming_soon {
           .view_project {
             opacity: 0;
-            padding-right: $navGutter_desktop;
+            padding-right: $gutter_desktop;
             text-align: right;
           }
         }
@@ -178,9 +178,9 @@
           .view_project {
             font-size: 12px;
             opacity: 0;
-            padding-right: $navGutter_desktop;
+            padding-right: $gutter_desktop;
             text-align: right;
-            width: calc($gutter_desktop * 2);
+            width: calc($column_desktop * 2);
           }
           &:hover {
             text-decoration: nonegit;
@@ -205,14 +205,14 @@
 }
 
 .main.grid {
-  padding: 450px $navGutter_desktop 20px;
+  padding: 450px $gutter_desktop 20px;
 
   @media screen and (max-width: $mq-mobile-min) {
-    padding: 340px $gutter_mobile 20px;
+    padding: 340px $column_mobile 20px;
   }
 
   @media screen and (min-width: $mq-mobile-min) and (max-width: $mq-mobile-max) {
-    padding: 370px $gutter_mobile 20px;
+    padding: 370px $column_mobile 20px;
   }
 
   .all_archives_grid {
@@ -256,14 +256,14 @@
   border-bottom: 1px solid $black;
   display: flex;
   left: 0;
-  padding: 19px $navGutter_desktop 17px;
+  padding: 19px $gutter_desktop 17px;
   position: fixed;
   top: 56px;
   width: 100%;
   z-index: 3;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 20px $navGutter_mobile 14px;
+    padding: 20px $gutter_mobile 14px;
   }
 
   .label {

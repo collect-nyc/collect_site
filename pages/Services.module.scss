@@ -76,8 +76,8 @@
         position: absolute;
         border-bottom: 1px solid $black;
         bottom: 0;
-        left: $navGutter_mobile;
-        width: calc(100% - $navGutter_mobile * 2);
+        left: $gutter_mobile;
+        width: calc(100% - $gutter_mobile * 2);
         height: 1px;
       }
     }
@@ -120,7 +120,7 @@
       border-right: 1px solid $black;
       overflow-y: auto;
       overflow-x: hidden;
-      padding: 45px $navGutter_desktop;
+      padding: 45px $gutter_desktop;
       width: 33.3333333333%;
 
       /* ===== Scrollbar CSS ===== */
@@ -263,7 +263,7 @@
 
       .column {
         border-right: none;
-        padding: 12px $navGutter_mobile 80px;
+        padding: 12px $gutter_mobile 80px;
         width: 100%;
         position: relative;
 
@@ -271,8 +271,8 @@
           position: absolute;
           bottom: 0;
           content: "";
-          left: $navGutter_mobile;
-          width: calc(100% - #{$navGutter_mobile} * 2);
+          left: $gutter_mobile;
+          width: calc(100% - #{$gutter_mobile} * 2);
           height: 1px;
           background-color: $black;
         }
@@ -312,7 +312,7 @@
       width: 100%;
       bottom: auto;
       left: auto;
-      padding: 12px $navGutter_mobile 0;
+      padding: 12px $gutter_mobile 0;
     }
   }
 

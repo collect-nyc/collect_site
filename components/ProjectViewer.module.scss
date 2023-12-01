@@ -20,7 +20,7 @@
     height: 100%;
     // width: 50%;
     z-index: 1;
-    width: calc($gutter_desktop - 40px);
+    width: calc($column_desktop - 40px);
   }
 
   .prev_btn,
@@ -82,7 +82,7 @@
         .inner_bounds {
           position: relative;
           height: 100%;
-          width: calc($gutter_desktop * 10);
+          width: calc($column_desktop * 10);
 
           &.multiple {
             img {
@@ -98,7 +98,7 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          padding: 86px $gutter_mobile 50px;
+          padding: 86px $column_mobile 50px;
         }
       }
 

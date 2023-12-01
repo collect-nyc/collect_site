@@ -26,8 +26,8 @@
     list-style: none;
     align-items: flex-start;
     justify-content: flex-start;
-    padding-left: $navGutter_desktop;
-    width: calc($gutter_desktop * 3);
+    padding-left: $gutter_desktop;
+    width: calc($column_desktop * 3);
 
     .link_box {
       display: flex;
@@ -110,8 +110,8 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding-right: $navGutter_desktop;
-    width: calc($gutter_desktop * 9);
+    padding-right: $gutter_desktop;
+    width: calc($column_desktop * 9);
 
     .archive_link {
       a {
@@ -339,7 +339,7 @@
     }
 
     .archive_link {
-      padding-right: $navGutter_desktop;
+      padding-right: $gutter_desktop;
       text-align: right;
       width: 25%;
     }
@@ -378,7 +378,7 @@
     }
 
     .top_left {
-      width: calc($gutter_desktop * 10);
+      width: calc($column_desktop * 10);
 
       .link_box {
         width: calc(30% - 13px);
@@ -386,7 +386,7 @@
       }
 
       @media screen and (max-width: 1280px) {
-        width: calc($gutter_desktop * 9);
+        width: calc($column_desktop * 9);
 
         .link_box {
           width: 66.66666667%;
@@ -397,10 +397,10 @@
     .top_right {
       justify-content: flex-end;
       align-items: flex-start;
-      width: calc($gutter_desktop * 2);
+      width: calc($column_desktop * 2);
 
       @media screen and (max-width: 1280px) {
-        width: calc($gutter_desktop * 3);
+        width: calc($column_desktop * 3);
       }
     }
   }
@@ -415,7 +415,7 @@
     }
 
     .top_left {
-      width: calc($gutter_desktop * 10);
+      width: calc($column_desktop * 10);
 
       .link_box {
         width: calc(30% - 13px);
@@ -423,7 +423,7 @@
       }
 
       @media screen and (max-width: 1280px) {
-        width: calc($gutter_desktop * 9);
+        width: calc($column_desktop * 9);
 
         .link_box {
           width: 66.66666667%;
@@ -440,10 +440,10 @@
     .top_right {
       justify-content: flex-end;
       align-items: flex-start;
-      width: calc($gutter_desktop * 2);
+      width: calc($column_desktop * 2);
 
       @media screen and (max-width: 1280px) {
-        width: calc($gutter_desktop * 3);
+        width: calc($column_desktop * 3);
       }
     }
   }
@@ -554,7 +554,7 @@
   }
 
   .filter_container {
-    padding: 0 $gutter_mobile 0 calc($gutter_desktop * 3);
+    padding: 0 $column_mobile 0 calc($column_desktop * 3);
 
     .tag_list {
       margin: 50px 0 0;
@@ -609,7 +609,7 @@
 
   @media screen and (max-width: $mq-mobile-max) {
     align-items: center;
-    padding: 15px $navGutter_mobile 14px;
+    padding: 15px $gutter_mobile 14px;
     border-bottom: 1px solid $black;
     background-color: $white;
   }

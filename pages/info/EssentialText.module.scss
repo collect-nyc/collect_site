@@ -8,11 +8,11 @@
 
 .container {
   background-color: colors.$darkgray;
-  padding: 108px $navGutter_desktop 0 $navGutter_desktop;
+  padding: 108px $gutter_desktop 0 $gutter_desktop;
   min-height: calc(100vh - 168px);
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 108px $navGutter_mobile 0 $navGutter_mobile;
+    padding: 108px $gutter_mobile 0 $gutter_mobile;
   }
 }
 
