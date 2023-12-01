@@ -1,12 +1,13 @@
-@import "~/styles/colors";
+@use "~/styles/colors";
+@use "~/styles/helpers";
 @import "~/styles/typography";
-@import "~/styles/helpers";
 
 .page_title {
   text-transform: capitalize;
 }
 
 .container {
+  background-color: colors.$darkgray;
   padding: 108px $navGutter_desktop 0 $navGutter_desktop;
   min-height: calc(100vh - 168px);
 

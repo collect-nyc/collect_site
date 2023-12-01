@@ -547,6 +547,7 @@
   }
 
   &.essential_text_nav {
+    background-color: $darkgray;
     .top_right {
       justify-content: flex-end;
     }

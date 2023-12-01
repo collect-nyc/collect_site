@@ -19,6 +19,13 @@ body {
   @extend .body_text;
   overflow-x: hidden;
 
+  &.essential {
+    nav,
+    footer {
+      background-color: $darkgray;
+    }
+  }
+
   &.case_study_carousel {
     @media screen and (max-width: $mq-mobile-max) {
       overflow: hidden;

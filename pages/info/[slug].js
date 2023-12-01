@@ -13,28 +13,13 @@ import { SITE_NAME } from "../../lib/constants";
 import styles from "./EssentialText.module.scss";
 
 const EssentialText = ({ document }) => {
-  const { title, metadesc, slug, bodycopy } = document;
+  const { title, metadesc, bodycopy } = document;
 
   // console.log("Project Data", document);
 
-  const ref = useRef();
-  const { scrollYProgress } = useViewportScroll(ref);
-
-  const top_gradient = useTransform(
-    scrollYProgress,
-    [0, 0.07, 0.08, 1],
-    [0, 0, 1, 1]
-  );
-
-  const bottom_gradient = useTransform(
-    scrollYProgress,
-    [0, 0.99, 1],
-    [1, 0.5, 0]
-  );
-
   return (
     <>
-      <div className={styles.container} ref={ref}>
+      <div className={styles.container}>
         <Head>
           <title>{title ? title : `${SITE_NAME}`}</title>
           <meta
@@ -64,16 +49,6 @@ const EssentialText = ({ document }) => {
         </Head>
         <main>
           <div className={styles.text}>
-            <motion.div
-              className={styles.gradient_top}
-              style={{ scrollYProgress, opacity: top_gradient }}
-              key={"essential_top"}
-            />
-            <motion.div
-              className={styles.gradient_bottom}
-              style={{ scrollYProgress, opacity: bottom_gradient }}
-              key={"essential_bottom"}
-            />
             {bodycopy ? <PortableText value={bodycopy} /> : null}
           </div>
         </main>
@@ -97,9 +72,12 @@ export async function getServerSideProps({ params }) {
     { slug: slug }
   );
 
+  const page = "essential";
+
   return {
     props: {
       document,
+      page,
     },
   };
 }

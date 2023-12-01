@@ -40,13 +40,13 @@ export default function MyLayout({
   // console.log(tagPlus);
 
   useEffect(() => {
-    if (page === "case_study") {
-      document.body.classList.add("case_study");
-    } else if (page === "case_study_carousel") {
-      document.body.classList.add("case_study_carousel");
+    if (page === "essential") {
+      document.body.classList.add("essential");
+    } else if (page === "index") {
+      document.body.classList.add("homepage");
     } else {
-      document.body.classList.remove("case_study");
-      document.body.classList.remove("case_study_carousel");
+      document.body.classList.remove("essential");
+      document.body.classList.remove("homepage");
     }
   }, [page]);
 
@@ -54,7 +54,7 @@ export default function MyLayout({
   //   data && _.find(data.profile, { update: true }) ? true : false;
 
   return (
-    <React.Fragment>
+    <>
       <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
         {/*<Loader page={page} />*/}
 
@@ -70,6 +70,6 @@ export default function MyLayout({
         />
         {children}
       </LoaderContext.Provider>
-    </React.Fragment>
+    </>
   );
 }
