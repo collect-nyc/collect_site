@@ -1,0 +1,15 @@
+@import "~/styles/helpers";
+
+.images {
+  height: 640px;
+  padding-left: $gutter_desktop;
+  margin-top: 13px;
+
+  img {
+    cursor: pointer;
+    display: block;
+    height: 100% !important;
+    margin-right: 10px;
+    width: auto !important;
+  }
+}
