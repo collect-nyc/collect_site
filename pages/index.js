@@ -8,6 +8,7 @@ import _ from "lodash";
 import MemoryContext from "../components/MemoryContext";
 import LoaderContext from "../components/LoaderContext";
 import HomeFooter from "../components/HomeFooter";
+import Slider from "react-slick";
 import { motion } from "framer-motion";
 // import Marquee from "react-fast-marquee";
 import VideoPlayer from "../components/common/VideoPlayer";
@@ -16,25 +17,6 @@ import animateScrollTo from "animated-scroll-to";
 import { SITE_NAME } from "../lib/constants";
 import Link from "next/link";
 import styles from "./Index.module.scss";
-
-export async function getServerSideProps() {
-  const document = await client.fetch(`*[_type == "home"]{
-    title,
-    metadesc,
-    statement,
-    projects,
-  }`);
-  const data = document[0];
-
-  const page = "index";
-
-  return {
-    props: {
-      data,
-      page,
-    },
-  };
-}
 
 function vh(percent) {
   var h = Math.max(
@@ -53,6 +35,27 @@ const Home = ({ data }) => {
   const { archiveCounted } = useContext(MemoryContext);
 
   const { loaderDidRun } = useContext(LoaderContext);
+
+  // State to track visibility for each element
+  const [projectStates, setProjectStates] = useState(
+    projects.map(() => ({ isVisible: false }))
+  );
+
+  // Array of refs, one for each element
+  const sliderRefs = useRef(projects.map(() => React.createRef()));
+  useEffect(() => {
+    // Example: Log the references
+    console.log(sliderRefs.current);
+    console.log("test", sliderRefs.current[0]);
+  }, []);
+
+  const toggleVisibility = (index) => {
+    setProjectStates((prevStates) =>
+      prevStates.map((state, i) =>
+        i === index ? { ...state, isVisible: !state.isVisible } : state
+      )
+    );
+  };
 
   // console.log("loader did run", loaderDidRun);
 
@@ -624,42 +627,45 @@ const Home = ({ data }) => {
     },
   };
 
+  const slide_settings = {
+    infinite: false,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    dots: false,
+    speed: 200,
+    swipe: true,
+  };
+
   return (
     <div className={styles.container}>
-      {/* <Head>
-        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
+      <Head>
+        <title>{title ? title : `${SITE_NAME}`}</title>
         <meta
           name="description"
           content={
-            meta_description
-              ? meta_description
+            metadesc
+              ? metadesc
               : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
 
-        <meta
-          property="og:title"
-          content={meta_title ? meta_title : `${SITE_NAME}`}
-        />
+        <meta property="og:title" content={title ? title : `${SITE_NAME}`} />
         <meta
           property="og:description"
           content={
-            meta_description
-              ? meta_description
+            metadesc
+              ? metadesc
               : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
         <meta
           property="og:image"
-          content={
-            meta_image?.url
-              ? meta_image.url
-              : "https://collect.nyc/images/collect-new-york-og.jpg"
-          }
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
         />
 
         <SharedHead />
-      </Head> */}
+      </Head>
 
       <motion.main
         initial={!loaderDidRun ? { opacity: 0 } : { opacity: 1 }}
@@ -687,12 +693,97 @@ const Home = ({ data }) => {
             ) : null}
           </div>
         </section>
+        <section className={styles.projects}>
+          {projects?.map((project, i) => {
+            return (
+              <div className={styles.project} key={i}>
+                <header>
+                  <h2>{project.title}</h2>
+                  {projectStates[i].isVisible ? null : (
+                    <>
+                      <ul className={styles.tags}>
+                        {project.tags?.map((tag, i) => (
+                          <li key={i}>{tag}</li>
+                        ))}
+                      </ul>
+                      <button
+                        className={styles.readmore}
+                        onClick={() => toggleVisibility(i)}
+                      >
+                        Read More +
+                      </button>
+                    </>
+                  )}
+
+                  {projectStates[i].isVisible ? (
+                    <div className={styles.reveal}>
+                      {project.description && (
+                        <PortableText value={project.description} />
+                      )}
+
+                      <button onClick={() => toggleVisibility(i)}>
+                        Read Less -
+                      </button>
+                      {project.href && <a href={project.href}>Visit Site ↗</a>}
+                    </div>
+                  ) : null}
+                </header>
+                <div className={styles.images}>
+                  <Slider
+                    className={"projectslider"}
+                    ref={sliderRefs.current[i]}
+                    {...slide_settings}
+                  >
+                    {project?.images?.map((d, i) => (
+                      <img
+                        onClick={(event) =>
+                          sliderRefs.current[i].current.slickNext()
+                        }
+                        className={styles.item}
+                        key={i}
+                        src={d.url + "?auto=format"}
+                      />
+                    ))}
+                  </Slider>
+                </div>
+              </div>
+            );
+          })}
+        </section>
 
         <HomeFooter />
       </motion.main>
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const document = await client.fetch(`*[_type == "home"]{
+    title,
+    metadesc,
+    statement,
+    "projects": projects[]->{
+      title,
+      description,
+      images[] {
+        "url": asset->url,
+        "alt": alt,
+      },
+      tags,
+      href,
+    }
+  }`);
+  const data = document[0];
+
+  const page = "index";
+
+  return {
+    props: {
+      data,
+      page,
+    },
+  };
+}
 
 Home.Layout = MyLayout;
 export default Home;
