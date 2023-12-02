@@ -662,7 +662,9 @@ const Home = ({ data }) => {
                     <>
                       <ul className={styles.tags}>
                         {project.tags?.map((tag, i) => (
-                          <li key={i}>{tag}</li>
+                          <li key={i}>
+                            {i + 1 === project.tags.length ? tag : tag + ","}
+                          </li>
                         ))}
                       </ul>
                       <button
