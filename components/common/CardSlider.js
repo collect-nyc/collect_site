@@ -57,7 +57,13 @@ const CardSlider = ({ images, sliderIndex }) => {
       <Slider className={"projectslider"} ref={sliderRef} {...slide_settings}>
         {images?.map((d, i) => (
           <img
-            onClick={() => nextSlidez()}
+            onClick={() => {
+              if (i === images.length - 1) {
+                sliderRef.current.slickGoTo(0);
+              } else {
+                nextSlidez();
+              }
+            }}
             className={styles.item}
             src={d.url + "?auto=format"}
             key={i}
