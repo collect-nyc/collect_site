@@ -7,8 +7,8 @@
 }
 
 .container {
-  background-color: colors.$darkgray;
-  padding: 108px $gutter_desktop 0 $gutter_desktop;
+  background-color: colors.$terracotta;
+  padding: 175px $gutter_desktop 0 $gutter_desktop;
   min-height: calc(100vh - 168px);
 
   @media screen and (max-width: $mq-mobile-max) {

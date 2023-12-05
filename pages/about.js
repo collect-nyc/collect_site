@@ -1,357 +1,210 @@
 import { useRef } from "react";
-import { Client } from "../lib/prismic-config";
+import { client } from "../sanity.config";
+import { PortableText } from "@portabletext/react";
 import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import HomeFooter from "../components/HomeFooter";
-import { RichText } from "prismic-reactjs";
+import Footer from "../components/Footer";
 import animateScrollTo from "animated-scroll-to";
 import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./About.module.scss";
 
-export async function getServerSideProps() {
-  //Page Data
-  const document = await Client().getSingle("profile");
+const About = ({ data }) => {
+  const {
+    title,
+    metadesc,
+    statement,
+    newbusiness,
+    hiring,
+    founders,
+    instagram,
+    sociallinks,
+    editions,
+    selectedclients,
+    clients,
+  } = data;
 
-  const page = "about";
-
-  return {
-    props: { page, document },
-  };
-}
-
-const About = ({ document }) => {
-  const inquiryRef = useRef(null);
-  const offeringRef = useRef(null);
-  const clientsRef = useRef(null);
-  const editionsRef = useRef(null);
-
-  const footerRef = useRef(null);
-  const isInView = useInView(footerRef);
-
-  // console.log("Profile Content", document.data);
-  const page_content = document.data;
-
-  const { meta_title, meta_description, meta_image } = page_content;
-
-  // framer motion variants
-  const mobileNavVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
+  console.log("Data", data);
 
   return (
     <div className={styles.container}>
       <Head>
-        <title>{meta_title ? meta_title : `${SITE_NAME}`}</title>
+        <title>{title ? title : `${SITE_NAME}`}</title>
         <meta
           name="description"
           content={
-            meta_description
-              ? meta_description
+            metadesc
+              ? metadesc
               : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
 
-        <meta
-          property="og:title"
-          content={meta_title ? meta_title : `${SITE_NAME}`}
-        />
+        <meta property="og:title" content={title ? title : `${SITE_NAME}`} />
         <meta
           property="og:description"
           content={
-            meta_description
-              ? meta_description
+            metadesc
+              ? metadesc
               : "Independent agency for NEW IDEAS in direction, design, technology and development."
           }
         />
         <meta
           property="og:image"
-          content={
-            meta_image?.url
-              ? meta_image.url
-              : "https://collect.nyc/images/collect-new-york-og.jpg"
-          }
+          content={"https://collect.nyc/images/collect-new-york-og.jpg"}
         />
 
         <SharedHead />
       </Head>
 
       <main className={styles.main}>
-        <div className={styles.info_bar}>
-          <span className={styles.desktop}>
-            <span className={styles.heading}>Information</span>
-            <span className={styles.subtitle}>
-              Contact, Clients, Updates and More
-            </span>
-          </span>
-          <span className={styles.mobile_border} />
-        </div>
-
-        <motion.div
-          initial={{ opacity: 1 }}
-          animate={isInView ? "hidden" : "visible"}
-          transition={{ duration: 0.2 }}
-          variants={mobileNavVariants}
-          className={styles.mobile_jump}
-        >
-          <div className={styles.holder}>
-            <button
-              onClick={() =>
-                animateScrollTo(inquiryRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -48,
-                })
-              }
-            >
-              Inquiries
-            </button>
-            <button
-              onClick={() =>
-                animateScrollTo(offeringRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -48,
-                })
-              }
-            >
-              Clients
-            </button>
-            <button
-              onClick={() =>
-                animateScrollTo(editionsRef.current, {
-                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
-                  minDuration: 600,
-                  speed: 500,
-                  verticalOffset: -48,
-                })
-              }
-            >
-              Éditions
-            </button>
+        <section className={styles.statement}>
+          <div className={styles.textbox}>
+            {statement ? <PortableText value={statement} /> : null}
           </div>
-        </motion.div>
-
-        <div className={styles.grid}>
-          {/* ABOUT */}
-          <div className={`${styles.column} ${styles.about} ${styles.desktop}`}>
-            <h3 className={`heading`}>{page_content.team_title[0].text}</h3>
-            <span className={styles.subtitle}>
-              {page_content.our_team_subtitle}
-            </span>
-            <div className={styles.partner}>
-              <span className={styles.name}>Andrew J.S.</span>
-              <span>{page_content ? page_content.andrew[0].text : null}</span>
-            </div>
-
-            <div className={styles.partner}>
-              <span className={styles.name}>Joshua Tuscan</span>
-              <span>{page_content ? page_content.joshua[0].text : null}</span>
-            </div>
-
-            <div className={styles.partners_section}>
-              <h3 className={`heading`}>
-                {page_content.partners_title[0].text}
-              </h3>
-              <span className={styles.subtitle}>
-                {page_content.partners_subtitle}
-              </span>
-
-              <div className={styles.partner}>
-                <span className={styles.name}>Luke Robertson</span>
-                <span>
-                  <a href="https://luke-robertson.com" target="_blank">
-                    {page_content
-                      ? page_content.luke[0].text
-                      : "Independent Art Director ↗"}
-                  </a>
-                </span>
-              </div>
+        </section>
+        <section className={`${styles.section} ${styles.newbusiness}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>New Business</span>
+            <div className={styles.content}>
+              <PortableText value={newbusiness} />
+              <p>
+                <a href="mailto:new@collect.nyc">new@collect.nyc</a>
+                <br />
+                +1 718 902 4911
+              </p>
             </div>
           </div>
-
-          {/* CONTACT */}
-          <div
-            ref={inquiryRef}
-            className={`${styles.column} ${styles.contact}`}
-          >
-            <h2 className={`heading`}>
-              {page_content.inquiries_title[0].text}
-            </h2>
-            <span className={styles.subtitle}>
-              {page_content.inquiries_subtitle}
-            </span>
-            <div className={styles.contact_summary}>
-              {page_content ? (
-                <RichText render={page_content.instruction} />
-              ) : null}
+        </section>
+        <section className={`${styles.section} ${styles.hiring}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>Work Opportunities</span>
+            <div className={styles.content}>
+              <PortableText value={hiring} />
+              <p>
+                <a href="mailto:info@collect.nyc">info@collect.nyc</a>
+                <br />
+                <a target="_blank" href="https://www.instagram.com/collect.nyc">
+                  @collect.nyc
+                </a>
+              </p>
             </div>
-
-            <div className={styles.contact_details}>
-              <div className={styles.contact_field}>
-                {page_content.email ? page_content.email : null}
-              </div>
-              <div className={styles.contact_field}>
-                <RichText render={page_content.phone} />
-              </div>
+          </div>
+        </section>
+        <section className={`${styles.section} ${styles.founders}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>Founders, Principals</span>
+            <div className={styles.content}>
+              {founders.map((founder, i) => (
+                <div className={styles.founder} key={i}>
+                  <span>{founder.Name}</span>
+                  <span>{founder.Title}</span>
+                </div>
+              ))}
             </div>
-
-            <div className={styles.contact_collab}>
-              <h2 className={`heading`}>
-                {page_content.opportunities_title[0].text}
-              </h2>
-              <span className={styles.subtitle}>
-                {page_content.opportunities_subtitle}
-              </span>
-
-              <RichText render={page_content.opportunities_description} />
-
+          </div>
+        </section>
+        <section className={`${styles.section} ${styles.socials}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>Now Online</span>
+            <div className={styles.content}>
               <ul>
-                <li>
-                  <a href="mailto:new@collect.nyc">new@collect.nyc</a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/collect.nyc/"
-                    target="_blank"
-                  >
-                    @collect.nyc
-                  </a>
-                </li>
-              </ul>
-            </div>
-
-            <div className={styles.follow_section}>
-              <h2 className={`heading`}>{page_content.follow_title[0].text}</h2>
-              <span className={styles.subtitle}>
-                {page_content.follow_subtitle}
-              </span>
-              <div className={styles.insta_group}>
-                <ul className="insta">
-                  {page_content
-                    ? page_content.instagrams.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-
-              <div className={styles.socials_group}>
-                <ul className={styles.socials}>
-                  {page_content
-                    ? page_content.socials.map((handle, key) => (
-                        <li key={key}>
-                          <RichText render={handle.item} />
-                        </li>
-                      ))
-                    : null}
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* OFFERING */}
-          <div
-            ref={offeringRef}
-            className={`${styles.column} ${styles.offering}`}
-          >
-            <h3 className={`heading`}>{page_content.clients_title[0].text}</h3>
-            <span className={styles.subtitle}>
-              {page_content.clients_subtitle}
-            </span>
-
-            <RichText render={page_content.clients_description} />
-
-            <div ref={clientsRef} className={styles.clients_collabs}>
-              <ul>
-                {page_content
-                  ? page_content.clients_and_collaborators.map(
-                      (client, key) => (
-                        <li key={key}>
-                          <RichText render={client.item} />
-                        </li>
-                      )
-                    )
-                  : null}
-              </ul>
-            </div>
-            {page_content.client_case_studies?.length > 0 && (
-              <div className={styles.clients_cases}>
-                <h3 className={`heading`}>
-                  {page_content.recent_work_title[0].text}
-                </h3>
-                <span className={styles.subtitle}>
-                  {page_content.recent_work_subtitle}
-                </span>
-
-                {page_content.client_case_studies.map((case_study, key) => (
-                  <div key={key} className={styles.case_study}>
-                    <h4 className={`heading`}>{case_study.title[0].text}</h4>
-                    <p>{case_study.description}</p>
-                    {case_study.link && case_study.link.link_type === "Web" ? (
-                      <a href={case_study.link.url}>See Project→</a>
-                    ) : (
-                      <Link href={"/case-study/" + case_study.link.uid}>
-                        See Project→
-                      </Link>
-                    )}
-                  </div>
+                {instagram.map((instalink, i) => (
+                  <li key={i}>
+                    <a
+                      className={styles.instalink}
+                      href={instalink.URL}
+                      target="_blank"
+                    >
+                      {instalink.Account}
+                    </a>
+                  </li>
                 ))}
-              </div>
-            )}
+              </ul>
+
+              <ul>
+                {sociallinks.map((sociallink, i) => (
+                  <li key={i}>
+                    <a
+                      className={styles.sociallink}
+                      href={sociallink.URL}
+                      target="_blank"
+                    >
+                      {sociallink.Account}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-
-          {/* EDITIONS */}
-          <div
-            ref={editionsRef}
-            className={`${styles.column} ${styles.editions}`}
-          >
-            <h3 className={`heading`}>{page_content.editions_title[0].text}</h3>
-            <span className={styles.subtitle}>
-              {page_content.editions_subtitle}
-            </span>
-
-            {page_content.editions_text ? (
-              <RichText render={page_content.editions_text} />
-            ) : null}
-
-            <a
-              href={
-                page_content.editions_link.url
-                  ? page_content.editions_link.url
-                  : "https://www.instagram.com/shop.editions/"
-              }
-              target="_blank"
-              rel="noreferrer"
-            >
-              {page_content.editions_link_text
-                ? page_content.editions_link_text
-                : null}
-            </a>
+        </section>
+        <section className={`${styles.section} ${styles.editions}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>Éditions Magazine</span>
+            <div className={styles.content}>
+              <PortableText value={editions} />
+            </div>
           </div>
-        </div>
-
-        {/* REDUCED FOOTER */}
-        <div className={styles.minifooter}>
-          <Link href="/info/privacy">Privacy</Link>
-          <Link href="/info/impressum">Impressum</Link>
-        </div>
-
-        {/* FULL FOOTER FOR MOBILE */}
-        <div ref={footerRef} className={styles.mobilefooter}>
-          <HomeFooter />
-        </div>
+        </section>
+        <section className={`${styles.section} ${styles.clients}`}>
+          <div className={styles.inner}>
+            <span className={styles.label}>Selected Clients</span>
+            <div className={styles.content}>
+              <PortableText value={selectedclients} />
+              <ul>
+                {clients.map((client, i) => (
+                  <li key={i}>
+                    {client.url ? (
+                      <a target="_blank" href={client.url}>
+                        {client.name}
+                      </a>
+                    ) : (
+                      client.name
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </section>
       </main>
+      <aside className={styles.stickynav}>
+        NEW BUSINESS new@collect.nyc +1 718 902 4911 WORK OPPORTUNITIES
+        info@collect.nyc @collect.nyc NOW ONLINE Instagram Threads LinkedIn
+        ÉDITIONS MAGAZINE @editions.mag editionsnewyork.com MAILBOX 100A
+        Broadway #377 Brooklyn, NY 11249
+      </aside>
+      <Footer />
     </div>
   );
 };
+
+export async function getServerSideProps() {
+  const document = await client.fetch(`*[_type == "about"]{
+    title,
+    metadesc,
+    statement,
+    newbusiness,
+    hiring,
+    founders,
+    instagram,
+    sociallinks,
+    editions,
+    selectedclients,
+    clients
+  }`);
+  const data = document[0];
+
+  const page = "about";
+
+  return {
+    props: {
+      data,
+      page,
+    },
+  };
+}
 
 About.Layout = MyLayout;
 export default About;

@@ -120,7 +120,14 @@ export default {
       title: 'Clients',
       name: 'clients',
       type: 'array',
-      of: [{type: 'string'}]
+      of: [{
+        type: "object",
+        name: "client",
+        fields: [
+          { type: "string", name: "name" },
+          { type: "url", name: "url" }
+        ]
+      }]
     },
   ],
 }

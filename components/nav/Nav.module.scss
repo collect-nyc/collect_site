@@ -485,27 +485,6 @@
     }
   }
 
-  &.profile,
-  &.essential_text_nav {
-    background: rgba($white, 0.96);
-    backdrop-filter: blur(5px);
-
-    @media screen and (max-width: $mq-mobile-max) {
-      border-bottom: 1px solid $black;
-      mix-blend-mode: normal;
-
-      a,
-      button {
-        color: $black;
-      }
-
-      .top_left,
-      .top_right {
-        width: 50%;
-      }
-    }
-  }
-
   &.profile {
     color: $black;
 
@@ -547,7 +526,6 @@
   }
 
   &.essential {
-    background-color: $darkgray;
     .top_right {
       justify-content: flex-end;
     }
