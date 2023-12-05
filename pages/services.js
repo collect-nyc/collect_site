@@ -83,62 +83,64 @@ const Services = ({ data }) => {
       </Head>
 
       <main className={styles.main}>
-        <section className={styles.statement}>
-          <div className={styles.textbox}>
-            {statement ? <PortableText value={statement} /> : null}
-            <a
-              className={styles.offering_link}
-              href="https://calendly.com/collect-nyc"
-              target="_blank"
-            >
-              Have a project? Book a new business meeting now →
-            </a>
-          </div>
-        </section>
-        <section className={styles.offerings}>
-          {data.offerings.map((offering, i) => (
-            <div className={styles.offering} key={i}>
-              <h2>{offering.title}</h2>
-              <div className={styles.description}>
-                <PortableText value={offering.description} />
-              </div>
-              <div className={styles.examples}>
-                <ul>
-                  {offering.examples.map((example, i) => (
-                    <li key={i}>{example}</li>
-                  ))}
-                </ul>
-                <div className={styles.example_images}>
-                  {offering.images.map((image, i) => (
-                    <img src={image.url} alt={image.alt} key={i} />
-                  ))}
+        <article>
+          <section className={styles.statement}>
+            <div className={styles.textbox}>
+              {statement ? <PortableText value={statement} /> : null}
+              <a
+                className={styles.offering_link}
+                href="https://calendly.com/collect-nyc"
+                target="_blank"
+              >
+                Have a project? Book a new business meeting now →
+              </a>
+            </div>
+          </section>
+          <section className={styles.offerings}>
+            {data.offerings.map((offering, i) => (
+              <div className={styles.offering} key={i}>
+                <h2>{offering.title}</h2>
+                <div className={styles.description}>
+                  <PortableText value={offering.description} />
+                </div>
+                <div className={styles.examples}>
+                  <ul>
+                    {offering.examples.map((example, i) => (
+                      <li key={i}>{example}</li>
+                    ))}
+                  </ul>
+                  <div className={styles.example_images}>
+                    {offering.images.map((image, i) => (
+                      <img src={image.url} alt={image.alt} key={i} />
+                    ))}
+                  </div>
                 </div>
               </div>
+            ))}
+          </section>
+          <section className={styles.ways_to_work}>
+            <h3>Ways of Working</h3>
+            <div className={styles.description}>
+              <PortableText value={data.wow} />
             </div>
-          ))}
-        </section>
-        <section className={styles.ways_to_work}>
-          <h3>Ways of Working</h3>
-          <div className={styles.description}>
-            <PortableText value={data.wow} />
-          </div>
-          <div className={styles.options}>
-            <div className={styles.option}>
-              <h4>Self-Contained Projects</h4>
-              <PortableText value={data.projects} />
+            <div className={styles.options}>
+              <div className={styles.option}>
+                <h4>Self-Contained Projects</h4>
+                <PortableText value={data.projects} />
+              </div>
+              <div className={styles.option}>
+                <h4>Ongoing Retainers</h4>
+                <PortableText value={data.retainers} />
+              </div>
+              <div className={styles.option}>
+                <h4>Scalable Teams</h4>
+                <PortableText value={data.teams} />
+              </div>
             </div>
-            <div className={styles.option}>
-              <h4>Ongoing Retainers</h4>
-              <PortableText value={data.retainers} />
-            </div>
-            <div className={styles.option}>
-              <h4>Scalable Teams</h4>
-              <PortableText value={data.teams} />
-            </div>
-          </div>
-        </section>
-        <Footer />
+          </section>
+        </article>
       </main>
+      <Footer />
     </div>
   );
 };

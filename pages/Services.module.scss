@@ -9,15 +9,42 @@
 }
 
 .main {
-  padding: 175px 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 175px;
+  padding: 175px $gutter_desktop 0;
+
+  article {
+    max-width: 68%;
+    margin-right: $column_desktop;
+  }
+
+  .stickynav {
+    // display: none;
+    display: block;
+    top: 175px;
+    position: sticky;
+    // right: calc($column_desktop * 1.5);
+    width: calc($column_desktop * 1.4);
+
+    h5 {
+      margin: 15px 0 0;
+
+      &:first-of-type {
+        margin-top: 0;
+      }
+    }
+
+    p,
+    a {
+      @extend .m_type;
+    }
+  }
 
   .statement {
-    padding: 0 $gutter_desktop;
+    // padding: 0 $gutter_desktop;
     margin-bottom: 94px;
-
-    .textbox {
-      max-width: 68%;
-    }
 
     p {
       @extend .xl_type;
@@ -38,12 +65,11 @@
   }
 
   .offerings {
-    max-width: 68%;
-    padding: 0 0 0 $gutter_desktop;
+    // padding: 0 0 0 $gutter_desktop;
 
     .offering {
       border-bottom: 2px solid $black;
-      padding: 20px 12.5% 80px 0;
+      padding: 20px 0 80px;
 
       &:first-of-type {
         border-top: 2px solid $black;
@@ -99,8 +125,7 @@
   }
 
   .ways_to_work {
-    max-width: 68%;
-    padding: 20px 0 0 $gutter_desktop;
+    padding: 20px 0 0;
     margin-bottom: 265px;
 
     h3,
