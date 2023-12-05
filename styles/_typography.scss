@@ -58,6 +58,12 @@ $gerstner: "Gerstner Programm", sans-serif;
   line-height: 1.2;
 }
 
+.l_type_mobile {
+  font-family: $gerstner, Arial, Helvetica, sans-serif;
+  font-size: 22px;
+  line-height: 1;
+}
+
 .body_text {
   @extend .m_type;
   text-rendering: optimizeLegibility;

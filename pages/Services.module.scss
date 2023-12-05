@@ -4,323 +4,130 @@
 
 .container {
   background-color: $folder;
+  min-height: 100dvh;
   padding: 0;
-
-  a,
-  button {
-    color: $black;
-  }
-
-  .subtitle {
-    display: block;
-    margin-bottom: 20px;
-  }
 }
 
 .main {
-  padding-top: 49px;
+  padding: 175px 0 0;
 
-  ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-  }
+  .statement {
+    padding: 0 $gutter_desktop;
+    margin-bottom: 94px;
 
-  .info_bar {
-    border-bottom: 1px solid $black;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 50px;
-    z-index: 5;
-    position: relative;
-
-    .heading {
-      display: none;
+    .textbox {
+      max-width: 68%;
     }
 
-    .subtitle {
-      margin: 0;
+    p {
+      @extend .xl_type;
+      display: block;
+    }
 
-      @media screen and (min-width: $mq-tablet-min) {
-        color: $black;
+    .offering_link {
+      @extend .l_type_mobile;
+      margin-top: 30px;
+      display: inline-block;
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+    }
+
+    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+    }
+  }
+
+  .offerings {
+    max-width: 68%;
+    padding: 0 0 0 $gutter_desktop;
+
+    .offering {
+      border-bottom: 2px solid $black;
+      padding: 20px 12.5% 80px 0;
+
+      &:first-of-type {
+        border-top: 2px solid $black;
+      }
+
+      h2,
+      .description {
+        @extend .xl_type;
+      }
+
+      h2 {
+        color: $white;
+      }
+
+      .description {
+        margin-bottom: 40px;
+      }
+
+      .examples {
+        ul {
+          margin: 0 0 40px 0;
+          padding: 0;
+
+          li {
+            @extend .m_type;
+            list-style: none;
+
+            &:before {
+              content: "→";
+              display: inline-block;
+              margin-right: 25px;
+            }
+          }
+        }
+      }
+
+      .example_images {
+        height: 160px;
+        text-wrap: nowrap;
+
+        img {
+          display: inline-block;
+          height: 100%;
+          width: auto;
+          margin-right: 6.67px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
       }
     }
-
-    .mobile_border {
-      display: none;
-    }
   }
 
-  .mobile_jump {
-    display: none;
+  .ways_to_work {
+    max-width: 68%;
+    padding: 20px 0 0 $gutter_desktop;
+    margin-bottom: 265px;
+
+    h3,
+    .description {
+      @extend .xl_type;
+    }
+
+    h3 {
+      color: $white;
+    }
+
+    .description {
+      margin-bottom: 60px;
+    }
+
+    .options {
+      @extend .m_type;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+
+      h4 {
+        color: $white;
+      }
+    }
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    .info_bar {
-      border-bottom: none;
-      height: auto;
-      z-index: 1;
-
-      .heading {
-        display: block;
-        text-align: center;
-      }
-
-      .desktop {
-        padding: 104px 0 111px;
-      }
-
-      .mobile_border {
-        display: block;
-        position: absolute;
-        border-bottom: 1px solid $black;
-        bottom: 0;
-        left: $gutter_mobile;
-        width: calc(100% - $gutter_mobile * 2);
-        height: 1px;
-      }
-    }
-
-    .mobile_jump {
-      display: flex;
-      justify-content: center;
-      position: fixed;
-      bottom: 25px;
-      width: 100%;
-      z-index: 5;
-
-      .holder {
-        display: flex;
-        justify-content: center;
-        background-color: rgba($yellow, 0.9);
-        backdrop-filter: blur(5px);
-        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        border-radius: 25px;
-        padding: 17px 30px 19px;
-      }
-
-      button {
-        display: inline-block;
-        margin-right: 15px;
-
-        &:last-of-type {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
-  .grid {
-    display: flex;
-    height: calc(100vh - 99px);
-
-    .column {
-      border-right: 1px solid $black;
-      overflow-y: auto;
-      overflow-x: hidden;
-      padding: 45px $gutter_desktop;
-      width: 33.3333333333%;
-
-      /* ===== Scrollbar CSS ===== */
-      /* Firefox */
-
-      // scrollbar-width: thin;
-      scrollbar-color: transparent #ffffff;
-
-      /* Chrome, Edge, and Safari */
-      &::-webkit-scrollbar {
-        width: 10px;
-      }
-
-      &::-webkit-scrollbar-track {
-        background: #ffffff;
-      }
-
-      &::-webkit-scrollbar-thumb {
-        background-color: $darkgray;
-        background-color: transparent;
-        border-radius: 10px;
-        border: 3px solid #ffffff;
-      }
-
-      &::-webkit-scrollbar-button:start:increment {
-        height: 45px;
-        display: block;
-        background: transparent;
-      }
-
-      &::-webkit-scrollbar-button:end:increment {
-        height: 45px;
-        display: block;
-        background: transparent;
-      }
-
-      &:last-of-type {
-        border-right: none;
-      }
-
-      p {
-        margin-bottom: 20px;
-      }
-
-      li p {
-        margin-bottom: 0;
-      }
-
-      &.approach {
-      }
-
-      &.services {
-        .group {
-          margin-top: 20px;
-
-          // @media screen and (max-width: $mq-mobile-max) {
-          //   margin-top: 30px;
-          // }
-
-          ul {
-            padding-left: 20px;
-          }
-        }
-
-        @media screen and (min-width: $mq-tablet-min) {
-          padding-bottom: 20px;
-
-          .clients_collabs {
-            ul {
-              margin-bottom: 0;
-            }
-          }
-        }
-      }
-
-      &.practice {
-        p {
-          margin-bottom: 20px;
-        }
-
-        .practice_intro {
-          margin-bottom: 27px;
-
-          p:last-of-type {
-            margin-bottom: 0;
-          }
-        }
-
-        a {
-          text-decoration: underline;
-
-          &:hover {
-            text-decoration: none;
-          }
-        }
-
-        .case_studies {
-          .case_study {
-            margin-bottom: 50px;
-
-            &:last-of-type {
-              margin-bottom: 0;
-            }
-
-            .subtitle {
-              margin-bottom: 0;
-            }
-
-            .description {
-              margin-bottom: 10px;
-            }
-
-            .text_link {
-              display: inline-block;
-            }
-
-            .image_link {
-              display: block;
-              margin-bottom: 15px;
-
-              .thumbnail {
-                height: auto;
-                width: 100%;
-              }
-            }
-          }
-        }
-      }
-
-      .clients_collabs {
-        ul {
-          padding-left: 20px;
-        }
-      }
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: block;
-      height: auto;
-
-      .column {
-        border-right: none;
-        padding: 12px $gutter_mobile 80px;
-        width: 100%;
-        position: relative;
-
-        &:after {
-          position: absolute;
-          bottom: 0;
-          content: "";
-          left: $gutter_mobile;
-          width: calc(100% - #{$gutter_mobile} * 2);
-          height: 1px;
-          background-color: $black;
-        }
-
-        &.about.mobile,
-        &:last-of-type {
-          &:after {
-            display: none;
-          }
-        }
-
-        .clients_collabs {
-          // border-top: 1px solid $black;
-          padding-top: 10px;
-          // margin-top: 80px;
-        }
-      }
-    }
-  }
-
-  .minifooter {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-
-    a {
-      display: inline-block;
-
-      &:first-of-type {
-        margin-right: 20px;
-      }
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: none;
-      position: relative;
-      width: 100%;
-      bottom: auto;
-      left: auto;
-      padding: 12px $gutter_mobile 0;
-    }
-  }
-
-  .mobilefooter {
-    display: none;
-
-    @media screen and (max-width: $mq-mobile-max) {
-      display: block;
-    }
   }
 }

@@ -43,12 +43,6 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      margin-bottom: 163px;
-      padding: 153px $gutter_mobile 0;
-
-      .divider {
-        display: none;
-      }
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
