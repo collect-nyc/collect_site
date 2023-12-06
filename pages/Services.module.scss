@@ -29,7 +29,13 @@
     width: calc($column_desktop * 1.4);
 
     h5 {
+      @extend .m_type;
+      cursor: pointer;
       margin: 15px 0 0;
+
+      &:hover {
+        text-decoration: underline;
+      }
 
       &:first-of-type {
         margin-top: 0;
@@ -125,8 +131,15 @@
   }
 
   .ways_to_work {
-    padding: 20px 0 0;
+    border-bottom: 2px solid $black;
+    padding: 20px 0 40px;
     margin-bottom: 265px;
+
+    .offering_link {
+      @extend .l_type;
+      margin-top: 60px;
+      display: inline-block;
+    }
 
     h3,
     .description {

@@ -2,37 +2,22 @@ import { useRef, useEffect } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
-import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
-import { RichText } from "prismic-reactjs";
-import Image from "next/image";
 import animateScrollTo from "animated-scroll-to";
 import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 
-// export async function getServerSideProps() {
-//   //Page Data
-
-//   const data = await Client().getSingle("services");
-
-//   const projects = await Client().getAllByType("case_study");
-
-//   const page = "services";
-
-//   return {
-//     props: { page, data, projects },
-//   };
-// }
-
 const Services = ({ data }) => {
-  console.log("Data", data);
+  // console.log("Data", data);
 
   const { title, metadesc, statement } = data;
 
   const footerRef = useRef(null);
+  const workRef = useRef(null);
+  const offeringsRef = useRef(null);
   const isInView = useInView(footerRef);
 
   // useEffect(() => {
@@ -42,15 +27,6 @@ const Services = ({ data }) => {
   //     console.log("Its not in View", isInView);
   //   }
   // }, [isInView]);
-
-  // console.log("Page Data", page_data);
-  // console.log("Case Studies", caseStudies);
-
-  // framer motion variants
-  const mobileNavVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
-  };
 
   return (
     <div className={styles.container}>
@@ -96,7 +72,7 @@ const Services = ({ data }) => {
               </a>
             </div>
           </section>
-          <section className={styles.offerings}>
+          <section ref={offeringsRef} className={styles.offerings}>
             {data.offerings.map((offering, i) => (
               <div className={styles.offering} key={i}>
                 <h2>{offering.title}</h2>
@@ -118,7 +94,7 @@ const Services = ({ data }) => {
               </div>
             ))}
           </section>
-          <section className={styles.ways_to_work}>
+          <section ref={workRef} className={styles.ways_to_work}>
             <h3>Ways of Working</h3>
             <div className={styles.description}>
               <PortableText value={data.wow} />
@@ -137,8 +113,36 @@ const Services = ({ data }) => {
                 <PortableText value={data.teams} />
               </div>
             </div>
+            <a
+              className={styles.offering_link}
+              href="https://calendly.com/collect-nyc"
+              target="_blank"
+            >
+              Have a project? Book a new business meeting now →
+            </a>
           </section>
         </article>
+        <aside className={styles.stickynav}>
+          <h5 onClick={() => animateScrollTo(offeringsRef.current)}>
+            OUR OFFERINGS
+          </h5>
+          <h5 onClick={() => animateScrollTo(workRef.current)}>
+            WAYS OF WORKING
+          </h5>
+          <p>
+            <button onClick={() => animateScrollTo(workRef.current)}>
+              Self-Contained Projects
+            </button>
+            <br />
+            <button onClick={() => animateScrollTo(workRef.current)}>
+              Ongoing Retainers
+            </button>
+            <br />
+            <button onClick={() => animateScrollTo(workRef.current)}>
+              Scalable Teams
+            </button>
+          </p>
+        </aside>
       </main>
       <Footer />
     </div>

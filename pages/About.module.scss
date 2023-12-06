@@ -29,6 +29,7 @@
     width: calc($column_desktop * 1.4);
 
     h5 {
+      @extend .m_type;
       margin: 15px 0 0;
 
       &:first-of-type {
