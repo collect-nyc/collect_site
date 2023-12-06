@@ -22,10 +22,6 @@ const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
       // Check if the top of the element is within the desired range
       if (rect.top <= offset && rect.bottom >= offset) {
         setCurrentItem(itemIndex);
-        console.log(
-          itemIndex,
-          `${element.textContent.trim()} is scrolled to ${offset}px from the top.`
-        );
       }
     };
 
@@ -50,10 +46,6 @@ const Services = ({ data }) => {
   const elementsRef = useRef(data.offerings.map(() => createRef()));
 
   const [currentItem, setCurrentItem] = React.useState(0);
-
-  useEffect(() => {
-    console.log("currentItem", currentItem);
-  }, [currentItem]);
 
   return (
     <div className={styles.container}>

@@ -45,11 +45,11 @@ const Home = ({ data }) => {
   // Array of refs, one for each element
   const sliderRefs = useRef(projects.map(() => React.createRef()));
 
-  useEffect(() => {
-    // Example: Log the references
-    console.log(sliderRefs.current);
-    console.log("test", sliderRefs.current[0]);
-  }, []);
+  // useEffect(() => {
+  //   // Example: Log the references
+  //   console.log(sliderRefs.current);
+  //   console.log("test", sliderRefs.current[0]);
+  // }, []);
 
   const toggleVisibility = (index) => {
     setProjectStates((prevStates) =>
