@@ -34,11 +34,11 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             "Collect ARCHIVE, Reopening Fall 2023"
           ) : (
             <>
-              {globalContent && globalContent.services_descriptor
-                ? globalContent.services_descriptor
+              {globalContent && globalContent.description
+                ? globalContent.description
                 : "Independent agency for"}{" "}
               {globalContent && globalContent.services
-                ? globalContent && globalContent.services[currentItem].service
+                ? globalContent && globalContent.services[currentItem]
                 : "Design"}
             </>
           )}

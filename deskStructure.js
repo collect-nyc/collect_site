@@ -5,6 +5,9 @@ export const myStructure = (S) =>
     .title("Site Content")
     .items([
       S.listItem()
+        .title("Global Content")
+        .child(S.document().schemaType("global").documentId("global")),
+      S.listItem()
         .title("Home Page")
         .child(S.document().schemaType("home").documentId("home")),
       S.listItem()
@@ -14,6 +17,7 @@ export const myStructure = (S) =>
         .title("About Page")
         .child(S.document().schemaType("about").documentId("about")),
       ...S.documentTypeListItems().filter(
-        (listItem) => !["home", "services", "about"].includes(listItem.getId())
+        (listItem) =>
+          !["global", "home", "services", "about"].includes(listItem.getId())
       ),
     ]);

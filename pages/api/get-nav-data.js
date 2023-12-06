@@ -1,4 +1,5 @@
 import { Client } from "../../lib/prismic-config";
+import { client } from "../../sanity.config";
 
 export default async function handler(req, res) {
   const data = [];
@@ -49,8 +50,15 @@ export default async function handler(req, res) {
       });
     });
 
+  // const globalContent = await Client().getSingle("global_content");
+
   // pull services data from Global Content
-  const globalContent = await Client().getSingle("global_content");
+  const gcNew = await client.fetch(`*[_type == "global"]{
+    title,
+    description,
+    services,
+  }`);
+  const gcdata = gcNew[0];
 
   // OLD TAGS PULL
   // const everything = await fetch(
@@ -74,6 +82,6 @@ export default async function handler(req, res) {
     media: totalCount,
     tags: tags,
     profile: document.data?.latest,
-    globalContent: globalContent.data ? globalContent.data : null,
+    globalContent: gcdata ? gcdata : null,
   });
 }
