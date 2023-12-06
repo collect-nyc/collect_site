@@ -33,10 +33,6 @@
       cursor: pointer;
       margin: 15px 0 0;
 
-      &:hover {
-        text-decoration: underline;
-      }
-
       &:first-of-type {
         margin-top: 0;
       }
@@ -45,6 +41,15 @@
     p,
     a {
       @extend .m_type;
+    }
+
+    h5,
+    a,
+    button {
+      &:hover {
+        text-decoration: none;
+        color: $white;
+      }
     }
   }
 

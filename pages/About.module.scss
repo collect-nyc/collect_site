@@ -41,6 +41,16 @@
     a {
       @extend .m_type;
     }
+
+    a,
+    button {
+      cursor: pointer;
+
+      &:hover {
+        text-decoration: none;
+        color: $red;
+      }
+    }
   }
 
   .statement {

@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, createRef } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
@@ -18,6 +18,7 @@ const Services = ({ data }) => {
   const footerRef = useRef(null);
   const workRef = useRef(null);
   const offeringsRef = useRef(null);
+  const elementsRef = useRef(data.offerings.map(() => createRef()));
   const isInView = useInView(footerRef);
 
   // useEffect(() => {
@@ -74,7 +75,11 @@ const Services = ({ data }) => {
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
             {data.offerings.map((offering, i) => (
-              <div className={styles.offering} key={i}>
+              <div
+                ref={elementsRef.current[i]}
+                className={styles.offering}
+                key={i}
+              >
                 <h2>{offering.title}</h2>
                 <div className={styles.description}>
                   <PortableText value={offering.description} />
@@ -123,22 +128,87 @@ const Services = ({ data }) => {
           </section>
         </article>
         <aside className={styles.stickynav}>
-          <h5 onClick={() => animateScrollTo(offeringsRef.current)}>
+          <h5
+            onClick={() =>
+              animateScrollTo(offeringsRef.current, {
+                easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                minDuration: 600,
+                speed: 500,
+                verticalOffset: -175,
+              })
+            }
+          >
             OUR OFFERINGS
           </h5>
-          <h5 onClick={() => animateScrollTo(workRef.current)}>
+          <p>
+            {data.offerings.map((offering, i) => (
+              <>
+                <button
+                  onClick={() =>
+                    animateScrollTo(elementsRef.current[i].current, {
+                      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                      minDuration: 600,
+                      speed: 500,
+                      verticalOffset: -175,
+                    })
+                  }
+                  key={i}
+                >
+                  {offering.title}
+                </button>
+                <br />
+              </>
+            ))}
+          </p>
+          <h5
+            onClick={() =>
+              animateScrollTo(workRef.current, {
+                easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                minDuration: 600,
+                speed: 500,
+                verticalOffset: -175,
+              })
+            }
+          >
             WAYS OF WORKING
           </h5>
           <p>
-            <button onClick={() => animateScrollTo(workRef.current)}>
+            <button
+              onClick={() =>
+                animateScrollTo(workRef.current, {
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
+                  verticalOffset: -175,
+                })
+              }
+            >
               Self-Contained Projects
             </button>
             <br />
-            <button onClick={() => animateScrollTo(workRef.current)}>
+            <button
+              onClick={() =>
+                animateScrollTo(workRef.current, {
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
+                  verticalOffset: -175,
+                })
+              }
+            >
               Ongoing Retainers
             </button>
             <br />
-            <button onClick={() => animateScrollTo(workRef.current)}>
+            <button
+              onClick={() =>
+                animateScrollTo(workRef.current, {
+                  easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+                  minDuration: 600,
+                  speed: 500,
+                  verticalOffset: -175,
+                })
+              }
+            >
               Scalable Teams
             </button>
           </p>
@@ -157,6 +227,7 @@ export async function getServerSideProps() {
     "offerings": offering[]->{
       title,
       description,
+      slug,
       examples,
       images[] {
         "url": asset->url,
