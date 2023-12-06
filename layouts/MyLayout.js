@@ -48,6 +48,8 @@ export default function MyLayout({
       document.body.className = "about";
     } else if (page === "services") {
       document.body.className = "services";
+    } else if (page === "work") {
+      document.body.className = "work";
     } else if (page === "archive_index") {
       document.body.className = "archive_index";
     } else {

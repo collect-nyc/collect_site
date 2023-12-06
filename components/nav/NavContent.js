@@ -93,7 +93,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             </button>
           )}
           <Link
-            href={"/archive"}
+            href={"/work"}
             className={`${styles.count_link} ${styles.desktop_link} ${
               page === "work" && styles.current
             }`}
@@ -149,7 +149,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           </li>
           <li>
             <Link
-              href={"/archive"}
+              href={"/work"}
               className={`${styles.count_link} ${
                 page === "work" && styles.current
               }`}

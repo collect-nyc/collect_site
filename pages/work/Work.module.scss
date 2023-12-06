@@ -1,0 +1,16 @@
+@import "~/styles/colors";
+@import "~/styles/helpers";
+@import "~/styles/typography";
+
+.container {
+  background-color: $red;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 0 0;
+  height: 100dvh;
+  padding: 0 $gutter_desktop 20px;
+
+  svg {
+    width: 100%;
+  }
+}

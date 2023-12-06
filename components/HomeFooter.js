@@ -1,5 +1,4 @@
 import Link from "next/link";
-
 import Collect from "../svg/big_collect.svg";
 import styles from "./HomeFooter.module.scss";
 

@@ -40,6 +40,13 @@ body {
     }
   }
 
+  &.work {
+    nav,
+    footer {
+      background-color: $red;
+    }
+  }
+
   &.case_study_carousel {
     @media screen and (max-width: $mq-mobile-max) {
       overflow: hidden;
