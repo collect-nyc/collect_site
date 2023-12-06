@@ -51,6 +51,12 @@
         color: $white;
       }
     }
+
+    button {
+      &.active {
+        color: $white;
+      }
+    }
   }
 
   .statement {

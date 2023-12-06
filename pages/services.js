@@ -1,4 +1,4 @@
-import { useRef, useEffect, createRef } from "react";
+import React, { useRef, useEffect, createRef, use } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
@@ -10,24 +10,50 @@ import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 
+const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
+  const elementRef = useRef();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const element = elementRef.current;
+      const rect = element.getBoundingClientRect();
+      const offset = 176;
+
+      // Check if the top of the element is within the desired range
+      if (rect.top <= offset && rect.bottom >= offset) {
+        setCurrentItem(itemIndex);
+        console.log(
+          itemIndex,
+          `${element.textContent.trim()} is scrolled to ${offset}px from the top.`
+        );
+      }
+    };
+
+    // Attach the scroll event listener
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event listener when the component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []); // Run this effect only once when the component mounts
+
+  return <div ref={elementRef}>{children}</div>;
+};
+
 const Services = ({ data }) => {
   // console.log("Data", data);
 
   const { title, metadesc, statement } = data;
-
-  const footerRef = useRef(null);
   const workRef = useRef(null);
   const offeringsRef = useRef(null);
   const elementsRef = useRef(data.offerings.map(() => createRef()));
-  const isInView = useInView(footerRef);
 
-  // useEffect(() => {
-  //   if (isInView) {
-  //     console.log("Its in View", isInView);
-  //   } else {
-  //     console.log("Its not in View", isInView);
-  //   }
-  // }, [isInView]);
+  const [currentItem, setCurrentItem] = React.useState(0);
+
+  useEffect(() => {
+    console.log("currentItem", currentItem);
+  }, [currentItem]);
 
   return (
     <div className={styles.container}>
@@ -75,57 +101,65 @@ const Services = ({ data }) => {
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
             {data.offerings.map((offering, i) => (
-              <div
-                ref={elementsRef.current[i]}
-                className={styles.offering}
+              <ScrollLogger
                 key={i}
+                itemIndex={i}
+                setCurrentItem={setCurrentItem}
               >
-                <h2>{offering.title}</h2>
-                <div className={styles.description}>
-                  <PortableText value={offering.description} />
-                </div>
-                <div className={styles.examples}>
-                  <ul>
-                    {offering.examples.map((example, i) => (
-                      <li key={i}>{example}</li>
-                    ))}
-                  </ul>
-                  <div className={styles.example_images}>
-                    {offering.images.map((image, i) => (
-                      <img src={image.url} alt={image.alt} key={i} />
-                    ))}
+                <div
+                  key={i}
+                  ref={elementsRef.current[i]}
+                  className={styles.offering}
+                >
+                  <h2>{offering.title}</h2>
+                  <div className={styles.description}>
+                    <PortableText value={offering.description} />
+                  </div>
+                  <div className={styles.examples}>
+                    <ul>
+                      {offering.examples.map((example, i) => (
+                        <li key={i}>{example}</li>
+                      ))}
+                    </ul>
+                    <div className={styles.example_images}>
+                      {offering.images.map((image, i) => (
+                        <img src={image.url} alt={image.alt} key={i} />
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollLogger>
             ))}
           </section>
-          <section ref={workRef} className={styles.ways_to_work}>
-            <h3>Ways of Working</h3>
-            <div className={styles.description}>
-              <PortableText value={data.wow} />
-            </div>
-            <div className={styles.options}>
-              <div className={styles.option}>
-                <h4>Self-Contained Projects</h4>
-                <PortableText value={data.projects} />
+          <ScrollLogger itemIndex={99} setCurrentItem={setCurrentItem}>
+            <section ref={workRef} className={styles.ways_to_work}>
+              <h3>Ways of Working</h3>
+              <div className={styles.description}>
+                <PortableText value={data.wow} />
               </div>
-              <div className={styles.option}>
-                <h4>Ongoing Retainers</h4>
-                <PortableText value={data.retainers} />
+              <div className={styles.options}>
+                <div className={styles.option}>
+                  <h4>Self-Contained Projects</h4>
+                  <PortableText value={data.projects} />
+                </div>
+                <div className={styles.option}>
+                  <h4>Ongoing Retainers</h4>
+                  <PortableText value={data.retainers} />
+                </div>
+                <div className={styles.option}>
+                  <h4>Scalable Teams</h4>
+                  <PortableText value={data.teams} />
+                </div>
               </div>
-              <div className={styles.option}>
-                <h4>Scalable Teams</h4>
-                <PortableText value={data.teams} />
-              </div>
-            </div>
-            <a
-              className={styles.offering_link}
-              href="https://calendly.com/collect-nyc"
-              target="_blank"
-            >
-              Have a project? Book a new business meeting now →
-            </a>
-          </section>
+              <a
+                className={styles.offering_link}
+                href="https://calendly.com/collect-nyc"
+                target="_blank"
+              >
+                Have a project? Book a new business meeting now →
+              </a>
+            </section>
+          </ScrollLogger>
         </article>
         <aside className={styles.stickynav}>
           <h5
@@ -142,7 +176,7 @@ const Services = ({ data }) => {
           </h5>
           <p>
             {data.offerings.map((offering, i) => (
-              <>
+              <span key={i}>
                 <button
                   onClick={() =>
                     animateScrollTo(elementsRef.current[i].current, {
@@ -152,12 +186,12 @@ const Services = ({ data }) => {
                       verticalOffset: -175,
                     })
                   }
-                  key={i}
+                  className={currentItem === i ? styles.active : null}
                 >
                   {offering.title}
                 </button>
                 <br />
-              </>
+              </span>
             ))}
           </p>
           <h5
