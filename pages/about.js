@@ -26,7 +26,7 @@ const About = ({ data }) => {
     clients,
   } = data;
 
-  console.log("Data", data);
+  // console.log("Data", data);
 
   return (
     <div className={styles.container}>

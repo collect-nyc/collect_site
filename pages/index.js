@@ -28,7 +28,7 @@ function vh(percent) {
 }
 
 const Home = ({ data }) => {
-  console.log("Landing Data", data);
+  // console.log("Landing Data", data);
 
   const { title, metadesc, statement, projects } = data;
   // console.log("featured data", document.data.body1);
