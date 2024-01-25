@@ -12,4 +12,13 @@
     margin-right: 10px;
     width: auto !important;
   }
+
+  @media screen and (max-width: $mq-mobile-max) {
+    height: 240px;
+    padding-left: $gutter_mobile;
+
+    img {
+      margin-right: 5px;
+    }
+  }
 }
