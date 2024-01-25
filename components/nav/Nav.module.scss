@@ -635,11 +635,11 @@
     }
   }
 
-  &.essential {
-    .top_right {
-      justify-content: flex-end;
-    }
-  }
+  // &.essential {
+  //   .top_right {
+  //     justify-content: flex-end;
+  //   }
+  // }
 
   .filter_container {
     padding: 0 $column_mobile 0 calc($column_desktop * 3);

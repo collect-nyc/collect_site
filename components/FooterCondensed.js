@@ -4,22 +4,6 @@ import styles from "./Footer.module.scss";
 const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.first_row}>
-        <span className={styles.address}>
-          100A Broadway #377
-          <br /> Brooklyn, NY 11249
-        </span>
-
-        <div className={styles.reachout}>
-          <span className={styles.phone}>
-            <b>E</b>
-            <a href="mailto:info@collect.nyc">info@collect.nyc</a>
-          </span>
-          <span className={styles.phone}>
-            <b>T</b>+1 718 902 4911
-          </span>
-        </div>
-      </div>
       <div className={styles.second_row}>
         <div className={styles.contact}>
           <div className={styles.social}>

@@ -131,11 +131,7 @@
     }
 
     &:last-of-type {
-      margin-bottom: 175px;
-
-      .inner {
-        border-bottom: none;
-      }
+      margin-bottom: 80px;
 
       @media screen and (max-width: $mq-mobile-max) {
         margin-bottom: 0px;

@@ -13,21 +13,22 @@
     padding: 22px $gutter_mobile 30px;
   }
 
-  .contact {
-    span {
+  .first_row {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 30px;
+    width: 100%;
+
+    .address,
+    .reachout {
       display: block;
-
-      &.company {
-        // text-transform: uppercase;
-      }
-
-      &.address {
-        margin-bottom: 15px;
-      }
+      width: calc($column_desktop * 2);
     }
 
     .reachout {
-      margin-bottom: 15px;
+      span {
+        display: block;
+      }
 
       b {
         display: inline-block;
@@ -35,37 +36,59 @@
         padding-right: 10px;
       }
     }
+  }
 
-    .social {
-      a {
+  .second_row {
+    position: relative;
+    width: 100%;
+
+    .contact {
+      display: flex;
+      justify-content: flex-start;
+      width: 100%;
+
+      .social,
+      .extra {
         display: block;
+        width: calc($column_desktop * 2);
+      }
+
+      .social {
+        a {
+          display: block;
+        }
+      }
+
+      .extra {
+        display: inline-block;
       }
     }
-  }
 
-  .links {
-    .extra {
-      display: inline-block;
-    }
-    .copyright {
-      display: inline-block;
-      margin-left: 20px;
+    .links {
+      position: absolute;
+      right: 0;
+      bottom: 0;
 
-      @media screen and (max-width: $mq-mobile-max) {
-        margin-top: 20px;
+      .copyright {
+        display: inline-block;
+        margin-left: 20px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          margin-top: 20px;
+        }
+      }
+      a {
+        margin-left: 20px;
+
+        &:first-of-type {
+          margin-left: 0;
+        }
       }
     }
-    a {
-      margin-left: 20px;
 
-      &:first-of-type {
-        margin-left: 0;
-      }
+    img {
+      max-width: 100%;
     }
-  }
-
-  img {
-    max-width: 100%;
   }
 
   @media screen and (max-width: $mq-mobile-max) {
