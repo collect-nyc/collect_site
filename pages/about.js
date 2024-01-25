@@ -135,7 +135,7 @@ const About = ({ data }) => {
                         href={sociallink.URL}
                         target="_blank"
                       >
-                        {sociallink.Account}
+                        {sociallink.Account} →
                       </a>
                     </li>
                   ))}
@@ -148,6 +148,9 @@ const About = ({ data }) => {
               <span className={styles.label}>Éditions Magazine</span>
               <div className={styles.content}>
                 <PortableText value={editions} />
+                <a className={styles.cta} href="">
+                  Follow Éditions →
+                </a>
               </div>
             </div>
           </section>

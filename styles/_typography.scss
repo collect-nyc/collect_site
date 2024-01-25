@@ -48,6 +48,10 @@ $gerstner: "Gerstner Programm", sans-serif;
   font-family: $gerstner, Arial, Helvetica, sans-serif;
   font-size: 26px;
   line-height: 1;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    font-size: 20px;
+  }
 }
 
 .m_type {
@@ -82,8 +86,8 @@ $gerstner: "Gerstner Programm", sans-serif;
 
 @mixin body_text {
   font-family: $gerstner, Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  line-height: 1.286;
+  font-size: 13px;
+  line-height: 1.307;
   font-weight: normal;
   text-rendering: optimizeLegibility;
   -moz-osx-font-smoothing: grayscale;

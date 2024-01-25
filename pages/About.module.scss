@@ -16,6 +16,10 @@
   padding: 175px $gutter_desktop 0;
   overflow-x: hidden;
 
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 158px $gutter_mobile 0;
+  }
+
   article {
     max-width: 68%;
     margin-right: $column_desktop;
@@ -73,6 +77,8 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      padding: 0;
+      margin-bottom: 100px;
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
@@ -118,6 +124,11 @@
           margin: 0;
           padding: 0;
         }
+
+        .cta {
+          display: inline-block;
+          margin-top: 20px;
+        }
       }
     }
 
@@ -126,6 +137,10 @@
 
       .inner {
         border-bottom: none;
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        margin-bottom: 0px;
       }
     }
 
@@ -147,6 +162,15 @@
 
           &:first-of-type {
             margin-right: 55px;
+          }
+        }
+        @media screen and (max-width: $mq-mobile-max) {
+          display: block;
+
+          .founder {
+            &:first-of-type {
+              margin-bottom: 20px;
+            }
           }
         }
       }
@@ -178,12 +202,32 @@
                 }
               }
             }
+
+            @media screen and (max-width: $mq-mobile-max) {
+              li,
+              a {
+                @include body_text;
+              }
+            }
           }
         }
       }
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      .inner {
+        display: block;
+        padding: 20px 0 60px;
+
+        .label {
+          display: inline-block;
+          margin-bottom: 20px;
+        }
+
+        .content {
+          width: 100%;
+        }
+      }
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
