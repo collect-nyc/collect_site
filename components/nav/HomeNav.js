@@ -17,7 +17,7 @@ function vh(percent) {
 
 const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
   // const { currentTag } = useContext(MemoryContext);
-  const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
+  const { archiveCounted, mobileMenuOpen } = useContext(MemoryContext);
   const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
     useContext(LoaderContext);
 
@@ -71,8 +71,8 @@ const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
   return (
     <motion.nav
       className={`${styles.navigation} ${styles.home} ${
-        !loaderDidRun ? styles.loading : styles.loading
-      }`}
+        mobileMenuOpen && styles.mobile_open
+      } ${!loaderDidRun ? styles.loading : styles.loading}`}
       initial={
         !loaderDidRun
           ? { opacity: 0, borderColor: "#ffffff" }

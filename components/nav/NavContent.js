@@ -5,7 +5,7 @@ import Link from "next/link";
 import styles from "./Nav.module.scss";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
-  const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
+  const { archiveCounted, setMobileMenuOpen } = useContext(MemoryContext);
 
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
@@ -73,14 +73,20 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           {navOpen ? (
             <button
               className={styles.mobile_btn}
-              onClick={() => setNavOpen(false)}
+              onClick={() => {
+                setNavOpen(false);
+                setMobileMenuOpen(false);
+              }}
             >
               Close X
             </button>
           ) : (
             <button
               className={`${styles.mobile_btn} ${styles.mobile_link}`}
-              onClick={() => setNavOpen(true)}
+              onClick={() => {
+                setNavOpen(true);
+                setMobileMenuOpen(true);
+              }}
             >
               <span className={!showNav ? styles.hide : styles.show}>Menu</span>{" "}
               (

@@ -20,6 +20,10 @@
     align-items: center;
     padding: 20.02px $gutter_mobile 21px;
     background-color: $white;
+
+    &.mobile_open {
+      background-color: $red !important;
+    }
   }
 
   a,
@@ -221,12 +225,18 @@
   }
 
   .mobile_nav {
+    background-color: $red;
     display: none;
+    position: fixed;
+    top: 58px;
+    left: 0;
     justify-content: flex-end;
     width: 100%;
+    padding: 0 $gutter_mobile;
 
     &.open {
       display: flex;
+      height: calc(100dvh - 58px);
     }
 
     ul {

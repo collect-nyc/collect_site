@@ -5,10 +5,13 @@ import NavContent from "./NavContent";
 import styles from "./Nav.module.scss";
 
 const DefaultNav = ({ page, newCount, count, globalContent, showNav }) => {
+  const { mobileMenuOpen } = useContext(MemoryContext);
   return (
     <>
       <nav
         className={`${styles.navigation} ${
+          mobileMenuOpen && styles.mobile_open
+        } ${
           page === "essential"
             ? styles.essential
             : page === "about"

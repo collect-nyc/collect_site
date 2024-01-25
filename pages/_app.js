@@ -23,6 +23,7 @@ function MyApp({ Component, pageProps }) {
   const [csColor, setCsColor] = useState(null);
   const [imageTotal, setImageTotal] = useState(null);
   const [archiveCounted, setArchiveCounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
@@ -82,6 +83,8 @@ function MyApp({ Component, pageProps }) {
         setImageTotal: setImageTotal,
         archiveCounted: archiveCounted,
         setArchiveCounted: setArchiveCounted,
+        mobileMenuOpen: mobileMenuOpen,
+        setMobileMenuOpen: setMobileMenuOpen,
       }}
     >
       <Layout
