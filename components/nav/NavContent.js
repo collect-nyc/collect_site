@@ -137,7 +137,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${page === "index" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
-              onClick={() => setNavOpen(false)}
+              onClick={() => {
+                setNavOpen(false);
+                setMobileMenuOpen(false);
+              }}
               href={"/"}
             >
               Selected Projects
@@ -149,7 +152,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${page === "services" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
-              onClick={() => setNavOpen(false)}
+              onClick={() => {
+                setNavOpen(false);
+                setMobileMenuOpen(false);
+              }}
               href={"/services"}
             >
               Agency Services
@@ -161,7 +167,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/about"}
-              onClick={() => setNavOpen(false)}
+              onClick={() => {
+                setNavOpen(false);
+                setMobileMenuOpen(false);
+              }}
             >
               Get in Touch
             </Link>
@@ -203,8 +212,24 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 <span className={styles.phone}>+1 718 902 4911</span>
               </div>
               <div className={styles.extra}>
-                <Link href="/info/privacy">Privacy</Link>
-                <Link href="/info/impressum">Impressum</Link>
+                <Link
+                  onClick={() => {
+                    setNavOpen(false);
+                    setMobileMenuOpen(false);
+                  }}
+                  href="/info/privacy"
+                >
+                  Privacy
+                </Link>
+                <Link
+                  onClick={() => {
+                    setNavOpen(false);
+                    setMobileMenuOpen(false);
+                  }}
+                  href="/info/impressum"
+                >
+                  Impressum
+                </Link>
               </div>
             </div>
           </div>
