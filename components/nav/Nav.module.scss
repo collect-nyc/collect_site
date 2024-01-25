@@ -1,5 +1,6 @@
 @import "~/styles/colors";
 @import "~/styles/helpers";
+@import "~/styles/typography";
 
 .navigation {
   align-items: flex-start;
@@ -230,7 +231,8 @@
     position: fixed;
     top: 58px;
     left: 0;
-    justify-content: flex-end;
+    flex-direction: column;
+    justify-content: space-between;
     width: 100%;
     padding: 0 $gutter_mobile;
 
@@ -241,19 +243,104 @@
 
     ul {
       list-style: none;
+      margin: 114px 0 0;
       padding: 0;
-      text-align: right;
+      text-align: left;
+      width: 100%;
 
       li {
-        margin-bottom: 13px;
-        text-align: right;
+        border-bottom: 2px solid $black;
+        margin: 0;
+        padding: 22px 0;
+        text-align: left;
+
+        &:first-of-type {
+          border-top: 2px solid $black;
+        }
 
         &:last-child {
           margin-bottom: 0;
         }
 
+        a {
+          @extend .xl_type;
+        }
+
         a.current {
           text-decoration: underline;
+        }
+      }
+    }
+
+    .footer {
+      border-top: 2px solid $black;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding: 140px $gutter_mobile $gutter_mobile;
+      position: relative;
+
+      .top_border {
+        width: 100%;
+      }
+
+      .contact {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        top: auto;
+        left: auto;
+        width: 100%;
+
+        .col {
+          width: 50%;
+
+          &:last-of-type {
+            @media screen and (max-width: $mq-mobile-max) {
+              // text-align: right;
+            }
+          }
+        }
+
+        span {
+          display: block;
+
+          &.address {
+            margin-bottom: 15px;
+          }
+        }
+
+        .reachout {
+          margin-bottom: 15px;
+
+          b {
+            display: inline-block;
+            font-weight: normal;
+            padding-right: 10px;
+          }
+        }
+
+        .social {
+          margin-bottom: 15px;
+
+          a {
+            display: block;
+          }
+        }
+
+        .extra {
+          a {
+            display: block;
+          }
+        }
+      }
+
+      .collect {
+        width: 100%;
+
+        svg {
+          width: 100%;
         }
       }
     }
@@ -266,9 +353,12 @@
   &.home {
     background-color: $white;
     color: $black;
-    mix-blend-mode: normal;
-    background: rgba($white, 0.96);
-    backdrop-filter: blur(5px);
+
+    @media screen and (min-width: $mq-tablet-min) {
+      mix-blend-mode: normal;
+      background: rgba($white, 0.96);
+      backdrop-filter: blur(5px);
+    }
 
     // &.loading {
     //   top: calc(50vh - 49px);
