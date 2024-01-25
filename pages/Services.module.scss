@@ -15,9 +15,20 @@
   padding-top: 175px;
   padding: 175px $gutter_desktop 0;
 
+  @media screen and (max-width: $mq-mobile-max) {
+    padding: 158px $gutter_mobile 0;
+  }
+
   article {
     max-width: 68%;
     margin-right: $column_desktop;
+    overflow-x: hidden;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      max-width: 100%;
+      margin-right: 0;
+      width: 100%;
+    }
   }
 
   .stickynav {
@@ -27,6 +38,10 @@
     position: sticky;
     // right: calc($column_desktop * 1.5);
     width: calc($column_desktop * 1.4);
+
+    @media screen and (max-width: $mq-mobile-max) {
+      display: none;
+    }
 
     h5 {
       @extend .m_type;
@@ -89,6 +104,10 @@
       border-bottom: 2px solid $black;
       padding: 20px 0 80px;
 
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 20px 0 20px;
+      }
+
       &.first {
         border-top: 2px solid $black;
       }
@@ -96,6 +115,10 @@
       h2,
       .description {
         @extend .xl_type;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          font-size: 20px;
+        }
       }
 
       h2 {
@@ -104,6 +127,10 @@
 
       .description {
         margin-bottom: 40px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          margin-bottom: 20px;
+        }
       }
 
       .examples {
@@ -120,6 +147,12 @@
               display: inline-block;
               margin-right: 25px;
             }
+          }
+        }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          ul {
+            margin-bottom: 20px;
           }
         }
       }
