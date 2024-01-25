@@ -176,6 +176,8 @@
     .count_link {
       display: flex;
       position: relative;
+      display: inline-block;
+      margin-left: 20px;
     }
 
     &.profile_right {

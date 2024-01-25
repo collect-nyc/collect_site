@@ -27,7 +27,7 @@
     margin-bottom: 120px;
 
     .textbox {
-      max-width: 68%;
+      max-width: 960px;
     }
 
     p {
@@ -59,6 +59,7 @@
         h2 {
           @extend .m_type;
           display: inline-block;
+          text-transform: uppercase;
         }
 
         .tags {

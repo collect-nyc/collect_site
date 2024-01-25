@@ -92,7 +92,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               )
             </button>
           )}
-          <Link
+          {/* <Link
             href={"/work"}
             className={`${styles.count_link} ${styles.desktop_link} ${
               page === "work" && styles.current
@@ -108,7 +108,20 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               ? count
               : 0}
             )
-          </Link>
+          </Link> */}
+          <span
+            className={`${styles.count_link} ${styles.desktop_link} ${
+              page === "work" && styles.current
+            }`}
+          >
+            (
+            {count && !archiveCounted
+              ? newCount
+              : count && archiveCounted
+              ? count
+              : 0}
+            )
+          </span>
         </div>
       </div>
       <div className={`${styles.mobile_nav} ${navOpen && styles.open}`}>
@@ -148,7 +161,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             </Link>
           </li>
           <li>
-            <Link
+            {/* <Link
               href={"/work"}
               className={`${styles.count_link} ${
                 page === "work" && styles.current
@@ -165,7 +178,20 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 ? count
                 : 0}
               )
-            </Link>
+            </Link> */}
+            <span
+              className={`${styles.count_link} ${
+                page === "work" && styles.current
+              }`}
+            >
+              (
+              {count && !archiveCounted
+                ? newCount
+                : count && archiveCounted
+                ? count
+                : 0}
+              )
+            </span>
           </li>
         </ul>
       </div>

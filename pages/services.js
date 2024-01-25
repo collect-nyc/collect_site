@@ -82,13 +82,13 @@ const Services = ({ data }) => {
           <section className={styles.statement}>
             <div className={styles.textbox}>
               {statement ? <PortableText value={statement} /> : null}
-              <a
+              {/* <a
                 className={styles.offering_link}
                 href="https://calendly.com/collect-nyc"
                 target="_blank"
               >
                 Have a project? Book a new business meeting now →
-              </a>
+              </a> */}
             </div>
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
@@ -101,7 +101,7 @@ const Services = ({ data }) => {
                 <div
                   key={i}
                   ref={elementsRef.current[i]}
-                  className={styles.offering}
+                  className={`${styles.offering} ${i === 0 && styles.first}`}
                 >
                   <h2>{offering.title}</h2>
                   <div className={styles.description}>

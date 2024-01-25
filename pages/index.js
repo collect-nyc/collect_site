@@ -178,9 +178,9 @@ const Home = ({ data }) => {
             {statement ? (
               <>
                 <PortableText value={statement} />
-                <Link className={styles.offering_link} href="/services">
+                {/* <Link className={styles.offering_link} href="/services">
                   Our Offerings →
-                </Link>
+                </Link> */}
               </>
             ) : null}
           </div>
