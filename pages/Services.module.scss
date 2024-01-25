@@ -32,11 +32,9 @@
   }
 
   .stickynav {
-    // display: none;
     display: block;
     top: 175px;
     position: sticky;
-    // right: calc($column_desktop * 1.5);
     width: calc($column_desktop * 1.4);
 
     @media screen and (max-width: $mq-mobile-max) {
