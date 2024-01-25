@@ -60,6 +60,11 @@ export default {
       }
     },
     {
+      name: 'hrefText',
+      type: 'string',
+      title: 'Link Text'
+    },
+    {
       title: 'Link',
       name: 'href',
       type: 'url',

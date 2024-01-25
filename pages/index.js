@@ -218,7 +218,13 @@ const Home = ({ data }) => {
                       <button onClick={() => toggleVisibility(i)}>
                         Read Less -
                       </button>
-                      {project.href && <a href={project.href}>Visit Site ↗</a>}
+                      {project.href && (
+                        <a href={project.href} target="_blank">
+                          {project?.hrefText
+                            ? `${project.hrefText} ↗`
+                            : "Visit Site ↗"}
+                        </a>
+                      )}
                     </div>
                   ) : null}
                 </header>
@@ -248,6 +254,7 @@ export async function getServerSideProps() {
         "alt": alt,
       },
       tags,
+      hrefText,
       href,
     }
   }`);
