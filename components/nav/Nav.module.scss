@@ -235,6 +235,7 @@
     justify-content: space-between;
     width: 100%;
     padding: 0 $gutter_mobile;
+    z-index: 100;
 
     &.open {
       display: flex;
@@ -273,12 +274,13 @@
     }
 
     .footer {
+      background-color: $red;
       border-top: 2px solid $black;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: flex-end;
-      padding: 140px $gutter_mobile $gutter_mobile;
+      padding: 140px 0 $gutter_mobile;
       position: relative;
 
       .top_border {

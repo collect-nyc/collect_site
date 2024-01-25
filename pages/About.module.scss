@@ -3,7 +3,7 @@
 @import "~/styles/typography";
 
 .container {
-  background-color: $white;
+  background-color: $blue;
   min-height: 100dvh;
   padding: 0;
 }
@@ -14,6 +14,7 @@
   justify-content: flex-start;
   padding-top: 175px;
   padding: 175px $gutter_desktop 0;
+  overflow-x: hidden;
 
   article {
     max-width: 68%;
@@ -190,5 +191,16 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
+    padding: 175px $gutter_mobile 0;
+
+    article {
+      max-width: 100%;
+      margin-right: 0;
+      width: 100%;
+    }
+
+    .stickynav {
+      display: none;
+    }
   }
 }
