@@ -244,6 +244,7 @@ export async function getServerSideProps() {
       description,
       images[] {
         "url": asset->url,
+        "type": asset->mimeType,
         "alt": alt,
       },
       tags,

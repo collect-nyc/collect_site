@@ -5,7 +5,8 @@
   padding-left: $gutter_desktop;
   margin-top: 13px;
 
-  img {
+  img,
+  video {
     cursor: pointer;
     display: block;
     height: 100% !important;
@@ -17,7 +18,8 @@
     height: 240px;
     padding-left: $gutter_mobile;
 
-    img {
+    img,
+    video {
       margin-right: 5px;
     }
   }

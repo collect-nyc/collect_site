@@ -23,7 +23,7 @@ export default {
     {
       type: 'array',
       name: 'images',
-      title: 'Featured Images',
+      title: 'Featured Media',
       of: [
         {
           type: 'image',
@@ -36,6 +36,17 @@ export default {
               title: 'Alt Text',
             },
           ],
+        },
+        {
+          name: 'video',
+          title: 'Video',
+          type: 'file',
+          options: {
+            accept: 'video/*',
+            sources: [
+              { name: 'video', title: 'Video', icon: () => '🎥' }, // Customize the icon if needed
+            ],
+          },
         }
       ]
     },

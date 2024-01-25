@@ -10,13 +10,14 @@ const CardSlider = ({ images, sliderIndex }) => {
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
   const [sliderInView, setSliderInView] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
-
   const sliderRef = useRef(null);
 
   const { ref, inView, entry } = useInView({
     threshold: 0.4,
     triggerOnce: true,
   });
+
+  console.log("images", images);
 
   useEffect(() => {
     setIsTouch(is_touch_enabled());
@@ -55,20 +56,39 @@ const CardSlider = ({ images, sliderIndex }) => {
       }
     >
       <Slider className={"projectslider"} ref={sliderRef} {...slide_settings}>
-        {images?.map((d, i) => (
-          <img
-            onClick={() => {
-              if (i === images.length - 1) {
-                sliderRef.current.slickGoTo(0);
-              } else {
-                nextSlidez();
-              }
-            }}
-            className={styles.item}
-            src={d.url + "?auto=format"}
-            key={i}
-          />
-        ))}
+        {images?.map((d, i) =>
+          d.type === "video/mp4" ? (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              key={i}
+              onClick={() => {
+                if (i === images.length - 1) {
+                  sliderRef.current.slickGoTo(0);
+                } else {
+                  nextSlidez();
+                }
+              }}
+            >
+              <source src={d.url} type="video/mp4" />
+            </video>
+          ) : (
+            <img
+              onClick={() => {
+                if (i === images.length - 1) {
+                  sliderRef.current.slickGoTo(0);
+                } else {
+                  nextSlidez();
+                }
+              }}
+              className={styles.item}
+              src={d.url + "?auto=format"}
+              key={i}
+            />
+          )
+        )}
       </Slider>
     </div>
   );
