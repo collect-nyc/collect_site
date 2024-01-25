@@ -204,6 +204,20 @@
             }
 
             @media screen and (max-width: $mq-mobile-max) {
+              display: flex;
+              flex-wrap: wrap;
+
+              li {
+                width: calc(
+                  50% - 20px
+                ); /* 50% width for each column, minus half of the gap */
+                margin-right: 20px; /* Adjust the gap between items */
+                // margin-bottom: 20px; /* Adjust the vertical gap between items */
+              }
+              li:last-child {
+                margin-right: 0; /* Remove margin for the last item in each row */
+              }
+
               li,
               a {
                 @include body_text;

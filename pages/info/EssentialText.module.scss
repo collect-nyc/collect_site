@@ -12,7 +12,8 @@
   min-height: calc(100vh - 168px);
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 108px $gutter_mobile 0 $gutter_mobile;
+    padding: 158px $gutter_mobile 0;
+    margin: 0;
   }
 }
 
