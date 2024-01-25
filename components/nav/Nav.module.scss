@@ -16,6 +16,12 @@
   width: 100%;
   z-index: 4;
 
+  @media screen and (max-width: $mq-mobile-max) {
+    align-items: center;
+    padding: 20.02px $gutter_mobile 21px;
+    background-color: $white;
+  }
+
   a,
   button {
     color: $black;
@@ -585,12 +591,5 @@
 
   &.nonav {
     display: none;
-  }
-
-  @media screen and (max-width: $mq-mobile-max) {
-    align-items: center;
-    padding: 15px $gutter_mobile 14px;
-    border-bottom: 1px solid $black;
-    background-color: $white;
   }
 }

@@ -160,39 +160,6 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Get in Touch
             </Link>
           </li>
-          <li>
-            {/* <Link
-              href={"/work"}
-              className={`${styles.count_link} ${
-                page === "work" && styles.current
-              }`}
-              onClick={() => setNavOpen(false)}
-            >
-              <span className={!showNav ? styles.hide : styles.show}>
-                All Work
-              </span>{" "}
-              (
-              {count && !archiveCounted
-                ? newCount
-                : count && archiveCounted
-                ? count
-                : 0}
-              )
-            </Link> */}
-            <span
-              className={`${styles.count_link} ${
-                page === "work" && styles.current
-              }`}
-            >
-              (
-              {count && !archiveCounted
-                ? newCount
-                : count && archiveCounted
-                ? count
-                : 0}
-              )
-            </span>
-          </li>
         </ul>
       </div>
     </>

@@ -19,7 +19,7 @@
   // }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 0 0 0;
+    padding: 158px 0 0;
   }
 
   .statement {
@@ -43,6 +43,8 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      padding: 0 $gutter_mobile;
+      margin-bottom: 100px;
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
@@ -99,6 +101,25 @@
           a,
           button {
             margin-right: 10px;
+          }
+        }
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        margin-bottom: 130px;
+
+        header {
+          h2 {
+          }
+
+          .tags {
+            display: none;
+          }
+
+          .reveal {
+            p {
+              max-width: 100%;
+            }
           }
         }
       }

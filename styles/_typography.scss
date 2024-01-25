@@ -38,6 +38,10 @@ $gerstner: "Gerstner Programm", sans-serif;
   font-family: $gerstner, Arial, Helvetica, sans-serif;
   font-size: 36px;
   line-height: 1;
+
+  @media screen and (max-width: $mq-mobile-max) {
+    font-size: 26px;
+  }
 }
 
 .l_type {
