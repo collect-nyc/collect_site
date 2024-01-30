@@ -18,8 +18,7 @@ function vh(percent) {
 const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
   // const { currentTag } = useContext(MemoryContext);
   const { archiveCounted, mobileMenuOpen } = useContext(MemoryContext);
-  const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
-    useContext(LoaderContext);
+  const { loaderDidRun } = useContext(LoaderContext);
 
   // const [viewportHeight, setViewportHeight] = useState(null);
 
@@ -33,7 +32,7 @@ const HomeNav = ({ page, newCount, count, globalContent, showNav }) => {
       opacity: [0, 1],
       transition: {
         opacity: {
-          duration: 0.3,
+          duration: 0.2,
           ease: "linear",
         },
       },

@@ -12,14 +12,12 @@ const CardSlider = ({ images, sliderIndex, small }) => {
   const [isTouch, setIsTouch] = useState(false);
   const sliderRef = useRef(null);
 
-  console.log("small", small);
-
   const { ref, inView, entry } = useInView({
     threshold: 0.4,
     triggerOnce: true,
   });
 
-  console.log("images", images);
+  // console.log("images", images);
 
   useEffect(() => {
     setIsTouch(is_touch_enabled());

@@ -5,14 +5,13 @@ import HomeNav from "./HomeNav";
 import DefaultNav from "./DefaultNav";
 
 const SiteNav = ({ page, count, globalContent }) => {
-  const { archiveCounted, setArchiveCounted } = useContext(MemoryContext);
-  const { loaderDidRun, setLoaderDidRun, animationDidRun, setAnimationDidRun } =
-    useContext(LoaderContext);
+  const { setArchiveCounted } = useContext(MemoryContext);
+  const { loaderDidRun, setLoaderDidRun } = useContext(LoaderContext);
   const [newCount, setNewCount] = useState(0);
   const [showNav, setShowNav] = useState(loaderDidRun ? true : false);
 
   function getRandomTime() {
-    const minNumber = 500;
+    const minNumber = 450;
     const maxNumber = 750;
 
     return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
@@ -45,7 +44,7 @@ const SiteNav = ({ page, count, globalContent }) => {
           // window.document.body.classList.remove("noscroll");
           setLoaderDidRun(true);
           setShowNav(true);
-        }, 2000);
+        }, 750);
       } else if (numCount >= target) {
         clearInterval(intervalId);
         // console.log(`Final count: ${numCount}`);
