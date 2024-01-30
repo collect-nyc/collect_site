@@ -43,7 +43,7 @@ const CardSlider = ({ images, sliderIndex, small }) => {
     slidesToScroll: 1,
     arrows: false,
     dots: false,
-    speed: 550,
+    speed: 400,
     swipe: true,
     swipeToSlide: true,
     easing: "ease-out",
