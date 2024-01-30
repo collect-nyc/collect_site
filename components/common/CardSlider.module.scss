@@ -5,6 +5,10 @@
   padding-left: $gutter_desktop;
   margin-top: 13px;
 
+  &.small {
+    height: 480px;
+  }
+
   img,
   video {
     cursor: pointer;

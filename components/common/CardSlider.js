@@ -5,12 +5,14 @@ import { useInView } from "react-intersection-observer";
 import { is_touch_enabled } from "@/lib/helpers";
 import styles from "./CardSlider.module.scss";
 
-const CardSlider = ({ images, sliderIndex }) => {
+const CardSlider = ({ images, sliderIndex, small }) => {
   const [currentSlide, setCurrentSlide] = useState(1);
   const [isMouseTooltipVisible, setMouseTooltipVisible] = useState(false);
   const [sliderInView, setSliderInView] = useState(false);
   const [isTouch, setIsTouch] = useState(false);
   const sliderRef = useRef(null);
+
+  console.log("small", small);
 
   const { ref, inView, entry } = useInView({
     threshold: 0.4,
@@ -52,7 +54,9 @@ const CardSlider = ({ images, sliderIndex }) => {
   return (
     <div
       className={
-        sliderInView ? `${styles.images} ${styles.in_view}` : styles.images
+        sliderInView
+          ? `${styles.images} ${styles.in_view} ${small && styles.small}`
+          : `${styles.images} ${small && styles.small}`
       }
     >
       <Slider className={"projectslider"} ref={sliderRef} {...slide_settings}>

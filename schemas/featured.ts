@@ -21,6 +21,12 @@ export default {
       ],
     },
     {
+      title: 'Small Height',
+      name: 'small',
+      type: 'boolean',
+      initialValue: false,
+    },
+    {
       type: 'array',
       name: 'images',
       title: 'Featured Media',

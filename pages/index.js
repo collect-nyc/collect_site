@@ -28,7 +28,7 @@ function vh(percent) {
 }
 
 const Home = ({ data }) => {
-  // console.log("Landing Data", data);
+  console.log("Landing Data", data);
 
   const { title, metadesc, statement, projects } = data;
   // console.log("featured data", document.data.body1);
@@ -228,7 +228,11 @@ const Home = ({ data }) => {
                     </div>
                   ) : null}
                 </header>
-                <CardSlider images={project.images} index={i} />
+                <CardSlider
+                  small={project.small}
+                  images={project.images}
+                  index={i}
+                />
               </div>
             );
           })}
@@ -248,6 +252,7 @@ export async function getServerSideProps() {
     "projects": projects[]->{
       title,
       description,
+      small,
       images[] {
         "url": asset->url,
         "type": asset->mimeType,
