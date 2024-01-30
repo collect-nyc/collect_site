@@ -14,7 +14,7 @@
   position: relative;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 158px 0 0;
+    padding: 158px 0 40px;
   }
 
   .statement {
@@ -118,6 +118,24 @@
           }
         }
       }
+    }
+  }
+
+  .mobile_cta {
+    display: none;
+
+    @media screen and (max-width: $mq-mobile-max) {
+      background-color: $blue;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 0 $gutter_mobile;
+      z-index: 2;
     }
   }
 }
