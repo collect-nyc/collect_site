@@ -117,11 +117,13 @@
 
   @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
     max-width: calc(100% - ($column_desktop + 250px));
+  }
 
+  @media screen and (min-width: $mq-tablet-min) and (max-width: 1100px) {
     .first_row {
       .address,
       .reachout {
-        width: calc($column_desktop * 4);
+        width: calc($column_desktop * 3.5);
       }
     }
 
@@ -129,7 +131,7 @@
       .contact {
         .social,
         .extra {
-          width: calc($column_desktop * 4);
+          width: calc($column_desktop * 3.5);
         }
       }
     }
