@@ -21,7 +21,7 @@
   }
 
   article {
-    max-width: 68%;
+    max-width: calc(100% - ($column_desktop + 300px));
     margin-right: $column_desktop;
   }
 
@@ -29,7 +29,7 @@
     display: block;
     top: 175px;
     position: sticky;
-    width: calc($column_desktop * 1.4);
+    width: 200px;
 
     h5 {
       @extend .m_type;

@@ -8,9 +8,11 @@
   justify-content: space-between;
   align-items: flex-end;
   padding: $gutter_desktop;
+  max-width: calc(100% - ($column_desktop + 300px));
 
   @media screen and (max-width: $mq-mobile-max) {
     padding: 22px $gutter_mobile $gutter_mobile;
+    max-width: 100%;
   }
 
   .first_row {
