@@ -24,6 +24,10 @@
     margin-right: $column_desktop;
     overflow-x: hidden;
 
+    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+      max-width: calc(100% - ($column_desktop + 250px));
+    }
+
     @media screen and (max-width: $mq-mobile-max) {
       max-width: 100%;
       margin-right: 0;
@@ -247,8 +251,5 @@
         }
       }
     }
-  }
-
-  @media screen and (max-width: $mq-mobile-max) {
   }
 }

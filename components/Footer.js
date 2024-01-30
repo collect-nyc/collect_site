@@ -1,9 +1,9 @@
 import Link from "next/link";
 import styles from "./Footer.module.scss";
 
-const Footer = () => {
+const Footer = ({ essential }) => {
   return (
-    <footer className={styles.footer}>
+    <footer className={`${styles.footer} ${essential && styles.essential}`}>
       <div className={styles.first_row}>
         <span className={styles.address}>
           100A Broadway #377

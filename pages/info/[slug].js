@@ -51,7 +51,7 @@ const EssentialText = ({ document }) => {
           </div>
         </main>
       </div>
-      <Footer />
+      <Footer essential="true" />
     </>
   );
 };
