@@ -114,9 +114,11 @@ const Services = ({ data }) => {
                       ))}
                     </ul>
                     <div className={styles.example_images}>
-                      {offering.images.map((image, i) => (
-                        <img src={image.url} alt={image.alt} key={i} />
-                      ))}
+                      <div className={styles.interior}>
+                        {offering.images.map((image, i) => (
+                          <img src={image.url} alt={image.alt} key={i} />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>

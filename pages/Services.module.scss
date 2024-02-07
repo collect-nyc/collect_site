@@ -162,8 +162,21 @@
       }
 
       .example_images {
-        height: 160px;
-        text-wrap: nowrap;
+        // height: 140px;
+        // height: 0.5%;
+        max-height: 140px;
+        padding-top: 15.5%;
+        position: relative;
+        // text-wrap: nowrap;
+
+        .interior {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          overflow: hidden;
+          width: 100%;
+        }
 
         img {
           display: inline-block;
@@ -177,7 +190,8 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          height: 80px;
+          padding-top: 17%;
+          max-height: 80px;
         }
       }
     }
