@@ -229,7 +229,7 @@
     background-color: $red;
     display: none;
     position: fixed;
-    top: 58px;
+    top: 57px;
     left: 0;
     flex-direction: column;
     justify-content: space-between;
@@ -239,7 +239,7 @@
 
     &.open {
       display: flex;
-      height: calc(100dvh - 58px);
+      height: calc(100dvh - 57px);
     }
 
     ul {
