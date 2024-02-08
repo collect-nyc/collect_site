@@ -167,6 +167,7 @@
         max-height: 140px;
         padding-top: 15.5%;
         position: relative;
+        overflow: hidden;
         // text-wrap: nowrap;
 
         .interior {
@@ -190,8 +191,13 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          padding-top: 17%;
-          max-height: 80px;
+          height: 80px;
+          padding-top: 0;
+        }
+
+        @media screen and (min-width: 1360px) {
+          padding-top: 0;
+          height: 140px;
         }
       }
     }
