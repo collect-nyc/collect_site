@@ -22,6 +22,10 @@
     height: 240px;
     padding-left: $gutter_mobile;
 
+    &.small {
+      height: 240px;
+    }
+
     img,
     video {
       margin-right: 5px;
