@@ -23,7 +23,7 @@
     background-color: $white;
 
     &.mobile_open {
-      background-color: $red !important;
+      background-color: $terracotta !important;
     }
   }
 
@@ -226,7 +226,7 @@
   }
 
   .mobile_nav {
-    background-color: $red;
+    background-color: $terracotta;
     display: none;
     position: fixed;
     top: 57px;
@@ -244,27 +244,39 @@
 
     ul {
       list-style: none;
-      margin: 114px 0 0;
+      margin: 110px 0 0;
       padding: 0;
       text-align: left;
       width: 100%;
+      list-style: none;
+      counter-reset: roman-counter;
 
       li {
         border-bottom: 2px solid $black;
         margin: 0;
-        padding: 22px 0;
+        padding: 22px 0 35px;
         text-align: left;
+
+        &:before {
+          @extend .l_type_mobile;
+          content: counter(roman-counter, upper-roman);
+          counter-increment: roman-counter;
+          margin-right: 20px;
+          display: inline-block;
+          width: 25px;
+        }
 
         &:first-of-type {
           border-top: 2px solid $black;
         }
 
         &:last-child {
+          border-bottom: 0;
           margin-bottom: 0;
         }
 
         a {
-          @extend .xl_type;
+          @extend .l_type_mobile;
           position: relative;
         }
 
@@ -282,6 +294,15 @@
           }
         }
       }
+    }
+
+    .copyright {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      text-align: center;
+      padding-bottom: 16px;
     }
 
     .footer {

@@ -175,8 +175,17 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Get in Touch
             </Link>
           </li>
+          <li>
+            <a
+              href="https://calendly.com/collect-nyc"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Book a Call ↗
+            </a>
+          </li>
         </ul>
-        <footer className={styles.footer}>
+        {/* <footer className={styles.footer}>
           <div className={styles.top_border} />
           <div className={styles.contact}>
             <div className={styles.col}>
@@ -233,7 +242,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               </div>
             </div>
           </div>
-        </footer>
+        </footer> */}
+        <span className={styles.copyright}>
+          ©{new Date().getFullYear()} Collect NEW YORK
+        </span>
       </div>
     </>
   );
