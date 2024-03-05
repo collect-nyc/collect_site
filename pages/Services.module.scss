@@ -103,7 +103,7 @@
   .offerings {
     .offering {
       border-bottom: 2px solid $black;
-      padding: 15px 0 80px;
+      padding: 15px 0 0;
       cursor: pointer;
 
       &.first {
@@ -124,20 +124,19 @@
       }
 
       .description {
-        margin-bottom: 30px;
-
-        @media screen and (max-width: $mq-mobile-max) {
-          margin-bottom: 30px;
-        }
       }
 
       .examples {
+        overflow: hidden;
+        margin-top: 30px;
+
         &.open {
           display: block;
+          margin-bottom: 30px;
         }
 
         &.closed {
-          display: none;
+          margin-bottom: 80px;
         }
 
         ul {
@@ -157,6 +156,17 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
+          margin-top: 20px;
+
+          &.open {
+            display: block;
+            margin-bottom: 20px;
+          }
+
+          &.closed {
+            margin-bottom: 40px;
+          }
+
           ul {
             margin-bottom: 20px;
           }
@@ -164,13 +174,10 @@
       }
 
       .example_images {
-        // height: 140px;
-        // height: 0.5%;
         max-height: 140px;
         padding-top: 22.5%;
         position: relative;
         overflow: hidden;
-        // text-wrap: nowrap;
 
         .interior {
           position: absolute;
@@ -204,21 +211,15 @@
       }
 
       &.open {
-        padding-bottom: 30px;
-      }
-
-      &.closed {
-        .description {
-          margin-bottom: 0;
-        }
+        // padding-bottom: 30px;
       }
 
       @media screen and (max-width: $mq-mobile-max) {
-        padding: 20px 0 40px;
+        padding: 20px 0 0;
 
-        &.open {
-          padding-bottom: 20px;
-        }
+        // &.open {
+        //   padding-bottom: 20px;
+        // }
       }
     }
   }

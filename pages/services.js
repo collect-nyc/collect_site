@@ -58,6 +58,25 @@ const Services = ({ data }) => {
     setSeeMoreClicked(newSeeMoreClicked);
   };
 
+  const variants = {
+    open: {
+      height: "auto",
+      opacity: 1,
+      transition: {
+        height: { duration: 0.3, ease: "linear" },
+        opacity: { duration: 0.3, ease: "linear" }, // Slower fade when opening
+      },
+    },
+    closed: {
+      height: 0,
+      opacity: 0,
+      transition: {
+        height: { duration: 0.3, ease: "linear" }, // Slower height transition when closing
+        opacity: { duration: 0.3, ease: "linear" }, // Faster fade when closing
+      },
+    },
+  };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -121,10 +140,13 @@ const Services = ({ data }) => {
                     <PortableText value={offering.description} />
                   </div>
 
-                  <div
+                  <motion.div
                     className={`${styles.examples} ${
                       seeMoreClicked[i] ? styles.open : styles.closed
                     }`}
+                    variants={variants}
+                    initial="closed"
+                    animate={seeMoreClicked[i] ? "open" : "closed"}
                   >
                     <ul>
                       {offering.examples.map((example, i) => (
@@ -138,7 +160,7 @@ const Services = ({ data }) => {
                         ))}
                       </div>
                     </div>
-                  </div>
+                  </motion.div>
                 </div>
                 <div className={styles.cta}>
                   <button>
