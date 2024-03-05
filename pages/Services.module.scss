@@ -124,11 +124,16 @@
       }
 
       .description {
+        margin-bottom: 30px;
+
+        @media screen and (max-width: $mq-mobile-max) {
+          margin-bottom: 12px;
+        }
       }
 
       .examples {
         overflow: hidden;
-        margin-top: 30px;
+        // margin-top: 30px;
 
         &.open {
           display: block;
@@ -136,7 +141,7 @@
         }
 
         &.closed {
-          margin-bottom: 80px;
+          margin-bottom: 50px;
         }
 
         ul {
@@ -156,19 +161,19 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          margin-top: 20px;
+          // margin-top: 20px;
 
           &.open {
             display: block;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
           }
 
           &.closed {
-            margin-bottom: 40px;
+            margin-bottom: 0;
           }
 
           ul {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
           }
         }
       }
@@ -319,16 +324,17 @@
       .center {
         min-width: auto;
         width: 100%;
-
-        .description {
-          padding-right: 65px;
-        }
       }
 
       .cta {
-        position: absolute;
-        top: 20px;
-        right: 0;
+        margin-top: 0px;
+        margin-bottom: 40px;
+      }
+
+      &.open {
+        .cta {
+          margin-bottom: 20px;
+        }
       }
     }
   }
