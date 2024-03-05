@@ -21,44 +21,45 @@
   }
 
   article {
-    max-width: calc(100% - ($column_desktop + 300px));
-    margin-right: $column_desktop;
+    width: 100%;
+    // max-width: calc(100% - ($column_desktop + 300px));
+    // margin-right: $column_desktop;
 
-    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-      max-width: calc(100% - ($column_desktop + 250px));
-    }
+    // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+    //   max-width: calc(100% - ($column_desktop + 250px));
+    // }
   }
 
-  .stickynav {
-    display: block;
-    top: 175px;
-    position: sticky;
-    width: 200px;
+  // .stickynav {
+  //   display: block;
+  //   top: 175px;
+  //   position: sticky;
+  //   width: 200px;
 
-    h5 {
-      @extend .m_type;
-      margin: 15px 0 0;
+  //   h5 {
+  //     @extend .m_type;
+  //     margin: 15px 0 0;
 
-      &:first-of-type {
-        margin-top: 0;
-      }
-    }
+  //     &:first-of-type {
+  //       margin-top: 0;
+  //     }
+  //   }
 
-    p,
-    a {
-      @extend .m_type;
-    }
+  //   p,
+  //   a {
+  //     @extend .m_type;
+  //   }
 
-    a,
-    button {
-      cursor: pointer;
+  //   a,
+  //   button {
+  //     cursor: pointer;
 
-      &:hover {
-        text-decoration: none;
-        color: $red;
-      }
-    }
-  }
+  //     &:hover {
+  //       text-decoration: none;
+  //       color: $red;
+  //     }
+  //   }
+  // }
 
   .statement {
     margin-bottom: 96px;
@@ -70,6 +71,7 @@
     p {
       @extend .xl_type;
       display: block;
+      max-width: 1020px;
     }
 
     .offering_link {
@@ -94,14 +96,15 @@
       border-bottom: 2px solid $black;
       padding: 15px 0 80px;
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-start;
 
       .label {
+        width: calc(25% - 7.5px);
       }
 
       .content {
         @extend .l_type;
-        width: 75%;
+        width: calc($column_desktop * 6 - 7.5px);
 
         a,
         button {

@@ -176,7 +176,7 @@ const About = ({ data }) => {
             </div>
           </section>
         </article>
-        <aside className={styles.stickynav}>
+        {/* <aside className={styles.stickynav}>
           <h5>NEW BUSINESS</h5>
           <p>
             <a href="mailto:new@collect.nyc">new@collect.nyc</a>
@@ -223,7 +223,7 @@ const About = ({ data }) => {
             100A Broadway #377
             <br /> Brooklyn, NY 11249
           </p>
-        </aside>
+        </aside> */}
       </main>
 
       <Footer />
