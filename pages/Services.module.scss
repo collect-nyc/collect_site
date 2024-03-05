@@ -307,6 +307,7 @@
     }
 
     .center {
+      min-width: 650px;
       width: calc($column_desktop * 6 - 7.5px);
     }
 
@@ -315,6 +316,23 @@
 
       button {
         @extend .s_type;
+      }
+    }
+
+    @media screen and (max-width: 1025px) {
+      .label {
+        width: 5%;
+      }
+    }
+
+    @media screen and (max-width: $mq-mobile-max) {
+      .label {
+        display: none;
+      }
+
+      .center {
+        min-width: auto;
+        width: calc(100% - 100px);
       }
     }
   }
