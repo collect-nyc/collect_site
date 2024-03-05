@@ -124,7 +124,7 @@
       }
 
       .description {
-        margin-bottom: 30px;
+        margin-bottom: 20px;
 
         @media screen and (max-width: $mq-mobile-max) {
           margin-bottom: 12px;
@@ -133,7 +133,6 @@
 
       .examples {
         overflow: hidden;
-        // margin-top: 30px;
 
         &.open {
           display: block;
@@ -145,7 +144,7 @@
         }
 
         ul {
-          margin: 0 0 30px 0;
+          margin: 0 0 28px 0;
           padding: 0;
 
           li {
