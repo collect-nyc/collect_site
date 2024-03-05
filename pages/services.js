@@ -46,12 +46,6 @@ const Services = ({ data }) => {
   const offeringsRef = useRef(null);
   const elementsRef = useRef(data.offerings.map(() => createRef()));
 
-  // const [currentItem, setCurrentItem] = React.useState(0);
-  // const [seeMoreClicked, setSeeMoreClicked] = useState([
-  //   true,
-  //   ...new Array(data.offerings.length - 1).fill(false),
-  // ]);
-
   const [seeMoreClicked, setSeeMoreClicked] = useState(
     new Array(data.offerings.length).fill(false)
   );
@@ -129,13 +123,6 @@ const Services = ({ data }) => {
           <section className={styles.statement}>
             <div className={styles.textbox}>
               {statement ? <PortableText value={statement} /> : null}
-              {/* <a
-                className={styles.offering_link}
-                href="https://calendly.com/collect-nyc"
-                target="_blank"
-              >
-                Have a project? Book a new business meeting now →
-              </a> */}
             </div>
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
