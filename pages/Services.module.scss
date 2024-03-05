@@ -230,11 +230,11 @@
 
     .offering_link {
       @extend .m_type;
-      margin-top: 30px;
+      margin-top: 60px;
       display: inline-block;
 
       @media screen and (max-width: $mq-mobile-max) {
-        margin-top: 30px;
+        margin-top: 40px;
 
         font-size: 13px;
       }
