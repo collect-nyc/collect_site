@@ -106,6 +106,7 @@
     .offering {
       border-bottom: 2px solid $black;
       padding: 15px 0 80px;
+      cursor: pointer;
 
       &.open {
         padding-bottom: 30px;

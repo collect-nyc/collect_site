@@ -110,6 +110,7 @@ const Services = ({ data }) => {
                 className={`${styles.offering} ${styles.row} ${
                   i === 0 && styles.first
                 } ${seeMoreClicked[i] ? styles.open : styles.closed}`}
+                onClick={() => handleSeeMoreClick(i)}
               >
                 <span className={styles.label}>
                   {(i + 1).toString().padStart(2, "0")}
@@ -140,7 +141,7 @@ const Services = ({ data }) => {
                   </div>
                 </div>
                 <div className={styles.cta}>
-                  <button onClick={() => handleSeeMoreClick(i)}>
+                  <button>
                     {seeMoreClicked[i] ? "See Less -" : "See More +"}
                   </button>
                 </div>
