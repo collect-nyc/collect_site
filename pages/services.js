@@ -58,21 +58,23 @@ const Services = ({ data }) => {
     setSeeMoreClicked(newSeeMoreClicked);
   };
 
+  const customEase = [0.23, 1, 0.32, 1];
+
   const variants = {
     open: {
       height: "auto",
       opacity: 1,
       transition: {
-        height: { duration: 0.3, ease: "linear" },
-        opacity: { duration: 0.3, ease: "linear" }, // Slower fade when opening
+        height: { duration: 0.3, ease: customEase },
+        opacity: { duration: 0.3, ease: customEase }, // Slower fade when opening
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        height: { duration: 0.3, ease: "linear" }, // Slower height transition when closing
-        opacity: { duration: 0.3, ease: "linear" }, // Faster fade when closing
+        height: { duration: 0.3, ease: customEase }, // Slower height transition when closing
+        opacity: { duration: 0.3, ease: customEase }, // Faster fade when closing
       },
     },
   };
