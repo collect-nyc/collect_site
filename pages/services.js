@@ -65,16 +65,16 @@ const Services = ({ data }) => {
       height: "auto",
       opacity: 1,
       transition: {
-        height: { duration: 0.5, ease: customEase },
-        opacity: { duration: 0.6, delay: 0.1, ease: customEase }, // Slower fade when opening
+        height: { duration: 0.6, ease: customEase },
+        opacity: { duration: 0.8, delay: 0.1, ease: customEase }, // Slower fade when opening
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        height: { duration: 0.6, delay: 0.1, ease: customEase }, // Slower height transition when closing
-        opacity: { duration: 0.5, ease: customEase }, // Faster fade when closing
+        height: { duration: 0.8, delay: 0.1, ease: customEase }, // Slower height transition when closing
+        opacity: { duration: 0.6, ease: customEase }, // Faster fade when closing
       },
     },
   };
