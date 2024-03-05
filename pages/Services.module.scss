@@ -101,24 +101,10 @@
   }
 
   .offerings {
-    // padding: 0 0 0 $gutter_desktop;
-
     .offering {
       border-bottom: 2px solid $black;
       padding: 15px 0 80px;
       cursor: pointer;
-
-      &.open {
-        padding-bottom: 30px;
-      }
-
-      @media screen and (max-width: $mq-mobile-max) {
-        padding: 20px 0 40px;
-
-        &.open {
-          padding-bottom: 20px;
-        }
-      }
 
       &.first {
         border-top: 2px solid $black;
@@ -216,6 +202,24 @@
           height: 140px;
         }
       }
+
+      &.open {
+        padding-bottom: 30px;
+      }
+
+      &.closed {
+        .description {
+          margin-bottom: 0;
+        }
+      }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding: 20px 0 40px;
+
+        &.open {
+          padding-bottom: 20px;
+        }
+      }
     }
   }
 
@@ -260,9 +264,6 @@
 
     .options {
       @extend .m_type;
-      // display: flex;
-      // justify-content: space-between;
-      // gap: 30px;
 
       .option {
         margin-bottom: 20px;
@@ -275,25 +276,6 @@
       h4 {
         color: $white;
       }
-
-      // @media screen and (max-width: $mq-mobile-max) {
-      //   display: block;
-      //   overflow-x: scroll;
-      //   white-space: nowrap;
-      //   padding-bottom: 20px;
-
-      //   .description {
-      //     margin-bottom: 74px;
-      //   }
-
-      //   .option {
-      //     display: inline-block;
-      //     white-space: normal;
-      //     margin-right: 30px;
-      //     text-align: left;
-      //     width: 290px;
-      //   }
-      // }
     }
   }
 
