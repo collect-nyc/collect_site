@@ -308,13 +308,26 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
+      display: block;
+      position: relative;
+
       .label {
         display: none;
       }
 
       .center {
         min-width: auto;
-        width: calc(100% - 100px);
+        width: 100%;
+
+        .description {
+          padding-right: 65px;
+        }
+      }
+
+      .cta {
+        position: absolute;
+        top: 25px;
+        right: 0;
       }
     }
   }
