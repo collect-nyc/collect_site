@@ -112,7 +112,11 @@
       }
 
       @media screen and (max-width: $mq-mobile-max) {
-        padding: 20px 0 20px;
+        padding: 20px 0 40px;
+
+        &.open {
+          padding-bottom: 20px;
+        }
       }
 
       &.first {
@@ -225,12 +229,12 @@
     }
 
     .offering_link {
-      @extend .l_type;
-      margin-top: 60px;
+      @extend .m_type;
+      margin-top: 30px;
       display: inline-block;
 
       @media screen and (max-width: $mq-mobile-max) {
-        margin-top: 60px;
+        margin-top: 30px;
 
         font-size: 13px;
       }
@@ -250,7 +254,7 @@
     }
 
     .description {
-      margin-bottom: 37px;
+      margin-bottom: 30px;
     }
 
     .options {
