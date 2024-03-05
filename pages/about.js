@@ -5,7 +5,7 @@ import Head from "next/head";
 import Link from "next/link";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
-import Footer from "../components/FooterCondensed";
+import Footer from "../components/Footer";
 import animateScrollTo from "animated-scroll-to";
 import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";

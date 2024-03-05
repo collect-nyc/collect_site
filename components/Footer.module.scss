@@ -8,7 +8,7 @@
   justify-content: space-between;
   align-items: flex-end;
   padding: $gutter_desktop;
-  max-width: calc(100% - ($column_desktop + 300px));
+  width: 100%;
 
   .first_row {
     display: flex;
@@ -115,9 +115,9 @@
     }
   }
 
-  @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-    max-width: calc(100% - ($column_desktop + 250px));
-  }
+  // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+  //   max-width: calc(100% - ($column_desktop + 250px));
+  // }
 
   @media screen and (min-width: $mq-tablet-min) and (max-width: 1100px) {
     .first_row {

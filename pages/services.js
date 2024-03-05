@@ -1,41 +1,41 @@
-import React, { useRef, useEffect, createRef, use } from "react";
+import React, { useRef, useEffect, createRef, useState } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
-import animateScrollTo from "animated-scroll-to";
-import { useInView, motion } from "framer-motion";
+// import animateScrollTo from "animated-scroll-to";
+// import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 
-const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
-  const elementRef = useRef();
+// const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
+//   const elementRef = useRef();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const element = elementRef.current;
-      const rect = element.getBoundingClientRect();
-      const offset = 176;
+//   useEffect(() => {
+//     const handleScroll = () => {
+//       const element = elementRef.current;
+//       const rect = element.getBoundingClientRect();
+//       const offset = 176;
 
-      // Check if the top of the element is within the desired range
-      if (rect.top <= offset && rect.bottom >= offset) {
-        setCurrentItem(itemIndex);
-      }
-    };
+//       // Check if the top of the element is within the desired range
+//       if (rect.top <= offset && rect.bottom >= offset) {
+//         setCurrentItem(itemIndex);
+//       }
+//     };
 
-    // Attach the scroll event listener
-    window.addEventListener("scroll", handleScroll);
+//     // Attach the scroll event listener
+//     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event listener when the component unmounts
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []); // Run this effect only once when the component mounts
+//     // Clean up the event listener when the component unmounts
+//     return () => {
+//       window.removeEventListener("scroll", handleScroll);
+//     };
+//   }, []); // Run this effect only once when the component mounts
 
-  return <div ref={elementRef}>{children}</div>;
-};
+//   return <div ref={elementRef}>{children}</div>;
+// };
 
 const Services = ({ data }) => {
   // console.log("Data", data);
@@ -45,7 +45,18 @@ const Services = ({ data }) => {
   const offeringsRef = useRef(null);
   const elementsRef = useRef(data.offerings.map(() => createRef()));
 
-  const [currentItem, setCurrentItem] = React.useState(0);
+  // const [currentItem, setCurrentItem] = React.useState(0);
+  const [seeMoreClicked, setSeeMoreClicked] = useState([
+    true,
+    ...new Array(data.offerings.length - 1).fill(false),
+  ]);
+
+  const handleSeeMoreClick = (index) => {
+    // Create a new array to avoid mutating state directly
+    const newSeeMoreClicked = [...seeMoreClicked];
+    newSeeMoreClicked[index] = !newSeeMoreClicked[index];
+    setSeeMoreClicked(newSeeMoreClicked);
+  };
 
   return (
     <div className={styles.container}>
@@ -93,21 +104,27 @@ const Services = ({ data }) => {
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
             {data.offerings.map((offering, i) => (
-              <ScrollLogger
+              <div
                 key={i}
-                itemIndex={i}
-                setCurrentItem={setCurrentItem}
+                ref={elementsRef.current[i]}
+                className={`${styles.offering} ${styles.row} ${
+                  i === 0 && styles.first
+                } ${seeMoreClicked[i] ? styles.open : styles.closed}`}
               >
-                <div
-                  key={i}
-                  ref={elementsRef.current[i]}
-                  className={`${styles.offering} ${i === 0 && styles.first}`}
-                >
+                <span className={styles.label}>
+                  {(i + 1).toString().padStart(2, "0")}
+                </span>
+                <div className={styles.center}>
                   <h2>{offering.title}</h2>
                   <div className={styles.description}>
                     <PortableText value={offering.description} />
                   </div>
-                  <div className={styles.examples}>
+
+                  <div
+                    className={`${styles.examples} ${
+                      seeMoreClicked[i] ? styles.open : styles.closed
+                    }`}
+                  >
                     <ul>
                       {offering.examples.map((example, i) => (
                         <li key={i}>{example}</li>
@@ -122,11 +139,23 @@ const Services = ({ data }) => {
                     </div>
                   </div>
                 </div>
-              </ScrollLogger>
+                <div className={styles.cta}>
+                  <button onClick={() => handleSeeMoreClick(i)}>
+                    {seeMoreClicked[i] ? "See Less -" : "See More +"}
+                  </button>
+                </div>
+              </div>
             ))}
           </section>
-          <ScrollLogger itemIndex={99} setCurrentItem={setCurrentItem}>
-            <section ref={workRef} className={styles.ways_to_work}>
+
+          <section
+            ref={workRef}
+            className={`${styles.ways_to_work} ${styles.row}`}
+          >
+            <span className={styles.label}>
+              {(data.offerings.length + 1).toString().padStart(2, "0")}
+            </span>
+            <div className={styles.center}>
               <h3>Ways of Working</h3>
               <div className={styles.description}>
                 <PortableText value={data.wow} />
@@ -152,10 +181,10 @@ const Services = ({ data }) => {
               >
                 Have a project? Book a new business meeting now →
               </a>
-            </section>
-          </ScrollLogger>
+            </div>
+          </section>
         </article>
-        <aside className={styles.stickynav}>
+        {/* <aside className={styles.stickynav}>
           <h5
             onClick={() =>
               animateScrollTo(offeringsRef.current, {
@@ -240,7 +269,7 @@ const Services = ({ data }) => {
               Scalable Teams
             </button>
           </p>
-        </aside>
+        </aside> */}
       </main>
       <Footer />
     </div>
