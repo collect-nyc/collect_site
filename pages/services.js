@@ -9,6 +9,7 @@ import Footer from "../components/Footer";
 import { motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
+import { set } from "lodash";
 
 // const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
 //   const elementRef = useRef();
@@ -46,10 +47,14 @@ const Services = ({ data }) => {
   const elementsRef = useRef(data.offerings.map(() => createRef()));
 
   // const [currentItem, setCurrentItem] = React.useState(0);
-  const [seeMoreClicked, setSeeMoreClicked] = useState([
-    true,
-    ...new Array(data.offerings.length - 1).fill(false),
-  ]);
+  // const [seeMoreClicked, setSeeMoreClicked] = useState([
+  //   true,
+  //   ...new Array(data.offerings.length - 1).fill(false),
+  // ]);
+
+  const [seeMoreClicked, setSeeMoreClicked] = useState(
+    new Array(data.offerings.length).fill(false)
+  );
 
   const handleSeeMoreClick = (index) => {
     // Create a new array to avoid mutating state directly
@@ -57,6 +62,16 @@ const Services = ({ data }) => {
     newSeeMoreClicked[index] = !newSeeMoreClicked[index];
     setSeeMoreClicked(newSeeMoreClicked);
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setSeeMoreClicked((prevState) => {
+        const newState = [...prevState];
+        newState[0] = true;
+        return newState;
+      });
+    }, 350);
+  }, []);
 
   const customEase = [0.23, 1, 0.32, 1];
 
