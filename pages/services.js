@@ -75,7 +75,7 @@ const Services = ({ data }) => {
       opacity: 1,
       transition: {
         height: { duration: 0.6, ease: customEase },
-        opacity: { duration: 0.8, delay: 0.1, ease: customEase }, // Slower fade when opening
+        opacity: { duration: 0.9, delay: 0.2, ease: customEase }, // Slower fade when opening
       },
     },
     closed: {
