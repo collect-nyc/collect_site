@@ -39,7 +39,7 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       padding: 0 $gutter_mobile;
-      margin-bottom: 100px;
+      margin-bottom: 110px;
     }
 
     @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
@@ -104,6 +104,8 @@
         margin-bottom: 130px;
 
         header {
+          padding: 0 $gutter_mobile;
+
           h2 {
           }
 

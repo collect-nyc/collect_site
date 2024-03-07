@@ -3,7 +3,7 @@
 @import "~/styles/typography";
 
 .container {
-  background-color: $blue;
+  background-color: $clay;
   min-height: 100dvh;
   padding: 0;
 }
@@ -12,7 +12,6 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  padding-top: 175px;
   padding: 175px $gutter_desktop 0;
 
   @media screen and (max-width: $mq-mobile-max) {
@@ -82,10 +81,7 @@
 
     @media screen and (max-width: $mq-mobile-max) {
       padding: 0;
-      margin-bottom: 100px;
-    }
-
-    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
+      margin-bottom: 110px;
     }
   }
 
@@ -100,6 +96,10 @@
 
       .label {
         width: calc(25% - 7.5px);
+
+        @media screen and (max-width: $mq-mobile-max) {
+          width: 100%;
+        }
       }
 
       .content {
@@ -250,8 +250,6 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 175px $gutter_mobile 0;
-
     article {
       max-width: 100%;
       margin-right: 0;

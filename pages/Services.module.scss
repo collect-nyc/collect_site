@@ -96,7 +96,7 @@
     }
 
     @media screen and (max-width: $mq-mobile-max) {
-      margin-bottom: 100px;
+      margin-bottom: 110px;
     }
   }
 
@@ -178,8 +178,8 @@
       }
 
       .example_images {
-        max-height: 140px;
-        padding-top: 22.5%;
+        height: 140px;
+        // padding-top: 22.5%;
         position: relative;
         overflow: hidden;
 
@@ -204,14 +204,25 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
-          height: 80px;
-          padding-top: 0;
+          .interior {
+            position: relative;
+            overflow-x: auto; /* Enable horizontal scrolling */
+            overflow-y: hidden;
+            white-space: nowrap; /* Prevent wrapping */
+            left: auto;
+            top: auto;
+            width: 100%;
+
+            &::-webkit-scrollbar {
+              display: none;
+            }
+          }
         }
 
-        @media screen and (min-width: 1360px) {
-          padding-top: 0;
-          height: 140px;
-        }
+        // @media screen and (min-width: 1360px) {
+        //   padding-top: 0;
+        //   height: 140px;
+        // }
       }
 
       @media screen and (max-width: $mq-mobile-max) {

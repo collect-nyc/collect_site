@@ -21,6 +21,7 @@
   @media screen and (max-width: $mq-mobile-max) {
     height: 240px;
     padding-left: $gutter_mobile;
+    margin-top: 5px;
 
     &.small {
       height: 240px;
