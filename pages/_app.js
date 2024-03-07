@@ -12,9 +12,6 @@ function MyApp({ Component, pageProps }) {
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
-  // const [homeScrollPos, setHomeScrollPos] = useState(null);
-  // const [scrollPos, setScrollPos] = useState(null);
-  // returnPage = true if you are coming from a page where it's ok to shuffle the archive list
   const [returnPage, setReturnPage] = useState(false);
   const [navTextColor, setNavTextColor] = useState(null);
   const [archiveView, setArchiveView] = useState(false);
@@ -27,6 +24,7 @@ function MyApp({ Component, pageProps }) {
 
   // If component is passed from page
   const Layout = Component.Layout ? Component.Layout : React.Fragment;
+  // const Layout = Component.Layout;
 
   useEffect(() => {
     setPageHistory(currentPage ? currentPage : null);
@@ -36,6 +34,7 @@ function MyApp({ Component, pageProps }) {
   useEffect(() => {
     const handleRouteChange = (url) => {
       setMobileMenuOpen(false);
+
       if (window && window.gtag) {
         window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
           page_path: url,
