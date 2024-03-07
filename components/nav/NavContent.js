@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import MemoryContext from "../MemoryContext";
-import LoaderContext from "../LoaderContext";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 
@@ -20,6 +20,25 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
 
     return () => clearInterval(interval);
   }, [currentItem, globalContent]);
+
+  const navVariants = {
+    closed: {
+      opacity: 0,
+      transition: {
+        opacity: { duration: 0.2, ease: "easeInOut" },
+      },
+      transitionEnd: {
+        display: "none",
+      },
+    },
+    open: {
+      display: "flex",
+      opacity: 1,
+      transition: {
+        opacity: { duration: 0.2, ease: "easeInOut" },
+      },
+    },
+  };
 
   return (
     <>
@@ -130,7 +149,12 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           </span>
         </div>
       </div>
-      <div className={`${styles.mobile_nav} ${navOpen && styles.open}`}>
+      <motion.div
+        className={`${styles.mobile_nav} ${navOpen && styles.open}`}
+        variants={navVariants} // Apply variants
+        initial="closed"
+        animate={navOpen ? "open" : "closed"}
+      >
         <ul>
           <li>
             <Link
@@ -246,7 +270,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
         <span className={styles.copyright}>
           ©{new Date().getFullYear()} Collect NEW YORK
         </span>
-      </div>
+      </motion.div>
     </>
   );
 };

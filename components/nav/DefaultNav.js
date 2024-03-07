@@ -3,6 +3,7 @@ import Link from "next/link";
 import MemoryContext from "../MemoryContext";
 import NavContent from "./NavContent";
 import styles from "./Nav.module.scss";
+import { motion } from "framer-motion";
 
 const DefaultNav = ({ page, newCount, count, globalContent, showNav }) => {
   const { mobileMenuOpen } = useContext(MemoryContext);
