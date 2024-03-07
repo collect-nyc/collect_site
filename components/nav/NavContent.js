@@ -5,7 +5,8 @@ import Link from "next/link";
 import styles from "./Nav.module.scss";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
-  const { archiveCounted, setMobileMenuOpen } = useContext(MemoryContext);
+  const { archiveCounted, mobileMenuOpen, setMobileMenuOpen } =
+    useContext(MemoryContext);
 
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
@@ -89,11 +90,11 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Get in Touch
             </Link>
           </span>
-          {navOpen ? (
+          {mobileMenuOpen ? (
             <button
               className={styles.mobile_btn}
               onClick={() => {
-                setNavOpen(false);
+                // setNavOpen(false);
                 setMobileMenuOpen(false);
               }}
             >
@@ -103,7 +104,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             <button
               className={`${styles.mobile_btn} ${styles.mobile_link}`}
               onClick={() => {
-                setNavOpen(true);
+                // setNavOpen(true);
                 setMobileMenuOpen(true);
               }}
             >
@@ -150,10 +151,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
         </div>
       </div>
       <motion.div
-        className={`${styles.mobile_nav} ${navOpen && styles.open}`}
+        className={`${styles.mobile_nav} ${mobileMenuOpen && styles.open}`}
         variants={navVariants} // Apply variants
         initial="closed"
-        animate={navOpen ? "open" : "closed"}
+        animate={mobileMenuOpen ? "open" : "closed"}
       >
         <ul>
           <li>
@@ -162,7 +163,6 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               onClick={() => {
-                setNavOpen(false);
                 setMobileMenuOpen(false);
               }}
               href={"/"}
@@ -176,10 +176,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${page === "services" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
-              onClick={() => {
-                setNavOpen(false);
-                setMobileMenuOpen(false);
-              }}
+              // onClick={() => {
+              //   setMobileMenuOpen(false);
+              // }}
               href={"/services"}
             >
               Agency Services
@@ -191,10 +190,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/about"}
-              onClick={() => {
-                setNavOpen(false);
-                setMobileMenuOpen(false);
-              }}
+              // onClick={() => {
+              //   setMobileMenuOpen(false);
+              // }}
             >
               Get in Touch
             </Link>
@@ -204,6 +202,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               href="https://calendly.com/collect-nyc"
               target="_blank"
               rel="noreferrer"
+              onClick={() => {
+                setMobileMenuOpen(false);
+              }}
             >
               Book a Call ↗
             </a>

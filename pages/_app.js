@@ -35,6 +35,7 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
+      setMobileMenuOpen(false);
       if (window && window.gtag) {
         window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
           page_path: url,
