@@ -1,10 +1,8 @@
-import React, { useRef } from "react";
+import { useRef } from "react";
 import Head from "next/head";
 import _ from "lodash";
-import { RichText } from "prismic-reactjs";
 import SharedHead from "../../components/SharedHead";
 import Footer from "../../components/Footer";
-import MyLayout from "../../layouts/MyLayout";
 import { client } from "../../sanity.config";
 import { PortableText } from "@portabletext/react";
 import { SITE_NAME } from "../../lib/constants";
@@ -80,5 +78,4 @@ export async function getServerSideProps({ params }) {
   };
 }
 
-EssentialText.Layout = MyLayout;
 export default EssentialText;

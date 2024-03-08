@@ -8,7 +8,6 @@ import Masonry from "react-masonry-css";
 import _ from "lodash";
 import { useRouter } from "next/router";
 import SharedHead from "../../components/SharedHead";
-import MyLayout from "../../layouts/MyLayout";
 import { Client } from "../../lib/prismic-config";
 import RightArrow from "../../svg/right-arrow.svg";
 import MemoryContext from "../../components/MemoryContext";
@@ -517,5 +516,4 @@ const Home = ({ document, tagged, loader, archive_page }) => {
   );
 };
 
-Home.Layout = MyLayout;
 export default Home;

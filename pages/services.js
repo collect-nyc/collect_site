@@ -3,7 +3,6 @@ import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
-import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
 // import animateScrollTo from "animated-scroll-to";
 import { motion, cubicBezier } from "framer-motion";
@@ -339,5 +338,4 @@ export async function getServerSideProps() {
   };
 }
 
-Services.Layout = MyLayout;
 export default Services;

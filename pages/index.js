@@ -1,21 +1,16 @@
 import React, { useEffect, useContext, useRef, useMemo, useState } from "react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
-import MyLayout from "../layouts/MyLayout";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import _ from "lodash";
 import MemoryContext from "../components/MemoryContext";
 import LoaderContext from "../components/LoaderContext";
 import HomeFooter from "../components/HomeFooter";
-import Slider from "react-slick";
 import { motion } from "framer-motion";
 // import Marquee from "react-fast-marquee";
 import VideoPlayer from "../components/common/VideoPlayer";
-import FeaturedSlider from "../components/FeaturedSlider";
-import animateScrollTo from "animated-scroll-to";
 import { SITE_NAME } from "../lib/constants";
-import Link from "next/link";
 import CardSlider from "@/components/common/CardSlider";
 import styles from "./Index.module.scss";
 
@@ -44,12 +39,6 @@ const Home = ({ data }) => {
 
   // Array of refs, one for each element
   const sliderRefs = useRef(projects.map(() => React.createRef()));
-
-  // useEffect(() => {
-  //   // Example: Log the references
-  //   console.log(sliderRefs.current);
-  //   console.log("test", sliderRefs.current[0]);
-  // }, []);
 
   const toggleVisibility = (index) => {
     setProjectStates((prevStates) =>
@@ -282,5 +271,4 @@ export async function getServerSideProps() {
   };
 }
 
-Home.Layout = MyLayout;
 export default Home;

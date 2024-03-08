@@ -1,13 +1,8 @@
-import { useRef } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
-import Link from "next/link";
 import SharedHead from "../components/SharedHead";
-import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
-import animateScrollTo from "animated-scroll-to";
-import { useInView, motion } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./About.module.scss";
 
@@ -176,54 +171,6 @@ const About = ({ data }) => {
             </div>
           </section>
         </article>
-        {/* <aside className={styles.stickynav}>
-          <h5>NEW BUSINESS</h5>
-          <p>
-            <a href="mailto:new@collect.nyc">new@collect.nyc</a>
-            <br />
-            +1 718 902 4911
-          </p>
-          <h5>WORK OPPORTUNITIES</h5>{" "}
-          <p>
-            <a href="mailto:info@collect.nyc">info@collect.nyc</a>
-            <br />
-            <a target="_blank" href="https://instagram.com/collect.nyc">
-              @collect.nyc
-            </a>
-          </p>{" "}
-          <h5>NOW ONLINE</h5>{" "}
-          <p>
-            <a target="_blank" href="https://instagram.com/collect.nyc">
-              Instagram
-            </a>
-            <br />
-            <a target="_blank" href="https://www.threads.net/@collect.nyc">
-              Threads
-            </a>
-            <br />
-            <a
-              target="_blank"
-              href="https://www.linkedin.com/company/collect-nyc"
-            >
-              LinkedIn
-            </a>
-          </p>
-          <h5>ÉDITIONS MAGAZINE</h5>
-          <p>
-            <a target="_blank" href="https://www.instagram.com/editions.mag/">
-              @editions.mag
-            </a>
-            <br />
-            <a target="_blank" href="https://editionsnewyork.com">
-              editionsnewyork.com
-            </a>
-          </p>
-          <h5>MAILBOX</h5>{" "}
-          <p>
-            100A Broadway #377
-            <br /> Brooklyn, NY 11249
-          </p>
-        </aside> */}
       </main>
 
       <Footer />
@@ -257,5 +204,4 @@ export async function getServerSideProps() {
   };
 }
 
-About.Layout = MyLayout;
 export default About;

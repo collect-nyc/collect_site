@@ -3,7 +3,6 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import SharedHead from "../../components/SharedHead";
-import MyLayout from "../../layouts/MyLayout";
 import { SITE_NAME } from "../../lib/constants";
 import Collect from "../../svg/big_collect.svg";
 import styles from "./Work.module.scss";
@@ -64,5 +63,4 @@ export async function getServerSideProps() {
   };
 }
 
-WorkPage.Layout = MyLayout;
 export default WorkPage;

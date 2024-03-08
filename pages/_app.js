@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
+import Layout from "../layouts/Layout";
 import "../styles/globals.scss";
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
+
   const [currentPage, setCurrentPage] = useState(null);
   const [pageHistory, setPageHistory] = useState(null);
   const [layoutView, setLayoutView] = useState(false);
@@ -23,7 +25,7 @@ function MyApp({ Component, pageProps }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // If component is passed from page
-  const Layout = Component.Layout ? Component.Layout : React.Fragment;
+  // const Layout = Component.Layout ? Component.Layout : React.Fragment;
   // const Layout = Component.Layout;
 
   useEffect(() => {
