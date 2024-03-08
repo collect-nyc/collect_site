@@ -232,9 +232,9 @@
       @media screen and (max-width: $mq-mobile-max) {
         padding: 10px 0 0;
 
-        // &.open {
-        //   padding-bottom: 20px;
-        // }
+        &.open {
+          padding-bottom: 15px;
+        }
       }
     }
   }
@@ -349,13 +349,14 @@
       }
 
       .cta {
-        margin-top: 0px;
-        margin-bottom: 40px;
+        margin-top: 0;
+        margin-bottom: 0px;
       }
 
       &.open {
         .cta {
-          margin-bottom: 15px;
+          margin-top: 10px;
+          // margin-bottom: 15px;
         }
       }
     }
