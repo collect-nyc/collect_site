@@ -6,7 +6,7 @@ import SharedHead from "../components/SharedHead";
 import MyLayout from "../layouts/MyLayout";
 import Footer from "../components/Footer";
 // import animateScrollTo from "animated-scroll-to";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 import { set } from "lodash";
@@ -67,23 +67,23 @@ const Services = ({ data }) => {
     }, 350);
   }, []);
 
-  const customEase = [0.23, 1, 0.32, 1];
+  const customEase = cubicBezier(0.5, 1, 0.89, 1);
 
   const variants = {
     open: {
       height: "auto",
       opacity: 1,
       transition: {
-        height: { duration: 0.6, ease: customEase },
-        opacity: { duration: 0.9, delay: 0.2, ease: customEase }, // Slower fade when opening
+        height: { duration: 0.5, ease: customEase },
+        opacity: { duration: 0.7, delay: 0.4, ease: customEase }, // Slower fade when opening
       },
     },
     closed: {
       height: 0,
       opacity: 0,
       transition: {
-        height: { duration: 0.8, delay: 0.1, ease: customEase }, // Slower height transition when closing
-        opacity: { duration: 0.6, ease: customEase }, // Faster fade when closing
+        height: { duration: 0.5, delay: 0.1, ease: customEase }, // Slower height transition when closing
+        opacity: { duration: 0.2, ease: customEase }, // Faster fade when closing
       },
     },
   };

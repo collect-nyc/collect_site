@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import MemoryContext from "../MemoryContext";
-import { motion } from "framer-motion";
+import { motion, cubicBezier } from "framer-motion";
 import Link from "next/link";
 import styles from "./Nav.module.scss";
 
@@ -22,11 +22,13 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
     return () => clearInterval(interval);
   }, [currentItem, globalContent]);
 
+  const customEase = cubicBezier(0.5, 1, 0.89, 1);
+
   const navVariants = {
     closed: {
       opacity: 0,
       transition: {
-        opacity: { duration: 0.2, ease: "easeInOut" },
+        opacity: { duration: 0.2, ease: customEase },
       },
       transitionEnd: {
         display: "none",
@@ -36,7 +38,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       display: "flex",
       opacity: 1,
       transition: {
-        opacity: { duration: 0.2, ease: "easeInOut" },
+        opacity: { duration: 0.2, ease: customEase },
       },
     },
   };
