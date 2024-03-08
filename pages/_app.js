@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, use } from "react";
 import { useRouter } from "next/router";
 import MemoryContext from "../components/MemoryContext";
 import Layout from "../layouts/Layout";
@@ -28,6 +28,15 @@ function MyApp({ Component, pageProps }) {
     setPageHistory(currentPage ? currentPage : null);
     setCurrentPage(router.asPath);
   }, [router.asPath]);
+
+  // useEffect(() => {
+  //   console.log(
+  //     "Mobile Menu Open",
+  //     mobileMenuOpen,
+  //     "Mobile Memory",
+  //     mobileMemory
+  //   );
+  // }, [mobileMemory, mobileMenuOpen]);
 
   useEffect(() => {
     const handleRouteChange = (url) => {

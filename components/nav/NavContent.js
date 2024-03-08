@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext, memo } from "react";
 import { useRouter } from "next/router";
 import MemoryContext from "../MemoryContext";
 import { motion, cubicBezier } from "framer-motion";
@@ -37,7 +37,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
     closed: {
       opacity: 0,
       transition: {
-        opacity: { duration: 0.2, ease: customEase },
+        opacity: { duration: 0.1, ease: customEase },
       },
       transitionEnd: {
         display: "none",
@@ -47,7 +47,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       display: "flex",
       opacity: 1,
       transition: {
-        opacity: { duration: 0.2, ease: customEase },
+        opacity: { duration: 0.1, ease: customEase },
       },
     },
     openTransition: {
@@ -268,4 +268,4 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
   );
 };
 
-export default NavContent;
+export default memo(NavContent);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, memo } from "react";
 import MemoryContext from "../MemoryContext";
 import LoaderContext from "../LoaderContext";
 import HomeNav from "./HomeNav";
@@ -93,4 +93,4 @@ const SiteNav = ({ page, count, globalContent }) => {
   );
 };
 
-export default SiteNav;
+export default memo(SiteNav);

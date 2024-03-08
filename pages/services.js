@@ -52,16 +52,16 @@ const Services = ({ data }) => {
 
   const { setMobileMenuOpen, setMobileMemory } = useContext(MemoryContext);
 
-  // const [seeMoreClicked, setSeeMoreClicked] = useState(
-  //   new Array(data.offerings.length).fill(false)
-  // );
-  const [seeMoreClicked, setSeeMoreClicked] = useState(() => {
-    const initialState = new Array(data.offerings.length).fill(false);
-    if (initialState.length > 0) {
-      initialState[0] = true; // Set the first element to true
-    }
-    return initialState;
-  });
+  const [seeMoreClicked, setSeeMoreClicked] = useState(
+    new Array(data.offerings.length).fill(false)
+  );
+  // const [seeMoreClicked, setSeeMoreClicked] = useState(() => {
+  //   const initialState = new Array(data.offerings.length).fill(false);
+  //   if (initialState.length > 0) {
+  //     initialState[0] = true; // Set the first element to true
+  //   }
+  //   return initialState;
+  // });
 
   const handleSeeMoreClick = (index) => {
     // Create a new array to avoid mutating state directly
@@ -74,13 +74,13 @@ const Services = ({ data }) => {
     setMobileMenuOpen(false);
     setMobileMemory(false);
 
-    // setTimeout(() => {
-    //   setSeeMoreClicked((prevState) => {
-    //     const newState = [...prevState];
-    //     newState[0] = true;
-    //     return newState;
-    //   });
-    // }, 350);
+    setTimeout(() => {
+      setSeeMoreClicked((prevState) => {
+        const newState = [...prevState];
+        newState[0] = true;
+        return newState;
+      });
+    }, 350);
   }, []);
 
   const customEase = cubicBezier(0.5, 1, 0.89, 1);

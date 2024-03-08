@@ -22,7 +22,6 @@ function vh(percent) {
 
 const Home = ({ data }) => {
   // console.log("Landing Data", data);
-
   const { title, metadesc, statement, projects } = data;
   // console.log("featured data", document.data.body1);
 
@@ -30,14 +29,12 @@ const Home = ({ data }) => {
     useContext(MemoryContext);
 
   const { loaderDidRun } = useContext(LoaderContext);
+  const [viewportHeight, setViewportHeight] = useState(null);
 
   // State to track visibility for each element
   const [projectStates, setProjectStates] = useState(
     projects.map(() => ({ isVisible: false }))
   );
-
-  // Array of refs, one for each element
-  const sliderRefs = useRef(projects.map(() => React.createRef()));
 
   const toggleVisibility = (index) => {
     setProjectStates((prevStates) =>
@@ -47,21 +44,10 @@ const Home = ({ data }) => {
     );
   };
 
-  // console.log("loader did run", loaderDidRun);
-
-  const refs = useMemo(() => projects?.map(() => React.createRef()), []);
-
-  // const [isScrolling, setIsScrolling] = useState(false);
-  const [viewportHeight, setViewportHeight] = useState(null);
-
   useEffect(() => {
-    setMobileMenuOpen(false);
-    setMobileMemory(false);
     // console.log("Landing Data", document.data);
-
     if (!loaderDidRun) {
       // window.document.body.className = "noscroll";
-
       setTimeout(() => {
         // document.body.classList.add("noscroll");
         window.scrollTo(0, 0);
@@ -70,6 +56,9 @@ const Home = ({ data }) => {
 
     // get half the viewport height in pixels
     setViewportHeight(vh(50));
+
+    setMobileMenuOpen(false);
+    setMobileMemory(false);
   }, []);
 
   const loaderVariants = {
