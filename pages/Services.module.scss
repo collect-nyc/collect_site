@@ -89,12 +89,6 @@
       max-width: 1020px;
     }
 
-    .offering_link {
-      @extend .l_type_mobile;
-      margin-top: 30px;
-      display: inline-block;
-    }
-
     @media screen and (max-width: $mq-mobile-max) {
       margin-bottom: 110px;
     }
@@ -256,16 +250,27 @@
       margin-bottom: 0;
     }
 
-    .offering_link {
-      @extend .m_type;
-      margin-top: 60px;
-      display: inline-block;
+    .offering_text {
+      @extend .l_type;
+      display: block;
+      margin-top: 37px;
+
+      .offering_link {
+        @extend .l_type;
+        display: inline-block;
+        text-decoration: underline;
+
+        &:hover {
+          text-decoration: none;
+        }
+      }
 
       @media screen and (max-width: $mq-mobile-max) {
-        margin-top: 40px;
-
-        font-size: 13px;
+        margin-top: 20px;
       }
+    }
+
+    .offering_link {
     }
 
     h3,
@@ -326,7 +331,7 @@
 
     @media screen and (max-width: 1025px) {
       .label {
-        width: 5%;
+        display: none;
       }
     }
 

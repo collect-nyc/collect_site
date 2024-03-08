@@ -201,13 +201,17 @@ const Services = ({ data }) => {
                   <PortableText value={data.teams} />
                 </div>
               </div>
-              <a
-                className={styles.offering_link}
-                href="https://calendly.com/collect-nyc"
-                target="_blank"
-              >
-                Have a project? Book a new business meeting now →
-              </a>
+
+              <span className={styles.offering_text}>
+                Have a project?{" "}
+                <a
+                  className={styles.offering_link}
+                  href="https://calendly.com/collect-nyc"
+                  target="_blank"
+                >
+                  Book a new business meeting now →
+                </a>
+              </span>
             </div>
           </section>
         </article>
