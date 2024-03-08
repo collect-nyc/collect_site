@@ -46,7 +46,7 @@ const CardSlider = ({ images, sliderIndex, small }) => {
     speed: 400,
     swipe: true,
     swipeToSlide: true,
-    easing: "ease-out",
+    cssEase: "cubic-bezier(0.5, 1, 0.89, 1)",
     className: "projectslider",
     variableWidth: true,
   };
