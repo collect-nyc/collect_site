@@ -21,6 +21,11 @@ const CardSlider = ({ images, sliderIndex, small }) => {
 
   useEffect(() => {
     setIsTouch(is_touch_enabled());
+
+    const videos = document.querySelectorAll(".projectslider video");
+    videos.forEach((video) => {
+      video.play();
+    });
   }, []);
 
   useEffect(() => {
