@@ -14,7 +14,6 @@ function MyApp({ Component, pageProps }) {
   const [timeSort, setTimeSort] = useState(null);
   const [archiveList, setArchiveList] = useState([]);
   const [currentTag, setCurrentTag] = useState("All Work");
-  const [returnPage, setReturnPage] = useState(false);
   const [navTextColor, setNavTextColor] = useState(null);
   const [archiveView, setArchiveView] = useState(false);
   const [caseStudyView, setCaseStudyView] = useState(false);
@@ -23,10 +22,7 @@ function MyApp({ Component, pageProps }) {
   const [imageTotal, setImageTotal] = useState(null);
   const [archiveCounted, setArchiveCounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-
-  // If component is passed from page
-  // const Layout = Component.Layout ? Component.Layout : React.Fragment;
-  // const Layout = Component.Layout;
+  const [mobileMemory, setMobileMemory] = useState(false);
 
   useEffect(() => {
     setPageHistory(currentPage ? currentPage : null);
@@ -35,7 +31,10 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      setMobileMenuOpen(false);
+      setTimeout(() => {
+        setMobileMenuOpen(false);
+        setMobileMemory(false);
+      }, 300);
 
       if (window && window.gtag) {
         window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
@@ -65,10 +64,6 @@ function MyApp({ Component, pageProps }) {
         setCurrentTag: setCurrentTag,
         archiveList: archiveList,
         setArchiveList: setArchiveList,
-        // scrollPos: scrollPos,
-        // setScrollPos: setScrollPos,
-        returnPage: returnPage,
-        setReturnPage: setReturnPage,
         navTextColor: navTextColor,
         setNavTextColor: setNavTextColor,
         caseStudyView: caseStudyView,
@@ -79,14 +74,14 @@ function MyApp({ Component, pageProps }) {
         setRunCSFade: setRunCSFade,
         csColor: csColor,
         setCsColor: setCsColor,
-        // homeScrollPos: homeScrollPos,
-        // setHomeScrollPos: setHomeScrollPos,
         imageTotal: imageTotal,
         setImageTotal: setImageTotal,
         archiveCounted: archiveCounted,
         setArchiveCounted: setArchiveCounted,
         mobileMenuOpen: mobileMenuOpen,
         setMobileMenuOpen: setMobileMenuOpen,
+        mobileMemory: mobileMemory,
+        setMobileMemory: setMobileMemory,
       }}
     >
       <Layout

@@ -3,10 +3,16 @@ import MemoryContext from "../MemoryContext";
 import { motion, cubicBezier } from "framer-motion";
 import Link from "next/link";
 import styles from "./Nav.module.scss";
+import { set } from "lodash";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
-  const { archiveCounted, mobileMenuOpen, setMobileMenuOpen } =
-    useContext(MemoryContext);
+  const {
+    archiveCounted,
+    mobileMenuOpen,
+    setMobileMenuOpen,
+    mobileMemory,
+    setMobileMemory,
+  } = useContext(MemoryContext);
 
   // display new item from array every 1.5 second looping
   const [currentItem, setCurrentItem] = useState(0);
@@ -39,6 +45,13 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       opacity: 1,
       transition: {
         opacity: { duration: 0.2, ease: customEase },
+      },
+    },
+    openTransition: {
+      display: "flex",
+      opacity: 1,
+      transition: {
+        opacity: { duration: 0, ease: "linear" },
       },
     },
   };
@@ -98,6 +111,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               onClick={() => {
                 // setNavOpen(false);
                 setMobileMenuOpen(false);
+                setMobileMemory(false);
               }}
             >
               Close X
@@ -108,6 +122,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               onClick={() => {
                 // setNavOpen(true);
                 setMobileMenuOpen(true);
+                setMobileMemory(true);
               }}
             >
               <span className={!showNav ? styles.hide : styles.show}>Menu</span>{" "}
@@ -156,7 +171,13 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
         className={`${styles.mobile_nav} ${mobileMenuOpen && styles.open}`}
         variants={navVariants} // Apply variants
         initial="closed"
-        animate={mobileMenuOpen ? "open" : "closed"}
+        animate={
+          mobileMenuOpen && mobileMemory
+            ? "open"
+            : mobileMenuOpen && mobileMemory === false
+            ? "openTransition"
+            : "closed"
+        }
       >
         <ul>
           <li>
@@ -164,10 +185,10 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               className={`${page === "index" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
-              onClick={() => {
-                setMobileMenuOpen(false);
-              }}
               href={"/"}
+              onClick={() => {
+                setMobileMemory(false);
+              }}
             >
               Selected Projects
             </Link>
@@ -179,6 +200,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/services"}
+              onClick={() => {
+                setMobileMemory(false);
+              }}
             >
               Agency Services
             </Link>
@@ -189,6 +213,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/about"}
+              onClick={() => {
+                setMobileMemory(false);
+              }}
             >
               Get in Touch
             </Link>
@@ -200,6 +227,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               rel="noreferrer"
               onClick={() => {
                 setMobileMenuOpen(false);
+                setMobileMemory(false);
               }}
             >
               Book a Call ↗

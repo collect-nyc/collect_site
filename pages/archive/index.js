@@ -118,8 +118,6 @@ const Home = ({ document, tagged, loader, archive_page }) => {
     // scrollPos,
     // setScrollPos,
     // setHomeScrollPos,
-    returnPage,
-    setReturnPage,
     setRunCSFade,
     setCsColor,
   } = useContext(MemoryContext);

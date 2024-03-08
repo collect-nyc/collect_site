@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import _ from "lodash";
 import LoaderContext from "../components/LoaderContext";
-// import Loader from "../components/Loader";
 import CaseStudyFade from "../components/CaseStudyFade";
 import SiteNav from "../components/nav/SiteNav";
 
@@ -40,13 +39,8 @@ export default function Layout({ page, case_study, project_title, children }) {
     }
   }, [page]);
 
-  // const latest_active =
-  //   data && _.find(data.profile, { update: true }) ? true : false;
-
   return (
     <LoaderContext.Provider value={{ loaderDidRun, setLoaderDidRun }}>
-      {/*<Loader page={page} />*/}
-
       <CaseStudyFade />
 
       <SiteNav
