@@ -1,3 +1,4 @@
+import { useContext, useEffect } from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
@@ -5,6 +6,7 @@ import SharedHead from "../components/SharedHead";
 import Footer from "../components/Footer";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./About.module.scss";
+import MemoryContext from "../components/MemoryContext";
 
 const About = ({ data }) => {
   const {
@@ -21,7 +23,14 @@ const About = ({ data }) => {
     clients,
   } = data;
 
+  const { setMobileMenuOpen, setMobileMemory } = useContext(MemoryContext);
+
   // console.log("Data", data);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileMemory(false);
+  }, []);
 
   return (
     <div className={styles.container}>

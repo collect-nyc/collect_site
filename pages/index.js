@@ -8,8 +8,6 @@ import MemoryContext from "../components/MemoryContext";
 import LoaderContext from "../components/LoaderContext";
 import HomeFooter from "../components/HomeFooter";
 import { motion } from "framer-motion";
-// import Marquee from "react-fast-marquee";
-import VideoPlayer from "../components/common/VideoPlayer";
 import { SITE_NAME } from "../lib/constants";
 import CardSlider from "@/components/common/CardSlider";
 import styles from "./Index.module.scss";
@@ -28,7 +26,8 @@ const Home = ({ data }) => {
   const { title, metadesc, statement, projects } = data;
   // console.log("featured data", document.data.body1);
 
-  const { archiveCounted } = useContext(MemoryContext);
+  const { archiveCounted, setMobileMenuOpen, setMobileMemory } =
+    useContext(MemoryContext);
 
   const { loaderDidRun } = useContext(LoaderContext);
 
@@ -56,6 +55,8 @@ const Home = ({ data }) => {
   const [viewportHeight, setViewportHeight] = useState(null);
 
   useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileMemory(false);
     // console.log("Landing Data", document.data);
 
     if (!loaderDidRun) {

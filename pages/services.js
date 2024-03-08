@@ -1,14 +1,19 @@
-import React, { useRef, useEffect, createRef, useState } from "react";
+import React, {
+  useRef,
+  useEffect,
+  createRef,
+  useState,
+  useContext,
+} from "react";
 import { client } from "../sanity.config";
 import { PortableText } from "@portabletext/react";
 import Head from "next/head";
 import SharedHead from "../components/SharedHead";
 import Footer from "../components/Footer";
-// import animateScrollTo from "animated-scroll-to";
 import { motion, cubicBezier } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
-import { set } from "lodash";
+import MemoryContext from "../components/MemoryContext";
 
 // const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
 //   const elementRef = useRef();
@@ -45,6 +50,8 @@ const Services = ({ data }) => {
   const offeringsRef = useRef(null);
   const elementsRef = useRef(data.offerings.map(() => createRef()));
 
+  const { setMobileMenuOpen, setMobileMemory } = useContext(MemoryContext);
+
   const [seeMoreClicked, setSeeMoreClicked] = useState(
     new Array(data.offerings.length).fill(false)
   );
@@ -57,6 +64,9 @@ const Services = ({ data }) => {
   };
 
   useEffect(() => {
+    setMobileMenuOpen(false);
+    setMobileMemory(false);
+
     setTimeout(() => {
       setSeeMoreClicked((prevState) => {
         const newState = [...prevState];
