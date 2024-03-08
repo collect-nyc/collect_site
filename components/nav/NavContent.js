@@ -1,4 +1,5 @@
-import React, { useEffect, useState, useContext } from "react";
+import { useEffect, useState, useContext } from "react";
+import { useRouter } from "next/router";
 import MemoryContext from "../MemoryContext";
 import { motion, cubicBezier } from "framer-motion";
 import Link from "next/link";
@@ -6,6 +7,9 @@ import styles from "./Nav.module.scss";
 import { set } from "lodash";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
+  const router = useRouter();
+  const isRootPage = router.pathname === "/";
+
   const {
     archiveCounted,
     mobileMenuOpen,
@@ -60,7 +64,19 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
     <>
       <div className={styles.top_left}>
         <div className={styles.link_box}>
-          <Link href={"/"}>Collect NEW YORK</Link>
+          <Link
+            href={"/"}
+            onClick={() => {
+              if (isRootPage) {
+                setMobileMenuOpen(false);
+                setMobileMemory(false);
+              } else {
+                setMobileMemory(false);
+              }
+            }}
+          >
+            Collect NEW YORK
+          </Link>
         </div>
       </div>
       <div className={`${styles.top_right} ${styles.profile_right}`}>
