@@ -8,7 +8,6 @@ import { set } from "lodash";
 
 const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
   const router = useRouter();
-  const isRootPage = router.pathname === "/";
 
   const {
     archiveCounted,
@@ -67,7 +66,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           <Link
             href={"/"}
             onClick={() => {
-              if (isRootPage) {
+              if (router.pathname === "/") {
                 setMobileMenuOpen(false);
                 setMobileMemory(false);
               } else {
@@ -203,7 +202,12 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               }`}
               href={"/"}
               onClick={() => {
-                setMobileMemory(false);
+                if (router.pathname === "/") {
+                  setMobileMenuOpen(false);
+                  setMobileMemory(false);
+                } else {
+                  setMobileMemory(false);
+                }
               }}
             >
               Selected Projects
@@ -217,7 +221,12 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               }`}
               href={"/services"}
               onClick={() => {
-                setMobileMemory(false);
+                if (router.pathname === "/services") {
+                  setMobileMenuOpen(false);
+                  setMobileMemory(false);
+                } else {
+                  setMobileMemory(false);
+                }
               }}
             >
               Agency Services
