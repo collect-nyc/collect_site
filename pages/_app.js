@@ -40,11 +40,6 @@ function MyApp({ Component, pageProps }) {
 
   useEffect(() => {
     const handleRouteChange = (url) => {
-      // setTimeout(() => {
-      //   setMobileMenuOpen(false);
-      //   setMobileMemory(false);
-      // }, 300);
-
       if (window && window.gtag) {
         window.gtag("config", process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS, {
           page_path: url,
