@@ -239,7 +239,12 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               }`}
               href={"/about"}
               onClick={() => {
-                setMobileMemory(false);
+                if (router.pathname === "/about") {
+                  setMobileMenuOpen(false);
+                  setMobileMemory(false);
+                } else {
+                  setMobileMemory(false);
+                }
               }}
             >
               Get in Touch
