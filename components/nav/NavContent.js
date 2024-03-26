@@ -82,6 +82,11 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
         <span className={styles.archive}>
           {page === "archive_index" ? (
             "Collect ARCHIVE, Reopening Fall 2023"
+          ) : page === "about" || page === "services" ? (
+            <>
+              Please send business inquiries to{" "}
+              <a href="mailto:new@collect.nyc">new@collect.nyc</a>
+            </>
           ) : (
             <>
               {globalContent && globalContent.description
@@ -103,21 +108,21 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             >
               Selected Projects
             </Link>
-            <Link
+            {/* <Link
               className={`${page === "services" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/services"}
             >
               Agency Services
-            </Link>
+            </Link> */}
             <Link
               className={`${page === "about" && styles.current} ${
                 !showNav ? styles.hide : styles.show
               }`}
               href={"/about"}
             >
-              Get in Touch
+              Info
             </Link>
           </span>
           {mobileMenuOpen ? (
@@ -214,7 +219,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             </Link>
           </li>
 
-          <li>
+          {/* <li>
             <Link
               className={`${page === "services" && styles.current} ${
                 !showNav ? styles.hide : styles.show
@@ -231,7 +236,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             >
               Agency Services
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link
               className={`${page === "about" && styles.current} ${

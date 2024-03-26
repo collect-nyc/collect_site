@@ -7,6 +7,7 @@ import Footer from "../components/Footer";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./About.module.scss";
 import MemoryContext from "../components/MemoryContext";
+import Link from "next/link";
 
 const About = ({ data }) => {
   const {
@@ -65,8 +66,9 @@ const About = ({ data }) => {
       <main className={styles.main}>
         <article>
           <section className={styles.statement}>
-            <div className={styles.textbox}>
-              {statement ? <PortableText value={statement} /> : null}
+            <div className={styles.pagenav}>
+              <Link href="/about">About</Link>
+              <Link href="/services">Services</Link>
             </div>
           </section>
           <section className={`${styles.section} ${styles.newbusiness}`}>
