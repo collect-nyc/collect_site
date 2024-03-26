@@ -80,6 +80,8 @@ button {
 
   &:hover {
     text-decoration: underline;
+    text-decoration-thickness: 1.5px;
+    text-underline-offset: 1.5px;
   }
 }
 

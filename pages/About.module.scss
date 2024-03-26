@@ -79,6 +79,23 @@
     }
   }
 
+  .pagenav {
+    padding-left: calc(25% - 7.5px);
+
+    a {
+      &:first-of-type {
+        margin-right: 15px;
+        text-decoration: underline;
+        text-decoration-thickness: 1.5px;
+        text-underline-offset: 1.5px;
+      }
+
+      &:last-of-type {
+        color: rgba($black, 0.5);
+      }
+    }
+  }
+
   .section {
     padding: 0;
 
@@ -89,6 +106,7 @@
       justify-content: flex-start;
 
       .label {
+        text-transform: uppercase;
         width: calc(25% - 7.5px);
 
         @media screen and (max-width: $mq-mobile-max) {
@@ -97,21 +115,21 @@
       }
 
       .content {
-        @extend .l_type;
-        width: calc($column_desktop * 6 - 7.5px);
+        // @extend .l_type;
+        width: calc($column_desktop * 4 - 7.5px);
 
         a,
         button {
-          @extend .l_type;
+          // @extend .l_type;
 
           &:hover {
-            color: $red;
-            text-decoration: none;
+            // color: $red;
+            // text-decoration: none;
           }
         }
 
         p {
-          margin-bottom: 30px;
+          margin-bottom: 20px;
 
           &:last-of-type {
             margin-bottom: 0;

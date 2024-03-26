@@ -67,8 +67,8 @@ const About = ({ data }) => {
         <article>
           <section className={styles.statement}>
             <div className={styles.pagenav}>
-              <Link href="/about">About</Link>
-              <Link href="/services">Services</Link>
+              <Link href="/about">I. About & Contact</Link>
+              <Link href="/services">II. Agency Services</Link>
             </div>
           </section>
           <section className={`${styles.section} ${styles.newbusiness}`}>
@@ -81,27 +81,15 @@ const About = ({ data }) => {
                   <br />
                   +1 718 902 4911
                 </p>
-              </div>
-            </div>
-          </section>
-          <section className={`${styles.section} ${styles.hiring}`}>
-            <div className={styles.inner}>
-              <span className={styles.label}>Work Opportunities</span>
-              <div className={styles.content}>
-                <PortableText value={hiring} />
                 <p>
-                  <a href="mailto:info@collect.nyc">info@collect.nyc</a>
-                  <br />
-                  <a
-                    target="_blank"
-                    href="https://www.instagram.com/collect.nyc"
-                  >
-                    @collect.nyc
+                  <a href="https://calendly.com/collect-nyc" target="_blank">
+                    Schedule an intro meeting ↗
                   </a>
                 </p>
               </div>
             </div>
           </section>
+
           <section className={`${styles.section} ${styles.founders}`}>
             <div className={styles.inner}>
               <span className={styles.label}>Founders, Principals</span>
@@ -146,6 +134,24 @@ const About = ({ data }) => {
                     </li>
                   ))}
                 </ul>
+              </div>
+            </div>
+          </section>
+          <section className={`${styles.section} ${styles.hiring}`}>
+            <div className={styles.inner}>
+              <span className={styles.label}>Opportunities</span>
+              <div className={styles.content}>
+                <PortableText value={hiring} />
+                <p>
+                  <a href="mailto:info@collect.nyc">info@collect.nyc</a>
+                  <br />
+                  <a
+                    target="_blank"
+                    href="https://www.instagram.com/collect.nyc"
+                  >
+                    @collect.nyc
+                  </a>
+                </p>
               </div>
             </div>
           </section>
