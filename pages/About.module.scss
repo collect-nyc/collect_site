@@ -150,6 +150,10 @@
     }
 
     &.practice {
+      .inner {
+        padding-bottom: 20px;
+      }
+
       .images {
         padding-top: 10px;
 
