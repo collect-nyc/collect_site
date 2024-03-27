@@ -17,6 +17,9 @@ const About = ({ data }) => {
     newbusiness,
     hiring,
     founders,
+    ourpractice,
+    nycimage,
+    hvimage,
     instagram,
     sociallinks,
     editions,
@@ -82,10 +85,27 @@ const About = ({ data }) => {
                   +1 718 902 4911
                 </p>
                 <p>
-                  <a href="https://calendly.com/collect-nyc" target="_blank">
+                  <a
+                    className={styles.cta}
+                    href="https://calendly.com/collect-nyc"
+                    target="_blank"
+                  >
                     Schedule an intro meeting ↗
                   </a>
                 </p>
+              </div>
+            </div>
+          </section>
+
+          <section className={`${styles.section} ${styles.practice}`}>
+            <div className={styles.inner}>
+              <span className={styles.label}>Our Practice</span>
+              <div className={styles.content}>
+                <PortableText value={ourpractice} />
+                <div className={styles.images}>
+                  <img src={nycimage} alt="NYC" />
+                  <img src={hvimage} alt="Hudson Valley" />
+                </div>
               </div>
             </div>
           </section>
@@ -161,7 +181,7 @@ const About = ({ data }) => {
               <div className={styles.content}>
                 <PortableText value={editions} />
                 <a className={styles.cta} href="">
-                  Follow Éditions →
+                  Sign up for the Éditions newsletter↗
                 </a>
               </div>
             </div>
@@ -203,6 +223,9 @@ export async function getServerSideProps() {
     newbusiness,
     hiring,
     founders,
+    ourpractice,
+    "nycimage": nycimage.asset->url,
+    "hvimage": hvimage.asset->url,
     instagram,
     sociallinks,
     editions,

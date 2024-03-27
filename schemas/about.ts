@@ -39,8 +39,8 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'hiring',
-      title: 'Work Opportunities',
+      name: 'ourpractice',
+      title: 'Our Practice',
       type: 'array',
       of: [
         {
@@ -48,6 +48,30 @@ export default {
         },
       ],
       validation: Rule => Rule.required()
+    },
+    {
+      type: 'image',
+      name: 'nycimage',
+      title: 'NYC Image',
+      fields: [
+        {
+          type: 'string',
+          name: 'alt',
+          title: 'Alt Text',
+        },
+      ],
+    },
+    {
+      type: 'image',
+      name: 'hvimage',
+      title: 'HV Image',
+      fields: [
+        {
+          type: 'string',
+          name: 'alt',
+          title: 'Alt Text',
+        },
+      ],
     },
     {
       title: "Founders, Principals",
@@ -93,6 +117,17 @@ export default {
           ]
         }
       ],
+    },
+    {
+      name: 'hiring',
+      title: 'Work Opportunities',
+      type: 'array',
+      of: [
+        {
+          type: 'block',
+        },
+      ],
+      validation: Rule => Rule.required()
     },
     {
       name: 'editions',
