@@ -5,10 +5,18 @@
   background-color: $white;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: $gutter_desktop;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 10px $gutter_desktop 50px;
   width: 100%;
+
+  .container {
+    width: 75%;
+  }
+
+  .links {
+    width: calc(25% - 7.5px);
+  }
 
   .first_row {
     display: flex;
@@ -19,7 +27,7 @@
     .address,
     .reachout {
       display: block;
-      width: calc($column_desktop * 2);
+      width: 22%;
     }
 
     .reachout {
@@ -59,7 +67,7 @@
       .social,
       .extra {
         display: block;
-        width: calc($column_desktop * 2);
+        width: 22%;
       }
 
       .social {
