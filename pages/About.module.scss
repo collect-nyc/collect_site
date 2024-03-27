@@ -57,41 +57,20 @@
   .statement {
     margin-bottom: 96px;
 
-    .textbox {
-      // max-width: 68%;
-    }
+    .pagenav {
+      padding-left: calc(25% - 7.5px);
 
-    p {
-      @extend .xl_type;
-      display: block;
-      max-width: 1020px;
-    }
+      a {
+        &:first-of-type {
+          margin-right: 15px;
+          text-decoration: underline;
+          text-decoration-thickness: 1.5px;
+          text-underline-offset: 1.5px;
+        }
 
-    .offering_link {
-      @extend .l_type_mobile;
-      margin-top: 30px;
-      display: inline-block;
-    }
-
-    @media screen and (max-width: $mq-mobile-max) {
-      padding: 0;
-      margin-bottom: 110px;
-    }
-  }
-
-  .pagenav {
-    padding-left: calc(25% - 7.5px);
-
-    a {
-      &:first-of-type {
-        margin-right: 15px;
-        text-decoration: underline;
-        text-decoration-thickness: 1.5px;
-        text-underline-offset: 1.5px;
-      }
-
-      &:last-of-type {
-        color: rgba($black, 0.5);
+        &:last-of-type {
+          color: rgba($black, 0.5);
+        }
       }
     }
   }

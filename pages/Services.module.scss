@@ -80,17 +80,23 @@
   }
 
   .statement {
-    // padding: 0 $gutter_desktop;
     margin-bottom: 96px;
 
-    p {
-      @extend .xl_type;
-      display: block;
-      max-width: 1020px;
-    }
+    .pagenav {
+      padding-left: calc(25% - 7.5px);
 
-    @media screen and (max-width: $mq-mobile-max) {
-      margin-bottom: 110px;
+      a {
+        &:first-of-type {
+          color: rgba($black, 0.5);
+          margin-right: 15px;
+        }
+
+        &:last-of-type {
+          text-decoration: underline;
+          text-decoration-thickness: 1.5px;
+          text-underline-offset: 1.5px;
+        }
+      }
     }
   }
 

@@ -14,6 +14,7 @@ import { motion, cubicBezier } from "framer-motion";
 import { SITE_NAME } from "../lib/constants";
 import styles from "./Services.module.scss";
 import MemoryContext from "../components/MemoryContext";
+import Link from "next/link";
 
 // const ScrollLogger = ({ children, itemIndex, setCurrentItem }) => {
 //   const elementRef = useRef();
@@ -137,8 +138,9 @@ const Services = ({ data }) => {
       <main className={styles.main}>
         <article>
           <section className={styles.statement}>
-            <div className={styles.textbox}>
-              {statement ? <PortableText value={statement} /> : null}
+            <div className={styles.pagenav}>
+              <Link href="/about">I. About & Contact</Link>
+              <Link href="/services">II. Agency Services</Link>
             </div>
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
@@ -225,7 +227,7 @@ const Services = ({ data }) => {
                   href="https://calendly.com/collect-nyc"
                   target="_blank"
                 >
-                  Book a new business meeting now →
+                  Book a new business call now ↗
                 </a>
               </span>
             </div>
