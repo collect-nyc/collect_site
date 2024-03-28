@@ -322,8 +322,8 @@
     }
 
     .center {
-      min-width: 650px;
-      width: calc($column_desktop * 6 - 7.5px);
+      max-width: 480px;
+      width: 100%;
     }
 
     .cta {
