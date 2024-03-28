@@ -102,21 +102,21 @@
 
   .offerings {
     .offering {
-      border-bottom: 2px solid $black;
+      border-bottom: 1.5px solid $black;
       padding: 15px 0 0;
       cursor: pointer;
 
       &.first {
-        border-top: 2px solid $black;
+        border-top: 1.5px solid $black;
       }
 
       &.open {
-        padding-bottom: 30px;
+        padding-bottom: 15px;
         transition: padding-bottom 0.5s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
       &.closed {
-        padding-bottom: 50px;
+        padding-bottom: 60px;
         transition: padding-bottom 0.5s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
@@ -158,13 +158,13 @@
           padding: 0;
 
           li {
-            @extend .m_type;
+            @extend .s_type;
             list-style: none;
 
             &:before {
               content: "→";
               display: inline-block;
-              margin-right: 25px;
+              margin-right: 10px;
             }
           }
         }
@@ -246,9 +246,8 @@
   }
 
   .ways_to_work {
-    border-bottom: 2px solid $black;
+    border-bottom: 1.5px solid $black;
     padding: 20px 0 40px;
-    margin-bottom: 25px;
 
     @media screen and (max-width: $mq-mobile-max) {
       padding-bottom: 20px;

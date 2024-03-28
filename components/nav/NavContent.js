@@ -117,9 +117,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Agency Services
             </Link> */}
             <Link
-              className={`${page === "about" && styles.current} ${
-                !showNav ? styles.hide : styles.show
-              }`}
+              className={`${
+                page === "about" || (page === "services" && styles.current)
+              } ${!showNav ? styles.hide : styles.show}`}
               href={"/about"}
             >
               Info
