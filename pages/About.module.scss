@@ -63,9 +63,7 @@
       a {
         &:first-of-type {
           margin-right: 15px;
-          text-decoration: underline;
-          text-decoration-thickness: 1.5px;
-          text-underline-offset: 1.5px;
+          @include underline;
         }
 
         &:last-of-type {
@@ -80,7 +78,7 @@
 
     .inner {
       border-bottom: 2px solid $black;
-      padding: 15px 0 77px;
+      padding: 15px 0 60px;
       display: flex;
       justify-content: flex-start;
 
@@ -151,7 +149,7 @@
 
     &.practice {
       .inner {
-        padding-bottom: 20px;
+        padding-bottom: 15px;
       }
 
       .images {

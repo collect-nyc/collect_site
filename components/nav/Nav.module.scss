@@ -90,7 +90,7 @@
           }
 
           &:hover {
-            text-decoration: underline;
+            @include underline;
           }
         }
 
@@ -132,7 +132,7 @@
       }
 
       .current {
-        text-decoration: underline;
+        @include underline;
       }
 
       .show {
