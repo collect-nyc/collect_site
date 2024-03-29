@@ -16,7 +16,7 @@
   padding: 175px $gutter_desktop 0;
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 158px $gutter_mobile 0;
+    padding: 158px 0 0;
   }
 
   article {
@@ -231,9 +231,15 @@
           width: auto;
           margin-right: 11px;
 
-          &:last-of-type {
-            margin-right: 0;
+          @media screen and (min-width: $mq-tablet-min) {
+            &:last-of-type {
+              margin-right: 0;
+            }
           }
+
+          // &:last-of-type {
+          //   margin-right: 0;
+          // }
         }
 
         @media screen and (max-width: $mq-mobile-max) {
@@ -259,10 +265,61 @@
       }
 
       @media screen and (max-width: $mq-mobile-max) {
+        border-bottom: none;
         padding: 10px 0 0;
+        position: relative;
+
+        &:after {
+          content: "";
+          display: block;
+          height: 1.5px;
+          background-color: $black;
+          position: absolute;
+          bottom: 0;
+          width: calc(100% - $gutter_mobile * 2);
+          left: $gutter_mobile;
+        }
+
+        &.first {
+          border-top: none;
+
+          &:before {
+            content: "";
+            display: block;
+            height: 1.5px;
+            background-color: $black;
+            position: absolute;
+            top: 0;
+            width: calc(100% - $gutter_mobile * 2);
+            left: $gutter_mobile;
+          }
+
+          .center {
+            padding: 0 $gutter_mobile;
+          }
+        }
 
         &.open {
           padding-bottom: 15px;
+        }
+
+        .center {
+        }
+
+        h2,
+        .description,
+        .cta {
+          padding: 0 $gutter_mobile;
+        }
+
+        .examples {
+          ul {
+            padding: 0 $gutter_mobile;
+          }
+
+          .example_images {
+            padding: 0 0 0 $gutter_mobile;
+          }
         }
       }
     }
@@ -273,9 +330,26 @@
     padding: 20px 0 40px;
 
     @media screen and (max-width: $mq-mobile-max) {
-      padding-bottom: 20px;
-      padding-top: 10px;
+      border-bottom: none;
+      position: relative;
       margin-bottom: 0;
+      padding: {
+        top: 10px;
+        bottom: 20px;
+        right: $gutter_mobile;
+        left: $gutter_mobile;
+      }
+
+      &:after {
+        content: "";
+        display: block;
+        height: 1.5px;
+        background-color: $black;
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - $gutter_mobile * 2);
+        left: $gutter_mobile;
+      }
     }
 
     .offering_text {
@@ -295,6 +369,11 @@
 
       @media screen and (max-width: $mq-mobile-max) {
         margin-top: 20px;
+        @include body_text;
+
+        .offering_link {
+          @include body_text;
+        }
       }
     }
 

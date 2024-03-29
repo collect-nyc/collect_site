@@ -60,6 +60,10 @@
           &:last-of-type {
             margin-right: 0;
           }
+
+          &.current {
+            @include underline;
+          }
         }
       }
 
