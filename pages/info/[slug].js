@@ -49,7 +49,7 @@ const EssentialText = ({ document }) => {
           </div>
         </main>
       </div>
-      <Footer essential="true" />
+      {/* <Footer essential="true" /> */}
     </>
   );
 };
