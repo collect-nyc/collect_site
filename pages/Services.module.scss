@@ -120,6 +120,10 @@
         transition: padding-bottom 0.5s cubic-bezier(0.5, 1, 0.89, 1);
       }
 
+      &.workwith {
+        padding-bottom: 60px;
+      }
+
       h2,
       .description {
         @extend .l_type;

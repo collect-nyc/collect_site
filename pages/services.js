@@ -144,13 +144,25 @@ const Services = ({ data }) => {
             </div>
           </section>
           <section ref={offeringsRef} className={styles.offerings}>
+            <div
+              className={`${styles.offering} ${styles.row} ${styles.first} ${styles.closed} ${styles.workwith}`}
+            >
+              <span className={styles.label}>Work With Us</span>
+              <div className={styles.center}>
+                <p>
+                  Foundational offerings for artists, creators, companies and
+                  institutions; we bring strategy and focus to technology and
+                  the arts, allowing our collaborators to do more by design.
+                </p>
+              </div>
+            </div>
             {data.offerings.map((offering, i) => (
               <div
                 key={i}
                 ref={elementsRef.current[i]}
-                className={`${styles.offering} ${styles.row} ${
-                  i === 0 && styles.first
-                } ${seeMoreClicked[i] ? styles.open : styles.closed}`}
+                className={`${styles.offering} ${styles.row}  ${
+                  seeMoreClicked[i] ? styles.open : styles.closed
+                }`}
                 onClick={() => handleSeeMoreClick(i)}
               >
                 <span className={styles.label}>
