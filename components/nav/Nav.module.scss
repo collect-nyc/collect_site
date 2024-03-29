@@ -47,9 +47,20 @@
       align-items: center;
       width: auto;
 
-      a {
+      .logotype {
         display: flex;
         min-width: 150px;
+      }
+
+      .mobile_menu {
+        a {
+          display: inline-block;
+          margin-right: 15px;
+
+          &:last-of-type {
+            margin-right: 0;
+          }
+        }
       }
 
       @media screen and (max-width: $mq-mobile-max) {
@@ -283,7 +294,7 @@
         }
 
         a.current {
-          // text-decoration: underline;
+          text-decoration: underline;
 
           // &:after {
           //   display: inline-block;

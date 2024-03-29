@@ -63,19 +63,41 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
     <>
       <div className={styles.top_left}>
         <div className={styles.link_box}>
-          <Link
-            href={"/"}
-            onClick={() => {
-              if (router.pathname === "/") {
-                setMobileMenuOpen(false);
-                setMobileMemory(false);
-              } else {
-                setMobileMemory(false);
-              }
-            }}
-          >
-            Collect NEW YORK
-          </Link>
+          {mobileMenuOpen ? (
+            <div className={styles.mobile_menu}>
+              <Link
+                className={`${page === "index" && styles.current} ${
+                  !showNav ? styles.hide : styles.show
+                }`}
+                href={"/"}
+              >
+                Selected Projects
+              </Link>
+              <Link
+                className={`${page === "about" && styles.current} ${
+                  page === "services" && styles.current
+                } ${!showNav ? styles.hide : styles.show}`}
+                href={"/about"}
+              >
+                Info
+              </Link>
+            </div>
+          ) : (
+            <Link
+              className={styles.logotype}
+              href={"/"}
+              onClick={() => {
+                if (router.pathname === "/") {
+                  setMobileMenuOpen(false);
+                  setMobileMemory(false);
+                } else {
+                  setMobileMemory(false);
+                }
+              }}
+            >
+              Collect NEW YORK
+            </Link>
+          )}
         </div>
       </div>
       <div className={`${styles.top_right} ${styles.profile_right}`}>
@@ -125,45 +147,27 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Info
             </Link>
           </span>
-          {mobileMenuOpen ? (
-            <button
-              className={styles.mobile_btn}
-              onClick={() => {
-                // setNavOpen(false);
-                setMobileMenuOpen(false);
-                setMobileMemory(false);
-              }}
-            >
-              Close X
-            </button>
-          ) : (
-            <button
-              className={`${styles.mobile_btn} ${styles.mobile_link}`}
-              onClick={() => {
-                // setNavOpen(true);
-                setMobileMenuOpen(true);
-                setMobileMemory(true);
-              }}
-            >
-              <span className={!showNav ? styles.hide : styles.show}>Menu</span>{" "}
-              (
-              {count && !archiveCounted
-                ? newCount
-                : count && archiveCounted
-                ? count
-                : 0}
-              )
-            </button>
-          )}
-          {/* <Link
-            href={"/work"}
-            className={`${styles.count_link} ${styles.desktop_link} ${
-              page === "work" && styles.current
-            }`}
+
+          <button
+            className={`${styles.mobile_btn} ${styles.mobile_link}`}
+            onClick={() => {
+              // setNavOpen(true);
+              setMobileMenuOpen(!mobileMenuOpen);
+              setMobileMemory(!mobileMenuOpen);
+            }}
           >
-            <span className={!showNav ? styles.hide : styles.show}>
-              All Work
-            </span>{" "}
+            {mobileMenuOpen ? (
+              <>
+                <span className={styles.mobile_btn}>Close</span>&nbsp;
+              </>
+            ) : (
+              <>
+                <span className={!showNav ? styles.hide : styles.show}>
+                  Menu
+                </span>
+                &nbsp;
+              </>
+            )}
             (
             {count && !archiveCounted
               ? newCount
@@ -171,7 +175,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               ? count
               : 0}
             )
-          </Link> */}
+          </button>
           <span
             className={`${styles.count_link} ${styles.desktop_link} ${
               page === "work" && styles.current
@@ -187,7 +191,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           </span>
         </div>
       </div>
-      <motion.div
+      {/* <motion.div
         className={`${styles.mobile_nav} ${mobileMenuOpen && styles.open}`}
         variants={navVariants} // Apply variants
         initial="closed"
@@ -218,25 +222,6 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               Selected Projects
             </Link>
           </li>
-
-          {/* <li>
-            <Link
-              className={`${page === "services" && styles.current} ${
-                !showNav ? styles.hide : styles.show
-              }`}
-              href={"/services"}
-              onClick={() => {
-                if (router.pathname === "/services") {
-                  setMobileMenuOpen(false);
-                  setMobileMemory(false);
-                } else {
-                  setMobileMemory(false);
-                }
-              }}
-            >
-              Agency Services
-            </Link>
-          </li> */}
           <li>
             <Link
               className={`${page === "about" && styles.current} ${
@@ -252,7 +237,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 }
               }}
             >
-              Get in Touch
+              Info
             </Link>
           </li>
           <li>
@@ -273,7 +258,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
         <span className={styles.copyright}>
           ©{new Date().getFullYear()} Collect NEW YORK
         </span>
-      </motion.div>
+      </motion.div> */}
     </>
   );
 };
