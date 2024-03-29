@@ -50,6 +50,10 @@
       .logotype {
         display: flex;
         min-width: 150px;
+
+        &:hover {
+          @include underline;
+        }
       }
 
       .mobile_menu {
