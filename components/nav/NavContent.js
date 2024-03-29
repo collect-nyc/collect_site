@@ -37,7 +37,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
     closed: {
       opacity: 0,
       transition: {
-        opacity: { duration: 0.1, ease: customEase },
+        opacity: { duration: 0.15, ease: customEase },
       },
       transitionEnd: {
         display: "none",
@@ -47,7 +47,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
       display: "flex",
       opacity: 1,
       transition: {
-        opacity: { duration: 0.1, ease: customEase },
+        opacity: { duration: 0.15, ease: customEase },
       },
     },
     openTransition: {
@@ -191,7 +191,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
           </span>
         </div>
       </div>
-      {/* <motion.div
+      <motion.div
         className={`${styles.mobile_nav} ${mobileMenuOpen && styles.open}`}
         variants={navVariants} // Apply variants
         initial="closed"
@@ -202,63 +202,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             ? "openTransition"
             : "closed"
         }
-      >
-        <ul>
-          <li>
-            <Link
-              className={`${page === "index" && styles.current} ${
-                !showNav ? styles.hide : styles.show
-              }`}
-              href={"/"}
-              onClick={() => {
-                if (router.pathname === "/") {
-                  setMobileMenuOpen(false);
-                  setMobileMemory(false);
-                } else {
-                  setMobileMemory(false);
-                }
-              }}
-            >
-              Selected Projects
-            </Link>
-          </li>
-          <li>
-            <Link
-              className={`${page === "about" && styles.current} ${
-                !showNav ? styles.hide : styles.show
-              }`}
-              href={"/about"}
-              onClick={() => {
-                if (router.pathname === "/about") {
-                  setMobileMenuOpen(false);
-                  setMobileMemory(false);
-                } else {
-                  setMobileMemory(false);
-                }
-              }}
-            >
-              Info
-            </Link>
-          </li>
-          <li>
-            <a
-              href="https://calendly.com/collect-nyc"
-              target="_blank"
-              rel="noreferrer"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                setMobileMemory(false);
-              }}
-            >
-              Book a Call ↗
-            </a>
-          </li>
-        </ul>
-
-        <span className={styles.copyright}>
-          ©{new Date().getFullYear()} Collect NEW YORK
-        </span>
-      </motion.div> */}
+      />
     </>
   );
 };
