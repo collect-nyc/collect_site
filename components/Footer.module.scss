@@ -10,6 +10,10 @@
   padding: 15px $gutter_desktop 60px;
   width: 100%;
 
+  &.essential {
+    max-width: 100%;
+  }
+
   .container {
     width: 75%;
   }
@@ -123,10 +127,6 @@
     }
   }
 
-  // @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
-  //   max-width: calc(100% - ($column_desktop + 250px));
-  // }
-
   @media screen and (min-width: $mq-tablet-min) and (max-width: 1100px) {
     .first_row {
       .address,
@@ -146,11 +146,41 @@
   }
 
   @media screen and (max-width: $mq-mobile-max) {
-    padding: 22px $gutter_mobile $gutter_mobile;
+    padding: 7px $gutter_mobile $gutter_mobile;
     max-width: 100%;
-  }
+    flex-direction: column-reverse;
 
-  &.essential {
-    max-width: 100%;
+    .container {
+      display: block;
+
+      .first_row {
+        display: block;
+
+        .address {
+          display: block;
+          margin-bottom: 17px;
+        }
+      }
+
+      .second_row {
+        display: block;
+        margin-top: 17px;
+
+        .contact {
+          display: block;
+          margin-bottom: 17px;
+
+          .social {
+            display: block;
+            margin-bottom: 17px;
+          }
+        }
+      }
+    }
+
+    .links {
+      display: block;
+      width: 100%;
+    }
   }
 }
