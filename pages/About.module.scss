@@ -70,6 +70,12 @@
           color: rgba($black, 0.5);
         }
       }
+
+      @media screen and (max-width: $mq-mobile-max) {
+        padding-left: 0;
+        display: flex;
+        justify-content: center;
+      }
     }
   }
 
