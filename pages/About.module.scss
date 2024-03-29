@@ -173,7 +173,15 @@
       }
 
       @media screen and (max-width: $mq-mobile-max) {
+        .inner {
+          padding-bottom: 60px;
+        }
         .images {
+          padding: {
+            top: 35px;
+            left: 40px;
+            right: 40px;
+          }
           img {
             width: calc(50% - 5px);
           }
