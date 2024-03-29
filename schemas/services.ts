@@ -17,8 +17,8 @@ export default {
       validation: Rule => Rule.required()
     },
     {
-      name: 'statement',
-      title: 'Opening Statement',
+      name: 'workwithus',
+      title: 'Work With Us',
       type: 'array',
       of: [
         {

@@ -46,7 +46,7 @@ import Link from "next/link";
 const Services = ({ data }) => {
   // console.log("Data", data);
 
-  const { title, metadesc, statement } = data;
+  const { title, metadesc, workwithus } = data;
   const workRef = useRef(null);
   const offeringsRef = useRef(null);
   const elementsRef = useRef(data.offerings.map(() => createRef()));
@@ -149,11 +149,15 @@ const Services = ({ data }) => {
             >
               <span className={styles.label}>Work With Us</span>
               <div className={styles.center}>
-                <p>
-                  Foundational offerings for artists, creators, companies and
-                  institutions; we bring strategy and focus to technology and
-                  the arts, allowing our collaborators to do more by design.
-                </p>
+                {workwithus ? (
+                  <PortableText value={workwithus} />
+                ) : (
+                  <p>
+                    Foundational offerings for artists, creators, companies and
+                    institutions; we bring strategy and focus to technology and
+                    the arts, allowing our collaborators to do more by design.
+                  </p>
+                )}
               </div>
             </div>
             {data.offerings.map((offering, i) => (
@@ -341,7 +345,7 @@ export async function getServerSideProps() {
   const document = await client.fetch(`*[_type == "services"]{
     title,
     metadesc,
-    statement,
+    workwithus,
     "offerings": offering[]->{
       title,
       description,
