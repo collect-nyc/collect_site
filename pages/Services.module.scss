@@ -212,7 +212,7 @@
       }
 
       .example_images {
-        height: 140px;
+        height: 240px;
         position: relative;
         overflow: hidden;
 
@@ -243,6 +243,8 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
+          height: 120px;
+
           .interior {
             position: relative;
             overflow-x: auto; /* Enable horizontal scrolling */
@@ -299,8 +301,20 @@
           }
         }
 
+        &.closed {
+          .cta {
+            opacity: 1;
+            transition: opacity 0.3s cubic-bezier(0.5, 1, 0.89, 1) 0.3s;
+          }
+        }
+
         &.open {
           padding-bottom: 15px;
+
+          .cta {
+            opacity: 0;
+            transition: opacity 0.1s cubic-bezier(0.5, 1, 0.89, 1);
+          }
         }
 
         .center {
@@ -310,6 +324,10 @@
         .description,
         .cta {
           padding: 0 $gutter_mobile;
+        }
+
+        .cta {
+          transition: opacity 0.3s cubic-bezier(0.5, 1, 0.89, 1);
         }
 
         .examples {
