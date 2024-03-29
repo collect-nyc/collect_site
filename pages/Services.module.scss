@@ -112,6 +112,13 @@
       padding: 15px 0 0;
       cursor: pointer;
 
+      &:hover {
+        .examples {
+          filter: none;
+          mix-blend-mode: normal;
+        }
+      }
+
       &.first {
         border-top: 1.5px solid $black;
       }
@@ -157,6 +164,8 @@
 
       .examples {
         overflow: hidden;
+        filter: grayscale(100%);
+        mix-blend-mode: multiply;
 
         &.open {
           display: block;
@@ -203,7 +212,6 @@
 
       .example_images {
         height: 140px;
-        // padding-top: 22.5%;
         position: relative;
         overflow: hidden;
 
