@@ -165,12 +165,11 @@
 
       .examples {
         overflow: hidden;
-        filter: grayscale(100%);
+        // filter: grayscale(100%);
         mix-blend-mode: multiply;
 
         &.open {
           display: block;
-          // padding-bottom: 30px;
         }
 
         &.closed {

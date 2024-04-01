@@ -178,13 +178,16 @@
           padding-bottom: 60px;
         }
         .images {
+          display: flex;
+          justify-content: center;
           padding: {
-            top: 35px;
-            left: 40px;
-            right: 40px;
+            top: 57px;
+            left: 0;
+            right: 0;
           }
+
           img {
-            width: calc(50% - 5px);
+            width: 127px;
           }
         }
       }
