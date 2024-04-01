@@ -133,8 +133,6 @@ export default async function handler(req, res) {
     (res) => res.json()
   );
 
-  // const tags = everything.tags;
-
   totalCount =
     data.length +
     mediaCount +
