@@ -18,6 +18,10 @@
     width: auto !important;
   }
 
+  @media screen and (min-width: $mq-tablet-min) and (max-width: 1000px) {
+    height: 420px;
+  }
+
   @media screen and (max-width: $mq-mobile-max) {
     height: 240px;
     padding-left: $gutter_mobile;

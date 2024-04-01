@@ -106,7 +106,9 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
             "Collect ARCHIVE, Reopening Fall 2023"
           ) : page === "about" || page === "services" ? (
             <>
-              Please send business inquiries to{" "}
+              <span className={styles.notablet}>
+                Please send business inquiries to{" "}
+              </span>
               <a href="mailto:new@collect.nyc">new@collect.nyc</a>
             </>
           ) : (

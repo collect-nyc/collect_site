@@ -225,13 +225,11 @@
       justify-content: flex-end;
     }
 
-    @media screen and (min-width: $mq-tablet-min) and (max-width: 1025px) {
-      &.profile_right {
-        justify-content: flex-end;
-      }
-
+    @media screen and (min-width: $mq-tablet-min) and (max-width: $mq-tablet-max) {
       .archive {
-        display: none;
+        .notablet {
+          display: none;
+        }
       }
     }
 
