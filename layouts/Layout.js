@@ -11,7 +11,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json());
 export default function Layout({ page, case_study, project_title, children }) {
   // getting nav count
   const { data, error } = useSWR("/api/get-nav-data", fetcher);
-  const totalCount = data ? data.count + data.media : null;
+  const totalCount = data ? data.count : null;
   const tags = data ? data.tags : null;
   const gc = data ? data.globalContent : null;
 
