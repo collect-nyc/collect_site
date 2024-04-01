@@ -99,7 +99,8 @@
 
       .content {
         // @extend .l_type;
-        width: calc($column_desktop * 4 - 7.5px);
+        max-width: 480px;
+        width: 100%;
 
         a,
         button {
@@ -284,6 +285,7 @@
         }
 
         .content {
+          max-width: none;
           width: 100%;
         }
       }
