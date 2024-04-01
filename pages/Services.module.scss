@@ -140,6 +140,14 @@
         .label {
           text-transform: uppercase;
         }
+
+        @media screen and (max-width: $mq-mobile-max) {
+          .label {
+            display: block;
+            padding: 0 $gutter_mobile;
+            width: 100%;
+          }
+        }
       }
 
       h2,
