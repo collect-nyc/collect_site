@@ -142,8 +142,11 @@
         }
 
         @media screen and (max-width: $mq-mobile-max) {
+          padding-top: 8px;
+
           .label {
             display: block;
+            margin-bottom: 20px;
             padding: 0 $gutter_mobile;
             width: 100%;
           }
@@ -321,6 +324,7 @@
           .cta {
             opacity: 0;
             transition: opacity 0.1s cubic-bezier(0.5, 1, 0.89, 1);
+            display: none;
           }
         }
 
