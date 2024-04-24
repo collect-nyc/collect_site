@@ -180,7 +180,11 @@ const About = ({ data }) => {
               <span className={styles.label}>Éditions Magazine</span>
               <div className={styles.content}>
                 <PortableText value={editions} />
-                <a className={styles.cta} href="">
+                <a
+                  className={styles.cta}
+                  href="https://www.editionsnewyork.com"
+                  target="_blank"
+                >
                   Sign up for the Éditions newsletter↗
                 </a>
               </div>
