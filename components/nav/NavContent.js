@@ -71,7 +71,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
                 }`}
                 href={"/"}
               >
-                Selected Projects
+                Selected Work
               </Link>
               <Link
                 className={`${page === "about" && styles.current} ${
@@ -130,7 +130,7 @@ const NavContent = ({ page, count, newCount, globalContent, showNav }) => {
               }`}
               href={"/"}
             >
-              Selected Projects
+              Selected Work
             </Link>
             {/* <Link
               className={`${page === "services" && styles.current} ${
