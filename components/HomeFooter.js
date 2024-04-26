@@ -22,12 +22,12 @@ const Footer = () => {
               @collect.nyc
             </a>
             <a
-              href="https://www.instagram.com/shop.editions/"
+              href="https://www.instagram.com/editions.mag/"
               target="_blank"
               rel="noreferrer"
               className={styles.insta}
             >
-              @shop.editions
+              @editions.mag
             </a>
           </div>
         </div>
