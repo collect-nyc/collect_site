@@ -10,51 +10,27 @@ const SiteNav = ({ page, count, globalContent }) => {
   const [newCount, setNewCount] = useState(0);
   const [showNav, setShowNav] = useState(loaderDidRun ? true : false);
 
-  function getRandomTime() {
-    const minNumber = 450;
-    const maxNumber = 750;
-
-    return Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-  }
+  // Pick a random number of chunks for each load (between 5 and 12)
+  const [chunks] = useState(() => Math.floor(Math.random() * 8) + 5); // 5-12
+  const COUNT_INTERVAL = 180; // ms, slower for more visible steps
+  const COUNT_INCREMENT = Math.ceil((count || 1) / chunks);
 
   const countUpTotal = (target) => {
     let numCount = 0;
-
-    let countUpTime = getRandomTime();
-
     const intervalId = setInterval(() => {
-      const minIncrement = 150;
-      const maxIncrement = 250;
-
-      numCount += Math.floor(
-        Math.random() * (maxIncrement - minIncrement + 1) + minIncrement
-      );
-
-      // If the count is greater than or equal to the total, stop the interval and log the final count
-      if (numCount > target) {
+      numCount += COUNT_INCREMENT;
+      if (numCount >= target) {
         clearInterval(intervalId);
-
-        if (page === "index") {
-          window.scrollTo(0, 0);
-        }
-
         setNewCount(target);
         setArchiveCounted(true);
         setTimeout(() => {
-          // window.document.body.classList.remove("noscroll");
           setLoaderDidRun(true);
           setShowNav(true);
-        }, 750);
-      } else if (numCount >= target) {
-        clearInterval(intervalId);
-        // console.log(`Final count: ${numCount}`);
-        setNewCount(numCount);
-        setArchiveCounted(true);
+        }, 100); // minimal delay for smoothness
       } else {
-        // console.log(`Counting up: ${numCount}`);
         setNewCount(numCount);
       }
-    }, countUpTime);
+    }, COUNT_INTERVAL);
   };
 
   useEffect(() => {
