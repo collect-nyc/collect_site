@@ -9,8 +9,9 @@ const Footer = () => {
       <div className={styles.contact}>
         <div className={styles.col}>
           <span className={styles.address}>
-            100A Broadway #377
-            <br /> Brooklyn, NY 11249
+            15 Maiden Lane
+            <br /> Ste. 1003
+            <br /> New York, NY 10038
           </span>
           <div className={styles.social}>
             <a
@@ -38,6 +39,15 @@ const Footer = () => {
               <a href="mailto:info@collect.nyc">info@collect.nyc</a>
             </span>
             <span className={styles.phone}>+1 718 902 4911</span>
+            <span className={styles.insta}>
+              <a
+                href="https://www.instagram.com/appliedpoetics.ltd"
+                target="_blank"
+                rel="noreferrer"
+              >
+                @collect.nyc
+              </a>
+            </span>
           </div>
           <div className={styles.extra}>
             <Link href="/info/privacy">Privacy</Link>

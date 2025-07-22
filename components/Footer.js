@@ -12,8 +12,8 @@ const Footer = ({ essential }) => {
       <div className={styles.container}>
         <div className={styles.first_row}>
           <span className={styles.address}>
-            100A Broadway #377
-            <br /> Brooklyn, NY 11249
+            15 Maiden Lane Ste. 1003
+            <br /> New York, NY 10038
           </span>
 
           <div className={styles.reachout}>
@@ -30,7 +30,7 @@ const Footer = ({ essential }) => {
           <div className={styles.contact}>
             <div className={styles.social}>
               <a
-                href="https://www.instagram.com/collect.nyc/"
+                href="https://www.instagram.com/appliedpoetics.ltd"
                 target="_blank"
                 rel="noreferrer"
                 className={styles.insta}
