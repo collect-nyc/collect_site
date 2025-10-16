@@ -3,8 +3,33 @@ const nextConfig = {
   async redirects() {
     return [
       {
-        source: "/profile",
-        destination: "/about",
+        source: "/",
+        destination: "https://ap.ltd",
+        permanent: true,
+      },
+      {
+        source: "/about",
+        destination: "https://ap.ltd/about",
+        permanent: true,
+      },
+      {
+        source: "/services",
+        destination: "https://ap.ltd/about",
+        permanent: true,
+      },
+      {
+        source: "/services",
+        destination: "https://ap.ltd/about",
+        permanent: true,
+      },
+      {
+        source: "/info/privacy",
+        destination: "https://ap.ltd",
+        permanent: true,
+      },
+      {
+        source: "/info/impressum",
+        destination: "https://ap.ltd",
         permanent: true,
       },
     ];
